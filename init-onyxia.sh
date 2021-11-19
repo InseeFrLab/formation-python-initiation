@@ -21,7 +21,7 @@ cp ${COURSE_DIR}/${CHAPTER}/${COURSE}.ipynb ${FORMATION_DIR}/
 
 # If there is a solutions file, put in work
 SOLUTIONS_FILE=${COURSE_DIR}/${CHAPTER}/solutions/${COURSE}.py
-[ -f $SOLUTIONS_FILE ] && cp SOLUTIONS_FILE ${WORK_DIR}/solutions.py
+[ -f $SOLUTIONS_FILE ] && cp $SOLUTIONS_FILE ${WORK_DIR}/solutions.py
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${COURSE_DIR}/${CHAPTER}/requirements/${COURSE}.txt
