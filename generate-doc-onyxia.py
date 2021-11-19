@@ -1,6 +1,7 @@
 """Generate doc of a training program for https://www.sspcloud.fr."""
 
 import os
+import json 
 
 def generate_block(name, abstract, authors, contributors, types, tags, category,
                    image_url, article_url=None, deployment_url=None):
@@ -30,6 +31,26 @@ def generate_block(name, abstract, authors, contributors, types, tags, category,
         block["articleUrl"] = article_url
 
     return block
+
+
+def get_metadata_ipynb(ipynb_path):
+    """Extract title and abstract from the metadata of a Jupyter Notebook.
+    
+    An error is raised if these metadata are not present.
+    """
+    with open(ipynb_path, "r") as file:
+        ipynb_json = json.load(file)
+    ipynb_metadata = ipynb_json["metadata"]
+
+    if "title" not in ipynb_metadata.keys() or "abstract" not in ipynb_metadata.keys():
+        raise KeyError("'title' and 'abstract' fields must be set in each notebook's metadata.")
+
+    return ipynb_metadata["title"], ipynb_metadata["abstract"]
+
+
+
+
+
 
 CWD = os.getcwd()
 COURSE_DIR = os.path.join(CWD, "course")
