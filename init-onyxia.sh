@@ -5,26 +5,29 @@ COURSE=$2
 
 WORK_DIR=/home/jovyan/work
 CLONE_DIR=${WORK_DIR}/repo-git
-COURSE_DIR=${WORK_DIR}/repo-git/course
+COURSE_DIR=${CLONE_DIR}/course
 FORMATION_DIR=${WORK_DIR}/formation
 
 # Clone course repository
 REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
 git clone --depth 1 $REPO_URL $CLONE_DIR
 
-# Put relevant notebook in the working dir
+# Create training dir and give write permissions
 mkdir $FORMATION_DIR
-cp ${COURSE_DIR}/${CHAPTER}/${COURSE}.ipynb ${FORMATION_DIR}/
-# Put solutions file in work
-cp ${COURSE_DIR}/${CHAPTER}/solutions/${COURSE}.py ${WORK_DIR}/solutions.py
-# Give appropriate permissions to allow editing notebook
 chown -R jovyan:users $FORMATION_DIR
+
+# Put relevant notebook in the training dir
+cp ${COURSE_DIR}/${CHAPTER}/${COURSE}.ipynb ${FORMATION_DIR}/
+
+# If there is a solutions file, put in work
+SOLUTIONS_FILE=${COURSE_DIR}/${CHAPTER}/solutions/${COURSE}.py
+[ -f $SOLUTIONS_FILE ] && cp SOLUTIONS_FILE ${WORK_DIR}/solutions.py
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${COURSE_DIR}/${CHAPTER}/requirements/${COURSE}.txt
 [ -f $REQUIREMENTS_FILE ] && pip install -r $REQUIREMENTS_FILE
 
-# Remove clone repository
+# Remove course Git repository
 rm -r $CLONE_DIR
 
 # Open the relevant notebook when starting Jupyter Lab
