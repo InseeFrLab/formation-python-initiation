@@ -1,31 +1,31 @@
 #!/bin/sh
 
 CHAPTER=$1
-IPYNB_NAME=$2
+COURSE=$2
 
 WORK_DIR=/home/jovyan/work
 CLONE_DIR=${WORK_DIR}/repo-git
 COURSE_DIR=${WORK_DIR}/repo-git/course
-FORMATION_DIR=${WORK_DIR}/formation-python
+FORMATION_DIR=${WORK_DIR}/formation
 
 # Clone course repository
 REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
-git clone --recurse-submodules --depth 1 $REPO_URL $CLONE_DIR
+git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Put relevant notebook in the working dir
 mkdir $FORMATION_DIR
-cp ${COURSE_DIR}/${CHAPTER}/${IPYNB_NAME}.ipynb ${FORMATION_DIR}/
+cp ${COURSE_DIR}/${CHAPTER}/${COURSE}.ipynb ${FORMATION_DIR}/
 # Put solutions file in work
-cp ${COURSE_DIR}/${CHAPTER}/solutions/${IPYNB_NAME}.py ${WORK_DIR}/solutions.py
+cp ${COURSE_DIR}/${CHAPTER}/solutions/${COURSE}.py ${WORK_DIR}/solutions.py
 # Give appropriate permissions to allow editing notebook
 chown -R jovyan:users $FORMATION_DIR
 
 # Install additional packages if needed
-REQUIREMENTS_FILE=${COURSE_DIR}/${CHAPTER}/requirements/${IPYNB_NAME}.txt
+REQUIREMENTS_FILE=${COURSE_DIR}/${CHAPTER}/requirements/${COURSE}.txt
 [ -f $REQUIREMENTS_FILE ] && pip install -r $REQUIREMENTS_FILE
 
 # Remove clone repository
 rm -r $CLONE_DIR
 
 # Open the relevant notebook when starting Jupyter Lab
-echo "c.LabApp.default_url = '/lab/tree/formation-python/${IPYNB_NAME}.ipynb'" >> /home/jovyan/.jupyter/jupyter_server_config.py
+echo "c.LabApp.default_url = '/lab/tree/formation/${COURSE}.ipynb'" >> /home/jovyan/.jupyter/jupyter_server_config.py
