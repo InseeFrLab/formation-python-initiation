@@ -1,15 +1,18 @@
 #!/bin/sh
 
-# Clone course repository
-REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
+CHAPTER=$1
+IPYNB_NAME=$2
+
 WORK_DIR=/home/jovyan/work
 CLONE_DIR=${WORK_DIR}/repo-git
+COURSE_DIR=${WORK_DIR}/repo-git/course
+FORMATION_DIR=${WORK_DIR}/formation-python
+
+# Clone course repository
+REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
 git clone --recurse-submodules --depth 1 $REPO_URL $CLONE_DIR
 
 # Put relevant notebook in the working dir
-# The `CHAPTER` and `NOTEBOOK` variables are passed from a Vault secret specified in the launch URL
-COURSE_DIR=${WORK_DIR}/repo-git/course
-FORMATION_DIR=${WORK_DIR}/formation-python
 mkdir $FORMATION_DIR
 cp ${COURSE_DIR}/${CHAPTER}/${IPYNB_NAME}.ipynb ${FORMATION_DIR}/
 # Put solutions file in work
