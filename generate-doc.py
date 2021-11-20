@@ -41,12 +41,12 @@ if __name__ == "__main__":
     PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(PROJECT_DIR, "METADATA.json"), "r") as file:
         md = json.load(file)
-
     # Main URLs
-    LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/inseefrlab-helm-charts-datascience/"
-                      "jupyter?init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com"
-                      "%2FInseeFrLab%2Fformation-python-initiation%2Fmain%2Finit-jupyter.sh%C2%BB"
-                      "&init.personalInitArgs=%C2%AB{init_args}%C2%BB&security.allowlist.enabled=false")
+    LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/inseefrlab-helm-charts-datascience/jupyter"
+                      "?onyxia.friendlyName=%C2%ABpython-initiation%C2%BB"
+                      "&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-python-initiation%2Fmain%2Finit-jupyter.sh%C2%BB"
+                      "&init.personalInitArgs=%C2%AB{init_args}%C2%BB"
+                      "&security.allowlist.enabled=false")
     COURSE_NAME_ENCODED = urllib.parse.quote(md['name'])
     DEFAULT_URL = f"https://www.sspcloud.fr/documentation?search=&path=%5B%22{COURSE_NAME_ENCODED}%22%5D"
 
