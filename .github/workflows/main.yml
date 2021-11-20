@@ -23,10 +23,12 @@ jobs:
           content=`cat doc-course.json`
           echo "::set-output name=doc::$content"
           
-      - name: Dispatch doc
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.PAT_FOR_DISPATCH }}
-          event-type: update_educational_resources
-          repository: InseeFrLab/www.sspcloud.fr
-          client-payload: ${{ steps.builddoc.outputs.doc }}
+      - run: echo '{ "educational_resources": "${{ steps.builddoc.outputs.doc }}"}'
+          
+#       - name: Dispatch doc
+#         uses: peter-evans/repository-dispatch@v1
+#         with:
+#           token: ${{ secrets.PAT_FOR_DISPATCH }}
+#           event-type: update_educational_resources
+#           repository: InseeFrLab/www.sspcloud.fr
+#           client-payload: ${{ steps.builddoc.outputs.doc }}
