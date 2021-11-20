@@ -17,13 +17,14 @@ jobs:
         uses: actions/setup-python@v2.3.0
 
       - name: Build course doc
-        id: BuildDoc
+        id: builddoc
         run: |
           python generate-doc.py
-          echo "DOC_JSON=$(cat doc-course.json)" >> $GITHUB_ENV
+          content=`cat doc-course.json`
+          echo "::set-output name=doc::$content"
           
       - name: test 
-        run: echo ${{ env.DOC_JSON }}
+        run: echo ${{ steps.builddoc.outputs.doc }}
           
 #       - name: Update doc
 #         uses: peter-evans/repository-dispatch@v1
