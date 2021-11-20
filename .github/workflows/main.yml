@@ -20,10 +20,10 @@ jobs:
         id: BuildDoc
         run: |
           python generate-doc.py
-          echo "::set-output name=doc::$(cat doc-course.json)"
+          echo "DOC_JSON=$(cat doc-course.json)" >> $GITHUB_ENV
           
       - name: test 
-        run: echo ${{ steps.BuildDoc.outputs.doc }}
+        run: echo ${{ env.DOC_JSON }}
           
 #       - name: Update doc
 #         uses: peter-evans/repository-dispatch@v1
