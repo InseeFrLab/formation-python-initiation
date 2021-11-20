@@ -20,7 +20,7 @@ jobs:
         id: BuildDoc
         run: |
           python generate-doc.py
-          run: echo "::set-output name=doc::$(cat doc-course.json)"
+          echo "::set-output name=doc::$(cat doc-course.json)"
           
       - name: test 
         run: echo ${{ steps.BuildDoc.outputs.doc }}
