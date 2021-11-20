@@ -22,7 +22,7 @@ jobs:
           python generate-doc.py
           content=`cat doc-course.json`
           payload="'{ "educational_resources": "$content"'"
-          echo "::set-output name=doc::$payload"
+          echo "::set-output name=doc::"$payload""
           
       - run: |
           echo ${{ steps.builddoc.outputs.doc }}
