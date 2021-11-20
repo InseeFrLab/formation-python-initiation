@@ -3,7 +3,7 @@
     "abstract": "Cours introductif à Python : fondamentaux du langage et premières manipulations de données",
     "authors": ["inseefrlab"],
     "contributors": ["Romain Avouac, Julie Djiriguian, Yves-Laurent Bénichou, Lino Galiana"],
-    "types": ["Site documentaire"],
+    "types": ["Notebook Python"],
     "tags": ["discover", "learn"],
     "category": "datascience with R and Python",
     "img_url": "https://raw.githubusercontent.com/InseeFrLab/www.sspcloud.fr/main/src/app/assets/img/python.jpg",
