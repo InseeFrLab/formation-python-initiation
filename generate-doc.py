@@ -64,46 +64,34 @@ if __name__ == "__main__":
     for section in md["sections"].keys():
         # Build section block
         section_md = md["sections"][section]
-        if "chapters" in section_md:
-            section_doc = generate_block(name=section_md["name"],
-                                         abstract=section_md["abstract"],
-                                         authors=md["authors"], 
-                                         contributors=md["contributors"],
-                                         types=md["types"], 
-                                         tags=md["tags"], 
-                                         category=md["category"],
-                                         img_url=md["img_url"]
-                                         )
-            for chapter in section_md["chapters"].keys():
-                # Build chapter block
-                chapter_md = section_md["chapters"][chapter]
-                init_args = urllib.parse.quote(f"{section} {chapter}")
-                launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
-                chapter_doc = generate_block(name=chapter_md["name"],
-                                             abstract=chapter_md["abstract"],
-                                             authors=md["authors"],
-                                             contributors=md["contributors"],
-                                             types=md["types"],
-                                             tags=md["tags"],
-                                             category=md["category"],
-                                             img_url=md["img_url"],
-                                             deployment_url=launcher_url
-                                             )
-                section_doc["parts"].append(chapter_doc)
-        else:
-            launcher_url = LAUNCHER_TMPLT.format(init_args=section)
-            section_doc = generate_block(name=section_md["name"],
-                                         abstract=section_md["abstract"],
-                                         authors=md["authors"], 
-                                         contributors=md["contributors"],
-                                         types=md["types"], 
-                                         tags=md["tags"], 
-                                         category=md["category"],
-                                         img_url=md["img_url"],
-                                         deployment_url=launcher_url
-                                         )
+        section_doc = generate_block(name=section_md["name"],
+                                        abstract=section_md["abstract"],
+                                        authors=md["authors"], 
+                                        contributors=md["contributors"],
+                                        types=md["types"], 
+                                        tags=md["tags"], 
+                                        category=md["category"],
+                                        img_url=md["img_url"]
+                                        )
+        for chapter in section_md["chapters"].keys():
+            # Build chapter block
+            chapter_md = section_md["chapters"][chapter]
+            init_args = urllib.parse.quote(f"{section} {chapter}")
+            launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
+            chapter_doc = generate_block(name=chapter_md["name"],
+                                            abstract=chapter_md["abstract"],
+                                            authors=md["authors"],
+                                            contributors=md["contributors"],
+                                            types=md["types"],
+                                            tags=md["tags"],
+                                            category=md["category"],
+                                            img_url=md["img_url"],
+                                            deployment_url=launcher_url
+                                            )
+            section_doc["parts"].append(chapter_doc)
+
         doc_json["parts"].append(section_doc)
 
     # Export doc
-    with open(os.path.join(PROJECT_DIR, "doc-onyxia.json"), "w") as file:
+    with open(os.path.join(PROJECT_DIR, "doc-course.json"), "w") as file:
         json.dump(doc_json, file, indent=4)

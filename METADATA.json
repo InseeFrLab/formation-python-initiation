@@ -10,7 +10,13 @@
     "sections": {
         "introduction": {
             "name": "Introduction",
-            "abstract": "Introduction de l'auto-formation \"Initiation à Python\" du SSP Cloud"
+            "abstract": "Introduction de l'auto-formation \"Initiation à Python\" du SSP Cloud",
+            "chapters": {
+                "introduction": {
+                    "name": "Introduction",
+                    "abstract": "Notebook introductif"
+                }
+            }
         },
         "fundamentals": {
             "name": "Fondamentaux du langage",
@@ -96,7 +102,13 @@
         },
         "final-project": {
             "name": "Projet final",
-            "abstract": "Projet final validant l'auto-formation \"Initiation à Python\" du SSP Cloud"
+            "abstract": "Projet final validant l'auto-formation \"Initiation à Python\" du SSP Cloud",
+            "chapters": {
+                "final-project": {
+                    "name": "Projet final",
+                    "abstract": "Projet final validant l'auto-formation \"Initiation à Python\" du SSP Cloud"
+                }
+            }
         }
     }
 }
