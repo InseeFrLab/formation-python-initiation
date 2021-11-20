@@ -21,10 +21,11 @@ jobs:
         run: |
           python generate-doc.py
           content=`cat doc-course.json`
-          echo "::set-output name=doc::$content"
+          payload=\'{ \"educational_resources\": \"$content\"\'
+          echo "::set-output name=doc::$payload"
           
       - run: |
-          echo \'{ \"educational_resources\": \"${{ steps.builddoc.outputs.doc }}\"\'
+          echo ${{ steps.builddoc.outputs.doc }}
           
 #       - name: Dispatch doc
 #         uses: peter-evans/repository-dispatch@v1
