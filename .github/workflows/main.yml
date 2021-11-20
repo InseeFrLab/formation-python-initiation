@@ -20,6 +20,5 @@ jobs:
 
       - name: Build course doc
         run: |
-          cd $GITHUB_WORKSPACE
           python python ./generate-doc.py
           cat doc-course.json
