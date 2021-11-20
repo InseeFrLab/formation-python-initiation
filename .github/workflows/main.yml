@@ -22,7 +22,8 @@ jobs:
           python generate-doc.py
           run: echo "::set-output name=doc::$(cat doc-course.json)"
           
-      - run: echo ${{ steps.BuildDoc.outputs.doc }}
+      - name: test 
+        run: echo ${{ steps.BuildDoc.outputs.doc }}
           
 #       - name: Update doc
 #         uses: peter-evans/repository-dispatch@v1
