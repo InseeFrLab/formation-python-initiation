@@ -77,7 +77,8 @@ if __name__ == "__main__":
             for chapter in section_md["chapters"].keys():
                 # Build chapter block
                 chapter_md = section_md["chapters"][chapter]
-                launcher_url = LAUNCHER_TMPLT.format(init_args=f"{section} {chapter}")
+                init_args = urllib.parse.quote(f"{section} {chapter}")
+                launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
                 chapter_doc = generate_block(name=chapter_md["name"],
                                              abstract=chapter_md["abstract"],
                                              authors=md["authors"],
@@ -90,7 +91,7 @@ if __name__ == "__main__":
                                              )
                 section_doc["parts"].append(chapter_doc)
         else:
-            launcher_url = LAUNCHER_TMPLT.format(init_args=f"{section}")
+            launcher_url = LAUNCHER_TMPLT.format(init_args=section)
             section_doc = generate_block(name=section_md["name"],
                                          abstract=section_md["abstract"],
                                          authors=md["authors"], 
