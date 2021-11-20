@@ -24,7 +24,7 @@ jobs:
           echo "::set-output name=doc::$content"
           
       - run: |
-          echo '{ "educational_resources": "${{ steps.builddoc.outputs.doc }}"'
+          echo \'{ \"educational_resources\": \"${{ steps.builddoc.outputs.doc }}\"\'
           
 #       - name: Dispatch doc
 #         uses: peter-evans/repository-dispatch@v1
