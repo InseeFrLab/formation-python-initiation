@@ -20,5 +20,5 @@ jobs:
 
       - name: Build course doc
         run: |
-          python python ./generate-doc.py
+          python generate-doc.py
           cat doc-course.json
