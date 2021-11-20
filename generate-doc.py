@@ -2,7 +2,7 @@
 
 import os
 import json
-import urllib
+import urllib.parse
 
 
 def generate_block(name, abstract, authors, contributors, types, tags, category,
