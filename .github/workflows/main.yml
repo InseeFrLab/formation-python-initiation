@@ -24,13 +24,10 @@ jobs:
           payload=`echo \'{ \"educational_resources\": \"$content\" }\'`
           echo "PAYLOAD=$(echo $payload)" >> $GITHUB_ENV
           
-      - run: |
-          echo $PAYLOAD
-          
-#       - name: Dispatch doc
-#         uses: peter-evans/repository-dispatch@v1
-#         with:
-#           token: ${{ secrets.PAT_FOR_DISPATCH }}
-#           event-type: update_educational_resources
-#           repository: InseeFrLab/www.sspcloud.fr
-#           client-payload: ${{ steps.builddoc.outputs.doc }}
+      - name: Dispatch doc
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT_FOR_DISPATCH }}
+          event-type: update_educational_resources
+          repository: InseeFrLab/www.sspcloud.fr
+          client-payload: ${{ env.PAYLOAD }}
