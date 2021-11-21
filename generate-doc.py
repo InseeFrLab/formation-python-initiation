@@ -97,5 +97,5 @@ if __name__ == "__main__":
 
     # Export doc
     with open(os.path.join(PROJECT_DIR, "doc-course.txt"), "w") as file:
-        doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\u2019")
+        doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
         file.write(doc_final)
