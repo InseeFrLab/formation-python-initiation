@@ -16,20 +16,21 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2.3.0
 
-      - name: Build course doc
+      - name: Build doc
         id: builddoc
         run: |
           python generate-doc.py
           content=`cat doc-course.json`
-          echo "::set-output name=doc::$content"
+          payload=\'{ \"educational_resources\": \"$content\"\'
+          echo "PAYLOAD=$(echo $payload)" >> $GITHUB_ENV
           
-      - name: test 
-        run: echo ${{ steps.builddoc.outputs.doc }}
+      - run: |
+          echo $PAYLOAD
           
-#       - name: Update doc
+#       - name: Dispatch doc
 #         uses: peter-evans/repository-dispatch@v1
 #         with:
 #           token: ${{ secrets.PAT_FOR_DISPATCH }}
 #           event-type: update_educational_resources
 #           repository: InseeFrLab/www.sspcloud.fr
-#           client-payload: 
+#           client-payload: ${{ steps.builddoc.outputs.doc }}
