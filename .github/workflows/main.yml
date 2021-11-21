@@ -21,7 +21,7 @@ jobs:
         run: |
           python generate-doc.py
           content=`cat doc-course.txt`
-          payload=`echo \'{ \"educational_resources\": \"$content\" }\'`
+          payload=`echo { \"educational_resources\": \"$content\" }`
           echo "PAYLOAD=$(echo $payload)" >> $GITHUB_ENV
           
       - name: Dispatch doc
