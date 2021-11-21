@@ -92,6 +92,10 @@ if __name__ == "__main__":
 
         doc_json["parts"].append(section_doc)
 
+    # Escape all quotes
+    
+
     # Export doc
-    with open(os.path.join(PROJECT_DIR, "doc-course.json"), "w") as file:
-        json.dump(doc_json, file)
+    with open(os.path.join(PROJECT_DIR, "doc-course.txt"), "w") as file:
+        doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
+        file.write(doc_final)
