@@ -112,9 +112,10 @@ if __name__ == "__main__":
         doc_json["parts"].append(section_doc)
 
     # Escape all quotes for CI dispatch step
-    print(json.dumps(doc_json, indent=4))
-    doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
+    with open(os.path.join(PROJECT_DIR, "doc.json"), "w") as json_file:
+        json.dump(doc_json, json_file)
 
     # Export doc
-    with open(os.path.join(PROJECT_DIR, "doc-course.txt"), "w") as file:
-        file.write(doc_final)
+    # doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
+    # with open(os.path.join(PROJECT_DIR, "doc-course.txt"), "w") as file:
+    #     file.write(doc_final)
