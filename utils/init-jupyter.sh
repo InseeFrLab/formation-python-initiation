@@ -12,16 +12,16 @@ FORMATION_DIR=${WORK_DIR}/formation
 REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
 git clone --depth 1 $REPO_URL $CLONE_DIR
 
-# Create training dir and give write permissions
-mkdir $FORMATION_DIR
-chown -R jovyan:users $FORMATION_DIR
-
 # Convert .md to .ipynb
 pip install python-frontmatter jupytext
 python $CLONE_DIR/utils/md-to-ipynb.py $COURSE_DIR/${SECTION}/${CHAPTER}.md
 
 # Put relevant notebook in the training dir
+mkdir $FORMATION_DIR
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}.ipynb ${FORMATION_DIR}/
+
+# Give write permissions
+chown -R jovyan:users $FORMATION_DIR
 
 # If there is a solutions file, put in work
 SOLUTIONS_FILE=${COURSE_DIR}/${SECTION}/solutions/${CHAPTER}.py
