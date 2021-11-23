@@ -16,6 +16,10 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 mkdir $FORMATION_DIR
 chown -R jovyan:users $FORMATION_DIR
 
+# Convert .md to .ipynb
+pip install jupytext
+python $COURSE_DIR/${SECTION}/${CHAPTER}.md
+
 # Put relevant notebook in the training dir
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}.ipynb ${FORMATION_DIR}/
 
