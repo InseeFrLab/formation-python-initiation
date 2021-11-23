@@ -18,7 +18,7 @@ chown -R jovyan:users $FORMATION_DIR
 
 # Convert .md to .ipynb
 pip install jupytext
-python $COURSE_DIR/${SECTION}/${CHAPTER}.md
+python $CLONE_DIR/utils/md-to-ipynb.py $COURSE_DIR/${SECTION}/${CHAPTER}.md
 
 # Put relevant notebook in the training dir
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}.ipynb ${FORMATION_DIR}/
