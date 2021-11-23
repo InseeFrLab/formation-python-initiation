@@ -19,7 +19,7 @@ jobs:
       - name: Build doc
         id: builddoc
         run: |
-          python generate-doc.py
+          python utils/generate-doc.py
           content=`cat doc-course.txt`
           payload=`echo { \"educational_resources\": \"$content\" }`
           echo "PAYLOAD=$(echo $payload)" >> $GITHUB_ENV

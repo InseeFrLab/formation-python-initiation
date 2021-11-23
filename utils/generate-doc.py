@@ -55,9 +55,9 @@ if __name__ == "__main__":
 
     # Main URLs
     LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/inseefrlab-helm-charts-datascience/jupyter"
-                      "?onyxia.friendlyName=«python-initiation»"
-                      "&init.personalInit=«https://raw.githubusercontent.com/InseeFrLab/formation-python-initiation/main/utils/init-jupyter.sh»"
-                      "&init.personalInitArgs=«{init_args}»"
+                      "?onyxia.friendlyName=%C2%ABpython-initiation%C2%BB"
+                      "&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-python-initiation%2Fmain%2Finit-jupyter.sh%C2%BB"
+                      "&init.personalInitArgs=%C2%AB{init_args}%C2%BB"
                       "&security.allowlist.enabled=false")
     COURSE_NAME_ENCODED = urllib.parse.quote(md['name'])
     # DEFAULT_URL = f"https://www.sspcloud.fr/documentation?search=&path=«{COURSE_NAME_ENCODED}»"
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         doc_json["parts"].append(section_doc)
 
     # Escape all quotes for CI dispatch step
-    # print(json.dumps(doc_json, indent=4))
+    print(json.dumps(doc_json, indent=4))
     doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
 
     # Export doc
