@@ -33,7 +33,7 @@ def generate_block(name, abstract, authors, contributors, types, tags, category,
         "types": types,
         "tags": tags,
         "category": category,
-        "img_url": img_url
+        "imageUrl": img_url
     }
 
     if article_url is None and deployment_url is None:
@@ -70,7 +70,7 @@ if __name__ == "__main__":
                               types=md["types"], 
                               tags=md["tags"], 
                               category=md["category"], 
-                              img_url=md["img_url"]
+                              img_url=md["imageUrl"]
                               )
     for section in md["sections"].keys():
         # Build section block
@@ -82,7 +82,7 @@ if __name__ == "__main__":
                                      types=md["types"], 
                                      tags=md["tags"],
                                      category=md["category"],
-                                     img_url=md["img_url"]
+                                     img_url=md["imageUrl"]
                                      )
         for chapter in section_md["chapters"]:
             # Build chapter block if notebook exists
@@ -101,7 +101,7 @@ if __name__ == "__main__":
                                              types=md["types"],
                                              tags=md["tags"],
                                              category=md["category"],
-                                             img_url=md["img_url"],
+                                             img_url=md["imageUrl"],
                                              deployment_url=launcher_url
                                              )
                 section_doc["parts"].append(chapter_doc)
