@@ -19,7 +19,7 @@ jobs:
       - name: Build doc
         id: builddoc
         run: |
-          pip install frontmatter
+          pip install python-frontmatter
           python utils/generate-doc.py
           content=`cat doc-course.txt`
           payload=`echo { \"educational_resources\": \"$content\" }`
