@@ -6,14 +6,6 @@ import sys
 import frontmatter
 
 
-def extract_metadata_md(md_path):
-    """Extract title and abstract of a .md file."""
-    with open(md_path, "r") as qmd_file:
-        fm = frontmatter.load(md_file)
-
-    return fm["title"], fm["abstract"]
-
-
 def md_to_ipynb(md_path):
     """Convert a .md file in Jupyter notebook and set title using metadata."""
     ipynb_path = os.path.splitext(md_path)[0] + ".ipynb"

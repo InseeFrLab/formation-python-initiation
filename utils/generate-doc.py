@@ -1,8 +1,19 @@
 """Generate doc of a training program for https://www.sspcloud.fr."""
-
+import logging
 import os
+from os.path import dirname
 import json
 import urllib.parse
+
+import frontmatter
+
+
+def extract_metadata_md(md_path):
+    """Extract title and abstract metadata from a .md file."""
+    with open(md_path, "r") as md_file:
+        fm = frontmatter.load(md_file)
+
+    return fm["title"], fm["abstract"]
 
 
 def generate_block(name, abstract, authors, contributors, types, tags, category,
@@ -38,18 +49,18 @@ def generate_block(name, abstract, authors, contributors, types, tags, category,
 if __name__ == "__main__":
 
     # Load course metadata
-    PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_DIR = dirname(dirname(os.path.abspath(__file__)))
     with open(os.path.join(PROJECT_DIR, "METADATA.json"), "r") as file:
         md = json.load(file)
+
     # Main URLs
     LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/inseefrlab-helm-charts-datascience/jupyter"
-                      "?onyxia.friendlyName=%C2%ABpython-initiation%C2%BB"
-                      "&init.personalInit=%C2%ABhttps%3A%2F%2Fraw.githubusercontent.com%2FInseeFrLab%2Fformation-python-initiation%2Fmain%2Finit-jupyter.sh%C2%BB"
-                      "&init.personalInitArgs=%C2%AB{init_args}%C2%BB"
+                      "?onyxia.friendlyName=«python-initiation»"
+                      "&init.personalInit=«https://raw.githubusercontent.com/InseeFrLab/formation-python-initiation/main/utils/init-jupyter.sh»"
+                      "&init.personalInitArgs=«{init_args}»"
                       "&security.allowlist.enabled=false")
     COURSE_NAME_ENCODED = urllib.parse.quote(md['name'])
-    DEFAULT_URL = f"https://www.sspcloud.fr/documentation?search=&path=%5B%22{COURSE_NAME_ENCODED}%22%5D"
-
+    # DEFAULT_URL = f"https://www.sspcloud.fr/documentation?search=&path=«{COURSE_NAME_ENCODED}»"
 
     # Build documentation's top block
     doc_json = generate_block(name=md["name"], 
@@ -65,37 +76,45 @@ if __name__ == "__main__":
         # Build section block
         section_md = md["sections"][section]
         section_doc = generate_block(name=section_md["name"],
-                                        abstract=section_md["abstract"],
-                                        authors=md["authors"], 
-                                        contributors=md["contributors"],
-                                        types=md["types"], 
-                                        tags=md["tags"], 
-                                        category=md["category"],
-                                        img_url=md["img_url"]
-                                        )
-        for chapter in section_md["chapters"].keys():
-            # Build chapter block
-            chapter_md = section_md["chapters"][chapter]
-            init_args = urllib.parse.quote(f"{section} {chapter}")
-            launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
-            chapter_doc = generate_block(name=chapter_md["name"],
-                                            abstract=chapter_md["abstract"],
-                                            authors=md["authors"],
-                                            contributors=md["contributors"],
-                                            types=md["types"],
-                                            tags=md["tags"],
-                                            category=md["category"],
-                                            img_url=md["img_url"],
-                                            deployment_url=launcher_url
-                                            )
-            section_doc["parts"].append(chapter_doc)
+                                     abstract=section_md["abstract"],
+                                     authors=md["authors"],
+                                     contributors=md["contributors"],
+                                     types=md["types"], 
+                                     tags=md["tags"],
+                                     category=md["category"],
+                                     img_url=md["img_url"]
+                                     )
+        for chapter in section_md["chapters"]:
+            # Build chapter block if notebook exists
+            MD_PATH = os.path.join(PROJECT_DIR, "course", section, f"{chapter}.md")
+
+            if os.path.isfile(MD_PATH):
+                name, abstract = extract_metadata_md(MD_PATH)
+
+                init_args = urllib.parse.quote(f"{section} {chapter}")
+                launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
+
+                chapter_doc = generate_block(name=name,
+                                             abstract=abstract,
+                                             authors=md["authors"],
+                                             contributors=md["contributors"],
+                                             types=md["types"],
+                                             tags=md["tags"],
+                                             category=md["category"],
+                                             img_url=md["img_url"],
+                                             deployment_url=launcher_url
+                                             )
+                section_doc["parts"].append(chapter_doc)
+
+            else:
+                raise FileNotFoundError(f"{MD_PATH} not found.")
 
         doc_json["parts"].append(section_doc)
 
-    # Escape all quotes
-    
+    # Escape all quotes for CI dispatch step
+    # print(json.dumps(doc_json, indent=4))
+    doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
 
     # Export doc
     with open(os.path.join(PROJECT_DIR, "doc-course.txt"), "w") as file:
-        doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
         file.write(doc_final)
