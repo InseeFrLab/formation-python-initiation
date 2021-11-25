@@ -43,7 +43,7 @@ jobs:
         echo ::set-output name=out::$(node -e 'console.log(JSON.stringify(process.argv[1]))' "$(cat f.json)")
     - uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.PAT_FOR_COMMIT }}
+        token: ${{ secrets.PAT_FOR_DISPATCH }}
         event-type: update_educational_resources
         repository: InseeFrLab/www.sspcloud.fr
         client-payload: '{ "educational_resource": ${{steps.step1.outputs.out}} }'
