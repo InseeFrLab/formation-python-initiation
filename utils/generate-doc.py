@@ -60,7 +60,7 @@ if __name__ == "__main__":
                       "&init.personalInitArgs=%C2%AB{init_args}%C2%BB"
                       "&security.allowlist.enabled=false")
     COURSE_NAME_ENCODED = urllib.parse.quote(md['name'])
-    # DEFAULT_URL = f"https://www.sspcloud.fr/documentation?search=&path=«{COURSE_NAME_ENCODED}»"
+    DEFAULT_URL = f"https://pythonformationlab.github.io/"
 
     # Build documentation's top block
     doc_json = generate_block(name=md["name"], 
@@ -84,30 +84,33 @@ if __name__ == "__main__":
                                      category=md["category"],
                                      img_url=md["imageUrl"]
                                      )
-        for chapter in section_md["chapters"]:
-            # Build chapter block if notebook exists
-            MD_PATH = os.path.join(PROJECT_DIR, "course", section, f"{chapter}.md")
+        if section_md["chapters"]:
+            for chapter in section_md["chapters"]:
+                # Build chapter block if notebook exists
+                MD_PATH = os.path.join(PROJECT_DIR, "course", section, f"{chapter}.md")
 
-            if os.path.isfile(MD_PATH):
-                name, abstract = extract_metadata_md(MD_PATH)
+                if os.path.isfile(MD_PATH):
+                    name, abstract = extract_metadata_md(MD_PATH)
 
-                init_args = urllib.parse.quote(f"{section} {chapter}")
-                launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
+                    init_args = urllib.parse.quote(f"{section} {chapter}")
+                    launcher_url = LAUNCHER_TMPLT.format(init_args=init_args)
 
-                chapter_doc = generate_block(name=name,
-                                             abstract=abstract,
-                                             authors=md["authors"],
-                                             contributors=md["contributors"],
-                                             types=md["types"],
-                                             tags=md["tags"],
-                                             category=md["category"],
-                                             img_url=md["imageUrl"],
-                                             deployment_url=launcher_url
-                                             )
-                section_doc["parts"].append(chapter_doc)
+                    chapter_doc = generate_block(name=name,
+                                                abstract=abstract,
+                                                authors=md["authors"],
+                                                contributors=md["contributors"],
+                                                types=md["types"],
+                                                tags=md["tags"],
+                                                category=md["category"],
+                                                img_url=md["imageUrl"],
+                                                deployment_url=launcher_url
+                                                )
+                    section_doc["parts"].append(chapter_doc)
 
-            else:
-                raise FileNotFoundError(f"{MD_PATH} not found.")
+                else:
+                    raise FileNotFoundError(f"{MD_PATH} not found.")
+        else:
+            section_doc["articleUrl"] = DEFAULT_URL
 
         doc_json["parts"].append(section_doc)
 
