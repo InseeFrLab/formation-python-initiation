@@ -1,5 +1,5 @@
 ---
-title: "Structures de données 1 : conteneurs séquentiels"
+title: "Structures de données 1 : listes et tuples"
 abstract: "Manipulation des structures de données séquentielles : listes et tuples"
 ---
 
