@@ -21,9 +21,6 @@ a = [1, 2, 3]
 print(a)
 ```
 
-    [1, 2, 3]
-
-
 La liste `a` est constituée d'entiers, mais une liste peut en pratique contenir des objets de tout type.
 
 
@@ -32,9 +29,6 @@ b = ["une séquence", 56, "d"]
 print(b)
 ```
 
-    ['une séquence', 56, 'd']
-
-
 Il est notamment possible de créer des listes de listes (et ainsi de suite), ce qui permet de créer des structures hiérarchiques de données.
 
 
@@ -42,9 +36,6 @@ Il est notamment possible de créer des listes de listes (et ainsi de suite), ce
 c = ["une séquence", 56, ["cette liste est imbriquée", 75, "o"]]
 print(c)
 ```
-
-    ['une séquence', 56, ['cette liste est imbriquée', 75, 'o']]
-
 
 Une liste imbriquée peut aussi être construite à partir de listes déjà définies.
 
@@ -56,9 +47,6 @@ item3 = ["lait", "1L"]
 inventaire = [item1, item2, item3]
 print(inventaire)
 ```
-
-    [['cafe', '500g'], ['biscuits', '20'], ['lait', '1L']]
-
 
 On verra cependant dans le prochain tutoriel que les dictionnaires sont généralement des structures de données souvent plus adaptées que les listes pour représenter des données sous forme hiérarchique.
 
@@ -72,13 +60,6 @@ d = ["ceci", "est", "une", "liste"]
 len(d)
 ```
 
-
-
-
-    4
-
-
-
 ### Indexation
 
 Les listes étant des séquences, elles s'indexent de la même manière que les chaînes de caractères. Il est notamment important de se rappeler que la numérotation des positions commence à 0 en Python.
@@ -89,27 +70,12 @@ Les listes étant des séquences, elles s'indexent de la même manière que les 
 print(a[2])
 ```
 
-    3
-
-
 Bien entendu, il n'est pas possible de demander un élément qui n'existe pas. Python renvoie une erreur nous indiquant que l'index demandé est hors limites.
 
 
 ```python
 print(a[5])
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    IndexError                                Traceback (most recent call last)
-
-    /tmp/ipykernel_267/2124014989.py in <module>
-    ----> 1 print(a[5])
-    
-
-    IndexError: list index out of range
-
 
 Pour indexer une liste contenue dans une autre liste, on utilise une double indexation.
 
@@ -119,9 +85,6 @@ Pour indexer une liste contenue dans une autre liste, on utilise une double inde
 print(c[2][0])
 ```
 
-    cette liste est imbriquée
-
-
 En termes d'indexation, tout ce qui était possible sur les chaînes caractères l'est également avec les listes.
 
 
@@ -130,17 +93,11 @@ En termes d'indexation, tout ce qui était possible sur les chaînes caractères
 print(b[1:])
 ```
 
-    [56, 'd']
-
-
 
 ```python
 # Inverser une liste
 print(a[::-1])
 ```
-
-    [3, 2, 1]
-
 
 ### Modification d'éléments
 
@@ -154,9 +111,6 @@ d[2] = 3
 print(d)
 ```
 
-    [1, 2, 3, 4]
-
-
 
 ```python
 # Substitution d'un élément
@@ -165,9 +119,6 @@ b = ["do", "re", "mi"]
 b[0] = a[2]
 print(b)
 ```
-
-    [3, 're', 'mi']
-
 
 ### Suppression d'éléments
 
@@ -184,12 +135,6 @@ print(e)
 print(e[1])
 ```
 
-    [1, 'do', 6]
-    6
-    [1, 6]
-    6
-
-
 ### Quelques propriétés utiles
 
 Là encore, on retrouve des propriétés inhérentes aux séquences.
@@ -201,24 +146,10 @@ Là encore, on retrouve des propriétés inhérentes aux séquences.
 ```
 
 
-
-
-    [1, 2, 3, 'a', 12]
-
-
-
-
 ```python
 # Réplication
 ["a", "b", "c"] * 3
 ```
-
-
-
-
-    ['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']
-
-
 
 ### Quelques méthodes utiles
 
@@ -232,9 +163,6 @@ a.append(4)
 print(a)
 ```
 
-    [1, 2, 3, 4]
-
-
 
 ```python
 # Supprimer un élément par position
@@ -242,9 +170,6 @@ b = ["do", "re", "mi"]
 b.pop(0)
 print(b)
 ```
-
-    ['re', 'mi']
-
 
 
 ```python
@@ -254,9 +179,6 @@ b.remove("mi")
 print(b)
 ```
 
-    ['do', 're']
-
-
 
 ```python
 # Inverser une liste
@@ -265,22 +187,12 @@ l.reverse()
 print(l)
 ```
 
-    [5, 4, 3, 2, 1]
-
-
 
 ```python
 # Trouver la position d'un élément
 b = ["a", "b", "c", "d", "e"]
 b.index("d")
 ```
-
-
-
-
-    3
-
-
 
 ## Tuples
 
@@ -298,13 +210,6 @@ x = (1, 2, "mi", "fa", 5)
 x
 ```
 
-
-
-
-    (1, 2, 'mi', 'fa', 5)
-
-
-
 Afin de bien faire la différence avec l'usage normal des parenthèses (dans les calculs ou pour délimiter les expressions), un tuple à un seul élément se définit avec une virgule après le premier élément.
 
 
@@ -312,13 +217,6 @@ Afin de bien faire la différence avec l'usage normal des parenthèses (dans les
 x1 = ("a", )
 x1
 ```
-
-
-
-
-    ('a',)
-
-
 
 Vérifions qu'il est impossible de modifier ou d'ajouter un élément à un tuple.
 
@@ -329,36 +227,10 @@ t[1] = "re"
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    /tmp/ipykernel_267/3186442620.py in <module>
-          1 t = ("do", "rez", "mi")
-    ----> 2 t[1] = "re"
-    
-
-    TypeError: 'tuple' object does not support item assignment
-
-
-
 ```python
 t = ("do", "re", "mi")
 t.append("fa")
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    AttributeError                            Traceback (most recent call last)
-
-    /tmp/ipykernel_267/1327968659.py in <module>
-          1 t = ("do", "re", "mi")
-    ----> 2 t.append("fa")
-    
-
-    AttributeError: 'tuple' object has no attribute 'append'
-
 
 ### Fonctionnement
 
@@ -369,10 +241,6 @@ Les tuples s'indexent comme les listes.
 print(x[0])
 print(x[3:5])
 ```
-
-    1
-    ('fa', 5)
-
 
 Et peuvent également s'utiliser de manière hiérarchique.
 
@@ -386,10 +254,6 @@ print(t3)
 print(t3[2][1])
 ```
 
-    (('a', 'b', 'c'), 'et', (1, 2, 3))
-    2
-
-
 Les tuples partagent certaines méthodes *built-in* avec les listes : celles qui ne provoquent pas de modification de l'objet.
 
 
@@ -399,24 +263,10 @@ t.index("do")
 ```
 
 
-
-
-    0
-
-
-
-
 ```python
 t = ("do", "re", "mi", "re", "do")
 t.count("re")
 ```
-
-
-
-
-    2
-
-
 
 ### Conversion
 
@@ -428,23 +278,9 @@ tuple(["do", "re", "mi"])
 ```
 
 
-
-
-    ('do', 're', 'mi')
-
-
-
-
 ```python
 list((1, 2, 3, 4, 5))
 ```
-
-
-
-
-    [1, 2, 3, 4, 5]
-
-
 
 Ces fonctions ont d'autres usages en pratique, que nous verrons en exercice.
 
