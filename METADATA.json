@@ -17,7 +17,8 @@
             "name": "Fondamentaux du langage",
             "abstract": "Présentation de la syntaxe et des objets de base en Python",
             "chapters": [
-                "types-variables"
+                "types-variables",
+                "data-structures1"
             ]
         },
         "manipulation": {

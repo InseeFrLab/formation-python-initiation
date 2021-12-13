@@ -23,9 +23,9 @@ cp ${COURSE_DIR}/${SECTION}/${CHAPTER}.ipynb ${FORMATION_DIR}/
 # Give write permissions
 chown -R jovyan:users $FORMATION_DIR
 
-# If there is a solutions file, put in work
+# If there is a solutions file, put in the training dir
 SOLUTIONS_FILE=${COURSE_DIR}/${SECTION}/solutions/${CHAPTER}.py
-[ -f $SOLUTIONS_FILE ] && cp $SOLUTIONS_FILE ${WORK_DIR}/solutions.py
+[ -f $SOLUTIONS_FILE ] && cp $SOLUTIONS_FILE ${FORMATION_DIR}/solutions.py
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${COURSE_DIR}/${SECTION}/requirements/${CHAPTER}.txt

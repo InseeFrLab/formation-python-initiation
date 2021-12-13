@@ -578,7 +578,7 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 51-56 ../solutions.py
+%load -r 51-56 solutions.py
 ```
 
 
