@@ -135,11 +135,11 @@ print(t)
 
 # -------------------------------------------------------------------------- #
 
-a, b, c = "abc"
-print(b)
+x, y, z = "abc"
+print(y)
 
-a, b, c = ["do", "re", "mi"]
-print(b)
+a, b, c, d = ["do", "re", "mi", "fa"]
+print(c)
 
-a, b, c = ("un", "tuple", "de test")
-print(b)
+r, s, t, u = ("un", "tuple", "de", "test")
+print(r)
