@@ -18,7 +18,8 @@
             "abstract": "Présentation de la syntaxe et des objets de base en Python",
             "chapters": [
                 "types-variables",
-                "data-structures1"
+                "data-structures1",
+                "data-structures2"
             ]
         },
         "manipulation": {
