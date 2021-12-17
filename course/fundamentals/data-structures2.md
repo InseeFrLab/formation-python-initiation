@@ -1,9 +1,9 @@
 ---
 title: "Structures de données 2 : dictionnaires et sets"
-abstract: "Manipulation des structures de données de type *mapping* : dictionnaires et sets"
+abstract: "Manipulation des structures de données non-ordonnées : dictionnaires et sets"
 ---
 
-Dans le tutoriel précédent, nous avons manipulé des structures de données de type séquentielles : les listes et les tuples. A présent, nous allons découvrir les dictionnaires et les sets, qui sont des structures de données de type **mapping** : les objets ne sont plus stockés par position (ou index) mais par **clé**, c'est à dire un identifiant unique.
+Dans le tutoriel précédent, nous avons manipulé des structures de données de type séquentielles : les listes et les tuples. A présent, nous allons découvrir les dictionnaires et les sets, qui sont des structures de données non-ordonnées : les objets ne sont plus stockés par position (ou index) mais par **clé**, c'est à dire un identifiant unique.
 
 ## Dictionnaires
 
