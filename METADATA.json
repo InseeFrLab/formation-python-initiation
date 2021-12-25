@@ -20,7 +20,8 @@
                 "types-variables",
                 "data-structures1",
                 "data-structures2",
-                "tests"
+                "tests",
+                "loops"
             ]
         },
         "manipulation": {
