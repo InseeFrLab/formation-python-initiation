@@ -2,7 +2,7 @@
     "name": "Initiation à Python",
     "abstract": "Cours introductif à Python : fondamentaux du langage et premières manipulations de données",
     "authors": ["inseefrlab"],
-    "contributors": ["Romain Avouac, Julie Djiriguian, Yves-Laurent Bénichou, Lino Galiana"],
+    "contributors": ["Romain Avouac"],
     "types": ["Notebook Python"],
     "tags": ["discover", "learn"],
     "category": "datascience with R and Python",
@@ -19,7 +19,8 @@
             "chapters": [
                 "types-variables",
                 "data-structures1",
-                "data-structures2"
+                "data-structures2",
+                "tests"
             ]
         },
         "manipulation": {
