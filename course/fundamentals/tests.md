@@ -1,6 +1,6 @@
 ---
 title: "Tests"
-abstract: "Comparaisons, opérateurs booléens et structures conditionnelles"
+abstract: "Découverte des tests et des structures conditionnelles, qui permettent à un programme de prendre des décisions de manière automatisée."
 ---
 
 Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests en Python. Les tests sont une étape majeure dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**éxécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.

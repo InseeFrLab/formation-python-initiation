@@ -1,6 +1,6 @@
 ---
 title: "Structures de données 1 : listes et tuples"
-abstract: "Manipulation des structures de données séquentielles : listes et tuples"
+abstract: "Découverte des structures de données séquentielles : listes et tuples."
 ---
 
 Dans ce tutoriel, nous allons nous intéresser à des structures de données de base en Python : les **listes** et les **tuples**. Les structures de données peuvent être vues comme des conteneurs car ils permettent de stocker, d'organiser et d'accéder à des données. Les listes et les tuples sont des **conteneurs séquentiels** : les éléments qu'ils contiennent sont **ordonnés**, et leur position est enregistrée dans un **index**.

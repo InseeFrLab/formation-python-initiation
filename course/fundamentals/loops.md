@@ -1,6 +1,6 @@
 ---
 title: "Boucles"
-abstract: "Manipulation des boucles for et while"
+abstract: "Automatisation d'opérations répétitives à l'aide des boucles for et des boucles while."
 ---
 
 Dans le tutoriel précédent, nous avons étudié les tests, qui permettent à un ordinateur de prendre des décisions selon des conditions spécifiées dans un programme. Nous allons à présent aller encore plus loin dans l'automatisation des opérations, grâce à la notion de **boucle**. Les boucles vont permettre de répéter plusieurs fois une instruction semblable sans avoir à réécrire le même code à chaque fois.

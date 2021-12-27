@@ -1,6 +1,6 @@
 ---
 title: "Types de base et variables"
-abstract: "Manipulation des nombres, chaînes de caractères et des variables"
+abstract: "Découverte des types de base (nombres et chaînes de caractères) et des variables."
 ---
 
 Dans ce premier TP, nous allons découvrir les objets les plus fondamentaux de Python : les **nombres** et les **chaînes de caractère**. Nous allons également voir comment l'on peut assigner des objets à des **variables**, afin de réaliser des opérations avec ces objets.
