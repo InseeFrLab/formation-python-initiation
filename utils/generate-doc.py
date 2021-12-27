@@ -55,7 +55,8 @@ if __name__ == "__main__":
 
     # Main URLs
     LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/inseefrlab-helm-charts-datascience/jupyter"
-                      "?onyxia.friendlyName=%C2%ABpython-initiation%C2%BB"
+                      "?autoLaunch=true"
+                      "&onyxia.friendlyName=%C2%ABpython-initiation%C2%BB"
                       "&init.personalInit=%C2%ABhttps://raw.githubusercontent.com/InseeFrLab/formation-python-initiation/main/utils/init-jupyter.sh%C2%BB"
                       "&init.personalInitArgs=%C2%AB{init_args}%C2%BB"
                       "&security.allowlist.enabled=false")
