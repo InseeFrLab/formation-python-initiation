@@ -451,8 +451,8 @@ Calculer la moyenne et la variance de la série de valeurs suivantes, sans utili
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
 Pour rappel, les formules sont :
-- moyenne : $\bar{x} = {\frac {1}{n}}\sum_{i=1}^{n}x_{i}$
-- variance : $\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$
+- moyenne : $$\bar{x} = {\frac {1}{n}}\sum_{i=1}^{n}x_{i}$$
+- variance : $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
 
 NB : 
 - n à la puissance k s'écrit en Python `n**k`
