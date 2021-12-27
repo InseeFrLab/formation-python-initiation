@@ -21,7 +21,8 @@
                 "data-structures1",
                 "data-structures2",
                 "tests",
-                "loops"
+                "loops",
+                "functions"
             ]
         },
         "manipulation": {
