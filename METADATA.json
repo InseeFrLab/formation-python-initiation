@@ -22,7 +22,8 @@
                 "data-structures2",
                 "tests",
                 "loops",
-                "functions"
+                "functions",
+                "oop"
             ]
         },
         "manipulation": {
