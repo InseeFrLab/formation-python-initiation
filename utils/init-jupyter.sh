@@ -18,7 +18,7 @@ python $CLONE_DIR/utils/md-to-ipynb.py $COURSE_DIR/${SECTION}/${CHAPTER}/tutoria
 
 # Put chapter data in the training dir
 mkdir $FORMATION_DIR
-cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/. ${FORMATION_DIR}/
+cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${FORMATION_DIR}/
 
 # Give write permissions
 chown -R jovyan:users $FORMATION_DIR/
