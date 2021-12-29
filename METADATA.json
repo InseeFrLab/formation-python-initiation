@@ -29,7 +29,9 @@
         "manipulation": {
             "name": "Manipulation de données",
             "abstract": "Exploration, manipulation et visualisation de données",
-            "chapters": []
+            "chapters": [
+                "modules-files"
+            ]
         },
         "best-practices": {
             "name": "Mener un projet statistique avec Python",

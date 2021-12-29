@@ -16,16 +16,12 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 pip install python-frontmatter jupytext
 python $CLONE_DIR/utils/md-to-ipynb.py $COURSE_DIR/${SECTION}/${CHAPTER}/tutorial.md
 
-# Put relevant notebook in the training dir
+# Put chapter data in the training dir
 mkdir $FORMATION_DIR
-cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/tutorial.ipynb ${FORMATION_DIR}/
+cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/. ${FORMATION_DIR}/
 
 # Give write permissions
 chown -R jovyan:users $FORMATION_DIR/
-
-# If there is a solutions file, put in the training dir
-SOLUTIONS_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/solutions.py
-[ -f $SOLUTIONS_FILE ] && cp $SOLUTIONS_FILE ${FORMATION_DIR}/
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/requirements.txt
