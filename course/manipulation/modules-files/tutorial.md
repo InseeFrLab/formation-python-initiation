@@ -1,5 +1,5 @@
 ---
-title: "Import de modules et manipulation de fichiers"
+title: "Manipulation de fichiers"
 abstract: "Manipulation de fichiers externes : import de modules et lecture/écriture de fichiers texte."
 ---
 
@@ -142,8 +142,8 @@ Path.cwd().glob('*.*')
 list(Path.cwd().glob('*.*'))
 ```
 
-On retrouve bien notre notebook, ainsi qu'un fichier qui contient les solutions des exercices et permet de les afficher à la demande. Si l'on prend le notebook par exemple, on distingue bien :
-- son nom de fichier : `files.ipynb`
+On retrouve notre notebook, un fichier qui contient les solutions des exercices du tutoriel, et un certains nombres de fichier texte qui vont servir d'exemples dans la suite du tutoriel. Si l'on prend le notebook par exemple, on distingue bien :
+- son nom de fichier : `tutorial.ipynb`
 - son chemin : `/home/jovyan/work/formation/`
 
 
@@ -171,7 +171,7 @@ Path.home()
 On peut alors concaténer les différents sous-dossier et le nom de fichier du notebook pour obtenir le chemin complet vers celui-ci.
 
 ```python
-path_nb = Path.home() / 'work' / 'formation' / 'files.ipynb'
+path_nb = Path.home() / 'work' / 'formation' / 'tutorial.ipynb'
 path_nb
 ```
 
