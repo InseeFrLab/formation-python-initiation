@@ -61,7 +61,6 @@ if __name__ == "__main__":
                       "&init.personalInitArgs=%C2%AB{init_args}%C2%BB"
                       "&security.allowlist.enabled=false")
     COURSE_NAME_ENCODED = urllib.parse.quote(md['name'])
-    DEFAULT_URL = f"https://pythonformationlab.github.io/"
 
     # Build documentation's top block
     doc_json = generate_block(name=md["name"], 
@@ -88,7 +87,7 @@ if __name__ == "__main__":
         if section_md["chapters"]:
             for chapter in section_md["chapters"]:
                 # Build chapter block if notebook exists
-                MD_PATH = os.path.join(PROJECT_DIR, "course", section, f"{chapter}.md")
+                MD_PATH = os.path.join(PROJECT_DIR, "course", section, chapter, "tutorial.md")
 
                 if os.path.isfile(MD_PATH):
                     name, abstract = extract_metadata_md(MD_PATH)
@@ -110,16 +109,9 @@ if __name__ == "__main__":
 
                 else:
                     raise FileNotFoundError(f"{MD_PATH} not found.")
-        else:
-            section_doc["articleUrl"] = DEFAULT_URL
 
         doc_json["parts"].append(section_doc)
 
-    # Escape all quotes for CI dispatch step
+    # Export doc
     with open(os.path.join(PROJECT_DIR, "doc.json"), "w") as json_file:
         json.dump(doc_json, json_file)
-
-    # Export doc
-    # doc_final = json.dumps(doc_json).replace('"', '\\"').replace("'", "\\'")
-    # with open(os.path.join(PROJECT_DIR, "doc-course.txt"), "w") as file:
-    #     file.write(doc_final)
