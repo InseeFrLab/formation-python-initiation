@@ -41,7 +41,7 @@ print(list(resultats["6emeA"]["Miranda"]["notes"].values())
 
 cv = {
     "marc": {"poste": "manager", "experience": 7, "hobbies": ["couture", "frisbee"]},
-    "mirande": {"poste": "ingénieure", "experience": 5, "hobbies": ["trekking"]}
+    "miranda": {"poste": "ingénieure", "experience": 5, "hobbies": ["trekking"]}
 }
 
 print(len(cv))
