@@ -30,7 +30,8 @@
             "name": "Manipulation de données",
             "abstract": "Exploration, manipulation et visualisation de données",
             "chapters": [
-                "modules-files"
+                "modules-files",
+                "csv-json-files"
             ]
         },
         "best-practices": {
