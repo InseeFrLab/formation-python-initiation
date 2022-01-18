@@ -231,7 +231,7 @@ import requests
 ```
 
 ```python
-r = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
 r_text = response.text
 print(r_text[:150])
 ```
