@@ -158,12 +158,14 @@ shoot(0, 2)
 
 # -------------------------------------------------------------------------- #
 
-values = np.array([3, 1, 0, 1, 2, 2, 4])
-n_values = values.shape[0]
-n_classes = np.unique(values).shape[0]
+values = np.array(["21", "46", "47", "23", "66", "82", "82"])
 
-ohe = np.zeros((n_values, n_classes))
-ohe[np.arange(n_values), values] = 1
+categories, pos = np.unique(values, return_inverse=True)
+n_values = values.shape[0]
+n_categories = categories.shape[0]
+
+ohe = np.zeros((n_values, n_categories))
+ohe[np.arange(n_values), pos] = 1
 ohe
 
 # -------------------------------------------------------------------------- #

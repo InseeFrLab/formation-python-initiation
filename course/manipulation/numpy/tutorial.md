@@ -616,7 +616,7 @@ print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 
 ```python tags=[]
 # Exécuter cette cellule pour afficher la solution
-%load -r 161-167 solutions.py
+%load -r 161-169 solutions.py
 ```
 
 ```python
