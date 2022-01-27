@@ -31,7 +31,8 @@
             "abstract": "Exploration, manipulation et visualisation de données",
             "chapters": [
                 "modules-files",
-                "csv-json-files"
+                "csv-json-files",
+                "numpy"
             ]
         },
         "best-practices": {
