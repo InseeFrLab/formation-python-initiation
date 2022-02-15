@@ -428,7 +428,7 @@ Afficher le type de x lorsque :
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 2-9 ../solutions.py
+%load -r 2-9 solutions.py
 ```
 
 ### Exercice 2
@@ -449,7 +449,7 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 12-16 ../solutions.py
+%load -r 12-16 solutions.py
 ```
 
 ### Exercice 3
@@ -471,7 +471,7 @@ Que concluez-vous ?
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 19-26 ../solutions.py
+%load -r 19-26 solutions.py
 ```
 
 ### Exercice 4
@@ -490,7 +490,7 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 29-30 ../solutions.py
+%load -r 29-30 solutions.py
 ```
 
 ### Exercice 5
@@ -508,7 +508,7 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 33-34 ../solutions.py
+%load -r 33-34 solutions.py
 ```
 
 ### Exercice 6
@@ -524,7 +524,7 @@ a = "    Un string très mal formatté.         "
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 37-38 ../solutions.py
+%load -r 37-38 solutions.py
 ```
 
 ### Exercice 7
@@ -542,7 +542,7 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 41 ../solutions.py
+%load -r 41 solutions.py
 ```
 
 ### Exercice 8
@@ -562,7 +562,7 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 
 ```python
 # Exécuter cette cellule pour afficher la solution
-%load -r 44-48 ../solutions.py
+%load -r 44-48 solutions.py
 ```
 
 ### Exercice 9
