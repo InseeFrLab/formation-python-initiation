@@ -1,4 +1,5 @@
 doc.json
+.gitignore
 *.ipynb
 
 # Byte-compiled / optimized / DLL files

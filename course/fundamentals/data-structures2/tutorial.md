@@ -58,7 +58,7 @@ dic1 = {12: "Averyon", 33: "Gironde"}
 print("Le département 33 est la " + dic1[33])  # Concaténation de strings !
 ```
 
-De même, les valeurs peuvent être de différentes nature, y compris des conteneurs de données.
+De même, les valeurs peuvent être de différentes natures, y compris des conteneurs de données.
 
 
 ```python
@@ -123,7 +123,7 @@ inventaire
 
 ### Quelques méthodes utiles
 
-Nous avons vu précédemment que le fait de requêter une clé qui n'existe pas renvoyait une erreur. La méthode `.get()` permet de requêter une clé sans être sûre de son existence, puisqu'elle ne renvoie aucune erreur dans ce cas, mais l'objet `None`, que nous verrons dans un prochain tutoriel.
+Nous avons vu précédemment que le fait de requêter une clé qui n'existe pas renvoyait une erreur. La méthode `.get()` permet de requêter une clé sans être sûr de son existence, puisqu'elle ne renvoie aucune erreur dans ce cas, mais l'objet `None`, que nous verrons dans un prochain tutoriel.
 
 
 ```python
@@ -179,7 +179,7 @@ x
 type(x)
 ```
 
-De la même manière que les dictionnaire, les sets sont **non-ordonnés**, il n'y a donc pas de notion de position. Demander l'élément de position `i`, comme dans une liste, renvoie une erreur.
+De la même manière que les dictionnaires, les sets sont **non-ordonnés**, il n'y a donc pas de notion de position. Demander l'élément de position `i`, comme dans une liste, renvoie une erreur.
 
 
 ```python
@@ -218,7 +218,7 @@ x
 
 ### Utilisation
 
-Les sets ne sont pas très souvent utilisés en pratique, mais il s'avèrent bien utile dans certaines situations précises. Du fait de l'unicité des éléments qu'ils contiennent, les sets permettent simplement et efficacement de supprimer les doublons dans un conteneur séquentiel, comme une liste.
+Les sets ne sont pas très souvent utilisés en pratique, mais ils s'avèrent bien utiles dans certaines situations précises. Du fait de l'unicité des éléments qu'ils contiennent, les sets permettent simplement et efficacement de supprimer les doublons dans un conteneur séquentiel, comme une liste.
 
 **Déduplication**
 
@@ -309,7 +309,7 @@ Soit le dictionnaire défini dans la cellule ci-dessous.
 Affichez à l'aide d'opérations `print` : 
 - la liste des noms des différentes classes
 - la note de Miranda en histoire
-- la liste des notes obtenus par Hypolyte
+- la liste des notes obtenues par Hypolyte
 - la liste des noms des élèves de la 6emeB
 - la liste des matières enseignées en 6eme A
 - la liste de toutes les matières enseignées
@@ -399,11 +399,11 @@ Soit le dictionnaire suivant :
 
 Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédictions.
 
-- `'chat' in animaux.keys()`
+- `'chats' in animaux.keys()`
 
-- `'chat' in animaux.values()`
+- `'chats' in animaux.values()`
 
-- `'chat' in animaux`
+- `'chats' in animaux`
 
 
 ```python
@@ -467,7 +467,7 @@ Soit les deux chaînes de caractères suivantes.
 
 Question 1 : trouvez les caractères qui apparaissent à la fois dans les deux chaînes.
 
-Question 2 : trouvez les caractères qui apparaissen dans au moins un des deux textes.
+Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux textes.
 
 
 ```python
@@ -483,7 +483,7 @@ Question 2 : trouvez les caractères qui apparaissen dans au moins un des deux t
 
 ### Exercice
 
-Le code ci-dessous génère une liste avec les lettre a, b, c et d répétées 1 million de fois. Ensuite, il réalise un test d'appartenance d'une lettre qui n'existe pas dans la liste, et calcule le temps mis par l'interpréteur Python pour réaliser le test.
+Le code ci-dessous génère une liste avec les lettres a, b, c et d répétées 1 million de fois. Ensuite, il réalise un test d'appartenance d'une lettre qui n'existe pas dans la liste, et calcule le temps mis par l'interpréteur Python pour réaliser le test.
 
 En reprenant cette syntaxe, comparez le temps mis par le même test d'appartenance lorsqu'on transforme la liste en set au préalable.
 

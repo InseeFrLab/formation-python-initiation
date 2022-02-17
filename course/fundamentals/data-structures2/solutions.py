@@ -12,7 +12,7 @@
 # 5/ Un set ne comporte que des éléments uniques et s'écrit avec des accolades.
 # Il peut donc être vu comme un dictionnaire particulier ne contenant que des clés.
 
-# 6/ Par définition, les éléments d'un set sont unique.
+# 6/ Par définition, les éléments d'un set sont uniques.
 # Transformer une liste en set supprime donc les doublons.
 
 # 7/ Du fait de l'unicité des éléments, Python peut garder en mémoire
