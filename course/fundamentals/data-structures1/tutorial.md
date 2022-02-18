@@ -200,7 +200,7 @@ b.index("d")
 
 Les **tuples** sont une autre structure de données basique en Python, semblable à celle des listes dans leur fonctionnement. Il y a cependant une différence fondamentale : là où les éléments d'une liste peuvent être modifiés par position comme on l'a vu précédemment, les tuples sont **non-modifiables** (*immutable*). Ainsi, les éléments d'un tuple ne peuvent pas être modifiés sans redéfinir complètement le tuple. 
 
-Quand est-il pertinent d'utiliser un tuple plutôt qu'une liste ? En pratique, les tuples sont beaucoup moins fréquemment utilisés que les listes. On utilise généralement les tuples pour **stocker des données qui n'ont pas vocation à être modifiées** lors de l'éxécution de notre programme Python. Cela permet de se prémunir contre des problèmes d'intégrité de données, c'est à dire de modification non-voulues des données d'entrée. On s'évite ainsi parfois de longues et pénibles séances de debugging.
+Quand est-il pertinent d'utiliser un tuple plutôt qu'une liste ? En pratique, les tuples sont beaucoup moins fréquemment utilisés que les listes. On utilise généralement les tuples pour **stocker des données qui n'ont pas vocation à être modifiées** lors de l'exécution de notre programme Python. Cela permet de se prémunir contre des problèmes d'intégrité de données, c'est à dire de modification non-voulue des données d'entrée. On s'évite ainsi parfois de longues et pénibles séances de debugging.
 
 Une autre différence, mineure celle-ci, est que les tuples s'écrivent avec des **parenthèses** au lieu des crochets. Les différents éléments sont toujours séparés par des virgules.
 
@@ -299,7 +299,7 @@ Si les réponses à ces questions ne sont pas encore claires, n'hésitez pas à 
 
 ### Exercice
 
-Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des mois associés (les mois de changement de saison seront attribué à la saison précédente). Puis créez une liste `saison` contenant les 4 listes. Essayez de prévoir ce que vont renvoyer (type de l'objet, nombre d'éléments et contenu) les instructions suivantes, puis vérifiez le. 
+Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des mois associés (les mois de changement de saison seront attribués à la saison précédente). Puis créez une liste `saisons` contenant les 4 listes. Essayez de prévoir ce que vont renvoyer (type de l'objet, nombre d'éléments et contenu) les instructions suivantes, puis vérifiez le. 
 
 - `saisons`
 - `saisons[0]`
@@ -361,7 +361,7 @@ Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`.
 
 ### Exercice
 
-Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément de la liste `ma_liste`. A l'aide de la documentation Python ou d'une recherche sur Google, déterminez le comportement par défault de cette méthode, c'est à dire ce qu'il se passe lorsqu'on ne donne aucun paramètre à la fonction `pop`. Vérifiez que vous observez bien ce comportement à l'aide d'un exemple de votre choix.
+Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément de la liste `ma_liste`. A l'aide de la documentation Python ou d'une recherche sur Google, déterminez le comportement par défaut de cette méthode, c'est à dire ce qu'il se passe lorsqu'on ne donne aucun paramètre à la fonction `pop`. Vérifiez que vous observez bien ce comportement à l'aide d'un exemple de votre choix.
 
 
 ```python
@@ -449,7 +449,7 @@ Nous avons vu que les tuples avaient la particularité d'être non-modifiables. 
 
 ### Exercice
 
-Lisez la partie concernant l'agrégation et la dissociation de séquences dans la [documentation Python](https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences). C'est une propriété souvent utilisée en pratique. Vérifiez qu'elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu'à maintenant (chaînes de caractères, listes et tuples).
+Lisez la partie concernant l'agrégation et la dissociation de séquences dans la [documentation Python](https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences). La dissociation est une propriété souvent utilisée en pratique. Vérifiez qu'elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu'à maintenant (chaînes de caractères, listes et tuples).
 
 
 ```python

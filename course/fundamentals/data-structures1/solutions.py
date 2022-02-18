@@ -68,7 +68,7 @@ print(l2)
 # La méthode `reverse` modifie la liste "en place" : la liste est durablement
 # inversée après l'avoir exécutée. En revanche, la méthode qui inverse la liste
 # via l'indexation renvoie une nouvelle liste et ne modifie pas l'existante.
-# Pour que ce changement soit durable, il faudrait donc écraser la liste extistante,
+# Pour que ce changement soit durable, il faudrait donc écraser la liste existante,
 # ou bien en créer une nouvelle.
 
 l2 = l2[::-1]

@@ -149,7 +149,7 @@ Un *string* se définit en mettant l'information entre apostrophes ou entre guil
 'l'apostrophe, quelle catastrophe'
 ```
 
-Erreur de syntaxe : la seconde apostrophe est compris comme la fin du *string*, et Python ne sait pas interpréter le reste de la séquence.
+Erreur de syntaxe : la seconde apostrophe est comprise comme la fin du *string*, et Python ne sait pas interpréter le reste de la séquence.
 
 Il faut donc varier en cas de besoin :
 
@@ -168,7 +168,17 @@ Même chose en sens inverse :
 
 Le travail avec les *strings* est l'occasion de découvrir la très pratique et très utilisée fonction `print`. Elle affiche simplement l'argument qu'on lui passe entre parenthèses **et** un retour à la ligne par défaut.
 
-On a vu jusqu'à maintenant que l'on pouvait simplement exécuter une cellule pour afficher son contenu. Mais est-ce cela marche avec plusieurs valeurs ?
+```python
+# Affichage de la chaîne "moi"
+"moi"
+```
+
+```python
+# Affichage de la chaîne "moi" avec print
+print("moi")
+```
+
+On a vu jusqu'à maintenant que l'on pouvait simplement exécuter une cellule pour afficher le contenu d'un *string*. Mais est-ce cela marche avec plusieurs *strings* ?
 
 
 ```python
@@ -207,7 +217,7 @@ print(len("a"))
 
 En Python, un *string* est une **séquence**, c'est à dire une suite de caractères dans un ordre spécifique. Par conséquent, chaque caractère d'un *string* est indexé (Python connaît sa position), et l'on peut utiliser cet index pour extraire des caractères particuliers, des sous-chaînes de caractères, etc.
 
-En Python, on utilise les crochets `[]` pour appeler l'index d'une séquence. Plus précisément, l'index fonctionne sur le modèle suivant : `x[a:b:c]` renvoie un *sub-string* du *strin*g `x` où `a` est la position du caractère de départ, `b` la position du caractère d'arrivée, et `c` le pas de l'indexation. Tout cela sera plus clair avec les exemples suivants.
+En Python, on utilise les crochets `[]` pour appeler l'index d'une séquence. Plus précisément, l'index fonctionne sur le modèle suivant : `x[a:b:c]` renvoie un *sub-string* du *string* `x` où `a` est la position du caractère de départ, `b` la position du caractère d'arrivée plus 1, et `c` le pas de l'indexation. Tout cela sera plus clair avec les exemples suivants.
 
 Note importante : **l'indexation commence à 0 en Python**.
 
@@ -479,7 +489,7 @@ Que concluez-vous ?
 Compter le nombre de fois où la lettre e est présente dans la chaîne suivante :
 "Je fais un comptage des e."
 
-**Indice** : on peut utiliser la méthode *built-in* [find](https://docs.python.org/fr/3/library/stdtypes.html#str.find).
+**Indice** : on peut utiliser la méthode *built-in* [count](https://docs.python.org/fr/3/library/stdtypes.html#str.count).
 
 
 ```python
@@ -497,7 +507,7 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 
 Repérer la première position où la lettre e est présente dans la chaîne suivante : "Je fais un comptage des e."
 
-**Indice** : on peut utiliser la méthode *built-in* [index](https://docs.python.org/fr/3/library/stdtypes.html#str.index).
+**Indice** : on peut utiliser la méthode *built-in* [find](https://docs.python.org/fr/3/library/stdtypes.html#str.find).
 
 
 ```python
@@ -515,6 +525,7 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 
 Supprimer les espaces superflus au début et à la fin de la chaîne suivante :
 
+**Indice** : on peut utiliser la méthode *built-in* [strip](https://docs.python.org/fr/3/library/stdtypes.html#str.strip).
 
 ```python
 # Tapez votre réponse dans cette cellule
