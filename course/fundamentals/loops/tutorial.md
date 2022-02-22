@@ -12,7 +12,6 @@ gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 print(gamme[0])
 print(gamme[1])
-
 print(gamme[2])
 ```
 
