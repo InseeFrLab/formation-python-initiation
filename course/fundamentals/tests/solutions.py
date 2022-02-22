@@ -24,7 +24,7 @@
 
 # 8/ L'instruction conditionnelle commence par une instruction `if`, `else` ou `elif`,
 # qui se termine par `:`. Vient ensuite, indenté de un niveau, un bloc d'opérations
-# qui ne s'exécute que si l'instruction vaut `True`.
+# qui ne s'exécutent que si l'instruction vaut `True`.
 # Le bloc se termine lorsque l'indentation revient à son niveau initial.
 
 # 9/ Oui, les instructions conditionnelles peuvent s'imbriquer à l'infini (en théorie)
