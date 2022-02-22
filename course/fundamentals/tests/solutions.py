@@ -8,7 +8,7 @@
 # comparer des objets de type différent, le résultat sera généralement `False`.
 
 # 4/ L'opérateur `=` assigne une valeur à une variable.
-# L'opérateur `==` test l'égalité de deux objets.
+# L'opérateur `==` teste l'égalité de deux objets.
 
 # 5/ Inputs : deux valeurs booléennes, ou deux expressions qui renvoient des booléens.
 # Output : valeur booléenne.
@@ -17,13 +17,14 @@
 # et `False` dans tous les autres cas.
 # L'opérateur `or` renvoie `True` si au moins un de ses deux inputs vaut `True`,
 # et `False` dans le cas où ils valent tous les deux `False`.
+# L'opérateur `not` renvoie `False` si son input est `True`, et `True` sinon.
 
 # 7/ Dans les deux cas, il s'agit de tests. On parle de condition lorsque les
 # expressions sont utilisées dans le cadre des structures conditionnelles.
 
 # 8/ L'instruction conditionnelle commence par une instruction `if`, `else` ou `elif`,
 # qui se termine par `:`. Vient ensuite, indenté de un niveau, un bloc d'opérations
-# qui ne s'éxécutent que si l'instruction vaut `True`.
+# qui ne s'exécute que si l'instruction vaut `True`.
 # Le bloc se termine lorsque l'indentation revient à son niveau initial.
 
 # 9/ Oui, les instructions conditionnelles peuvent s'imbriquer à l'infini (en théorie)
@@ -91,7 +92,7 @@ else:
 # `12` : True
 # `-1`: True
 # '' (*string* vide): False
-# ' ' (*string* contenant seulement un espace): False
+# ' ' (*string* contenant seulement un espace): True
 # `[]` (liste vide): False
 # `['']` (liste contenant seulement un *string* vide): True
 # `{}`: False

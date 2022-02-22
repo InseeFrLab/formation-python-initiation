@@ -40,21 +40,21 @@
 # 2. La boucle va s'arrêter à la 4ème itération, lorsque a vaut 5.
 # Cependant, le print est mal indenté => il va s'imprimer 3 fois au lieu d'1.
 
-# 3. False évalue à False => la boucle ne s'éxécute pas du tout. Aucun output.
+# 3. False évalue à False => la boucle ne s'exécute pas du tout. Aucun output.
 
 # 4. True évalue à True => la boucle est théoriquement infinie, mais il y a un 
-# break. Il va donc y avoir une suele itération, soit un seul print de 
+# break. Il va donc y avoir une seule itération, soit un seul print de 
 # "hello world"
 
 # 5. 5 >= 3 évalue à True => la boucle est infinie.
-# Le continue est éxécuté à chaque itération avant que le print ne puisse 
-# s'éxécuter. La boucle tourne à l'infini, mais sans output.
+# Le continue est exécuté à chaque itération avant que le print ne puisse 
+# s'exécuter. La boucle tourne à l'infini, mais sans output.
 
 # -------------------------------------------------------------------------- #
 
 # Le premier programme est correct.
 # Dans le second, le second `print` n'est pas correctement indenté
-# En conséquence, il s'éxécute à chaque itération et non pas juste lorsque 
+# En conséquence, il s'exécute à chaque itération et non pas juste lorsque 
 # nb == 5.
 
 # -------------------------------------------------------------------------- #
@@ -101,7 +101,7 @@ tables = {}
 
 for i in range(13):
     tables[i] = {}
-    for j in range(11):
+    for j in range(13):
         tables[i][j] = i*j
         
 print(tables[2][3])
@@ -154,7 +154,7 @@ print(list(range(10, 21)))
 
 print(list(range(30, 41, 2)))
 
-print(list(range(1, 100, 10)))
+print(list(range(10, 100, 10)))
 
 print(list(range(20, 9, -1)))
 

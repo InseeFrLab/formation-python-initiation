@@ -14,7 +14,7 @@ Une **fonction** peut être définie comme un bloc de code structuré qui :
 - effectue une **action spécifique** via un ensemble d'instructions
 - **renvoie** un résultat (un objet Python) en sortie
 
-Nous avons déjà vu et utilisé un certains nombres de fonctions dans les tutoriels précédents (`range`, `len`, etc.). Nous avons également utilisés des **méthodes**, qui sont simplement des fonctions *attachées* à un type d'objet particulier. Utilisons une fonction bien connue pour illustrer leur fonctionnement général.
+Nous avons déjà vu et utilisé un certains nombres de fonctions dans les tutoriels précédents (`range`, `len`, etc.). Nous avons également utilisé des **méthodes**, qui sont simplement des fonctions *attachées* à un type d'objet particulier. Utilisons une fonction bien connue pour illustrer leur fonctionnement général.
 
 ```python
 len('do re mi fa sol')
@@ -46,11 +46,11 @@ Analysons la syntaxe de la definition d'une fonction :
     - spécifie le nom de la fonction (ici, `accueil`)
     - spécifie les arguments attendus entre parenthèse (ici, un seul argument : `prenom`)
     - se termine par `:` comme les différentes instructions que nous avons vues
-- un ensemble d'opérations qui seront effectuées par la fonction, qui doivent être identées d'un niveau par rapport à l'instruction `def`
+- un ensemble d'opérations qui seront effectuées par la fonction, qui doivent être indentées d'un niveau par rapport à l'instruction `def`
 - une instruction `return`, qui spécifie ce que la fonction va renvoyer lorsqu'elle sera appelée (ici, le contenu de la variable `msg`).
 
 
-Le fait de **définir** une fonction comme ci-dessus revient à rendre disponible dans l'environnement Python le code de la fonction. Ce n'est que lorsque celle-ci est **appelée** dans le code, avec des arguments, que le code contenu est éxécuté et produit un résultat.
+Le fait de **définir** une fonction comme ci-dessus revient à rendre disponible dans l'environnement Python le code de la fonction. Ce n'est que lorsque celle-ci est **appelée** dans le code, avec des arguments, que le code contenu est exécuté et produit un résultat.
 
 ```python
 accueil("Miranda")
@@ -202,7 +202,7 @@ b = division(9, 3)
 division(a, b)  # 2 / 3
 ```
 
-Remarque importante : **lorsqu'une instruction return est atteinte dans une fonction, le reste de la fonction n'est pas éxécutée**.
+Remarque importante : **lorsqu'une instruction return est atteinte dans une fonction, le reste de la fonction n'est pas exécuté**.
 
 ```python
 def test(x):
@@ -271,7 +271,7 @@ ajoute(6)
 La variable `x` n'a pas été passée en argument à la fonction `ajoute` ni été définie dans le cadre de cette fonction. Pourtant, on peut l'appeler au sein de la fonction. Cela permet de partager des éléments entre plusieurs fonctions. 
 
 
-En revanche, les arguments passés à une fonction ou bien les variables définies dans le cadre d'une fonction sont des **variables locales** : elles n'existent que dans le contexte spécifique de la fonction, et ne peuvent pas être réutilisées une fois que celle-ci s'est éxécutée.
+En revanche, les arguments passés à une fonction ou bien les variables définies dans le cadre d'une fonction sont des **variables locales** : elles n'existent que dans le contexte spécifique de la fonction, et ne peuvent pas être réutilisées une fois que celle-ci s'est exécutée.
 
 ```python
 def ajoute(y):
@@ -297,7 +297,7 @@ ajoute(6)
 C'est un bon exemple d'un principe plus général : **c'est toujours le contexte le plus local qui prime**. Lorsque Python effectue l'opération `x + y`, il va chercher les valeurs de `x` et de `y` d'abord dans le contexte local, puis, seulement s'il ne les trouve pas, dans le contexte supérieur -- en l'occurence, le contexte global.
 
 
-NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est préférable de limiter au strict minimum l'utilisation de variables globales**, car elles réduisent la reproductiblité des analyses.
+NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est préférable de limiter au strict minimum l'utilisation de variables globales**, car elles réduisent la reproductibilité des analyses.
 
 
 ## Exercices
@@ -511,7 +511,7 @@ Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction 
 ### Fonctions récursives : factorielle
 
 <!-- #region tags=[] -->
-Les fonctions récursives sont des fonctions qui s'appellent elles-même dans le corps de la fonction, ce qui entraîne des appels infinis jusqu'à atteindre un critère d'arrêt.
+Les fonctions récursives sont des fonctions qui s'appellent elles-mêmes dans le corps de la fonction, ce qui entraîne des appels infinis jusqu'à atteindre un critère d'arrêt.
 
 Un bon exemple de fonction récursive est la fonction qui calcule la factorielle d'un entier. La factorielle d'un entier naturel $n$ est le produit des nombres entiers strictement positifs inférieurs ou égaux à n. Par exemple : $5! = 5*4*3*2*1 = 120$.
 

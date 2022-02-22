@@ -4,16 +4,16 @@
 # et de mieux isoler les différents blocs logiques d'un programme.
 
 # 2/ Une fonction prend en entrée des arguments, réalise une action
-# donnée via un ensemble d'instructions, et renvoient un résultat
+# donnée via un ensemble d'instructions, et renvoie un résultat
 # en sortie.
 
 # 3/ Les fonctions "boîtes noires" sont les fonctions dont on ne connaît
-# pas le code lorsqu'on les éxécute, comme les fonctions built-in de Python
+# pas le code lorsqu'on les exécute, comme les fonctions built-in de Python
 # (len, range..). Elles s'opposent aux fonctions créées par l'utilisateur.
 
 # 4/ Quand on définit une fonction via l'instruction def, on met en mémoire
 # le code de la fonction. Ce n'est que quand on appelle la fonction que ce
-# code s'éxécute, et renvoie un résultat.
+# code s'exécute, et renvoie un résultat.
 
 # 5/ Autant que l'on souhaite.
 
