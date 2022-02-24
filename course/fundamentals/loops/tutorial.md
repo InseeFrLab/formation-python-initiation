@@ -44,7 +44,7 @@ Comme pour les instructions conditionnelles de type `if`/`else`, l'indentation e
 
 ```python
 for note in gamme:
-print(note)
+    print(note)
 ```
 
 ### Fonctionnement
