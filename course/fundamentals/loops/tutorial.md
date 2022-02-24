@@ -24,7 +24,7 @@ Et ainsi de suite. On voit tout de suite qu'une telle opération serait impratic
 ### Définition
 
 
-Le premier type de boucles auquel nous allons nous intéresser est la boucle `for`. Une boucle `for` permet de parcourir les différentes éléments contenus dans un objet dit **itérable**, et de réaliser des opérations avec ces éléments. Les objets itérables incluent notamment tous les objets séquentiels que nous avons vus jusqu'à présent : chaînes de caractères, listes, tuples, etc.
+Le premier type de boucles auquel nous allons nous intéresser est la boucle `for`. Une boucle `for` permet de parcourir les différents éléments contenus dans un objet dit **itérable**, et de réaliser des opérations avec ces éléments. Les objets itérables incluent notamment tous les objets séquentiels que nous avons vus jusqu'à présent : chaînes de caractères, listes, tuples, etc.
 
 Illustrons le fonctionnement d'une boucle `for` en résolvant le problème exposé précédemment.
 
@@ -50,7 +50,7 @@ print(note)
 ### Fonctionnement
 
 
-Regardons maintenant plus en détail ce que fait l'instruction `for`. Elle définit une **variable d'itération** (appelée `note` dans notre exemple), qui va parcourir les éléments de l'**itérateur** spécifié après le `in` (la liste `solfege` dans notre exemple). La syntaxe d'une boucle en Python se prête bien à une description littérale ; dans notre cas : "pour chaque note contenue dans la liste solfege, imprime la note".
+Regardons maintenant plus en détail ce que fait l'instruction `for`. Elle définit une **variable d'itération** (appelée `note` dans notre exemple), qui va parcourir les éléments de l'**itérateur** spécifié après le `in` (la liste `gamme` dans notre exemple). La syntaxe d'une boucle en Python se prête bien à une description littérale ; dans notre cas : "pour chaque note contenue dans la liste gamme, imprime la note".
 
 Insistons sur le fait qu'une boucle définit une variable, sans que l'on ait besoin de passer par la syntaxe traditionnelle d'assignation `variable = valeur`. De plus, cette variable n'est pas supprimée une fois la boucle terminée, elle prend alors la valeur du dernier élément de l'itérateur.
 
@@ -152,7 +152,7 @@ while i <= 5:
 
 La différence essentielle avec la boucle `for` est l'instruction : c'est désormais une instruction `while`, suivie d'une condition (test), et comme toute instruction de `:`.
 
-Pour le reste, le principe est le même : l'instruction `while` est suivi d'un bloc d'instructions, indenté d'un niveau, et qui s'éxécute séquentiellement à chaque itération de la boucle.
+Pour le reste, le principe est le même : l'instruction `while` est suivi d'un bloc d'instructions, indenté d'un niveau, et qui s'exécute séquentiellement à chaque itération de la boucle.
 
 
 ### Critère d'arrêt
@@ -179,9 +179,9 @@ print(j)
 ### L'instruction `break`
 
 
-Une manière alternative de spécifier un critère d'arrêt est d'utiliser l'instruction `break`. Lorsque cette instruction est atteinte et éxécutée, la boucle est immédiatement interrompue.
+Une manière alternative de spécifier un critère d'arrêt est d'utiliser l'instruction `break`. Lorsque cette instruction est atteinte et exécutée, la boucle est immédiatement interrompue.
 
-Illustrons son fonctionnement à l'aide d'un exemple. La première ligne crée une boucle infinie, dans la mesure où, par définition, `True` est toujours évalué à `True`. Le programme demande ensuite à l'utilisateur de taper un prénom, et ce infiniement jusqu'à que l'utilisateur tape le prénom attendu. Dans ce cas seulement, l'instruction `break` est atteinte et la boucle s'arrête. Le message "Bienvenue <votre_prenom>" s'affiche enfin, dans la mesure où le deuxième `print` n'est pas inclu dans la boucle.
+Illustrons son fonctionnement à l'aide d'un exemple. La première ligne crée une boucle infinie, dans la mesure où, par définition, `True` est toujours évalué à `True`. Le programme demande ensuite à l'utilisateur de taper un prénom, et ce infiniment jusqu'à que l'utilisateur tape le prénom attendu. Dans ce cas seulement, l'instruction `break` est atteinte et la boucle s'arrête. Le message "Bienvenue <votre_prenom>" s'affiche enfin, dans la mesure où le deuxième `print` n'est pas inclus dans la boucle.
 
 ```python
 votre_prenom = "Romain"
@@ -216,7 +216,7 @@ A chaque itération de la boucle `while`, une boucle `for` est lancée, qui atte
 
 L'instruction `continue` permet de passer à l'itération suivante de la boucle.
 
-Agrémentons l'exemple précédent pour illustrer son fonctionnement. Tant qu'un prénom différent de celui attendu est rentré, l'instruction `continue` est évaluée, et le programme continue à demander un prénom à l'utilisateur. Lorsque le bon prénom est rentré, le programme demande à l'utilisateur de rentrer un mot de passe. Si le mot de passe est celui attendu, l'instruction `break` est atteinte et éxécutée, la boucle s'arrête. En cas de mauvais mot de passe en revanche, la boucle redémarre au début du bloc d'éxécution, il faut donc de nouveau rentrer un prénom avant le mot de passe.
+Agrémentons l'exemple précédent pour illustrer son fonctionnement. Tant qu'un prénom différent de celui attendu est rentré, l'instruction `continue` est évaluée, et le programme continue à demander un prénom à l'utilisateur. Lorsque le bon prénom est rentré, le programme demande à l'utilisateur de rentrer un mot de passe. Si le mot de passe est celui attendu, l'instruction `break` est atteinte et exécutée, la boucle s'arrête. En cas de mauvais mot de passe en revanche, la boucle redémarre au début du bloc d'exécution, il faut donc de nouveau rentrer un prénom avant le mot de passe.
 
 ```python
 votre_prenom = ""
@@ -318,7 +318,7 @@ nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
         print("Le test est vrai")
-        print(f"car la variable nb vaut {nb}")
+        print("car la variable nb vaut {nb}")
 ```
 
 ```python tags=[]
@@ -326,7 +326,7 @@ nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
         print("Le test est vrai")
-    print(f"car la variable nb vaut {nb}")
+    print("car la variable nb vaut {nb}")
 ```
 
 ```python tags=[]
@@ -456,7 +456,7 @@ Pour rappel, les formules sont :
 
 NB : 
 - n à la puissance k s'écrit en Python `n**k`
-- en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issus de packages adaptés, comme `numpy`.
+- en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
 <!-- #endregion -->
 
 ```python tags=[]
@@ -502,7 +502,7 @@ En utilisant la fonction `range`, afficher :
 ### Le juste prix, version améliorée
 
 <!-- #region tags=[] -->
-Dans le précédent tutoriel, nous avons codé un jeu du juste prix. Mais il était un peu limité, puisqu'il fallait rééxécuter le code à chaque étape du jeu. A l'aide de boucles, réécrivez le jeu de manière complètement automatique.
+Dans le précédent tutoriel, nous avons codé un jeu du juste prix. Mais il était un peu limité, puisqu'il fallait réexécuter le code à chaque étape du jeu. A l'aide de boucles, réécrivez le jeu de manière complètement automatique.
 
 Rappel des règles : 
 

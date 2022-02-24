@@ -3,13 +3,13 @@ title: "Tests"
 abstract: "Découverte des tests et des structures conditionnelles, qui permettent à un programme de prendre des décisions de manière automatisée."
 ---
 
-Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests en Python. Les tests sont une étape majeure dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**éxécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
+Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests en Python. Les tests sont une étape majeure dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
 
 
 ## Le type Booléen
 
 
-Dans sa plus simple forme, un test en Python est une expression qui évalue à "vrai" ou "faux". Par exemple, l'expression $3 > 2$ est vraie, le test associé renverra donc "vrai". Pour ce type d'évaluation, Python dispose d'un type d'objets particulier : les **Booléns**. Contrairement aux types d'objet que nous avons déjà vus (`int`, `float`, `str`..), les Booléens ne peuvent prendre que deux valeurs : `True` et `False`.
+Dans sa plus simple forme, un test en Python est une expression qui évalue à "vrai" ou "faux". Par exemple, l'expression $3 > 2$ est vraie, le test associé renverra donc "vrai". Pour ce type d'évaluation, Python dispose d'un type d'objets particulier : les **Booléens**. Contrairement aux types d'objet que nous avons déjà vus (`int`, `float`, `str`..), les Booléens ne peuvent prendre que deux valeurs : `True` et `False`.
 
 ```python
 type(True)
@@ -23,7 +23,7 @@ print(a)
 print(type(a))
 ```
 
-Les valeurs `True` et `False` doivent être écrites de cette manière précisément (première lettre en majuscule, pas de guillemets). Elles ne peuvent par ailleurs pas être utilisées comme noms de variable afin de limiter les ambiguités.
+Les valeurs `True` et `False` doivent être écrites de cette manière précisément (première lettre en majuscule, pas de guillemets). Elles ne peuvent par ailleurs pas être utilisées comme noms de variable afin de limiter les ambiguïtés.
 
 ```python
 a = true  # Python chercher la variable `true` mais elle n'existe pas
@@ -39,7 +39,7 @@ True = 3
 Les opérateurs de comparaison formalisent les opérations mathématiques de comparaison (égalité, non-égalité, inégalités). Ils **comparent deux valeurs et renvoient une valeur booléenne**.
 
 
-| Opréteur | Signification |
+| Opérateur | Signification |
 | --- | --- |
 | == | Egal à  |
 | != | Non égal à  |
@@ -245,9 +245,9 @@ else:
 ### Blocs d'instruction et indentation
 
 
-L'exemple précédent illustre la syntaxe des structures conditionnelles en Python. Ces structures sont basées sur des *blocs d'instructions*, qui délimitent l'ensemble des instructions qui doivent être éxécutées lorsqu'un test est vrai. Les structures conditonnelles ont trois règles : 
+L'exemple précédent illustre la syntaxe des structures conditionnelles en Python. Ces structures sont basées sur des *blocs d'instructions*, qui délimitent l'ensemble des instructions qui doivent être exécutées lorsqu'un test est vrai. Les structures conditionnelles ont trois règles : 
 - la ligne qui spécifie le test se termine par `:` 
-- toutes les instructions qui doivent être éxécutées si le test est vrai se situent à un même niveau d'indentation ;
+- toutes les instructions qui doivent être exécutées si le test est vrai se situent à un même niveau d'indentation ;
 - la structure conditionnelle se termine lorsque l'indentation revient à son niveau d'origine.
 
 Notons que les structures conditionnelles peuvent tout à fait être imbriquées, ce qu'illustre l'exemple suivant.
@@ -261,17 +261,17 @@ if x >= 5:
         print("L'expression 2 est vraie.")
 ```
 
-Lorsque `x = 7`, le premier test renvoie `True`, le bloc d'instructions au niveau d'indentation 1 est donc éxécuté ligne par ligne. Le second test renvoie quant à lui `False`, le bloc d'instructions au niveau d'indentation 2 n'est pas éxécuté. 
+Lorsque `x = 7`, le premier test renvoie `True`, le bloc d'instructions au niveau d'indentation 1 est donc exécuté ligne par ligne. Le second test renvoie quant à lui `False`, le bloc d'instructions au niveau d'indentation 2 n'est pas exécuté. 
 
-Faîtes varier la valeur de `x` pour que les deux blocs soient éxécutés.
+Faîtes varier la valeur de `x` pour que les deux blocs soient exécutés.
 
 
 ### Instructions `if`, `else` et `elif`
 
 
-Dans les structures conditionnelles, les tests peuvent être spécifiées à l'aide de trois instructions : `if`, `else` et `elif`. Les exemples précédents on déjà illustré leur fonctionnement des deux premières (et plus fréquentes) instructions.
+Dans les structures conditionnelles, les tests peuvent être spécifiés à l'aide de trois instructions : `if`, `else` et `elif`. Les exemples précédents ont déjà illustré le fonctionnement des deux premières (et plus fréquentes) instructions.
 
-En cas d'un test simple (une seule condition), on n'utilisera qu'une instruction `if`, dont le fonctionnement est simple : si la condition (test) renvoie `True`, alors le bloc d'instructions (indenté) qui suit est éxécuté. Si la condition renvoie `False`, il ne se passe rien. Illustrons cela avec un test d'appartenance, dont nous avons vu des exemples dans le tutoriel précédent.
+En cas d'un test simple (une seule condition), on n'utilisera qu'une instruction `if`, dont le fonctionnement est simple : si la condition (test) renvoie `True`, alors le bloc d'instructions (indenté) qui suit est exécuté. Si la condition renvoie `False`, il ne se passe rien. Illustrons cela avec un test d'appartenance, dont nous avons vu des exemples dans le tutoriel précédent.
 
 ```python
 client = "Isidore"
@@ -291,7 +291,7 @@ else:
     print("Client inconnu.")
 ```
 
-Enfin, on peut vouloir spécifier plusieurs alternatives. Dans ce cas, on va utiliser des instructions `elif`. La première instruction `elif` ne va s'éxécuter que si le test de l'instruction `if` renvoie False. La seconde instruction `elif` ne va s'éxécuter que si le test de la première instruction `elif` renvoie `False`, et ainsi de suite. Là encore, on peut spécifier une instruction finale `else`, qui ne s'éxécute que si aucun des tests précédents n'a renvoyé `True`.
+Enfin, on peut vouloir spécifier plusieurs alternatives. Dans ce cas, on va utiliser des instructions `elif`. La première instruction `elif` ne va s'éxécuter que si le test de l'instruction `if` renvoie False. La seconde instruction `elif` ne va s'exécuter que si le test de la première instruction `elif` renvoie `False`, et ainsi de suite. Là encore, on peut spécifier une instruction finale `else`, qui ne s'exécute que si aucun des tests précédents n'a renvoyé `True`.
 
 ```python
 client = "Isidore"
@@ -306,7 +306,7 @@ else:
     print("Bonjour cher inconnu.")
 ```
 
-NB : les instructions précédentes ont seulement valeur d'exemple. En pratique, il y a des manières beaucoup plus consises de coder un programme qui effectue les mêmes opérations.
+NB : les instructions précédentes ont seulement valeur d'exemple. En pratique, il y a des manières beaucoup plus concises de coder un programme qui effectue les mêmes opérations.
 
 
 ## Exercices
@@ -316,10 +316,10 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 
 
 - 1/ Quelle est la particularité des Booléens par rapport aux autres types d'objets de base en Python ?
-- 2/ Quelle sont les inputs et les outputs d'un opérateur de comparaison ?
+- 2/ Quels sont les inputs et les outputs d'un opérateur de comparaison ?
 - 3/ Quels types d'objets peut-on comparer à l'aide d'un opérateur de comparaison ?
-- 4/ Quelles est la différence entre l'opérateur `=` et l'opérateur `==` ?
-- 5/ Quelle sont les inputs et les outputs d'un opérateur booléen ?
+- 4/ Quelle est la différence entre l'opérateur `=` et l'opérateur `==` ?
+- 5/ Quels sont les inputs et les outputs d'un opérateur booléen ?
 - 6/ Expliquer en français le principe de l'opérateur booléen `and`. Mêmes questions pour `or` et `not`.
 - 7/ Quelle est la différence entre expression booléenne et condition ?
 - 8/ Quelle est la structure d'une instruction conditionnelle ?
@@ -429,7 +429,7 @@ Ecrire un programme qui réalise les opérations suivantes :
 ### Exercice : le juste prix
 
 
-La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans le cadre d'un programme Python. La syntaxe est la suivante : `x = input()`. Lorsque cette commande est éxécutée, l'utilisateur doit rentrer une valeur, qui est alors assignée à la variable x.
+La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans le cadre d'un programme Python. La syntaxe est la suivante : `x = input()`. Lorsque cette commande est exécutée, l'utilisateur doit rentrer une valeur, qui est alors assignée à la variable x.
 
 **En utilisant `input` et les instructions `if`, `elif` et `else`**, coder le programme suivant : 
 - demander une valeur à l'utilisateur, qui sera stockée dans une variable `p`
@@ -537,7 +537,7 @@ Que renvoient les tests de comparaison de type inégalités appliqués à des ch
 
 
 Les tests d'égalité entre nombres réels (type `float` en Python) peuvent être trompeurs. Pour vous en convaincre, effectuez le test suivant : 
-`(6 - 0.4) == 5.6`
+`(6 - 5.8) == 0.2`
 
 Pour comprendre le résultat du test, effectuer le calcul du membre de gauche du test seul. Que remarquez-vous ?
 
