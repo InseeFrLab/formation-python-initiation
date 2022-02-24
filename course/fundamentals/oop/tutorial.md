@@ -9,7 +9,7 @@ Python est un langage dit "multi-paradigmes", c'est à dire qu'il admet plusieur
 ## La programmation orientée objet
 
 
-Vous avez peut être déjà entendu que Python était un langage de "programmation orientée objet". La POO est un paradigme de programmation qui permet de structurer les programmes autour d'une abstraction, l'**objet**, qui contient des **attributs** (caractéristiques de l'objet) et des **méthodes** (fonctions propres à l'objet) qui agissent sur lui-même. Afin d'illustrer cette définition un peu abstraite , on peut prendre l'exemple ([source](https://python.sdv.univ-paris-diderot.fr/19_avoir_la_classe_avec_les_objets/)) d'un objet "citron" qui contient les attributs "saveur" et "couleur", et une méthode "presser" qui permet d'extraire son jus.
+Vous avez peut-être déjà entendu que Python était un langage de "programmation orientée objet". La POO est un paradigme de programmation qui permet de structurer les programmes autour d'une abstraction, l'**objet**, qui contient des **attributs** (caractéristiques de l'objet) et des **méthodes** (fonctions propres à l'objet) qui agissent sur lui-même. Afin d'illustrer cette définition un peu abstraite , on peut prendre l'exemple ([source](https://python.sdv.univ-paris-diderot.fr/19_avoir_la_classe_avec_les_objets/)) d'un objet "citron" qui contient les attributs "saveur" et "couleur", et une méthode "presser" qui permet d'extraire son jus.
 
 
 ## "Tout est un objet"
@@ -181,7 +181,7 @@ citron1.extraire_jus(12)
 citron1.recup_qte_jus()
 ```
 
-Les trois exécutions donnent des résultats différents, alors que le code éxécuté est strictement le même. Cela illustre bien le problème de reproductibilité : lorsqu'on utilise la POO, il faut bien faire attention à l'état des objets qui est conservé en mémoire, au risque de ne pas tomber sur les mêmes résultats lorsqu'on réplique une même analyse.
+Les trois exécutions donnent des résultats différents, alors que le code exécuté est strictement le même. Cela illustre bien le problème de reproductibilité : lorsqu'on utilise la POO, il faut bien faire attention à l'état des objets qui est conservé en mémoire, au risque de ne pas tomber sur les mêmes résultats lorsqu'on réplique une même analyse.
 
 
 ## Exercices

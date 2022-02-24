@@ -12,7 +12,7 @@ Dans le précédent tutoriel, nous avons vu comment utiliser des fonctions prove
 ### Les fichiers CSV
 <!-- #endregion -->
 
-CSV signifie ***comma-separated values***, soit en bon français "valeurs séparées par des virgules". Les fichiers CSV visent à reproduire la **structure des données issues de tableurs** type Excel de Microsoft ou Calc de LibreOffice, réduite à la stricte donnée textuelle (plus de formattage, plus de types de colonne, etc.).
+CSV signifie ***comma-separated values***, soit en bon français "valeurs séparées par des virgules". Les fichiers CSV visent à reproduire la **structure des données issues de tableurs** type Excel de Microsoft ou Calc de LibreOffice, réduite à la stricte donnée textuelle (plus de formatage, plus de types de colonne, etc.).
 
 Nous allons prendre pour exemple le fichier CSV qui contient la liste des départements en 2021, issue du Code Officiel Géographique (COG). Regardons les premières lignes de ce fichier à l'aide d'une commande `shell` pour avoir bien en tête la structure d'un tel fichier.
 
@@ -20,7 +20,7 @@ Nous allons prendre pour exemple le fichier CSV qui contient la liste des dépar
 !head -n 5 departement2021.csv
 ```
 
-Pour reprendre l'analogie avec un fichier issu d'un tableur, chaque ligne du fichier représente une ligne du tableur, et les cellules d'une ligne sont séparées par des virgules. La première ligne peut continer un `header` (en-tête), c'est à dire le nom des colonnes, mais ce n'est pas toujours le cas.
+Pour reprendre l'analogie avec un fichier issu d'un tableur, chaque ligne du fichier représente une ligne du tableur, et les cellules d'une ligne sont séparées par des virgules. La première ligne peut contenir un `header` (en-tête), c'est à dire le nom des colonnes, mais ce n'est pas toujours le cas.
 
 
 Les principaux avantages des fichiers CSV sont :
@@ -33,7 +33,7 @@ Les principaux avantages des fichiers CSV sont :
 
 Les données contenues dans un CSV étant des données textuelles, on peut se demander pourquoi l'on a besoin d'un module particulier pour les manipuler, et pourquoi les outils que l'on a vus dans le tutoriel précédent ne seraient pas suffisants. La raison principale est que les fichiers CSV ont tout de même quelques subtilités et normes, souvent invisibles à l'utilisateur, mais très importantes en pratique. Par exemple : si l'on veut séparer les différentes données selon les virgules, que se passe-t-il si les données textuelles elles-même contiennent des virgules ?
 
-C'est pour cette raison qu'on utilise le **module `csv`** pour interagir avec ce type de fichiers, afin de capitaliser sur le fait que d'autres se sont posés toutes ces questions nous, et donc de ne pas avoir à réinventer la roue à chaque import de fichier CSV.
+C'est pour cette raison qu'on utilise le **module `csv`** pour interagir avec ce type de fichiers, afin de capitaliser sur le fait que d'autres se sont posés toutes ces questions, et donc de ne pas avoir à réinventer la roue à chaque import de fichier CSV.
 
 Notons qu'en pratique, on a plutôt tendance à manipuler ce type de données sous la forme de DataFrames (comme en `R`), afin de tirer parti de leur **structure tabulaire**. On étudiera dans un prochain tutoriel le ***package* `Pandas`** qui permet précisément de faire cela en Python. Néanmoins, il est toujours utile de savoir bien manipuler les données d'un CSV comme des données textuelles, et donc de connaître le module `csv`.
 
@@ -146,9 +146,9 @@ Le JSON (*JavaScript Object Notation*) est un format de fichier très populaire 
 
 Comme son nom le suggère, le JSON est lié au langage *JavaScript* dans la mesure où il constitue un dérivé de la notation des objets dans ce langage. Le format est cependant désormais indépendant de tout langage de programmation, mais est très fréquemment utilisé dans différents langages. 
 
-Le format JSON est particulièrement important pour les statisticiens et data scientists car il constitue le **format quasi-standard de réponse des [API](https://fr.wikipedia.org/wiki/Interface_de_programmation)**. Le dialogue avec les API va au delà du programme de ce cours d'introduction. Cependant, les API tendant à se généraliser comme mode de communication standard pour l'échange de données, il est important de maîtriser les bases du format JSON afin de manipuler les réponses des API lorsqu'on doit intéragir avec celles-ci.
+Le format JSON est particulièrement important pour les statisticiens et data scientists car il constitue le **format quasi-standard de réponse des [API](https://fr.wikipedia.org/wiki/Interface_de_programmation)**. Le dialogue avec les API va au delà du programme de ce cours d'introduction. Cependant, les API tendant à se généraliser comme mode de communication standard pour l'échange de données, il est important de maîtriser les bases du format JSON afin de manipuler les réponses des API lorsqu'on doit interagir avec celles-ci.
 
-Le JSON stockant les objets sous forme de **paires clé-valeur** et où les valeurs peuvent être des ***arrays*** — un concept assez large en informatique qui inclut notamment les listes que nous connaissons — il ressemble fortement aux dictionnaires Python. Il constitue ainsi un format de fichier assez naturel pour ***sérialiser*** ces derniers, c'est à dire passer d'une structure de données en mémoire (ici, un dictionnaire) à une séquence d'octets qui peut être universellement lu par tout ordinateur. Regardons à titre d'exemple la représentation JSON d'un dictionnaire Python.
+Le JSON stockant les objets sous forme de **paires clé-valeur** et où les valeurs peuvent être des ***arrays*** — un concept assez large en informatique qui inclut notamment les listes que nous connaissons — il ressemble fortement aux dictionnaires Python. Il constitue ainsi un format de fichier assez naturel pour ***sérialiser*** ces derniers, c'est à dire passer d'une structure de données en mémoire (ici, un dictionnaire) à une séquence d'octets qui peut être universellement lue par tout ordinateur. Regardons à titre d'exemple la représentation JSON d'un dictionnaire Python.
 
 ```python
 cv = {
@@ -224,7 +224,7 @@ data
 
 Nous allons illustrer la lecture de contenu JSON à partir d'une chaîne de caractères à partir d'un exemple réaliste : celui du requêtage d'une API. Pour l'exemple, nous allons requêter la Base Adresse Nationale (BAN), qui permet de géolocaliser n'importe quelle adresse nationale.
 
-Le requêtage d'API en Python se fait très simplement grâce à la librarie `requests`. Regardons par exemple comment l'on peut récupérer en seulement deux lignes de code les informations géographiques sur toutes les voies qui contiennent le nom "comédie" en France.
+Le requêtage d'API en Python se fait très simplement grâce à la librairie `requests`. Regardons par exemple comment l'on peut récupérer en seulement deux lignes de code les informations géographiques sur toutes les voies qui contiennent le nom "comédie" en France.
 
 ```python
 import requests
@@ -259,6 +259,8 @@ r_dict["features"][0]
 ```python
 r_dict["features"][1]
 ```
+
+## Exercices
 
 ### Questions de compréhension
 
@@ -390,7 +392,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 ### Exercice : découper la base des départements par régions
 
 
-L'objectif de cet exercice est de découper le fichier CSV des départements que nous avons utilisé dans le tutoriel en plusieurs petits CSV, un par région. Ce type d'opération peut être utile par exemple lorsqu'on travaille avec un fichier de très grande taille, qui ne passe pas en mémoire ; le découper en plusieurs fichiers que l'on traite indépendemment, lorsque cela est possible, permet de réduire la volumétrie.
+L'objectif de cet exercice est de découper le fichier CSV des départements que nous avons utilisé dans le tutoriel en plusieurs petits CSV, un par région. Ce type d'opération peut être utile par exemple lorsqu'on travaille avec un fichier de très grande taille, qui ne passe pas en mémoire ; le découper en plusieurs fichiers que l'on traite indépendamment, lorsque cela est possible, permet de réduire la volumétrie.
 
 Voici la liste des opérations à effectuer : 
 - créer un dossier `dep` dans le répertoire courant à l'aide du module `pathlib` (cf. tutoriel précédent)

@@ -29,7 +29,7 @@
 # élément de l'array.
 
 # 9/ Le paramètre axis sert à spécifier la dimension selon laquelle on 
-# souhaite performer une aggrégation (fonction math, stat..).
+# souhaite performer une agrégation (fonction math, stat..).
 
 # -------------------------------------------------------------------------- #
 
@@ -89,11 +89,11 @@ c = np.full((4, 3), fill_value=5)
 print(c)
 print()
 
-d = np.arange(0, 100)
+d = np.eye(5)
 print(d)
 print()
 
-e = np.eye(5)
+e = np.arange(0, 100)
 print(e)
 print()
 

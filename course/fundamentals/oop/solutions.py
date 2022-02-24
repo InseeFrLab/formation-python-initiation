@@ -27,7 +27,7 @@
 # Appel d'une méthode : instance.methode() avec d'éventuels paramètres.
 
 # 9/ Oui, c'est même un des usages principaux des méthodes.
-# Mais on peut également modifier un atrribut manuellement.
+# Mais on peut également modifier un attribut manuellement.
 
 # 10/ Lorsque l'on manipule des objets dont on souhaitent qu'ils conservent
 # l'état d'une ressource au sein d'un programme.
