@@ -6,11 +6,11 @@
 
 # 2/ Un package est une collection de modules.
 
-# 3/ Cela surchage la mémoire si l'on a besoin que de quelques fonctions,
+# 3/ Cela surcharge la mémoire si l'on a besoin que de quelques fonctions,
 # et cela réduit la lisibilité puisqu'on ne sait pas directement de
 # quel module provient quelle fonction.
 
-# 4/ Elle permet d'intéragir avec le système de fichiers avec une syntaxe de POO
+# 4/ Elle permet d'interagir avec le système de fichiers avec une syntaxe de POO
 # unifiée, quel que soit l'environnement sur lequel on travaille.
 
 # 5/ Nom de fichier et chemin du dossier qui contient le fichier.

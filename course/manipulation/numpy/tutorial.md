@@ -3,7 +3,7 @@ title: "Calcul numérique avec NumPy"
 abstract: "Manipulation des arrays et des fonctions de NumPy, la librairie de référence pour le calcul numérique."
 ---
 
-En tant que statisticien, on est fréquemment ammené à manipuler des séries de valeurs numériques, à partir desquelles on réalise diverses opérations mathématiques, des plus usuelles (moyenne, variance, etc.) aux plus complexes. On peut, comme on l'a fait dans les précédents tutoriels, utiliser les objets fondamentaux de Python, et en particulier les listes, pour réaliser de telles opérations. En pratique, on préférera utiliser la **librarie de référence pour le calcul scientifique**, `NumPy`, qui fournit à la fois des objets (les ***arrays***) et des fonctions qui vont grandement nous simplifier la vie pour effectuer tous nos calculs en Python de manière efficiente.
+En tant que statisticien, on est fréquemment amené à manipuler des séries de valeurs numériques, à partir desquelles on réalise diverses opérations mathématiques, des plus usuelles (moyenne, variance, etc.) aux plus complexes. On peut, comme on l'a fait dans les précédents tutoriels, utiliser les objets fondamentaux de Python, et en particulier les listes, pour réaliser de telles opérations. En pratique, on préférera utiliser la **librairie de référence pour le calcul scientifique**, `NumPy`, qui fournit à la fois des objets (les ***arrays***) et des fonctions qui vont grandement nous simplifier la vie pour effectuer tous nos calculs en Python de manière efficiente.
 
 
 ## NumPy 
@@ -103,7 +103,7 @@ type(a)
 
 L'objet est de type `ndarray`, qui est le type standard correspondant à un *array* `NumPy`. 
 
-On a vu qu'un *array* avait pour propriété de contenir des données de type homogène ; en l'occurence, des entiers. On peut vérifier le type des données contenues via l'attribut `dtype` d'un *array*.
+On a vu qu'un *array* avait pour propriété de contenir des données de type homogène ; en l'occurrence, des entiers. On peut vérifier le type des données contenues via l'attribut `dtype` d'un *array*.
 
 ```python
 a.dtype
@@ -166,7 +166,7 @@ Le premier chiffre donne le nombre de lignes, le second le nombre de colonnes. O
 #### Indexation
 
 
-On accède aux différents élément d'un *array* de dimension 1 exactement de la même manière que ceux d'une liste.
+On accède aux différents éléments d'un *array* de dimension 1 exactement de la même manière que ceux d'une liste.
 
 ```python
 a = np.array([1, 2, 3, 4, 5, 6])
@@ -315,7 +315,7 @@ a = np.array([[1, 2, 2], [2, 2, 1]])
 np.sum(a)
 ```
 
-Mais comment faire si l'on veut sommer par ligne ? Ou bien par colonne ? C'est là qu'intervient un élément crucial et asseza complexe des fonctions de `NumPy` : le paramètre `axis`, qui spécifie la dimension selon laquelle est effectuée l'opération.
+Mais comment faire si l'on veut sommer par ligne ? Ou bien par colonne ? C'est là qu'intervient un élément crucial et assez complexe des fonctions de `NumPy` : le paramètre `axis`, qui spécifie la dimension selon laquelle est effectuée l'opération.
 
 Lorsqu'il n'est pas spécifié comme dans l'exemple précédent, il prend la valeur `None` par défaut.
 
@@ -329,7 +329,7 @@ La figure suivante permet de bien se représenter la manière dont fonctionnent 
 
 ![axis](axes.png)
 
-Ainsi, si l'on souhaite calculer la somme de chaque colonne par exemple, il faut aggréger selon l'axe $0$.
+Ainsi, si l'on souhaite calculer la somme de chaque colonne par exemple, il faut agréger selon l'axe $0$.
 
 ```python
 a = np.array([[1, 2, 2], [2, 2, 1]])
@@ -486,7 +486,7 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 - un vecteur (array à 1 dimension), contenant 18 fois la valeur $1$ (fonction `np.ones`)
 - un array à 3 dimensions, respectivement de tailles 2, 3 et 5, contenant uniquement des zéros (fonction `np.zeros`)
 - une matrice (array à 2 dimensions), à 4 lignes et 3 colonnes, contenant uniquement la valeur 5 (fonction `np.full`)
-- une matrice identité de taille 5, i.e. une matrice à 5 lignes et 5 colonnes, contenant des $1$ sur sa diagonale et des $0$ partout ailleurs (fonction `np.diag`)
+- une matrice identité de taille 5, i.e. une matrice à 5 lignes et 5 colonnes, contenant des $1$ sur sa diagonale et des $0$ partout ailleurs (fonction `np.eye`)
 - un vecteur contenant les entiers compris entre $0$ à $99$ inclus (fonction `np.arange`)
 - un vecteur contenant les entiers *pairs* compris entre $0$ à $99$ inclus (fonction `np.arange`)
 - un vecteur contenant 5 valeurs uniformément espacées entre $2$ et $3$ inclus (fonction `np.linspace`)
@@ -565,11 +565,11 @@ X = np.random.randint(0, 50, size=(6, 6))
 
 L'objectif de cet exercice est de programmer seulement à l'aide d'objets et de fonctions de `NumPy` un touché-coulé très basique. 
 
-Une grille de 5x5 est définie dans la cellule suivante comme un *array*, les valeurs $1$ symbolisant la présence d'un bâteau. Vous devez programmer une fonction `shoot` qui :
+Une grille de 5x5 est définie dans la cellule suivante comme un *array*, les valeurs $1$ symbolisant la présence d'un bateau. Vous devez programmer une fonction `shoot` qui :
 - prend en input une coordonnée $x$ (indice de la ligne) et une cordonnée $y$ (indice de la colonne)
 - teste si au moins une valeur $1$ est présente dans la grille :
   - si oui : 
-    - s'il y a un bâteau à l'adresse (x, y), remplacer la valeur $1$ par $2$ et `print` "Touché !"
+    - s'il y a un bateau à l'adresse (x, y), remplacer la valeur $1$ par $2$ et `print` "Touché !"
     - sinon, `print` "Raté !"
   - si non :
     - `print` "Fin de partie !"

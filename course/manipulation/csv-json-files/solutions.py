@@ -3,7 +3,7 @@
 # 1/ Un CSV est un fichier texte qui représente l'information brute d'un document
 # type tableur. Chaque ligne du fichier représente une ligne du tableur, et les
 # cellules d'une ligne sont séparées par des virgules. La première ligne peut
-# continer un `header` (en-tête), c'est à dire le nom des colonnes, mais ce
+# contenir un `header` (en-tête), c'est à dire le nom des colonnes, mais ce
 # n'est pas toujours le cas.
 
 # 2/ Simplicité de lecture et d'édition, universalité.
@@ -82,7 +82,7 @@ with open('nat2020.csv', 'r') as file_in:
 
 # -------------------------------------------------------------------------- #
 
-r = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
 r_text = response.text
 r_dict = json.loads(r_text)
 

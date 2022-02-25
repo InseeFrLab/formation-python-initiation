@@ -13,7 +13,7 @@ Mais que se passe-t-il par exemple si l'on souhaite conserver les sorties des ca
 
 Avant de parler de manipulation de fichiers, nous devons faire un bref détour par le monde des modules et des ***packages*** (librairies). 
 
-Jusqu'à maintenant, nous avons essentiellement utilisé des objets et des instructions standards de Python, qui ne nécessitaient donc pas d'import tiers. Dans ce tutoriel et tous ceux qui vont suivre, nous allons réaliser des opérations plus complexes (intéragir avec un système de fichiers, faire du calcul vectoriel, manipuler des données tabulaires, etc.) qu'il serait très coûteux, inefficient, et avec un potentiel d'erreur énorme, de coder à la main en utilisant les objets de base de Python. 
+Jusqu'à maintenant, nous avons essentiellement utilisé des objets et des instructions standards de Python, qui ne nécessitaient donc pas d'import tiers. Dans ce tutoriel et tous ceux qui vont suivre, nous allons réaliser des opérations plus complexes (interagir avec un système de fichiers, faire du calcul vectoriel, manipuler des données tabulaires, etc.) qu'il serait très coûteux, inefficient, et avec un potentiel d'erreur énorme, de coder à la main en utilisant les objets de base de Python. 
 
 C'est pourquoi nous allons utiliser des *packages*, sortes de boîtes à outils  remplies de **fonctions** et de **classes** développées par d'autres (généralement de manière communautaire) et qui permettent de réaliser des opérations complexes à moindre coût.
 
@@ -96,20 +96,20 @@ plt.plot(x, np.sin(x))
 ### Installation de *packages*
 
 
-L'installation de *packages* tiers en Python est un sujet à la fois très simple et très complexe. Très simple car la syntaxe strictement nécessaire pour installer un *package* dans un notebook Jupyter se résume à `!pip install nom_du_package` (le `!` permettant d'envoyer la commande au terminal). Mais très complexe dans la mesure où beaucoup de considérations techniques interviennent derrière cette simple commande (environnement d'éxécution, choix du gestionnaire de *packages*, gestion des dépendances, etc.). En l'occurence, tous les *packages* nécessaires au cours de cette formation sont déjà installés. Nous reviendrons plus en détails sur ce sujet dans la dernière partie sur les bonnes pratiques de développement à adopter en Python.
+L'installation de *packages* tiers en Python est un sujet à la fois très simple et très complexe. Très simple car la syntaxe strictement nécessaire pour installer un *package* dans un notebook Jupyter se résume à `!pip install nom_du_package` (le `!` permettant d'envoyer la commande au terminal). Mais très complexe dans la mesure où beaucoup de considérations techniques interviennent derrière cette simple commande (environnement d'exécution, choix du gestionnaire de *packages*, gestion des dépendances, etc.). En l'occurrence, tous les *packages* nécessaires au cours de cette formation sont déjà installés. Nous reviendrons plus en détails sur ce sujet dans la dernière partie sur les bonnes pratiques de développement à adopter en Python.
 
 
 ## Manipulation de fichiers
 
 
-### Intéragir avec le système de fichiers local
+### Interagir avec le système de fichiers local
 
 
 Pour pouvoir lire et écrire des fichiers avec Python, il nous faut d'abord comprendre comment ceux-ci sont représentés sur le système de fichiers (*file system*) local, et comment Python interagit avec ce dernier. 
 
 **Le module pathlib**
 
-Pour ce faire, nous allons utiliser de manière répétée le module `pathlib` et en particulier la classe `Path`. Ce module permet d'intéragir avec le système de fichiers sous forme d'objets, en manipulant des attributs et leurs méthodes. Pas de panique, nous avons vu tout ce qu'il nous fallait savoir à ce propos dans le précédent tutoriel.
+Pour ce faire, nous allons utiliser de manière répétée le module `pathlib` et en particulier la classe `Path`. Ce module permet d'interagir avec le système de fichiers sous forme d'objets, en manipulant des attributs et leurs méthodes. Pas de panique, nous avons vu tout ce qu'il nous fallait savoir à ce propos dans le précédent tutoriel.
 
 ```python
 from pathlib import Path
@@ -142,7 +142,7 @@ Path.cwd().glob('*.*')
 list(Path.cwd().glob('*.*'))
 ```
 
-On retrouve notre notebook, un fichier qui contient les solutions des exercices du tutoriel, et un certains nombres de fichier texte qui vont servir d'exemples dans la suite du tutoriel. Si l'on prend le notebook par exemple, on distingue bien :
+On retrouve notre notebook, un fichier qui contient les solutions des exercices du tutoriel, et un certain nombre de fichiers texte qui vont servir d'exemples dans la suite du tutoriel. Si l'on prend le notebook par exemple, on distingue bien :
 - son nom de fichier : `tutorial.ipynb`
 - son chemin : `/home/jovyan/work/formation/`
 
@@ -215,7 +215,7 @@ En revanche, le **mode d'ouverture** est très important. Il y a trois modes pri
 - `w` : **écriture**. Il est possible dans ce mode d'écrire sur un fichier. **Attention : si un fichier avec le même nom existe déjà, il sera automatiquement écrasé.**
 - `a` : **appending**. Ce mode ne permet que de rajouter des lignes à la fin d'un fichier existant.
 
-Une fois le fichier ouvert, on peut réaliser des opérations sur ce fichier à l'aide de méthodes attachées à l'objet qui le représente. On verre dans la section suivante ce que fait la méthode `readlines`.
+Une fois le fichier ouvert, on peut réaliser des opérations sur ce fichier à l'aide de méthodes attachées à l'objet qui le représente. On verra dans la section suivante ce que fait la méthode `readlines`.
 
 ```python
 file_in.readlines()
@@ -315,7 +315,7 @@ C'est beaucoup mieux.
 
 Quelques remarques supplémentaires sur l'écriture de fichiers :
 - mieux vaut le répéter : **utiliser le mode d'ouverture `\w` pour un fichier écrase complètement son contenu**. Lorsqu'on a réécrit notre fichier avec les sauts de ligne, on a complètement écrasé l'ancien.
-- pourquoi a-t-on pu mettre juste le nom du fichier dans la fonction `open` et pas un objet `Path` comprenant le chemin complet vers le fichier que l'on souhaitait crééer ? C'est parce que Python l'a automatiquement interprété comme un **chemin relatif** (à notre répertoire courant) du fait de l'absence de racine.
+- pourquoi a-t-on pu mettre juste le nom du fichier dans la fonction `open` et pas un objet `Path` comprenant le chemin complet vers le fichier que l'on souhaitait créer ? C'est parce que Python l'a automatiquement interprété comme un **chemin relatif** (à notre répertoire courant) du fait de l'absence de racine.
 - on ne peut écrire dans un fichier **que des éléments de type `str`** (chaîne de caractère). Si un des éléments de la liste ci-dessus avait été de type `int` ou `float` par exemple, il aurait fallu le convertir via la fonction `str()` avant de l'écrire dans le fichier. Sinon, Python aurait renvoyé une erreur.
 
 
@@ -374,7 +374,7 @@ Indices :
 
 *Exercice inspiré de : [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/07_fichiers/)*
 
-Le fichier texte `notes_clean.txt` se trouve dans votre répertoire courant. Il contient les notes obtenues par 50 élèves à un examen. Contraitement à l'exercice précédent, les notes sont cette fois bien écrites : une note par ligne.
+Le fichier texte `notes_clean.txt` se trouve dans votre répertoire courant. Il contient les notes obtenues par 50 élèves à un examen. Contrairement à l'exercice précédent, les notes sont cette fois bien écrites : une note par ligne.
 
 Écrire un script Python qui :
 - stocke chaque note au format `int` dans une liste
@@ -407,7 +407,7 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 
 Chaque élève aura une note finale égale à la note obtenue moins le nombre de jours de retard. Une note ne pouvant être négative, elle sera remplacée par 0.
 
-Les informations nécessaires ont été placées dans une liste dans la cellule suivante). A l'aide d'une boucle sur cette liste, **ajouter** (sans réécrire complètement le fichier !). les notes au fichier `notes_clean.txt` (sans la mention).
+Les informations nécessaires ont été placées dans une liste dans la cellule suivante. A l'aide d'une boucle sur cette liste, **ajouter** (sans réécrire complètement le fichier !). les notes au fichier `notes_clean.txt` (sans la mention).
 
 NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retrouver les fichiers propres sur le [dépôt GitHub associé à la formation](https://github.com/InseeFrLab/formation-python-initiation/tree/main/course/manipulation/modules-files).
 
