@@ -113,4 +113,4 @@ if __name__ == "__main__":
 
     # Export doc
     with open(os.path.join(PROJECT_DIR, "doc.json"), "w") as json_file:
-        json.dump(doc_json, json_file)
+        json.dump(doc_json, json_file, indent=2, ensure_ascii=False)
