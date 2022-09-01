@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   update-doc:
@@ -25,7 +26,7 @@ jobs:
       - name: Dispatch doc
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_FOR_DISPATCH }}
           event-type: update_educational_resources
           repository: InseeFrLab/www.sspcloud.fr
           client-payload: '{ "educational_resource": ${{steps.builddoc.outputs.doc}} }'
