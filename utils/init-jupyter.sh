@@ -3,7 +3,7 @@
 SECTION=$1
 CHAPTER=$2
 
-WORK_DIR=/home/jovyan/work
+WORK_DIR=/home/onyxia/work
 CLONE_DIR=${WORK_DIR}/repo-git
 COURSE_DIR=${CLONE_DIR}/course
 FORMATION_DIR=${WORK_DIR}/formation
@@ -22,7 +22,7 @@ mkdir $FORMATION_DIR
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${FORMATION_DIR}/
 
 # Give write permissions
-chown -R jovyan:users $FORMATION_DIR/
+chown -R onyxia:users $FORMATION_DIR/
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${FORMATION_DIR}/requirements.txt
@@ -32,4 +32,5 @@ REQUIREMENTS_FILE=${FORMATION_DIR}/requirements.txt
 rm -r $CLONE_DIR
 
 # Open the relevant notebook when starting Jupyter Lab
-echo "c.LabApp.default_url = '/lab/tree/formation/tutorial.ipynb'" >> /home/jovyan/.jupyter/jupyter_server_config.py
+jupyter server --generate-config
+echo "c.LabApp.default_url = '/lab/tree/formation/tutorial.ipynb'" >> /home/onyxia/.jupyter/jupyter_server_config.py
