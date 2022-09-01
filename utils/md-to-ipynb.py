@@ -40,8 +40,7 @@ def md_to_ipynb(md_path):
 
     with open(ipynb_path, "w") as json_file:
         json.dump(ipynb_json, json_file)
-    
+
 
 if __name__ == "__main__":
-
     md_to_ipynb(md_path=sys.argv[1])
