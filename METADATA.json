@@ -5,7 +5,7 @@
     "contributors": ["Romain Avouac"],
     "types": ["Notebook Python"],
     "tags": ["discover", "learn"],
-    "category": "training courses with python",
+    "category": "datascience with R and Python",
     "imageUrl": "https://raw.githubusercontent.com/InseeFrLab/www.sspcloud.fr/main/src/app/assets/img/python.jpg",
     "sections": {
         "introduction": {
