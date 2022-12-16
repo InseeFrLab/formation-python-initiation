@@ -6,3 +6,7 @@ abstract: "Un projet basé sur les données du recensement pour mettre en pratiq
 blabla
 
 ## Partie 1
+
+```python
+print("Une cellule avec du code Python.")
+```
