@@ -18,23 +18,44 @@ def affiche_grille(grille):
 def tour(grille, colonne_a_jouer, couleur_pion):
     grille = copy.deepcopy(grille)
     
-    # Test de la validité de la couleur du pion
-    err_couleur = 'La couleur du pion doit être "J" ou "R".'
-    assert couleur_pion in ["J", "R"], err_couleur
-    
-    # Test de la validité de la colonne
-    err_colonne = "La colonne à jouer doit être comprise entre 0 et 6."
-    assert (colonne_a_jouer >= 0 and colonne_a_jouer <= 6), err_colonne
-    
-    # Test si la colonne choisie n'est pas déjà complète
-    err_full = "La colonne choisie est déjà complète."
-    assert grille[0][colonne_a_jouer] == " ", err_full
-    
-    # On parcourt la colonne du bas vers le haut jusqu'à arriver sur une case vide
-    # On ajoute alors le pion dans cette case
-    ligne = 5
-    while grille[ligne][colonne_a_jouer] != ' ':
-        ligne -= 1
-    grille[ligne][colonne_a_jouer] = couleur_pion
+    if grille[0][colonne_a_jouer] != " ":
+        # Si la colonne choisie n'a aucune case vide, on renvoie une erreur
+        raise ValueError("La colonne choisie est déjà complète.")
+    else:
+        # Sinon, on parcourt la colonne du bas vers le haut jusqu'à arriver sur une case vide
+        # On ajoute alors le pion dans cette case
+        ligne = 5
+        while grille[ligne][colonne_a_jouer] != ' ':
+            ligne -= 1
+        grille[ligne][colonne_a_jouer] = couleur_pion
 
     return grille
+
+
+def victoire_ligne(ligne):
+    n_R = ligne.count("R")
+    n_J = ligne.count("J")
+    if n_R == 4:
+        print(f'Les pions rouges ont gagné, félicitations !')
+        return True
+    if n_J == 4:
+        print(f'Les pions jaunes ont gagné, félicitations !')
+        return True
+    return False
+
+
+def victoire_horizontale_grille(grille):
+    for ligne in grille:
+        if victoire_ligne(ligne):
+            return True
+    return False
+
+
+def victoire_verticale_grille(grille):
+    for idx_colonne in range(7):
+        colonne = []
+        for ligne in grille:
+            colonne.append(ligne[idx_colonne])
+        if victoire_ligne(colonne):
+            return True
+    return False
