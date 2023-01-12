@@ -2,10 +2,10 @@
     "name": "Initiation à Python",
     "abstract": "Cours introductif à Python : fondamentaux du langage et premières manipulations de données",
     "authors": ["inseefrlab"],
-    "contributors": ["Romain Avouac"],
+    "contributors": ["Romain Avouac", "Shiraz Adamaly"],
     "types": ["Notebook Python"],
     "tags": ["discover", "learn"],
-    "category": "training courses with Python",
+    "category": "training courses with python",
     "imageUrl": "https://raw.githubusercontent.com/InseeFrLab/www.sspcloud.fr/main/src/assets/img/python.jpg",
     "sections": {
         "introduction": {
@@ -35,15 +35,12 @@
                 "numpy"
             ]
         },
-        "best-practices": {
-            "name": "Mener un projet statistique avec Python",
-            "abstract": "Bonnes pratiques pour mener des projets statistiques avec Python",
-            "chapters": []
-        },
-        "final-project": {
-            "name": "Projet final",
-            "abstract": "Projet final validant l'auto-formation \"Initiation à Python\" du SSP Cloud",
-            "chapters": []
+        "projects": {
+            "name": "Projets",
+            "abstract": "Des projets de code pour mettre en application les enseignements de la formation",
+            "chapters": [
+                "puissance4"
+            ]
         }
     }
 }
