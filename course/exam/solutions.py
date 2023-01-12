@@ -33,19 +33,28 @@ def tour(grille, colonne_a_jouer, couleur_pion):
 
 
 def victoire_ligne(ligne):
-    n_R = ligne.count("R")
-    n_J = ligne.count("J")
-    if n_R == 4:
-        print(f'Les pions rouges ont gagné, félicitations !')
-        return True
-    if n_J == 4:
-        print(f'Les pions jaunes ont gagné, félicitations !')
-        return True
+    for i, elem in enumerate(ligne):
+        # Pour chaque élément de la ligne
+        if elem in ["R", "J"] and i + 3 <= 6:
+            # Si l'élément est un pion et qu'il existe 3 éléments à sa droite
+            count_equal = 0
+            for j in range(1, 4):
+                # On compte le nombre de pions de même couleur à sa droite
+                if elem == ligne[i+j]:
+                    count_equal += 1
+            if count_equal == 3:
+                # Si le compteur vaut 3, c'est une victoire, la fonction retourne True
+                if elem == "R":
+                    print("Les pions rouges ont gagnés, félicitations !")
+                if elem == "J":
+                    print("Les pions jaunes ont gagnés, félicitations !")
+                return True
     return False
 
 
 def victoire_horizontale_grille(grille):
     for ligne in grille:
+        # On teste le critère de victoire sur chaque ligne
         if victoire_ligne(ligne):
             return True
     return False
@@ -53,9 +62,11 @@ def victoire_horizontale_grille(grille):
 
 def victoire_verticale_grille(grille):
     for idx_colonne in range(7):
+        # On récupère les éléments de la colonne dans une liste
         colonne = []
         for ligne in grille:
             colonne.append(ligne[idx_colonne])
         if victoire_ligne(colonne):
+            # On teste l'existence d'une victoire
             return True
     return False
