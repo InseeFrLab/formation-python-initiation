@@ -2,10 +2,10 @@
     "name": "Initiation à Python",
     "abstract": "Cours introductif à Python : fondamentaux du langage et premières manipulations de données",
     "authors": ["inseefrlab"],
-    "contributors": ["Romain Avouac"],
+    "contributors": ["Romain Avouac", "Shiraz Adamaly"],
     "types": ["Notebook Python"],
     "tags": ["discover", "learn"],
-    "category": "training courses with Python",
+    "category": "training courses with python",
     "imageUrl": "https://raw.githubusercontent.com/InseeFrLab/www.sspcloud.fr/main/src/assets/img/python.jpg",
     "sections": {
         "introduction": {
