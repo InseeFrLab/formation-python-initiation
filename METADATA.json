@@ -35,15 +35,12 @@
                 "numpy"
             ]
         },
-        "best-practices": {
-            "name": "Mener un projet statistique avec Python",
-            "abstract": "Bonnes pratiques pour mener des projets statistiques avec Python",
-            "chapters": []
-        },
-        "final-project": {
-            "name": "Projet final",
-            "abstract": "Projet final validant l'auto-formation \"Initiation à Python\" du SSP Cloud",
-            "chapters": []
+        "projects": {
+            "name": "Projets",
+            "abstract": "Des projets de code pour mettre en application les enseignements de la formation",
+            "chapters": [
+                "puissance4"
+            ]
         }
     }
 }
