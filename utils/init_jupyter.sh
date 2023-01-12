@@ -14,7 +14,7 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Convert .md to .ipynb
 pip install python-frontmatter jupytext
-python $CLONE_DIR/utils/md-to-ipynb.py $COURSE_DIR/${SECTION}/${CHAPTER}/tutorial.md
+python $CLONE_DIR/utils/md_to_ipynb.py $COURSE_DIR/${SECTION}/${CHAPTER}/tutorial.md
 rm $COURSE_DIR/${SECTION}/${CHAPTER}/tutorial.md
 
 # Put chapter data in the training dir
