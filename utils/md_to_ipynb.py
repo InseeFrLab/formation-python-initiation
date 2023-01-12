@@ -16,7 +16,7 @@ def md_to_ipynb(md_path):
     nb_title = fm["title"]
 
     # Convert qmd to ipynb
-    CMD = f"jupytext --to notebook {md_path}"
+    CMD = f"jupytext --to notebook {str(md_path)}"
     subprocess.run(CMD.split())
 
     with open(ipynb_path, "r") as json_file:
