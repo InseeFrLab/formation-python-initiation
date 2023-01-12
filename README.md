@@ -1,4 +1,4 @@
-# Initiation à Python
+# Formation - Initiation à Python
 
 *Contributeurs : Romain Avouac, Olivier Chateau, Shiraz Adamaly*
 
