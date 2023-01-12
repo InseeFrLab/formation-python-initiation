@@ -26,7 +26,7 @@ jobs:
         run: |
           rm -r notebooks/
           cp -r course/ notebooks/
-          find notebooks/ -name '*.md' | xargs jupytext --to notebook
+          find notebooks/ -name '*.md' | xargs python utils/md_to_ipynb.py
           find notebooks/ -type f -name '*.md' -delete
 
       - name: Commit and push notebooks

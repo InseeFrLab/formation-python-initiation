@@ -43,4 +43,5 @@ def md_to_ipynb(md_path):
 
 
 if __name__ == "__main__":
-    md_to_ipynb(md_path=sys.argv[1])
+    for md_path in sys.argv[1:]:
+        md_to_ipynb(md_path)
