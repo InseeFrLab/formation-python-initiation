@@ -307,13 +307,6 @@ print("Tour 4")
 grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
 ```
 
-    Tour 1
-    Tour 2
-    Tour 3
-    Tour 4
-    Les pions jaunes ont gagnés, félicitations !
-    FIN DE PARTIE
-
 
 ### A vous de jouer !
 
