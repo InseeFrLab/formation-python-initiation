@@ -341,4 +341,3 @@ grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
 ```python
 
 ```
-
