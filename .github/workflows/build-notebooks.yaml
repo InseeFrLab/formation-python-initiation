@@ -24,6 +24,7 @@ jobs:
 
       - name: Build notebooks
         run: |
+          rm -r notebooks/
           cp -r course/ notebooks/
           find notebooks/ -name '*.md' | xargs jupytext --to notebook
           find notebooks/ -type f -name '*.md' -delete
