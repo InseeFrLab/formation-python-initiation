@@ -53,7 +53,7 @@ if __name__ == "__main__":
         md = json.load(file)
 
     # Main URLs
-    LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/ide/jupyter"
+    LAUNCHER_TMPLT = ("https://datalab.sspcloud.fr/launcher/ide/jupyter-python"
                       "?autoLaunch=true"
                       "&onyxia.friendlyName=%C2%ABpython-initiation%C2%BB"
                       "&init.personalInit=%C2%ABhttps://raw.githubusercontent.com/InseeFrLab/formation-python-initiation/main/utils/init-jupyter.sh%C2%BB"
