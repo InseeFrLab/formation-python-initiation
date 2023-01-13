@@ -38,6 +38,8 @@ Chaque élément de la grille sera représenté par un *string*, qui pourra pren
 
 Dans la fonction d'initialisation de la grille, chaque élément sera donc initialisé comme un ***string* contenant un espace**.
 
+**Attention** : Bien faire attention à ce que les lignes soient des objets indépendants, autrement dit que modifier l'une des listes n'affecte pas les autres.
+
 ### Résultat attendu
 
 
@@ -122,7 +124,11 @@ Cette fonction prend en entrée :
 
 et renvoie en sortie la grille actualisée suite au tour du joueur.
 
-**Attention** : en Python, la numérotation commence à 0. La première colonne correspond donc à la colonne 0 du point de vue de l'indexation
+Si la colonne choisie est déjà complète, renvoyer un message d'erreur.
+
+**Attention** : en Python, la numérotation commence à 0. La première colonne correspond donc à la colonne 0 du point de vue de l'indexation.
+
+Optionnel : Renvoyer un message d'erreur si un joueur essaie de jouer dans une colonne inexistante ou bien avec une couleur non autorisée.
 
 ### Résultat attendu
 
@@ -131,7 +137,7 @@ et renvoie en sortie la grille actualisée suite au tour du joueur.
 grille = solutions.initialise_grille()  # Initialisation
 grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
 grille = solutions.tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")  # 3ème tour de jeu
+grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 3ème tour de jeu
 solutions.affiche_grille(grille)
 ```
 
@@ -140,9 +146,9 @@ solutions.affiche_grille(grille)
 
 ```python
 def tour(grille, colonne_a_jouer, couleur_pion):
-    grille = copy.deepcopy(grille)  # Evite la modification de la grille initiale
+    new_grille = copy.deepcopy(grille)  # Evite la modification de la grille initiale
     # Votre code ici
-    return grille
+    return new_grille
 ```
 
 
@@ -151,7 +157,7 @@ def tour(grille, colonne_a_jouer, couleur_pion):
 grille = initialise_grille()  # Initialisation
 grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
 grille = tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")  # 3ème tour de jeu
+grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 3ème tour de jeu
 affiche_grille(grille)
 ```
 
