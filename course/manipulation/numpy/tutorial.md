@@ -327,7 +327,7 @@ np.sum(a, axis=None)  # idem que np.sum(a)
 
 La figure suivante permet de bien se représenter la manière dont fonctionnent les axes avec `NumPy`, afin de bien spécifier le sens attendu de l'agrégation.
 
-![axis](axes.png)
+![axis](img/axes.png)
 
 Ainsi, si l'on souhaite calculer la somme de chaque colonne par exemple, il faut agréger selon l'axe $0$.
 
