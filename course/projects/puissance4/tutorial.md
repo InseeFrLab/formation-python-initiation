@@ -29,7 +29,7 @@ Nous allons décomposer la construction du jeu en différentes parties :
 
 ## Initialisation de la grille
 
-L'objectif de cette partie est d'intialiser un objet Python qui représente une grille de puissance 4. Le choix que nous allons faire est de **représenter la grille comme une liste de listes**. Il s'agira d'une matrice 6x7 : on aura par conséquent une **liste de 6 élements** (qui représenteront les lignes de la grille), dont chacun des éléments sera une **liste contenant 7 éléments** (qui représenterons les pions). 
+L'objectif de cette partie est d'initialiser un objet Python qui représente une grille de puissance 4. Le choix que nous allons faire est de **représenter la grille comme une liste de listes**. Il s'agira d'une matrice 6x7 : on aura par conséquent une **liste de 6 élements** (qui représenteront les lignes de la grille), dont chacun des éléments sera une **liste contenant 7 éléments** (qui représenterons les pions). 
 
 Chaque élément de la grille sera représenté par un *string*, qui pourra prendre trois valeurs :
 - ' ' : s'il s'agit d'une case vide
@@ -37,6 +37,8 @@ Chaque élément de la grille sera représenté par un *string*, qui pourra pren
 - 'J' : s'il s'agit d'un pion jaune. 
 
 Dans la fonction d'initialisation de la grille, chaque élément sera donc initialisé comme un ***string* contenant un espace**.
+
+**Attention** : Bien faire attention à ce que les lignes soient des objets indépendants, autrement dit que modifier l'une des listes n'affecte pas les autres.
 
 ### Résultat attendu
 
@@ -122,16 +124,20 @@ Cette fonction prend en entrée :
 
 et renvoie en sortie la grille actualisée suite au tour du joueur.
 
-**Attention** : en Python, la numérotation commence à 0. La première colonne correspond donc à la colonne 0 du point de vue de l'indexation
+Si la colonne choisie est déjà complète, renvoyer un message d'erreur.
+
+**Attention** : en Python, la numérotation commence à 0. La première colonne correspond donc à la colonne 0 du point de vue de l'indexation.
+
+Optionnel : Renvoyer un message d'erreur si un joueur essaie de jouer dans une colonne inexistante ou bien avec une couleur non autorisée.
 
 ### Résultat attendu
 
 
 ```python
-grille = solutions.initialise_grille()  # Intialisation
+grille = solutions.initialise_grille()  # Initialisation
 grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
 grille = solutions.tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")  # 3ème tour de jeu
+grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 3ème tour de jeu
 solutions.affiche_grille(grille)
 ```
 
@@ -140,18 +146,18 @@ solutions.affiche_grille(grille)
 
 ```python
 def tour(grille, colonne_a_jouer, couleur_pion):
-    grille = copy.deepcopy(grille)  # Evite la modification de la grille initiale
+    new_grille = copy.deepcopy(grille)  # Evite la modification de la grille initiale
     # Votre code ici
-    return grille
+    return new_grille
 ```
 
 
 ```python
 # Vérification du résultat
-grille = initialise_grille()  # Intialisation
+grille = initialise_grille()  # Initialisation
 grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
 grille = tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")  # 3ème tour de jeu
+grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 3ème tour de jeu
 affiche_grille(grille)
 ```
 
@@ -179,7 +185,7 @@ print(solutions.victoire_ligne(ligne2))  # Renvoie True
 
 ```python
 # Détection d'une victoire (horizontale) sur une grille
-grille = solutions.initialise_grille()  # Intialisation
+grille = solutions.initialise_grille()  # Initialisation
 print(solutions.victoire_horizontale_grille(grille))  # Renvoie False
 print()  # Retour à la ligne
 
@@ -220,7 +226,7 @@ def victoire_horizontale_grille(grille):
 
 ```python
 # Vérification du résultat
-grille = initialise_grille()  # Intialisation
+grille = initialise_grille()  # Initialisation
 print(victoire_horizontale_grille(grille))  # Renvoie False
 
 grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")
@@ -242,7 +248,7 @@ A présent, on s'intéresse à la détection d'une victoire verticale. Par rappo
 
 ```python
 # Détection d'une victoire (verticale) sur une grille
-grille = solutions.initialise_grille()  # Intialisation
+grille = solutions.initialise_grille()  # Initialisation
 print(solutions.victoire_verticale_grille(grille))  # Renvoie False
 print()  # Retour à la ligne
 
@@ -267,7 +273,7 @@ def victoire_verticale_grille(grille):
 
 ```python
 # Vérification du résultat
-grille = initialise_grille()  # Intialisation
+grille = initialise_grille()  # Initialisation
 print(victoire_verticale_grille(grille))  # Renvoie False
 print()  # Retour à la ligne
 
@@ -296,7 +302,7 @@ Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque cou
 
 
 ```python
-grille = solutions.initialise_grille()  # Intialisation
+grille = solutions.initialise_grille()  # Initialisation
 print("Tour 1")
 grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
 print("Tour 2")
@@ -327,7 +333,7 @@ def tour_test_victoire(grille, colonne_a_jouer, couleur_pion):
 
 ```python
 # Vérification du résultat
-grille = initialise_grille()  # Intialisation
+grille = initialise_grille()  # Initialisation
 print("Tour 1")
 grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
 print("Tour 2")
