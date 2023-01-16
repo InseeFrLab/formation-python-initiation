@@ -70,7 +70,8 @@ def victoire_verticale_grille(grille):
             # On teste l'existence d'une victoire
             return True
     return False
-
+def victoire_diagnale_grille(grille):
+    
 
 def victoire(grille):
     if victoire_horizontale_grille(grille) or victoire_verticale_grille(grille):
