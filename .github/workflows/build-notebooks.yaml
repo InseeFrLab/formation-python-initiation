@@ -1,11 +1,11 @@
 name: Build notebooks from markdown source
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - course/**
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - course/**
   workflow_dispatch:
 
 jobs:
