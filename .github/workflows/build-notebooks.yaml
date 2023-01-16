@@ -5,7 +5,7 @@ on:
 #     branches:
 #       - main
 #     paths:
-#       - course/**
+#       - source/**
   workflow_dispatch:
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
       - name: Build notebooks
         run: |
           rm -r notebooks/
-          cp -r course/ notebooks/
+          cp -r source/ notebooks/
           find notebooks/ -name '*.md' | xargs python utils/md_to_ipynb.py
           find notebooks/ -type f -name '*.md' -delete
 

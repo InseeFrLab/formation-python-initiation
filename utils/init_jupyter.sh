@@ -5,7 +5,7 @@ CHAPTER=$2
 
 WORK_DIR=/home/onyxia/work
 CLONE_DIR=${WORK_DIR}/repo-git
-COURSE_DIR=${CLONE_DIR}/course
+COURSE_DIR=${CLONE_DIR}/source
 FORMATION_DIR=${WORK_DIR}/formation
 
 # Clone course repository

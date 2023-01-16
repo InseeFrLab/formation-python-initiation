@@ -86,7 +86,7 @@ if __name__ == "__main__":
         if section_md["chapters"]:
             for chapter in section_md["chapters"]:
                 # Build chapter block if notebook exists
-                MD_PATH = os.path.join(PROJECT_DIR, "course", section, chapter, "tutorial.md")
+                MD_PATH = os.path.join(PROJECT_DIR, "source", section, chapter, "tutorial.md")
 
                 if os.path.isfile(MD_PATH):
                     name, abstract = extract_metadata_md(MD_PATH)

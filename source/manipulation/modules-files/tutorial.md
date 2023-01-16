@@ -409,7 +409,7 @@ Chaque élève aura une note finale égale à la note obtenue moins le nombre de
 
 Les informations nécessaires ont été placées dans une liste dans la cellule suivante. A l'aide d'une boucle sur cette liste, **ajouter** (sans réécrire complètement le fichier !). les notes au fichier `notes_clean.txt` (sans la mention).
 
-NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retrouver les fichiers propres sur le [dépôt GitHub associé à la formation](https://github.com/InseeFrLab/formation-python-initiation/tree/main/course/manipulation/modules-files).
+NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retrouver les fichiers propres sur le [dépôt GitHub associé à la formation](https://github.com/InseeFrLab/formation-python-initiation/tree/main/source/manipulation/modules-files).
 
 ```python
 supp = [(16, 3), (11, 1), (3, 5)]
