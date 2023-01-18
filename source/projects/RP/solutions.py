@@ -128,8 +128,8 @@ def get_age_pyramid_data(df, year):
     df.columns = df.columns.droplevel(level=0)
     df = df.reset_index()
     df["Hommes"] = df["Hommes"] * -1
-    sample = df[df["annee"] == year]
-    return sample
+    pyramide_data = df[df["annee"] == year]
+    return pyramide_data
 
 
 def plot_age_pyramid(df, year, ax=None):
@@ -158,3 +158,97 @@ def plot_age_pyramid(df, year, ax=None):
     ax1.set_title(f"Pyramides des âges de la France en {year}")
     ax1.set_xlabel("Hommes - Femmes")
     ax1.grid()
+
+
+def load_departements_regions(url):
+    df_matching = pd.read_json(url)
+    df_matching["num_dep"] = df_matching["num_dep"].astype(str)
+    return df_matching
+
+
+def match_department_regions(df, df_matching):
+    df_regions = pd.merge(df, df_matching, left_on=["dep_code"], right_on=["num_dep"])
+    return df_regions
+
+
+def load_geo_data(url):
+    geo = gpd.read_file(url)
+    return geo
+
+
+def plot_population_by_regions(df, geo, year):
+    df = df[df["annee"] == year]
+    df = df.groupby(by=["region_name"]).sum("population")
+    df_geo = geo.merge(df.reset_index(), right_on=["region_name"], left_on=["NOM"])
+
+    df_geo.plot(
+        column="population",
+        legend=True,
+        cmap="OrRd",
+        edgecolor="black",
+        figsize=[15, 7.5],
+        legend_kwds={
+            "label": "Population des différentes régions de France",
+            "orientation": "horizontal",
+        },
+    )
+    # Votre code ici
+
+
+def compute_population_growth_per_region(df):
+    """
+    This function takes a DataFrame as input and returns the population growth as a percentage
+    for each region, grouped by year.
+
+    Parameters:
+    df (pandas.DataFrame): DataFrame containing population data.
+
+    Returns:
+    pandas.DataFrame: DataFrame containing population growth as a percentage for each region,
+                      grouped by year.
+    """
+    df = df[df["genre"] != "Ensemble"]
+    df = df.pivot_table(
+        values="population", index="annee", columns="region_name", aggfunc="sum"
+    )
+    df_croissance = df.pct_change() * 100
+    return df_croissance
+
+
+def compute_mean_population_growth_per_region(df, min_year, max_year):
+    """
+    This function takes a DataFrame as input, and returns the mean population growth as a percentage
+    for each region, between a given range of years.
+
+    Parameters:
+    df (pandas.DataFrame): DataFrame containing population data.
+    min_year (int): the minimum year of the range to consider
+    max_year (int): the maximum year of the range to consider
+
+    Returns:
+    pandas.DataFrame: DataFrame containing mean population growth as a percentage for each region,
+                      between the given range of years
+    """
+    df = compute_population_growth_per_region(df)
+    df.reset_index(inplace=True)
+    df = df[(df["annee"] >= min_year) & (df["annee"] <= max_year)]
+    df = pd.melt(df, id_vars=["annee"], value_name="croissance_pop", var_name="region")
+    df_croissance = df.groupby("region").mean()
+    return df_croissance
+
+
+def plot_growth_population_by_regions(df, geo, min_year, max_year):
+    df = compute_mean_population_growth_per_region(df, min_year, max_year)
+    df_geo = geo.merge(df.reset_index(), right_on=["region"], left_on=["NOM"])
+
+    df_geo.plot(
+        column="croissance_pop",
+        legend=True,
+        cmap="OrRd",
+        edgecolor="black",
+        figsize=[15, 7.5],
+        legend_kwds={
+            "label": "Croissance de la population des différentes régions de France (en %)",
+            "orientation": "horizontal",
+        },
+    )

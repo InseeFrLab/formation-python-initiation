@@ -64,6 +64,7 @@ Maintenant que les données sont importées nous allons les mettre sous la forme
 ```python
 annee = 2022
 df = solutions.reshape_table_by_year(data[f"{annee}"], annee)
+df
 ```
 
 #### À vous de jouer !
@@ -80,6 +81,7 @@ def reshape_table_by_year(df, year):
 
 ```python
 df = solutions.reshape_data(data)
+df
 ```
 
 #### À vous de jouer !
@@ -120,8 +122,11 @@ Afin de comparer 2 graphiques il est parfois utile de les afficher côte à côt
 
 4.1- Définissez la fonction `get_age_pyramid_data(df, year)` qui, à partir du DataFrame généré par la fonction `reshape_data()`, renvoie un DataFrame avec les colonnes `age`, `Femmes`, `Hommes`. La colonne `age` doit contenir toutes les tranches d'âges présentes dans le jeu de données, les colonnes `Femmes/Hommes` correspond à la population féminine/masculine pour une tranche d'âge donnée. Par des soucis graphique, la colonne `Hommes` sera au préalable multipliée par -1.
 
+#### Résultat attendu
+
 ```python
 pyramide_data = solutions.get_age_pyramid_data(df, 2022)
+pyramide_data
 ```
 
 #### À vous de jouer !
@@ -129,10 +134,12 @@ pyramide_data = solutions.get_age_pyramid_data(df, 2022)
 ```python
 def get_age_pyramid_data(df, year):
     # Votre code ici
-    return df
+    return pyramide_data
 ```
 
 4.2- Définissez la fonction `plot_age_pyramid(df, year, ax=None)` qui représent la pyramide des âges de la France pour une année donnée. Vous pouvez vous inspirer de ce qui a été fait dans ce [blog](https://maciejtarsa.medium.com/plotting-a-population-pyramid-in-python-52be034968b0).
+
+#### Résultat attendu
 
 ```python
 fig,(ax1,ax2) = plt.subplots(1,2,figsize=(15,6))
@@ -153,4 +160,137 @@ def plot_age_pyramid(df, year, ax=None):
 
 ## Partie 3 : Une introduction aux données géographiques (facultatif ?)
 
+Les données géographiques sont très utiles car elles permettent de visualiser et d'analyser des informations liées à des emplacements spécifiques sur la terre. Les données géographiques peuvent être utilisées pour créer des cartes, des visualisations en 3D et des analyses spatiales pour comprendre les tendances, les modèles et les relations dans les données. En utilisant des bibliothèques Python telles que `Geopandas` ou `Folium`, vous pouvez facilement manipuler et visualiser des données géographiques pour répondre à vos besoins analytiques.
+
+Afin de représenter graphiquement des données géographiques il est nécessaire d'obtenir les données des contours (*shapefile*) des zones que l'on souhaite représenter. L'objectif est de créer une carte choropleth des régions en fonction de leur population respective.  
+
+Les données que nous avons actuellement contiennent les informations par département et non par région. Avant toute chose il est nécessaire d'affecter à chaque département sa région correspondante. Pour cela, vous pourrez utiliser le fichier `.json` disponible à l'adresse suivante : [https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json](https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json). 
+
 ### Question 5 
+
+Créer un DataFrame à partir du fichier `.json` des départements et régions de France précédemment mentionné. Assurez-vous que les colonnes soient au bon format.
+
+#### Résultat attendu
+
+```python
+df_matching = solutions.load_departements_regions("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
+df_matching
+```
+
+#### À vous de jouer !
+
+```python
+def load_departements_regions(url):
+    # Votre code ici
+    return df_matching
+```
+
+### Question 6
+
+Appariez le DataFrame contenant les données de population par département avec le DataFrame des régions de France.
+
+#### Résultat attendu
+
+```python
+df_regions = solutions.match_department_regions(df, df_matching)
+df_regions
+```
+
+#### À vous de jouer !
+
+```python
+def match_department_regions(df, df_matching):
+    # Votre code ici
+    return df_regions
+```
+
+
+### Question 7
+
+Télécharger les données des contours géographiques des régions en utilisant le package `cartiflette` et la librairie `geopandas`. Les données sont accessibles via l'url suivant : [https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
+
+#### Résultat attendu
+
+```python
+geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson")
+geo
+```
+
+#### À vous de jouer !
+
+```python
+def load_geo_data(url):
+    # Votre code ici
+    return geo
+```
+
+### Question 8
+
+Produisez une carte choropleth de la population en 2022 des régions de France. Vous pouvez consulter la documentation de `geopandas` [ici](https://geopandas.org/en/stable/docs/user_guide/mapping.html). 
+
+#### Résultat attendu
+
+```python
+solutions.plot_population_by_regions(df_regions, geo, 2022)
+```
+
+#### À vous de jouer !
+
+```python
+def plot_population_by_regions(df, geo, year):
+    # Votre code ici
+```
+
+### Question 9
+
+La population totale d'une région n'est pas suffisante pour analyser la démographie d'une région. Il peut être intéressant de s'intéresser à la croissance démographique. 
+
+9.1- Ecrivez une fonction `compute_population_growth_per_region(df)` qui calcule la croissance de la population en pourcentage par an pour chaque région.
+
+#### Résultat attendu
+
+```python
+df_croissance = solutions.compute_population_growth_per_region(df_regions)
+df_croissance
+```
+
+#### À vous de jouer !
+
+```python
+def compute_population_growth_per_region(df_regions):
+    # Votre code ici
+    return df_croissance
+```
+
+9.2- Ecrivez une fonction `compute_mean_population_growth_per_region(df, min_year, max_year)` qui calcule la croissance moyenne de la population entre deux années données.
+
+#### Résultat attendu
+
+```python
+df_croissance = solutions.compute_mean_population_growth_per_region(df_regions, 2015, 2022)
+df_croissance
+```
+
+#### À vous de jouer !
+
+```python
+def compute_mean_population_growth_per_region(df, geo, year):
+    # Votre code ici
+    return df_croissance
+```
+
+9.3- Ecrivez une fonction `plot_growth_population_by_regions(df, geo, min_year, max_year)` qui représente la croissance moyenne de la population entre deux années données pour toutes les régions de France sur une carte choropleth.
+
+#### Résultat attendu
+
+```python
+solutions.plot_growth_population_by_regions(df_regions, geo, 2015, 2022)
+```
+
+#### À vous de jouer !
+
+```python
+def plot_growth_population_by_regions(df, geo, min_year, max_year):
+    # Votre code ici
+```
+
