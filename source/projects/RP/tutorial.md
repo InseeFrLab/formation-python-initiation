@@ -3,11 +3,11 @@ title: "Projet 2 - Analyse du recensement de la population"
 abstract: "Ce projet a pour objectif de reproduire une analyse standard à laquelle un statisticien peut être confronté. Il repose sur l'utilisation de la librairie pandas et des librairies de visualisation usuelles (matplotlib, seaborn)"
 ---
 
-Le but de ce projet est de réaliser une analyse statistique rapide d'un jeu de données dont le format n'est pas directement optimisé pour une analyse en python. Nous allons utiliser exclusivement la librairie `pandas` pour l'analyse de données. Pour reproduire au mieux une situation à laquelle vous pouvez être confronté, nous vous invitons vivement à consulter la documentation de la librairie ([docs](https://pandas.pydata.org/docs/user_guide/index.html#user-guide)).
+Le but de ce projet est de réaliser une analyse statistique rapide d'un jeu de données dont le format n'est pas directement optimisé pour une analyse en python. Nous allons utiliser exclusivement la librairie `pandas` pour l'analyse de données. Pour reproduire au mieux une situation à laquelle vous pouvez être confrontés, nous vous invitons vivement à consulter la documentation de la librairie ([docs](https://pandas.pydata.org/docs/user_guide/index.html#user-guide)).
 
 
 Nous allons nous intéresser à l’estimation de la population au 1er janvier de chaque année, cette estimation étant effectuée à partir des recensements et des modèles d’évolution de la population. Les données sont accessibles sur le site de l'Insee à l'adresse suivante : [https://www.insee.fr/fr/statistiques/1893198](https://www.insee.fr/fr/statistiques/1893198).
-Une copie du fichier a été déposé dans un *bucket* et peut être télécharger via cet url : [https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods).
+Une copie du fichier a été déposée dans un *bucket* et peut être téléchargée via cet url : [https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods).
 
 ```python
 import copy
@@ -25,11 +25,11 @@ Avant d'effectuer le téléchargement des données avec python il est nécessair
 
 ### Question 0 
 
-Téléchargez les données en cliquant sur ce [lien](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods) et ouvrez le avec votre logiciel tableur préféré. Analysez la structure des données.
+Télécharger les données en cliquant sur ce [lien](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods) et ouvrez le avec votre logiciel tableur préféré. Analysez la structure des données.
 
 ### Question 1
 
-Définissez la fonction `load_data()` qui n'a pas de paramètre et renvoie un `Dict` où les **clés** correspondent aux noms des onglets de notre fichier et les **valeurs** correspondent aux données des différentes feuilles de calcul. Pour cela, utilisez une fonction de la librairie `pandas` en spécifiant les bons paramètres.
+Définir la fonction `load_data()` qui n'a pas de paramètre et renvoie un `Dict` où les **clés** correspondent aux noms des onglets de notre fichier et les **valeurs** correspondent aux données des différentes feuilles de calcul. Pour cela, utilisez une fonction de la librairie `pandas` en spécifiant les bons paramètres.
 
 #### Résultat attendu
 
@@ -75,7 +75,7 @@ def reshape_table_by_year(df, year):
     return df
 ```
 
-2.2 - Créez une fonction `reshape_data(data)` qui produit un `DataFrame` avec les données pour toutes les années entre 1975 et 2022.
+2.2 - Créer une fonction `reshape_data(data)` qui produit un `DataFrame` avec les données pour toutes les années entre 1975 et 2022.
 
 #### Résultat attendu
 
@@ -94,11 +94,11 @@ def reshape_data(data):
 
 ## Partie 2 : Visualisation des données
 
-Nous avons maintenant un jeu de données prêt à être analyser ! Commençons tout d'abord par visualiser l'évolution de la population pour différents départements.
+Nous avons maintenant un jeu de données prêt à être analysé ! Commençons tout d'abord par visualiser l'évolution de la population pour différents départements.
 
 ### Question 3
 
-Ecrivez une fonction `plot_population_by_gender_per_department(df, department_code)` qui renvoie un graphique représentant l'évolution de la population dans un département donné. Utilisez la librairie `matplotlib`.
+Ecrire une fonction `plot_population_by_gender_per_department(df, department_code)` qui renvoie un graphique représentant l'évolution de la population dans un département donné. Utilisez la librairie `matplotlib`.
 Vous pouvez regarder les données de la Haute Garonne (31), du Loir-et-Cher (41) et de la Réunion (974) pour constater des disparités d'évolutions.
 
 #### Résultat attendu
@@ -120,7 +120,7 @@ Afin de comparer 2 graphiques il est parfois utile de les afficher côte à côt
 
 
 
-4.1- Définissez la fonction `get_age_pyramid_data(df, year)` qui, à partir du DataFrame généré par la fonction `reshape_data()`, renvoie un DataFrame avec les colonnes `age`, `Femmes`, `Hommes`. La colonne `age` doit contenir toutes les tranches d'âges présentes dans le jeu de données, les colonnes `Femmes/Hommes` correspond à la population féminine/masculine pour une tranche d'âge donnée. Par des soucis graphique, la colonne `Hommes` sera au préalable multipliée par -1.
+4.1- Définir la fonction `get_age_pyramid_data(df, year)` qui, à partir du DataFrame généré par la fonction `reshape_data()`, renvoie un DataFrame avec les colonnes `age`, `Femmes`, `Hommes`. La colonne `age` doit contenir toutes les tranches d'âges présentes dans le jeu de données, les colonnes `Femmes/Hommes` correspond à la population féminine/masculine pour une tranche d'âge donnée. Pour obtenir une pyramide des âges avec sa forme "habituelle", la colonne `Hommes` sera au préalable multipliée par -1.
 
 #### Résultat attendu
 
@@ -137,7 +137,7 @@ def get_age_pyramid_data(df, year):
     return pyramide_data
 ```
 
-4.2- Définissez la fonction `plot_age_pyramid(df, year, ax=None)` qui représent la pyramide des âges de la France pour une année donnée. Vous pouvez vous inspirer de ce qui a été fait dans ce [blog](https://maciejtarsa.medium.com/plotting-a-population-pyramid-in-python-52be034968b0).
+4.2- Définir la fonction `plot_age_pyramid(df, year, ax=None)` qui représente la pyramide des âges de la France pour une année donnée. Vous pouvez vous inspirer de ce qui a été fait dans ce [blog](https://maciejtarsa.medium.com/plotting-a-population-pyramid-in-python-52be034968b0).
 
 #### Résultat attendu
 
@@ -158,17 +158,17 @@ def plot_age_pyramid(df, year, ax=None):
     return df
 ```
 
-## Partie 3 : Une introduction aux données géographiques (facultatif ?)
+## Partie 3 : Une introduction aux données géographiques (facultatif pour aller plus loin ?)
 
 Les données géographiques sont très utiles car elles permettent de visualiser et d'analyser des informations liées à des emplacements spécifiques sur la terre. Les données géographiques peuvent être utilisées pour créer des cartes, des visualisations en 3D et des analyses spatiales pour comprendre les tendances, les modèles et les relations dans les données. En utilisant des bibliothèques Python telles que `Geopandas` ou `Folium`, vous pouvez facilement manipuler et visualiser des données géographiques pour répondre à vos besoins analytiques.
 
-Afin de représenter graphiquement des données géographiques il est nécessaire d'obtenir les données des contours (*shapefile*) des zones que l'on souhaite représenter. L'objectif est de créer une carte choropleth des régions en fonction de leur population respective.  
+Afin de représenter graphiquement des données géographiques il est nécessaire d'obtenir les données des contours (*shapefile*) des zones que l'on souhaite représenter. L'objectif de cette partie est de créer une carte choropleth des régions en fonction de leur population respective.  
 
 Les données que nous avons actuellement contiennent les informations par département et non par région. Avant toute chose il est nécessaire d'affecter à chaque département sa région correspondante. Pour cela, vous pourrez utiliser le fichier `.json` disponible à l'adresse suivante : [https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json](https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json). 
 
 ### Question 5 
 
-Créer un DataFrame à partir du fichier `.json` des départements et régions de France précédemment mentionné. Assurez-vous que les colonnes soient au bon format.
+Créer un DataFrame à partir du fichier `.json` des départements et régions de France précédemment mentionnés. Assurez-vous que les colonnes sont au bon format.
 
 #### Résultat attendu
 
@@ -187,7 +187,7 @@ def load_departements_regions(url):
 
 ### Question 6
 
-Appariez le DataFrame contenant les données de population par département avec le DataFrame des régions de France.
+Apparier le DataFrame contenant les données de population par département avec le DataFrame des régions de France.
 
 #### Résultat attendu
 
@@ -226,7 +226,7 @@ def load_geo_data(url):
 
 ### Question 8
 
-Produisez une carte choropleth de la population en 2022 des régions de France. Vous pouvez consulter la documentation de `geopandas` [ici](https://geopandas.org/en/stable/docs/user_guide/mapping.html). 
+Produire une carte choropleth de la population en 2022 des régions de France. Vous pouvez consulter la documentation de `geopandas` [ici](https://geopandas.org/en/stable/docs/user_guide/mapping.html). 
 
 #### Résultat attendu
 
@@ -245,7 +245,7 @@ def plot_population_by_regions(df, geo, year):
 
 La population totale d'une région n'est pas suffisante pour analyser la démographie d'une région. Il peut être intéressant de s'intéresser à la croissance démographique. 
 
-9.1- Ecrivez une fonction `compute_population_growth_per_region(df)` qui calcule la croissance de la population en pourcentage par an pour chaque région.
+9.1- Ecrire une fonction `compute_population_growth_per_region(df)` qui calcule la croissance de la population en pourcentage par an pour chaque région.
 
 #### Résultat attendu
 
@@ -262,7 +262,7 @@ def compute_population_growth_per_region(df_regions):
     return df_croissance
 ```
 
-9.2- Ecrivez une fonction `compute_mean_population_growth_per_region(df, min_year, max_year)` qui calcule la croissance moyenne de la population entre deux années données.
+9.2- Ecrire une fonction `compute_mean_population_growth_per_region(df, min_year, max_year)` qui calcule la croissance moyenne de la population entre deux années données.
 
 #### Résultat attendu
 
@@ -279,7 +279,7 @@ def compute_mean_population_growth_per_region(df, geo, year):
     return df_croissance
 ```
 
-9.3- Ecrivez une fonction `plot_growth_population_by_regions(df, geo, min_year, max_year)` qui représente la croissance moyenne de la population entre deux années données pour toutes les régions de France sur une carte choropleth.
+9.3- Ecrire une fonction `plot_growth_population_by_regions(df, geo, min_year, max_year)` qui représente la croissance moyenne de la population entre deux années données pour toutes les régions de France sur une carte choropleth.
 
 #### Résultat attendu
 
