@@ -1,6 +1,9 @@
 ---
 title: "Fonctions"
 abstract: "Rendre son code mieux structuré et plus lisible avec les fonctions."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans les précédents tutoriels, nous avons étudié le fonctionnement des tests et des boucles, qui permettent de rédiger des programmes Python qui prennent des décisions automatisées. En pratique, un programme va généralement être constitué de différents blocs, qui exécutent chacun une action ou un groupe d'actions (ex : import des données, nettoyage des données, modélisation statistique, etc.). Par ailleurs, certaines de ces actions sont amenées à être répétées avec une légère différence au fil d'un programme (ex : importer plusieurs jeux de données différents). Il va être utile de modéliser chacune de ces actions par une **fonction**, sorte de mini-programme au sein du programme global. Utiliser des fonctions est une **bonne pratique** de programmation, dans la mesure où elles rendent plus explicite la structure logique du code et permettent de réduire la duplication de code.
@@ -16,7 +19,7 @@ Une **fonction** peut être définie comme un bloc de code structuré qui :
 
 Nous avons déjà vu et utilisé un certains nombres de fonctions dans les tutoriels précédents (`range`, `len`, etc.). Nous avons également utilisé des **méthodes**, qui sont simplement des fonctions *attachées* à un type d'objet particulier. Utilisons une fonction bien connue pour illustrer leur fonctionnement général.
 
-```python
+```{python}
 len('do re mi fa sol')
 ```
 
@@ -35,7 +38,7 @@ En pratique, on va vouloir définir ses propres fonctions pour structurer son co
 
 L'instruction `def` permet de définir une fonction.
 
-```python
+```{python}
 def accueil(prenom):
     msg = "Salutations " + prenom + " !"
     return msg
@@ -52,13 +55,13 @@ Analysons la syntaxe de la definition d'une fonction :
 
 Le fait de **définir** une fonction comme ci-dessus revient à rendre disponible dans l'environnement Python le code de la fonction. Ce n'est que lorsque celle-ci est **appelée** dans le code, avec des arguments, que le code contenu est exécuté et produit un résultat.
 
-```python
+```{python}
 accueil("Miranda")
 ```
 
 Comme expliqué en introduction, tout l'intérêt d'une fonction est de pouvoir réutiliser du code sans avoir à le dupliquer dans le programme.
 
-```python
+```{python}
 accueil("Romuald")
 ```
 
@@ -70,16 +73,16 @@ accueil("Romuald")
 
 Lorsqu'on appelle une fonction en lui spécifiant des arguments, on dit qu'on lui "passe" des arguments. Ces arguments deviennent alors des variables qui peuvent être utilisées dans le contexte de la fonction. A l'inverse d'une boucle `for` par exemple, les variables créées ne persistent pas après l'appel de la fonction
 
-```python
+```{python}
 def addition(x, y):
     return x + y
 ```
 
-```python
+```{python}
 addition(5, 3)
 ```
 
-```python
+```{python}
 x  # La variable ne persiste pas en mémoire après l'appel de la fonction
 ```
 
@@ -91,12 +94,12 @@ NB : on verra plus en détails ce comportement plus loin dans le tutoriel, à tr
 
 Le nombre d'arguments que l'on peut passer à une fonction est variable. En toute rigueur, il est possible de définir une fonction qui n'a besoin d'aucun argument, même si c'est rarement utile en pratique.
 
-```python tags=[]
+```{python} tags=[]
 def neuf():
     return 9
 ```
 
-```python tags=[]
+```{python} tags=[]
 a = neuf()
 a
 ```
@@ -110,29 +113,29 @@ En Python, les fonctions admettent deux modes de passage des arguments :
 
 Illustrons cette différence à partir d'une fonction qui réalise simplement une division.
 
-```python
+```{python}
 def division(x, y):
     return x / y
 ```
 
-```python
+```{python}
 division(4, 2)  # Passage par position
 ```
 
-```python
+```{python}
 division(x=4, y=2)  # Passage par mot-clé
 ```
 
 Dans le cas du passage par position, le respect de l'ordre est impératif.
 
-```python
+```{python}
 print(division(0, 5))
 print(division(5, 0))
 ```
 
 Dans le cas du passage par mot-clé, l'ordre n'a plus d'importance.
 
-```python
+```{python}
 print(division(x=0, y=5))
 print(division(y=5, x=0))
 ```
@@ -144,12 +147,12 @@ Lorsqu'on définit une fonction, il est fréquent de vouloir faire cohabiter des
 
 Regardons par exemple comment on peut modifier le comportement de la fonction `print` à l'aide d'un argument optionnel.
 
-```python
+```{python}
 print("bonjour")
 print("bonjour")
 ```
 
-```python
+```{python}
 print("bonjour", end=' ')
 print("bonjour")
 ```
@@ -163,16 +166,16 @@ Cet exemple illustre également le lien entre le caractère obligatoire ou non d
 
 Comment spécifier qu'un argument est optionnel lorsqu'on définit une fonction soi-même ? Simplement en spécifiant une valeur par défaut de l'argument. Par exemple, construisons une fonction qui concatène deux chaînes de caractères, et laisse à l'utilisateur l'option de spécifier un séparateur.
 
-```python
+```{python}
 def concat_string(str1, str2, sep=''):
     return str1 + sep + str2
 ```
 
-```python
+```{python}
 concat_string('bonjour', 'bonjour')  # Comportement par défaut
 ```
 
-```python
+```{python}
 concat_string('bonjour', 'bonjour', sep=', ')  # Comportement modifié
 ```
 
@@ -191,12 +194,12 @@ On a vu :
 
 Lorsque la fonction est appelée, elle est évaluée à la valeur spécifiée par `return`, et cette valeur peut alors être récupérée dans une variable et utilisée dans des calculs ultérieurs, et ainsi de suite.
 
-```python
+```{python}
 def division(x, y):
     return x / y
 ```
 
-```python
+```{python}
 a = division(4, 2)
 b = division(9, 3)
 division(a, b)  # 2 / 3
@@ -204,7 +207,7 @@ division(a, b)  # 2 / 3
 
 Remarque importante : **lorsqu'une instruction return est atteinte dans une fonction, le reste de la fonction n'est pas exécuté**.
 
-```python
+```{python}
 def test(x):
     return x
     print("vais-je être affiché ?")
@@ -217,7 +220,7 @@ test(3)
 
 Une fonction renvoie nécessairement un résultat lorsqu'elle est appelée... mais que se passe-t-il si l'on ne spécifie pas d'instruction `return` ?
 
-```python
+```{python}
 def accueil(prenom):
     print("Salutations " + prenom + " !")
     
@@ -230,7 +233,7 @@ Comme attendu, la fonction a imprimé un message de bienvenue dans la console. M
 
 Pour tester si un objet a pour valeur `None`, on utilise une syntaxe particulière : 
 
-```python
+```{python}
 x is None  # et non pas x == None
 ```
 
@@ -241,7 +244,7 @@ Une fonction renvoie par définition **un** résultat, qui peut être tout objet
 
 En pratique, il est très fréquent de renvoyer un *tuple* lorsque l'on souhaite renvoyer plusieurs objets. En effet, les *tuples* ont la propriété de *tuple unpacking*, que nous avons vues à plusieurs reprises dans les précédents tutoriels. Cette propriété rend possible une syntaxe très pratique et élégante pour l'assignation des résultats d'une fonction à des variables.
 
-```python
+```{python}
 def puissances(x):
     return x**2, x**3, x**4
 
@@ -259,7 +262,7 @@ Nous avons vu en introduction que les fonctions pouvaient être vues comme des m
 
 Tous les objets (variables, fonctions, etc.) que l'on définit lors d'une session Python sont enregistrés dans le ***scope* global** de Python. Ces objets peuvent alors être accédés à n'importe quel endroit du programme, y compris au sein d'une fonction. Lorsque c'est le cas, on parle de **variables globales**.
 
-```python
+```{python}
 x = 5  # variable globale
 
 def ajoute(y):
@@ -273,7 +276,7 @@ La variable `x` n'a pas été passée en argument à la fonction `ajoute` ni ét
 
 En revanche, les arguments passés à une fonction ou bien les variables définies dans le cadre d'une fonction sont des **variables locales** : elles n'existent que dans le contexte spécifique de la fonction, et ne peuvent pas être réutilisées une fois que celle-ci s'est exécutée.
 
-```python
+```{python}
 def ajoute(y):
     z = 5  # variable locale
     return z + y
@@ -284,7 +287,7 @@ print(z)
 
 Au sein d'un contexte donné, chaque variable est unique. En revanche, il est possible d'avoir des variables qui portent le même nom dans des contextes différents. Regardons par exemple ce qui se passe lorsque l'on crée une variable dans le contexte d'une fonction, alors qu'elle existe déjà dans le contexte global.
 
-```python
+```{python}
 x = 5  # variable globale
 
 def ajoute(y):
@@ -318,12 +321,12 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 - 10/ Une fonction peut-elle renvoyer plusieurs objets ?
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-38 solutions.py
 ```
@@ -333,12 +336,12 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 
 Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et renvoie la fonction puissance $x^y$.
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-45 solutions.py
 ```
@@ -348,7 +351,7 @@ Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et 
 
 Soit `x = 5` et `y = 3` des arguments que l'on passe à chacune des fonctions définies dans la cellule suivante. Prédire ce que vont retourner les fonctions (valeur et `type` de l'objet), et vérifier vos réponses.
 
-```python
+```{python}
 def f1(x):
     return x
 
@@ -380,12 +383,12 @@ def f9(x, y, z=5):
     return x + y + z
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-65 solutions.py
 ```
@@ -395,7 +398,7 @@ def f9(x, y, z=5):
 
 Que vaut la variable `total` dans le programme suivant ?
 
-```python tags=[]
+```{python} tags=[]
 z = 3
 
 def f1(x, y):
@@ -412,12 +415,12 @@ total = f1(2, 3) + f2(3, 1) + f3(1, 0)
 print(total)
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-93 solutions.py
 ```
@@ -432,12 +435,12 @@ Ecrire une fonction `calculatrice` qui :
 Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des variables en une seule ligne.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 97-101 solutions.py
 ```
@@ -453,12 +456,12 @@ Ecrire une fonction qui :
 Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 105-113 solutions.py
 ```
@@ -473,12 +476,12 @@ Ecrire une fonction qui :
 - retourne le résultat
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 117-125 solutions.py
 ```
@@ -498,12 +501,12 @@ Pour tenir compte de cette distinction :
 Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction *black box* `var` de la librarie `numpy` (cf. corrigé de l'exercice du tutoriel précédent pour la syntaxe, et voir la [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) de la fonction et en particulier le paramètre `ddof` pour faire varier la méthode de calcul).
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-158 solutions.py
 ```
@@ -518,12 +521,12 @@ Un bon exemple de fonction récursive est la fonction qui calcule la factorielle
 Coder cette fonction et vérifier qu'elle fonctionne correctement.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 162-169 solutions.py
 ```

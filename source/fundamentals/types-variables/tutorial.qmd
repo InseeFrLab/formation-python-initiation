@@ -1,6 +1,9 @@
 ---
 title: "Types de base et variables"
 abstract: "Découverte des types de base (nombres et chaînes de caractères) et des variables."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans ce premier TP, nous allons découvrir les objets les plus fondamentaux de Python : les **nombres** et les **chaînes de caractère**. Nous allons également voir comment l'on peut assigner des objets à des **variables**, afin de réaliser des opérations avec ces objets.
@@ -16,31 +19,31 @@ Python propose différents objets de type numérique. Dans ce tutoriel, on va s'
 De manière générale, on utilise la fonction `type` pour imprimer le type d'un objet Python.
 
 
-```python
+```{python}
 type(3)
 ```
 
 
-```python
+```{python}
 type(3.14)
 ```
 
 Les fonctions `float` et `int` peuvent être utilisées pour passer d'un type à l'autre.
 
 
-```python
+```{python}
 # Conversion en float
 float(3)
 ```
 
 
-```python
+```{python}
 # Conversion en float
 type(float(3))
 ```
 
 
-```python
+```{python}
 # Conversion en int
 int(3.79)
 ```
@@ -50,43 +53,43 @@ Attention à la conversion *float* -> *int*, qui tronque la partie décimale.
 Les *floats* peuvent par ailleurs être écrits en notation scientifique :
 
 
-```python
+```{python}
 2e3
 ```
 
 
-```python
+```{python}
 type(2e3)
 ```
 
 ### Opérations arithmétiques de base
 
 
-```python
+```{python}
 # Addition
 8 + 9
 ```
 
 
-```python
+```{python}
 # Soustraction
 5 - 2
 ```
 
 
-```python
+```{python}
 # Multiplication
 2 * 6
 ```
 
 
-```python
+```{python}
 # Division
 9 / 4
 ```
 
 
-```python
+```{python}
 # Division par 0
 3 / 0
 ```
@@ -94,31 +97,31 @@ type(2e3)
 C'était bien sûr prévisible. Mais il n'est pas rare d'avoir de telles erreurs dans le cadre de calculs statistiques, notamment avec *NumPy* ou *Pandas*, produisant une erreur similaire qu'il faut alors débugger.
 
 
-```python
+```{python}
 # Division euclidienne : quotient
 9 // 4
 ```
 
 
-```python
+```{python}
 # Division euclidienne : reste
 9 % 4
 ```
 
 
-```python
+```{python}
 # Puissance
 2 ** 5
 ```
 
 
-```python
+```{python}
 # Racine carrée
 5 ** 0.5
 ```
 
 
-```python
+```{python}
 # Ordre des opérations : convention usuelle
 2 + 5 * (10 - 4)
 ```
@@ -132,19 +135,19 @@ Un *string* se définit en mettant l'information entre apostrophes ou entre guil
 ### Définition
 
 
-```python
+```{python}
 # Première manière 
 'mot'
 ```
 
 
-```python
+```{python}
 # Deuxième manière
 "ça fonctionne aussi"
 ```
 
 
-```python
+```{python}
 # Mais attention au mélange des deux !
 'l'apostrophe, quelle catastrophe'
 ```
@@ -154,13 +157,13 @@ Erreur de syntaxe : la seconde apostrophe est comprise comme la fin du *string*,
 Il faut donc varier en cas de besoin :
 
 
-```python
+```{python}
 "l'apostrophe, aucun problème"
 ```
 
 Même chose en sens inverse :
 
-```python
+```{python}
 'les guillemets, "aucun problème"'
 ```
 
@@ -168,12 +171,12 @@ Même chose en sens inverse :
 
 Le travail avec les *strings* est l'occasion de découvrir la très pratique et très utilisée fonction `print`. Elle affiche simplement l'argument qu'on lui passe entre parenthèses **et** un retour à la ligne par défaut.
 
-```python
+```{python}
 # Affichage de la chaîne "moi"
 "moi"
 ```
 
-```python
+```{python}
 # Affichage de la chaîne "moi" avec print
 print("moi")
 ```
@@ -181,7 +184,7 @@ print("moi")
 On a vu jusqu'à maintenant que l'on pouvait simplement exécuter une cellule pour afficher le contenu d'un *string*. Mais est-ce cela marche avec plusieurs *strings* ?
 
 
-```python
+```{python}
 # Qui va être affiché ?
 "moi"
 "non moi"
@@ -190,7 +193,7 @@ On a vu jusqu'à maintenant que l'on pouvait simplement exécuter une cellule po
 On voit là un comportement caractéristique des notebooks Jupyter : seule la dernière valeur renvoyée dans une cellule est affichée. La fonction `print` permet de s'affranchir de cette limite.
 
 
-```python
+```{python}
 # Et cette fois ?
 print("moi")
 print("moi aussi")
@@ -201,14 +204,14 @@ print("moi aussi")
 La fonction `len` permet de compter le nombre de caractères d'un *string*, tous caractères inclus (lettres, chiffres, espaces, ponctuation...).
 
 
-```python
+```{python}
 len("J'ai 19 charactères")
 ```
 
 Le type "caractère" n'existe pas en Python : un caractère seul est défini comme un *string* de taille 1.
 
 
-```python
+```{python}
 print(type("a"))
 print(len("a"))
 ```
@@ -222,54 +225,54 @@ En Python, on utilise les crochets `[]` pour appeler l'index d'une séquence. Pl
 Note importante : **l'indexation commence à 0 en Python**.
 
 
-```python
+```{python}
 "une séquence que l'on va indexer"
 ```
 
 
-```python
+```{python}
 # Premier élémént
 "une séquence que l'on va indexer"[0]
 ```
 
 
-```python
+```{python}
 # Deuxième élémént
 "une séquence que l'on va indexer"[1]
 ```
 
 
-```python
+```{python}
 # Dernier élémént
 "une séquence que l'on va indexer"[-1]
 ```
 
 
-```python
+```{python}
 # Extraire tout à partir d'un certain caractère
 "une séquence que l'on va indexer"[4:]
 ```
 
 
-```python
+```{python}
 # Extraire tout jusqu'à un certain caractère
 "une séquence que l'on va indexer"[:12]
 ```
 
 
-```python
+```{python}
 # Extraire un sub-string
 "une séquence que l'on va indexer"[4:12]
 ```
 
 
-```python
+```{python}
 # Extraire tous les 2 caractères, à partir de la 4 ème position
 "une séquence que l'on va indexer"[4::2]
 ```
 
 
-```python
+```{python}
 # Inverser une séquence
 "une séquence que l'on va indexer"[::-1]
 ```
@@ -277,20 +280,20 @@ Note importante : **l'indexation commence à 0 en Python**.
 A retenir : c'est bien parce qu'un *string* est considéré comme une séquence par Python que l'on peut l'indexer. Par exemple, indexer un nombre n'a pas de sens, et renvoie donc une erreur.
 
 
-```python
+```{python}
 2[3]
 ```
 
 ### Quelques propriétés utiles
 
 
-```python
+```{python}
 # Concaténation de strings
 "mon adresse est : " + "10 rue des Peupliers"
 ```
 
 
-```python
+```{python}
 # Répétition
 "echo - " * 5
 ```
@@ -302,31 +305,31 @@ Les différents objets Python ont généralement des **méthodes** dites *built-
 Nous verrons dans un prochain chapitre en quoi consistent précisément les méthodes en Python. Pour le moment, on peut retenir que les méthodes s'utilisent selon le format `objet.methode(parametres)` où les paramètres sont optionnels.
 
 
-```python
+```{python}
 # Mettre en majuscules
 "sequence 850".upper()
 ```
 
 
-```python
+```{python}
 # Mettre en minuscules
 "sequence 850".lower()
 ```
 
 
-```python
+```{python}
 # Séparer les mots selon les espaces
 "une séquence    à séparer".split()
 ```
 
 
-```python
+```{python}
 # Séparer les mots selon un caractère arbitraire
 "pratique pour faire des sous-séquences".split("-")
 ```
 
 
-```python
+```{python}
 # Utiliser les strings comme templates
 "mon adresse est : {}".format("10 rue des Peupliers")
 ```
@@ -344,23 +347,23 @@ Pour cela, on va assigner les objets à des variables.
 L'assignation se fait suivant le format : `nom_de_la_variable = objet`. Cela permet ensuite de réaliser des opérations à partir de ces variables.
 
 
-```python
+```{python}
 x = 5
 x
 ```
 
 
-```python
+```{python}
 type(x)
 ```
 
 
-```python
+```{python}
 x + 5
 ```
 
 
-```python
+```{python}
 y = x + 2*x
 y
 ```
@@ -368,7 +371,7 @@ y
 Contrairement à d'autres langages de programmation, Python est dit *dynamiquement* typé : il est possible de réassigner une variable à un objet de type différent. Cela facilite la lecture et le développement, mais peut parfois générer des problèmes difficiles à débugger... Il faut donc toujours bien faire attention que le type de la variable est bien celui que l'on s'imagine manipuler.
 
 
-```python
+```{python}
 x = 3
 x = "blabla"
 type(x)
@@ -377,7 +380,7 @@ type(x)
 Il y a naturellement certaines contraintes sur les opérations selon les types des objets.
 
 
-```python
+```{python}
 x = "test"
 y = 3
 x + y
@@ -385,7 +388,7 @@ x + y
 
 Il est par contre possible d'harmoniser les types en amont :
 
-```python
+```{python}
 x = "test"
 y = 3
 z = str(y)
@@ -397,7 +400,7 @@ x + z
 Il est fréquent d'utiliser une variable comme un compteur, en l'incrémentant à chaque fois qu'un évènement donné apparaît par exemple.
 
 
-```python
+```{python}
 a = 0
 print(a)
 a = a +1
@@ -407,14 +410,14 @@ print(a)
 Cette pratique est tellement fréquente qu'il existe des opérateurs spéciaux pour les opérations arithmétiques courantes.
 
 
-```python
+```{python}
 a = 0
 a += 1
 a
 ```
 
 
-```python
+```{python}
 b = 5
 b *= 3
 b
@@ -430,13 +433,13 @@ Afficher le type de x lorsque :
 - x = 3.5
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 2-9 solutions.py
 ```
@@ -451,13 +454,13 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 - "jamais deux sans trois"
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 12-16 solutions.py
 ```
@@ -473,13 +476,13 @@ Essayer de définir les codes postaux suivants au format `int` et au format `str
 Que concluez-vous ?
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 19-26 solutions.py
 ```
@@ -492,13 +495,13 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 **Indice** : on peut utiliser la méthode *built-in* [count](https://docs.python.org/fr/3/library/stdtypes.html#str.count).
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 29-30 solutions.py
 ```
@@ -510,13 +513,13 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 **Indice** : on peut utiliser la méthode *built-in* [find](https://docs.python.org/fr/3/library/stdtypes.html#str.find).
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 33-34 solutions.py
 ```
@@ -527,13 +530,13 @@ Supprimer les espaces superflus au début et à la fin de la chaîne suivante :
 
 **Indice** : on peut utiliser la méthode *built-in* [strip](https://docs.python.org/fr/3/library/stdtypes.html#str.strip).
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 a = "    Un string très mal formatté.         "
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-38 solutions.py
 ```
@@ -545,13 +548,13 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 **Indice** : des exemples d'utilisation sont disponibles dans la [documentation officielle](https://docs.python.org/fr/3.8/reference/lexical_analysis.html#literals).
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 41 solutions.py
 ```
@@ -565,13 +568,13 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 - lui ajouter 22
 
 
-```python
+```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 44-48 solutions.py
 ```
@@ -587,12 +590,12 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 **Indice** : l'une des deux méthodes implique de modifier (légèrement) une des deux séquences.
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 51-56 solutions.py
 ```
 
 
-```python
+```{python}
 
 ```

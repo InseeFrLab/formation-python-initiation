@@ -1,6 +1,9 @@
 ---
 title: "Calcul numérique avec NumPy"
 abstract: "Manipulation des arrays et des fonctions de NumPy, la librairie de référence pour le calcul numérique."
+execute:
+    echo: true
+    eval: false
 ---
 
 En tant que statisticien, on est fréquemment amené à manipuler des séries de valeurs numériques, à partir desquelles on réalise diverses opérations mathématiques, des plus usuelles (moyenne, variance, etc.) aux plus complexes. On peut, comme on l'a fait dans les précédents tutoriels, utiliser les objets fondamentaux de Python, et en particulier les listes, pour réaliser de telles opérations. En pratique, on préférera utiliser la **librairie de référence pour le calcul scientifique**, `NumPy`, qui fournit à la fois des objets (les ***arrays***) et des fonctions qui vont grandement nous simplifier la vie pour effectuer tous nos calculs en Python de manière efficiente.
@@ -11,7 +14,7 @@ En tant que statisticien, on est fréquemment amené à manipuler des séries de
 
 On commence par importer la librairie `NumPy`. Comme expliqué dans un précédent tutoriel, l'usage est courant est de lui attribuer l'alias `np`. 
 
-```python
+```{python}
 import numpy as np
 ```
 
@@ -22,7 +25,7 @@ Plutôt que de présenter de manière abstraite les avantages de `NumPy`, illust
 
 On génère deux vecteurs contenant les entiers allant de $0$ à $99999$, que l'on multiplie terme à terme. On effectue cela d'abord via les listes Python (fonction `mult_list`), puis à l'aide de `NumPy` (fonction `mult_np`), et on compare les performances des deux méthodes.
 
-```python
+```{python}
 def mult_list(n):
     a = range(n)
     b = range(n)
@@ -43,23 +46,23 @@ def mult_np(n):
     return c_np
 ```
 
-```python
+```{python}
 n = 100000
 ```
 
-```python
+```{python}
 # Vérification de la cohérence sur les 10 premiers éléments
 print(mult_list(n)[:10])
 print(mult_np(n)[:10])
 ```
 
-```python
+```{python}
 %%timeit -n10
 
 mult_list(n)  # Performance de la méthode liste
 ```
 
-```python
+```{python}
 %%timeit -n10
 
 mult_np(n)  # Performance de la méthode NumPy
@@ -89,7 +92,7 @@ Ce sont en grande partie ces deux contraintes qui rendent possible les gains de 
 
 Il existe différentes manières de créer un *array*. La plus standard est de convertir une liste en *array* via la fonction *array* de `NumPy`.
 
-```python
+```{python}
 l = [1, 2, 3]
 a = np.array(l)
 print(a)
@@ -97,7 +100,7 @@ print(a)
 
 A première vue, la fonction `print` renvoie une représentation identique à celle d'une liste. Vérifions le type de notre objet. 
 
-```python
+```{python}
 type(a)
 ```
 
@@ -105,13 +108,13 @@ L'objet est de type `ndarray`, qui est le type standard correspondant à un *arr
 
 On a vu qu'un *array* avait pour propriété de contenir des données de type homogène ; en l'occurrence, des entiers. On peut vérifier le type des données contenues via l'attribut `dtype` d'un *array*.
 
-```python
+```{python}
 a.dtype
 ```
 
 Même si `NumPy` est avant tout une librairie dédiée au calcul numérique, il reste tout à fait possible de définir des `arrays` contenant des chaînes de caractères.
 
-```python
+```{python}
 b = np.array(['1', 'tigre'])
 b.dtype
 ```
@@ -120,7 +123,7 @@ Le `dtype` par défaut des `arrays` contenant des chaînes de caractères est un
 
 Enfin, question importante : que se passe-t-il si l'on essaie de définir un *array* contenant des objets de types hétérogènes ?
 
-```python
+```{python}
 c = np.array([1, 2, '3'])
 print(c)
 print(c.dtype)
@@ -136,27 +139,27 @@ Les *array* correspondent en fait à des tableaux de données, c'est à dire qu'
 
 On peut afficher le nombre de dimensions d'un *array* via l'attribut `ndim`.
 
-```python
+```{python}
 c = np.array([1, 2, '3'])
 c.ndim
 ```
 
 De la même manière que l'on a créé un *array* de dimension 1 à partir d'une liste simple, on peut créer un *array* multi-dimensionnel à partir d'une liste de listes.
 
-```python
+```{python}
 d = np.array([[1, 2, 3], [4, 5, 6]])
 print(d)
 ```
 
 On a converti une liste contenant 2 sous-listes à 3 éléments chacune, ce qui donne un *array* à deux dimensions. Notons que l'appel de `print` affiche une matrice à deux lignes et trois colonnes.
 
-```python
+```{python}
 d.ndim
 ```
 
 On a bien affaire à un *array* à deux dimensions. Mais en pratique, lorsqu'on manipule des `arrays` multidimensionnels, on a aussi envie de connaître la *taille* de chacune des dimensions. En dimension 2, c'est le nombre de lignes et de colonnes. Pour cela, on utilise la méthode `shape`, qui renvoie un *tuple* contenant les tailles des différentes dimensions.
 
-```python
+```{python}
 d.shape
 ```
 
@@ -168,7 +171,7 @@ Le premier chiffre donne le nombre de lignes, le second le nombre de colonnes. O
 
 On accède aux différents éléments d'un *array* de dimension 1 exactement de la même manière que ceux d'une liste.
 
-```python
+```{python}
 a = np.array([1, 2, 3, 4, 5, 6])
 
 print(a)
@@ -182,7 +185,7 @@ print(a[-2])
 
 Pour un *array* multidimensionnel, il faut spécifier le ou les éléments voulus sur chacune des dimensions de l'*array*, en les séparant par des virgules. 
 
-```python
+```{python}
 b = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
 
 print(b)
@@ -194,7 +197,7 @@ print(b[1:3, 1:3])
 
 Pour accéder à une ligne complète, on peut utiliser `:` sur la dimension des colonnes pour spécifier : "toutes les colonnes". Et inversement pour récupérer une colonne complète.
 
-```python
+```{python}
 print(b[1,:])
 print()
 print(b[:,2])
@@ -205,7 +208,7 @@ print(b[:,2])
 
 Les éléments d'un *array* peuvent être modifiés. On combine pour cela la syntaxe d'indexation vue précédemment avec l'opérateur d'assignation `=`.
 
-```python
+```{python}
 b = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
 
 b[1, 1] = 18
@@ -214,7 +217,7 @@ print(b)
 
 On peut également modifier des séries de nombres, voire des lignes/colonnes complètes, à condition d'assigner un élément de même taille.
 
-```python
+```{python}
 b = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
 
 b[:, 2] = [-1, -1, -1]
@@ -233,14 +236,14 @@ Si l'on souhaite supprimer des éléments d'un *array*, on peut utiliser la synt
 
 Un gros avantage des *arrays* `NumPy` par rapport aux listes est qu'ils supportent les **masques booléens**, c'est à dire qu'on peut sélectionner des éléments d'un *array* en lui passant un *array* de même taille contenant des booléens.
 
-```python
+```{python}
 a = np.array([1, 2, 3])
 a[[True, True, False]]
 ```
 
 Cette propriété ouvre de nombreuses possibilités, dans la mesure où elle peut être combinée avec la propriété de vectorisation des *arrays*. Il devient ainsi très facile de **sélectionner des éléments selon des conditions**, même pour les *arrays* multidimensionnels.
 
-```python
+```{python}
 b = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
 cond = (b > 6) & (b != 10)
 
@@ -251,7 +254,7 @@ print(b[cond])
 
 Et l'on peut bien entendu exploiter ce mécanisme pour modifier des éléments selon une condition.
 
-```python
+```{python}
 b[cond] = -1
 print(b)
 ```
@@ -267,7 +270,7 @@ Ce dernier exemple illustre par ailleurs une propriété importante en `NumPy` a
 
 Tout au début de ce tutoriel, nous avons vu que multiplier deux *arrays* via l'opérateur `*` effectuait une multiplication termes à termes des deux *arrays*, et ce de manière vectorisée. Les opérations élémentaires (`+`, `-`, `*` et `/`) s'appliquent de la même manière aux *arrays* multidimensionnels.
 
-```python
+```{python}
 a = np.array([[1, 2, 2], [2, 2, 1]])
 b = np.array([[3, 3, 1], [1, 3, 3]])
 
@@ -276,7 +279,7 @@ a * b
 
 Notons qu'on retrouve la propriété de *broadcasting* discutée dans la section précédente : lorsque l'on effectue une opération entre un *array* et un nombre de taille 1, l'opération est appliquée à chaque terme de l'*array*.
 
-```python
+```{python}
 a * 4
 ```
 
@@ -287,7 +290,7 @@ a * 4
 
 Par exemple, l'opérateur `@` permet de réaliser une multiplication matricielle (et non plus termes à termes comme le fait `*`).
 
-```python
+```{python}
 a = np.array([[1, 2, 3], [3, 2, 1]])
 b = np.array([[2, 3], [1, 3], [3, 1]])
 
@@ -299,7 +302,7 @@ a @ b
 
 `NumPy` offre pléthore de fonctions [mathématiques](https://numpy.org/doc/stable/reference/routines.math.html) et [statistiques](https://numpy.org/doc/stable/reference/routines.statistics.html), comme `sum`, `mean`, `min`, `round`, `log`, etc. Leur application à des objets unidimensionnels ne pose pas de problème particulier.
 
-```python
+```{python}
 print(np.log(12))
 print()
 print(np.min([1, 2, 3]))
@@ -309,7 +312,7 @@ print(np.mean([1, 2, 3]))
 
 En revanche, dans le cas multidimensionnel, leur utilisation devient un peu plus subtile car on peut vouloir réaliser l'agrégation selon différentes dimensions. Si l'on ne spécifie rien, l'agrégation est effectuée sur tous les éléments de l'*array*.
 
-```python
+```{python}
 a = np.array([[1, 2, 2], [2, 2, 1]])
 
 np.sum(a)
@@ -319,7 +322,7 @@ Mais comment faire si l'on veut sommer par ligne ? Ou bien par colonne ? C'est l
 
 Lorsqu'il n'est pas spécifié comme dans l'exemple précédent, il prend la valeur `None` par défaut.
 
-```python
+```{python}
 a = np.array([[1, 2, 2], [2, 2, 1]])
 
 np.sum(a, axis=None)  # idem que np.sum(a)
@@ -331,7 +334,7 @@ La figure suivante permet de bien se représenter la manière dont fonctionnent 
 
 Ainsi, si l'on souhaite calculer la somme de chaque colonne par exemple, il faut agréger selon l'axe $0$.
 
-```python
+```{python}
 a = np.array([[1, 2, 2], [2, 2, 1]])
 
 np.sum(a, axis=0)
@@ -339,13 +342,13 @@ np.sum(a, axis=0)
 
 Et inversement pour obtenir les sommes de chaque ligne.
 
-```python
+```{python}
 np.sum(a, axis=1)
 ```
 
 Enfin, notons que les fonctions mathématiques qui réalisent une agrégation sont généralement également disponibles comme *méthodes* d'un *array*. Elles fonctionnent de la même manière, au détail près qu'elles ne prennent pas l'*array* en argument dans la mesure où elles sont déjà "attachées" à celui-ci.
 
-```python
+```{python}
 a.sum(axis=1)
 ```
 
@@ -373,12 +376,12 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 - 8/ Qu'est-ce que la propriété de *broadcasting* ?
 - 9/ A quoi sert le paramètre `axis` des fonctions mathématiques de `NumPy` ?
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -395,18 +398,18 @@ Un vecteur comprenant les entiers compris entre 10 et 20 est défini dans la cel
 - sélectionner tous les éléments pairs
 - sélectionner tous les éléments en les triant dans l'ordre inverse (NB : la fonction `np.flip` permet de faire la même chose)
 
-```python tags=[]
+```{python} tags=[]
 X = np.arange(10, 21)
 
 print(X)
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-44 solutions.py
 ```
@@ -421,18 +424,18 @@ Une matrice de taille 5x5 comprenant tous les entiers compris entre 0 et 24 est 
 - sélectionner la sous-matrice 3x3 centrale
 - sélectionner les éléments diagonaux (NB : la fonction `np.diag` permet de réaliser la même opération de manière beaucoup plus simple)
 
-```python
+```{python}
 Y = np.arange(0, 25).reshape((5, 5))
 
 print(Y)
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 48-54 solutions.py
 ```
@@ -450,7 +453,7 @@ Deux matrices carrées de taille 3x3 sont définies sous forme d'*arrays* `NumPy
 
 NB : vous pourrez trouver les fonctions nécessaires dans la [documentation](https://numpy.org/doc/stable/reference/routines.math.html) ou via un moteur de recherche.
 
-```python
+```{python}
 X = np.array([[1,2,3],
               [4,5,6],
               [7,8,9]])
@@ -460,12 +463,12 @@ Y = np.array([[10,11,12],
               [16,17,18]])
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 58-76 solutions.py
 ```
@@ -477,7 +480,7 @@ Dans le tutoriel, nous avons vu que la méthode standard pour créer un *array* 
 
 Par exemple, pour créer une matrice à 3 lignes et deux colonnes contenant des zéros, la syntaxe est : 
 
-```python
+```{python}
 np.zeros((3, 2))
 ```
 
@@ -491,12 +494,12 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 - un vecteur contenant les entiers *pairs* compris entre $0$ à $99$ inclus (fonction `np.arange`)
 - un vecteur contenant 5 valeurs uniformément espacées entre $2$ et $3$ inclus (fonction `np.linspace`)
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 80-106 solutions.py
 ```
@@ -510,12 +513,12 @@ Vérifiez ensuite à l'aide des fonctions mathématiques de `NumPy` que la moyen
 
 Indice : attention à la manière dont est spécifiée la variance dans la fonction `NumPy` de génération d'une loi normale. 
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 110-112 solutions.py
 ```
@@ -527,12 +530,12 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 
 En utilisant la fonction `np.all` et un test booléen, vérifier que tous les nombres contenus dans `U` sont bien compris entre -1 et 1.
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 116-119 solutions.py
 ```
@@ -546,16 +549,16 @@ Dans la cellule suivante, une matrice `X` à 6 lignes et 6 colonnes est génér�
 - première méthode : en utilisant la fonction `np.zeros` et les masques booléens
 - seconde méthode : en utilisant la fonction `np.where` (cf. [doc](https://numpy.org/doc/stable/reference/generated/numpy.where.html))
 
-```python
+```{python}
 X = np.random.randint(0, 50, size=(6, 6))
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 123-136 solutions.py
 ```
@@ -576,18 +579,18 @@ Une grille de 5x5 est définie dans la cellule suivante comme un *array*, les va
     
 Puis réalisez quelques tests pour vous assurer que votre fonction marche comme attendu.
 
-```python
+```{python}
 X = np.array([[1, 1, 1, 0, 0], [0, 0, 0, 0, 1], [1, 0, 0, 0, 1],
               [1, 0, 0, 0, 0], [0, 1, 1, 1, 1]])
 print(X)
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 140-157 solutions.py
 ```
@@ -601,7 +604,7 @@ Dans la cellule suivante, on encode des PCS au format OHE grâce à une fonction
 
 Indice : on pourra utiliser les fonctions `np.unique`, `np.zeros` et `np.arange`.
 
-```python
+```{python}
 from sklearn.preprocessing import OneHotEncoder
 
 values = np.array(["21", "46", "47", "23", "66", "82", "82"])
@@ -609,16 +612,16 @@ values = np.array(["21", "46", "47", "23", "66", "82", "82"])
 print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 161-169 solutions.py
 ```
 
-```python
+```{python}
 
 ```

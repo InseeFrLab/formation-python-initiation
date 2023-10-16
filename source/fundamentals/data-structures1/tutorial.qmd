@@ -1,6 +1,9 @@
 ---
 title: "Structures de données 1 : listes et tuples"
 abstract: "Découverte des structures de données séquentielles : listes et tuples."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans ce tutoriel, nous allons nous intéresser à des structures de données de base en Python : les **listes** et les **tuples**. Les structures de données peuvent être vues comme des conteneurs car ils permettent de stocker, d'organiser et d'accéder à des données. Les listes et les tuples sont des **conteneurs séquentiels** : les éléments qu'ils contiennent sont **ordonnés**, et leur position est enregistrée dans un **index**.
@@ -16,7 +19,7 @@ Les listes sont construites avec des crochets **[]**, et les éléments de la li
 Assignons une première liste à une variable `a` :
 
 
-```python
+```{python}
 a = [1, 2, 3]
 print(a)
 ```
@@ -24,7 +27,7 @@ print(a)
 La liste `a` est constituée d'entiers, mais une liste peut en pratique contenir des objets de tout type.
 
 
-```python
+```{python}
 b = ["une séquence", 56, "d"]
 print(b)
 ```
@@ -32,7 +35,7 @@ print(b)
 Il est notamment possible de créer des listes de listes (et ainsi de suite), ce qui permet de créer des structures hiérarchiques de données.
 
 
-```python
+```{python}
 c = ["une séquence", 56, ["cette liste est imbriquée", 75, "o"]]
 print(c)
 ```
@@ -40,7 +43,7 @@ print(c)
 Une liste imbriquée peut aussi être construite à partir de listes déjà définies.
 
 
-```python
+```{python}
 item1 = ["cafe", "500g"]
 item2 = ["biscuits", "20"]
 item3 = ["lait", "1L"]
@@ -55,7 +58,7 @@ On verra cependant dans le prochain tutoriel que les dictionnaires sont généra
 Comme les chaînes de caractères, il est possible d'utiliser la fonction `len` pour compter le nombre d'éléments présents dans une liste.
 
 
-```python
+```{python}
 d = ["ceci", "est", "une", "liste"]
 len(d)
 ```
@@ -65,7 +68,7 @@ len(d)
 Les listes étant des séquences, elles s'indexent de la même manière que les chaînes de caractères. Il est notamment important de se rappeler que la numérotation des positions commence à 0 en Python.
 
 
-```python
+```{python}
 # Troisième élément de la liste a
 print(a[2])
 ```
@@ -73,14 +76,14 @@ print(a[2])
 Bien entendu, il n'est pas possible de demander un élément qui n'existe pas. Python renvoie une erreur nous indiquant que l'index demandé est hors limites.
 
 
-```python
+```{python}
 print(a[5])
 ```
 
 Pour indexer une liste contenue dans une autre liste, on utilise une double indexation.
 
 
-```python
+```{python}
 # Premier élément de la sous-liste qui est à la deuxième position de la liste c
 print(c[2][0])
 ```
@@ -88,13 +91,13 @@ print(c[2][0])
 En termes d'indexation, tout ce qui était possible sur les chaînes caractères l'est également avec les listes.
 
 
-```python
+```{python}
 # Tous les éléments à partir de la 1ère position
 print(b[1:])
 ```
 
 
-```python
+```{python}
 # Inverser une liste
 print(a[::-1])
 ```
@@ -104,7 +107,7 @@ print(a[::-1])
 Il est possible de modifier les éléments d'une liste manuellement, avec une syntaxe similaire à l'assignation de variable.
 
 
-```python
+```{python}
 # Réassignation d'un élément
 d = [1, 2, "toto", 4]
 d[2] = 3
@@ -112,7 +115,7 @@ print(d)
 ```
 
 
-```python
+```{python}
 # Substitution d'un élément
 a = [1, 2, 3]
 b = ["do", "re", "mi"]
@@ -125,7 +128,7 @@ print(b)
 L'instruction `del` permet de supprimer un élément par position. Les éléments qui se trouvaient après l'élément supprimé voient donc leur index réduit de 1.
 
 
-```python
+```{python}
 e = [1, "do", 6]
 print(e)
 print(e[2])
@@ -140,13 +143,13 @@ print(e[1])
 Là encore, on retrouve des propriétés inhérentes aux séquences.
 
 
-```python
+```{python}
 # Concaténation
 [1, 2, 3] + ["a", 12]
 ```
 
 
-```python
+```{python}
 # Réplication
 ["a", "b", "c"] * 3
 ```
@@ -156,7 +159,7 @@ Là encore, on retrouve des propriétés inhérentes aux séquences.
 A l'instar des chaînes de caractères, les listes ont de nombreuses méthodes *built-in*, qui s'utilisent selon le format `objet.methode(parametres)`. Les plus utiles sont présentées ci-dessous ; d'autres méthodes seront utilisées dans le cadre des exercices de fin de section.
 
 
-```python
+```{python}
 # Ajouter un élément
 a = [1, 2, 3]
 a.append(4)
@@ -164,7 +167,7 @@ print(a)
 ```
 
 
-```python
+```{python}
 # Supprimer un élément par position
 b = ["do", "re", "mi"]
 b.pop(0)
@@ -172,7 +175,7 @@ print(b)
 ```
 
 
-```python
+```{python}
 # Supprimer un élément par valeur
 b = ["do", "re", "mi"]
 b.remove("mi")
@@ -180,7 +183,7 @@ print(b)
 ```
 
 
-```python
+```{python}
 # Inverser une liste
 l = [1, 2, 3, 4, 5]
 l.reverse()
@@ -188,7 +191,7 @@ print(l)
 ```
 
 
-```python
+```{python}
 # Trouver la position d'un élément
 b = ["a", "b", "c", "d", "e"]
 b.index("d")
@@ -205,7 +208,7 @@ Quand est-il pertinent d'utiliser un tuple plutôt qu'une liste ? En pratique, l
 Une autre différence, mineure celle-ci, est que les tuples s'écrivent avec des **parenthèses** au lieu des crochets. Les différents éléments sont toujours séparés par des virgules.
 
 
-```python
+```{python}
 x = (1, 2, "mi", "fa", 5)
 x
 ```
@@ -213,7 +216,7 @@ x
 Afin de bien faire la différence avec l'usage normal des parenthèses (dans les calculs ou pour délimiter les expressions), un tuple à un seul élément se définit avec une virgule après le premier élément.
 
 
-```python
+```{python}
 x1 = ("a", )
 x1
 ```
@@ -221,13 +224,13 @@ x1
 Vérifions qu'il est impossible de modifier ou d'ajouter un élément à un tuple.
 
 
-```python
+```{python}
 t = ("do", "rez", "mi")
 t[1] = "re"
 ```
 
 
-```python
+```{python}
 t = ("do", "re", "mi")
 t.append("fa")
 ```
@@ -237,7 +240,7 @@ t.append("fa")
 Les tuples s'indexent comme les listes.
 
 
-```python
+```{python}
 print(x[0])
 print(x[3:5])
 ```
@@ -245,7 +248,7 @@ print(x[3:5])
 Et peuvent également s'utiliser de manière hiérarchique.
 
 
-```python
+```{python}
 t1 = ("a", "b", "c")
 t2 = (1, 2, 3)
 t3 = (t1, "et", t2)
@@ -257,13 +260,13 @@ print(t3[2][1])
 Les tuples partagent certaines méthodes *built-in* avec les listes : celles qui ne provoquent pas de modification de l'objet.
 
 
-```python
+```{python}
 t = ("do", "re", "mi")
 t.index("do")
 ```
 
 
-```python
+```{python}
 t = ("do", "re", "mi", "re", "do")
 t.count("re")
 ```
@@ -273,12 +276,12 @@ t.count("re")
 Les fonctions `list` et `tuple` permettent de convertir une liste en tuple et inversement.
 
 
-```python
+```{python}
 tuple(["do", "re", "mi"])
 ```
 
 
-```python
+```{python}
 list((1, 2, 3, 4, 5))
 ```
 
@@ -314,13 +317,13 @@ Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des m
 - `saisons * 3`
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-41 solutions.py
 ```
@@ -332,13 +335,13 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 `l = ["do", "re", "re", "re", "fa", "sol", "solsi", "la"]`
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 45-56 solutions.py
 ```
@@ -348,13 +351,13 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`. Quelle est la différence majeure entre les deux méthodes ?
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 60-75 solutions.py
 ```
@@ -364,13 +367,13 @@ Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`.
 Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément de la liste `ma_liste`. A l'aide de la documentation Python ou d'une recherche sur Google, déterminez le comportement par défaut de cette méthode, c'est à dire ce qu'il se passe lorsqu'on ne donne aucun paramètre à la fonction `pop`. Vérifiez que vous observez bien ce comportement à l'aide d'un exemple de votre choix.
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 79-81 solutions.py
 ```
@@ -383,13 +386,13 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 - sur une liste composée d'un mélange d'objets numériques et textuels.
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 85-91 solutions.py
 ```
@@ -399,13 +402,13 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 Essayer de créer une liste vide. Vérifiez son type. Quel intérêt cela pourrait-il avoir ?
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 95-107 solutions.py
 ```
@@ -420,13 +423,13 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 - l'entier `c = 5`
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 111-125 solutions.py
 ```
@@ -436,13 +439,13 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 Nous avons vu que les tuples avaient la particularité d'être non-modifiables. Mais est-ce que cette propriété se transfère de manière récursive ? Par exemple, est-ce qu'une liste contenue dans un tuple est-elle même non-modifiable ? Vérifiez à l'aide d'un exemple de votre choix.
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-134 solutions.py
 ```
@@ -452,18 +455,18 @@ Nous avons vu que les tuples avaient la particularité d'être non-modifiables. 
 Lisez la partie concernant l'agrégation et la dissociation de séquences dans la [documentation Python](https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences). La dissociation est une propriété souvent utilisée en pratique. Vérifiez qu'elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu'à maintenant (chaînes de caractères, listes et tuples).
 
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 138-145 solutions.py
 ```
 
 
-```python
+```{python}
 
 ```

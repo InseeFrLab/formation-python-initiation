@@ -1,6 +1,9 @@
 ---
 title: "Manipulation de fichiers"
 abstract: "Manipulation de fichiers externes : import de modules et lecture/écriture de fichiers texte."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans les tutoriels précédents, nous avons utilisé systématiquement des variables pour stocker des données et réaliser des opérations sur celles-ci. Cette façon de faire peut suffire dans le cadre d'une session Python donnée, comme ici dans un notebook Jupyter ou bien dans un programme. 
@@ -35,7 +38,7 @@ Pour pouvoir exploiter les fonctions d'un module et les différents modules qui 
 
 La syntaxe est très simple, illustrons là à travers un exemple.
 
-```python
+```{python}
 import random
 random.randint(0, 100)
 ```
@@ -45,7 +48,7 @@ Nous avons importé le module `random` (complet) de la librairie standard de Pyt
 
 On aurait pu également importer *seulement* la fonction `randint` en utilisant la syntaxe `from module import fonction`. Il n'est alors plus nécessaire de spécifier le nom du module lorsqu'on appelle la fonction.
 
-```python
+```{python}
 from random import randint
 randint(0, 100)
 ```
@@ -60,27 +63,27 @@ Un *package* est simplement une collection de modules, structurée selon une arb
 
 Par exemple, regardons à nouveau comment utiliser la fonction `randint`, mais cette fois celle de `numpy` (qui fait la même chose).
 
-```python
+```{python}
 import numpy
 ```
 
-```python
+```{python}
 numpy.random.randint(0, 100)
 ```
 
 On a importé le package `numpy`, qui nous a permis d'accéder via son module `random` à la fonction `randint`. Là encore, on aurait pu importer directement la fonction.
 
-```python
+```{python}
 from numpy.random import randint
 ```
 
-```python
+```{python}
 randint(0, 100)
 ```
 
 En pratique, la première syntaxe est préférable : il est toujours plus lisible de montrer explicitement d'où vient la fonction que l'on appelle. Pour réduire la verbosité, il est fréquent de donner un ***alias*** aux packages que l'on importe. Voici les trois plus fréquents, que l'on rencontrera très souvent dans les tutoriels du prochain chapitre sur la manipulation de données. 
 
-```python
+```{python}
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -88,7 +91,7 @@ import matplotlib.pyplot as plt
 
 On peut alors utiliser ces *alias* pour appeler des modules et des fonctions.
 
-```python
+```{python}
 x = np.linspace(0, 10, 1000)
 plt.plot(x, np.sin(x))
 ```
@@ -111,7 +114,7 @@ Pour pouvoir lire et écrire des fichiers avec Python, il nous faut d'abord comp
 
 Pour ce faire, nous allons utiliser de manière répétée le module `pathlib` et en particulier la classe `Path`. Ce module permet d'interagir avec le système de fichiers sous forme d'objets, en manipulant des attributs et leurs méthodes. Pas de panique, nous avons vu tout ce qu'il nous fallait savoir à ce propos dans le précédent tutoriel.
 
-```python
+```{python}
 from pathlib import Path
 ```
 
@@ -123,7 +126,7 @@ Un fichier a deux propriétés :
 
 A titre d'exemple, regardons les fichiers qui se trouvent dans notre répertoire courant (par défaut, le dossier dans lequel se trouve ce notebook). La méthode à utiliser s'appelle `cwd`, pour *current working directory*.
 
-```python
+```{python}
 Path.cwd()
 ```
 
@@ -134,11 +137,11 @@ Maintenant, listons tous les fichiers contenus dans notre répertoire courant. O
 
 Cette méthode renvoie un objet un peu spécial (un *générateur*). Si vous vous rappelez bien, on avait déjà rencontré le même cas avec la fonction `range`. Il suffit d'appeler la fonction `list` sur le tout pour afficher les résultats de manière lisible.
 
-```python
+```{python}
 Path.cwd().glob('*.*')
 ```
 
-```python
+```{python}
 list(Path.cwd().glob('*.*'))
 ```
 
@@ -164,13 +167,13 @@ En pratique, ce qui nous intéresse est de pouvoir constituer nos propres chemin
 
 Par exemple, essayons de reconstruire le chemin complet de ce notebook. On peut commencer par trouver le chemin du *home* directory, qui est le dossier standard dans lequel se trouvent tous les fichiers de l'utilisateur.
 
-```python
+```{python}
 Path.home()
 ```
 
 On peut alors concaténer les différents sous-dossier et le nom de fichier du notebook pour obtenir le chemin complet vers celui-ci.
 
-```python
+```{python}
 path_nb = Path.home() / 'work' / 'formation' / 'tutorial.ipynb'
 path_nb
 ```
@@ -200,7 +203,7 @@ Demander à Python d'ouvrir un fichier revient à ouvrir une connexion entre l'e
 
 Pour ouvrir un fichier, on utilise la fonction `open`. On va par exemple ouvrir le fichier `gamme.txt` qui a été mis dans le répertoire courant.
 
-```python
+```{python}
 path_gamme = Path.cwd() / 'gamme.txt'
 file_in = open(path_gamme, 'r')
 file_in
@@ -217,19 +220,19 @@ En revanche, le **mode d'ouverture** est très important. Il y a trois modes pri
 
 Une fois le fichier ouvert, on peut réaliser des opérations sur ce fichier à l'aide de méthodes attachées à l'objet qui le représente. On verra dans la section suivante ce que fait la méthode `readlines`.
 
-```python
+```{python}
 file_in.readlines()
 ```
 
 Une fois les manipulations terminées, on ferme la connexion avec la méthode `close`. Il n'est alors plus possible de manipuler le fichier.
 
-```python
+```{python}
 file_in.close()
 ```
 
 En pratique, on oublie facilement de fermer la connexion à un fichier, ce qui peut créer des erreurs pénibles. Il existe une syntaxe qui permet d'éviter ce problème en utilisant un **context manager** qui gère toute la connexion pour nous.
 
-```python
+```{python}
 with open(path_gamme, 'r') as file_in:
     lines = file_in.readlines()
     
@@ -244,7 +247,7 @@ Cette syntaxe est beaucoup plus lisible : grâce à l'indentation, on voit clair
 
 Une fois un fichier ouvert, on peut vouloir lire son contenu. Il existe différentes manières de faire. Une méthode simple et élégante est de parcourir le fichier à l'aide d'une boucle, ce qui est rendu possible par le fait que l'objet Python représentant le fichier est **itérable**.
 
-```python
+```{python}
 with open(path_gamme, 'r') as file_in:
     for line in file_in:
         print(line)
@@ -255,7 +258,7 @@ Dans notre exemple, nous avons simplement affiché les lignes, mais on peut fair
 
 Il existe également des méthodes toutes faites pour lire le contenu d'un fichier. La plus basique est la méthode `read`, qui retourne l'ensemble du fichier comme une (potentiellement très longue) chaîne de caractères.
 
-```python
+```{python}
 with open(path_gamme, 'r') as file_in:
     txt = file_in.read()
     
@@ -264,7 +267,7 @@ txt
 
 C'est rarement très utile : on préfère en général récupérer individuellement les lignes d'un fichier. La méthode `readlines` parcourt le fichier complet, et renvoie une liste dont les éléments sont les lignes du fichier, dans l'ordre d'apparition.
 
-```python
+```{python}
 with open(path_gamme, 'r') as file_in:
     l = file_in.readlines()
     
@@ -279,7 +282,7 @@ Notons que chaque élément de la liste (sauf le dernier) se termine par le cara
 
 L'écriture dans un fichier est très simple, elle s'effectue à l'aide de la méthode `write`. Par exemple, écrivons dans un fichier ligne à ligne les différents éléments contenus dans une liste.
 
-```python
+```{python}
 ex = ["ceci", "est", "un", "exemple", "très", "original"]
 
 with open("test.txt", "w") as file_out:
@@ -289,20 +292,20 @@ with open("test.txt", "w") as file_out:
 
 Tout semble s'être passé sans encombre. On peut vérifier que notre fichier a bien été crée via une commande dans le terminal.
 
-```python
+```{python}
 !ls
 ```
 
 Il est bien là. Vérifions maintenant que son contenu est bien celui que l'on souhaitait.
 
-```python
+```{python}
 with open("test.txt", "r") as file_out:
     print(file_out.read())
 ```
 
 Les différents éléments de notre liste se sont fusionnés en un seul bloc de texte ! C'est parce que, contrairement à la fonction `print` par exemple, la fonction `write` n'ajoute pas automatiquement le caractère de retour à la ligne. Il faut l'ajouter manuellement.
 
-```python
+```{python}
 with open("test.txt", "w") as file_out:
     for elem in ex:
         file_out.write(elem + "\n")
@@ -337,12 +340,12 @@ Quelques remarques supplémentaires sur l'écriture de fichiers :
 - 10/ Pourquoi est-il préférable d'utiliser la syntaxe `with open(...) as ...` pour ouvrir un fichier ?
 - 11/ Pourquoi peut-on parcourir les lignes d'un fichier à l'aide d'une boucle ?
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -359,12 +362,12 @@ Indices :
 - il faudra convertir les notes au format numérique pour pouvoir leur appliquer des fonctions mathématiques
 - vous pouvez utiliser les fonctions du package `numpy` pour calculer les statistiques demandées
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-47 solutions.py
 ```
@@ -387,12 +390,12 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 18 admis
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 51-63 solutions.py
 ```
@@ -411,16 +414,16 @@ Les informations nécessaires ont été placées dans une liste dans la cellule 
 
 NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retrouver les fichiers propres sur le [dépôt GitHub associé à la formation](https://github.com/InseeFrLab/formation-python-initiation/tree/main/source/manipulation/modules-files).
 
-```python
+```{python}
 supp = [(16, 3), (11, 1), (3, 5)]
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 67-73 solutions.py
 ```
@@ -434,16 +437,16 @@ supp = [(16, 3), (11, 1), (3, 5)]
 - pour chaque fichier, faire un test d'appartenance (rappel de la syntaxe : `if pattern in string: ...`) pour tester si le fichier contient le mot "sol"
 - si le fichier contient le mot "recalé", imprimer son chemin absolu dans la console (seul le chemin du fichier `gamme.txt` devrait donc apparaître)
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 77-85 solutions.py
 ```
 
-```python
+```{python}
 
 ```

@@ -1,11 +1,14 @@
 ---
 title: "Projet 1 - Puissance 4"
 abstract: "Un projet de code pour mettre en pratique les éléments fondamentaux de Python : structures de données, boucles, fonctions, conditions."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans ce projet nous allons implémenter un puissance 4 avec une interface graphique assez sommaire. Pour y arriver, nous allons utiliser les objets fondamentaux de Python.
 
-```python
+```{python}
 import copy
 
 import solutions
@@ -43,13 +46,13 @@ Dans la fonction d'initialisation de la grille, chaque élément sera donc initi
 ### Résultat attendu
 
 
-```python
+```{python}
 grille = solutions.initialise_grille()
 grille
 ```
 
 
-```python
+```{python}
 print(f'Nombre de lignes : {len(grille)}')
 print(f'Nombre de colonnes : {len(grille[0])}')
 ```
@@ -57,21 +60,21 @@ print(f'Nombre de colonnes : {len(grille[0])}')
 ### A vous de jouer !
 
 
-```python
+```{python}
 def initialise_grille():
     # Votre code ici
     return grille
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 grille = initialise_grille()
 grille
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 print(f'Nombre de lignes : {len(grille)}')
 print(f'Nombre de colonnes : {len(grille[0])}')
@@ -86,7 +89,7 @@ Pour cela, nous allons créer **une fonction qui prend en entrée la grille pré
 **Indice** : une solution possible fait intervenir deux notions que nous avons vues dans les TP précédents : la concaténation de *strings* et la fonction `join` qui "joint" les éléments d'une liste en les séparant par un certain caractère. Pour rappel, voici un exemple qui utilise ces deux concepts : 
 
 
-```python
+```{python}
 l = ["a", "b", "c", "d", "e"]
 l_join = "DEBUT " + ", ".join(l) + " FIN"
 print(l_join)
@@ -95,20 +98,20 @@ print(l_join)
 ### Résultat attendu
 
 
-```python
+```{python}
 solutions.affiche_grille(grille)
 ```
 
 ### A vous de jouer !
 
 
-```python
+```{python}
 def affiche_grille():
     # Votre code ici
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 affiche_grille(grille)
 ```
@@ -133,7 +136,7 @@ Optionnel : Renvoyer un message d'erreur si un joueur essaie de jouer dans une c
 ### Résultat attendu
 
 
-```python
+```{python}
 grille = solutions.initialise_grille()  # Initialisation
 grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
 grille = solutions.tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
@@ -144,7 +147,7 @@ solutions.affiche_grille(grille)
 ### A vous de jouer !
 
 
-```python
+```{python}
 def tour(grille, colonne_a_jouer, couleur_pion):
     new_grille = copy.deepcopy(grille)  # Evite la modification de la grille initiale
     # Votre code ici
@@ -152,7 +155,7 @@ def tour(grille, colonne_a_jouer, couleur_pion):
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 grille = initialise_grille()  # Initialisation
 grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
@@ -172,7 +175,7 @@ Dans un premier temps, on s'intéresse à la détection d'une victoire horizonta
 ### Résultat attendu
 
 
-```python
+```{python}
 # Détection d'une victoire (horizontale) sur une ligne
 ligne1 = [" ", "R", "R", "R", "J", "J", " "]
 ligne2 = [" ", "R", "R", "R", "R", "J", " "]
@@ -183,7 +186,7 @@ print(solutions.victoire_ligne(ligne2))  # Renvoie True
 ```
 
 
-```python
+```{python}
 # Détection d'une victoire (horizontale) sur une grille
 grille = solutions.initialise_grille()  # Initialisation
 print(solutions.victoire_horizontale_grille(grille))  # Renvoie False
@@ -202,13 +205,13 @@ print(solutions.victoire_horizontale_grille(grille))  # Renvoie True
 ### A vous de jouer !
 
 
-```python
+```{python}
 def victoire_ligne(ligne):
     # Votre code ici
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 ligne1 = [" ", "R", "R", "R", "J", "R", " "]
 ligne2 = [" ", "R", "R", "R", "R", "J", " "]
@@ -218,13 +221,13 @@ print(victoire_ligne(ligne2))  # Renvoie True
 ```
 
 
-```python
+```{python}
 def victoire_horizontale_grille(grille):
     # Votre code ici
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 grille = initialise_grille()  # Initialisation
 print(victoire_horizontale_grille(grille))  # Renvoie False
@@ -246,7 +249,7 @@ A présent, on s'intéresse à la détection d'une victoire verticale. Par rappo
 ### Résultat attendu
 
 
-```python
+```{python}
 # Détection d'une victoire (verticale) sur une grille
 grille = solutions.initialise_grille()  # Initialisation
 print(solutions.victoire_verticale_grille(grille))  # Renvoie False
@@ -265,13 +268,13 @@ print(solutions.victoire_verticale_grille(grille))  # Renvoie True
 ### A vous de jouer !
 
 
-```python
+```{python}
 def victoire_verticale_grille(grille):
     # Votre code ici
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 grille = initialise_grille()  # Initialisation
 print(victoire_verticale_grille(grille))  # Renvoie False
@@ -301,7 +304,7 @@ Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque cou
 ### Résultat attendu
 
 
-```python
+```{python}
 grille = solutions.initialise_grille()  # Initialisation
 print("Tour 1")
 grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
@@ -317,13 +320,13 @@ grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_
 ### A vous de jouer !
 
 
-```python
+```{python}
 def victoire(grille):
     # Votre code ici
 ```
 
 
-```python
+```{python}
 def tour_test_victoire(grille, colonne_a_jouer, couleur_pion):
     grille = copy.deepcopy(grille)
     # Votre code ici
@@ -331,7 +334,7 @@ def tour_test_victoire(grille, colonne_a_jouer, couleur_pion):
 ```
 
 
-```python
+```{python}
 # Vérification du résultat
 grille = initialise_grille()  # Initialisation
 print("Tour 1")
@@ -344,7 +347,7 @@ print("Tour 4")
 grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
 ```
 
-```python
+```{python}
 
 ```
 

@@ -1,6 +1,9 @@
 ---
 title: "Notions de programmation orientée objet"
 abstract: "Un rapide tour dans le monde des objets, leurs attributs et leurs méthodes"
+execute:
+    echo: true
+    eval: false
 ---
 
 Python est un langage dit "multi-paradigmes", c'est à dire qu'il admet plusieurs manières de coder et de concevoir ses programmes. L'une d'entre elle est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n'impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des *packages* les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.
@@ -17,7 +20,7 @@ Vous avez peut-être déjà entendu que Python était un langage de "programmati
 
 **En Python, tout est un objet** (au sens de la POO). Regardons ce que cela signifie en récupérant le type de différents objets que nous avons vus dans les précédents tutoriels.
 
-```python
+```{python}
 print(type(1))
 print(type("bonjour"))
 print(type([]))
@@ -38,7 +41,7 @@ Ces éléments sont tous de type différent, mais ils ont un point commun : le t
 
 Regardons comment on peut utiliser l'instruction `class` pour définir notre objet "citron".
 
-```python
+```{python}
 class Citron:
 
     def __init__(self, couleur, qte_jus):
@@ -69,7 +72,7 @@ Analysons la syntaxe de construction d'une classe d'objets :
 
 La **classe** peut être vue comme la **recette qui permet de créer un objet** : elle définit les attributs et les méthodes que possèderont tous les objets définis à partir de cette classe. Définir une classe comme ci-dessus revient simplement à mettre cette recette dans l'environnement Python. Pour créer un objet selon cette classe, il faut l'**instancier**.
 
-```python
+```{python}
 citron1 = Citron(couleur="jaune", qte_jus=45)
 citron2 = Citron(couleur="vert", qte_jus=32)
 
@@ -93,7 +96,7 @@ Un attribut est une **variable associée à un objet**. Un attribut peut conteni
 
 Une fois que l'objet est instancié, il est possible d'accéder à ses attributs. La syntaxe est simple : `instance.attribut`.
 
-```python
+```{python}
 print(citron1.couleur)
 print(citron2.couleur)
 print(citron1.jus)
@@ -108,7 +111,7 @@ On voit bien que les deux instances sont **autonomes** : bien qu'elles soient du
 
 Modifier un attribut d'une instance est très simple, la syntaxe est : `instance.attribut = nouvelle_valeur`.
 
-```python
+```{python}
 citron2.couleur = "rouge"
 print(citron2.couleur)
 ```
@@ -135,13 +138,13 @@ Une méthode est une **fonction associée à un objet**. Elle peut utiliser ses 
 
 La syntaxe pour appeler une méthode d'un objet instancié est la suivante : `instance.methode(parametres)`.
 
-```python
+```{python}
 citron1.recup_qte_jus()
 ```
 
 On peut faire deux remarques sur cette syntaxe. La première est qu'**une méthode est une fonction *attachée* à une instance d'un objet**. Contrairement aux fonctions définies via l'instruction `def`, les méthodes n'ont pas d'existence propre.
 
-```python
+```{python}
 recup_qte_jus()
 ```
 
@@ -153,7 +156,7 @@ La seconde remarque est qu'**on ne spécifie plus le paramètre `self` lorsqu'on
 
 Tout l'intérêt des méthodes est qu'elles peuvent accéder aux attributs, et ainsi réaliser des opérations à partir de ceux-ci, mais également les modifier. Reprenons notre exemple pour illustrer cette possibilité.
 
-```python
+```{python}
 citron1 = Citron(couleur="jaune", qte_jus=45)
 
 citron1.recup_qte_jus()
@@ -175,7 +178,7 @@ Le fait que les objets possèdent des attributs permet de garder en mémoire **l
 
 Dans le même temps, le fait d'utiliser des objets qui gardent en mémoire un état peut **limiter la reproductibilité des analyses**. Pour illustrer cela, revenons à l'exemple du tutoriel : exécutez plusieurs fois d'affilée la cellule suivante.
 
-```python
+```{python}
 citron1.recup_qte_jus()
 citron1.extraire_jus(12)
 citron1.recup_qte_jus()
@@ -201,12 +204,12 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 - 9/ Peut-on modifier un attribut avec une méthode ? Peut-on modifier un attribut en dehors d'une méthode ?
 - 10/ Quand utilise-t-on généralement la POO ?
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-33 solutions.py
 ```
@@ -223,7 +226,7 @@ Modifiez la classe `Citron`, reproduite dans la cellule suivante, de telle sorte
 
 Instanciez ensuite un nouveau citron est vérifiez que tout fonctionne comme prévu.
 
-```python
+```{python}
 class Citron:
 
     def __init__(self, couleur, qte_jus):
@@ -241,12 +244,12 @@ class Citron:
             self.jus = max(0, self.jus - quantite)  # évite toute valeur négative de `jus`
 ```
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-60 solutions.py
 ```
@@ -271,16 +274,16 @@ Implémenter une classe `Compte` avec :
     
 Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 64-119 solutions.py
 ```
 
-```python
+```{python}
 
 ```

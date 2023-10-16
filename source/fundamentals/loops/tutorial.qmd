@@ -1,13 +1,16 @@
 ---
 title: "Boucles"
 abstract: "Automatisation d'opérations répétitives à l'aide des boucles for et des boucles while."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans le tutoriel précédent, nous avons étudié les tests, qui permettent à un ordinateur de prendre des décisions selon des conditions spécifiées dans un programme. Nous allons à présent aller encore plus loin dans l'automatisation des opérations, grâce à la notion de **boucle**. Les boucles vont permettre de répéter plusieurs fois une instruction semblable sans avoir à réécrire le même code à chaque fois.
 
 Pour illustrer cette idée, imaginons que l'on souhaite afficher chaque élément d'une liste. Pour l'instant, on ferait :
 
-```python
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 print(gamme[0])
@@ -28,7 +31,7 @@ Le premier type de boucles auquel nous allons nous intéresser est la boucle `fo
 
 Illustrons le fonctionnement d'une boucle `for` en résolvant le problème exposé précédemment.
 
-```python
+```{python}
 for note in gamme:
     print(note)
 ```
@@ -42,7 +45,7 @@ Analysons la structure d'une boucle `for` :
 
 Comme pour les instructions conditionnelles de type `if`/`else`, l'indentation est donc capitale. Si on l'oublie, Python renvoie une erreur.
 
-```python
+```{python}
 for note in gamme:
     print(note)
 ```
@@ -54,13 +57,13 @@ Regardons maintenant plus en détail ce que fait l'instruction `for`. Elle défi
 
 Insistons sur le fait qu'une boucle définit une variable, sans que l'on ait besoin de passer par la syntaxe traditionnelle d'assignation `variable = valeur`. De plus, cette variable n'est pas supprimée une fois la boucle terminée, elle prend alors la valeur du dernier élément de l'itérateur.
 
-```python
+```{python}
 note
 ```
 
 L'itérateur n'est pas nécessairement une liste, il peut être tout objet itérable. Cela inclut notamment tous les objets séquentiels que nous avons vu.
 
-```python
+```{python}
 for char in "YMCA":
     print(char)
     
@@ -73,7 +76,7 @@ for i in t:
 
 La classe des objets itérables est cependant bien plus grande que les seuls objets séquentiels. Par exemple, on peut itérer sur les clés d'un dictionnaire, alors que l'on a vu dans un tutoriel précédent que ce n'était pas un objet séquentiel, puisqu'il n'y a pas de notion d'ordre dans un dictionnaire.
 
-```python
+```{python}
 inventaire = {'cafe': '500g', 'lait': '1,5L', 'cereales': '1kg'}
 for key in inventaire:
     print(key)
@@ -88,7 +91,7 @@ En programmation, il est courant de vouloir itérer sur une suite d'entiers. Plu
 
 Regardons par exemple comment on peut très simplement afficher une table de multiplication à l'aide de cette fonction.
 
-```python
+```{python}
 table = 9
 
 for i in range(11):
@@ -100,7 +103,7 @@ for i in range(11):
 
 On a vu qu'une boucle `for` avait pour principe d'itérer sur les *éléments* d'un itérable. Cependant, dans le cas d'un objet séquentiel comme une liste, on peut parfois vouloir itérer sur les *indices* de l'objet, afin de pouvoir manipuler à la fois les indices et les éléments contenus dans l'objet. Dans ce cas, la fonction `range` peut être utilisée en combinaison avec la fonction `len` pour créer un objet itérable qui contient exactement les indices de la liste initiale.
 
-```python
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i in range(len(gamme)):
@@ -111,20 +114,20 @@ Comme ce besoin est fréquent mais que le code ci-dessus n'est pas très lisible
 
 La fonction `enumerate` appliquée à un objet itérable renvoie un nouvel objet itérable qui contient l'ensemble des couples `(indice, élément)` contenus dans l'objet, sous forme de tuples. Comme c'est un objet de type particulier -- un générateur, que nous verrons dans un tutoriel plus avancé -- il faut lui appliquer la fonction `list` pour afficher son contenu.
 
-```python
+```{python}
 list(enumerate(gamme))
 ```
 
 Regardons comment réécrire la boucle précédente avec cette nouvelle syntaxe.
 
-```python
+```{python}
 for i, note in enumerate(gamme):
     print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
 ```
 
 NB : pour faire l'assignation de variables dans l'instruction `if`, on a utilisé une technique bien pratique que l'on avait déjà évoquée dans un exercice du tutoriel sur les listes et les tuples : le *tuple unpacking*. Illustrons le par un exemple :
 
-```python
+```{python}
 t = (1, 2, 3)
 a, b, c = t
 print(a)
@@ -140,7 +143,7 @@ print(c)
 
 Les boucles `while` fournissent une manière alternative de spécifier des procédures répétitives. L'idée n'est plus d'itérer sur un nombre d'objets fixé à l'avance, mais d'**itérer tant qu'une condition (test logique) est remplie**.
 
-```python
+```{python}
 i = 1
 while i <= 5:
     print(i)
@@ -164,14 +167,14 @@ Dans une boucle `while` au contraire, le critère d'arrêt est donné par une co
 
 Que se passe-t-il si l'on oublie d'incrémenter `i` ? Le critère d'arrêt n'est jamais atteint, la boucle est donc infinie, et il faut utiliser le bouton "Stop" (carré noir) de Jupyter pour arrêter le programme en cours. Vérifions cela en incrémentant la mauvaise variable.
 
-```python
+```{python}
 i = 1
 j = 1
 while i <= 5:
     j = j + 1
 ```
 
-```python
+```{python}
 print(i)
 print(j)
 ```
@@ -183,7 +186,7 @@ Une manière alternative de spécifier un critère d'arrêt est d'utiliser l'ins
 
 Illustrons son fonctionnement à l'aide d'un exemple. La première ligne crée une boucle infinie, dans la mesure où, par définition, `True` est toujours évalué à `True`. Le programme demande ensuite à l'utilisateur de taper un prénom, et ce infiniment jusqu'à que l'utilisateur tape le prénom attendu. Dans ce cas seulement, l'instruction `break` est atteinte et la boucle s'arrête. Le message "Bienvenue <votre_prenom>" s'affiche enfin, dans la mesure où le deuxième `print` n'est pas inclus dans la boucle.
 
-```python
+```{python}
 votre_prenom = "Romain"
 
 while True:
@@ -198,7 +201,7 @@ Il est important de noter qu'une instruction `break` ne met fin qu'à la boucle 
 
 Illustrons ce principe avec un exemple.
 
-```python
+```{python}
 i = 0
 while i <= 5:
     for j in range(5):
@@ -218,7 +221,7 @@ L'instruction `continue` permet de passer à l'itération suivante de la boucle.
 
 Agrémentons l'exemple précédent pour illustrer son fonctionnement. Tant qu'un prénom différent de celui attendu est rentré, l'instruction `continue` est évaluée, et le programme continue à demander un prénom à l'utilisateur. Lorsque le bon prénom est rentré, le programme demande à l'utilisateur de rentrer un mot de passe. Si le mot de passe est celui attendu, l'instruction `break` est atteinte et exécutée, la boucle s'arrête. En cas de mauvais mot de passe en revanche, la boucle redémarre au début du bloc d'exécution, il faut donc de nouveau rentrer un prénom avant le mot de passe.
 
-```python
+```{python}
 votre_prenom = ""
 
 while True:
@@ -251,12 +254,12 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 - 7/ Que fait l'instruction `break` ?
 - 8/ Que fait l'instruction `continue` ?
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-33 solutions.py
 ```
@@ -266,7 +269,7 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 
 Essayer de prédire ce que vont produire les boucles `while` suivantes, et vérifiez vos résultats.
 
-```python
+```{python}
 # 1.
 i = 0
 while i <= 10:
@@ -295,12 +298,12 @@ while 5 >= 3:
     print("hello world")
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-51 solutions.py
 ```
@@ -313,7 +316,7 @@ Source : [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-didero
 
 Afin de visualiser l'importance de l'indentation dans les blocs d'instruction, essayez de prédire ce que vont respectivement retourner les deux programmes suivants. Lequel a l'effet attendu ?
 
-```python
+```{python}
 nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
@@ -321,7 +324,7 @@ for nb in nombres:
         print("car la variable nb vaut {nb}")
 ```
 
-```python tags=[]
+```{python} tags=[]
 nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
@@ -329,12 +332,12 @@ for nb in nombres:
     print("car la variable nb vaut {nb}")
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 55-58 solutions.py
 ```
@@ -344,19 +347,19 @@ for nb in nombres:
 
 Réécrivez la boucle `for` suivante à l'aide d'une boucle `while`.
 
-```python tags=[]
+```{python} tags=[]
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i, note in enumerate(gamme):
     print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 62-68 solutions.py
 ```
@@ -368,18 +371,18 @@ Soit un entier cible `n_cible` et une liste d'entiers `l` tels que définis dans
 - vérifier si l'entier cible est présent dans la liste `l`. 
 - si oui, afficher le message 'Le nombre `n_cible` est à la position `i` de la liste', et mettre fin à la boucle.
 
-```python
+```{python}
 n_cible = 78
 
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 72-84 solutions.py
 ```
@@ -394,12 +397,12 @@ La suite de Fibonacci se définit de la manière suivante :
 Ecrire un programme permettant de calculer les $n$ premiers termes de la suite à l'aide d'une boucle `for`.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 88-96 solutions.py
 ```
@@ -415,12 +418,12 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 - tables[12][7] -> 84
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 100-109 solutions.py
 ```
@@ -433,12 +436,12 @@ Calculer le minimum et le maximum de la série de valeurs suivantes, sans utilis
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-124 solutions.py
 ```
@@ -459,12 +462,12 @@ NB :
 - en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 128-147 solutions.py
 ```
@@ -489,12 +492,12 @@ En utilisant la fonction `range`, afficher :
 - l'ensemble des entiers de 10 à 20 (20 inclus), dans l'ordre inverse (de 20 à 10)
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 151-159 solutions.py
 ```
@@ -515,16 +518,16 @@ Rappel des règles :
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 163-178 solutions.py
 ```
 
-```python
+```{python}
 
 ```

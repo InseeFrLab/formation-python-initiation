@@ -1,6 +1,9 @@
 ---
 title: "Tests"
 abstract: "Découverte des tests et des structures conditionnelles, qui permettent à un programme de prendre des décisions de manière automatisée."
+execute:
+    echo: true
+    eval: false
 ---
 
 Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests en Python. Les tests sont une étape majeure dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
@@ -11,13 +14,13 @@ Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la not
 
 Dans sa plus simple forme, un test en Python est une expression qui évalue à "vrai" ou "faux". Par exemple, l'expression $3 > 2$ est vraie, le test associé renverra donc "vrai". Pour ce type d'évaluation, Python dispose d'un type d'objets particulier : les **Booléens**. Contrairement aux types d'objet que nous avons déjà vus (`int`, `float`, `str`..), les Booléens ne peuvent prendre que deux valeurs : `True` et `False`.
 
-```python
+```{python}
 type(True)
 ```
 
 Comme n'importe quel objet, les Booléens peuvent être assignés à des variables.
 
-```python
+```{python}
 a = False
 print(a)
 print(type(a))
@@ -25,11 +28,11 @@ print(type(a))
 
 Les valeurs `True` et `False` doivent être écrites de cette manière précisément (première lettre en majuscule, pas de guillemets). Elles ne peuvent par ailleurs pas être utilisées comme noms de variable afin de limiter les ambiguïtés.
 
-```python
+```{python}
 a = true  # Python chercher la variable `true` mais elle n'existe pas
 ```
 
-```python
+```{python}
 True = 3
 ```
 
@@ -51,72 +54,72 @@ Les opérateurs de comparaison formalisent les opérations mathématiques de com
 
 Illustrons ces opérateurs à l'aide de quelques exemples.
 
-```python
+```{python}
 3 == 3
 ```
 
-```python
+```{python}
 63 == 36
 ```
 
-```python
+```{python}
 2 != 3
 ```
 
-```python
+```{python}
 2 != 2
 ```
 
-```python
+```{python}
 3 > 2
 ```
 
-```python
+```{python}
 a = 36
 a <= a
 ```
 
-```python
+```{python}
 a < a
 ```
 
 Tout semble fonctionner correctement pour des opérations mathématiques usuelles. Mais ces opérateurs fonctionnent en réalité sur n'importe quel type d'objet.
 
-```python
+```{python}
 'do re mi fa sol' == 'do re mi fa sol'
 ```
 
-```python
+```{python}
 'do re mi fa sol' == 'Do Re Mi Fa Sol'
 ```
 
-```python
+```{python}
 'canard' != 'abeille'
 ```
 
-```python
+```{python}
 True == True
 ```
 
-```python
+```{python}
 True == False
 ```
 
-```python
+```{python}
 [1, 2, 3] == [1, 2, 3]
 ```
 
-```python
+```{python}
 [1, 2] != [3, 4]
 ```
 
 Enfin, il est possible de réaliser des comparaisons en chaîne. L'expression renvoie `True` à condition que chacune des comparaisons soit vraie.
 
-```python
+```{python}
 5 < 7 <= 8
 ```
 
-```python
+```{python}
 5 < 7 <= 6
 ```
 
@@ -141,21 +144,21 @@ Le premier opérateur booléen est `and`. Regardons sa table de vérité :
 Vérifions ces règles en pratique à l'aide de quelques exemples.
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 True and True
 ```
 
-```python tags=[]
+```{python} tags=[]
 False and True
 ```
 
 Les règles ont l'air de fonctionner sur les valeurs booléennes. Bien entendu, en pratique, on s'intéresse plutôt à évaluer de vraies expressions logiques. On peut donc utiliser ces opérateurs pour tester des expressions qui *renvoient* une valeur booléenne.
 
-```python
+```{python}
 (3 > 2) and (5 <= 9)
 ```
 
-```python
+```{python}
 a = ("x" != "z")
 b = ("x" == "y")
 a and b
@@ -177,19 +180,19 @@ Le second opérateur booléen est `or`. Sa table de vérité est la suivante :
 | `False or True` | `True` |
 | `False or False` | `False` |
 
-```python tags=[]
+```{python} tags=[]
 True or True
 ```
 
-```python tags=[]
+```{python} tags=[]
 False or True
 ```
 
-```python
+```{python}
 (3 > 2) or (5 <= 9)
 ```
 
-```python tags=[]
+```{python} tags=[]
 a = ("x" != "z")
 b = ("x" == "y")
 a or b
@@ -205,19 +208,19 @@ Le dernier opérateur booléen est `not`. Sa table de vérité est la suivante :
 | `not True` | `False` |
 | `not False` | `True` |
 
-```python tags=[]
+```{python} tags=[]
 not True
 ```
 
-```python tags=[]
+```{python} tags=[]
 not False
 ```
 
-```python
+```{python}
 not (3 + 3 == 6)
 ```
 
-```python
+```{python}
 not (7 < 7)
 ```
 
@@ -233,7 +236,7 @@ Illustrons ce principe en implémentant le programme suivant :
 
 Faîtes varier la valeur de `x` pour vérifier le bon fonctionnement du test.
 
-```python
+```{python}
 x = 7
 
 if x >= 5:
@@ -252,7 +255,7 @@ L'exemple précédent illustre la syntaxe des structures conditionnelles en Pyth
 
 Notons que les structures conditionnelles peuvent tout à fait être imbriquées, ce qu'illustre l'exemple suivant.
 
-```python
+```{python}
 x = 7
 
 if x >= 5:
@@ -273,7 +276,7 @@ Dans les structures conditionnelles, les tests peuvent être spécifiés à l'ai
 
 En cas d'un test simple (une seule condition), on n'utilisera qu'une instruction `if`, dont le fonctionnement est simple : si la condition (test) renvoie `True`, alors le bloc d'instructions (indenté) qui suit est exécuté. Si la condition renvoie `False`, il ne se passe rien. Illustrons cela avec un test d'appartenance, dont nous avons vu des exemples dans le tutoriel précédent.
 
-```python
+```{python}
 client = "Isidore"
 
 if client in ["Alexandrine", "Achille", "Colette"]:
@@ -282,7 +285,7 @@ if client in ["Alexandrine", "Achille", "Colette"]:
 
 En pratique, on souhaite souvent spécifier une alternative, lorsque la condition de l'instruction `if` renvoie `False`. L'instruction `else` permet de spécifier un bloc d'instructions alternatif.
 
-```python
+```{python}
 client = "Isidore"
 
 if client in ["Alexandrine", "Achille", "Colette"]:
@@ -293,7 +296,7 @@ else:
 
 Enfin, on peut vouloir spécifier plusieurs alternatives. Dans ce cas, on va utiliser des instructions `elif`. La première instruction `elif` ne va s'éxécuter que si le test de l'instruction `if` renvoie False. La seconde instruction `elif` ne va s'exécuter que si le test de la première instruction `elif` renvoie `False`, et ainsi de suite. Là encore, on peut spécifier une instruction finale `else`, qui ne s'exécute que si aucun des tests précédents n'a renvoyé `True`.
 
-```python
+```{python}
 client = "Isidore"
 
 if client == "Alexandrine":
@@ -326,12 +329,12 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 - 9/ Peut-on imbriquer les instructions conditionnelles ?
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -353,12 +356,12 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 - `(not False) or (not True)`
 <!-- #endregion -->
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python tags=[]
+```{python} tags=[]
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-45 solutions.py
 ```
@@ -368,7 +371,7 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 
 Considérons le programme écrit dans la cellule suivante.
 
-```python
+```{python}
 x = 10
 
 if True:
@@ -397,12 +400,12 @@ prédire les résultats du programme :
 
 Vérifiez vos résultats.
 
-```python tags=[]
+```{python} tags=[]
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-59 solutions.py
 ```
@@ -416,12 +419,12 @@ Ecrire un programme qui réalise les opérations suivantes :
 - Supprimer une personne de la liste (en utilisant la fonction `del` ou la méthode `pop` vues dans un tutoriel précédent)
 - Réaliser le test à nouveau, il ne devrait plus y avoir d'output.
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 63-73 solutions.py
 ```
@@ -439,12 +442,12 @@ La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans
 
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 77-85 solutions.py
 ```
@@ -454,7 +457,7 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 
 En Python, tous les objets s'évaluent à `True` or `False` dans le cadre d'un test conditionnel (`if`/`else`). La règle générale est que les objets qui sont zéro ou vides (ex : une liste vide, un dictionnaire vide) s'évaluent à `False`, et inversement. Mais il n'y a pas besoin de connaître ces règles par coeur : elles se retrouvent facilement en pratique ! Par exemple, on peut utiliser le test conditionnel suivant : 
 
-```python
+```{python}
 if "test":
     print("True.")
 else:
@@ -473,12 +476,12 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 - `{}`
 - `{-1}`
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 89-98 solutions.py
 ```
@@ -490,12 +493,12 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 
 `5 < 7 <= 8 < 18`
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 102-109 solutions.py
 ```
@@ -508,12 +511,12 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 - calculer la "représentation en entier" de la valeur booléenne de votre choix à l'aide de la fonction `int` ;
 - utiliser des booléens dans le cadre de calculs mathématiques pour vérifier leur comportement dans ce contexte.
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-117 solutions.py
 ```
@@ -523,12 +526,12 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 
 Que renvoient les tests de comparaison de type inégalités appliqués à des chaînes de caractères ? Produire quelques exemples pour tester le comportement.
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-130 solutions.py
 ```
@@ -543,16 +546,16 @@ Pour comprendre le résultat du test, effectuer le calcul du membre de gauche du
 
 Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalités, qui permettrait de tester l'égalité approchée.
 
-```python
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```python
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 134-146 solutions.py
 ```
 
-```python
+```{python}
 
 ```
