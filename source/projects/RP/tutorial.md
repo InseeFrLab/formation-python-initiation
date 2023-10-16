@@ -21,11 +21,11 @@ import solutions
 
 ## Partie 1 : Téléchargement et mise en forme des données
 
-Avant d'effectuer le téléchargement des données avec python il est nécessaire de connaitre le format de nos données. Dans notre cas, il s'agit du format Excel (`.xlsx`). De plus, il peut être utile de regarder à quoi ressemble les données que l'on souhaite importer, notamment lorsque leur format n'est pas standard. Ainsi, avant de commencer prenez le temps de jeter un oeil aux données.
+Avant d'effectuer le téléchargement des données avec python il est nécessaire de connaitre le format de nos données. Dans notre cas, il s'agit du format Excel (`.xlsx`). De plus, il peut être utile de regarder à quoi ressemble les données que l'on souhaite importer, notamment lorsque leur format n'est pas standard. Ainsi, avant de commencer, prenez le temps de jeter un oeil aux données.
 
 ### Question 0 
 
-Télécharger les données en cliquant sur ce [lien](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods) et ouvrez le avec votre logiciel tableur préféré. Analysez la structure des données.
+Téléchargez les données en cliquant sur ce [lien](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods) et ouvrez-le avec votre logiciel tableur préféré. Analysez la structure des données.
 
 ### Question 1
 
@@ -118,9 +118,7 @@ def plot_population_by_gender_per_department(data, department_code):
 
 Afin de comparer 2 graphiques il est parfois utile de les afficher côte à côte. Grâce à la méthode `subplots()` de `matplotlib` cela est très facile à réaliser en python. Pour le constater, nous allons représenter la pyramide des âges de la France en 1975 et en 2022.
 
-
-
-4.1- Définir la fonction `get_age_pyramid_data(df, year)` qui, à partir du DataFrame généré par la fonction `reshape_data()`, renvoie un DataFrame avec les colonnes `age`, `Femmes`, `Hommes`. La colonne `age` doit contenir toutes les tranches d'âges présentes dans le jeu de données, les colonnes `Femmes/Hommes` correspond à la population féminine/masculine pour une tranche d'âge donnée. Pour obtenir une pyramide des âges avec sa forme "habituelle", la colonne `Hommes` sera au préalable multipliée par -1.
+4.1- Définissez la fonction `get_age_pyramid_data(df, year)` qui, à partir du DataFrame généré par la fonction `reshape_data()`, renvoie un DataFrame avec les colonnes `age`, `Femmes`, `Hommes`. La colonne `age` doit contenir toutes les tranches d'âges présentes dans le jeu de données, les colonnes `Femmes/Hommes` correspond à la population féminine/masculine pour une tranche d'âge donnée. Dans un souci d'esthétique, la colonne `Hommes` sera au préalable multipliée par -1.
 
 #### Résultat attendu
 
@@ -137,7 +135,7 @@ def get_age_pyramid_data(df, year):
     return pyramide_data
 ```
 
-4.2- Définir la fonction `plot_age_pyramid(df, year, ax=None)` qui représente la pyramide des âges de la France pour une année donnée. Vous pouvez vous inspirer de ce qui a été fait dans ce [blog](https://maciejtarsa.medium.com/plotting-a-population-pyramid-in-python-52be034968b0).
+4.2- Définissez la fonction `plot_age_pyramid(df, year, ax=None)` qui représente la pyramide des âges de la France pour une année donnée. Vous pouvez vous inspirer de ce qui a été fait dans ce [blog](https://maciejtarsa.medium.com/plotting-a-population-pyramid-in-python-52be034968b0).
 
 #### Résultat attendu
 
@@ -168,7 +166,7 @@ Les données que nous avons actuellement contiennent les informations par dépar
 
 ### Question 5 
 
-Créer un DataFrame à partir du fichier `.json` des départements et régions de France précédemment mentionnés. Assurez-vous que les colonnes sont au bon format.
+Créez un DataFrame à partir du fichier `.json` des départements et régions de France précédemment mentionné. Assurez-vous que les colonnes soient au bon format.
 
 #### Résultat attendu
 
@@ -207,7 +205,7 @@ def match_department_regions(df, df_matching):
 
 ### Question 7
 
-Télécharger les données des contours géographiques des régions en utilisant le package `cartiflette` et la librairie `geopandas`. Les données sont accessibles via l'url suivant : [https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
+Téléchargez les données des contours géographiques des régions en utilisant le package `cartiflette` et la librairie `geopandas`. Les données sont accessibles via l'url suivant : [https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
 
 #### Résultat attendu
 
