@@ -11,8 +11,12 @@ COURSE_DIR=${CLONE_DIR}/source
 REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
 git clone --depth 1 $REPO_URL $CLONE_DIR
 
-# Put chapter data in the training dir
-rm $COURSE_DIR/${SECTION}/${CHAPTER}/tutorial.qmd
+# Build notebook from sources
+SOURCE_FILE=$COURSE_DIR/${SECTION}/${CHAPTER}/tutorial.qmd
+quarto render SOURCE_FILE --to ipynb
+
+# Put chapter files in the training dir
+rm SOURCE_FILE
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
 
 # Give write permissions
