@@ -1,0 +1,516 @@
+---
+title: "Structures de données 2 : dictionnaires et sets"
+abstract: "Découverte des structures de données non-ordonnées : dictionnaires et sets."
+execute:
+    echo: true
+    eval: false
+---
+
+Dans le tutoriel précédent, nous avons manipulé des structures de données de type séquentielles : les listes et les tuples. A présent, nous allons découvrir les dictionnaires et les sets, qui sont des structures de données non-ordonnées : les objets ne sont plus stockés par position (ou index) mais par **clé**, c'est à dire un identifiant unique.
+
+## Dictionnaires
+
+### Définition
+
+Les dictionnaires sont des **collections non-ordonnées de couples clé-valeur**. Un dictionnaire se définit selon la syntaxe suivante : `d = {'cle1': 'valeur1', 'cle2': 'valeur2'}`.
+
+
+```{python}
+inventaire = {'cafe': '500g', 'lait': '1,5L'}
+inventaire
+```
+
+
+```{python}
+type(inventaire)
+```
+
+Il est possible de mettre autant de clés que l'on souhaite dans un dictionnaire. En revanche, **les clés sont uniques**, afin d'identifier de manière certaine la valeur associée. Si l'on essaye de définir un dictionnaire avec une clé dupliquée, Python ne renvoie pas d'erreur, mais seule la dernière clé dupliquée est prise en compte.
+
+
+```{python}
+inventaire = {'cafe': '500g', 'lait': '1,5L', 'cafe': '300g'}
+inventaire
+```
+
+Que peut contenir un dictionnaire ? Les clés peuvent être de différents types, mais on n'utilise en général que les chaînes de caractères ou bien les entiers. Les valeurs d'un dictionnaire peuvent quant à elles être n'importe quel type d'objet Python.
+
+### Utilisation
+
+Comme les dictionnaires sont **non-ordonnés**, il n'y a pas de notion de position : on accède à une valeur par sa clé associée. Par exemple, pour récupérer la valeur (`'1,5L'`) associée à la clé `'lait'` : 
+
+
+```{python}
+inventaire['lait']
+```
+
+Des couples clé-valeur supplémentaires peuvent être ajoutés à un dictionnaire déjà existant, en utilisant la syntaxe de l'assignation de variable.
+
+
+```{python}
+inventaire["céréales"] = "250g"
+inventaire
+```
+
+A l'inverse des listes, les clés ne doivent pas nécessairement commencer à 0 et peuvent être n'importe quel nombre.
+
+
+```{python}
+dic1 = {12: "Averyon", 33: "Gironde"}
+
+print("Le département 33 est la " + dic1[33])  # Concaténation de strings !
+```
+
+De même, les valeurs peuvent être de différentes natures, y compris des conteneurs de données.
+
+
+```{python}
+dic2 = {"gamme" : "do majeur",
+        "notes": ["do", "re", "mi", "fa", "sol", "la", "si"]}
+
+dic2["notes"]
+```
+
+Les dictionnaires peuvent notamment contenir d'autres dictionnaires. Cela les rend particulièrement adaptés pour représenter des structures hiérarchiques de données.
+
+
+```{python}
+cv = {
+    "marc": {"poste": "manager", "experience": 7, "hobbies": ["couture", "frisbee"]},
+    "mirande": {"poste": "ingénieure", "experience": 5, "hobbies": ["trekking"]}
+}
+
+print(cv["marc"])
+print(cv["marc"]["hobbies"][0])
+```
+
+Répétons-le : les dictionnaires n'ont pas de notion d'ordre. Ainsi, il n'y a pas de sens à requêter l'élément de position `0` d'un dictionnaire (sauf si la clé `0` existe..). Requêter une clé inexistante renvoie une erreur.
+
+
+```{python}
+dic1 = {12: "Averyon", 33: "Gironde"}
+
+dic1[0]
+```
+
+### Modification d'éléments
+
+Il est possible de modifier une valeur associée à une clé existante dans le dictionnaire. La nouvelle valeur peut être de type différent de l'originale.
+
+
+```{python}
+inventaire = {'cafe': '500g', 'lait': '1,5L'}
+inventaire['cafe'] = {'arabica': '250g', 'robusta': '400g'}
+inventaire
+```
+
+### Suppression d'éléments
+
+Pour supprimer une clé (et la valeur associée), les mêmes opérations que celles qui permettent de supprimer des éléments dans une liste peuvent être utilisées.
+
+
+```{python}
+# Avec l'opérateur `del`
+inventaire = {'cafe': '500g', 'lait': '1,5L'}
+del inventaire['lait']
+inventaire
+```
+
+
+```{python}
+# Avec la méthode `pop`
+inventaire = {'cafe': '500g', 'lait': '1,5L'}
+inventaire.pop('lait')
+inventaire
+```
+
+### Quelques méthodes utiles
+
+Nous avons vu précédemment que le fait de requêter une clé qui n'existe pas renvoyait une erreur. La méthode `.get()` permet de requêter une clé sans être sûr de son existence, puisqu'elle ne renvoie aucune erreur dans ce cas, mais l'objet `None`, que nous verrons dans un prochain tutoriel.
+
+
+```{python}
+inventaire = {'cafe': '500g', 'lait': '1,5L'}
+inventaire.get('miel')
+```
+
+On peut d'ailleurs spécifier une valeur par défaut lorsque la clé n'existe pas.
+
+
+```{python}
+inventaire.get('miel', 'introuvable')
+```
+
+Les méthodes `.keys()`, `.values()` et `.items()` renvoient respectivement les clés, les valeurs, et les couples clés-valeurs d'un dictionnaire. Les objets retournés par ces méthodes sont un peu complexes, mais il est possible de les transformer en liste avec la fonction `list` pour pouvoir les requêter par position.
+
+
+```{python}
+cv = {
+    "marc": {"poste": "manager", "experience": 7, "hobbies": ["couture", "frisbee"]},
+    "mirande": {"poste": "ingénieure", "experience": 5, "hobbies": ["triathlon"]}
+}
+
+list(cv.keys())
+```
+
+
+```{python}
+list(cv.values())
+```
+
+
+```{python}
+list(cv.items())
+```
+
+## Sets
+
+### Définition
+
+Les sets sont des **collections non-ordonnées d'éléments uniques**. En cela, ils peuvent être vus comme des dictionnaires sans valeurs, dont on n'aurait conservé que les clés (uniques par définition dans un dictionnaire). Une autre analogie est celle des ensembles mathématiques, dont les éléments sont également non-ordonnés et uniques.
+
+Du fait de leur proximité avec les dictionnaires, les sets sont également définis par des accolades `{}`.
+
+
+```{python}
+x = {3, 2, 1}
+x
+```
+
+
+```{python}
+type(x)
+```
+
+De la même manière que les dictionnaires, les sets sont **non-ordonnés**, il n'y a donc pas de notion de position. Demander l'élément de position `i`, comme dans une liste, renvoie une erreur.
+
+
+```{python}
+x = {3, 2, 1}
+x[0]
+```
+
+### Modification d'éléments
+
+Il est possible d'ajouter un élément à un set via la méthode `add`.
+
+
+```{python}
+x = {3, 2, 1}
+x.add("4")
+x
+```
+
+Ajouter un élément déjà existant ne change rien par définition.
+
+
+```{python}
+x = {3, 2, 1}
+x.add(2)
+x
+```
+
+Il est possible de retirer un élément d'un set via la méthode `remove`.
+
+
+```{python}
+x = {3, 2, 1}
+x.remove(2)
+x
+```
+
+### Utilisation
+
+Les sets ne sont pas très souvent utilisés en pratique, mais ils s'avèrent bien utiles dans certaines situations précises. Du fait de l'unicité des éléments qu'ils contiennent, les sets permettent simplement et efficacement de supprimer les doublons dans un conteneur séquentiel, comme une liste.
+
+**Déduplication**
+
+Supposons que l'on veut supprimer les doublons dans une liste donnée. Par définition, le fait de transformer une liste en set supprime les doublons. Cependant, on a généralement envie de revenir à une liste, dans la mesure où les sets n'offrent pas la même flexibilité que les listes (par exemple, la possibilité de trouver un élément par position). Il est donc fréquent de faire la chaîne d'opération `list -> set -> list` pour dédupliquer une liste.
+
+
+```{python}
+l = [1, 2, 3, 3, 2, 1]
+l_dedup = list(set(l))
+l_dedup
+```
+
+**Opérations ensemblistes**
+
+Comme les sets représentent programmatiquement les ensembles mathématiques, il n'est pas étonnant qu'ils permettent de réaliser des opérations ensemblistes élémentaires. Par exemple, l'union et l'intersection.
+
+
+```{python}
+l1 = [5, 3, 2, 3, 3, 5, 8, 9]
+l2 = [3, 7, 0, 0, 1, 9, 4, 6]
+```
+
+
+```{python}
+# Union : éléments soit dans l1, soit dans l2, soit dans les deux
+l_union = list(set(l1) | set(l2))
+l_union
+```
+
+
+```{python}
+# Intersection : éléments à la fois dans l1 et dans l2
+l_inter = list(set(l1) & set(l2))
+l_inter
+```
+
+**Tests d'appartenance**
+
+Les sets sont également très utilisés pour réaliser des tests d'appartenance, dans la mesure où ils offrent de bien meilleures performances que les listes pour ce type de test.
+
+La notion de test fera l'objet d'un prochain tutoriel. Pour l'heure, retenons qu'un test d'appartenance du type "est-ce que l'élément `a` est dans la liste `l`" s'écrit en Python `a in l` et renvoie `True` ou `False` selon que `a` est effectivement présent dans la liste `l` ou non.
+
+
+```{python}
+l = [1, 2, 3]
+2 in l
+```
+
+
+```{python}
+4 in l
+```
+
+Maintenant, imaginons que nous réalisions ce test sur une liste contenant des millions d'éléments. En exagérant, l'interpréteur Python devrait alors parcourir tous les éléments de la liste un à un jusqu'à trouver l'élément en question, ce qui peut prendre très longtemps. 
+
+A l'inverse, comme les éléments d'un set sont uniques, Python peut facilement garder en mémoire la liste des éléments uniques contenus dans le set, et donc conclure très rapidement le test. Nous verrons une comparaison des performances dans un exercice de fin de tutoriel.
+
+NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle une "table de hachage" (*hash table*). Le lecteur intéressé pourra trouver plus d'informations à propos de cette structure de données [ici](http://mpechaud.fr/scripts/donnees/tablesdehachage.html).
+
+## Exercices
+
+### Questions de compréhension
+
+- 1/ Peut-on accéder au `i`ième élément d'un dictionnaire ? d'un set ?
+- 2/ Quels types d'objets peuvent être utilisés comme clés d'un dictionnaire ? Comme valeurs ?
+- 3/ Pour quels types de données a-t-on intérêt à utiliser un dictionnaire ?
+- 4/ Un dictionnaire peut-il avoir des doublons dans ses clés ?
+- 5/ Pourquoi peut-on dire qu'un set est un dictionnaire particulier ?
+- 6/ Pourquoi les sets sont-ils utilisés pour dédupliquer des listes ?
+- 7/ Pourquoi les sets sont-ils plus pertinents que les listes pour réaliser des tests d'appartenance ?
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 3-20 solutions.py
+```
+
+### Exercice
+
+Soit le dictionnaire défini dans la cellule ci-dessous.
+
+Affichez à l'aide d'opérations `print` : 
+- la liste des noms des différentes classes
+- la note de Miranda en histoire
+- la liste des notes obtenues par Hypolyte
+- la liste des noms des élèves de la 6emeB
+- la liste des matières enseignées en 6eme A
+- la liste de toutes les matières enseignées
+- la liste des notes obtenues par les filles des deux classes
+
+
+```{python}
+resultats = {
+    "6emeA": {"Miranda" : {"notes": {"physique": 16, "histoire": 12}},
+              "Celestin": {"notes": {"physique": "absent", "histoire": 18}}
+             },
+    "6emeB": {"Hypolyte": {"notes": {"maths": 11, "anglais": 0}},
+              "Josephine": {"notes": {"maths": 16, "anglais": 20}}
+             }
+}
+```
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 24-38 solutions.py
+```
+
+### Exercice
+
+Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de compter le nombre d'éléments d'une séquence. Est-ce que cette fonction fonctionne avec les dictionnaires ? Que compte-t-elle alors ?
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 42-50 solutions.py
+```
+
+### Exercice
+
+Nous avons vu qu'on pouvait supprimer une clé d'un dictionnaire de deux manières différentes :
+- avec l'opérateur `del` : `del mon_dict[clé]`
+- avec la méthode `pop` : `mon_dict.pop(clé)`
+
+Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces deux manières de supprimer une clé d'un dictionnaire ? N'hésitez pas à expérimenter avec des exemples de votre choix.
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 54-65 solutions.py
+```
+
+### Exercice
+
+En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'un dictionnaire renvoie la valeur associée à cette clé, proposez une méthode pour renommer une clé d'un dictionnaire en une seule opération.
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 69-73 solutions.py
+```
+
+### Exercice
+
+Soit le dictionnaire suivant :
+
+`animaux = {'chats': 5, 'chiens': 12}`
+
+Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédictions.
+
+- `'chats' in animaux.keys()`
+
+- `'chats' in animaux.values()`
+
+- `'chats' in animaux`
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 77-91 solutions.py
+```
+
+### Exercice
+
+Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait pour supprimer une clé inexistante d'un dictionnaire. A l'aide de vos nouvelles connaissances sur les tests d'appartenance, pouvez-vous imaginer une méthode (sans nécessairement l'implémenter) qui permettrait de traiter ce cas sans erreur ?
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 95-104 solutions.py
+```
+
+### Exercice
+
+Soit la chaîne de caractères avec répétition suivante :
+
+`x = "cdabcdabcdabcdabcdabcdabcdabcdabcdab"`
+
+Construisez une liste des caractères uniques se trouvant dans cette chaîne, classée par ordre alphabétique, soit :
+
+`l = ['a', 'b', 'c', 'd']`
+
+Indice : la procédure est semblable au fait de supprimer les doublons d'une liste.
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 108-111 solutions.py
+```
+
+### Exercice
+
+Soit les deux chaînes de caractères suivantes.
+
+`cyrano1 = 'C’est un roc ! … c’est un pic ! … c’est un cap !'`
+
+`cyrano2 = 'Que dis-je, c’est un cap ? … C’est une péninsule !'`
+
+Question 1 : trouvez les caractères qui apparaissent à la fois dans les deux chaînes.
+
+Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux textes.
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 115-126 solutions.py
+```
+
+### Exercice
+
+Le code ci-dessous génère une liste avec les lettres a, b, c et d répétées 1 million de fois. Ensuite, il réalise un test d'appartenance d'une lettre qui n'existe pas dans la liste, et calcule le temps mis par l'interpréteur Python pour réaliser le test.
+
+En reprenant cette syntaxe, comparez le temps mis par le même test d'appartenance lorsqu'on transforme la liste en set au préalable.
+
+
+```{python}
+x = ['a', 'b', 'c', 'd'] * 1000000
+print(x[:10])
+
+%time 'e' in x
+```
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 130-141 solutions.py
+```
+
+
+```{python}
+
+```

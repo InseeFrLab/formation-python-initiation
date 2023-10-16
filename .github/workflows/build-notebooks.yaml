@@ -15,24 +15,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Set up Python dependencies
-        run: pip install jupytext python-frontmatter
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
 
-      - name: Build notebooks
+      - name: Put rendered notebooks in separate directory
         run: |
           rm -r notebooks/
           cp -r source/ notebooks/
-          find notebooks/ -name '*.md' | xargs python utils/md_to_ipynb.py
-          find notebooks/ -type f -name '*.md' -delete
+          find notebooks/ -type f -name '*.qmd' -delete
 
       - name: Commit and push notebooks
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add notebooks/
+          git add notebooks/ _freeze/
           git commit -m "Automated changes"
           git push
