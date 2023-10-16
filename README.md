@@ -2,4 +2,13 @@
 
 *Contributeurs : Romain Avouac, Yves-Laurent Bénichou, Olivier Chateau, Thomas Faria, Antoine Palazzolo*
 
+## Déploiement à partir du SSP Cloud
+
 Ce projet contient les supports de cours de l'auto-formation d'initiation à Python proposée sur le [SSP Cloud](https://datalab.sspcloud.fr/home). A partir de la [page de la formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D), les différents chapitres peuvent être déployés en un clic sous la forme d'un Notebook Jupyter.
+
+## Génération des notebooks
+
+Afin de favoriser la reproductibilité de la formation, les sources des supports de cours sont disponibles au format `.qmd` ([Quarto](https://quarto.org/)) dans le dossier `source/`. Les notebooks `Jupyter` (format `.ipynb`) exécutables associés peuvent être générés en suivant les étapes suivantes :
+- [installer Quarto](https://quarto.org/docs/get-started/)
+- installer les packages `Python` nécessaires : `pip install -r requirements.txt`
+- générer les notebooks : `quarto render`
