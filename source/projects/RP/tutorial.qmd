@@ -294,4 +294,3 @@ solutions.plot_growth_population_by_regions(df_regions, geo, 2015, 2022)
 def plot_growth_population_by_regions(df, geo, min_year, max_year):
     # Votre code ici
 ```
-

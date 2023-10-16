@@ -1,3 +1,7 @@
+project:
+  render:
+    - source/
+
 execute:
   freeze: auto
 
