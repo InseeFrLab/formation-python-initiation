@@ -1,1 +1,7 @@
+geopandas
 jupyter
+matplotlib
+numpy
+pandas
+requests
+seaborn
