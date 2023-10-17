@@ -14,10 +14,10 @@ def affiche_grille(grille):
     for row in grille:
         print("| " + " | ".join(row) + " |")
 
-        
+
 def tour(grille, colonne_a_jouer, couleur_pion):
     grille = copy.deepcopy(grille)
-    
+
     if grille[0][colonne_a_jouer] != " ":
         # Si la colonne choisie n'a aucune case vide, on renvoie une erreur
         raise ValueError("La colonne choisie est déjà complète.")

@@ -1,0 +1,127 @@
+---
+title: "Projet 3 - Analyse de données météo issues d'API"
+abstract: "Ce projet vise à introduire au requêtage d'API et à la manipulation de données qui en sont issues, en utilisant des fonctions afin de faciliter la reproductibilité des analyses."
+execute:
+    echo: true
+    eval: false
+---
+
+```{python}
+!pip install requests matplotlib seaborn
+```
+
+```{python}
+import requests
+```
+
+```{python}
+def renvoie_lat_long(localisation):
+    base_url = "https://nominatim.openstreetmap.org/search"
+    params = {
+        "q": localisation,
+        "format": "json"
+    }
+    response = requests.get(base_url, params=params)
+    if response.status_code == 200:
+        json_data = response.json()
+        latitude = float(json_data[0]["lat"])
+        longitude = float(json_data[0]["lon"])
+        return (latitude, longitude)
+    else:
+        print(f"Erreur lors de la récupération des coordonnées de {localisation}")
+        return None
+```
+
+```{python}
+def fetch_meteo_data(latitude, longitude, api_key):
+    url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&amp;longitude={longitude}&amp;daily=temperature_2m_max,temperature_2m_min,humidity_2m_mean,wind_speed_10m_max&amp;timezone=Europe/Paris"
+    
+    try:
+        response = requests.get(url, headers={"Authorization": f"Bearer {api_key}"})
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as e:
+        print(f"Erreur lors de la requête : {e}")
+        return None
+```
+
+```{python}
+data = fetch_meteo_data(*renvoie_lat_long("Paris"), YOUR_API_KEY)
+
+# Afficher les clés principales
+print(data.keys())
+
+# Afficher les premières dates
+print(data['time']['daily'][:5])
+
+# Calculer la moyenne des températures maximales et minimales pour la première semaine
+max_temps = data['daily']['temperature_2m_max'][:7]
+min_temps = data['daily']['temperature_2m_min'][:7]
+
+avg_max = sum(max_temps) / len(max_temps)
+avg_min = sum(min_temps) / len(min_temps)
+
+print(f"Température maximale moyenne pour la première semaine : {avg_max:.2f}°C")
+print(f"Température minimale moyenne pour la première semaine : {avg_min:.2f}°C")
+```
+
+```{python}
+humidity = data['daily']['humidity_2m_mean']
+wind_speed = data['daily']['wind_speed_10m_max']
+
+# Calcul de l'indice de mauvaise coiffure
+bad_hair_index = [hum * wind for hum, wind in zip(humidity, wind_speed)]
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(14, 6))
+plt.plot(data['time']['daily'], data['daily']['temperature_2m_max'], label='Température maximale', color='red')
+plt.plot(data['time']['daily'], data['daily']['temperature_2m_min'], label='Température minimale', color='blue')
+plt.xlabel('Date')
+plt.ylabel('Température (°C)')
+plt.title("Évolution des températures sur une année à Paris")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+```{python}
+plt.figure(figsize=(14, 6))
+plt.plot(data['time']['daily'], bad_hair_index, label='Indice de Mauvaise Coiffure', color='purple')
+plt.xlabel('Date')
+plt.ylabel('Indice')
+plt.title("Indice de Mauvaise Coiffure sur une année à Paris")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+```{python}
+import seaborn as sns
+import numpy as np
+
+def plot_heatmap(data):
+    temperatures = np.array(data['daily']['temperature_2m_max']).reshape(-1, 7)
+    days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
+    
+    plt.figure(figsize=(10, 30))
+    sns.heatmap(temperatures, cmap='coolwarm', cbar_kws={'label': 'Température (°C)'}, xticklabels=days, yticklabels=False)
+    plt.title('Heatmap des températures maximales par semaine à Paris')
+    plt.xlabel('Jour de la semaine')
+    plt.ylabel('Semaine de l\'année')
+    plt.show()
+
+plot_heatmap(data)
+```
+
+N'oubliez pas d'installer les packages nécessaires à l'aide de pip :bash
+```bash
+pip install requests matplotlib seaborn
+```
+
+Et remplacez ```YOUR_API_KEY``` par votre clé API d'Open-Meteo.
+
+Voilà pour ce tutoriel ! Vous avez maintenant une introduction complète à l'analyse et à la visualisation des données météorologiques avec Python, enrichie de quelques éléments amusants pour rendre l'apprentissage encore plus agréable.
+
