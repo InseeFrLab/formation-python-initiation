@@ -1,127 +1,133 @@
 ---
-title: "Projet 3 - Analyse de données météo issues d'API"
+title: Projet 2 - Interaction avec des APIs
 abstract: "Ce projet vise à introduire au requêtage d'API et à la manipulation de données qui en sont issues, en utilisant des fonctions afin de faciliter la reproductibilité des analyses."
 execute:
     echo: true
     eval: false
 ---
 
-```{python}
-!pip install requests matplotlib seaborn
-```
+## Contexte du projet
+
+Il y a certains jours où l'on serait bien resté en télétravail.. Parmi ceux-là, ces jours à la fois humides et venteux où il est impossible de maintenir une coiffure décente, malgré tous ses efforts. Pourrait-on utiliser `Python` pour prédire ce que les anglo-saxons nomment des *bad hair day* ("mauvais jour de cheveux") ?
+
+L'objectif du projet est de construire un *bad hair index* ("indice de mauvais jour de cheveux") à partir des données météorologiques et de représenter graphiquement l'évolution de cette indice afin de déterminer à l'avance les jours où l'on ferait mieux de rester bien au chaud. Afin d'obtenir les données adéquates, nous allons requêter des APIs.
+
+Une API (Interface de Programmation d'Application) est un ensemble de règles et de spécifications que les applications suivent pour communiquer entre elles. Elle permet à votre code d'**accéder à des fonctionnalités externes ou à des données**, comme celles de bases de données météorologiques ou de services de localisation. Lorsqu'on parle de requêtage d'une API, cela se fait généralement via le **protocole HTTP**, qui est le même protocole utilisé pour charger des pages web. Dans ce tutoriel, nous utiliserons le package [requests](https://fr.python-requests.org/en/latest/), qui simplifie le processus de requêtage et de gestion de réponses HTTP.
+
+Les APIs que nous allons utiliser sont :
+
+- [Nominatim](https://nominatim.org/release-docs/latest/api/Overview/) : une API de géocodage proposée par **OpenStreetMap** qui nous permet de convertir un nom de lieu en coordonnées géographiques.
+- [Open-Meteo Weather Forecast](https://open-meteo.com/en/docs) : une API qui fournit des prévisions météorologiques détaillées. 
+
+Commençons par importer les packages dont nous aurons besoin au cours de ce projet.
 
 ```{python}
 import requests
-```
-
-```{python}
-def renvoie_lat_long(localisation):
-    base_url = "https://nominatim.openstreetmap.org/search"
-    params = {
-        "q": localisation,
-        "format": "json"
-    }
-    response = requests.get(base_url, params=params)
-    if response.status_code == 200:
-        json_data = response.json()
-        latitude = float(json_data[0]["lat"])
-        longitude = float(json_data[0]["lon"])
-        return (latitude, longitude)
-    else:
-        print(f"Erreur lors de la récupération des coordonnées de {localisation}")
-        return None
-```
-
-```{python}
-def fetch_meteo_data(latitude, longitude, api_key):
-    url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&amp;longitude={longitude}&amp;daily=temperature_2m_max,temperature_2m_min,humidity_2m_mean,wind_speed_10m_max&amp;timezone=Europe/Paris"
-    
-    try:
-        response = requests.get(url, headers={"Authorization": f"Bearer {api_key}"})
-        response.raise_for_status()
-        return response.json()
-    except requests.RequestException as e:
-        print(f"Erreur lors de la requête : {e}")
-        return None
-```
-
-```{python}
-data = fetch_meteo_data(*renvoie_lat_long("Paris"), YOUR_API_KEY)
-
-# Afficher les clés principales
-print(data.keys())
-
-# Afficher les premières dates
-print(data['time']['daily'][:5])
-
-# Calculer la moyenne des températures maximales et minimales pour la première semaine
-max_temps = data['daily']['temperature_2m_max'][:7]
-min_temps = data['daily']['temperature_2m_min'][:7]
-
-avg_max = sum(max_temps) / len(max_temps)
-avg_min = sum(min_temps) / len(min_temps)
-
-print(f"Température maximale moyenne pour la première semaine : {avg_max:.2f}°C")
-print(f"Température minimale moyenne pour la première semaine : {avg_min:.2f}°C")
-```
-
-```{python}
-humidity = data['daily']['humidity_2m_mean']
-wind_speed = data['daily']['wind_speed_10m_max']
-
-# Calcul de l'indice de mauvaise coiffure
-bad_hair_index = [hum * wind for hum, wind in zip(humidity, wind_speed)]
-```
-
-```{python}
+import pandas
+import seaborn as sns
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(14, 6))
-plt.plot(data['time']['daily'], data['daily']['temperature_2m_max'], label='Température maximale', color='red')
-plt.plot(data['time']['daily'], data['daily']['temperature_2m_min'], label='Température minimale', color='blue')
-plt.xlabel('Date')
-plt.ylabel('Température (°C)')
-plt.title("Évolution des températures sur une année à Paris")
-plt.legend()
-plt.grid(True)
-plt.show()
+import solutions
+```
+
+## Partie 1 : récupération des coordonnées géographiques pour une localisation donnée
+
+Avant de récupérer des données météo, nous avons besoin des coordonnées géographiques du lieu d'intérêt. Construisons une fonction qui utilise l'API `Nominatim` pour obtenir ces coordonnées.
+
+Testons cette fonction sur un exemple concret :
+
+```{python}
+LOCALISATION = "Montrouge"
+lat, long = solutions.renvoie_lat_long(LOCALISATION)
+
+print(f"Localisation : {LOCALISATION}, latitude : {lat}, longitude : {long}")
+```
+
+## Partie 2 : récupération des prévisions météorologiques
+
+Maintenant que nous avons nos coordonnées, nous pouvons requêter l'API open-meteo.com pour obtenir les données météo.
+
+```{python}
+
+```
+
+Exécutons cette fonction pour obtenir les données météo prévisionnelles de la semaine à venir.
+
+```{python}
+LOCALISATION = "Montrouge"
+LAT, LONG = renvoie_lat_long(LOCALISATION)
+
+data = fetch_meteo_data(LAT, LONG, START_DATE, END_DATE)
+```
+
+Afin de bien comprendre la structure des données que nous avons récupérées, explorons les différents niveaux et types des clés et des valeurs.
+
+```{python}
+# Exploration des données
+print(type(data))
+print(data.keys())
+print(type(data["hourly"]))
+print(data["hourly"].keys())
+print(type(data["hourly"]["time"]))
 ```
 
 ```{python}
-plt.figure(figsize=(14, 6))
-plt.plot(data['time']['daily'], bad_hair_index, label='Indice de Mauvaise Coiffure', color='purple')
-plt.xlabel('Date')
-plt.ylabel('Indice')
-plt.title("Indice de Mauvaise Coiffure sur une année à Paris")
-plt.legend()
-plt.grid(True)
-plt.show()
+# Afficher les données
+print(data['hourly']["time"][:5])
+print(data['hourly']["time"][-5:])
+print()
+print(data['hourly']["relativehumidity_2m"][:5])
+print(data['hourly']["windspeed_10m"][:5])
+```
+
+## Partie 3 : construction et visualisation d'un *bad hair index*
+
+`Pandas` est une bibliothèque puissante pour la manipulation de données. Elle facilite la gestion, la transformation et l'analyse des données.
+
+```{python}
+data_dict = {
+    'time': data['hourly']["time"],
+    'humidity': data['hourly']["relativehumidity_2m"],
+    'wind_speed': data['hourly']["windspeed_10m"]
+}
+
+df = pd.DataFrame(data_dict)
+df['time'] = pd.to_datetime(df['time'])  # Convertir la colonne time en objet datetime
+df.head()
+```
+
+Nous définissons cet indice comme le produit de l'humidité relative et de la vitesse du vent. Il s'agit d'une mesure ludique de la probabilité d'avoir une "mauvaise coiffure" en raison des conditions météorologiques.
+
+```{python}
+df['bad_hair_index'] = df['humidity'] * df['wind_speed']
+
+df.head()
 ```
 
 ```{python}
-import seaborn as sns
-import numpy as np
-
-def plot_heatmap(data):
-    temperatures = np.array(data['daily']['temperature_2m_max']).reshape(-1, 7)
-    days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
-    
-    plt.figure(figsize=(10, 30))
-    sns.heatmap(temperatures, cmap='coolwarm', cbar_kws={'label': 'Température (°C)'}, xticklabels=days, yticklabels=False)
-    plt.title('Heatmap des températures maximales par semaine à Paris')
-    plt.xlabel('Jour de la semaine')
-    plt.ylabel('Semaine de l\'année')
-    plt.show()
-
-plot_heatmap(data)
+df['day'] = df['time'].dt.day
+df_daily_mean = df.groupby('day').agg({'bad_hair_index': 'mean'}).reset_index()
+df_daily_mean.head()
 ```
 
-N'oubliez pas d'installer les packages nécessaires à l'aide de pip :bash
-```bash
-pip install requests matplotlib seaborn
+```{python}
+sns.lineplot(x='day', y='bad_hair_index', data=df_daily_mean)
+plt.title("Évolution du Bad Hair Index moyen sur 7 jours")
+plt.xlabel('Jour')
+plt.ylabel('Bad Hair Index moyen')
 ```
 
-Et remplacez ```YOUR_API_KEY``` par votre clé API d'Open-Meteo.
+```{python}
+df['hour'] = df['time'].dt.hour
+df_hourly_mean = df.groupby('hour').agg({'bad_hair_index': 'mean'}).reset_index()
+df_hourly_mean.head()
+```
 
-Voilà pour ce tutoriel ! Vous avez maintenant une introduction complète à l'analyse et à la visualisation des données météorologiques avec Python, enrichie de quelques éléments amusants pour rendre l'apprentissage encore plus agréable.
+```{python}
+sns.lineplot(x='hour', y='bad_hair_index', data=df_hourly_mean)
+plt.title("Moyenne du Bad Hair Index heure par heure sur 7 jours")
+plt.xlabel('Heure')
+plt.ylabel('Bad Hair Index Moyen')
+```
+
 
