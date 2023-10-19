@@ -32,15 +32,54 @@ import solutions
 
 ## Partie 1 : récupération des coordonnées géographiques pour une localisation donnée
 
-Avant de récupérer des données météo, nous avons besoin des coordonnées géographiques du lieu d'intérêt. Construisons une fonction qui utilise l'API `Nominatim` pour obtenir ces coordonnées.
+L'API de prédiction d'open-meteo prend en entrée les coordonnées géographiques (latitude, longitude) du lieu où seront réalisées les prédictions. On pourrait récupérer manuellement les coordonnées du lieu qui nous intéresse, mais cela limiterait la reproductibilité de nos analyses avec d'autres lieux que celui choisi. On va donc utiliser une seconde API, `Nominatim`, pour obtenir ces coordonnées pour un lieu donné.
 
-Testons cette fonction sur un exemple concret :
+Lorsque l'on travaille à partir d'une API, la première étape est toujours de lire sa documentation. C'est elle qui indique à quelle adresse nous devons envoyer nos requêtes, sous quel format, et ce que va nous répondre l'API. Dans notre cas, la docuemntation de `Nominatim` se trouve à [cette adresse](https://nominatim.org/release-docs/develop/api/Overview/). N'hésitez pas à la parcourir rapidement pour évaluer les possibilités de l'API.
+
+### Question 1
+
+La première caractéristique essentielle d'une API est le *endpoint*, c'est à dire l'URL à laquelle on va envoyer des requêtes. Dans notre cas, on va utiliser le endpoint `/search` dans la mesure où l'on veut trouver un objet géographique (des coordonnées) à partir d'un nom de localisation. La [page de documentation]([/search](https://nominatim.org/release-docs/develop/api/Search/)) associée à ce endpoint nous donne toutes les informations dont nous avons besoin :
+- le format d'une requête est `https://nominatim.openstreetmap.org/search?<params>` où `<params>` doit être remplacé par les paramètres de la requête, séparés par le symbole `&`
+- dans la section [Structured Query](https://nominatim.org/release-docs/develop/api/Search/#structured-query), on voit que l'API admet comme paramètres `country` (pays) et `city` (ville), que l'on va utiliser pour paramétrer notre requête. 
+
+Définissez une fonction `build_request_nominatim` qui construit le lien de la requête pour un pays et une ville donnée.
+
+#### Résultat attendu
 
 ```{python}
-LOCALISATION = "Montrouge"
-lat, long = solutions.renvoie_lat_long(LOCALISATION)
+url_request = solutions.build_request_nominatim("France", "Montrouge")
+url_request
+```
 
-print(f"Localisation : {LOCALISATION}, latitude : {lat}, longitude : {long}")
+#### À vous de jouer !
+
+```{python}
+def build_request_nominatim(country, city):
+    # Votre code ici
+    return url_request
+```
+
+### Question 2
+
+La prochaine étape est d'envoyer notre requête paramétrisée à l'API. Pour la tester au préalable, on peut simplement mettre l'adresse dans un navigateur et voir ce que nous renvoie l'API. Si les résultats ont l'air cohérent, on peut continuer. Si l'API nous renvoie un code d'erreur, il y a sûrement une erreur à trouver dans la requête. 
+
+Pour effectuer cette requête à partir de `Python` afin d'en récupérer les résultats, on utilise la fonction `requests.get()` à laquelle on fournit comme seul paramètre l'URL de la requête. On obtient en retour un objet "réponse", dont on peut extraire le contenu `JSON` sous forme d'un dictionnaire `Python` en lui appliquant la méthode `.json()`. Il faut alors parcourir le dictionnaire pour en extraire les informations pertinentes ; dans notre cas : la latitude et la longitude.
+
+Définissez une fonction `get_lat_long` qui récupère la latitude et la longitude (centrale) pour un pays et une ville donnée.
+
+#### Résultat attendu
+
+```{python}
+lat, long = solutions.get_lat_long("France", "Montrouge")
+print(lat, long)
+```
+
+#### À vous de jouer !
+
+```{python}
+def get_lat_long(country, city):
+    # Votre code ici
+    return latitude, longitude
 ```
 
 ## Partie 2 : récupération des prévisions météorologiques
