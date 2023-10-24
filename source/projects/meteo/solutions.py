@@ -31,7 +31,8 @@ def get_meteo_data(query):
     response = requests.get(query)
     code = response.status_code
     if code == 200:
-        return response.json()
+        data = response.json()
+        return data
     else:
         print(f"Erreur lors de la récupération des données météo. Code d'erreur : {code}")
         return None

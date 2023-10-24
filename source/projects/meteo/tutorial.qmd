@@ -131,7 +131,11 @@ url_request_open_meteo
 
 A nouveau, on utilise la fonction `requests.get()` pour soumettre la requête à l'API. On obtient en retour un objet "réponse", dont on peut extraire le contenu `JSON` sous forme d'un dictionnaire `Python` en lui appliquant la méthode `.json()`.
 
-Définissez une fonction `get_meteo_data` qui récupère le dictionnaire complet de données retourné par l'API suite à notre requête.
+Mais que se passe-t-il dans le cas où la requête soumise est invalide (faute de frappe, paramètres inexistants, etc.) ? Dans ce cas, l'API nous renvoie une erreur. L'objet réponse de la requête contient un attribut `.status_code` qui donne le code de réponse d'une requête. Le code `200` indique la réussite d'une requête ; tout autre code indique une erreur.
+
+Définissez une fonction `get_meteo_data` qui récupère le dictionnaire complet de données retourné par l'API suite à notre requête. Le comportement de la fonction doit cependant dépendre du code de réponse de la requête :
+- si le code vaut `200`, la fonction renvoie le dictionnaire des prédictions ;
+- si le code est différent de `200`, la fonction affiche le code d'erreur et renvoie `None`.
 
 #### Résultat attendu
 
@@ -149,9 +153,9 @@ print(output)
 #### À vous de jouer !
 
 ```{python}
-def build_request_open_meteo(latitude, longitude):
+def get_meteo_data(query):
     # Votre code ici
-    return url_request
+    return response.json()
 ```
 
 ```{python}
@@ -167,18 +171,20 @@ print(output)
 
 ### Question 5
 
-Afin de bien comprendre la structure des données que nous avons récupérées, explorons les différents niveaux et types des clés et des valeurs.
+Afin de bien comprendre la structure des données que nous avons récupérées, explorez le dictionnaire des prédictions retourné par l'API (clefs, différents niveaux, format des prédictions, format de la variable indiquant les dates/heures des prédictions, etc.)
 
 ```{python}
+#| code-fold: true
+#| code-summary: "Afficher le code"
+
 # Exploration des données
 print(type(data))
 print(data.keys())
 print(type(data["hourly"]))
 print(data["hourly"].keys())
 print(type(data["hourly"]["time"]))
-```
+print()
 
-```{python}
 # Afficher les données
 print(data['hourly']["time"][:5])
 print(data['hourly']["time"][-5:])
