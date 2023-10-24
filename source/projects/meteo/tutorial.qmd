@@ -38,7 +38,7 @@ Lorsque l'on travaille à partir d'une API, la première étape est toujours de 
 
 ### Question 1
 
-La première caractéristique essentielle d'une API est le *endpoint*, c'est à dire l'URL à laquelle on va envoyer des requêtes. Dans notre cas, on va utiliser le endpoint `/search` dans la mesure où l'on veut trouver un objet géographique (des coordonnées) à partir d'un nom de localisation. La [page de documentation]([/search](https://nominatim.org/release-docs/develop/api/Search/)) associée à ce endpoint nous donne toutes les informations dont nous avons besoin :
+La première caractéristique essentielle d'une API est le *endpoint*, c'est à dire l'URL à laquelle on va envoyer des requêtes. Dans notre cas, on va utiliser le *endpoint* `/search` dans la mesure où l'on veut trouver un objet géographique (des coordonnées) à partir d'un nom de localisation. La [page de documentation]([/search](https://nominatim.org/release-docs/develop/api/Search/)) associée à ce *endpoint* nous donne toutes les informations dont nous avons besoin :
 - le format d'une requête est `https://nominatim.openstreetmap.org/search?<params>` où `<params>` doit être remplacé par les paramètres de la requête, séparés par le symbole `&`
 - dans la section [Structured Query](https://nominatim.org/release-docs/develop/api/Search/#structured-query), on voit que l'API admet comme paramètres `country` (pays) et `city` (ville), que l'on va utiliser pour paramétrer notre requête. 
 
@@ -47,8 +47,8 @@ Définissez une fonction `build_request_nominatim` qui construit le lien de la r
 #### Résultat attendu
 
 ```{python}
-url_request = solutions.build_request_nominatim("France", "Montrouge")
-url_request
+url_request_nominatim = solutions.build_request_nominatim("France", "Montrouge")
+url_request_nominatim
 ```
 
 #### À vous de jouer !
@@ -57,6 +57,11 @@ url_request
 def build_request_nominatim(country, city):
     # Votre code ici
     return url_request
+```
+
+```{python}
+url_request_nominatim = build_request_nominatim("France", "Montrouge")
+url_request_nominatim
 ```
 
 ### Question 2
@@ -70,34 +75,97 @@ Définissez une fonction `get_lat_long` qui récupère la latitude et la longitu
 #### Résultat attendu
 
 ```{python}
-lat, long = solutions.get_lat_long("France", "Montrouge")
+lat, long = solutions.get_lat_long(query=url_request_nominatim)
 print(lat, long)
+print(type(lat))
+print(type(long))
 ```
 
 #### À vous de jouer !
 
 ```{python}
-def get_lat_long(country, city):
+def get_lat_long(query):
     # Votre code ici
     return latitude, longitude
 ```
 
+```{python}
+lat, long = get_lat_long(query=url_request_nominatim)
+print(lat, long)
+print(type(lat))
+print(type(long))
+```
+
 ## Partie 2 : récupération des prévisions météorologiques
 
-Maintenant que nous avons nos coordonnées, nous pouvons requêter l'API open-meteo.com pour obtenir les données météo.
+Maintenant que nous pouvons récupérer les coordonnées associées à une localisation donnée, nous pouvons requêter l'API `open-meteo.com` pour obtenir les données de prédiction météo associées à ces coordonnées. Là encore, la première étape est de s'intéresser à la documentation ([page d'accueil](https://open-meteo.com/), [doc](https://open-meteo.com/en/docs)), qui nous fournit plusieurs informations :
+- le *endpoint* pour l'API de prédiction est `https://api.open-meteo.com/v1/forecast`
+- l'API attend en entrée une `latitude` et une `latitude`, ainsi que les variables météorologiques souhaitées. Pour notre problématique, nous allons récupérer des informations sur le taux d'humidité (`relativehumidity_2m`) et la vitesse du vent (`windspeed_10m`)
+- par défaut, l'API renvoie des prédictions à 7 jours
+
+### Question 3
+
+Sachant toutes ces informations et en vous aidant de la documentation, définissez une fonction `build_request_open_meteo` qui construit le lien de la requête pour une latitude et une longitude donnée. Là encore, il est possible de tester la validité de la requête en exécutant le lien dans un navigateur et en vérifiant que les résultats retournés paraissent cohérents.
+
+#### Résultat attendu
 
 ```{python}
-
+url_request_open_meteo = solutions.build_request_open_meteo(latitude=lat, longitude=long)
+url_request_open_meteo
 ```
 
-Exécutons cette fonction pour obtenir les données météo prévisionnelles de la semaine à venir.
+#### À vous de jouer !
 
 ```{python}
-LOCALISATION = "Montrouge"
-LAT, LONG = renvoie_lat_long(LOCALISATION)
-
-data = fetch_meteo_data(LAT, LONG, START_DATE, END_DATE)
+def build_request_open_meteo(latitude, longitude):
+    # Votre code ici
+    return url_request
 ```
+
+```{python}
+url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
+url_request_open_meteo
+```
+
+### Question 4
+
+A nouveau, on utilise la fonction `requests.get()` pour soumettre la requête à l'API. On obtient en retour un objet "réponse", dont on peut extraire le contenu `JSON` sous forme d'un dictionnaire `Python` en lui appliquant la méthode `.json()`.
+
+Définissez une fonction `get_meteo_data` qui récupère le dictionnaire complet de données retourné par l'API suite à notre requête.
+
+#### Résultat attendu
+
+```{python}
+predictions = solutions.get_meteo_data(url_request_open_meteo)
+type(predictions)
+```
+
+```{python}
+wrong_request = solutions.build_request_open_meteo(latitude=lat, longitude="dix-sept-virgule-quatre")
+output = solutions.get_meteo_data(wrong_request)
+print(output)
+```
+
+#### À vous de jouer !
+
+```{python}
+def build_request_open_meteo(latitude, longitude):
+    # Votre code ici
+    return url_request
+```
+
+```{python}
+predictions = get_meteo_data(url_request_open_meteo)
+type(predictions)
+```
+
+```{python}
+wrong_request = build_request_open_meteo(latitude=lat, longitude="dix-sept-virgule-quatre")
+output = get_meteo_data(wrong_request)
+print(output)
+```
+
+### Question 5
 
 Afin de bien comprendre la structure des données que nous avons récupérées, explorons les différents niveaux et types des clés et des valeurs.
 
@@ -168,5 +236,3 @@ plt.title("Moyenne du Bad Hair Index heure par heure sur 7 jours")
 plt.xlabel('Heure')
 plt.ylabel('Bad Hair Index Moyen')
 ```
-
-

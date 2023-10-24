@@ -9,9 +9,8 @@ def build_request_nominatim(country, city):
     return url_request
 
 
-def get_lat_long(country, city):
-    url_request = build_request_nominatim(country, city)
-    response = requests.get(url_request)
+def get_lat_long(query):
+    response = requests.get(query)
     code = response.status_code
     if code == 200:
         json_data = response.json()
@@ -23,9 +22,13 @@ def get_lat_long(country, city):
         return None
 
 
-def get_meteo_data(latitude, longitude):
+def build_request_open_meteo(latitude, longitude):
     url_request = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=relativehumidity_2m,windspeed_10m"
-    response = requests.get(url_request)
+    return url_request
+
+
+def get_meteo_data(query):
+    response = requests.get(query)
     code = response.status_code
     if code == 200:
         return response.json()
