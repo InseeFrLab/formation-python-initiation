@@ -60,6 +60,7 @@ def build_request_nominatim(country, city):
 ```
 
 ```{python}
+# Vérification du résultat
 url_request_nominatim = build_request_nominatim("France", "Montrouge")
 url_request_nominatim
 ```
@@ -90,6 +91,7 @@ def get_lat_long(query):
 ```
 
 ```{python}
+# Vérification du résultat
 lat, long = get_lat_long(query=url_request_nominatim)
 print(lat, long)
 print(type(lat))
@@ -123,6 +125,7 @@ def build_request_open_meteo(latitude, longitude):
 ```
 
 ```{python}
+# Vérification du résultat
 url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
 ```
@@ -159,11 +162,13 @@ def get_meteo_data(query):
 ```
 
 ```{python}
+# Vérification du résultat
 predictions = get_meteo_data(url_request_open_meteo)
 type(predictions)
 ```
 
 ```{python}
+# Vérification du résultat
 wrong_request = build_request_open_meteo(latitude=lat, longitude="dix-sept-virgule-quatre")
 output = get_meteo_data(wrong_request)
 print(output)
@@ -221,6 +226,7 @@ def preprocess_predictions(predictions):
 ```
 
 ```{python}
+# Vérification du résultat
 df_preds = preprocess_predictions(predictions)
 df_preds.head()
 ```
@@ -252,10 +258,12 @@ def plot_agg_avg_bhi(df_preds, agg_var="day"):
 ```
 
 ```{python}
+# Vérification du résultat
 plot_agg_avg_bhi(df_preds, agg_var="day")
 ```
 
 ```{python}
+# Vérification du résultat
 plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
 
@@ -286,9 +294,11 @@ def main(country, city, agg_var="day"):
 ```
 
 ```{python}
+# Vérification du résultat
 main(country="Germany", city="Berlin", agg_var="day")
 ```
 
 ```{python}
+# Vérification du résultat
 main(country="Germany", city="Berlin", agg_var="hour")
 ```
