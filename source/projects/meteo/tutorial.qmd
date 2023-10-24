@@ -178,67 +178,104 @@ Afin de bien comprendre la structure des données que nous avons récupérées, 
 #| code-summary: "Afficher le code"
 
 # Exploration des données
-print(type(data))
-print(data.keys())
-print(type(data["hourly"]))
-print(data["hourly"].keys())
-print(type(data["hourly"]["time"]))
+print(type(predictions))
+print(predictions.keys())
+print(type(predictions["hourly"]))
+print(predictions["hourly"].keys())
+print(type(predictions["hourly"]["time"]))
 print()
 
 # Afficher les données
-print(data['hourly']["time"][:5])
-print(data['hourly']["time"][-5:])
+print(predictions['hourly']["time"][:5])
+print(predictions['hourly']["time"][-5:])
 print()
-print(data['hourly']["relativehumidity_2m"][:5])
-print(data['hourly']["windspeed_10m"][:5])
+print(predictions['hourly']["relativehumidity_2m"][:5])
+print(predictions['hourly']["windspeed_10m"][:5])
 ```
 
 ## Partie 3 : construction et visualisation d'un *bad hair index*
 
-`Pandas` est une bibliothèque puissante pour la manipulation de données. Elle facilite la gestion, la transformation et l'analyse des données.
-
-```{python}
-data_dict = {
-    'time': data['hourly']["time"],
-    'humidity': data['hourly']["relativehumidity_2m"],
-    'wind_speed': data['hourly']["windspeed_10m"]
-}
-
-df = pd.DataFrame(data_dict)
-df['time'] = pd.to_datetime(df['time'])  # Convertir la colonne time en objet datetime
-df.head()
-```
-
 Nous définissons cet indice comme le produit de l'humidité relative et de la vitesse du vent. Il s'agit d'une mesure ludique de la probabilité d'avoir une "mauvaise coiffure" en raison des conditions météorologiques.
 
-```{python}
-df['bad_hair_index'] = df['humidity'] * df['wind_speed']
+### Question 6
 
-df.head()
+Définissez une fonction `preprocess_predictions` qui met en forme les prédictions issues de l'API sous forme d'un `DataFrame Pandas` en vue d'une analyse statistique. Les étapes à implémenter sont les suivantes :
+- convertir les données prédites en un `DataFrame Pandas` à 3 colonnes (date et heure de l'observation, humidité, vitesse du vent) ;
+- convertir la colonne de temps au format `datetime` ([documentation](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html))
+- ajouter deux nouvelles variables indiquant le jour de l'observation et l'heure de l'observation
+- ajouter une variable qui calcule le *bad hair index*
+
+#### Résultat attendu
+
+```{python}
+df_preds = solutions.preprocess_predictions(predictions)
+df_preds.head()
+```
+
+#### À vous de jouer !
+
+```{python}
+def preprocess_predictions(predictions):
+    # Votre code ici
+    return df
 ```
 
 ```{python}
-df['day'] = df['time'].dt.day
-df_daily_mean = df.groupby('day').agg({'bad_hair_index': 'mean'}).reset_index()
-df_daily_mean.head()
+df_preds = preprocess_predictions(predictions)
+df_preds.head()
+```
+
+### Question 7
+
+#### Résultat attendu
+
+```{python}
+solutions.plot_daily_avg_bhi(df_preds)
+```
+
+#### À vous de jouer !
+
+```{python}
+def plot_daily_avg_bhi(df_preds):
+    # Votre code ici
+    return None
 ```
 
 ```{python}
-sns.lineplot(x='day', y='bad_hair_index', data=df_daily_mean)
-plt.title("Évolution du Bad Hair Index moyen sur 7 jours")
-plt.xlabel('Jour')
-plt.ylabel('Bad Hair Index moyen')
+plot_daily_avg_bhi(df_preds)
+```
+
+### Question 8
+
+#### Résultat attendu
+
+```{python}
+solutions.plot_hourly_avg_bhi(df_preds)
+```
+
+#### À vous de jouer !
+
+```{python}
+def plot_hourly_avg_bhi(df_preds):
+    # Votre code ici
+    return None
 ```
 
 ```{python}
-df['hour'] = df['time'].dt.hour
-df_hourly_mean = df.groupby('hour').agg({'bad_hair_index': 'mean'}).reset_index()
-df_hourly_mean.head()
+plot_hourly_avg_bhi(df_preds)
 ```
 
+### Question 9
+
+#### Résultat attendu
+
 ```{python}
-sns.lineplot(x='hour', y='bad_hair_index', data=df_hourly_mean)
-plt.title("Moyenne du Bad Hair Index heure par heure sur 7 jours")
-plt.xlabel('Heure')
-plt.ylabel('Bad Hair Index Moyen')
+solutions.plot_hourly_avg_bhi(df_preds)
 ```
+
+#### À vous de jouer !
+
+```{python}
+plot_hourly_avg_bhi(df_preds)
+```
+
