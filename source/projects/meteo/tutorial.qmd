@@ -227,6 +227,12 @@ df_preds.head()
 
 ### Question 7
 
+A des fins de représentation graphique, nous allons représenter le *bad hair index* agrégé à deux niveaux :
+- moyenne heure par heure. Cela permettra de répondre à la question : "à quel heure sera-t-il généralement préférable de rester à la maison la semaine prochaine ?"
+- moyenne jour par jour. Cela permettra de répondre à la question : "quel jour sera-t-il généralement préférable de rester à la maison la semaine prochaine ?"
+
+Définissez une fonction `plot_agg_avg_bhi` qui calcule l'indice agrégé dans chaque cas, et représente le résultat sous la forme d'un `lineplot`.
+
 #### Résultat attendu
 
 ```{python}
@@ -253,8 +259,13 @@ plot_agg_avg_bhi(df_preds, agg_var="day")
 plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
 
+Qu'en concluez-vous pour la semaine à venir ?
 
 ### Question 8
+
+Notre outil de prévision des *bad hair days* fonctionne à merveille. Mais c'est bientôt les vacances, et un voyage à Berlin est prévu. Idéalement, on voudrait pouvoir utiliser notre outil pour n'importe quelle localité. Heureusement, on a défini à chaque étape des fonctions, ce qui va nous permettre de passer facilement à une fonction "chef d'orchestre" qui appelle toutes les autres pour une localité donnée.
+
+Définissez une fonction `main` qui représente le *bad hair index* pour un pays, une ville et un niveau d'agrégation donnés.
 
 #### Résultat attendu
 
