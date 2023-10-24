@@ -195,7 +195,7 @@ print(predictions['hourly']["windspeed_10m"][:5])
 
 ## Partie 3 : construction et visualisation d'un *bad hair index*
 
-Nous définissons cet indice comme le produit de l'humidité relative et de la vitesse du vent. Il s'agit d'une mesure ludique de la probabilité d'avoir une "mauvaise coiffure" en raison des conditions météorologiques.
+L'objectif de cette dernière partie est de calculer et représenter graphiquement le *bad hair index*. Rappelons que l'on définit cet indice comme le produit de l'humidité relative et de la vitesse du vent. Il s'agit d'une mesure ludique de la probabilité d'avoir une "mauvaise coiffure" en raison des conditions météorologiques.
 
 ### Question 6
 
@@ -230,52 +230,54 @@ df_preds.head()
 #### Résultat attendu
 
 ```{python}
-solutions.plot_daily_avg_bhi(df_preds)
+solutions.plot_agg_avg_bhi(df_preds, agg_var="day")
+```
+
+```{python}
+solutions.plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
 
 #### À vous de jouer !
 
 ```{python}
-def plot_daily_avg_bhi(df_preds):
+def plot_agg_avg_bhi(df_preds, agg_var="day"):
     # Votre code ici
     return None
 ```
 
 ```{python}
-plot_daily_avg_bhi(df_preds)
+plot_agg_avg_bhi(df_preds, agg_var="day")
 ```
+
+```{python}
+plot_agg_avg_bhi(df_preds, agg_var="hour")
+```
+
 
 ### Question 8
 
 #### Résultat attendu
 
 ```{python}
-solutions.plot_hourly_avg_bhi(df_preds)
+solutions.main(country="Germany", city="Berlin", agg_var="day")
+```
+
+```{python}
+solutions.main(country="Germany", city="Berlin", agg_var="hour")
 ```
 
 #### À vous de jouer !
 
 ```{python}
-def plot_hourly_avg_bhi(df_preds):
+def main(country, city, agg_var="day"):
     # Votre code ici
     return None
 ```
 
 ```{python}
-plot_hourly_avg_bhi(df_preds)
+main(country="Germany", city="Berlin", agg_var="day")
 ```
-
-### Question 9
-
-#### Résultat attendu
 
 ```{python}
-solutions.plot_hourly_avg_bhi(df_preds)
+main(country="Germany", city="Berlin", agg_var="hour")
 ```
-
-#### À vous de jouer !
-
-```{python}
-plot_hourly_avg_bhi(df_preds)
-```
-

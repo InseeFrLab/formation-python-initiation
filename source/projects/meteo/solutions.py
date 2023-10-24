@@ -65,7 +65,7 @@ def plot_agg_avg_bhi(df_preds, agg_var="day"):
         plt.xlabel('Jour')
     elif agg_var == "hour":
         plt.title("Moyenne du Bad Hair Index heure par heure sur 7 jours")
-        plt.xlabel('Heure')  
+        plt.xlabel('Heure')
 
 
 def main(country, city, agg_var="day"):
