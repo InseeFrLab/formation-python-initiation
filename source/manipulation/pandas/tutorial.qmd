@@ -1,0 +1,200 @@
+---
+title: Traiter des données tabulaires avec Pandas
+jupyter: python3
+---
+
+
+
+L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable. Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`. Les utilisateurs de `R` connaissent bien cette structure de données, qui est native à ce langage orienté statistique. En `Python`, langage généraliste, cet objet n'existe pas nativement. Heureusement, une librairie très complete et bien pratique, pensée comme une surcouche à `NumPy`, introduit en `Python` l'objet `DataFrame` et permet la manipulation et l'analyse de données de manière simple et intuitive : `Pandas`.
+
+On commence par importer la librairie `Pandas`. L'usage est courant est de lui attribuer l'alias `pd` afin de simplifier les futurs appels aux objets et fonctions du package. On importe également `NumPy` car on va comparer les objets fondamentaux des deux packages.
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+## Structures de données
+
+Pour bien comprendre le fonctionnement de `Pandas`, il faut s'intéresser à ses objets fondamentaux. On va donc d'abord étudier les `Series`, dont la concaténation permet de construire un `DataFrame`. 
+
+### La `Series`
+
+Une Series est un conteneur de données unidimensionnel pouvant accueillir n'importe quel type de données (entiers, *strings*, objets Python...). Une Series est néanmoins d'un type donné : une Series ne contenant que des entiers sera de type `int`, et une Series contenant des objets de différente nature sera de type `object`. Construisons notre première Series à partir d'une liste pour vérifier ce comportement.
+
+```{python}
+l = [1, "X", 3]
+s = pd.Series(l)
+print(s)
+```
+
+On peut notamment accéder aux données d'une Series par position, comme pour une liste ou un array.
+
+```{python}
+print(s[1])
+```
+
+A priori, on ne voit pas beaucoup de différence entre une Series et un *array* `NumPy` à 1 dimension. Pourtant, il existe une différence de taille qui est la présence d'un index : les observations ont un label associé. Lorsqu'on crée une Series sans rien spécifier, l'index est automatiquement fixé aux entiers de 0 à n (le nombre d'éléments de la Series). Mais il est possible de passer un index spécifique (ex : des dates, des noms de communes, etc.).
+
+```{python}
+s = pd.Series(l, index=["a", "b", "c"])
+print(s)
+```
+
+Ce qui permet d'accéder aux données par label :
+
+```{python}
+s["b"]
+```
+
+Cette différence apparaît secondaire à première vue, mais deviendra essentielle pour la construction du DataFrame. Pour le reste, les Series se comportent de manière très proche des arrays NumPy : les calculs sont vectorisés, on peut directement faire la somme de deux Series, etc. D'ailleurs, on peut très facilement convertir une Series en array via l'attribut `values`. Ce qui, naturellement, fait perdre l'index...
+
+```{python}
+s = pd.Series(l, index=["a", "b", "c"])
+s.values
+```
+
+### Le `DataFrame`
+
+Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://medium.com/epfl-extension-school/selecting-data-from-a-pandas-dataframe-53917dc39953)) permet de bien comprendre cette structure de données.
+
+<div>
+<img src="img/structure_df.png" width="800">
+</div>
+
+Un DataFrame peut être construit de multiples manières. En pratique, on construit généralement un DataFrame directement à partir de fichiers de données tabulaires (ex : CSV, excel), rarement à la main. On illustrera donc seulement la méthode de construction manuelle la plus usuelle : à partir d'un dictionnaire de données.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": 1.0,
+        "var2": np.random.randint(-10, 10, 5),
+        "experiment": ["test", "train", "test", "train", "train"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05"],
+        "sample": "sample1"
+    }
+)
+
+df
+```
+
+Un DataFrame Pandas dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons nous aux plus basiques : l'index et le nom des colonnes. Par défaut, l'index est initialisé comme pour les Series à la liste des positions des observations. On aurait pu spécifier un index alternatif lors de la construction du DataFrame en spécifiant l'argument `index` de la fonction `pd.DataFrame`.
+
+```{python}
+df.index
+```
+
+```{python}
+df.columns
+```
+
+Souvent, plutôt que de spécifier un index à la main lors de la construction du DataFrame, on va vouloir utiliser une certaine colonne du DataFrame comme index. On utilise pour cela la méthode `set_index` associée aux DataFrames.
+
+```{python}
+df = df.set_index("date")
+df
+```
+
+L'attribut index a naturellement changé :
+
+```{python}
+df.index
+```
+
+Bien sûr. Voici la version corrigée adaptée pour un environnement Jupyter Notebook :
+
+---
+
+## Sélectionner des données
+
+Lors de la manipulation des données tabulaires, il est fréquent de vouloir extraire des colonnes spécifiques d'un `DataFrame`. Cette extraction est simple avec `Pandas` grâce à l'utilisation des crochets.
+
+### Sélectionner des colonnes
+
+#### Sélectionner une seule colonne
+
+Pour extraire une seule colonne, on peut utiliser la syntaxe suivante :
+
+```python
+selected_column = df["var1"]
+selected_column
+```
+
+L'objet `selected_column` renvoie ici la colonne nommée `var1` du `DataFrame` `df`. Mais de quel type est cet objet ? Pour répondre à cette question, on utilise la fonction `type()` :
+
+```python
+type(selected_column)
+```
+
+Comme on peut le voir, le résultat est une `Series`, qui est un objet unidimensionnel dans `Pandas`.
+
+Un autre attribut utile à connaître est `shape`. Il permet de connaître la dimension de l'objet. Pour une `Series`, `shape` retournera un tuple dont le premier élément indique le nombre de lignes.
+
+```python
+selected_column.shape
+```
+
+#### Sélectionner plusieurs colonnes
+
+Pour extraire plusieurs colonnes, il suffit de passer une liste des noms des colonnes souhaitées :
+
+```python
+selected_columns = df[["var1", "var2", "experiment"]]
+selected_columns
+```
+
+Cet extrait montre les colonnes `var1`, `var2` et `experiment` du `DataFrame` `df`. Vérifions maintenant son type :
+
+```python
+type(selected_columns)
+```
+
+Le résultat est un `DataFrame`, car il s'agit d'un objet bidimensionnel. On peut aussi vérifier sa forme avec l'attribut `shape`. Dans ce cas, le tuple renvoyé par `shape` contiendra deux éléments : le nombre de lignes et le nombre de colonnes.
+
+```python
+selected_columns.shape
+```
+
+### Sélectionner des lignes
+
+### Masques booléens
+
+## Explorer des données tabulaires
+
+### Importer des données
+
+### Visualiser un échantillon des données
+
+### Obtenir une vue d'ensemble des données
+
+### Calculer des statistiques descriptives
+
+## Principales manipulations de données
+
+### Transformer les données
+
+#### Transformer un DataFrame
+
+#### Transformer les colonnes
+
+#### Transformer les lignes
+
+### Trier les valeurs
+
+### Traiter les données textuelles
+
+### Traiter les valeurs manquantes
+
+### Opérations par groupes
+
+### Joindre des tables
+
+#### Concaténer des tables
+
+#### Fusionner des tables
+
+## Exercices
+
+### Questions de compréhension
+
+
