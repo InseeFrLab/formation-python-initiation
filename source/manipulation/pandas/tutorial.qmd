@@ -69,7 +69,7 @@ df = pd.DataFrame(
     data = {
         "var1": 1.0,
         "var2": np.random.randint(-10, 10, 5),
-        "experiment": ["test", "train", "test", "train", "train"],
+        "experiment": ["test", "train", "test", "train", "train", "validation"],
         "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05"],
         "sample": "sample1"
     }
@@ -157,11 +157,87 @@ selected_columns.shape
 
 ### Sélectionner des lignes
 
-### Masques booléens
+#### Utilisation de `loc` et `iloc`
 
-## Explorer des données tabulaires
+Lorsqu'on veut sélectionner des lignes spécifiques dans un DataFrame, on peut se servir des deux principales méthodes : `loc` et `iloc`.
 
-### Importer des données
+- `iloc` permet de sélectionner des lignes et des colonnes par leur position, c'est-à-dire par des indices numériques.
+  
+  Exemple, sélection des 3 premières lignes : 
+  ```{python}
+  df.iloc[0:3, :]
+  ```
+
+- `loc` quant à lui, fonctionne avec des labels. Si les index du DataFrame sont des numéros, ils ressemblent aux positions, mais ce n'est pas forcément le cas. Il est crucial de noter que, contrairement à `iloc`, avec `loc`, l'index de fin est inclus dans la sélection.
+  
+  Supposons un DataFrame `df` ayant pour index des lettres de 'a' à 'z'. Pour sélectionner les lignes correspondant aux index 'a', 'b' et 'c' :
+  ```{python}
+  df.loc['a':'c', :]
+  ```
+
+#### Filtrage des données selon des conditions
+
+En pratique, plutôt que de sélectionner des lignes basées sur des positions ou des labels, on souhaite souvent filtrer un DataFrame selon certaines conditions. Dans ce cas, on se sert principalement de filtres booléens.
+
+- **Inégalités** : On peut vouloir garder seulement les lignes qui respectent une certaine condition. 
+
+  Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
+  ```{python}
+  df[df['var2'] > 10]
+  ```
+
+- **Appartenance avec `isin`** : Si on veut filtrer les données basées sur une liste de valeurs possibles, la méthode `isin` est très utile.
+
+  Exemple, pour garder uniquement les lignes où la colonne `var2` a des valeurs 'test' ou 'validation':
+  ```{python}
+  df[df['experiment'].isin(['train', 'validation'])]
+  ```
+
+Ces méthodes peuvent être combinées pour créer des conditions plus complexes. Il est aussi possible d'utiliser les opérateurs logiques (`&` pour "et", `|` pour "ou") pour combiner plusieurs conditions. Attention, il faut bien prendre soin d'encadrer chaque condition par des parenthèses lors de la combinaison.
+
+Exemple, sélectionner les lignes où `var2` est supérieur à 10 et `experiment` est égal à 'test' ou 'validation':
+```{python}
+df[(df['var2'] > 10) & (df['experiment'].isin(['train', 'validation']))]
+```
+
+### Explorer des données tabulaires
+
+En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issues d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires dans un environnement Python, quelle que soit leur forme.
+
+#### Importer des données à partir d'un fichier CSV
+
+Comme nous l'avons vu dans un précédent TP, le format CSV est l'un des formats les plus courants pour stocker des données tabulaires. Nous avons précédemment utilisé la librairie `csv` pour les manipuler comme des fichiers texte, mais ce n'était pas très pratique. Pour rappel, la syntaxe pour lire un fichier CSV et afficher les premières lignes était la suivante : 
+
+```{python}
+import csv
+
+rows = []
+
+with open("data/departement2021.csv") as file_in:
+    csv_reader = csv.reader(file_in)
+    for row in csv_reader:
+        rows.append(row)
+
+rows[:5]
+```
+
+Avec Pandas, il suffit d'utiliser la fonction `read_csv()` pour importer le fichier comme un DataFrame, puis la fonction `head()`.
+
+```{python}
+df_departements = pd.read_csv('data/departement2021.csv')
+df_departements.head()
+```
+
+Il est également possible d'importer un fichier CSV directement à partir d'une URL. C'est particulièrement pratique lorsque les données sont régulièrement mises à jour sur un site web et que l'on souhaite accéder à la version la plus récente sans avoir à télécharger manuellement le fichier à chaque fois. Prenons l'exemple d'un fichier CSV disponible sur le site de l'INSEE : le fichier des prénoms, issu des données de l'état civil. On note au passage une autre fonctionnalité bien pratique : le fichier CSV est compressé (format `zip`), mais Pandas est capable de le reconnaître et de le décompresser avant de l'importer.
+
+```{python}
+# Importer un fichier CSV depuis une URL
+url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
+df_departements_url = pd.read_csv(url, sep=";")
+df_departements_url.head()
+```
+
+Lorsqu'on travaille avec des fichiers CSV, il y a de nombreux arguments optionnels disponibles dans la fonction `read_csv()` qui permettent d'ajuster le processus d'importation en fonction des spécificités du fichier. Ces arguments peuvent notamment permettre de définir un délimiteur spécifique (comme ci-dessus pour le fichier des prénoms), de sauter certaines lignes en début de fichier, ou encore de définir les types de données pour chaque colonne, et bien d'autres. Tous ces paramètres et leur utilisation sont détaillés dans la [documentation officielle](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
 
 ### Visualiser un échantillon des données
 
