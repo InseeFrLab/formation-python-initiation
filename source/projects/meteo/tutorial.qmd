@@ -39,6 +39,7 @@ Lorsque l'on travaille à partir d'une API, la première étape est toujours de 
 ### Question 1
 
 La première caractéristique essentielle d'une API est le *endpoint*, c'est à dire l'URL à laquelle on va envoyer des requêtes. Dans notre cas, on va utiliser le *endpoint* `/search` dans la mesure où l'on veut trouver un objet géographique (des coordonnées) à partir d'un nom de localisation. La [page de documentation]([/search](https://nominatim.org/release-docs/develop/api/Search/)) associée à ce *endpoint* nous donne toutes les informations dont nous avons besoin :
+
 - le format d'une requête est `https://nominatim.openstreetmap.org/search?<params>` où `<params>` doit être remplacé par les paramètres de la requête, séparés par le symbole `&`
 - dans la section [Structured Query](https://nominatim.org/release-docs/develop/api/Search/#structured-query), on voit que l'API admet comme paramètres `country` (pays) et `city` (ville), que l'on va utiliser pour paramétrer notre requête. 
 
@@ -101,6 +102,7 @@ print(type(long))
 ## Partie 2 : récupération des prévisions météorologiques
 
 Maintenant que nous pouvons récupérer les coordonnées associées à une localisation donnée, nous pouvons requêter l'API `open-meteo.com` pour obtenir les données de prédiction météo associées à ces coordonnées. Là encore, la première étape est de s'intéresser à la documentation ([page d'accueil](https://open-meteo.com/), [doc](https://open-meteo.com/en/docs)), qui nous fournit plusieurs informations :
+
 - le *endpoint* pour l'API de prédiction est `https://api.open-meteo.com/v1/forecast`
 - l'API attend en entrée une `latitude` et une `latitude`, ainsi que les variables météorologiques souhaitées. Pour notre problématique, nous allons récupérer des informations sur le taux d'humidité (`relativehumidity_2m`) et la vitesse du vent (`windspeed_10m`)
 - par défaut, l'API renvoie des prédictions à 7 jours
@@ -137,6 +139,7 @@ A nouveau, on utilise la fonction `requests.get()` pour soumettre la requête à
 Mais que se passe-t-il dans le cas où la requête soumise est invalide (faute de frappe, paramètres inexistants, etc.) ? Dans ce cas, l'API nous renvoie une erreur. L'objet réponse de la requête contient un attribut `.status_code` qui donne le code de réponse d'une requête. Le code `200` indique la réussite d'une requête ; tout autre code indique une erreur.
 
 Définissez une fonction `get_meteo_data` qui récupère le dictionnaire complet de données retourné par l'API suite à notre requête. Le comportement de la fonction doit cependant dépendre du code de réponse de la requête :
+
 - si le code vaut `200`, la fonction renvoie le dictionnaire des prédictions ;
 - si le code est différent de `200`, la fonction affiche le code d'erreur et renvoie `None`.
 
@@ -200,15 +203,16 @@ print(predictions['hourly']["windspeed_10m"][:5])
 
 ## Partie 3 : construction et visualisation d'un *bad hair index*
 
-L'objectif de cette dernière partie est de calculer et représenter graphiquement le *bad hair index*. Rappelons que l'on définit cet indice comme le produit de l'humidité relative et de la vitesse du vent. Il s'agit d'une mesure ludique de la probabilité d'avoir une "mauvaise coiffure" en raison des conditions météorologiques.
+L'objectif de cette dernière partie est de calculer et représenter graphiquement le *bad hair index*. Rappelons que l'on définit cet indice comme le **produit de l'humidité relative et de la vitesse du vent**. Il s'agit d'une mesure ludique de la probabilité d'avoir une "mauvaise coiffure" en raison des conditions météorologiques.
 
 ### Question 6
 
 Définissez une fonction `preprocess_predictions` qui met en forme les prédictions issues de l'API sous forme d'un `DataFrame Pandas` en vue d'une analyse statistique. Les étapes à implémenter sont les suivantes :
-- convertir les données prédites en un `DataFrame Pandas` à 3 colonnes (date et heure de l'observation, humidité, vitesse du vent) ;
-- convertir la colonne de temps au format `datetime` ([documentation](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html))
-- ajouter deux nouvelles variables indiquant le jour de l'observation et l'heure de l'observation
-- ajouter une variable qui calcule le *bad hair index*
+
+1. convertir les données prédites en un `DataFrame Pandas` à 3 colonnes (date et heure de l'observation, humidité, vitesse du vent) ;
+2. convertir la colonne de temps au format `datetime` ([documentation](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html))
+3. ajouter deux nouvelles variables indiquant le jour de l'observation et l'heure de l'observation
+4. ajouter une variable qui calcule le *bad hair index*
 
 #### Résultat attendu
 
@@ -234,6 +238,7 @@ df_preds.head()
 ### Question 7
 
 A des fins de représentation graphique, nous allons représenter le *bad hair index* agrégé à deux niveaux :
+
 - moyenne heure par heure. Cela permettra de répondre à la question : "à quel heure sera-t-il généralement préférable de rester à la maison la semaine prochaine ?"
 - moyenne jour par jour. Cela permettra de répondre à la question : "quel jour sera-t-il généralement préférable de rester à la maison la semaine prochaine ?"
 
