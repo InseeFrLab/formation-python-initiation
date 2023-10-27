@@ -497,6 +497,61 @@ df.drop(columns=['var1'])
 
 #### Transformer les lignes
 
+En statistique, on applique généralement des tranformations faisant intervenir une ou plusieurs colonnes. Néanmoins, dans certains cas, il est nécessaire d'appliquer des transformations au niveau des lignes. Pour cela, on peut utiliser la méthode [apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) de Pandas, appliquée à l'axe des lignes (`axis=1`). Illustrons son fonctionnement avec un cas simple. Pour cela, on génère d'abord des données.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1, 5, 9, 13],
+        "var2": [3, 7, 11, 15],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04"],
+    }
+)
+
+df.head()
+```
+
+On applique maintenant la fonction `apply()` au DataFrame afin de calculer une nouvelle variable qui est la somme des deux existantes.
+
+```{python}
+df['sum_row'] = df.apply(lambda row: row['var1'] + row['var2'], axis=1)
+
+df.head()
+```
+
+::: {.callout-tip title="Les fonctions lambda"}
+Une fonction `lambda` est une petite fonction anonyme. Elle peut prendre n'importe quel nombre d'arguments, mais ne peut avoir qu'une seule expression. Dans l'exemple ci-dessus, la fonction `lambda` prend une ligne en argument et renvoie la somme des colonnes `var1` et `var2` pour cette ligne. 
+
+Les fonctions `lambda` permettent de définir simplement des fonctions "à la volée", sans devoir leur donner un nom. Dans notre exemple, cela aurait été parfaitement équivalent au code suivant : 
+
+```{python}
+def sum_row(row):
+    return row['var1'] + row['var2']
+
+df['sum_row'] = df.apply(sum_row, axis=1)
+```
+:::
+
+Bien que `apply()` offre une grande flexibilité, elle n'est pas la méthode la plus efficiente, notamment pour de grands jeux de données. Les opérations vectorisées sont toujours préférables car elles traitent les données en bloc plutôt que ligne par ligne. Dans notre cas, il aurait été bien entendu préférable de créer notre variable en utilisant des opérations sur les colonnes.
+
+```{python}
+df['sum_row_vect'] = df['var1'] + df['var2']
+
+df.head()
+```
+
+Néanmoins, on peut se retrouver dans certains (rares) cas où une opération ne peut pas être facilement vectorisée ou où la logique est complexe. Supposons par exemple que l'on souhaite combiner les valeurs de plusieurs colonnes en fonction de certaines conditions.
+
+```{python}
+def combine_columns(row):
+    if row['var1'] > 6:
+        return str(row['var2'])
+    else:
+        return str(row['var2']) + "_" + row['date']
+
+df['combined_column'] = df.apply(combine_columns, axis=1)
+```
+
 ### Trier les valeurs
 
 ### Traiter les valeurs manquantes
