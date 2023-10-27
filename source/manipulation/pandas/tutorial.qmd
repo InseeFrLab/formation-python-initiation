@@ -554,6 +554,38 @@ df['combined_column'] = df.apply(combine_columns, axis=1)
 
 ### Trier les valeurs
 
+Le tri des données est particulièrement utile pour l'exploration et la visualisation de données. Avec Pandas, on utilise la méthode [sort_values()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html) pour trier les valeurs d'un DataFrame selon une ou plusieurs colonnes.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1, 5, 9, 13],
+        "var2": [3, 7, 11, 15],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04"],
+    }
+)
+
+df.head()
+```
+
+Pour trier les valeurs selon une seule colonne, il suffit de passer le nom de la colonne en paramètre.
+
+```{python}
+df.sort_values(by='var1')
+```
+
+Par défaut, le tri est effectué dans l'ordre croissant. Pour trier les valeurs dans un ordre décroissant, il suffit de paramétrer `ascending=False`.
+
+```{python}
+df.sort_values(by='var1', ascending=False)
+```
+
+Si on souhaite trier le DataFrame sur plusieurs colonnes, on peut fournir une liste de noms de colonnes. On peut également choisir de trier de manière croissante pour certaines colonnes et décroissante pour d'autres.
+
+```{python}
+df.sort_values(by=['var1', 'var2'], ascending=[True, False])
+```
+
 ### Traiter les valeurs manquantes
 
 ### Traiter les données de types spécifiques
