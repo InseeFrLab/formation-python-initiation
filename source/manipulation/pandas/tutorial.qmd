@@ -445,6 +445,56 @@ En pratique, il est préférable de limiter les opérations `inplace`. Elles ne 
 
 #### Transformer les colonnes
 
+Dans certains cas, on ne va pas vouloir appliquer les transformations à l'ensemble des données, mais à des variables spécifiques. Les transformations qui sont possibles à l'échelle du DataFrame (fonctions vectorisées, méthodes comme [replace()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html), etc.) restent naturellement possibles à l'échelle d'une colonne.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+    }
+)
+
+np.abs(df["var2"])
+```
+
+```{python}
+df["var1"].replace(0, np.nan)
+```
+
+Mais il existe d'autres transformations que l'on applique généralement au niveau d'une ou de quelques colonnes. Par exemple, lorsque le schéma n'a pas été bien reconnu à l'import, il peut arriver que des variables numériques soient définies comme des string (type `object` en Pandas).
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan],
+        "var2": ["1", "5", "18"],
+    }
+)
+
+df.info()
+```
+
+Dans ce cas, on peut utiliser la méthode `astype` pour convertir la colonne dans le type souhaité.
+
+```{python}
+df['var2'] = df['var2'].astype(int)
+
+df.info()
+```
+
+Une autre opération fréquente est le renommage d'une ou plusieurs colonnes. Pour cela, on peut utiliser la méthode [rename()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rename.html), à laquelle on passe un dictionnaire qui contient autant de couples clé-valeur que de variables à renommer, et dans lequel chaque couple clé-valeur est de la forme `'ancien_nom': 'nouveau_nom'`.
+
+```{python}
+df.rename(columns={'var2': 'age'})
+```
+
+Enfin, on peut souhaiter supprimer du DataFrame des colonnes qui ne sont pas ou plus utiles à l'analyse. Pour cela, on utilise la méthode [drop()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html), à laquelle on passe soit un string (nom d'une colonne si l'on souhaite n'en supprimer qu'une seule) ou une liste de noms de colonne à supprimer.
+
+```{python}
+df.drop(columns=['var1'])
+```
+
 #### Transformer les lignes
 
 ### Trier les valeurs
