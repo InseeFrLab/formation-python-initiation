@@ -71,7 +71,7 @@ Un DataFrame peut être construit de multiples manières. En pratique, on constr
 ```{python}
 df = pd.DataFrame(
     data = {
-        "var1": 1.0,
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
         "var2": np.random.randint(-10, 10, 6),
         "experiment": ["test", "train", "test", "train", "train", "validation"],
         "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
@@ -297,10 +297,10 @@ Une des grandes forces du format Parquet, en comparaison des formats texte comme
 ```{python}
 df = pd.DataFrame(
     data = {
-        "var1": 1.0,
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
         "var2": np.random.randint(-10, 10, 6),
-        "experiment": pd.Categorical(["test", "train", "test", "train", "train", "validation"]),
-        "date": pd.to_datetime(["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"]),
+        "experiment": ["test", "train", "test", "train", "train", "validation"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
         "sample": "sample1"
     }
 )
@@ -361,23 +361,13 @@ df_departements.sample(n=5)
 L'une des premières étapes lors de l'exploration de nouvelles données est de comprendre la structure générale du jeu de données. La méthode `info()` de Pandas offre une vue d'ensemble rapide des données, notamment en termes de types de données, de présence de valeurs manquantes et de mémoire utilisée.
 
 ```{python}
-df = pd.DataFrame(
-    data = {
-        "var1": [0, 1, 2, 3, np.nan, 5],
-        "var2": np.random.random(6),
-        "experiment": pd.Categorical(["test", "train", "test", "train", "train", "validation"]),
-        "date": pd.to_datetime(["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"]),
-        "sample": "sample1"
-    }
-)
-
 df.info()
 ```
 
 Plusieurs éléments d'information clés peuvent être extraits de ce résultat :
 - **index** : le DataFrame a un `RangeIndex`, ce qui signifie que l'index est constitué d'une suite numérique simple. Ici, l'index va de 0 à 5, soit 6 entrées au total.
 - **schéma** : la liste des colonnes est affichée avec des informations très utiles sur le schéma des données :
-  - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" est 5.
+  - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" pour la variable `var1` est 5.
   - **Dtype** : Le type de données de la colonne, qui permet decomprendre la nature des informations stockées dans chaque colonne. Par exemple, `float64` (nombres réels), `int32` (nombres entiers), `category` (variable catégorielle), `datetime64[ns]` (information temporelle) et `object` (données textuelles ou mixtes).   
 
 L'utilisation de `info()` est un moyen rapide et efficace d'obtenir une vue d'ensemble d'un DataFrame, d'identifier rapidement les colonnes contenant des valeurs manquantes et de comprendre la structure des données.
@@ -398,11 +388,60 @@ df.describe(include='all')
 
 Notons que, là encore, la variable `count` renvoie le nombre de valeurs **non-manquantes** dans chaque variable.
 
+
+
+
+
 ## Principales manipulations de données
 
 ### Transformer les données
 
+Les opérations de transformation sur les données sont essentielles pour façonner, nettoyer et préparer les données en vue de leur analyse. Les transformations peuvent concerner l'ensemble du DataFrame, des colonnes spécifiques ou encore des lignes spécifiques.
+
 #### Transformer un DataFrame
+
+Pour transformer un DataFrame complet (ou un sous-DataFrame), il est possible d'utiliser des fonctions vectorisées, qui permettent d'appliquer rapidement une opération à l'ensemble des éléments du DataFrame. Cela inclut un certain nombre de méthodes disponibles pour les `Series`, mais aussi les fonctions mathématiques de `NumPy`, etc.
+
+Par exemple, passer chaque valeur numérique d'un DataFrame à la puissance 2 :
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+    }
+)
+
+df ** 2
+```
+
+ou les passer à la valeur absolue :
+
+```{python}
+np.abs(df)
+```
+
+Certaines méthodes, disponibles pour les `Series`, peuvent aussi être utilisées pour transformer un DataFrame complet. Par exemple, la bien utile méthode [replace()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html), qui permet de remplacer toutes les occurences d'une valeur donnée par une autre valeur. Par exemple, supposons que la valeur 0 dans la colonne `var1` indique en fait une erreur de mesure. Il serait préférable de la remplacer par une valeur manquante.
+
+```{python}
+df.replace(0, np.nan)
+```
+
+::: {.callout-warning title="Assignation ou méthodes *in place* (en place) ?"}
+Dans l'exemple précédent, l'application de la méthode [replace()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html) ne modifie pas directement le DataFrame. Pour que la modifiction soit persistente, une première possibilité est d'assigner le résultat à un objet : 
+
+```{python}
+df = df.replace(0, np.nan)
+```
+
+Une seconde possibilité est, lorsque les méthodes le proposent, d'utiliser l'argument `inplace`. Lorsque `inplace=True`, l'opération est effectuée "en place", et le DataFrame est donc modifié directement.
+
+```{python}
+df.replace(0, np.nan, inplace=True)
+```
+
+En pratique, il est préférable de limiter les opérations `inplace`. Elles ne favorisent pas la reproductibilité des analyses, dans la mesure où la ré-exécution d'une même cellule va donner à chaque fois des résultats différents.
+:::
 
 #### Transformer les colonnes
 
@@ -410,11 +449,17 @@ Notons que, là encore, la variable `count` renvoie le nombre de valeurs **non-m
 
 ### Trier les valeurs
 
-### Traiter les données textuelles
-
 ### Traiter les valeurs manquantes
 
-### Opérations par groupes
+### Traiter les données de types spécifiques
+
+#### Données catégorielles
+
+#### Données textuelles
+
+#### Données temporelles
+
+### Aggréger des données
 
 ### Joindre des tables
 
@@ -430,3 +475,12 @@ Notons que, là encore, la variable `count` renvoie le nombre de valeurs **non-m
 
 ### Questions de compréhension
 
+### Exercice : transformation log des pop legs
+
+- replace 0 -> nan
+- applique log
+- hist
+
+### Exercice : tri croisé
+
+- normalisation en ligne / colonne
