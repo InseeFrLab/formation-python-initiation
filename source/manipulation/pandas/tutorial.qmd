@@ -68,9 +68,9 @@ Un DataFrame peut être construit de multiples manières. En pratique, on constr
 df = pd.DataFrame(
     data = {
         "var1": 1.0,
-        "var2": np.random.randint(-10, 10, 5),
+        "var2": np.random.randint(-10, 10, 6),
         "experiment": ["test", "train", "test", "train", "train", "validation"],
-        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
         "sample": "sample1"
     }
 )
@@ -163,17 +163,17 @@ Lorsqu'on veut sélectionner des lignes spécifiques dans un DataFrame, on peut 
 
 - `iloc` permet de sélectionner des lignes et des colonnes par leur position, c'est-à-dire par des indices numériques.
   
-  Exemple, sélection des 3 premières lignes : 
-  ```{python}
-  df.iloc[0:3, :]
-  ```
+Exemple, sélection des 3 premières lignes : 
+```{python}
+df.iloc[0:3, :]
+```
 
 - `loc` quant à lui, fonctionne avec des labels. Si les index du DataFrame sont des numéros, ils ressemblent aux positions, mais ce n'est pas forcément le cas. Il est crucial de noter que, contrairement à `iloc`, avec `loc`, l'index de fin est inclus dans la sélection.
   
-  Supposons un DataFrame `df` ayant pour index des lettres de 'a' à 'z'. Pour sélectionner les lignes correspondant aux index 'a', 'b' et 'c' :
-  ```{python}
-  df.loc['a':'c', :]
-  ```
+Supposons un DataFrame `df` ayant pour index des lettres de 'a' à 'z'. Pour sélectionner les lignes correspondant aux index 'a', 'b' et 'c' :
+```{python}
+df.loc['a':'c', :]
+```
 
 #### Filtrage des données selon des conditions
 
@@ -181,17 +181,17 @@ En pratique, plutôt que de sélectionner des lignes basées sur des positions o
 
 - **Inégalités** : On peut vouloir garder seulement les lignes qui respectent une certaine condition. 
 
-  Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
-  ```{python}
-  df[df['var2'] > 10]
-  ```
+Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
+```{python}
+df[df['var2'] > 10]
+```
 
 - **Appartenance avec `isin`** : Si on veut filtrer les données basées sur une liste de valeurs possibles, la méthode `isin` est très utile.
 
-  Exemple, pour garder uniquement les lignes où la colonne `var2` a des valeurs 'test' ou 'validation':
-  ```{python}
-  df[df['experiment'].isin(['train', 'validation'])]
-  ```
+Exemple, pour garder uniquement les lignes où la colonne `var2` a des valeurs 'test' ou 'validation':
+```{python}
+df[df['experiment'].isin(['train', 'validation'])]
+```
 
 Ces méthodes peuvent être combinées pour créer des conditions plus complexes. Il est aussi possible d'utiliser les opérateurs logiques (`&` pour "et", `|` pour "ou") pour combiner plusieurs conditions. Attention, il faut bien prendre soin d'encadrer chaque condition par des parenthèses lors de la combinaison.
 
@@ -239,7 +239,7 @@ df_departements_url.head()
 
 Lorsqu'on travaille avec des fichiers CSV, il y a de nombreux arguments optionnels disponibles dans la fonction `read_csv()` qui permettent d'ajuster le processus d'importation en fonction des spécificités du fichier. Ces arguments peuvent notamment permettre de définir un délimiteur spécifique (comme ci-dessus pour le fichier des prénoms), de sauter certaines lignes en début de fichier, ou encore de définir les types de données pour chaque colonne, et bien d'autres. Tous ces paramètres et leur utilisation sont détaillés dans la [documentation officielle](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
 
-### Exporter un DataFrame au format CSV
+#### Exporter au format CSV
 
 Une fois que les données ont été traitées et modifiées au sein de Pandas, il est courant de vouloir exporter le résultat sous forme de fichier CSV pour le partager, l'archiver ou l'utiliser dans d'autres outils. Pandas offre une méthode simple pour cette opération : `to_csv()`. Supposons par exemple que l'on souhaite exporter les données du DataFrame `df_departements` spécifiques aux cinq départements d'outre-mer.
 
@@ -259,17 +259,67 @@ with open("data/departements2021_dom.csv") as file_in:
 
 Dans certains cas, notamment lorsque l'index n'apporte pas d'information utile ou est simplement généré automatiquement par Pandas, on pourrait vouloir l'exclure du fichier exporté. Pour ce faire, on peut définir `index=False`.
 
-```python
+```{python}
 df_departements.to_csv('data/departements2021_dom.csv', index=False)
 ```
 
-#### Importer des données à partir d'un fichier Parquet
+#### Importer un fichier Parquet
 
-Le format Parquet est un autre format pour le stockage de données tabulaires, de plus en plus fréquemment utilisé. Sans rentrer dans les détails techniques, le format Parquet présente différentes caractéristiques qui en font un choix privilégié pour le stockage et le traitement de gros volumes de données. En raison de ces avantages, le format Parquet est de plus en plus utilisé comme format de mise à disposition des données à l'Insee. Il est donc essentiel de savoir importer et requêter des fichiers Parquet avec Pandas.
+Le format Parquet est un autre format pour le stockage de données tabulaires, de plus en plus fréquemment utilisé. Sans rentrer dans les détails techniques, le format Parquet présente différentes caractéristiques qui en font un choix privilégié pour le stockage et le traitement de gros volumes de données. En raison de ces avantages, ce format est de plus en plus utilisé pour la mise à disposition de données à l'Insee. Il est donc essentiel de savoir importer et requêter des fichiers Parquet avec Pandas.
 
-Pour lire un fichier Parquet dans un DataFrame pandas, on utilise la fonction `read_parquet()`.
+Importer un fichier Parquet dans un DataFrame Pandas se fait tout aussi facilement que pour un fichier CSV. La fonction se nomme `read_parquet()`.
 
+```{python}
+df_departements = pd.read_parquet('data/departement2021.parquet')
+df_departements.head()
+```
 
+#### Exporter au format Parquet
+
+Là encore, tout se passe comme dans le monde des CSV : on utilise la méthode `to_parquet()` pour exporter un DataFrame dans un fichier Parquet. De même, on peut choisir d'exporter ou non l'index, à l'aide du paramètre `index` (qui vaut `True` par défaut).
+
+```{python}
+df_departements = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
+df_departements.to_parquet('data/departements2021_dom.parquet', index=False)
+```
+
+Une des grandes forces du format Parquet, en comparaison des formats texte comme le CSV, est sa capacité à stocker des méta-données, i.e. des données permettant de mieux comprendre les données contenues dans le fichier. En particulier, un fichier Parquet inclut dans ses méta-données le schéma des données (noms des variables, types des variables, etc.), ce qui en fait un format très adapté à la diffusion de données. Vérifions ce comportement en reprenant le DataFrame que nous avons défini précédemment.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": 1.0,
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": pd.Categorical(["test", "train", "test", "train", "train", "validation"]),
+        "date": pd.to_datetime(["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"]),
+        "sample": "sample1"
+    }
+)
+```
+
+On utilise cette fois deux types de données spécifiques, pour les données catégorielles (`category`) et pour les données temporelles (`datetime`). On verra plus loin dans le tutoriel comment utiliser ces types. Pour l'instant, notons simplement que Pandas stocke ces types dans le schéma des données.
+
+```{python}
+df.info()
+```
+
+Vérifions à présent que l'export et le ré-import de ces données en Parquet préserve le schéma.
+
+```{python}
+df.to_parquet("data/df_test_schema.parquet", index=False)
+df_test_schema_parquet = pd.read_parquet('data/df_test_schema.parquet')
+
+df_test_schema_parquet.info()
+```
+
+A l'inverse, un fichier CSV ne contenant par définition que du texte, ne permet pas de préserver ces données. Les variables dont nous avons spécifié le type sont importés comme des strings (type `object` en Pandas).
+
+```{python}
+df.to_csv("data/df_test_schema.csv", index=False)
+df_test_schema_csv = pd.read_csv('data/df_test_schema.csv')
+
+df_test_schema_csv.info()
+```
 
 ### Visualiser un échantillon des données
 
@@ -306,5 +356,4 @@ Pour lire un fichier Parquet dans un DataFrame pandas, on utilise la fonction `r
 ## Exercices
 
 ### Questions de compréhension
-
 
