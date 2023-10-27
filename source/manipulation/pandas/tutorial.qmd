@@ -7,6 +7,10 @@ jupyter: python3
 
 L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable. Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`. Les utilisateurs de `R` connaissent bien cette structure de données, qui est native à ce langage orienté statistique. En `Python`, langage généraliste, cet objet n'existe pas nativement. Heureusement, une librairie très complete et bien pratique, pensée comme une surcouche à `NumPy`, introduit en `Python` l'objet `DataFrame` et permet la manipulation et l'analyse de données de manière simple et intuitive : `Pandas`.
 
+::: {.callout-note}
+Pandas étant l'élément central de l'éco-système data science en Python, il offre des possibilités de traitement de la donnée quasi-infinies. En plus de ça, il existe généralement de multiples manières de réaliser une même opération en Pandas. En conséquence, ce chapitre est particulièrement long et dense en nouvelles fonctionnalités. L'objectif n'est pas de retenir les nombreuses méthodes présentées tout au long de ce chapitre, mais plutôt d'avoir une vision générale de ce qu'il est possible de faire afin de pouvoir mobiliser les bons outils dans les projets. En particulier, les exercices de fin de chapitre et les mini-projets de fin de formation seront l'occasion d'appliquer ces nouvelles connaissances à des problématiques concrètes. 
+:::
+
 On commence par importer la librairie `Pandas`. L'usage est courant est de lui attribuer l'alias `pd` afin de simplifier les futurs appels aux objets et fonctions du package. On importe également `NumPy` car on va comparer les objets fondamentaux des deux packages.
 
 ```{python}
