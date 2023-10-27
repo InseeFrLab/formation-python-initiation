@@ -360,13 +360,11 @@ df_departements.sample(n=5)
 
 L'une des premières étapes lors de l'exploration de nouvelles données est de comprendre la structure générale du jeu de données. La méthode `info()` de Pandas offre une vue d'ensemble rapide des données, notamment en termes de types de données, de présence de valeurs manquantes et de mémoire utilisée.
 
-En utilisant notre DataFrame d'exemple :
-
 ```{python}
 df = pd.DataFrame(
     data = {
-        "var1": 1.0,
-        "var2": np.random.randint(-10, 10, 6),
+        "var1": [0, 1, 2, 3, np.nan, 5],
+        "var2": np.random.random(6),
         "experiment": pd.Categorical(["test", "train", "test", "train", "train", "validation"]),
         "date": pd.to_datetime(["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"]),
         "sample": "sample1"
@@ -379,16 +377,26 @@ df.info()
 Plusieurs éléments d'information clés peuvent être extraits de ce résultat :
 - **index** : le DataFrame a un `RangeIndex`, ce qui signifie que l'index est constitué d'une suite numérique simple. Ici, l'index va de 0 à 5, soit 6 entrées au total.
 - **schéma** : la liste des colonnes est affichée avec des informations très utiles sur le schéma des données :
-  - **Non-Null Count** : le nombre de valeurs non nulles dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes
+  - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" est 5.
   - **Dtype** : Le type de données de la colonne, qui permet decomprendre la nature des informations stockées dans chaque colonne. Par exemple, `float64` (nombres réels), `int32` (nombres entiers), `category` (variable catégorielle), `datetime64[ns]` (information temporelle) et `object` (données textuelles ou mixtes).   
 
 L'utilisation de `info()` est un moyen rapide et efficace d'obtenir une vue d'ensemble d'un DataFrame, d'identifier rapidement les colonnes contenant des valeurs manquantes et de comprendre la structure des données.
 
 ### Calculer des statistiques descriptives
 
+En complément des informations renvoyées par la méthode `info()`, on peut vouloir obtenir des statistiques descriptives simples afin de visualiser rapidement les distributions des variables. La méthode `describe()` permet d'avoir une vue synthétique de la distribution des données dans chaque colonne. 
 
+```{python}
+df.describe()
+```
 
+Il est à noter que `describe()` ne renvoie des statistiques que pour les colonnes numériques par défaut. Si l'on souhaite inclure des colonnes d'autres types, il est nécessaire de le préciser via l'argument `include`. Par exemple, `df.describe(include='all')` renverra des statistiques pour toutes les colonnes, y compris des métriques comme le nombre unique, la valeur la plus fréquente et la fréquence de la valeur la plus fréquente pour les colonnes non numériques.
 
+```{python}
+df.describe(include='all')
+```
+
+Notons que, là encore, la variable `count` renvoie le nombre de valeurs **non-manquantes** dans chaque variable.
 
 ## Principales manipulations de données
 
