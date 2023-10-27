@@ -14,6 +14,10 @@ import pandas as pd
 import numpy as np
 ```
 
+
+
+
+
 ## Structures de données
 
 Pour bien comprendre le fonctionnement de `Pandas`, il faut s'intéresser à ses objets fondamentaux. On va donc d'abord étudier les `Series`, dont la concaténation permet de construire un `DataFrame`. 
@@ -101,9 +105,9 @@ L'attribut index a naturellement changé :
 df.index
 ```
 
-Bien sûr. Voici la version corrigée adaptée pour un environnement Jupyter Notebook :
 
----
+
+
 
 ## Sélectionner des données
 
@@ -115,22 +119,21 @@ Lors de la manipulation des données tabulaires, il est fréquent de vouloir ext
 
 Pour extraire une seule colonne, on peut utiliser la syntaxe suivante :
 
-```python
+```{python}
 selected_column = df["var1"]
 selected_column
 ```
 
 L'objet `selected_column` renvoie ici la colonne nommée `var1` du `DataFrame` `df`. Mais de quel type est cet objet ? Pour répondre à cette question, on utilise la fonction `type()` :
 
-```python
+```{python}
 type(selected_column)
 ```
 
 Comme on peut le voir, le résultat est une `Series`, qui est un objet unidimensionnel dans `Pandas`.
 
 Un autre attribut utile à connaître est `shape`. Il permet de connaître la dimension de l'objet. Pour une `Series`, `shape` retournera un tuple dont le premier élément indique le nombre de lignes.
-
-```python
+```{python}
 selected_column.shape
 ```
 
@@ -138,20 +141,20 @@ selected_column.shape
 
 Pour extraire plusieurs colonnes, il suffit de passer une liste des noms des colonnes souhaitées :
 
-```python
+```{python}
 selected_columns = df[["var1", "var2", "experiment"]]
 selected_columns
 ```
 
 Cet extrait montre les colonnes `var1`, `var2` et `experiment` du `DataFrame` `df`. Vérifions maintenant son type :
 
-```python
+```{python}
 type(selected_columns)
 ```
 
 Le résultat est un `DataFrame`, car il s'agit d'un objet bidimensionnel. On peut aussi vérifier sa forme avec l'attribut `shape`. Dans ce cas, le tuple renvoyé par `shape` contiendra deux éléments : le nombre de lignes et le nombre de colonnes.
 
-```python
+```{python}
 selected_columns.shape
 ```
 
@@ -200,9 +203,15 @@ Exemple, sélectionner les lignes où `var2` est supérieur à 10 et `experiment
 df[(df['var2'] > 10) & (df['experiment'].isin(['train', 'validation']))]
 ```
 
-### Travailler avec des données tabulaires
 
-En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issues d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires dans un environnement Python, quelle que soit leur forme.
+
+
+
+## Explorer des données tabulaires
+
+En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issues d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires et les explorer en vue de manipulations plus poussées.
+
+### Importer et exporter des données
 
 #### Importer un fichier CSV
 
@@ -323,11 +332,37 @@ df_test_schema_csv.info()
 
 ### Visualiser un échantillon des données
 
+Lorsqu'on travaille avec des jeux de données volumineux, il est souvent utile de visualiser rapidement un échantillon des données pour avoir une idée de leur structure, de leur format ou encore pour détecter d'éventuels problèmes. Pandas offre plusieurs méthodes pour cela.
 
+La méthode `head()` permet d'afficher les premières lignes du DataFrame. Par défaut, elle retourne les 5 premières lignes, mais on peut spécifier un autre nombre en argument si nécessaire.
+
+```{python}
+df_departements.head()
+```
+
+```{python}
+df_departements.head(10)
+```
+
+À l'inverse, la méthode `tail()` donne un aperçu des dernières lignes du DataFrame.
+
+```python
+df_departements.tail()
+```
+
+L'affichage des premières ou dernières lignes peut parfois ne pas être représentatif de l'ensemble du jeu de données, lorsque les données sont triées par exemple. Afin de minimiser le risque d'obtenir un aperçu biaisé des données, on peut utiliser la méthode `sample()`, qui sélectionne un un échantillon aléatoire de lignes. Par défaut, elle retourne une seule ligne, mais on peut demander un nombre spécifique de lignes en utilisant l'argument `n`.
+
+```python
+df_departements.sample(n=5)
+```
 
 ### Obtenir une vue d'ensemble des données
 
 ### Calculer des statistiques descriptives
+
+
+
+
 
 ## Principales manipulations de données
 
@@ -352,6 +387,10 @@ df_test_schema_csv.info()
 #### Concaténer des tables
 
 #### Fusionner des tables
+
+
+
+
 
 ## Exercices
 
