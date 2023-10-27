@@ -200,11 +200,11 @@ Exemple, sélectionner les lignes où `var2` est supérieur à 10 et `experiment
 df[(df['var2'] > 10) & (df['experiment'].isin(['train', 'validation']))]
 ```
 
-### Explorer des données tabulaires
+### Travailler avec des données tabulaires
 
 En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issues d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires dans un environnement Python, quelle que soit leur forme.
 
-#### Importer des données à partir d'un fichier CSV
+#### Importer un fichier CSV
 
 Comme nous l'avons vu dans un précédent TP, le format CSV est l'un des formats les plus courants pour stocker des données tabulaires. Nous avons précédemment utilisé la librairie `csv` pour les manipuler comme des fichiers texte, mais ce n'était pas très pratique. Pour rappel, la syntaxe pour lire un fichier CSV et afficher les premières lignes était la suivante : 
 
@@ -239,7 +239,41 @@ df_departements_url.head()
 
 Lorsqu'on travaille avec des fichiers CSV, il y a de nombreux arguments optionnels disponibles dans la fonction `read_csv()` qui permettent d'ajuster le processus d'importation en fonction des spécificités du fichier. Ces arguments peuvent notamment permettre de définir un délimiteur spécifique (comme ci-dessus pour le fichier des prénoms), de sauter certaines lignes en début de fichier, ou encore de définir les types de données pour chaque colonne, et bien d'autres. Tous ces paramètres et leur utilisation sont détaillés dans la [documentation officielle](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
 
+### Exporter un DataFrame au format CSV
+
+Une fois que les données ont été traitées et modifiées au sein de Pandas, il est courant de vouloir exporter le résultat sous forme de fichier CSV pour le partager, l'archiver ou l'utiliser dans d'autres outils. Pandas offre une méthode simple pour cette opération : `to_csv()`. Supposons par exemple que l'on souhaite exporter les données du DataFrame `df_departements` spécifiques aux cinq départements d'outre-mer.
+
+```{python}
+df_departements = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
+df_departements.to_csv('data/departements2021_dom.csv')
+```
+
+Un des arguments clés de la méthode `to_csv()` est `index`. Par défaut, `index=True`, ce qui signifie que l'index du DataFrame sera également écrit dans le fichier CSV. On peut le vérifier en imprimant les premières lignes de notre fichier CSV : Pandas a ajouté une colonne non-nommée, qui contient l'index des lignes retenues.
+
+```{python}
+with open("data/departements2021_dom.csv") as file_in:
+    for i in range(5):
+        row = next(file_in).strip()
+        print(row)
+```
+
+Dans certains cas, notamment lorsque l'index n'apporte pas d'information utile ou est simplement généré automatiquement par Pandas, on pourrait vouloir l'exclure du fichier exporté. Pour ce faire, on peut définir `index=False`.
+
+```python
+df_departements.to_csv('data/departements2021_dom.csv', index=False)
+```
+
+#### Importer des données à partir d'un fichier Parquet
+
+Le format Parquet est un autre format pour le stockage de données tabulaires, de plus en plus fréquemment utilisé. Sans rentrer dans les détails techniques, le format Parquet présente différentes caractéristiques qui en font un choix privilégié pour le stockage et le traitement de gros volumes de données. En raison de ces avantages, le format Parquet est de plus en plus utilisé comme format de mise à disposition des données à l'Insee. Il est donc essentiel de savoir importer et requêter des fichiers Parquet avec Pandas.
+
+Pour lire un fichier Parquet dans un DataFrame pandas, on utilise la fonction `read_parquet()`.
+
+
+
 ### Visualiser un échantillon des données
+
+
 
 ### Obtenir une vue d'ensemble des données
 
