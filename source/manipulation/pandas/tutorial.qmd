@@ -554,6 +554,8 @@ def combine_columns(row):
         return str(row['var2']) + "_" + row['date']
 
 df['combined_column'] = df.apply(combine_columns, axis=1)
+
+df
 ```
 
 ### Trier les valeurs
@@ -569,7 +571,7 @@ df = pd.DataFrame(
     }
 )
 
-df.head()
+df
 ```
 
 Pour trier les valeurs selon une seule colonne, il suffit de passer le nom de la colonne en paramètre.
@@ -591,6 +593,90 @@ df.sort_values(by=['var1', 'var2'], ascending=[True, False])
 ```
 
 ### Traiter les valeurs manquantes
+
+Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable. Pandas offre plusieurs outils pour gérer les valeurs manquantes.
+
+#### Représentation des valeurs manquantes
+
+Dans Pandas, les valeurs manquantes sont généralement représentées par `np.nan`, qui est un marqueur spécial fourni par la bibliothèque `NumPy`. S'il est préférable d'utiliser cet objet pour dénoter les valeurs manquantes, notons que l'objet `None` de `Python` est également compris comme une valeur manquante par `Pandas`.
+
+Vérifions cette propriété. Pour identifier où se trouvent les valeurs manquantes, on utilise la fonction `isna()` qui retourne un DataFrame booléen indiquant `True` là où les valeurs sont `NaN`.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", None, "train", "validation"],
+        "date": pd.to_datetime(["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"]),
+        "sample": "sample1"
+    }
+)
+
+df.isna()
+```
+
+#### Calculs sur des colonnes contenant des valeurs manquantes
+
+Lors de calculs statistiques, les valeurs manquantes sont généralement ignorées. Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
+
+```{python}
+df['var1'].mean()
+```
+
+De même, les calculs faisant intervenir plusieurs colonnes ignorent généralement les valeurs manquantes.
+
+```{python}
+df['var3'] = df['var1'] + df['var2']
+
+df
+```
+
+#### Suppression des valeurs manquantes
+
+La méthode `dropna()` permet de supprimer les lignes (`axis=0`) ou les colonnes (`axis=1`) contenant des valeurs manquantes. Par défaut, toute ligne contenant au moins une valeur manquante est supprimée.
+
+```{python}
+df.dropna()
+```
+
+En modifiant le paramètre `axis`, on peut demander à ce que toute colonné contenant au moins une valeur manquante soit supprimée.
+
+```{python}
+df.dropna(axis=1)
+```
+
+Enfin, le paramètre `how` définit la modalité de supression. Par défaut, une ligne ou colonne est supprimée lorsqu'au moins une valeur est manquante (`how=any`), mais il est possible de ne supprimer la ligne/colonne que lorsque toutes les valeurs sont manquantes (`how=all`).
+
+#### Remplacement des valeurs manquantes
+
+Pour gérer les valeurs manquantes dans un DataFrame, une approche commune est l'imputation, qui consiste à remplacer les valeurs manquantes par d'autres valeurs. La méthode `fillna()` permet d'effectuer cette opération de différentes manières. Une première possibilité est le remplacement par une valeur constante.
+
+```{python}
+df['var1'].fillna(value=0)
+```
+
+::: {.callout-warning title="Changement de représentation des valeurs manquantes"}
+On peut parfois être tentant de changer la manifestation d'une valeur manquante pour des raisons de visibilité, par exemple en la remplaçant par une chaîne de caractères :
+
+```{python}
+df['var1'].fillna(value="MISSING")
+```
+
+En pratique, cette façon de faire n'est pas recommandée. Il est en effet préférable de conserver la convention standard de `Pandas` (l'utilisation des `np.nan`), d'abord pour des questions de standardisation des pratiques qui facilitent la lecture et la maintenance du code, mais également parce que la convention standard est optimisée pour la performance et les calculs à partir de données contenant des valeurs manquantes.
+:::
+
+Une autre méthode d'imputation fréquente est d'utiliser une valeur statistique, comme la moyenne ou la médiane de la variable.
+
+```{python}
+df['var1'].fillna(value=df['var1'].mean())
+```
+
+::: {.callout-warning title="Biais d'imputation"}
+Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la moyenne ou la médiane, peut être problématique. Si les données ne sont pas manquantes au hasard (*Missing Not At Random* - *MNAR*), cela peut introduire un biais dans l'analyse. Les variables *MNAR* sont des variables dont la probabilité d'être manquantes est liée à leur propre valeur ou à d'autres variables dans les données. Dans de tels cas, une imputation plus sophistiquée peut être nécessaire pour minimiser les distorsions. Nous en verrons un exemple en exercice de fin de tutoriel.
+:::
+
+
 
 ### Traiter les données de types spécifiques
 
@@ -619,8 +705,32 @@ df.sort_values(by=['var1', 'var2'], ascending=[True, False])
 ### Exercice : transformation log des pop legs
 
 - replace 0 -> nan
+- hist
 - applique log
 - hist
+
+### Exercice : imputation avec PPV / par groupes
+
+Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes :
+
+- **Imputation par la médiane ou la moyenne conditionnelle** : on peut calculer la moyenne ou la médiane pour des sous-groupes spécifiques et imputer les valeurs manquantes en fonction de l'appartenance à ces sous-groupes.
+
+  ```python
+  df['var1'] = df.groupby('experiment')['var1'].transform(lambda x: x.fillna(x.mean()))
+  ```
+
+- **Imputation par régression** : quand on suspecte que les valeurs manquantes d'une variable sont liées à d'autres variables, on peut utiliser la régression pour prédire les valeurs manquantes.
+
+  ```python
+  # Supposons que 'var1' peut être prédit en utilisant 'var2'
+  # On pourrait ajuster un modèle pour prédire 'var1', puis utiliser ce modèle pour imputer les valeurs manquantes.
+  ```
+
+- **Utilisation de modèles spécifiques à l'imputation** : comme les modèles d'imputation multiple qui prennent en compte l'incertitude autour des valeurs imputées et génèrent plusieurs ensembles de données complets.
+
+  ```python
+  # Le module `sklearn.impute` fournit des stratégies d'imputation telles que `IterativeImputer` qui peut être utilisé ici.
+  ```
 
 ### Exercice : tri croisé
 
