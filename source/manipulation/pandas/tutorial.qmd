@@ -768,6 +768,52 @@ df.groupby("experiment").mean().plot(kind='bar')
 
 #### Données textuelles
 
+Les données textuelles nécessitent souvent un nettoyage et une préparation avant l'analyse. Pandas fournit via la librairie de méthodes `str` un ensemble d'opérations vectorisées qui rendent la préparation des données textuelles à la fois simple et très efficace. Là encore, les possibilités sont multiples et détaillées dans la [documentation](https://pandas.pydata.org/docs/user_guide/text.html). Nous présentons ici les méthodes les plus fréquemment utilisées dans l'analyse de données.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", "test", "train", "validation"],
+        "sample": ["  sample1", "sample1", "sample2", "   sample2   ", "sample2  ", "sample1"]
+    }
+)
+
+df
+```
+
+Une première opération fréquente consiste à extraire certains caractères d'une chaîne. On utilise pour cela la fonction (à la syntaxe un peu particulière) `str[n:]` Par exemple, si l'on veut extraire le dernier caractère de la variable `sample` afin de ne retenir que le chiffre de l'échantillon.
+
+```{python}
+df["sample_n"] = df["sample"].str[-1:]
+
+df
+```
+
+Le principe était le bon, mais la présence d'espaces superflus dans nos données textuelles (qui ne se voyaient pas à la visualisation du DataFrame !) a rendu l'opération plus difficile que prévue. C'est l'occasion d'introduire la famille de méthode `strip` (`.str.strip()`, `.str.lstrip()` et `.str.rstrip()`) qui respectivement retirent les espaces superflus des deux côtés ou d'un seul.
+
+```{python}
+df["sample"] = df["sample"].str.strip()
+df["sample_n"] = df["sample"].str[-1:]
+
+df
+```
+
+On peut également vouloir filtrer un DataFrame en fonction de la présence ou non d'une certaine chaîne (ou sous-chaîne) de caractères. On utilise pour cela la méthode `.str.contains()`.
+
+```{python}
+df[df['experiment'].str.contains('test')]
+```
+
+Enfin, on peut vouloir remplacer une chaîne (ou sous-chaîne) de caractères par une autre, ce que permet la méthode `str.replace()`.
+
+```{python}
+df['experiment'] = df['experiment'].str.replace('validation', 'val')
+
+df
+```
+
 #### Données temporelles
 
 ### Joindre des tables
@@ -821,3 +867,5 @@ Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes
 ### Exercice : groupBy avec dropna ou non
 
 ### Exercice : agrégation multiple -> multiIndex
+
+### Exercice : fichiers des prénoms
