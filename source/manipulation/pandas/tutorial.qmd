@@ -8,7 +8,7 @@ jupyter: python3
 L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable. Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`. Les utilisateurs de `R` connaissent bien cette structure de données, qui est native à ce langage orienté statistique. En `Python`, langage généraliste, cet objet n'existe pas nativement. Heureusement, une librairie très complete et bien pratique, pensée comme une surcouche à `NumPy`, introduit en `Python` l'objet `DataFrame` et permet la manipulation et l'analyse de données de manière simple et intuitive : `Pandas`.
 
 ::: {.callout-note}
-Pandas étant l'élément central de l'éco-système data science en Python, il offre des possibilités de traitement de la donnée quasi-infinies. En plus de ça, il existe généralement de multiples manières de réaliser une même opération en Pandas. En conséquence, ce chapitre est particulièrement long et dense en nouvelles fonctionnalités. L'objectif n'est pas de retenir les nombreuses méthodes présentées tout au long de ce chapitre, mais plutôt d'avoir une vision générale de ce qu'il est possible de faire afin de pouvoir mobiliser les bons outils dans les projets. En particulier, les exercices de fin de chapitre et les mini-projets de fin de formation seront l'occasion d'appliquer ces nouvelles connaissances à des problématiques concrètes. 
+Pandas étant l'élément central de l'éco-système data science en Python, il offre des possibilités de traitement de la donnée quasi-infinies. En plus de ça, il existe généralement de multiples manières de réaliser une même opération en Pandas. En conséquence, ce chapitre est particulièrement long et dense en nouvelles fonctionnalités. L'objectif n'est pas de retenir toutes les méthodes présentées tout au long de ce chapitre, mais plutôt d'avoir une vision générale de ce qu'il est possible de faire afin de pouvoir mobiliser les bons outils dans les projets. En particulier, les exercices de fin de chapitre et les mini-projets de fin de formation seront l'occasion d'appliquer ces nouvelles connaissances à des problématiques concrètes. 
 :::
 
 On commence par importer la librairie `Pandas`. L'usage est courant est de lui attribuer l'alias `pd` afin de simplifier les futurs appels aux objets et fonctions du package. On importe également `NumPy` car on va comparer les objets fondamentaux des deux packages.
@@ -660,7 +660,6 @@ df = pd.DataFrame(
         "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
         "var2": np.random.randint(-10, 10, 6),
         "experiment": ["test", "train", "test", None, "train", "validation"],
-        "date": pd.to_datetime(["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"]),
         "sample": "sample1"
     }
 )
@@ -731,6 +730,41 @@ Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la m
 ### Traiter les données de types spécifiques
 
 #### Données catégorielles
+
+Les données catégorielles sont des variables textuelles qui contiennent un nombre restreint de modalités. A l'instarde `R` avec la notion de `factor`, Pandas a un type de données spécial, `category`, qui est utile pour représenter des données catégorielles de manière plus efficace et plus informative. Les données catégorielles sont en effet optimisées pour certains types de données et peuvent accélérer les opérations comme le groupement et le tri. Elles sont également utiles pour la visualisation, car elles permettent d'assurer que les catégories sont affichées dans un ordre cohérent et logique.
+
+Pour convertir une variable au format `category`, on utilise la méthode `astype()`.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", None, "train", "validation"],
+    }
+)
+print(df.dtypes)
+```
+
+```{python}
+df['experiment'] = df['experiment'].astype('category')
+
+print(df.dtypes)
+```
+
+Cette conversion nous donne accès à quelques méthodes bien pratiques, spécifiques au traitement des variables catégorielles. Il peut par exemple être utile de renommer les catégories pour des raisons de clarté ou de standardisation.
+
+```{python}
+df_cat = df['experiment'].cat.rename_categories({'test': 'Test', 'train': 'Train', 'validation': 'Validation'})
+df_cat
+```
+
+Parfois, l'ordre des catégories est significatif, et on peut vouloir le modifier. En particulier dans le cadre de la visualisation, car les modalités seront par défaut affichées dans l'ordre spécifié.
+
+```{python}
+df_cat = df['experiment'].cat.reorder_categories(['Test', 'Train', 'Validation'], ordered=True)
+df.groupby("experiment").mean().plot(kind='bar')
+```
 
 #### Données textuelles
 
