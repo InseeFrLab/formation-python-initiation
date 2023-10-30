@@ -592,6 +592,58 @@ Si on souhaite trier le DataFrame sur plusieurs colonnes, on peut fournir une li
 df.sort_values(by=['var1', 'var2'], ascending=[True, False])
 ```
 
+### Agréger des données
+
+L'agrégation des données est un processus dans lequel les données vont être ventilées en groupes selon certains critères, puis agrégées selon une fonction d'agrégation appliquée indépendamment à chaque groupe. Cette opération est courante lors de l'analyse exploratoire ou lors du prétraitement des données pour la visualisation ou la modélisation statistique.
+
+#### L'opération `groupBy`
+
+La méthode `groupBy` de Pandas permet de diviser le DataFrame en sous-ensembles selon les valeurs d'une ou plusieurs colonnes, puis d'appliquer une fonction d'agrégation à chaque sous-ensemble. Elle renvoie un objet de type `DataFrameGroupBy` qui ne présente pas de grand intérêt en soi, mais constitue l'étape intermédiaire indispensable pour pouvoir ensuite appliquer une ou plusieurs fonction(s) d'agrégation aux différents groupes.
+
+```{python}
+df.groupby('experiment')
+```
+
+#### Fonctions d'agrégation
+
+Une fois les données groupées, on peut appliquer des fonctions d'agrégation pour obtenir un résumé statistique. Pandas intègre un certain nombre de ces fonctions, dont la liste complète est détaillée dans la [documentation](https://pandas.pydata.org/docs/user_guide/groupby.html#built-in-aggregation-methods). Voici quelques exemples d'utilisation de ces méthodes.
+
+Par exemple, compter le nombre d'occurrences dans chaque groupe.
+
+```{python}
+df.groupby('experiment').size()
+```
+
+Calculer la somme d'une variable par groupe.
+
+```{python}
+df.groupby('experiment')['var1'].sum()
+```
+
+Ou encore compter le nombre de valeurs unique d'une variable par groupe. Les possibilités sont nombreuses..
+
+```{python}
+# Pour le nombre de valeurs uniques de 'var2' dans chaque groupe
+df.groupby('experiment')['var2'].nunique()
+```
+
+Lorsqu'on souhaite appliquer plusieurs fonctions d'agrégation à la fois ou des fonctions personnalisées, on utilise la méthode `agg`. Cette méthode accepte une liste de fonctions ou un dictionnaire qui associe les noms des colonnes aux fonctions à appliquer. Cela permet d'appliquer plus finement les fonctions d'agrégation.
+
+```{python}
+df.groupby('experiment').agg({'var1': 'mean', 'var2': 'count'})
+```
+
+#### Effets sur l'index
+
+Il est intéressant de noter les effets du processus d'agrégation sur l'index du DataFrame. Le dernier exemple ci-dessus l'illustre bien : les groupes, i.e. les modalités de la variable utilisée pour effectuer l'agrégation, deviennent les valeurs de l'index.
+
+On peut vouloir réutiliser cette information dans des analyses ultérieures, et donc la vouloir comme une colonne. Il suffit pour cela de réinitialiser l'index avec la méthode `reset_index()`.
+
+```{python}
+df_agg = df.groupby('experiment').agg({'var1': 'mean', 'var2': 'count'})
+df_agg.reset_index()
+```
+
 ### Traiter les valeurs manquantes
 
 Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable. Pandas offre plusieurs outils pour gérer les valeurs manquantes.
@@ -676,8 +728,6 @@ df['var1'].fillna(value=df['var1'].mean())
 Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la moyenne ou la médiane, peut être problématique. Si les données ne sont pas manquantes au hasard (*Missing Not At Random* - *MNAR*), cela peut introduire un biais dans l'analyse. Les variables *MNAR* sont des variables dont la probabilité d'être manquantes est liée à leur propre valeur ou à d'autres variables dans les données. Dans de tels cas, une imputation plus sophistiquée peut être nécessaire pour minimiser les distorsions. Nous en verrons un exemple en exercice de fin de tutoriel.
 :::
 
-
-
 ### Traiter les données de types spécifiques
 
 #### Données catégorielles
@@ -685,8 +735,6 @@ Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la m
 #### Données textuelles
 
 #### Données temporelles
-
-### Aggréger des données
 
 ### Joindre des tables
 
@@ -735,3 +783,7 @@ Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes
 ### Exercice : tri croisé
 
 - normalisation en ligne / colonne
+
+### Exercice : groupBy avec dropna ou non
+
+### Exercice : agrégation multiple -> multiIndex
