@@ -868,11 +868,53 @@ df
 
 ### Joindre des tables
 
+Dans le cadre d'une analyse de données, il est courant de vouloir combiner différentes sources de données. Cette combinaison peut se faire verticalement (un DataFrame par dessus l'autre), par exemple lorsque l'on souhaite combiner deux millésimes d'une même enquête afin de les analyser conjointement. La combinaison peut également se faire horizontalement (côte à côte) selon une ou plusieurs clé(s) de jointure, souvent dans le but d'enrichir une source de données à partir d'une autre source portant sur les mêmes unités statistiques.
+
 #### Concaténer des tables
+
+La concaténation verticale de tables se fait à l'aide de la fonction `concat()` de Pandas.
+
+```{python}
+df1 = pd.DataFrame(
+    data = {
+        "var1": [1, 5],
+        "var2": [3, 7],
+        "date": ["2022-01-01", "2022-01-02"],
+        "sample": ["sample1", "sample1"]
+    }
+)
+
+df2 = pd.DataFrame(
+    data = {
+        "var1": [9, 13],
+        "date": ["2023-01-01", "2023-01-02"],
+        "var2": [11, 15],
+        "sample": ["sample2", "sample2"]
+    }
+)
+
+df_concat = pd.concat([df1, df2])
+
+df_concat
+```
+
+Notons que l'ordre des variables dans les deux DataFrames n'est pas important. Pandas ne juxtapose pas "bêtement" les deux DataFrames, il fait une correspondance des schémas pour faire correspondre les variables par nom. Si deux variables ont le même nom mais pas le même type - par exemple dans le cas où une variable numérique aurait été interprétée comme des strings - Pandas va résoudre le problème en prenant le dénominateur commun, c'est à dire en général convertir en strings (type `object`).
+
+Par contre, la concaténation précédente laisse apparaître un problème de répétition au niveau de l'index. C'est logique : on n'a pas spécifié d'index pour nos deux DataFrames initiaux, qui ont donc le même index de position ([0, 1]). Dans ce cas (où l'index n'est pas important), on peut passer le paramètre `ignore_index=True` pour reconstruire de zéro l'index final.
+
+```{python}
+df_concat = pd.concat([df1, df2], ignore_index=True)
+
+df_concat
+```
+
+::: {.callout-warning title="Construction itérative d'un DataFrame"}
+On pourrait avoir l'idée d'utiliser `pd.concat()` pour construire un DataFrame de manière itérative, en ajoutant à chaque itération d'une boucle une nouvelle ligne au DataFrame existant. Ce n'est néanmoins pas une bonne idée : comme nous l'avons vu, un DataFrame est représenté dans la mémoire commme une juxtaposition de Series. Ainsi, ajouter une colonne à un DataFrame est peu coûteux, mais ajouter une ligne implique de modifier chaque élément constituant du DataFrame. Pour construire un DataFrame, il est donc plutôt conseillé de stocker les lignes dans une liste de listes (une par colonne) ou un dictionnaire, puis d'appeler `pd.DataFrame()` pour construire le DataFrame, comme nous l'avons fait au début de ce tutoriel.
+:::
 
 #### Fusionner des tables
 
-
+- note : équivalent à join
 
 
 
