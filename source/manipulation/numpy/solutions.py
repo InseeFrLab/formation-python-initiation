@@ -9,7 +9,7 @@
 
 # 3/ Tous les objets sont interprétés comme des chaînes de caractères.
 
-# 4/ Créer une liste et la convertir ensuite en array via la 
+# 4/ Créer une liste et la convertir ensuite en array via la
 # fonction np.array.
 
 # 5/ L'attribut shape d'un array renvoie un tuple qui contient la taille
@@ -28,7 +28,7 @@
 # (typiquement, un entier ou un réel), l'opération est appliquée à chaque
 # élément de l'array.
 
-# 9/ Le paramètre axis sert à spécifier la dimension selon laquelle on 
+# 9/ Le paramètre axis sert à spécifier la dimension selon laquelle on
 # souhaite performer une agrégation (fonction math, stat..).
 
 # -------------------------------------------------------------------------- #

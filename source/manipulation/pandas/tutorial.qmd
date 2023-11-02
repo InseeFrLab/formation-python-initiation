@@ -972,6 +972,31 @@ df_merged_outer
 
 ### Questions de compréhension
 
+
+- 1/ Qu'est-ce qu'un DataFrame dans le contexte de Pandas et à quel type de structure de données peut-on le comparer dans le langage Python ?
+- 2/ Quelle est la différence fondamentale entre un array Numpy et une Pandas Series ?
+- 3/ Quel est le lien entre Series et DataFrame dans Pandas ?
+- 4/ Comment sont structurées les données dans un DataFrame Pandas ?
+- 5/ Quel est le rôle de l'index dans un DataFrame Pandas et comment peut-il être utilisé lors de la manipulation des données ?
+- 6/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
+- 7/ Dans Pandas, quelle est la différence entre assigner le résultat d'une opération à une nouvelle variable et utiliser une méthode avec l'argument inplace=True ?
+- 8/ Comment s'applique le principe de la vectorisation dans Pandas et pourquoi est-ce avantageux pour manipuler les données ?
+- 9/Comment Pandas représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
+- 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
+- 11/ Comment la notion de chaînage de méthodes (method chaining) contribue-t-elle à l'efficacité du code dans Pandas ?
+
+```{python} tags=[]
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python} tags=[]
+# Exécuter cette cellule pour afficher la solution
+%load -r 3-32 solutions.py
+```
+
+
+
 ### Exercice : transformation log des pop legs
 
 - replace 0 -> nan
