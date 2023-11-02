@@ -972,30 +972,117 @@ df_merged_outer
 
 ### Questions de compréhension
 
-
 - 1/ Qu'est-ce qu'un DataFrame dans le contexte de Pandas et à quel type de structure de données peut-on le comparer dans le langage Python ?
 - 2/ Quelle est la différence fondamentale entre un array Numpy et une Pandas Series ?
 - 3/ Quel est le lien entre Series et DataFrame dans Pandas ?
 - 4/ Comment sont structurées les données dans un DataFrame Pandas ?
 - 5/ Quel est le rôle de l'index dans un DataFrame Pandas et comment peut-il être utilisé lors de la manipulation des données ?
 - 6/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
-- 7/ Dans Pandas, quelle est la différence entre assigner le résultat d'une opération à une nouvelle variable et utiliser une méthode avec l'argument inplace=True ?
+- 7/ Dans Pandas, quelle est la différence entre assigner le résultat d'une opération à une nouvelle variable et utiliser une méthode avec l'argument `inplace=True` ?
 - 8/ Comment s'applique le principe de la vectorisation dans Pandas et pourquoi est-ce avantageux pour manipuler les données ?
 - 9/Comment Pandas représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
 - 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
-- 11/ Comment la notion de chaînage de méthodes (method chaining) contribue-t-elle à l'efficacité du code dans Pandas ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 3-32 solutions.py
+%load -r 3-45 solutions.py
+```
+
+### Exercice : plusieurs manières de créer un DataFrame
+
+Dans la cellule suivante, nous avons récupéré des données de caisses sur les ventes de différentes enseignes. Les données sont cependant présentées de deux manières différentes, dans un cas sous forme d'observations (chaque liste contient les données d'une ligne), dans l'autre sous forme de variables (chaque liste contient les données d'une colonne).
+
+```{python}
+data_list1 = [
+    ['Carrefour', '01.1.1', 3, 1.50],
+    ['Casino', '02.1.1', 2, 2.30],
+    ['Lidl', '01.1.1', 7, 0.99],
+    ['Carrefour', '03.1.1', 5, 5.00],
+    ['Casino', '01.1.1', 10, 1.20],
+    ['Lidl', '02.1.1', 1, 3.10]
+]
+
+data_list2 = [
+    ['Carrefour', 'Casino', 'Lidl', 'Carrefour', 'Casino', 'Lidl'],
+    ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
+    [3, 2, 7, 5, 10, 1],
+    [1.50, 2.30, 0.99, 5.00, 1.20, 3.10]
+]
+```
+
+L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame.  A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrame sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+### Exercice : sélection de données dans un DataFrame Pandas
+
+Un DataFrame Pandas est créé avec des données de caisse (mêmes données que l'exercice précédent).
+
+```{python}
+data = {
+    'enseigne': ['Carrefour', 'Casino', 'Lidl', 'Carrefour', 'Casino', 'Lidl'],
+    'produit': ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
+    'quantite': [3, 2, 7, 5, 10, 1],
+    'prix': [1.50, 2.30, 0.99, 5.00, 1.20, 3.10],
+    'date_heure': pd.to_datetime(["2022-01-01 14:05", "2022-01-02 09:30", 
+                                  "2022-01-03 17:45", "2022-01-04 08:20", 
+                                  "2022-01-05 19:00", "2022-01-06 16:30"])
+}
+
+df_caisse = pd.DataFrame(data)
+```
+
+Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiques :
+- Sélectionner les données de la première ligne.
+- Sélectionner toutes les données de la colonne "prix".
+- Sélectionner les lignes correspondant à l'enseigne "Carrefour" uniquement.
+- Sélectionner les quantités achetées pour les produits classifiés "01.1.1" (Pain).
+- Sélectionner les données des colonnes "enseigne" et "prix" pour toutes les lignes.
+- Sélectionner les lignes où la quantité achetée est supérieure à 5.
+- Filtrer pour sélectionner toutes les transactions qui ont eu lieu après 15h.
+- Sélectionner les transactions qui ont eu lieu le "2022-01-03".
+
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
 ```
 
 
+
+
+
+
+
+
+
+### Exercice : doublons communes
+
+### Exercice : méthode chaining
+
+Le chaînage de méthodes permet de combiner plusieurs opérations en une seule
+expression de code. Cela peut améliorer l'efficacité en évitant les assignations
+intermédiaires et en rendant le code plus fluide et plus facile à lire.
+Cela favorise également un style de programmation fonctionnel où les données
+passent à travers une chaîne de transformations de manière fluide.
 
 ### Exercice : transformation log des pop legs
 

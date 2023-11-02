@@ -44,11 +44,66 @@
 # base de valeurs de clés communes et sont utilisées pour enrichir un ensemble de
 # données avec des informations d'un autre ensemble.
 
-# 10/ Le chaînage de méthodes permet de combiner plusieurs opérations en une seule
-# expression de code. Cela peut améliorer l'efficacité en évitant les assignations
-# intermédiaires et en rendant le code plus fluide et plus facile à lire.
-# Cela favorise également un style de programmation fonctionnel où les données
-# passent à travers une chaîne de transformations de manière fluide.
+# -------------------------------------------------------------------------- #
+
+data_list1 = [
+    ['Carrefour', 'Casino', 'Lidl', 'Carrefour', 'Casino', 'Lidl'],
+    ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
+    [3, 2, 7, 5, 10, 1],
+    [1.50, 2.30, 0.99, 5.00, 1.20, 3.10]
+]
+
+data_list2 = [
+    ['Carrefour', '01.1.1', 3, 1.50],
+    ['Casino', '02.1.1', 2, 2.30],
+    ['Lidl', '01.1.1', 7, 0.99],
+    ['Carrefour', '03.1.1', 5, 5.00],
+    ['Casino', '01.1.1', 10, 1.20],
+    ['Lidl', '02.1.1', 1, 3.10]
+]
+
+# 1ère possibilité : à partir d'un dictionnaire
+data_dict = {
+    'enseigne': data_list1[0],
+    'produit': data_list1[1],
+    'quantite': data_list1[2],
+    'prix': data_list1[3]
+}
+
+df_from_dict = pd.DataFrame(data_dict)
+
+# 2ème possibilité : à partir d'une liste de listes
+columns = ['enseigne', 'produit', 'quantite', 'prix']
+df_from_list = pd.DataFrame(data_list2, columns=columns)
+
+# Vérification
+df_from_dict.equals(df_from_list)
+
+# -------------------------------------------------------------------------- #
+
+# Sélection des données de la première ligne
+print(df.iloc[0])
+
+# Sélection de toutes les données de la colonne 'prix'
+print(df.loc[:, 'prix'])
+
+# Sélection des lignes pour l'enseigne 'Carrefour' uniquement
+print(df.loc[df['enseigne'] == 'Carrefour'])
+
+# Sélection des quantités achetées pour les produits classifiés '01.1.1' (Pain)
+print(df.loc[df['produit'] == '01.1.1', 'quantite'])
+
+# Sélection des données des colonnes 'enseigne' et 'prix' pour toutes les lignes
+print(df.loc[:, ['enseigne', 'prix']])
+
+# Sélection des lignes où la quantité achetée est supérieure à 5
+print(df.loc[df['quantite'] > 5])
+
+# Sélection des lignes où les transactions qui ont eu lieu après 15h
+print(df.loc[df['date_heure'].dt.hour > 15])
+
+# Sélection des lignes où les transactions ont eu lieu le "2022-01-03"
+print(df.loc[df['date_heure'].dt.date == pd.to_datetime('2022-01-03').date()])
 
 # -------------------------------------------------------------------------- #
 

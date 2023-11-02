@@ -386,7 +386,9 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 %load -r 3-32 solutions.py
 ```
 
-### Exercice : sélectionner des éléments dans un vecteur
+### Exercice : plusieurs manières de créer un DataFrame
+
+### Exercice : manipulations simples des données d'un DataFrame
 
 
 Un vecteur comprenant les entiers compris entre 10 et 20 est défini dans la cellule suivante. En utilisant l'indexation des *arrays* `NumPy` :
