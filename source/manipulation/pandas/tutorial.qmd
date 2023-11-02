@@ -914,9 +914,59 @@ On pourrait avoir l'idée d'utiliser `pd.concat()` pour construire un DataFrame 
 
 #### Fusionner des tables
 
-- note : équivalent à join
+La fusion de tables est une opération qui permet d'associer des lignes de deux DataFrames différents en se basant sur une ou plusieurs clés communes, similaire aux jointures dans les bases de données SQL. Différents types de jointure sont possible selon les données que l'on souhaite conserver, dont les principaux sont représentés sur le graphique suivant.
 
+![](img/joins.png)
 
+Source : [lien](https://medium.com/swlh/merging-dataframes-with-pandas-pd-merge-7764c7e2d46d)
+
+En Pandas, les jointures se font avec la fonction [merge()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html). Pour réaliser une jointure, on doit spécifier (au minimum) deux informations :
+- le type de jointure : par défaut, Pandas effectue une jointure de type `inner`. Le paramètre `how` permet de spécifier d'autres types de jointure ;
+- la clé de jointure. Par défaut, Pandas essaie de joindre les deux DataFrame à partir de leurs index. En pratique, on spécifie souvent une variable présente dans le DataFrame comme clé de jointure (paramètre `on` si la variable porte le même nom dans les deux DataFrame, ou `left_on` et `right_on` sinon).
+
+Analysons la différence entre les différents types de jointure à travers des exemples.
+
+```{python}
+df_a = pd.DataFrame({
+    'key': ['K0', 'K1', 'K2', 'K3', 'K4'],
+    'A': ['A0', 'A1', 'A2', 'A3', 'A4'],
+    'B': ['B0', 'B1', 'B2', 'B3', 'A4']
+})
+
+df_b = pd.DataFrame({
+    'key': ['K0', 'K1', 'K2', 'K5', 'K6'],
+    'C': ['C0', 'C1', 'C2', 'C5', 'C6'],
+    'D': ['D0', 'D1', 'D2', 'D5', 'D6']
+})
+
+display(df_a)
+display(df_b)
+```
+
+La jointure de type `inner` conserve les observations dont la clé est présente dans les deux DataFrame. 
+
+```{python}
+df_merged_inner = pd.merge(df_a, df_b, on='key')
+df_merged_inner
+```
+
+::: {.callout-warning title="Jointures inner"}
+La jointure de type `inner` est la plus intuitive : elle ne crée généralement pas de valeurs manquantes et permet donc de travailler directement sur la table fusionnée. Mais attention : si beaucoup de clés ne sont pas présentes dans les deux DataFrame à la fois, une jointure `inner` peut aboutit à des pertes importantes de données, et donc à des résultats finaux biaisés. Dans ce cas, il vaut mieux choisir une jointure à gauche ou à droite, selon la source que l'on cherche à enrichir et pour laquelle il est donc le plus important de limiter les pertes de données.
+:::
+
+Une jointure de type `left` conserve toutes les observations contenues dans le DataFrame de gauche (premier DataFrame spécifié dans `pd.merge()`). Par conséquent, si des clés sont présentes dans le DataFrame de gauche mais pas dans celui de droite, le DataFrame final contient des valeurs manquantes au niveau de ces observations (pour les variables du DataFrame de droite).
+
+```{python}
+df_merged_left = pd.merge(df_a, df_b, how="left", on='key')
+df_merged_left
+```
+
+La jointure de type `outer` contient toutes les observations et variables contenues dans les deux DataFrame. Ainsi, l'information retenue est maximale, mais en contrepartie les valeurs manquantes peuvent être assez nombreuses. Il sera donc nécessaire de bien traiter les valeurs manquantes avant de procéder aux analyses.
+
+```{python}
+df_merged_outer = pd.merge(df_a, df_b, how="outer", on='key')
+df_merged_outer
+```
 
 ## Exercices
 
