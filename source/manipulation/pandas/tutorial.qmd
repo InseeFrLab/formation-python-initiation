@@ -246,8 +246,8 @@ Il est également possible d'importer un fichier CSV directement à partir d'une
 ```{python}
 # Importer un fichier CSV depuis une URL
 url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
-df_departements_url = pd.read_csv(url, sep=";")
-df_departements_url.head()
+df_prenoms_url = pd.read_csv(url, sep=";")
+df_prenoms_url.head()
 ```
 
 Lorsqu'on travaille avec des fichiers CSV, il y a de nombreux arguments optionnels disponibles dans la fonction `read_csv()` qui permettent d'ajuster le processus d'importation en fonction des spécificités du fichier. Ces arguments peuvent notamment permettre de définir un délimiteur spécifique (comme ci-dessus pour le fichier des prénoms), de sauter certaines lignes en début de fichier, ou encore de définir les types de données pour chaque colonne, et bien d'autres. Tous ces paramètres et leur utilisation sont détaillés dans la [documentation officielle](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
@@ -1015,7 +1015,7 @@ data_list2 = [
 ]
 ```
 
-L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame.  A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrame sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
+L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrame sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1066,15 +1066,41 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 %load -r  solutions.py
 ```
 
+### Exercice : exploration du fichier des prénoms
 
+#### Partie 1 : Import et exploration des données
 
+- Importez les données dans un DataFrame.
+- Visualisez un échantillon des données. Repérez-vous d'éventuelles anomalies ?
+- Affichez les principales informations du DataFrame. Repérez d'éventuelles variables dont le type serait incorrect, ou bien d'éventuelles valeurs manquantes.
 
+#### Partie 2 : Nettoyage des données
 
+- L'output de la méthode `info()` suggère des valeurs manquantes dans la colonne des prénoms. Affichez ces lignes. Vérifiez que ces valeurs manquantes sont correctement spécifiées.
+- L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+- On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+- Supprimer les lignes contenant des valeurs manquantes de l'échantillon.
+- Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
+- Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
 
+#### Partie 3 : Statistiques descriptives sur les naissances
+
+- La [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) du fichier nous informe qu'on peut considérer les données comme quasi-exhaustives à partir de 1946. Pour cette partie seulement, filtrer les données pour ne conserver que les données ultérieures.
+- Calculez le nombre total de naissances par sexe.
+- Identifiez les cinq années ayant le plus grand nombre de naissances.
+
+#### Partie 4 : Analyse des prénoms
+
+- Identifiez le nombre total de prénoms uniques dans le DataFrame.
+- Compter le nombre de personnes possédant un prénom d'une seule lettre.
+- Créez une fonction qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
+- Identifier le prénom le plus donné par décennie, pour chaque sexe.
 
 
 
 ### Exercice : doublons communes
+
+### Exercice : jointure sur les communes
 
 ### Exercice : méthode chaining
 
@@ -1122,6 +1148,6 @@ Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes
 
 ### Exercice : agrégation multiple -> multiIndex
 
-### Exercice : manipulations str avec le fichiers des prénoms
+
 
 ### Exercice : différencier une série avec un lag timedelta

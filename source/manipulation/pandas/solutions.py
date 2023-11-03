@@ -107,3 +107,83 @@ print(df.loc[df['date_heure'].dt.date == pd.to_datetime('2022-01-03').date()])
 
 # -------------------------------------------------------------------------- #
 
+# Partie 1 : import et exploration des données
+
+# Importer un fichier CSV depuis une URL
+url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
+df_prenoms = pd.read_csv(url, sep=";")
+
+# Visualisation des données
+df_prenoms.head(10)
+df_prenoms.sample(n=50)
+
+# Informations générales sur les données
+df_prenoms.info()
+
+# Partie 2 : nettoyage des données
+
+# Colonne preusuel
+print(df_prenoms[df_prenoms["preusuel"].isna()])
+prop_rares = df_prenoms.groupby("preusuel")["nombre"].sum()["_PRENOMS_RARES"] / df_prenoms["nombre"].sum()
+print(prop_rares)  # ~ 2 % de la base
+df_prenoms = df_prenoms.replace('_PRENOMS_RARES', np.nan)
+
+# Colonne annais
+prop_xxxx = df_prenoms.groupby("annais")["nombre"].sum()["XXXX"] / df_prenoms["nombre"].sum()
+print(prop_xxxx)  # ~ 1 % de la base
+df_prenoms = df_prenoms.replace('XXXX', np.nan)
+
+# Suppression des valeurs manquantes
+df_prenoms = df_prenoms.dropna()
+
+# Conversions de types
+df_prenoms['annais'] = pd.to_numeric(df_prenoms['annais'])
+df_prenoms['sexe'] = df_prenoms['sexe'].astype('category')
+
+# Vérification
+df_prenoms.info()
+
+#### Partie 3 : Statistiques descriptives sur les naissances
+
+# Filtrage des données
+df_prenoms_post_1946 = df_prenoms[df_prenoms["annais"] >= 1946]
+
+# Nombre total de naissances par sexe
+births_per_sex = df_prenoms_post_1946.groupby('sexe')['nombre'].sum()
+print(births_per_sex)
+
+# Cinq années avec le plus grand nombre de naissances
+top5_years = df_prenoms_post_1946.groupby('annais')['nombre'].sum().nlargest(5)
+print(top5_years)
+
+#### Partie 4 : Analyse des prénoms
+
+# Nombre total de prénoms uniques
+total_unique_names = df_prenoms['preusuel'].nunique()
+print(total_unique_names)
+
+# Nombre de personnes possédant un prénom d'une seule lettre
+single_letter_names = df_prenoms[df_prenoms['preusuel'].str.len() == 1]['nombre'].sum()
+print(single_letter_names)
+
+# Fonction de popularité
+def most_popular_year(df, prenom):
+    # Filtrer le DataFrame pour ne garder que les lignes correspondant au prénom donné
+    df_prenom = df[df['preusuel'] == prenom]
+
+    # Grouper par année, sommer les naissances et identifier l'année avec le maximum de naissances
+    df_agg = df_prenom.groupby('annais')['nombre'].sum()
+    annee_max = df_agg.idxmax()
+    n_max = df_agg[annee_max]
+
+    print(f"Le prénom '{prenom}' a été le plus donné en {annee_max}, avec {n_max} naissances.")
+
+# Test de la fonction avec un exemple
+most_popular_year(df_prenoms, 'ALFRED')
+
+# Prénom le plus donné par décennie, pour chaque sexe
+df_prenoms['decade'] = (df_prenoms['annais'].dropna().astype(int) // 10) * 10  # Créer la colonne décennie
+most_frequent_per_decade = df_prenoms.groupby(['sexe', 'decade'])['preusuel'].apply(lambda x: x.mode()[0])
+print(most_frequent_per_decade)
+
+
