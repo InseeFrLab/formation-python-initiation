@@ -31,4 +31,4 @@ rm -r $CLONE_DIR
 
 # Open the relevant notebook when starting Jupyter Lab
 # jupyter server --generate-config
-echo "c.LabApp.default_url = '/lab/tree/formation/tutorial.ipynb'" >> /home/onyxia/.jupyter/jupyter_server_config.py
+echo "c.LabApp.default_url = '/lab/tree/tutorial.ipynb'" >> /home/onyxia/.jupyter/jupyter_server_config.py
