@@ -13,7 +13,7 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Build notebook from sources
 SOURCE_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/tutorial.qmd
-quarto convert $SOURCE_FILE
+quarto render $SOURCE_FILE --to ipynb
 
 # Put chapter files in the training dir
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
