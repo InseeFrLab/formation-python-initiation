@@ -131,7 +131,7 @@ Les opérateurs booléens permettent de **tester simultanément plusieurs expres
 
 ### Opérateur `and`
 
-<!-- #region tags=[] -->
+
 Le premier opérateur booléen est `and`. Regardons sa table de vérité : 
 
 | Expression | Evaluation |
@@ -142,13 +142,13 @@ Le premier opérateur booléen est `and`. Regardons sa table de vérité :
 | `False and False` | `False` |
 
 Vérifions ces règles en pratique à l'aide de quelques exemples.
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 True and True
 ```
 
-```{python} tags=[]
+```{python}
 False and True
 ```
 
@@ -164,9 +164,9 @@ b = ("x" == "y")
 a and b
 ```
 
-<!-- #region tags=[] -->
+
 Notez l'usage des parenthèses pour délimiter les tests : elles ne sont pas obligatoires, mais fortement recommandées dans la mesure où elles améliorent grandement la lisibilité tes tests.
-<!-- #endregion -->
+
 
 ### L'opérateur `or`
 
@@ -180,11 +180,11 @@ Le second opérateur booléen est `or`. Sa table de vérité est la suivante :
 | `False or True` | `True` |
 | `False or False` | `False` |
 
-```{python} tags=[]
+```{python}
 True or True
 ```
 
-```{python} tags=[]
+```{python}
 False or True
 ```
 
@@ -192,7 +192,7 @@ False or True
 (3 > 2) or (5 <= 9)
 ```
 
-```{python} tags=[]
+```{python}
 a = ("x" != "z")
 b = ("x" == "y")
 a or b
@@ -208,11 +208,11 @@ Le dernier opérateur booléen est `not`. Sa table de vérité est la suivante :
 | `not True` | `False` |
 | `not False` | `True` |
 
-```{python} tags=[]
+```{python}
 not True
 ```
 
-```{python} tags=[]
+```{python}
 not False
 ```
 
@@ -329,19 +329,19 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 - 9/ Peut-on imbriquer les instructions conditionnelles ?
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
 
 ### Exercice : prédiction de résultats de tests
 
-<!-- #region tags=[] -->
+
 Prédire le résultats des tests suivants, et vérifier vos prédictions : 
 
 - `'Simon' in ['simon', 'oceane', 'veronique']`
@@ -354,14 +354,14 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 - `not ((7 > 8) or (5 <= 5))`
 -  `(True and True) or (True == False)`
 - `(not False) or (not True)`
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-45 solutions.py
 ```
@@ -400,7 +400,7 @@ prédire les résultats du programme :
 
 Vérifiez vos résultats.
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
@@ -503,9 +503,9 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 %load -r 102-109 solutions.py
 ```
 
-<!-- #region tags=[] -->
+
 ### Exercice : Booléens et langage binaire
-<!-- #endregion -->
+
 
 Les Booléens sont fortement liés au langage binaire, dans lequel le `1` correspond à "vrai" et le `0` à "faux". On va vérifier si ce lien existe dans le contexte de Python. Pour ce faire : 
 - calculer la "représentation en entier" de la valeur booléenne de votre choix à l'aide de la fonction `int` ;

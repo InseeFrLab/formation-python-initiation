@@ -94,12 +94,12 @@ NB : on verra plus en détails ce comportement plus loin dans le tutoriel, à tr
 
 Le nombre d'arguments que l'on peut passer à une fonction est variable. En toute rigueur, il est possible de définir une fonction qui n'a besoin d'aucun argument, même si c'est rarement utile en pratique.
 
-```{python} tags=[]
+```{python}
 def neuf():
     return 9
 ```
 
-```{python} tags=[]
+```{python}
 a = neuf()
 a
 ```
@@ -321,12 +321,12 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 - 10/ Une fonction peut-elle renvoyer plusieurs objets ?
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-38 solutions.py
 ```
@@ -336,12 +336,12 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 
 Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et renvoie la fonction puissance $x^y$.
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-45 solutions.py
 ```
@@ -383,12 +383,12 @@ def f9(x, y, z=5):
     return x + y + z
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-65 solutions.py
 ```
@@ -398,7 +398,7 @@ def f9(x, y, z=5):
 
 Que vaut la variable `total` dans le programme suivant ?
 
-```{python} tags=[]
+```{python}
 z = 3
 
 def f1(x, y):
@@ -415,80 +415,80 @@ total = f1(2, 3) + f2(3, 1) + f3(1, 0)
 print(total)
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-93 solutions.py
 ```
 
 ### Calculatrice
 
-<!-- #region tags=[] -->
+
 Ecrire une fonction `calculatrice` qui :
 - prend deux nombres en entrée
 - renvoie l'addition, la soustraction, la multiplication et la division de ces deux nombres en sortie
 
 Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des variables en une seule ligne.
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 97-101 solutions.py
 ```
 
 ### Dédupliquer une liste
 
-<!-- #region tags=[] -->
+
 Ecrire une fonction qui :
 - prend en entrée une liste d'éléments quelconques
 - renvoie une nouvelle liste constituée des éléments uniques de la liste initiale
 - permet via un paramètre optionnel de trier ou non la liste finale par ordre alphanumérique. Le comportement par défaut doit être de ne pas trier.
 
 Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 105-113 solutions.py
 ```
 
 ### Multiplier les éléments d'une liste
 
-<!-- #region tags=[] -->
+
 Ecrire une fonction qui :
 - prend en entrée une liste de nombres
 - imprime : "Il y a $n$ nombres dans la liste." avec $n$ le nombre effectif
 - multiplie tous les éléments de la liste (sans utiliser de fonction pré-codée)
 - retourne le résultat
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 117-125 solutions.py
 ```
 
 ### Variance dans une population et variance dans un échantillon
 
-<!-- #region tags=[] -->
+
 Dans un exercice du précédent tutoriel, nous avons codé "à la main" le calcul de la variance d'une liste de nombres, à partir de la formule : $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
 
 En toute rigueur, cette formule est valide lorsqu'on calcule la **variance en population complète**. Si l'on n'observe qu'un échantillon de la population, on ne calcule pas la variance mais on l'estime, et il faut alors utiliser la formule suivante pour obtenir un **estimateur sans biais de la vraie variance** : $$s^2 = {\frac {1}{n-1}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$.
@@ -499,34 +499,34 @@ Pour tenir compte de cette distinction :
 - modifier la fonction `var` afin de permettre à l'utilisateur de choisir la méthode de calcul via un paramètre optionnel `mode` (valeur par défaut : 'population' pour le calcul via la formule en population ; valeur alternative : 'sample' pour le calcul via la formule en échantillon)
 
 Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction *black box* `var` de la librarie `numpy` (cf. corrigé de l'exercice du tutoriel précédent pour la syntaxe, et voir la [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) de la fonction et en particulier le paramètre `ddof` pour faire varier la méthode de calcul).
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-158 solutions.py
 ```
 
 ### Fonctions récursives : factorielle
 
-<!-- #region tags=[] -->
+
 Les fonctions récursives sont des fonctions qui s'appellent elles-mêmes dans le corps de la fonction, ce qui entraîne des appels infinis jusqu'à atteindre un critère d'arrêt.
 
 Un bon exemple de fonction récursive est la fonction qui calcule la factorielle d'un entier. La factorielle d'un entier naturel $n$ est le produit des nombres entiers strictement positifs inférieurs ou égaux à n. Par exemple : $5! = 5*4*3*2*1 = 120$.
 
 Coder cette fonction et vérifier qu'elle fonctionne correctement.
-<!-- #endregion -->
 
-```{python} tags=[]
+
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 162-169 solutions.py
 ```

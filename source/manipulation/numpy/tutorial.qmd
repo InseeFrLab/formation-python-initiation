@@ -376,12 +376,12 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 - 8/ Qu'est-ce que la propriété de *broadcasting* ?
 - 9/ A quoi sert le paramètre `axis` des fonctions mathématiques de `NumPy` ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -398,18 +398,18 @@ Un vecteur comprenant les entiers compris entre 10 et 20 est défini dans la cel
 - sélectionner tous les éléments pairs
 - sélectionner tous les éléments en les triant dans l'ordre inverse (NB : la fonction `np.flip` permet de faire la même chose)
 
-```{python} tags=[]
+```{python}
 X = np.arange(10, 21)
 
 print(X)
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-44 solutions.py
 ```
@@ -430,12 +430,12 @@ Y = np.arange(0, 25).reshape((5, 5))
 print(Y)
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 48-54 solutions.py
 ```
@@ -463,12 +463,12 @@ Y = np.array([[10,11,12],
               [16,17,18]])
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 58-76 solutions.py
 ```
@@ -494,12 +494,12 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 - un vecteur contenant les entiers *pairs* compris entre $0$ à $99$ inclus (fonction `np.arange`)
 - un vecteur contenant 5 valeurs uniformément espacées entre $2$ et $3$ inclus (fonction `np.linspace`)
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 80-106 solutions.py
 ```
@@ -513,12 +513,12 @@ Vérifiez ensuite à l'aide des fonctions mathématiques de `NumPy` que la moyen
 
 Indice : attention à la manière dont est spécifiée la variance dans la fonction `NumPy` de génération d'une loi normale. 
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 110-112 solutions.py
 ```
@@ -530,12 +530,12 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 
 En utilisant la fonction `np.all` et un test booléen, vérifier que tous les nombres contenus dans `U` sont bien compris entre -1 et 1.
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 116-119 solutions.py
 ```
@@ -553,12 +553,12 @@ Dans la cellule suivante, une matrice `X` à 6 lignes et 6 colonnes est génér�
 X = np.random.randint(0, 50, size=(6, 6))
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 123-136 solutions.py
 ```
@@ -585,12 +585,12 @@ X = np.array([[1, 1, 1, 0, 0], [0, 0, 0, 0, 1], [1, 0, 0, 0, 1],
 print(X)
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 140-157 solutions.py
 ```
@@ -612,12 +612,12 @@ values = np.array(["21", "46", "47", "23", "66", "82", "82"])
 print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 161-169 solutions.py
 ```
