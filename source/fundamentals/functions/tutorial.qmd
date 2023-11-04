@@ -94,12 +94,12 @@ NB : on verra plus en détails ce comportement plus loin dans le tutoriel, à tr
 
 Le nombre d'arguments que l'on peut passer à une fonction est variable. En toute rigueur, il est possible de définir une fonction qui n'a besoin d'aucun argument, même si c'est rarement utile en pratique.
 
-```{python} tags=[]
+```{python}
 def neuf():
     return 9
 ```
 
-```{python} tags=[]
+```{python}
 a = neuf()
 a
 ```
@@ -321,12 +321,12 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 - 10/ Une fonction peut-elle renvoyer plusieurs objets ?
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-38 solutions.py
 ```
@@ -336,12 +336,12 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 
 Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et renvoie la fonction puissance $x^y$.
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-45 solutions.py
 ```
@@ -383,12 +383,12 @@ def f9(x, y, z=5):
     return x + y + z
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-65 solutions.py
 ```
@@ -398,7 +398,7 @@ def f9(x, y, z=5):
 
 Que vaut la variable `total` dans le programme suivant ?
 
-```{python} tags=[]
+```{python}
 z = 3
 
 def f1(x, y):
@@ -415,12 +415,12 @@ total = f1(2, 3) + f2(3, 1) + f3(1, 0)
 print(total)
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-93 solutions.py
 ```
@@ -435,12 +435,12 @@ Ecrire une fonction `calculatrice` qui :
 Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des variables en une seule ligne.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 97-101 solutions.py
 ```
@@ -456,12 +456,12 @@ Ecrire une fonction qui :
 Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 105-113 solutions.py
 ```
@@ -476,12 +476,12 @@ Ecrire une fonction qui :
 - retourne le résultat
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 117-125 solutions.py
 ```
@@ -501,12 +501,12 @@ Pour tenir compte de cette distinction :
 Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction *black box* `var` de la librarie `numpy` (cf. corrigé de l'exercice du tutoriel précédent pour la syntaxe, et voir la [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) de la fonction et en particulier le paramètre `ddof` pour faire varier la méthode de calcul).
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-158 solutions.py
 ```
@@ -521,12 +521,12 @@ Un bon exemple de fonction récursive est la fonction qui calcule la factorielle
 Coder cette fonction et vérifier qu'elle fonctionne correctement.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 162-169 solutions.py
 ```

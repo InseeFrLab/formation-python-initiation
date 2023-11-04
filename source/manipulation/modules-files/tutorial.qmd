@@ -340,7 +340,7 @@ Quelques remarques supplémentaires sur l'écriture de fichiers :
 - 10/ Pourquoi est-il préférable d'utiliser la syntaxe `with open(...) as ...` pour ouvrir un fichier ?
 - 11/ Pourquoi peut-on parcourir les lignes d'un fichier à l'aide d'une boucle ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
@@ -362,7 +362,7 @@ Indices :
 - il faudra convertir les notes au format numérique pour pouvoir leur appliquer des fonctions mathématiques
 - vous pouvez utiliser les fonctions du package `numpy` pour calculer les statistiques demandées
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
@@ -390,7 +390,7 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 18 admis
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
@@ -418,7 +418,7 @@ NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retro
 supp = [(16, 3), (11, 1), (3, 5)]
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
@@ -437,7 +437,7 @@ supp = [(16, 3), (11, 1), (3, 5)]
 - pour chaque fichier, faire un test d'appartenance (rappel de la syntaxe : `if pattern in string: ...`) pour tester si le fichier contient le mot "sol"
 - si le fichier contient le mot "recalé", imprimer son chemin absolu dans la console (seul le chemin du fichier `gamme.txt` devrait donc apparaître)
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```

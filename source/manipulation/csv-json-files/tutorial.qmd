@@ -285,7 +285,7 @@ r_dict["features"][1]
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-39 solutions.py
 ```
@@ -306,7 +306,7 @@ data = {"id": 1, "nom": "Isidore", "age": 29}
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 43-48 solutions.py
 ```
@@ -339,7 +339,7 @@ json.dumps(mon_citron)
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 52-64 solutions.py
 ```
@@ -358,7 +358,7 @@ Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la 
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 68-81 solutions.py
 ```
@@ -387,7 +387,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 85-99 solutions.py
 ```
@@ -409,7 +409,7 @@ Voici la liste des opérations à effectuer :
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 103-117 solutions.py
 ```
@@ -431,7 +431,7 @@ Voici la liste des opérations à effectuer :
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-141 solutions.py
 ```

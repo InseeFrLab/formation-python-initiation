@@ -144,11 +144,11 @@ Le premier opérateur booléen est `and`. Regardons sa table de vérité :
 Vérifions ces règles en pratique à l'aide de quelques exemples.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 True and True
 ```
 
-```{python} tags=[]
+```{python}
 False and True
 ```
 
@@ -180,11 +180,11 @@ Le second opérateur booléen est `or`. Sa table de vérité est la suivante :
 | `False or True` | `True` |
 | `False or False` | `False` |
 
-```{python} tags=[]
+```{python}
 True or True
 ```
 
-```{python} tags=[]
+```{python}
 False or True
 ```
 
@@ -192,7 +192,7 @@ False or True
 (3 > 2) or (5 <= 9)
 ```
 
-```{python} tags=[]
+```{python}
 a = ("x" != "z")
 b = ("x" == "y")
 a or b
@@ -208,11 +208,11 @@ Le dernier opérateur booléen est `not`. Sa table de vérité est la suivante :
 | `not True` | `False` |
 | `not False` | `True` |
 
-```{python} tags=[]
+```{python}
 not True
 ```
 
-```{python} tags=[]
+```{python}
 not False
 ```
 
@@ -329,12 +329,12 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 - 9/ Peut-on imbriquer les instructions conditionnelles ?
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -356,12 +356,12 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 - `(not False) or (not True)`
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-45 solutions.py
 ```
@@ -400,7 +400,7 @@ prédire les résultats du programme :
 
 Vérifiez vos résultats.
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```

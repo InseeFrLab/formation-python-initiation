@@ -254,12 +254,12 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 - 7/ Que fait l'instruction `break` ?
 - 8/ Que fait l'instruction `continue` ?
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-33 solutions.py
 ```
@@ -298,12 +298,12 @@ while 5 >= 3:
     print("hello world")
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-51 solutions.py
 ```
@@ -324,7 +324,7 @@ for nb in nombres:
         print("car la variable nb vaut {nb}")
 ```
 
-```{python} tags=[]
+```{python}
 nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
@@ -332,12 +332,12 @@ for nb in nombres:
     print("car la variable nb vaut {nb}")
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 55-58 solutions.py
 ```
@@ -347,19 +347,19 @@ for nb in nombres:
 
 Réécrivez la boucle `for` suivante à l'aide d'une boucle `while`.
 
-```{python} tags=[]
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i, note in enumerate(gamme):
     print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 62-68 solutions.py
 ```
@@ -377,12 +377,12 @@ n_cible = 78
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 ```
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 72-84 solutions.py
 ```
@@ -397,12 +397,12 @@ La suite de Fibonacci se définit de la manière suivante :
 Ecrire un programme permettant de calculer les $n$ premiers termes de la suite à l'aide d'une boucle `for`.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 88-96 solutions.py
 ```
@@ -418,12 +418,12 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 - tables[12][7] -> 84
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 100-109 solutions.py
 ```
@@ -436,12 +436,12 @@ Calculer le minimum et le maximum de la série de valeurs suivantes, sans utilis
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-124 solutions.py
 ```
@@ -462,12 +462,12 @@ NB :
 - en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 128-147 solutions.py
 ```
@@ -492,12 +492,12 @@ En utilisant la fonction `range`, afficher :
 - l'ensemble des entiers de 10 à 20 (20 inclus), dans l'ordre inverse (de 20 à 10)
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 151-159 solutions.py
 ```
@@ -518,12 +518,12 @@ Rappel des règles :
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 <!-- #endregion -->
 
-```{python} tags=[]
+```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python} tags=[]
+```{python}
 # Exécuter cette cellule pour afficher la solution
 %load -r 163-178 solutions.py
 ```
