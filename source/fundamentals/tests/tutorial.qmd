@@ -131,7 +131,7 @@ Les opérateurs booléens permettent de **tester simultanément plusieurs expres
 
 ### Opérateur `and`
 
-<!-- #region tags=[] -->
+
 Le premier opérateur booléen est `and`. Regardons sa table de vérité : 
 
 | Expression | Evaluation |
@@ -142,7 +142,7 @@ Le premier opérateur booléen est `and`. Regardons sa table de vérité :
 | `False and False` | `False` |
 
 Vérifions ces règles en pratique à l'aide de quelques exemples.
-<!-- #endregion -->
+
 
 ```{python}
 True and True
@@ -164,9 +164,9 @@ b = ("x" == "y")
 a and b
 ```
 
-<!-- #region tags=[] -->
+
 Notez l'usage des parenthèses pour délimiter les tests : elles ne sont pas obligatoires, mais fortement recommandées dans la mesure où elles améliorent grandement la lisibilité tes tests.
-<!-- #endregion -->
+
 
 ### L'opérateur `or`
 
@@ -341,7 +341,7 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 
 ### Exercice : prédiction de résultats de tests
 
-<!-- #region tags=[] -->
+
 Prédire le résultats des tests suivants, et vérifier vos prédictions : 
 
 - `'Simon' in ['simon', 'oceane', 'veronique']`
@@ -354,7 +354,7 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 - `not ((7 > 8) or (5 <= 5))`
 -  `(True and True) or (True == False)`
 - `(not False) or (not True)`
-<!-- #endregion -->
+
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -503,9 +503,9 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 %load -r 102-109 solutions.py
 ```
 
-<!-- #region tags=[] -->
+
 ### Exercice : Booléens et langage binaire
-<!-- #endregion -->
+
 
 Les Booléens sont fortement liés au langage binaire, dans lequel le `1` correspond à "vrai" et le `0` à "faux". On va vérifier si ce lien existe dans le contexte de Python. Pour ce faire : 
 - calculer la "représentation en entier" de la valeur booléenne de votre choix à l'aide de la fonction `int` ;

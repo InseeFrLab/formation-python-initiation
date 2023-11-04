@@ -11,9 +11,9 @@ Dans le précédent tutoriel, nous avons vu comment utiliser des fonctions prove
 
 ## Manipuler des fichiers CSV
 
-<!-- #region tags=[] -->
+
 ### Les fichiers CSV
-<!-- #endregion -->
+
 
 CSV signifie ***comma-separated values***, soit en bon français "valeurs séparées par des virgules". Les fichiers CSV visent à reproduire la **structure des données issues de tableurs** type Excel de Microsoft ou Calc de LibreOffice, réduite à la stricte donnée textuelle (plus de formatage, plus de types de colonne, etc.).
 
@@ -77,9 +77,9 @@ with open("departement2021.csv") as file_in:
 
 Le code est beaucoup plus lisible : on comprend facilement quelles données sont manipulées et de quelle manière.
 
-<!-- #region tags=[] -->
+
 ### Écriture
-<!-- #endregion -->
+
 
 La syntaxe pour l'écriture est là encore assez proche de celle pour les fichiers texte. La différence est que l'on traite des données en 2D (ligne x colonne), on ne peut donc plus passer seulement une chaîne de caractère à l'écriture, il faut **passer une liste d'éléments**.
 
@@ -141,9 +141,9 @@ En pratique, comme pour l'encodage d'un fichier texte, **il y a peu de raison va
 
 ## Manipuler des fichiers JSON
 
-<!-- #region tags=[] -->
+
 ### Les fichiers JSON
-<!-- #endregion -->
+
 
 Le JSON (*JavaScript Object Notation*) est un format de fichier très populaire pour écrire et échanger de la donnée sous la forme d'une chaîne de caractères unique et lisible par l'humain (*human-readable*) — du moins en théorie. 
 

@@ -14,19 +14,17 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 # Build notebook from sources
 SOURCE_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/tutorial.qmd
 quarto render $SOURCE_FILE --to ipynb
+rm $SOURCE_FILE
 
 # Put chapter files in the training dir
 cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
-
-# Give write permissions
-chown -R onyxia:users ${WORK_DIR}/
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${WORK_DIR}/requirements.txt
 [ -f $REQUIREMENTS_FILE ] && pip install -r $REQUIREMENTS_FILE && rm $REQUIREMENTS_FILE
 
 # Remove course Git repository
-rm -r $CLONE_DIR $SOURCE_FILE
+rm -r $CLONE_DIR
 
 # Open the relevant notebook when starting Jupyter Lab
 # jupyter server --generate-config
