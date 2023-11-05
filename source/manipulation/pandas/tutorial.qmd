@@ -1105,11 +1105,19 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 - Créez une "fonction de popularité" qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
 - Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
 
+### Exercice : calcul d'une empreinte carbone par habitant au niveau communal
 
+L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données : 
+- les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
+- les populations légales au niveau des communes, issues du recensement de la population ([source](https://www.insee.fr/fr/statistiques/6683037))
 
-### Exercice : doublons communes
+Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/).
 
-### Exercice : jointure sur les communes
+#### Partie 1 : Import et exploration des données
+
+#### Partie 2 : Jointure des sources de données
+
+#### Partie 3 : Calcul d'une empreinte carbone par habitant pour chaque commune
 
 
 
@@ -1146,11 +1154,5 @@ Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes
 ### Exercice : tri croisé
 
 - normalisation en ligne / colonne
-
-### Exercice : groupBy avec dropna ou non
-
-### Exercice : agrégation multiple -> multiIndex
-
-
 
 ### Exercice : différencier une série avec un lag timedelta
