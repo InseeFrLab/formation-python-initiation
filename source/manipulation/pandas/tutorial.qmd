@@ -1075,9 +1075,11 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 ### Exercice : exploration du fichier des prénoms
 
+Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262) contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021. Ces données sont disponibles au niveau France, par département et par région. L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
+
 #### Partie 1 : Import et exploration des données
 
-- Importez les données dans un DataFrame.
+- Importez les données dans un DataFrame en utilisant cette [URL](https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip).
 - Visualisez un échantillon des données. Repérez-vous d'éventuelles anomalies ?
 - Affichez les principales informations du DataFrame. Repérez d'éventuelles variables dont le type serait incorrect, ou bien d'éventuelles valeurs manquantes.
 
