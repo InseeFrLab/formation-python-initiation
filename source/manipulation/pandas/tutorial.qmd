@@ -633,6 +633,13 @@ Lorsqu'on souhaite appliquer plusieurs fonctions d'agrégation à la fois ou des
 df.groupby('experiment').agg({'var1': 'mean', 'var2': 'count'})
 ```
 
+::: {.callout-note title="Le chaînage de méthodes"}
+Les exemples précédents illustrent un concept important en Pandas : le chaînage de méthodes. Ce terme désigne la possibilité d'enchaîner les transformations appliquées à un DataFrame en lui appliquant à la chaîne des méthodes. A chaque méthode appliquée, un DataFrame intermédiaire est créé (mais non assigné à une variable), qui devient l'input de la méthode suivante.
+
+Le chaînage de méthodes permet de combiner plusieurs opérations en une seule expression de code. Cela peut améliorer l'efficacité en évitant les assignations intermédiaires et en rendant le code plus fluide et plus facile à lire.
+Cela favorise également un style de programmation fonctionnel où les données passent à travers une chaîne de transformations de manière fluide.
+:::
+
 #### Effets sur l'index
 
 Il est intéressant de noter les effets du processus d'agrégation sur l'index du DataFrame. Le dernier exemple ci-dessus l'illustre bien : les groupes, i.e. les modalités de la variable utilisée pour effectuer l'agrégation, deviennent les valeurs de l'index.
@@ -1102,13 +1109,7 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 ### Exercice : jointure sur les communes
 
-### Exercice : méthode chaining
 
-Le chaînage de méthodes permet de combiner plusieurs opérations en une seule
-expression de code. Cela peut améliorer l'efficacité en évitant les assignations
-intermédiaires et en rendant le code plus fluide et plus facile à lire.
-Cela favorise également un style de programmation fonctionnel où les données
-passent à travers une chaîne de transformations de manière fluide.
 
 ### Exercice : transformation log des pop legs
 
