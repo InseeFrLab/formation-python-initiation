@@ -167,7 +167,7 @@ single_letter_names = df_prenoms[df_prenoms['preusuel'].str.len() == 1]['nombre'
 print(single_letter_names)
 
 # Fonction de popularité
-def most_popular_year(df, prenom):
+def popularite_par_annee(df, prenom):
     # Filtrer le DataFrame pour ne garder que les lignes correspondant au prénom donné
     df_prenom = df[df['preusuel'] == prenom]
 
@@ -179,11 +179,28 @@ def most_popular_year(df, prenom):
     print(f"Le prénom '{prenom}' a été le plus donné en {annee_max}, avec {n_max} naissances.")
 
 # Test de la fonction avec un exemple
-most_popular_year(df_prenoms, 'ALFRED')
+popularite_par_annee(df_prenoms, 'ALFRED')
 
-# Prénom le plus donné par décennie, pour chaque sexe
-df_prenoms['decade'] = (df_prenoms['annais'].dropna().astype(int) // 10) * 10  # Créer la colonne décennie
-most_frequent_per_decade = df_prenoms.groupby(['sexe', 'decade'])['preusuel'].apply(lambda x: x.mode()[0])
-print(most_frequent_per_decade)
+def popularite_par_decennie(df, sexe):
+    # Filtrage sur le sexe
+    df_sub = df[df["sexe"] == sexe]
+
+    # Calcul de la variable décennie
+    df_sub["decennie"] = (df_sub["annais"] // 10) * 10
+
+    # Calculer la somme des naissances pour chaque prénom et chaque décennie
+    df_counts_decennie = df_sub.groupby(["preusuel", "decennie"])["nombre"].sum().reset_index()
+
+    # Trouver l'indice du prénom le plus fréquent pour chaque décennie
+    idx = df_counts_decennie.groupby("decennie")["nombre"].idxmax()
+
+    # Utiliser l'indice pour obtenir les lignes correspondantes du DataFrame df_counts_decennie
+    df_popularite_decennie = df_counts_decennie.loc[idx].set_index("decennie")
+
+    return df_popularite_decennie
+
+# Test de la fonction avec un exemple
+popularite_par_decennie(df_prenoms, sexe=2)
+
 
 

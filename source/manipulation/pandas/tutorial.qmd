@@ -1093,8 +1093,8 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 - Identifiez le nombre total de prénoms uniques dans le DataFrame.
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
-- Créez une fonction qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
-- Identifier le prénom le plus donné par décennie, pour chaque sexe.
+- Créez une "fonction de popularité" qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
+- Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
 
 
 
