@@ -230,8 +230,11 @@ not (7 < 7)
 Toutes les expressions que nous avons vues précédemment sont des expressions booléennes : un test est effectué, et l'opération renvoie `True` or `False` selon que l'expression évaluée est vraie ou non. Dans le cadre d'un programme informatique qui réalise des opérations automatisées, on va vouloir les utiliser comme des **conditions** : *si* l'expression est vraie, alors l'ordinateur doit effectuer telle ou telle opération. Les **structures conditionnelles** permettent précisément cet usage.
 
 Illustrons ce principe en implémentant le programme suivant : 
+
 - Soit une variable `x`.
+
 - Si `x` est supérieur à $5$, alors imprimer dans la console le message "L'expression est vraie."
+
 - Dans le cas contraire, imprimer dans la console le message "L'expression est fausse."
 
 Faîtes varier la valeur de `x` pour vérifier le bon fonctionnement du test.
@@ -249,8 +252,11 @@ else:
 
 
 L'exemple précédent illustre la syntaxe des structures conditionnelles en Python. Ces structures sont basées sur des *blocs d'instructions*, qui délimitent l'ensemble des instructions qui doivent être exécutées lorsqu'un test est vrai. Les structures conditionnelles ont trois règles : 
+
 - la ligne qui spécifie le test se termine par `:` 
+
 - toutes les instructions qui doivent être exécutées si le test est vrai se situent à un même niveau d'indentation ;
+
 - la structure conditionnelle se termine lorsque l'indentation revient à son niveau d'origine.
 
 Notons que les structures conditionnelles peuvent tout à fait être imbriquées, ce qu'illustre l'exemple suivant.
@@ -318,15 +324,25 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 ### Questions de compréhension
 
 
+
 - 1/ Quelle est la particularité des Booléens par rapport aux autres types d'objets de base en Python ?
+
 - 2/ Quels sont les inputs et les outputs d'un opérateur de comparaison ?
+
 - 3/ Quels types d'objets peut-on comparer à l'aide d'un opérateur de comparaison ?
+
 - 4/ Quelle est la différence entre l'opérateur `=` et l'opérateur `==` ?
+
 - 5/ Quels sont les inputs et les outputs d'un opérateur booléen ?
+
 - 6/ Expliquer en français le principe de l'opérateur booléen `and`. Mêmes questions pour `or` et `not`.
+
 - 7/ Quelle est la différence entre expression booléenne et condition ?
+
 - 8/ Quelle est la structure d'une instruction conditionnelle ?
+
 - 9/ Peut-on imbriquer les instructions conditionnelles ?
+
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
 ```{python} tags=[]
@@ -344,15 +360,25 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 <!-- #region tags=[] -->
 Prédire le résultats des tests suivants, et vérifier vos prédictions : 
 
+
 - `'Simon' in ['simon', 'oceane', 'veronique']`
+
 - `[1, 2, 3] == ['1', '2', '3']`
+
 - `'x' != 'x'`
+
 - `(9 > 5) and (3 == 5)`
+
 - `(3 > 2 and 5 >= 1) or (5 <= 9 and 6 > 12)`
+
 - `not (9 > 2*3)`
+
 - `not (9 > (2*3))`
+
 - `not ((7 > 8) or (5 <= 5))`
+
 -  `(True and True) or (True == False)`
+
 - `(not False) or (not True)`
 <!-- #endregion -->
 
@@ -390,12 +416,17 @@ print(l)
 ```
 
 Pour les valeurs suivantes :
+
 - x = 1
+
 - x = 5
+
 - x = 10
 
 prédire les résultats du programme :
+
 - que vaut `l` à la fin du programme ?
+
 - qu'est ce qui est imprimé dans la console au fil du programme ?
 
 Vérifiez vos résultats.
@@ -414,9 +445,13 @@ Vérifiez vos résultats.
 
 
 Ecrire un programme qui réalise les opérations suivantes :
+
 - Définir une liste qui contient 4 prénoms
+
 - Ecrire un test qui affiche le message ('Trop de monde.') si la liste contient plus de trois personnes
+
 - Supprimer une personne de la liste (en utilisant la fonction `del` ou la méthode `pop` vues dans un tutoriel précédent)
+
 - Réaliser le test à nouveau, il ne devrait plus y avoir d'output.
 
 ```{python}
@@ -435,9 +470,13 @@ Ecrire un programme qui réalise les opérations suivantes :
 La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans le cadre d'un programme Python. La syntaxe est la suivante : `x = input()`. Lorsque cette commande est exécutée, l'utilisateur doit rentrer une valeur, qui est alors assignée à la variable x.
 
 **En utilisant `input` et les instructions `if`, `elif` et `else`**, coder le programme suivant : 
+
 - demander une valeur à l'utilisateur, qui sera stockée dans une variable `p`
+
 - si `p` est strictement inférieur à $15$, imprimer (avec la fonction `print`) le message "trop bas !".
+
 - si `p` est strictement supérieur à $15$, imprimer le message "trop haut !".
+
 - si `p` est égal à $15$, imprimer le message "dans le mille !"
 
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
@@ -465,15 +504,25 @@ else:
 ```
 
 Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vérifier à l'aide de la syntaxe précédente.
+
 - `0`
+
 - `1`
+
 - `12`
+
 - `-1`
+
 - '' (*string* vide)
+
 - ' ' (*string* contenant seulement un espace)
+
 - `[]` (liste vide)
+
 - `['']` (liste contenant seulement un *string* vide)
+
 - `{}`
+
 - `{-1}`
 
 ```{python}
@@ -508,7 +557,9 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 <!-- #endregion -->
 
 Les Booléens sont fortement liés au langage binaire, dans lequel le `1` correspond à "vrai" et le `0` à "faux". On va vérifier si ce lien existe dans le contexte de Python. Pour ce faire : 
+
 - calculer la "représentation en entier" de la valeur booléenne de votre choix à l'aide de la fonction `int` ;
+
 - utiliser des booléens dans le cadre de calculs mathématiques pour vérifier leur comportement dans ce contexte.
 
 ```{python}

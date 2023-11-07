@@ -1,5 +1,7 @@
 # -------------------------------------------------------------------------- #
 
+# Questions de compréhension
+
 # 1/ Un DataFrame dans Pandas est une structure de données bidimensionnelle,
 # comparable à un tableau ou une feuille de calcul Excel.
 # Dans le contexte Python, on peut le comparer à un dictionnaire d'arrays NumPy,
@@ -46,6 +48,8 @@
 
 # -------------------------------------------------------------------------- #
 
+# Exercice 1
+
 data_list1 = [
     ['Carrefour', 'Casino', 'Lidl', 'Carrefour', 'Casino', 'Lidl'],
     ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
@@ -81,6 +85,8 @@ df_from_dict.equals(df_from_list)
 
 # -------------------------------------------------------------------------- #
 
+# Exercice 2
+
 # Sélection des données de la première ligne
 print(df.iloc[0])
 
@@ -106,6 +112,8 @@ print(df.loc[df['date_heure'].dt.hour > 15])
 print(df.loc[df['date_heure'].dt.date == pd.to_datetime('2022-01-03').date()])
 
 # -------------------------------------------------------------------------- #
+
+# Exercice 3
 
 # Partie 1 : import et exploration des données
 
@@ -202,5 +210,17 @@ def popularite_par_decennie(df, sexe):
 # Test de la fonction avec un exemple
 popularite_par_decennie(df_prenoms, sexe=2)
 
+# -------------------------------------------------------------------------- #
 
+# Exercice 4
 
+# Partie 1 : Import et exploration des données
+
+url_ademe = "https://koumoul.com/s/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/convert"
+df_emissions = pd.read_csv(url_ademe, sep=",")
+
+df_pop_communes = pd.read_csv("communes.csv", sep=";")
+
+# Partie 2 : Jointure des sources de données
+
+# Partie 3 : Calcul d'une empreinte carbone par habitant pour chaque commune

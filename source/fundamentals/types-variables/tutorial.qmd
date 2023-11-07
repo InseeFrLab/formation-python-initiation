@@ -13,7 +13,9 @@ Dans ce premier TP, nous allons découvrir les objets les plus fondamentaux de P
 ### Types de nombres
 
 Python propose différents objets de type numérique. Dans ce tutoriel, on va s'intéresser aux deux types principalement utilisés :
+
 - les entiers (type `int` pour *integer*)
+
 - les réels (type `float` pour nombres à virgule flottante)
 
 De manière générale, on utilise la fonction `type` pour imprimer le type d'un objet Python.
@@ -428,8 +430,14 @@ b
 ### Exercice 1
 
 Afficher le type de x lorsque : 
+
+
 - x = 3
+
+
 - x = "test"
+
+
 - x = 3.5
 
 
@@ -449,8 +457,11 @@ Afficher le type de x lorsque :
 
 
 Calculer la somme des longueurs de chacune des chaînes de caractères suivantes : 
+
 - "une première chaîne"
+
 - "et une deuxième"
+
 - "jamais deux sans trois"
 
 
@@ -470,7 +481,9 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 Quel est le type adapté pour définir un code postal ?
 
 Essayer de définir les codes postaux suivants au format `int` et au format `string` :
+
 - 92120
+
 - 02350
 
 Que concluez-vous ?
@@ -562,9 +575,13 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 ### Exercice 8
 
 Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémentation, et imprimer la valeur finale :
+
 - initialiser une variable à 1
+
 - lui soustraire 5
+
 - la multiplier par 4
+
 - lui ajouter 22
 
 
@@ -582,7 +599,9 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 ### Exercice 9
 
 Considérons les deux séquences suivantes :
+
 - "nous sommes en"
+
 - "2022"
 
 Trouvez à partir du tutoriel deux manières différentes de les utiliser pour composer la séquence "nous sommes en 2022".

@@ -40,7 +40,9 @@ for note in gamme:
 
 
 Analysons la structure d'une boucle `for` :
+
 - La première ligne spécifie une **instruction `for`**, et comme toute instruction en Python se termine par `:`. 
+
 - Vient ensuite un **bloc d'instructions**, i.e. une suite d'opérations (une seule dans notre exemple) qui sera exécutée à chaque itération de la boucle. Ce bloc est visible par son **niveau d'indentation**, incrémenté de 1 par rapport à l'instruction. Le bloc s'arrête dès lors que l'indentation revient à son niveau initial.
 
 Comme pour les instructions conditionnelles de type `if`/`else`, l'indentation est donc capitale. Si on l'oublie, Python renvoie une erreur.
@@ -245,13 +247,21 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 ### Questions de compréhension
 
 
+
 - 1/ Comment fonctionne une boucle `for` ?
+
 - 2/ La variable d'itération définie lors d'une boucle `for` persiste-t-elle en mémoire une fois la boucle terminée ?
+
 - 3/ Que fait la fonction `range` ? Pourquoi est-elle particulièrement utile dans le cadre des boucles `for` ?
+
 - 4/ Que fait la fonction `enumerate` ? Pourquoi est-elle particulièrement utile dans le cadre des boucles `for` ?
+
 - 5/ Comment fonctionne une boucle `while` ?
+
 - 6/ Quand s'arrête une boucle `while` ? En quoi cela diffère-t-il des boucles `for` ? 
+
 - 7/ Que fait l'instruction `break` ?
+
 - 8/ Que fait l'instruction `continue` ?
 
 ```{python} tags=[]
@@ -368,7 +378,9 @@ for i, note in enumerate(gamme):
 
 
 Soit un entier cible `n_cible` et une liste d'entiers `l` tels que définis dans la cellule suivante. A l'aide d'une boucle `for` et de la fonction `enumerate` :
+
 - vérifier si l'entier cible est présent dans la liste `l`. 
+
 - si oui, afficher le message 'Le nombre `n_cible` est à la position `i` de la liste', et mettre fin à la boucle.
 
 ```{python}
@@ -391,7 +403,9 @@ l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 
 <!-- #region tags=[] -->
 La suite de Fibonacci se définit de la manière suivante : 
+
 - les deux premiers nombres sont 0 et 1
+
 - chaque autre nombre de la suite s'obtient en additionnant les deux nombres qui le précèdent
 
 Ecrire un programme permettant de calculer les $n$ premiers termes de la suite à l'aide d'une boucle `for`.
@@ -413,8 +427,11 @@ Ecrire un programme permettant de calculer les $n$ premiers termes de la suite �
 A l'aide de deux boucles `for` imbriquées, construire un dictionnaire `tables` permettant de réaliser les tables de multiplication jusqu'à la table de 12. Requêtez votre dictionnaire pour vérifier sa pertinence.
 
 Voici quelques exemples de requête que doit renvoyer votre dictionnaire : 
+
 - tables[2][3] -> 6
+
 - tables[9][5] -> 45
+
 - tables[12][7] -> 84
 <!-- #endregion -->
 
@@ -454,11 +471,15 @@ Calculer la moyenne et la variance de la série de valeurs suivantes, sans utili
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
 Pour rappel, les formules sont :
+
 - moyenne : $$\bar{x} = {\frac {1}{n}}\sum_{i=1}^{n}x_{i}$$
+
 - variance : $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
 
 NB : 
+
 - n à la puissance k s'écrit en Python `n**k`
+
 - en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
 <!-- #endregion -->
 
@@ -478,17 +499,25 @@ NB :
 Nous avons vu plus haut l'usage basique de la fonction `range` : `range(n)` crée un objet itérable qui contient l'ensemble des entiers de $0$ à $n-1$. Les usages possibles de cette fonction sont cependant plus complets, et parfois utiles dans le cadre de problèmes précis.
 
 La syntaxe complète de la fonction est `range(start, stop, step)` où :
+
 - `start` est l'entier à partir duquel commence la séquence d'entiers
+
 - `stop` est l'entier avant lequel se termine la séquence d'entiers
+
 - `step` est le pas, i.e. la valeur de l'incrément entre chaque entier de la séquence.
 
 Seul le paramètre `stop` est obligatoire, c'est celui qui est utilisé lorsqu'on appelle `range(n)`.
 
 En utilisant la fonction `range`, afficher :
+
 - l'ensemble des entiers de 0 à 10 (10 exclu)
+
 - l'ensemble des entiers de 10 à 20 (20 inclus)
+
 - l'ensemble des nombres pairs compris entre 30 et 40 (40 inclus)
+
 - l'ensemble des multiples de 10 entre 1 et 100 (100 exclu)
+
 - l'ensemble des entiers de 10 à 20 (20 inclus), dans l'ordre inverse (de 20 à 10)
 <!-- #endregion -->
 
@@ -510,9 +539,13 @@ Dans le précédent tutoriel, nous avons codé un jeu du juste prix. Mais il ét
 Rappel des règles : 
 
 **En utilisant `input` et les instructions `if`, `elif` et `else`**, coder le programme suivant : 
+
 - demander une valeur à l'utilisateur, qui sera stockée dans une variable `p`
+
 - si `p` est strictement inférieur à $15$, imprimer (avec la fonction `print`) le message "trop bas !".
+
 - si `p` est strictement supérieur à $15$, imprimer le message "trop haut !".
+
 - si `p` est égal à $15$, imprimer le message "dans le mille !"
 
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.

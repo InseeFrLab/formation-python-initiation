@@ -168,12 +168,14 @@ selected_columns.shape
 
 Lorsqu'on veut sélectionner des lignes spécifiques dans un DataFrame, on peut se servir des deux principales méthodes : `loc` et `iloc`.
 
+
 - `iloc` permet de sélectionner des lignes et des colonnes par leur position, c'est-à-dire par des indices numériques.
   
 Exemple, sélection des 3 premières lignes : 
 ```{python}
 df.iloc[0:3, :]
 ```
+
 
 - `loc` quant à lui, fonctionne avec des labels. Si les index du DataFrame sont des numéros, ils ressemblent aux positions, mais ce n'est pas forcément le cas. Il est crucial de noter que, contrairement à `iloc`, avec `loc`, l'index de fin est inclus dans la sélection.
   
@@ -186,12 +188,14 @@ df.loc['a':'c', :]
 
 En pratique, plutôt que de sélectionner des lignes basées sur des positions ou des labels, on souhaite souvent filtrer un DataFrame selon certaines conditions. Dans ce cas, on se sert principalement de filtres booléens.
 
+
 - **Inégalités** : On peut vouloir garder seulement les lignes qui respectent une certaine condition. 
 
 Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
 ```{python}
 df[df['var2'] > 10]
 ```
+
 
 - **Appartenance avec `isin`** : Si on veut filtrer les données basées sur une liste de valeurs possibles, la méthode `isin` est très utile.
 
@@ -369,9 +373,13 @@ df.info()
 ```
 
 Plusieurs éléments d'information clés peuvent être extraits de ce résultat :
+
 - **index** : le DataFrame a un `RangeIndex`, ce qui signifie que l'index est constitué d'une suite numérique simple. Ici, l'index va de 0 à 5, soit 6 entrées au total.
+
 - **schéma** : la liste des colonnes est affichée avec des informations très utiles sur le schéma des données :
+
   - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" pour la variable `var1` est 5.
+
   - **Dtype** : Le type de données de la colonne, qui permet decomprendre la nature des informations stockées dans chaque colonne. Par exemple, `float64` (nombres réels), `int32` (nombres entiers), `category` (variable catégorielle), `datetime64[ns]` (information temporelle) et `object` (données textuelles ou mixtes).   
 
 L'utilisation de `info()` est un moyen rapide et efficace d'obtenir une vue d'ensemble d'un DataFrame, d'identifier rapidement les colonnes contenant des valeurs manquantes et de comprendre la structure des données.
@@ -928,7 +936,9 @@ La fusion de tables est une opération qui permet d'associer des lignes de deux 
 Source : [lien](https://medium.com/swlh/merging-dataframes-with-pandas-pd-merge-7764c7e2d46d)
 
 En Pandas, les jointures se font avec la fonction [merge()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html). Pour réaliser une jointure, on doit spécifier (au minimum) deux informations :
+
 - le type de jointure : par défaut, Pandas effectue une jointure de type `inner`. Le paramètre `how` permet de spécifier d'autres types de jointure ;
+
 - la clé de jointure. Par défaut, Pandas essaie de joindre les deux DataFrame à partir de leurs index. En pratique, on spécifie souvent une variable présente dans le DataFrame comme clé de jointure (paramètre `on` si la variable porte le même nom dans les deux DataFrame, ou `left_on` et `right_on` sinon).
 
 Analysons la différence entre les différents types de jointure à travers des exemples.
@@ -979,15 +989,25 @@ df_merged_outer
 
 ### Questions de compréhension
 
+
 - 1/ Qu'est-ce qu'un DataFrame dans le contexte de Pandas et à quel type de structure de données peut-on le comparer dans le langage Python ?
+
 - 2/ Quelle est la différence fondamentale entre un array Numpy et une Pandas Series ?
+
 - 3/ Quel est le lien entre Series et DataFrame dans Pandas ?
+
 - 4/ Comment sont structurées les données dans un DataFrame Pandas ?
+
 - 5/ Quel est le rôle de l'index dans un DataFrame Pandas et comment peut-il être utilisé lors de la manipulation des données ?
+
 - 6/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
+
 - 7/ Dans Pandas, quelle est la différence entre assigner le résultat d'une opération à une nouvelle variable et utiliser une méthode avec l'argument `inplace=True` ?
+
 - 8/ Comment s'applique le principe de la vectorisation dans Pandas et pourquoi est-ce avantageux pour manipuler les données ?
+
 - 9/Comment Pandas représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
+
 - 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
 
 ```{python}
@@ -1053,13 +1073,21 @@ df_caisse = pd.DataFrame(data)
 ```
 
 Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiques :
+
 - Sélectionner les données de la première ligne.
+
 - Sélectionner toutes les données de la colonne "prix".
+
 - Sélectionner les lignes correspondant à l'enseigne "Carrefour" uniquement.
+
 - Sélectionner les quantités achetées pour les produits classifiés "01.1.1" (Pain).
+
 - Sélectionner les données des colonnes "enseigne" et "prix" pour toutes les lignes.
+
 - Sélectionner les lignes où la quantité achetée est supérieure à 5.
+
 - Filtrer pour sélectionner toutes les transactions qui ont eu lieu après 15h.
+
 - Sélectionner les transactions qui ont eu lieu le "2022-01-03".
 
 
@@ -1079,64 +1107,158 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 #### Partie 1 : Import et exploration des données
 
+
 - Importez les données dans un DataFrame en utilisant cette [URL](https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip).
+
 - Visualisez un échantillon des données. Repérez-vous d'éventuelles anomalies ?
+
 - Affichez les principales informations du DataFrame. Repérez d'éventuelles variables dont le type serait incorrect, ou bien d'éventuelles valeurs manquantes.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 #### Partie 2 : Nettoyage des données
 
+
 - L'output de la méthode `info()` suggère des valeurs manquantes dans la colonne des prénoms. Affichez ces lignes. Vérifiez que ces valeurs manquantes sont correctement spécifiées.
+
 - L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+
 - On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+
 - Supprimer les lignes contenant des valeurs manquantes de l'échantillon.
+
 - Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
+
 - Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 #### Partie 3 : Statistiques descriptives sur les naissances
 
+
 - La [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) du fichier nous informe qu'on peut considérer les données comme quasi-exhaustives à partir de 1946. Pour cette partie seulement, filtrer les données pour ne conserver que les données ultérieures.
+
 - Calculez le nombre total de naissances par sexe.
+
 - Identifiez les cinq années ayant le plus grand nombre de naissances.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 #### Partie 4 : Analyse des prénoms
 
+
 - Identifiez le nombre total de prénoms uniques dans le DataFrame.
+
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
+
 - Créez une "fonction de popularité" qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
+
 - Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 ### Exercice : calcul d'une empreinte carbone par habitant au niveau communal
 
 L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données : 
+
 - les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
+
 - les populations légales au niveau des communes, issues du recensement de la population ([source](https://www.insee.fr/fr/statistiques/6683037))
 
 Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/).
 
 #### Partie 1 : Import et exploration des données
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 #### Partie 2 : Jointure des sources de données
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 #### Partie 3 : Calcul d'une empreinte carbone par habitant pour chaque commune
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 
 
 ### Exercice : transformation log des pop legs
 
+
 - replace 0 -> nan
+
 - hist
+
 - applique log
+
 - hist
 
 ### Exercice : imputation avec PPV / par groupes
 
 Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes :
 
+
 - **Imputation par la médiane ou la moyenne conditionnelle** : on peut calculer la moyenne ou la médiane pour des sous-groupes spécifiques et imputer les valeurs manquantes en fonction de l'appartenance à ces sous-groupes.
 
   ```python
   df['var1'] = df.groupby('experiment')['var1'].transform(lambda x: x.fillna(x.mean()))
   ```
+
 
 - **Imputation par régression** : quand on suspecte que les valeurs manquantes d'une variable sont liées à d'autres variables, on peut utiliser la régression pour prédire les valeurs manquantes.
 
@@ -1145,6 +1267,7 @@ Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes
   # On pourrait ajuster un modèle pour prédire 'var1', puis utiliser ce modèle pour imputer les valeurs manquantes.
   ```
 
+
 - **Utilisation de modèles spécifiques à l'imputation** : comme les modèles d'imputation multiple qui prennent en compte l'incertitude autour des valeurs imputées et génèrent plusieurs ensembles de données complets.
 
   ```python
@@ -1152,6 +1275,7 @@ Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes
   ```
 
 ### Exercice : tri croisé
+
 
 - normalisation en ligne / colonne
 

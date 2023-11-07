@@ -25,7 +25,9 @@ C'est pourquoi nous allons utiliser des *packages*, sortes de boîtes à outils 
 
 
 Commençons par quelques brefs éléments de terminologie pour bien se repérer dans l'écosystème Python : 
+
 - un **module** est un fichier texte (portant l'extension .py pour bien marquer le lien à Python) contenant un ensemble de définitions (de **classes**, de **fonctions**) et d'instructions, que l'on peut importer dans un environnement Python afin de les utiliser.
+
 - un **package** est un ensemble de modules réunis dans un même répertoire
 
 Par exemple, nous allons voir en détails dans la prochaine partie l'utilisation de `numpy`. `numpy` est un *package* qui permet de faire du calcul scientifique sur des objets multidimensionnels. Pour ce faire, `numpy` met à disposition un nombre gigantesque de fonctions et d'outils. Toutes les mettre dans un seul et même module serait franchement illisible. Ainsi, `numpy` est structuré en différents modules qui groupent les fonctions réalisant des opérations similaires : les fonctions générant de l'aléatoire dans le module `random`, celles réalisant de l'algèbre linéaire dans le module `linalg`, etc.
@@ -121,7 +123,9 @@ from pathlib import Path
 **Propriétés d'un fichier**
 
 Un fichier a deux propriétés : 
+
 - un **nom de fichier**
+
 - un **chemin** (*path*), qui spécifie sa localisation dans le système de fichiers.
 
 A titre d'exemple, regardons les fichiers qui se trouvent dans notre répertoire courant (par défaut, le dossier dans lequel se trouve ce notebook). La méthode à utiliser s'appelle `cwd`, pour *current working directory*.
@@ -146,14 +150,18 @@ list(Path.cwd().glob('*.*'))
 ```
 
 On retrouve notre notebook, un fichier qui contient les solutions des exercices du tutoriel, et un certain nombre de fichiers texte qui vont servir d'exemples dans la suite du tutoriel. Si l'on prend le notebook par exemple, on distingue bien :
+
 - son nom de fichier : `tutorial.ipynb`
+
 - son chemin : `/home/jovyan/work/formation/`
 
 
 **Chemins absolus et chemins relatifs**
 
 Il y a deux manières possibles de spécifier le chemin d'un fichier : 
+
 - de manière **absolue**, le chemin commence alors par la racine (`/` en Unix, `C:\` en Windows, etc.). Les chemins renvoyés ci-dessus sont donc absolus.
+
 - de manière **relative**, i.e. relativement au répertoire courant du programme Python. Dès lors qu'un chemin ne commence pas par la racine, `pathlib` va le considérer relatif.
 
 Cette distinction va s'avérer assez importante par la suite, lorsqu'il sera question de lire et d'écrire des fichiers.
@@ -190,7 +198,9 @@ Nous n'avons vu qu'un aperçu des outils qu'offre le module `pathlib` pour inter
 
 
 En programmation, on est généralement amenés à manipuler deux grandes familles de fichiers bien différentes : 
+
 - les **fichiers texte**. Ils ne contiennent que des caractères textuels standards -- techniquement, qui respectent le standard [Unicode](https://fr.wikipedia.org/wiki/Unicode) -- sans informations de *formatting* (police, couleur, etc.). Les fichiers *.txt* ou encore les scripts Python finissant en *.py* sont des exemples de fichiers texte. Ces fichiers peuvent être lus avec n'importe quel éditeur de texte.
+
 - les **fichiers binaires**. Ce sont en fait tous les autres types de fichiers : fichiers compressés (*.zip*, *tar.gz*, etc.), documents PDFs, images, programmes, etc. Ouvrir un tel fichier avec un éditeur de texte produit généralement une grande suite de caractères incompréhensibles, car la représentation textuelle n'est pas adaptée à ces données.
 
 Comme vous pouvez l'imaginer, ces deux types de fichier se traitent avec des outils différents. Par ailleurs, du fait de la diversité des fichiers binaires, chacun de ses fichiers nécessite un traitement particulier. Dans un contexte de programmation, on est cependant principalement à manipuler du code, qui est une donnée textuelle. On va donc s'intéresser uniquement à l'**écriture et à la lecture de fichiers texte** dans ce tutoriel, mais il est important de savoir reconnaître des données binaires lorsqu'on est amené à en traiter.
@@ -214,8 +224,11 @@ La fonction `open` renvoie un objet de type `_io.TextIOWrapper `, qui spécifie 
 L'encodage et le décodage sont des sujets techniques, que nous aborderons plus en détail dans un futur tutoriel. Pour le moment, retenons que le mode d'encodage par défaut est l'`UTF-8`, et qu'il n'y a jamais vraiment de bonne raison de choisir un autre mode. 
 
 En revanche, le **mode d'ouverture** est très important. Il y a trois modes principaux :
+
 - `r` : **lecture seule**. Le fichier ne peut qu'être lu, mais pas modifié. C'est le mode par défaut lorsqu'on ne spécifie aucun mode.
+
 - `w` : **écriture**. Il est possible dans ce mode d'écrire sur un fichier. **Attention : si un fichier avec le même nom existe déjà, il sera automatiquement écrasé.**
+
 - `a` : **appending**. Ce mode ne permet que de rajouter des lignes à la fin d'un fichier existant.
 
 Une fois le fichier ouvert, on peut réaliser des opérations sur ce fichier à l'aide de méthodes attachées à l'objet qui le représente. On verra dans la section suivante ce que fait la méthode `readlines`.
@@ -317,8 +330,11 @@ with open("test.txt", "r") as file_out:
 C'est beaucoup mieux. 
 
 Quelques remarques supplémentaires sur l'écriture de fichiers :
+
 - mieux vaut le répéter : **utiliser le mode d'ouverture `\w` pour un fichier écrase complètement son contenu**. Lorsqu'on a réécrit notre fichier avec les sauts de ligne, on a complètement écrasé l'ancien.
+
 - pourquoi a-t-on pu mettre juste le nom du fichier dans la fonction `open` et pas un objet `Path` comprenant le chemin complet vers le fichier que l'on souhaitait créer ? C'est parce que Python l'a automatiquement interprété comme un **chemin relatif** (à notre répertoire courant) du fait de l'absence de racine.
+
 - on ne peut écrire dans un fichier **que des éléments de type `str`** (chaîne de caractère). Si un des éléments de la liste ci-dessus avait été de type `int` ou `float` par exemple, il aurait fallu le convertir via la fonction `str()` avant de l'écrire dans le fichier. Sinon, Python aurait renvoyé une erreur.
 
 
@@ -328,16 +344,27 @@ Quelques remarques supplémentaires sur l'écriture de fichiers :
 ### Questions de compréhension
 
 
+
 - 1/ Qu'est-ce qu'un module ?
+
 - 2/ Qu'est ce qu'un package ?
+
 - 3/ Pourquoi n'est-ce pas une bonne pratique d'importer toutes les fonctions d'un module avec la syntaxe `from module import *`
+
 - 4/ Quels sont les avantages de la librairie `pathlib` ?
+
 - 5/ Quelles sont les deux propriétés d'un fichier qui permettent de repérer sa position dans le système de fichiers ?
+
 - 6/ Qu'est-ce que le répertoire courant ?
+
 - 7/ Quelles sont les deux manières de spécifier un chemin ? Comment Python fait-il la différence entre les deux ?
+
 - 8/ Quels sont les deux grandes familles de fichiers que l'on est amenés à manipuler en programmation ?
+
 - 9/ Quels sont les différents modes d'ouverture d'un fichier ?
+
 - 10/ Pourquoi est-il préférable d'utiliser la syntaxe `with open(...) as ...` pour ouvrir un fichier ?
+
 - 11/ Pourquoi peut-on parcourir les lignes d'un fichier à l'aide d'une boucle ?
 
 ```{python} tags=[]
@@ -358,8 +385,11 @@ Quelques remarques supplémentaires sur l'écriture de fichiers :
 Le fichier texte `notes.txt` se trouve dans votre répertoire courant. Il contient les notes obtenues par 50 élèves à un examen. Problème : toutes les notes ont été écrites sur une même ligne, avec un espace à chaque fois. Ouvrez ce fichier et calculez la moyenne et l'écart-type des notes.
 
 Indices :
+
 - les chaînes de caractère ont une méthode `split` qui permet de séparer du texte selon un caractère donné
+
 - il faudra convertir les notes au format numérique pour pouvoir leur appliquer des fonctions mathématiques
+
 - vous pouvez utiliser les fonctions du package `numpy` pour calculer les statistiques demandées
 
 ```{python} tags=[]
@@ -380,7 +410,9 @@ Indices :
 Le fichier texte `notes_clean.txt` se trouve dans votre répertoire courant. Il contient les notes obtenues par 50 élèves à un examen. Contrairement à l'exercice précédent, les notes sont cette fois bien écrites : une note par ligne.
 
 Écrire un script Python qui :
+
 - stocke chaque note au format `int` dans une liste
+
 - réécrit les notes dans un fichier `notes_mentions.txt` avec sur chaque ligne la note, suivie d'un espace, suivi de la mention "admis" si la note est supérieure ou égale à 10, et "recalé" sinon.
 
 Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
@@ -404,8 +436,11 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 
 
 3 élèves n'avaient pas rendu leur copie dans les temps pour l'examen : 
+
 - Miranda a obtenu 16 et a rendu son devoir avec 3 jours de retard
+
 - Paolo a obtenu 11 et a rendu son devoir avec 1 jour de retard
+
 - Isidore a obtenu 3 et a rendu son devoir avec 5 jours de retard.
 
 Chaque élève aura une note finale égale à la note obtenue moins le nombre de jours de retard. Une note ne pouvant être négative, elle sera remplacée par 0.
@@ -432,9 +467,13 @@ supp = [(16, 3), (11, 1), (3, 5)]
 
 
 Écrire un programme qui réalise les opérations suivantes : 
+
 - dans le répertoire courant, lister les chemins des fichiers dont l'extension est `.txt` (la syntaxe a été vue dans la partie sur `pathlib`)
+
 - faire une boucle qui parcourt ces chemins et ouvre chaque fichier séquentiellement
+
 - pour chaque fichier, faire un test d'appartenance (rappel de la syntaxe : `if pattern in string: ...`) pour tester si le fichier contient le mot "sol"
+
 - si le fichier contient le mot "recalé", imprimer son chemin absolu dans la console (seul le chemin du fichier `gamme.txt` devrait donc apparaître)
 
 ```{python} tags=[]
