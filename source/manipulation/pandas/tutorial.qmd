@@ -1237,93 +1237,36 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 
 Voici un exercice pour pratiquer le traitement des données temporelles avec Pandas, notamment pour calculer les variations d'un indice macroéconomique d'un trimestre à l'autre.
 
-### Exercice : Évolution d'un Indice Macroéconomique Trimestriel
+### Exercice : Analyse de l'évolution d'un indice de production
 
-Vous disposez d'un fichier CSV nommé `indice_macro.csv` qui contient deux colonnes : `Date` et `Indice`. La colonne `Date` est formatée en trimestres (`YYYY-QQ`), et la colonne `Indice` représente la valeur d'un certain indice macroéconomique.
+Vous avez à disposition dans le dossier `data/` deux jeux de données CSV :
+- `serie_glaces_valeurs.csv` contient les valeurs mensuelles de l'indice de prix de production de l'industrie française des glaces et sorbets
+- `serie_glaces_metadonnees.csv` contient les métadonnées associées, notamment les codes indiquant le statut des données.
 
-#### Objectifs :
-- Importez le fichier CSV dans un DataFrame Pandas.
-- Convertissez la colonne `Date` au format datetime approprié pour des données trimestrielles.
-- Calculez l'évolution de l'indice d'un trimestre à l'autre.
-- Calculez l'évolution glissante de l'indice, par exemple sur un glissement de 4 trimestres.
+L'objectif est d'utiliser `Pandas` pour calculer :
+- l'évolution de l'indice entre chaque période (mois)
+- l'évolution de l'indice en glissement annuel (entre un mois donné et le même mois l'année suivante).
 
-#### Étapes :
+#### Partie 1 : Import des données
 
-1. **Importation et préparation des données**
-   - Importez les données à partir du fichier CSV.
-   - Convertissez la colonne `Date` en type `datetime` adapté aux données trimestrielles.
+- Importez les deux fichiers CSV dans des DataFrames. Attention, dans les deux cas, il y a des lignes superflues avant les données, qu'il faudra sauter à l'aide du paramètre `skiprows` de la fonction [read_csv()](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
+- Donnez des noms simples et pertinents aux différentes variables.
 
-2. **Calcul de l'évolution trimestrielle**
-   - Utilisez la méthode `.shift()` pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent.
-   - Calculez la différence entre l'indice actuel et l'indice décalé pour obtenir l'évolution d'un trimestre à l'autre.
+#### Partie 2 : Filtrage des données pertinentes
 
-3. **Calcul de l'évolution glissante**
-   - Utilisez la méthode `.rolling()` pour appliquer une fenêtre glissante et `.sum()` ou une autre fonction d'agrégation pour calculer l'évolution sur la période souhaitée.
+- Fusionner les deux DataFrames afin de récupérer la signification des codes présents dans les données.
+- Filtrer les données de sorte à ne conserver que les données de type "Valeur normale".
+- Supprimer les colonnes liées aux codes, dont nous n'avons plus besoin pour la suite.
 
-#### Code pour tester vos réponses :
+#### Partie 3 : Pré-traitement des données
 
-```python
-# Testez votre code dans cette cellule
-```
+Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, convertissez-les avec les fonctions idoines.
 
-#### Solution :
+#### Partie 4 : Calcul de l'évolution périodique
 
-```python
-import pandas as pd
+- Utilisez la méthode [shift()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
+- Calculez la différence entre l'indice actuel et l'indice décalé pour obtenir l'évolution (en pourcentage) d'un trimestre à l'autre
 
-# Importation des données
-df = pd.read_csv('indice_macro.csv')
+#### Partie 5 : Calcul de l'évolution glissante sur 12 mois
 
-# Conversion de la colonne 'Date' en datetime
-df['Date'] = pd.to_datetime(df['Date'].str.replace(r'(Q\d) (\d+)', r'\2-\1'), format='%Y-Q%q')
-
-# Calcul de l'évolution d'un trimestre à l'autre
-df['Indice_prec'] = df['Indice'].shift(1)
-df['Evolution_trimestrielle'] = df['Indice'] - df['Indice_prec']
-
-# Calcul de l'évolution glissante sur 4 trimestres
-df['Evolution_glissante'] = df['Indice'].rolling(window=4).apply(lambda x: x.iloc[-1] - x.iloc[0])
-
-# Affichage des résultats
-print(df[['Date', 'Evolution_trimestrielle', 'Evolution_glissante']])
-```
-
-Les étudiants peuvent utiliser cet exercice pour pratiquer la manipulation des dates et des calculs d'évolution dans Pandas, des compétences essentielles pour l'analyse de séries temporelles économiques.
-
-
-### Exercice : transformation log des pop legs
-
-
-- replace 0 -> nan
-
-- hist
-
-- applique log
-
-- hist
-
-### Exercice : imputation avec PPV / par groupes
-
-Pour une imputation plus avancée, on pourrait envisager les méthodes suivantes :
-
-
-- **Imputation par la médiane ou la moyenne conditionnelle** : on peut calculer la moyenne ou la médiane pour des sous-groupes spécifiques et imputer les valeurs manquantes en fonction de l'appartenance à ces sous-groupes.
-
-  ```python
-  df['var1'] = df.groupby('experiment')['var1'].transform(lambda x: x.fillna(x.mean()))
-  ```
-
-
-- **Imputation par régression** : quand on suspecte que les valeurs manquantes d'une variable sont liées à d'autres variables, on peut utiliser la régression pour prédire les valeurs manquantes.
-
-  ```python
-  # Supposons que 'var1' peut être prédit en utilisant 'var2'
-  # On pourrait ajuster un modèle pour prédire 'var1', puis utiliser ce modèle pour imputer les valeurs manquantes.
-  ```
-
-
-- **Utilisation de modèles spécifiques à l'imputation** : comme les modèles d'imputation multiple qui prennent en compte l'incertitude autour des valeurs imputées et génèrent plusieurs ensembles de données complets.
-
-  ```python
-  # Le module `sklearn.impute` fournit des stratégies d'imputation telles que `IterativeImputer` qui peut être utilisé ici.
-  ```
+Comme vous avez pu le voir dans la solution de l'exercice précédent, la méthode [pct_change()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html) permet précisément de calculer une évolution entre deux périodes. Utiliser cette méthode pour calculer une évolution (en pourcentage) en glissement annuel pour chaque mois.

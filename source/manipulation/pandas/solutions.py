@@ -304,52 +304,42 @@ df_emissions_pop.sort_values("empreinte_carbone", ascending=False).head(10)
 
 # Exercice 5
 
-# Import des données
-df = pd.read_csv('indice_macro.csv')
+# Partie 1
 
-# Conversion de la colonne 'Date' en datetime
-df['Date'] = pd.to_datetime(df['Date'].str.replace(r'(Q\d) (\d+)', r'\2-\1'), format='%Y-Q%q')
-
-# Calcul de l'évolution d'un trimestre à l'autre
-df['Indice_prec'] = df['Indice'].shift(1)
-df['Evolution_trimestrielle'] = df['Indice'] - df['Indice_prec']
-
-# Calcul de l'évolution glissante sur 4 trimestres
-df['Evolution_glissante'] = df['Indice'].rolling(window=4).apply(lambda x: x.iloc[-1] - x.iloc[0])
-
-# Affichage des résultats
-print(df[['Date', 'Evolution_trimestrielle', 'Evolution_glissante']])
-
-# -------------------------------------------------------------------------- #
-
-# Exercice 6
-
-# Import des données
+## Import des données
 df_valeurs = pd.read_csv('data/serie_glaces_valeurs.csv', delimiter=';',
                          skiprows=4, names=["periode", "indice", "code"])
 df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
                           skiprows=5, names=["code", "signification"])
 
-# Fusion des deux DataFrames sur les codes
+# Partie 2
+
+## Fusion des deux DataFrames sur les codes
 df_merged = pd.merge(df_valeurs, df_metadata, how='left', on='code')
 
-# Retrait des observations avec les codes 'Q' et 'P'
+## Retrait des observations avec les codes 'Q' et 'P'
 df_clean = df_merged[df_merged['code'] == "A"]
 df_clean = df_clean[["periode", "indice"]]
 
-# Conversion des types des colonnes
+# Partie 3
+
+## Conversion des types des colonnes
 df_clean.info()
 df_clean['periode'] = pd.to_datetime(df_clean['periode'])
 df_clean['indice'] = pd.to_numeric(df_clean['indice'])
 df_clean.info()
 
-# Calcul de l'évolution de l'indice d'une période à l'autre
+# Partie 4
+
+## Calcul de l'évolution de l'indice d'une période à l'autre
 df_clean['indice_prec'] = df_clean['indice'].shift(1)
 df_clean['evo'] = ((df_clean['indice'] - df_clean['indice_prec']) / df_clean['indice_prec']) * 100
 
-# Méthode alternative
+## Méthode alternative
 df_clean['evo_alt'] = df_clean['indice'].pct_change(periods=1) * 100
 
-# Calcul de l'évolution glissante sur 12 mois
+# Partie 5
+
+## Calcul de l'évolution glissante sur 12 mois
 df_clean["evo_glissement_annuel"] = df_clean['indice'].pct_change(periods=12) * 100
 df_clean.head(20)
