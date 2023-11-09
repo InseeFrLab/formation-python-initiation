@@ -1252,21 +1252,71 @@ L'objectif est d'utiliser `Pandas` pour calculer :
 - Importez les deux fichiers CSV dans des DataFrames. Attention, dans les deux cas, il y a des lignes superflues avant les données, qu'il faudra sauter à l'aide du paramètre `skiprows` de la fonction [read_csv()](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
 - Donnez des noms simples et pertinents aux différentes variables.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 #### Partie 2 : Filtrage des données pertinentes
 
 - Fusionner les deux DataFrames afin de récupérer la signification des codes présents dans les données.
 - Filtrer les données de sorte à ne conserver que les données de type "Valeur normale".
 - Supprimer les colonnes liées aux codes, dont nous n'avons plus besoin pour la suite.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 #### Partie 3 : Pré-traitement des données
 
 Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, convertissez-les avec les fonctions idoines.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 #### Partie 4 : Calcul de l'évolution périodique
 
 - Utilisez la méthode [shift()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
 - Calculez la différence entre l'indice actuel et l'indice décalé pour obtenir l'évolution (en pourcentage) d'un trimestre à l'autre
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 #### Partie 5 : Calcul de l'évolution glissante sur 12 mois
 
 Comme vous avez pu le voir dans la solution de l'exercice précédent, la méthode [pct_change()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html) permet précisément de calculer une évolution entre deux périodes. Utiliser cette méthode pour calculer une évolution (en pourcentage) en glissement annuel pour chaque mois.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
