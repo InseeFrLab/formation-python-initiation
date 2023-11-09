@@ -1193,9 +1193,9 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données : 
 
-- les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
-
 - les populations légales au niveau des communes, issues du recensement de la population ([source](https://www.insee.fr/fr/statistiques/6683037))
+
+- les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
 
 Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/).
 

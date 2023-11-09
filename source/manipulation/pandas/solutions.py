@@ -216,11 +216,100 @@ popularite_par_decennie(df_prenoms, sexe=2)
 
 # Partie 1 : Import et exploration des données
 
-url_ademe = "https://koumoul.com/s/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/convert"
+# Populations légales communales
+
+## Import
+df_pop_communes = pd.read_csv("data/communes.csv", sep=";")
+
+## Information générales
+df_pop_communes.sample(10)
+df_pop_communes.info()
+df_pop_communes.describe()
+
+# Données d'émissions communales
+
+## Import
+url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
 df_emissions = pd.read_csv(url_ademe, sep=",")
 
-df_pop_communes = pd.read_csv("communes.csv", sep=";")
+## Information générales
+df_emissions.sample(10)
+df_emissions.info()
+df_emissions.describe()
 
-# Partie 2 : Jointure des sources de données
+## Des lignes avec toutes les valeurs d'émission manquantes ?
+df_emissions_num = df_emissions.select_dtypes(['number'])
+only_nan = df_emissions_num[df_emissions_num.isnull().all(axis=1)]
+only_nan.shape[0]
 
-# Partie 3 : Calcul d'une empreinte carbone par habitant pour chaque commune
+# Partie 2 : Pré-traitement des données
+
+# Populations légales communales
+
+## Supression des colonnes superflues
+df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
+
+## Suppression des communes sans population
+n_communes_0_pop = df_pop_communes[df_pop_communes["PTOT"] == 0].shape[0]
+print(n_communes_0_pop)
+df_pop_communes = df_pop_communes[df_pop_communes["PTOT"] > 0]
+
+# Données d'émissions communales
+
+## Calcul des émissions totales par commune
+df_emissions['emissions_totales'] = df_emissions.sum(axis = 1, numeric_only = True)
+df_emissions
+
+# Partie 3 : Statistiques descriptives
+
+# Populations légales communales
+
+## Corrélation entre longueur du nom de commune et population
+df_pop_communes_stats = df_pop_communes.copy()
+df_pop_communes_stats['longueur'] = df_pop_communes_stats['COM'].str.len()
+df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
+
+# Données d'émissions communales
+
+## Affichage des principales communes émettrices
+df_emissions.sort_values(by="emissions_totales", ascending=False).head(10)
+
+## Corrélation entre émissions totales et émissions par secteur
+df_emissions.corrwith(df_emissions["emissions_totales"], numeric_only=True)
+
+## Affichage des principaux départements émetteurs
+df_emissions["dep"] = df_emissions["INSEE commune"].str[:2]
+df_emissions.groupby("dep").agg({"emissions_totales": "sum"}).sort_values(by="emissions_totales", ascending=False).head(10)
+
+# Partie 4 : Vérifications préalables pour la jointure des sources de données
+
+## Affichage des doublons dans les noms de communes
+doublons = df_pop_communes.groupby('COM').count()['DEPCOM']
+doublons = doublons[doublons>1]
+doublons = doublons.reset_index()
+doublons
+
+## Mise en relation avec les codes commune
+df_pop_communes_doublons = df_pop_communes[df_pop_communes["COM"].isin(doublons["COM"])]
+df_pop_communes_doublons.sort_values('COM')
+
+## Les codes commune identifient-ils de manière unique les communes ?
+(df_pop_communes_doublons.groupby("DEPCOM")["COM"].nunique() != 1).sum()
+
+## Observations qui sont dans les pop légales mais pas dans les données d'émissions
+df_pop_communes[~df_pop_communes["DEPCOM"].isin(df_emissions["INSEE commune"])]
+
+## Observations qui sont dans les données d'émissions mais pas dans les pop légales
+df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
+
+# Partie 5 : Calcul d'une empreinte carbone par habitant pour chaque commune
+
+## Jointure des sources de données
+df_emissions_pop = pd.merge(df_pop_communes, df_emissions, how="inner", left_on="DEPCOM", right_on="INSEE commune")
+df_emissions_pop
+
+## Calcul d'une empreinte carbone
+df_emissions_pop["empreinte_carbone"] = df_emissions_pop["emissions_totales"] / df_emissions_pop["PTOT"]
+
+## Affichage des communes avec les empreintes carbones les plus élevées
+df_emissions_pop.sort_values("empreinte_carbone", ascending=False).head(10)
