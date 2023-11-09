@@ -214,9 +214,7 @@ popularite_par_decennie(df_prenoms, sexe=2)
 
 # Exercice 4
 
-# Partie 1 : Import et exploration des données
-
-# Populations légales communales
+# Partie 1 : Exploration des données sur les populations légales communales
 
 ## Import
 df_pop_communes = pd.read_csv("data/communes.csv", sep=";")
@@ -226,7 +224,20 @@ df_pop_communes.sample(10)
 df_pop_communes.info()
 df_pop_communes.describe()
 
-# Données d'émissions communales
+## Suppression des communes sans population
+n_communes_0_pop = df_pop_communes[df_pop_communes["PTOT"] == 0].shape[0]
+print(n_communes_0_pop)
+df_pop_communes = df_pop_communes[df_pop_communes["PTOT"] > 0]
+
+## Supression des colonnes superflues
+df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
+
+## Corrélation entre longueur du nom de commune et population
+df_pop_communes_stats = df_pop_communes.copy()
+df_pop_communes_stats['longueur'] = df_pop_communes_stats['COM'].str.len()
+df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
+
+# Partie 2 : Exploration des données sur les émissions communales
 
 ## Import
 url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
@@ -242,34 +253,9 @@ df_emissions_num = df_emissions.select_dtypes(['number'])
 only_nan = df_emissions_num[df_emissions_num.isnull().all(axis=1)]
 only_nan.shape[0]
 
-# Partie 2 : Pré-traitement des données
-
-# Populations légales communales
-
-## Supression des colonnes superflues
-df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
-
-## Suppression des communes sans population
-n_communes_0_pop = df_pop_communes[df_pop_communes["PTOT"] == 0].shape[0]
-print(n_communes_0_pop)
-df_pop_communes = df_pop_communes[df_pop_communes["PTOT"] > 0]
-
-# Données d'émissions communales
-
 ## Calcul des émissions totales par commune
 df_emissions['emissions_totales'] = df_emissions.sum(axis = 1, numeric_only = True)
 df_emissions
-
-# Partie 3 : Statistiques descriptives
-
-# Populations légales communales
-
-## Corrélation entre longueur du nom de commune et population
-df_pop_communes_stats = df_pop_communes.copy()
-df_pop_communes_stats['longueur'] = df_pop_communes_stats['COM'].str.len()
-df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
-
-# Données d'émissions communales
 
 ## Affichage des principales communes émettrices
 df_emissions.sort_values(by="emissions_totales", ascending=False).head(10)
@@ -281,7 +267,7 @@ df_emissions.corrwith(df_emissions["emissions_totales"], numeric_only=True)
 df_emissions["dep"] = df_emissions["INSEE commune"].str[:2]
 df_emissions.groupby("dep").agg({"emissions_totales": "sum"}).sort_values(by="emissions_totales", ascending=False).head(10)
 
-# Partie 4 : Vérifications préalables pour la jointure des sources de données
+# Partie 3 : Vérifications préalables pour la jointure des sources de données
 
 ## Affichage des doublons dans les noms de communes
 doublons = df_pop_communes.groupby('COM').count()['DEPCOM']
@@ -313,3 +299,57 @@ df_emissions_pop["empreinte_carbone"] = df_emissions_pop["emissions_totales"] / 
 
 ## Affichage des communes avec les empreintes carbones les plus élevées
 df_emissions_pop.sort_values("empreinte_carbone", ascending=False).head(10)
+
+# -------------------------------------------------------------------------- #
+
+# Exercice 5
+
+# Import des données
+df = pd.read_csv('indice_macro.csv')
+
+# Conversion de la colonne 'Date' en datetime
+df['Date'] = pd.to_datetime(df['Date'].str.replace(r'(Q\d) (\d+)', r'\2-\1'), format='%Y-Q%q')
+
+# Calcul de l'évolution d'un trimestre à l'autre
+df['Indice_prec'] = df['Indice'].shift(1)
+df['Evolution_trimestrielle'] = df['Indice'] - df['Indice_prec']
+
+# Calcul de l'évolution glissante sur 4 trimestres
+df['Evolution_glissante'] = df['Indice'].rolling(window=4).apply(lambda x: x.iloc[-1] - x.iloc[0])
+
+# Affichage des résultats
+print(df[['Date', 'Evolution_trimestrielle', 'Evolution_glissante']])
+
+# -------------------------------------------------------------------------- #
+
+# Exercice 6
+
+# Import des données
+df_valeurs = pd.read_csv('data/serie_glaces_valeurs.csv', delimiter=';',
+                         skiprows=4, names=["periode", "indice", "code"])
+df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
+                          skiprows=5, names=["code", "signification"])
+
+# Fusion des deux DataFrames sur les codes
+df_merged = pd.merge(df_valeurs, df_metadata, how='left', on='code')
+
+# Retrait des observations avec les codes 'Q' et 'P'
+df_clean = df_merged[df_merged['code'] == "A"]
+df_clean = df_clean[["periode", "indice"]]
+
+# Conversion des types des colonnes
+df_clean.info()
+df_clean['periode'] = pd.to_datetime(df_clean['periode'])
+df_clean['indice'] = pd.to_numeric(df_clean['indice'])
+df_clean.info()
+
+# Calcul de l'évolution de l'indice d'une période à l'autre
+df_clean['indice_prec'] = df_clean['indice'].shift(1)
+df_clean['evo'] = ((df_clean['indice'] - df_clean['indice_prec']) / df_clean['indice_prec']) * 100
+
+# Méthode alternative
+df_clean['evo_alt'] = df_clean['indice'].pct_change(periods=1) * 100
+
+# Calcul de l'évolution glissante sur 12 mois
+df_clean["evo_glissement_annuel"] = df_clean['indice'].pct_change(periods=12) * 100
+df_clean.head(20)
