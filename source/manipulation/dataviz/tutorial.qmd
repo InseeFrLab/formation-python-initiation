@@ -1,0 +1,87 @@
+---
+title: "Introduction à la visualisation de données"
+abstract: "Exploration des bases de la visualisation de données avec Python : les graphiques simples de Pandas, les visualisations esthétiques de Seaborn, et les personnalisations avancées de Matplotlib"
+execute:
+    echo: true
+    eval: false
+---
+
+La visualisation de données (ou *dataviz*) est un outil indispensable pour faciliter la compréhension des données et mettre en lumière des phénomènes à partir de celles-ci, ainsi que pour favoriser une communication efficace des résultats des analyses. C'est néanmoins un domaine qui dépasse largement la seule compétence technique : les meilleures visualisations sont celles qui sont adaptées à la donnée qu'elles représentent, et qui parviennent à raconter une histoire à partir de celles-ci (*data storytelling*). Ce tutoriel ne vise donc pas à présenter en détails le sujet, mais propose une introduction aux principaux outils existants en `Python` pour produire des visualisations de données.
+
+Nous commencerons notre exploration par les graphiques intégrés dans `Pandas`, très simples et donc parfaits pour une analyse rapide des données. Puis, nous découvrirons `Seaborn`, une librairie qui permet de créer des visualisations attrayantes en très peu de lignes de code. Enfin, nous finirons par aborder `Matplotlib`, la très complète librairie de référence pour la visualisation en `Python`, sur laquelle les deux précédentes sont basées.
+
+
+### 1.1 Introduction à la Visualisation de Données
+
+
+### 1.2 Visualisation Intégrée dans Pandas
+Pandas offre des méthodes de visualisation intégrées qui sont simples à utiliser et qui s'appuient sur Matplotlib. Voici un exemple utilisant un jeu de données sur les ventes de glaces au cours de l'année :
+
+```python
+import pandas as pd
+
+# Exemple de données sur les ventes de glaces
+data = {
+    'Mois': ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+    'Ventes': [150, 200, 250, 300, 350, 400]
+}
+df_ventes = pd.DataFrame(data)
+
+# Visualisation avec Pandas
+df_ventes.plot(x='Mois', y='Ventes', kind='bar', title='Ventes de Glaces par Mois')
+```
+
+Ce script crée un diagramme à barres des ventes de glaces en fonction du mois.
+
+### 1.3 Ressources pour Pandas
+Pour plus d'inspiration et d'exemples, visitez la [galerie de Pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html).
+
+## Section 2 : Seaborn pour des Visualisations Efficaces
+
+### 2.1 Présentation de Seaborn
+Seaborn est une bibliothèque de visualisation de données Python basée sur Matplotlib. Elle fournit une interface de haut niveau pour dessiner des graphiques statistiques attrayants.
+
+### 2.2 Création de Visualisations avec Seaborn
+Prenons un jeu de données de pourboires de restaurant pour illustrer l'utilisation de Seaborn :
+
+```python
+import seaborn as sns
+
+# Charger un exemple de jeu de données de pourboires
+tips = sns.load_dataset('tips')
+
+# Création d'un boxplot des pourboires par jour
+sns.boxplot(x='day', y='tip', data=tips).set_title('Pourboires par Jour de la Semaine')
+```
+
+Ce code génère un boxplot qui montre la distribution des pourboires donnés chaque jour de la semaine.
+
+### 2.3 Cas Pratiques avec Seaborn
+Pour des cas pratiques et une galerie d'exemples, consultez la [galerie Seaborn](https://seaborn.pydata.org/examples/index.html).
+
+## Section 3 : Matplotlib pour une Customisation Avancée
+
+### 3.1 Fondamentaux de Matplotlib
+Matplotlib est la bibliothèque fondamentale pour la création de visualisations personnalisées en Python. Elle offre une flexibilité totale dans la personnalisation des graphiques.
+
+### 3.2 Personnalisation des Graphiques avec Matplotlib
+Voici un exemple de personnalisation d'un histogramme des pourboires :
+
+```python
+import matplotlib.pyplot as plt
+
+# Histogramme des pourboires
+plt.hist(tips['tip'], bins=10, color='skyblue')
+plt.title('Distribution des Pourboires')
+plt.xlabel('Pourboire ($)')
+plt.ylabel('Fréquence')
+plt.show()
+```
+
+Ce script crée un histogramme personnalisé pour visualiser la distribution des pourboires.
+
+### 3.4 Ressources Matplotlib
+Explorez la [galerie Matplotlib](https://matplotlib.org/stable/gallery/index.html) pour découvrir des exemples avancés et des idées de visualisation.
+
+## Conclusion
+Nous avons exploré les bases de la visualisation de données avec Pandas, Seaborn et Matplotlib. Chaque outil a ses forces : Pandas pour la simplicité, Seaborn pour l'efficacité, et Matplotlib pour la personnalisation. Le choix de l'outil dépendra de vos besoins spécifiques et de la complexité de la visualisation souhaitée.
