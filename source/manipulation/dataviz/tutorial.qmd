@@ -11,77 +11,106 @@ La visualisation de données (ou *dataviz*) est un outil indispensable pour faci
 Nous commencerons notre exploration par les graphiques intégrés dans `Pandas`, très simples et donc parfaits pour une analyse rapide des données. Puis, nous découvrirons `Seaborn`, une librairie qui permet de créer des visualisations attrayantes en très peu de lignes de code. Enfin, nous finirons par aborder `Matplotlib`, la très complète librairie de référence pour la visualisation en `Python`, sur laquelle les deux précédentes sont basées.
 
 
-### 1.1 Introduction à la Visualisation de Données
+## Pandas
 
+Comme nous l'avons vu dans le TP consacré, la librairie Pandas offre des outils nombreux et puissants pour manipuler les données tabulaires. Mais il est également équipé d'outils intégrés pour les visualiser. En particulier, la méthode `.plot()` permet de produire simplement des visualisations rapides des données analysées.
 
-### 1.2 Visualisation Intégrée dans Pandas
-Pandas offre des méthodes de visualisation intégrées qui sont simples à utiliser et qui s'appuient sur Matplotlib. Voici un exemple utilisant un jeu de données sur les ventes de glaces au cours de l'année :
+### La méthode `.plot()`
 
-```python
+La méthode [.plot()](https://pandas.pydata.org/docs/user_guide/visualization.html#basic-plotting-plot), intégrée aux Series et aux DataFrames, simplifie le processus de création de graphiques en permettant de générer des visualisations standards avec une ligne de code, directement à partir de la structure de donnée. En coulisse, `.plot()` fait appel à Matplotlib pour le rendu graphique, ce qui signifie que tout graphique généré par Pandas peut être personnalisé davantage avec les fonctions de Matplotlib. Cette intégration offre un équilibre entre la commodité pour des tâches de visualisation rapides et la puissance de Matplotlib pour des besoins de personnalisation plus poussés, faisant de `.plot()` le point de départ idéal pour la visualisation de données en Python.
+
+### Exemples de graphiques
+
+Même si la méthode `.plot()` permet de produire simplement et rapidement des graphiques, les possibilités sont très nombreuses et dépendent des données en entrée. Dans cette section, nous proposons quelques exemples standards pour comprendre le fonctionnement de la méthode. Pour découvrir plus de possibilités, on pourra s'inspirer des nombreux exemples de la [documentation officielle](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html).
+
+Générons des données de synthèse imitant les données de caisse, qu'on utilisera comme base des graphiques.
+
+```{python}
 import pandas as pd
+import numpy as np
 
-# Exemple de données sur les ventes de glaces
+# Configuration pour la reproductibilité
+np.random.seed(0)
+
+# Générer une plage de dates sur un mois
+dates = pd.date_range(start='2023-01-01', end='2023-01-31', freq='D')
+
+# Simuler des données de caisse pour le mois
 data = {
-    'Mois': ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
-    'Ventes': [150, 200, 250, 300, 350, 400]
+    'Date': np.random.choice(dates, 100),
+    'Transaction_ID': np.arange(100) + 1,
+    'COICOP': np.random.choice(['01.1.1', '02.1.1', '03.1.1', '04.1.1'], 100),
+    'Enseigne': np.random.choice(['Carrefour', 'Casino', 'Lidl', 'Monoprix'], 100),
+    'Prix': np.round(np.random.uniform(0.5, 20.0, 100), 2),  # Prix entre 0,5 et 20 euros
+    'Quantité': np.random.randint(1, 5, 100)  # Quantité entre 1 et 4
 }
-df_ventes = pd.DataFrame(data)
 
-# Visualisation avec Pandas
-df_ventes.plot(x='Mois', y='Ventes', kind='bar', title='Ventes de Glaces par Mois')
+# Créer le DataFrame
+df_caisse = pd.DataFrame(data)
+
+# Trier par date pour la cohérence
+df_caisse = df_caisse.sort_values(by='Date').reset_index(drop=True)
+
+# Afficher les premières lignes des données de caisse
+print(df_caisse.head())
 ```
 
-Ce script crée un diagramme à barres des ventes de glaces en fonction du mois.
+#### Nuage de points (*scatter plot*)
 
-### 1.3 Ressources pour Pandas
-Pour plus d'inspiration et d'exemples, visitez la [galerie de Pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html).
+```{python}
+df.plot(x='Ventes', y='Coûts', kind='scatter', color='green')
+```
 
-## Section 2 : Seaborn pour des Visualisations Efficaces
+#### Diagrammes à barres (*bar chart*)
 
-### 2.1 Présentation de Seaborn
-Seaborn est une bibliothèque de visualisation de données Python basée sur Matplotlib. Elle fournit une interface de haut niveau pour dessiner des graphiques statistiques attrayants.
+Les diagrammes en bâtons sont idéaux pour la comparaison visuelle de différentes catégories.
 
-### 2.2 Création de Visualisations avec Seaborn
-Prenons un jeu de données de pourboires de restaurant pour illustrer l'utilisation de Seaborn :
+```{python}
+df_caisse['Enseigne'].value_counts().plot(kind='bar')
+```
+
+#### Histogrammes (*histogram*)
+
+Les histogrammes aident à comprendre la distribution d'une variable numérique.
+
+```{python}
+df_caisse['Prix'].plot(kind='hist', bins=20)
+```
+
+#### Graphique linéaire (*lineplot*)
+
+```{python}
+df_caisse.groupby('Date')['Prix'].sum().plot(kind='line')
+```
+
+
+### Personnalisation
+
+- **Titres et étiquettes**:
+Ajouter des titres et des étiquettes aux axes pour rendre vos graphiques compréhensibles.
 
 ```python
-import seaborn as sns
-
-# Charger un exemple de jeu de données de pourboires
-tips = sns.load_dataset('tips')
-
-# Création d'un boxplot des pourboires par jour
-sns.boxplot(x='day', y='tip', data=tips).set_title('Pourboires par Jour de la Semaine')
+df.plot(kind='bar')
+plt.title('Titre du Graphique')
+plt.xlabel('Axe X')
+plt.ylabel('Axe Y')
 ```
 
-Ce code génère un boxplot qui montre la distribution des pourboires donnés chaque jour de la semaine.
-
-### 2.3 Cas Pratiques avec Seaborn
-Pour des cas pratiques et une galerie d'exemples, consultez la [galerie Seaborn](https://seaborn.pydata.org/examples/index.html).
-
-## Section 3 : Matplotlib pour une Customisation Avancée
-
-### 3.1 Fondamentaux de Matplotlib
-Matplotlib est la bibliothèque fondamentale pour la création de visualisations personnalisées en Python. Elle offre une flexibilité totale dans la personnalisation des graphiques.
-
-### 3.2 Personnalisation des Graphiques avec Matplotlib
-Voici un exemple de personnalisation d'un histogramme des pourboires :
+- **Modification des couleurs**:
+Vous pouvez également personnaliser les couleurs pour améliorer l'esthétique ou la clarté du graphique.
 
 ```python
-import matplotlib.pyplot as plt
-
-# Histogramme des pourboires
-plt.hist(tips['tip'], bins=10, color='skyblue')
-plt.title('Distribution des Pourboires')
-plt.xlabel('Pourboire ($)')
-plt.ylabel('Fréquence')
-plt.show()
+df.plot(kind='line', color='red')
 ```
 
-Ce script crée un histogramme personnalisé pour visualiser la distribution des pourboires.
+- **Légendes**:
+Les légendes sont cruciales lorsque votre graphique contient plusieurs séries ou catégories.
 
-### 3.4 Ressources Matplotlib
-Explorez la [galerie Matplotlib](https://matplotlib.org/stable/gallery/index.html) pour découvrir des exemples avancés et des idées de visualisation.
+```python
+df.plot(kind='line')
+plt.legend(['Série 1', 'Série 2'])
+```
 
-## Conclusion
-Nous avons exploré les bases de la visualisation de données avec Pandas, Seaborn et Matplotlib. Chaque outil a ses forces : Pandas pour la simplicité, Seaborn pour l'efficacité, et Matplotlib pour la personnalisation. Le choix de l'outil dépendra de vos besoins spécifiques et de la complexité de la visualisation souhaitée.
+## Seaborn
+
+## Matplotlib
