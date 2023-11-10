@@ -179,9 +179,8 @@ df.iloc[0:3, :]
 
 - `loc` quant à lui, fonctionne avec des labels. Si les index du DataFrame sont des numéros, ils ressemblent aux positions, mais ce n'est pas forcément le cas. Il est crucial de noter que, contrairement à `iloc`, avec `loc`, l'index de fin est inclus dans la sélection.
   
-Supposons un DataFrame `df` ayant pour index des lettres de 'a' à 'z'. Pour sélectionner les lignes correspondant aux index 'a', 'b' et 'c' :
 ```{python}
-df.loc['a':'c', :]
+df.loc["2022-01-01":"2022-01-03", :]
 ```
 
 #### Filtrage des données selon des conditions
@@ -261,14 +260,14 @@ Lorsqu'on travaille avec des fichiers CSV, il y a de nombreux arguments optionne
 Une fois que les données ont été traitées et modifiées au sein de Pandas, il est courant de vouloir exporter le résultat sous forme de fichier CSV pour le partager, l'archiver ou l'utiliser dans d'autres outils. Pandas offre une méthode simple pour cette opération : `to_csv()`. Supposons par exemple que l'on souhaite exporter les données du DataFrame `df_departements` spécifiques aux cinq départements d'outre-mer.
 
 ```{python}
-df_departements = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
-df_departements.to_csv('data/departements2021_dom.csv')
+df_departements_dom = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
+df_departements_dom.to_csv('output/departements2021_dom.csv')
 ```
 
 Un des arguments clés de la méthode `to_csv()` est `index`. Par défaut, `index=True`, ce qui signifie que l'index du DataFrame sera également écrit dans le fichier CSV. On peut le vérifier en imprimant les premières lignes de notre fichier CSV : Pandas a ajouté une colonne non-nommée, qui contient l'index des lignes retenues.
 
 ```{python}
-with open("data/departements2021_dom.csv") as file_in:
+with open("output/departements2021_dom.csv") as file_in:
     for i in range(5):
         row = next(file_in).strip()
         print(row)
@@ -277,7 +276,7 @@ with open("data/departements2021_dom.csv") as file_in:
 Dans certains cas, notamment lorsque l'index n'apporte pas d'information utile ou est simplement généré automatiquement par Pandas, on pourrait vouloir l'exclure du fichier exporté. Pour ce faire, on peut définir `index=False`.
 
 ```{python}
-df_departements.to_csv('data/departements2021_dom.csv', index=False)
+df_departements_dom.to_csv('output/departements2021_dom_noindex.csv', index=False)
 ```
 
 #### Importer un fichier Parquet
@@ -296,8 +295,8 @@ df_departements.head()
 Là encore, tout se passe comme dans le monde des CSV : on utilise la méthode `to_parquet()` pour exporter un DataFrame dans un fichier Parquet. De même, on peut choisir d'exporter ou non l'index, à l'aide du paramètre `index` (qui vaut `True` par défaut).
 
 ```{python}
-df_departements = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
-df_departements.to_parquet('data/departements2021_dom.parquet', index=False)
+df_departements_dom = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
+df_departements_dom.to_parquet('output/departements2021_dom.parquet', index=False)
 ```
 
 Une des grandes forces du format Parquet, en comparaison des formats texte comme le CSV, est sa capacité à stocker des méta-données, i.e. des données permettant de mieux comprendre les données contenues dans le fichier. En particulier, un fichier Parquet inclut dans ses méta-données le schéma des données (noms des variables, types des variables, etc.), ce qui en fait un format très adapté à la diffusion de données. Vérifions ce comportement en reprenant le DataFrame que nous avons défini précédemment.
@@ -323,8 +322,8 @@ df.info()
 Vérifions à présent que l'export et le ré-import de ces données en Parquet préserve le schéma.
 
 ```{python}
-df.to_parquet("data/df_test_schema.parquet", index=False)
-df_test_schema_parquet = pd.read_parquet('data/df_test_schema.parquet')
+df.to_parquet("output/df_test_schema.parquet", index=False)
+df_test_schema_parquet = pd.read_parquet('output/df_test_schema.parquet')
 
 df_test_schema_parquet.info()
 ```
@@ -332,8 +331,8 @@ df_test_schema_parquet.info()
 A l'inverse, un fichier CSV ne contenant par définition que du texte, ne permet pas de préserver ces données. Les variables dont nous avons spécifié le type sont importés comme des strings (type `object` en Pandas).
 
 ```{python}
-df.to_csv("data/df_test_schema.csv", index=False)
-df_test_schema_csv = pd.read_csv('data/df_test_schema.csv')
+df.to_csv("output/df_test_schema.csv", index=False)
+df_test_schema_csv = pd.read_csv('output/df_test_schema.csv')
 
 df_test_schema_csv.info()
 ```
@@ -596,13 +595,23 @@ df.sort_values(by='var1', ascending=False)
 
 Si on souhaite trier le DataFrame sur plusieurs colonnes, on peut fournir une liste de noms de colonnes. On peut également choisir de trier de manière croissante pour certaines colonnes et décroissante pour d'autres.
 
-```{python}
-df.sort_values(by=['var1', 'var2'], ascending=[True, False])
-```
+
 
 ### Agréger des données
 
 L'agrégation des données est un processus dans lequel les données vont être ventilées en groupes selon certains critères, puis agrégées selon une fonction d'agrégation appliquée indépendamment à chaque groupe. Cette opération est courante lors de l'analyse exploratoire ou lors du prétraitement des données pour la visualisation ou la modélisation statistique.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", "train", "train", "validation"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
+        "sample": "sample1"
+    }
+)
+```
 
 #### L'opération `groupBy`
 
@@ -818,8 +827,8 @@ print(df.dtypes)
 Cette conversion nous donne accès à quelques méthodes bien pratiques, spécifiques au traitement des variables catégorielles. Il peut par exemple être utile de renommer les catégories pour des raisons de clarté ou de standardisation.
 
 ```{python}
-df_cat = df['experiment'].cat.rename_categories({'test': 'Test', 'train': 'Train', 'validation': 'Validation'})
-df_cat
+df['experiment'] = df['experiment'].cat.rename_categories({'test': 'Test', 'train': 'Train', 'validation': 'Validation'})
+df
 ```
 
 Parfois, l'ordre des catégories est significatif, et on peut vouloir le modifier. En particulier dans le cadre de la visualisation, car les modalités seront par défaut affichées dans l'ordre spécifié.
@@ -1017,7 +1026,7 @@ df_merged_outer
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 3-45 solutions.py
+%load -r 3-47 solutions.py
 ```
 
 ### Exercice : plusieurs manières de créer un DataFrame
@@ -1051,7 +1060,7 @@ L'objectif est de construire dans les deux cas un même DataFrame qui contient c
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 53-84 solutions.py
 ```
 
 ### Exercice : sélection de données dans un DataFrame Pandas
@@ -1076,20 +1085,17 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 - Sélectionner les données de la première ligne.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 90-91 solutions.py
+```
+
 - Sélectionner toutes les données de la colonne "prix".
-
-- Sélectionner les lignes correspondant à l'enseigne "Carrefour" uniquement.
-
-- Sélectionner les quantités achetées pour les produits classifiés "01.1.1" (Pain).
-
-- Sélectionner les données des colonnes "enseigne" et "prix" pour toutes les lignes.
-
-- Sélectionner les lignes où la quantité achetée est supérieure à 5.
-
-- Filtrer pour sélectionner toutes les transactions qui ont eu lieu après 15h.
-
-- Sélectionner les transactions qui ont eu lieu le "2022-01-03".
-
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1098,7 +1104,79 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 93-94 solutions.py
+```
+
+- Sélectionner les lignes correspondant à l'enseigne "Carrefour" uniquement.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 96-97 solutions.py
+```
+
+- Sélectionner les quantités achetées pour les produits classifiés "01.1.1" (Pain).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 99-100 solutions.py
+```
+
+- Sélectionner les données des colonnes "enseigne" et "prix" pour toutes les lignes.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 102-103 solutions.py
+```
+
+- Sélectionner les lignes où la quantité achetée est supérieure à 5.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 105-106 solutions.py
+```
+
+- Filtrer pour sélectionner toutes les transactions qui ont eu lieu après 15h.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 108-109 solutions.py
+```
+
+- Sélectionner les transactions qui ont eu lieu le "2022-01-03".
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 111-112 solutions.py
 ```
 
 ### Exercice : exploration du fichier des prénoms
@@ -1109,29 +1187,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 
 - Importez les données dans un DataFrame en utilisant cette [URL](https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip).
-
-```{python}
-# Testez votre réponse dans cette cellule
-
-```
-
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
-```
-
 - Visualisez un échantillon des données. Repérez-vous d'éventuelles anomalies ?
-
-```{python}
-# Testez votre réponse dans cette cellule
-
-```
-
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
-```
-
 - Affichez les principales informations du DataFrame. Repérez d'éventuelles variables dont le type serait incorrect, ou bien d'éventuelles valeurs manquantes.
 
 ```{python}
@@ -1141,24 +1197,13 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 120-129 solutions.py
 ```
 
 #### Partie 2 : Nettoyage des données
 
 
 - L'output de la méthode `info()` suggère des valeurs manquantes dans la colonne des prénoms. Affichez ces lignes. Vérifiez que ces valeurs manquantes sont correctement spécifiées.
-
-```{python}
-# Testez votre réponse dans cette cellule
-
-```
-
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
-```
-
 - L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
 
 ```{python}
@@ -1168,7 +1213,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 133-137 solutions.py
 ```
 
 - On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
@@ -1180,7 +1225,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 139-142 solutions.py
 ```
 
 - Supprimer les lignes contenant des valeurs manquantes de l'échantillon.
@@ -1192,7 +1237,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 144-145 solutions.py
 ```
 
 - Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
@@ -1204,7 +1249,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 147-149 solutions.py
 ```
 
 - Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
@@ -1216,7 +1261,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 151-152 solutions.py
 ```
 
 #### Partie 3 : Statistiques descriptives sur les naissances
@@ -1231,7 +1276,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 156-157 solutions.py
 ```
 
 - Calculez le nombre total de naissances par sexe.
@@ -1243,7 +1288,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 159-161 solutions.py
 ```
 
 - Identifiez les cinq années ayant le plus grand nombre de naissances.
@@ -1255,7 +1300,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 163-165 solutions.py
 ```
 
 #### Partie 4 : Analyse des prénoms
@@ -1270,7 +1315,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 169-171 solutions.py
 ```
 
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
@@ -1282,7 +1327,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 173-175 solutions.py
 ```
 
 - Créez une "fonction de popularité" qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
@@ -1294,7 +1339,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 177-190 solutions.py
 ```
 
 - Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
@@ -1306,7 +1351,7 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 192-211 solutions.py
 ```
 
 ### Exercice : calcul d'une empreinte carbone par habitant au niveau communal
@@ -1331,7 +1376,7 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 219-225 solutions.py
 ```
 
 - Identifiez et retirez les lignes correspondant aux communes sans population.
@@ -1344,7 +1389,7 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 227-233 solutions.py
 ```
 
 Les communes qui ont les noms les plus longs sont-elles aussi les communes les moins peuplées ? Pour le savoir :
@@ -1358,7 +1403,7 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 235-238 solutions.py
 ```
 
 #### Partie 2 : Exploration des données sur les émissions communales
@@ -1373,7 +1418,7 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 242-254 solutions.py
 ```
 
 - Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [isnull()](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html) et [all()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html).
@@ -1385,7 +1430,7 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 251-254 solutions.py
 ```
 
 - Créez une nouvelle colonne qui donne les émissions totales par commune
@@ -1398,7 +1443,7 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 256-261 solutions.py
 ```
 
 - Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corrwith()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html).
@@ -1410,19 +1455,51 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 263-264 solutions.py
 ```
 
 - Extraire du code commune le numéro de département dans une nouvelle variable
 - Calculer les émissions totales par département
 - Afficher les 10 principaux départements émetteurs. Les résultats sont-ils logiques par rapport à l'analyse au niveau communal ? 
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 266-268 solutions.py
+```
+
 #### Partie 3 : Vérifications préalables pour la jointure des sources de données
 
 Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jointure, i.e. une colonne commune aux deux sources, qui identifie uniquement les unités statistiques. L'objet de cette partie est de trouver la clé de jointure pertinente.
 
 - Vérifiez si la variable contenant les noms de commune contient des doublons
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 272-276 solutions.py
+```
+
 - Filtrez dans le DataFrame initial les communes dont le nom est dupliqué, et triez-le par code commune. Les doublons semblent-ils problématiques ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 278-280 solutions.py
+```
+
 - Vérifiez que les codes commune identifient de manière unique la commune associée
 
 ```{python}
@@ -1432,11 +1509,10 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 282-283 solutions.py
 ```
 
-- Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement.
-- Qu'en concluez-vous ?
+- Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement. Qu'en concluez-vous ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1445,7 +1521,7 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 285-289 solutions.py
 ```
 
 #### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
@@ -1459,7 +1535,7 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 293-295 solutions.py
 ```
 
 - Calculer une empreinte carbone pour chaque commune, correspondant aux émissions totales de la commune divisées par sa population totale.
@@ -1473,7 +1549,7 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 297-301 solutions.py
 ```
 
 ### Exercice : Analyse de l'évolution d'un indice de production
@@ -1498,7 +1574,7 @@ L'objectif est d'utiliser `Pandas` pour calculer :
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 309-313 solutions.py
 ```
 
 #### Partie 2 : Filtrage des données pertinentes
@@ -1514,7 +1590,7 @@ L'objectif est d'utiliser `Pandas` pour calculer :
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 317-322 solutions.py
 ```
 
 #### Partie 3 : Pré-traitement des données
@@ -1528,7 +1604,7 @@ Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, c
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 326-330 solutions.py
 ```
 
 #### Partie 4 : Calcul de l'évolution périodique
@@ -1543,7 +1619,7 @@ Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, c
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 334-339 solutions.py
 ```
 
 #### Partie 5 : Calcul de l'évolution glissante sur 12 mois
@@ -1557,5 +1633,5 @@ Comme vous avez pu le voir dans la solution de l'exercice précédent, la métho
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
+%load -r 343-345 solutions.py
 ```

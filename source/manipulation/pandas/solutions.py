@@ -66,7 +66,7 @@ data_list2 = [
     ['Lidl', '02.1.1', 1, 3.10]
 ]
 
-# 1ère possibilité : à partir d'un dictionnaire
+# Si les données sont sous forme de colonnes : à partir d'un dictionnaire
 data_dict = {
     'enseigne': data_list1[0],
     'produit': data_list1[1],
@@ -76,7 +76,7 @@ data_dict = {
 
 df_from_dict = pd.DataFrame(data_dict)
 
-# 2ème possibilité : à partir d'une liste de listes
+# Si les données sont sous forme de lignes : à partir d'une liste de listes
 columns = ['enseigne', 'produit', 'quantite', 'prix']
 df_from_list = pd.DataFrame(data_list2, columns=columns)
 
