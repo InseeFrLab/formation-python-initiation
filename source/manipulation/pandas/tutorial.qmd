@@ -1110,7 +1110,27 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 - Importez les données dans un DataFrame en utilisant cette [URL](https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip).
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - Visualisez un échantillon des données. Repérez-vous d'éventuelles anomalies ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 - Affichez les principales informations du DataFrame. Repérez d'éventuelles variables dont le type serait incorrect, ou bien d'éventuelles valeurs manquantes.
 
@@ -1129,13 +1149,63 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 - L'output de la méthode `info()` suggère des valeurs manquantes dans la colonne des prénoms. Affichez ces lignes. Vérifiez que ces valeurs manquantes sont correctement spécifiées.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 - On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - Supprimer les lignes contenant des valeurs manquantes de l'échantillon.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 - Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
 
@@ -1154,7 +1224,27 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 - La [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) du fichier nous informe qu'on peut considérer les données comme quasi-exhaustives à partir de 1946. Pour cette partie seulement, filtrer les données pour ne conserver que les données ultérieures.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - Calculez le nombre total de naissances par sexe.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 - Identifiez les cinq années ayant le plus grand nombre de naissances.
 
@@ -1173,9 +1263,39 @@ Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=
 
 - Identifiez le nombre total de prénoms uniques dans le DataFrame.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
 
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
 - Créez une "fonction de popularité" qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 - Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
 
@@ -1197,21 +1317,12 @@ L'objectif de cet exercice est de calculer une empreinte carbone par habitant au
 
 - les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
 
-Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/).
+Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/). 
 
-#### Partie 1 : Import et exploration des données
+#### Partie 1 : Exploration des données sur les populations légales communales
 
-```{python}
-# Testez votre réponse dans cette cellule
-
-```
-
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r  solutions.py
-```
-
-#### Partie 2 : Jointure des sources de données
+- Importez le fichier CSV `communes.csv`.
+- Utilisez les méthodes `.sample()`, `.info()` et `.describe()` pour obtenir un aperçu des données.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1223,7 +1334,8 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 %load -r  solutions.py
 ```
 
-#### Partie 3 : Calcul d'une empreinte carbone par habitant pour chaque commune
+- Identifiez et retirez les lignes correspondant aux communes sans population.
+- Supprimez les colonnes "PMUN" et "PCAP", non pertinentes pour l'analyse.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1235,7 +1347,70 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 %load -r  solutions.py
 ```
 
-Voici un exercice pour pratiquer le traitement des données temporelles avec Pandas, notamment pour calculer les variations d'un indice macroéconomique d'un trimestre à l'autre.
+Les communes qui ont les noms les plus longs sont-elles aussi les communes les moins peuplées ? Pour le savoir :
+- Créez une nouvelle variable qui contient le nombre de caractères de chaque commune à l'aide de la méthode [str.len()](https://pandas.pydata.org/docs/reference/api/pandas.Series.str.len.html)
+- Calculez la corrélation entre cette variable et la population totale avec la méthode [corr()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+#### Partie 2 : Exploration des données sur les émissions communales
+
+- Importez les données d'émission depuis cette [URL](https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv)
+- Utilisez les méthodes `.sample()`, `.info()` et `.describe()` pour obtenir un aperçu des données.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [isnull()](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html) et [all()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+#### Partie 3 : Vérifications préalables pour la jointure des sources de données
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+#### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
 
 ### Exercice : Analyse de l'évolution d'un indice de production
 

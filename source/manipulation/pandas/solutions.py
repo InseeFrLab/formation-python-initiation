@@ -241,7 +241,7 @@ df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
 
 ## Import
 url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
-df_emissions = pd.read_csv(url_ademe, sep=",")
+df_emissions = pd.read_csv(url_ademe)
 
 ## Information générales
 df_emissions.sample(10)
@@ -288,7 +288,7 @@ df_pop_communes[~df_pop_communes["DEPCOM"].isin(df_emissions["INSEE commune"])]
 ## Observations qui sont dans les données d'émissions mais pas dans les pop légales
 df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
 
-# Partie 5 : Calcul d'une empreinte carbone par habitant pour chaque commune
+# Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
 
 ## Jointure des sources de données
 df_emissions_pop = pd.merge(df_pop_communes, df_emissions, how="inner", left_on="DEPCOM", right_on="INSEE commune")
