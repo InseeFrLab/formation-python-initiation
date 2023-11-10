@@ -1,8 +1,10 @@
 ---
-title: Traiter des données tabulaires avec Pandas
-jupyter: python3
+title: "Traiter des données tabulaires avec Pandas"
+abstract: "Découverte de Pandas, librairie de référence pour le traitement des données tabulaires. Au programme : Series et DataFrames, exploration de données tabulaires, principales manipulations, le tout appliqué à des données issues de la statistique publique."
+execute:
+    echo: true
+    eval: false
 ---
-
 
 
 L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable. Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`. Les utilisateurs de `R` connaissent bien cette structure de données, qui est native à ce langage orienté statistique. En `Python`, langage généraliste, cet objet n'existe pas nativement. Heureusement, une librairie très complete et bien pratique, pensée comme une surcouche à `NumPy`, introduit en `Python` l'objet `DataFrame` et permet la manipulation et l'analyse de données de manière simple et intuitive : `Pandas`.
