@@ -1388,7 +1388,55 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 %load -r  solutions.py
 ```
 
+- Créez une nouvelle colonne qui donne les émissions totales par commune
+- Afficher les 10 communes les plus émettrices. Qu'observez-vous dans les résultats ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+- Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corrwith()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+- Extraire du code commune le numéro de département dans une nouvelle variable
+- Calculer les émissions totales par département
+- Afficher les 10 principaux départements émetteurs. Les résultats sont-ils logiques par rapport à l'analyse au niveau communal ? 
+
 #### Partie 3 : Vérifications préalables pour la jointure des sources de données
+
+Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jointure, i.e. une colonne commune aux deux sources, qui identifie uniquement les unités statistiques. L'objet de cette partie est de trouver la clé de jointure pertinente.
+
+- Vérifiez si la variable contenant les noms de commune contient des doublons
+- Filtrez dans le DataFrame initial les communes dont le nom est dupliqué, et triez-le par code commune. Les doublons semblent-ils problématiques ?
+- Vérifiez que les codes commune identifient de manière unique la commune associée
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+- Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement.
+- Qu'en concluez-vous ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1401,6 +1449,22 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 ```
 
 #### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
+
+- Joindre les deux DataFrame à l'aide de la fonction à partir du code commune. Attention : les variables ne s'appellent pas de la même manière des deux côtés !
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r  solutions.py
+```
+
+- Calculer une empreinte carbone pour chaque commune, correspondant aux émissions totales de la commune divisées par sa population totale.
+- Affichez les 10 communes avec les empreintes carbones les plus élevées. 
+- Les résultats sont-ils identiques à ceux avec les émissions totales ? Qu'en concluez-vous ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
