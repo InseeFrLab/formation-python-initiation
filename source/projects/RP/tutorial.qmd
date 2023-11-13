@@ -52,11 +52,17 @@ def load_data():
 ### Question 2 
 
 Maintenant que les données sont importées nous allons les mettre sous la forme d'un seul `DataFrame` dont les colonnes sont : 
+
 - `genre` ;
+
 - `age` ;
+
 - `population` ;
+
 - `dep_code` ;
+
 - `dep` ;
+
 - `annee`.
 
 2.1 - Pour ce faire créez une fonction `reshape_data_by_year(df, year)` qui prend en argument un DataFrame issu de votre Dict `data` et une année donnée. 

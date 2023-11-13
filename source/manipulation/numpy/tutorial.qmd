@@ -69,8 +69,11 @@ mult_np(n)  # Performance de la méthode NumPy
 ```
 
 Cet exemple illustre à lui seul les principaux avantages de `NumPy` pour le calcul scientifique : 
+
 - les calculs sont **vectorisés** : multiplier deux *arrays* va naturellement effectuer la multiplication terme à terme, contrairement aux listes qui ne permettent pas cette opération. Les personnes travaillant avec `R` retrouveront là une propriété familière et bien pratique.
+
 - conséquence de la vectorisation, **la syntaxe est plus légère et plus claire** : on voit directement l'opération qui est effectuée et on limite ainsi les risques d'erreur ;
+
 - les calculs sont automatiquement **optimisés** par `NumPy` (via l'appel à du code `C` pré-compilé), réduisant très largement le temps mis par les opérations mathématiques (divisé par un facteur 10 dans notre exemple).
 
 
@@ -81,7 +84,9 @@ Cet exemple illustre à lui seul les principaux avantages de `NumPy` pour le cal
 
 
 Toute la librairie `NumPy` est basée sur un objet fondamental : l'*array*. Un *array* est un objet qui contient une séquence de données, et présente deux caractéristiques principales :
+
 - les données contenues dans un *array* doivent être de **type homogène**, là où une même liste peut contenir des objets de différente nature ;
+
 - un *array* a une **taille fixée** à sa création, là où une liste peut grandir dynamiquement (en ajoutant des éléments via la méthode `append` par exemple).
 
 Ce sont en grande partie ces deux contraintes qui rendent possible les gains de performance et la syntaxe lisible qu'offre `NumPy`.
@@ -366,14 +371,23 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 ### Questions de compréhension
 
 
+
 - 1/ Quels sont les principaux avantages de `NumPy` ?
+
 - 2/ Quelles sont les deux caractéristiques principales d'un *array* `NumPy` ?
+
 - 3/ Que se passe-t-il si l'on essaie de définir un *array* contenant des objets de types hétérogènes ?
+
 - 4/ Quelle est la principale méthode pour créer un *array* ?
+
 - 5/ Quelles informations contient l'attribut `shape` d'un array ?
+
 - 6/ Peut-on ajouter un élément à un *array* ? Supprimer un élément ?
+
 - 7/ Qu'est-ce qu'un masque booléen et à quoi cela sert-il ?
+
 - 8/ Qu'est-ce que la propriété de *broadcasting* ?
+
 - 9/ A quoi sert le paramètre `axis` des fonctions mathématiques de `NumPy` ?
 
 ```{python}
@@ -386,16 +400,25 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 %load -r 3-32 solutions.py
 ```
 
-### Exercice : sélectionner des éléments dans un vecteur
+### Exercice : plusieurs manières de créer un DataFrame
+
+### Exercice : manipulations simples des données d'un DataFrame
 
 
 Un vecteur comprenant les entiers compris entre 10 et 20 est défini dans la cellule suivante. En utilisant l'indexation des *arrays* `NumPy` :
+
 - sélectionner les éléments aux positions 1, 3 et 4
+
 - sélectionner tous les éléments sauf le premier
+
 - sélectionner tous les éléments sauf le premier et le dernier
+
 - sélectionner les 3 premiers éléments
+
 - sélectionner les 5 derniers éléments
+
 - sélectionner tous les éléments pairs
+
 - sélectionner tous les éléments en les triant dans l'ordre inverse (NB : la fonction `np.flip` permet de faire la même chose)
 
 ```{python}
@@ -418,10 +441,15 @@ print(X)
 
 
 Une matrice de taille 5x5 comprenant tous les entiers compris entre 0 et 24 est définie dans la cellule suivante. En utilisant l'indexation des *arrays* `NumPy` :
+
 - sélectionner la valeur $19$
+
 - sélectionner la 2ème ligne
+
 - sélectionner la 4ème colonne
+
 - sélectionner la sous-matrice 3x3 centrale
+
 - sélectionner les éléments diagonaux (NB : la fonction `np.diag` permet de réaliser la même opération de manière beaucoup plus simple)
 
 ```{python}
@@ -444,11 +472,17 @@ print(Y)
 
 
 Deux matrices carrées de taille 3x3 sont définies sous forme d'*arrays* `NumPy` dans la cellule suivante. A partir de ces matrices, réaliser les opérations mathématiques suivantes :
+
 - multiplier tous les éléments de `X` par 3
+
 - diviser les éléments de `Y` par ceux de `X`
+
 - passer tous les éléments de `Y` au `log`
+
 - passer tous les éléments de `X` au carré
+
 - faire une multiplication matricielle de `X` et `Y`
+
 - transposer la matrice `Y`
 
 NB : vous pourrez trouver les fonctions nécessaires dans la [documentation](https://numpy.org/doc/stable/reference/routines.math.html) ou via un moteur de recherche.
@@ -486,12 +520,19 @@ np.zeros((3, 2))
 
 En vous référant à la [documentation](https://numpy.org/doc/stable/reference/routines.array-creation.html) de ces fonctions, générer :
 
+
 - un vecteur (array à 1 dimension), contenant 18 fois la valeur $1$ (fonction `np.ones`)
+
 - un array à 3 dimensions, respectivement de tailles 2, 3 et 5, contenant uniquement des zéros (fonction `np.zeros`)
+
 - une matrice (array à 2 dimensions), à 4 lignes et 3 colonnes, contenant uniquement la valeur 5 (fonction `np.full`)
+
 - une matrice identité de taille 5, i.e. une matrice à 5 lignes et 5 colonnes, contenant des $1$ sur sa diagonale et des $0$ partout ailleurs (fonction `np.eye`)
+
 - un vecteur contenant les entiers compris entre $0$ à $99$ inclus (fonction `np.arange`)
+
 - un vecteur contenant les entiers *pairs* compris entre $0$ à $99$ inclus (fonction `np.arange`)
+
 - un vecteur contenant 5 valeurs uniformément espacées entre $2$ et $3$ inclus (fonction `np.linspace`)
 
 ```{python}
@@ -546,7 +587,9 @@ En utilisant la fonction `np.all` et un test booléen, vérifier que tous les no
 On peut parfois avoir besoin de binariser une matrice numérique, c'est à dire de fixer un seuil au delà duquel les valeurs numériques sont fixées à 1, et à 0 en-dessous. `NumPy` propose plusieurs méthodes pour réaliser une telle opération, nous allons en voir deux. 
 
 Dans la cellule suivante, une matrice `X` à 6 lignes et 6 colonnes est générée, qui comprend des entiers aléatoirement choisis entre 0 et 49. Vous devez binariser cette matrice de deux manières différentes **sans l'écraser** (i.e. la matrice binaire doit être assignée à une autre variable que `X` et `X` ne doit pas être modifiée) :
+
 - première méthode : en utilisant la fonction `np.zeros` et les masques booléens
+
 - seconde méthode : en utilisant la fonction `np.where` (cf. [doc](https://numpy.org/doc/stable/reference/generated/numpy.where.html))
 
 ```{python}
@@ -569,12 +612,19 @@ X = np.random.randint(0, 50, size=(6, 6))
 L'objectif de cet exercice est de programmer seulement à l'aide d'objets et de fonctions de `NumPy` un touché-coulé très basique. 
 
 Une grille de 5x5 est définie dans la cellule suivante comme un *array*, les valeurs $1$ symbolisant la présence d'un bateau. Vous devez programmer une fonction `shoot` qui :
+
 - prend en input une coordonnée $x$ (indice de la ligne) et une cordonnée $y$ (indice de la colonne)
+
 - teste si au moins une valeur $1$ est présente dans la grille :
+
   - si oui : 
+
     - s'il y a un bateau à l'adresse (x, y), remplacer la valeur $1$ par $2$ et `print` "Touché !"
+
     - sinon, `print` "Raté !"
+
   - si non :
+
     - `print` "Fin de partie !"
     
 Puis réalisez quelques tests pour vous assurer que votre fonction marche comme attendu.

@@ -285,12 +285,19 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 
 ### Questions de compréhension
 
+
 - 1/ Peut-on accéder au `i`ième élément d'un dictionnaire ? d'un set ?
+
 - 2/ Quels types d'objets peuvent être utilisés comme clés d'un dictionnaire ? Comme valeurs ?
+
 - 3/ Pour quels types de données a-t-on intérêt à utiliser un dictionnaire ?
+
 - 4/ Un dictionnaire peut-il avoir des doublons dans ses clés ?
+
 - 5/ Pourquoi peut-on dire qu'un set est un dictionnaire particulier ?
+
 - 6/ Pourquoi les sets sont-ils utilisés pour dédupliquer des listes ?
+
 - 7/ Pourquoi les sets sont-ils plus pertinents que les listes pour réaliser des tests d'appartenance ?
 
 
@@ -310,12 +317,19 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 Soit le dictionnaire défini dans la cellule ci-dessous.
 
 Affichez à l'aide d'opérations `print` : 
+
 - la liste des noms des différentes classes
+
 - la note de Miranda en histoire
+
 - la liste des notes obtenues par Hypolyte
+
 - la liste des noms des élèves de la 6emeB
+
 - la liste des matières enseignées en 6eme A
+
 - la liste de toutes les matières enseignées
+
 - la liste des notes obtenues par les filles des deux classes
 
 
@@ -361,7 +375,9 @@ Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de 
 ### Exercice
 
 Nous avons vu qu'on pouvait supprimer une clé d'un dictionnaire de deux manières différentes :
+
 - avec l'opérateur `del` : `del mon_dict[clé]`
+
 - avec la méthode `pop` : `mon_dict.pop(clé)`
 
 Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces deux manières de supprimer une clé d'un dictionnaire ? N'hésitez pas à expérimenter avec des exemples de votre choix.
@@ -402,9 +418,12 @@ Soit le dictionnaire suivant :
 
 Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédictions.
 
+
 - `'chats' in animaux.keys()`
 
+
 - `'chats' in animaux.values()`
+
 
 - `'chats' in animaux`
 

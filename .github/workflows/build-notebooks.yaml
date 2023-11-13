@@ -15,14 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Render Quarto Project
-        uses: quarto-dev/quarto-actions/render@v2
 
       - name: Put rendered notebooks in separate directory
         run: |

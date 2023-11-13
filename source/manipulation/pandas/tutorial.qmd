@@ -1,0 +1,1639 @@
+---
+title: "Traiter des données tabulaires avec Pandas"
+abstract: "Découverte de Pandas, librairie de référence pour le traitement des données tabulaires. Au programme : Series et DataFrames, exploration de données tabulaires, principales manipulations, le tout appliqué à des données issues de la statistique publique."
+execute:
+    echo: true
+    eval: false
+---
+
+
+L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable. Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`. Les utilisateurs de `R` connaissent bien cette structure de données, qui est native à ce langage orienté statistique. En `Python`, langage généraliste, cet objet n'existe pas nativement. Heureusement, une librairie très complete et bien pratique, pensée comme une surcouche à `NumPy`, introduit en `Python` l'objet `DataFrame` et permet la manipulation et l'analyse de données de manière simple et intuitive : `Pandas`.
+
+::: {.callout-note}
+Pandas étant l'élément central de l'éco-système data science en Python, il offre des possibilités de traitement de la donnée quasi-infinies. En plus de ça, il existe généralement de multiples manières de réaliser une même opération en Pandas. En conséquence, ce chapitre est particulièrement long et dense en nouvelles fonctionnalités. L'objectif n'est pas de retenir toutes les méthodes présentées tout au long de ce chapitre, mais plutôt d'avoir une vision générale de ce qu'il est possible de faire afin de pouvoir mobiliser les bons outils dans les projets. En particulier, les exercices de fin de chapitre et les mini-projets de fin de formation seront l'occasion d'appliquer ces nouvelles connaissances à des problématiques concrètes. 
+:::
+
+On commence par importer la librairie `Pandas`. L'usage est courant est de lui attribuer l'alias `pd` afin de simplifier les futurs appels aux objets et fonctions du package. On importe également `NumPy` car on va comparer les objets fondamentaux des deux packages.
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+
+
+
+
+## Structures de données
+
+Pour bien comprendre le fonctionnement de `Pandas`, il faut s'intéresser à ses objets fondamentaux. On va donc d'abord étudier les `Series`, dont la concaténation permet de construire un `DataFrame`. 
+
+### La `Series`
+
+Une Series est un conteneur de données unidimensionnel pouvant accueillir n'importe quel type de données (entiers, *strings*, objets Python...). Une Series est néanmoins d'un type donné : une Series ne contenant que des entiers sera de type `int`, et une Series contenant des objets de différente nature sera de type `object`. Construisons notre première Series à partir d'une liste pour vérifier ce comportement.
+
+```{python}
+l = [1, "X", 3]
+s = pd.Series(l)
+print(s)
+```
+
+On peut notamment accéder aux données d'une Series par position, comme pour une liste ou un array.
+
+```{python}
+print(s[1])
+```
+
+A priori, on ne voit pas beaucoup de différence entre une Series et un *array* `NumPy` à 1 dimension. Pourtant, il existe une différence de taille qui est la présence d'un index : les observations ont un label associé. Lorsqu'on crée une Series sans rien spécifier, l'index est automatiquement fixé aux entiers de 0 à n (le nombre d'éléments de la Series). Mais il est possible de passer un index spécifique (ex : des dates, des noms de communes, etc.).
+
+```{python}
+s = pd.Series(l, index=["a", "b", "c"])
+print(s)
+```
+
+Ce qui permet d'accéder aux données par label :
+
+```{python}
+s["b"]
+```
+
+Cette différence apparaît secondaire à première vue, mais deviendra essentielle pour la construction du DataFrame. Pour le reste, les Series se comportent de manière très proche des arrays NumPy : les calculs sont vectorisés, on peut directement faire la somme de deux Series, etc. D'ailleurs, on peut très facilement convertir une Series en array via l'attribut `values`. Ce qui, naturellement, fait perdre l'index...
+
+```{python}
+s = pd.Series(l, index=["a", "b", "c"])
+s.values
+```
+
+### Le `DataFrame`
+
+Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://medium.com/epfl-extension-school/selecting-data-from-a-pandas-dataframe-53917dc39953)) permet de bien comprendre cette structure de données.
+
+<div>
+<img src="img/structure_df.png" width="800">
+</div>
+
+Un DataFrame peut être construit de multiples manières. En pratique, on construit généralement un DataFrame directement à partir de fichiers de données tabulaires (ex : CSV, excel), rarement à la main. On illustrera donc seulement la méthode de construction manuelle la plus usuelle : à partir d'un dictionnaire de données.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", "train", "train", "validation"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
+        "sample": "sample1"
+    }
+)
+
+df
+```
+
+Un DataFrame Pandas dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons nous aux plus basiques : l'index et le nom des colonnes. Par défaut, l'index est initialisé comme pour les Series à la liste des positions des observations. On aurait pu spécifier un index alternatif lors de la construction du DataFrame en spécifiant l'argument `index` de la fonction `pd.DataFrame`.
+
+```{python}
+df.index
+```
+
+```{python}
+df.columns
+```
+
+Souvent, plutôt que de spécifier un index à la main lors de la construction du DataFrame, on va vouloir utiliser une certaine colonne du DataFrame comme index. On utilise pour cela la méthode `set_index` associée aux DataFrames.
+
+```{python}
+df = df.set_index("date")
+df
+```
+
+L'attribut index a naturellement changé :
+
+```{python}
+df.index
+```
+
+
+
+
+
+## Sélectionner des données
+
+Lors de la manipulation des données tabulaires, il est fréquent de vouloir extraire des colonnes spécifiques d'un `DataFrame`. Cette extraction est simple avec `Pandas` grâce à l'utilisation des crochets.
+
+### Sélectionner des colonnes
+
+#### Sélectionner une seule colonne
+
+Pour extraire une seule colonne, on peut utiliser la syntaxe suivante :
+
+```{python}
+selected_column = df["var1"]
+selected_column
+```
+
+L'objet `selected_column` renvoie ici la colonne nommée `var1` du `DataFrame` `df`. Mais de quel type est cet objet ? Pour répondre à cette question, on utilise la fonction `type()` :
+
+```{python}
+type(selected_column)
+```
+
+Comme on peut le voir, le résultat est une `Series`, qui est un objet unidimensionnel dans `Pandas`.
+
+Un autre attribut utile à connaître est `shape`. Il permet de connaître la dimension de l'objet. Pour une `Series`, `shape` retournera un tuple dont le premier élément indique le nombre de lignes.
+```{python}
+selected_column.shape
+```
+
+#### Sélectionner plusieurs colonnes
+
+Pour extraire plusieurs colonnes, il suffit de passer une liste des noms des colonnes souhaitées :
+
+```{python}
+selected_columns = df[["var1", "var2", "experiment"]]
+selected_columns
+```
+
+Cet extrait montre les colonnes `var1`, `var2` et `experiment` du `DataFrame` `df`. Vérifions maintenant son type :
+
+```{python}
+type(selected_columns)
+```
+
+Le résultat est un `DataFrame`, car il s'agit d'un objet bidimensionnel. On peut aussi vérifier sa forme avec l'attribut `shape`. Dans ce cas, le tuple renvoyé par `shape` contiendra deux éléments : le nombre de lignes et le nombre de colonnes.
+
+```{python}
+selected_columns.shape
+```
+
+### Sélectionner des lignes
+
+#### Utilisation de `loc` et `iloc`
+
+Lorsqu'on veut sélectionner des lignes spécifiques dans un DataFrame, on peut se servir des deux principales méthodes : `loc` et `iloc`.
+
+
+- `iloc` permet de sélectionner des lignes et des colonnes par leur position, c'est-à-dire par des indices numériques.
+  
+Exemple, sélection des 3 premières lignes : 
+```{python}
+df.iloc[0:3, :]
+```
+
+
+- `loc` quant à lui, fonctionne avec des labels. Si les index du DataFrame sont des numéros, ils ressemblent aux positions, mais ce n'est pas forcément le cas. Il est crucial de noter que, contrairement à `iloc`, avec `loc`, l'index de fin est inclus dans la sélection.
+  
+```{python}
+df.loc["2022-01-01":"2022-01-03", :]
+```
+
+#### Filtrage des données selon des conditions
+
+En pratique, plutôt que de sélectionner des lignes basées sur des positions ou des labels, on souhaite souvent filtrer un DataFrame selon certaines conditions. Dans ce cas, on se sert principalement de filtres booléens.
+
+
+- **Inégalités** : On peut vouloir garder seulement les lignes qui respectent une certaine condition. 
+
+Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
+```{python}
+df[df['var2'] > 10]
+```
+
+
+- **Appartenance avec `isin`** : Si on veut filtrer les données basées sur une liste de valeurs possibles, la méthode `isin` est très utile.
+
+Exemple, pour garder uniquement les lignes où la colonne `var2` a des valeurs 'test' ou 'validation':
+```{python}
+df[df['experiment'].isin(['train', 'validation'])]
+```
+
+Ces méthodes peuvent être combinées pour créer des conditions plus complexes. Il est aussi possible d'utiliser les opérateurs logiques (`&` pour "et", `|` pour "ou") pour combiner plusieurs conditions. Attention, il faut bien prendre soin d'encadrer chaque condition par des parenthèses lors de la combinaison.
+
+Exemple, sélectionner les lignes où `var2` est supérieur à 10 et `experiment` est égal à 'test' ou 'validation':
+```{python}
+df[(df['var2'] > 10) & (df['experiment'].isin(['train', 'validation']))]
+```
+
+
+
+
+
+## Explorer des données tabulaires
+
+En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issues d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires et les explorer en vue de manipulations plus poussées.
+
+### Importer et exporter des données
+
+#### Importer un fichier CSV
+
+Comme nous l'avons vu dans un précédent TP, le format CSV est l'un des formats les plus courants pour stocker des données tabulaires. Nous avons précédemment utilisé la librairie `csv` pour les manipuler comme des fichiers texte, mais ce n'était pas très pratique. Pour rappel, la syntaxe pour lire un fichier CSV et afficher les premières lignes était la suivante : 
+
+```{python}
+import csv
+
+rows = []
+
+with open("data/departement2021.csv") as file_in:
+    csv_reader = csv.reader(file_in)
+    for row in csv_reader:
+        rows.append(row)
+
+rows[:5]
+```
+
+Avec Pandas, il suffit d'utiliser la fonction `read_csv()` pour importer le fichier comme un DataFrame, puis la fonction `head()`.
+
+```{python}
+df_departements = pd.read_csv('data/departement2021.csv')
+df_departements.head()
+```
+
+Il est également possible d'importer un fichier CSV directement à partir d'une URL. C'est particulièrement pratique lorsque les données sont régulièrement mises à jour sur un site web et que l'on souhaite accéder à la version la plus récente sans avoir à télécharger manuellement le fichier à chaque fois. Prenons l'exemple d'un fichier CSV disponible sur le site de l'INSEE : le fichier des prénoms, issu des données de l'état civil. On note au passage une autre fonctionnalité bien pratique : le fichier CSV est compressé (format `zip`), mais Pandas est capable de le reconnaître et de le décompresser avant de l'importer.
+
+```{python}
+# Importer un fichier CSV depuis une URL
+url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
+df_prenoms_url = pd.read_csv(url, sep=";")
+df_prenoms_url.head()
+```
+
+Lorsqu'on travaille avec des fichiers CSV, il y a de nombreux arguments optionnels disponibles dans la fonction `read_csv()` qui permettent d'ajuster le processus d'importation en fonction des spécificités du fichier. Ces arguments peuvent notamment permettre de définir un délimiteur spécifique (comme ci-dessus pour le fichier des prénoms), de sauter certaines lignes en début de fichier, ou encore de définir les types de données pour chaque colonne, et bien d'autres. Tous ces paramètres et leur utilisation sont détaillés dans la [documentation officielle](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
+
+#### Exporter au format CSV
+
+Une fois que les données ont été traitées et modifiées au sein de Pandas, il est courant de vouloir exporter le résultat sous forme de fichier CSV pour le partager, l'archiver ou l'utiliser dans d'autres outils. Pandas offre une méthode simple pour cette opération : `to_csv()`. Supposons par exemple que l'on souhaite exporter les données du DataFrame `df_departements` spécifiques aux cinq départements d'outre-mer.
+
+```{python}
+df_departements_dom = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
+df_departements_dom.to_csv('output/departements2021_dom.csv')
+```
+
+Un des arguments clés de la méthode `to_csv()` est `index`. Par défaut, `index=True`, ce qui signifie que l'index du DataFrame sera également écrit dans le fichier CSV. On peut le vérifier en imprimant les premières lignes de notre fichier CSV : Pandas a ajouté une colonne non-nommée, qui contient l'index des lignes retenues.
+
+```{python}
+with open("output/departements2021_dom.csv") as file_in:
+    for i in range(5):
+        row = next(file_in).strip()
+        print(row)
+```
+
+Dans certains cas, notamment lorsque l'index n'apporte pas d'information utile ou est simplement généré automatiquement par Pandas, on pourrait vouloir l'exclure du fichier exporté. Pour ce faire, on peut définir `index=False`.
+
+```{python}
+df_departements_dom.to_csv('output/departements2021_dom_noindex.csv', index=False)
+```
+
+#### Importer un fichier Parquet
+
+Le format Parquet est un autre format pour le stockage de données tabulaires, de plus en plus fréquemment utilisé. Sans rentrer dans les détails techniques, le format Parquet présente différentes caractéristiques qui en font un choix privilégié pour le stockage et le traitement de gros volumes de données. En raison de ces avantages, ce format est de plus en plus utilisé pour la mise à disposition de données à l'Insee. Il est donc essentiel de savoir importer et requêter des fichiers Parquet avec Pandas.
+
+Importer un fichier Parquet dans un DataFrame Pandas se fait tout aussi facilement que pour un fichier CSV. La fonction se nomme `read_parquet()`.
+
+```{python}
+df_departements = pd.read_parquet('data/departement2021.parquet')
+df_departements.head()
+```
+
+#### Exporter au format Parquet
+
+Là encore, tout se passe comme dans le monde des CSV : on utilise la méthode `to_parquet()` pour exporter un DataFrame dans un fichier Parquet. De même, on peut choisir d'exporter ou non l'index, à l'aide du paramètre `index` (qui vaut `True` par défaut).
+
+```{python}
+df_departements_dom = df_departements[df_departements["DEP"].isin(["971", "972", "973", "974", "975"])]
+df_departements_dom.to_parquet('output/departements2021_dom.parquet', index=False)
+```
+
+Une des grandes forces du format Parquet, en comparaison des formats texte comme le CSV, est sa capacité à stocker des méta-données, i.e. des données permettant de mieux comprendre les données contenues dans le fichier. En particulier, un fichier Parquet inclut dans ses méta-données le schéma des données (noms des variables, types des variables, etc.), ce qui en fait un format très adapté à la diffusion de données. Vérifions ce comportement en reprenant le DataFrame que nous avons défini précédemment.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", "train", "train", "validation"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
+        "sample": "sample1"
+    }
+)
+```
+
+On utilise cette fois deux types de données spécifiques, pour les données catégorielles (`category`) et pour les données temporelles (`datetime`). On verra plus loin dans le tutoriel comment utiliser ces types. Pour l'instant, notons simplement que Pandas stocke ces types dans le schéma des données.
+
+```{python}
+df.info()
+```
+
+Vérifions à présent que l'export et le ré-import de ces données en Parquet préserve le schéma.
+
+```{python}
+df.to_parquet("output/df_test_schema.parquet", index=False)
+df_test_schema_parquet = pd.read_parquet('output/df_test_schema.parquet')
+
+df_test_schema_parquet.info()
+```
+
+A l'inverse, un fichier CSV ne contenant par définition que du texte, ne permet pas de préserver ces données. Les variables dont nous avons spécifié le type sont importés comme des strings (type `object` en Pandas).
+
+```{python}
+df.to_csv("output/df_test_schema.csv", index=False)
+df_test_schema_csv = pd.read_csv('output/df_test_schema.csv')
+
+df_test_schema_csv.info()
+```
+
+### Visualiser un échantillon des données
+
+Lorsqu'on travaille avec des jeux de données volumineux, il est souvent utile de visualiser rapidement un échantillon des données pour avoir une idée de leur structure, de leur format ou encore pour détecter d'éventuels problèmes. Pandas offre plusieurs méthodes pour cela.
+
+La méthode `head()` permet d'afficher les premières lignes du DataFrame. Par défaut, elle retourne les 5 premières lignes, mais on peut spécifier un autre nombre en argument si nécessaire.
+
+```{python}
+df_departements.head()
+```
+
+```{python}
+df_departements.head(10)
+```
+
+À l'inverse, la méthode `tail()` donne un aperçu des dernières lignes du DataFrame.
+
+```{python}
+df_departements.tail()
+```
+
+L'affichage des premières ou dernières lignes peut parfois ne pas être représentatif de l'ensemble du jeu de données, lorsque les données sont triées par exemple. Afin de minimiser le risque d'obtenir un aperçu biaisé des données, on peut utiliser la méthode `sample()`, qui sélectionne un un échantillon aléatoire de lignes. Par défaut, elle retourne une seule ligne, mais on peut demander un nombre spécifique de lignes en utilisant l'argument `n`.
+
+```{python}
+df_departements.sample(n=5)
+```
+
+### Obtenir une vue d'ensemble des données
+
+L'une des premières étapes lors de l'exploration de nouvelles données est de comprendre la structure générale du jeu de données. La méthode `info()` de Pandas offre une vue d'ensemble rapide des données, notamment en termes de types de données, de présence de valeurs manquantes et de mémoire utilisée.
+
+```{python}
+df.info()
+```
+
+Plusieurs éléments d'information clés peuvent être extraits de ce résultat :
+
+- **index** : le DataFrame a un `RangeIndex`, ce qui signifie que l'index est constitué d'une suite numérique simple. Ici, l'index va de 0 à 5, soit 6 entrées au total.
+
+- **schéma** : la liste des colonnes est affichée avec des informations très utiles sur le schéma des données :
+
+  - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" pour la variable `var1` est 5.
+
+  - **Dtype** : Le type de données de la colonne, qui permet decomprendre la nature des informations stockées dans chaque colonne. Par exemple, `float64` (nombres réels), `int32` (nombres entiers), `category` (variable catégorielle), `datetime64[ns]` (information temporelle) et `object` (données textuelles ou mixtes).   
+
+L'utilisation de `info()` est un moyen rapide et efficace d'obtenir une vue d'ensemble d'un DataFrame, d'identifier rapidement les colonnes contenant des valeurs manquantes et de comprendre la structure des données.
+
+### Calculer des statistiques descriptives
+
+En complément des informations renvoyées par la méthode `info()`, on peut vouloir obtenir des statistiques descriptives simples afin de visualiser rapidement les distributions des variables. La méthode `describe()` permet d'avoir une vue synthétique de la distribution des données dans chaque colonne. 
+
+```{python}
+df.describe()
+```
+
+Il est à noter que `describe()` ne renvoie des statistiques que pour les colonnes numériques par défaut. Si l'on souhaite inclure des colonnes d'autres types, il est nécessaire de le préciser via l'argument `include`. Par exemple, `df.describe(include='all')` renverra des statistiques pour toutes les colonnes, y compris des métriques comme le nombre unique, la valeur la plus fréquente et la fréquence de la valeur la plus fréquente pour les colonnes non numériques.
+
+```{python}
+df.describe(include='all')
+```
+
+Notons que, là encore, la variable `count` renvoie le nombre de valeurs **non-manquantes** dans chaque variable.
+
+
+
+
+
+## Principales manipulations de données
+
+### Transformer les données
+
+Les opérations de transformation sur les données sont essentielles pour façonner, nettoyer et préparer les données en vue de leur analyse. Les transformations peuvent concerner l'ensemble du DataFrame, des colonnes spécifiques ou encore des lignes spécifiques.
+
+#### Transformer un DataFrame
+
+Pour transformer un DataFrame complet (ou un sous-DataFrame), il est possible d'utiliser des fonctions vectorisées, qui permettent d'appliquer rapidement une opération à l'ensemble des éléments du DataFrame. Cela inclut un certain nombre de méthodes disponibles pour les `Series`, mais aussi les fonctions mathématiques de `NumPy`, etc.
+
+Par exemple, passer chaque valeur numérique d'un DataFrame à la puissance 2 :
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+    }
+)
+
+df ** 2
+```
+
+ou les passer à la valeur absolue :
+
+```{python}
+np.abs(df)
+```
+
+Certaines méthodes, disponibles pour les `Series`, peuvent aussi être utilisées pour transformer un DataFrame complet. Par exemple, la bien utile méthode [replace()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html), qui permet de remplacer toutes les occurences d'une valeur donnée par une autre valeur. Par exemple, supposons que la valeur 0 dans la colonne `var1` indique en fait une erreur de mesure. Il serait préférable de la remplacer par une valeur manquante.
+
+```{python}
+df.replace(0, np.nan)
+```
+
+::: {.callout-warning title="Assignation ou méthodes *in place* (en place) ?"}
+Dans l'exemple précédent, l'application de la méthode [replace()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html) ne modifie pas directement le DataFrame. Pour que la modifiction soit persistente, une première possibilité est d'assigner le résultat à un objet : 
+
+```{python}
+df = df.replace(0, np.nan)
+```
+
+Une seconde possibilité est, lorsque les méthodes le proposent, d'utiliser l'argument `inplace`. Lorsque `inplace=True`, l'opération est effectuée "en place", et le DataFrame est donc modifié directement.
+
+```{python}
+df.replace(0, np.nan, inplace=True)
+```
+
+En pratique, il est préférable de limiter les opérations `inplace`. Elles ne favorisent pas la reproductibilité des analyses, dans la mesure où la ré-exécution d'une même cellule va donner à chaque fois des résultats différents.
+:::
+
+#### Transformer les colonnes
+
+Dans certains cas, on ne va pas vouloir appliquer les transformations à l'ensemble des données, mais à des variables spécifiques. Les transformations qui sont possibles à l'échelle du DataFrame (fonctions vectorisées, méthodes comme [replace()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html), etc.) restent naturellement possibles à l'échelle d'une colonne.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+    }
+)
+
+np.abs(df["var2"])
+```
+
+```{python}
+df["var1"].replace(0, np.nan)
+```
+
+Mais il existe d'autres transformations que l'on applique généralement au niveau d'une ou de quelques colonnes. Par exemple, lorsque le schéma n'a pas été bien reconnu à l'import, il peut arriver que des variables numériques soient définies comme des string (type `object` en Pandas).
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan],
+        "var2": ["1", "5", "18"],
+    }
+)
+
+df.info()
+```
+
+Dans ce cas, on peut utiliser la méthode `astype` pour convertir la colonne dans le type souhaité.
+
+```{python}
+df['var2'] = df['var2'].astype(int)
+
+df.info()
+```
+
+Une autre opération fréquente est le renommage d'une ou plusieurs colonnes. Pour cela, on peut utiliser la méthode [rename()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rename.html), à laquelle on passe un dictionnaire qui contient autant de couples clé-valeur que de variables à renommer, et dans lequel chaque couple clé-valeur est de la forme `'ancien_nom': 'nouveau_nom'`.
+
+```{python}
+df.rename(columns={'var2': 'age'})
+```
+
+Enfin, on peut souhaiter supprimer du DataFrame des colonnes qui ne sont pas ou plus utiles à l'analyse. Pour cela, on utilise la méthode [drop()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html), à laquelle on passe soit un string (nom d'une colonne si l'on souhaite n'en supprimer qu'une seule) ou une liste de noms de colonne à supprimer.
+
+```{python}
+df.drop(columns=['var1'])
+```
+
+#### Transformer les lignes
+
+En statistique, on applique généralement des tranformations faisant intervenir une ou plusieurs colonnes. Néanmoins, dans certains cas, il est nécessaire d'appliquer des transformations au niveau des lignes. Pour cela, on peut utiliser la méthode [apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) de Pandas, appliquée à l'axe des lignes (`axis=1`). Illustrons son fonctionnement avec un cas simple. Pour cela, on génère d'abord des données.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1, 5, 9, 13],
+        "var2": [3, 7, 11, 15],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04"],
+    }
+)
+
+df.head()
+```
+
+On applique maintenant la fonction `apply()` au DataFrame afin de calculer une nouvelle variable qui est la somme des deux existantes.
+
+```{python}
+df['sum_row'] = df.apply(lambda row: row['var1'] + row['var2'], axis=1)
+
+df.head()
+```
+
+::: {.callout-tip title="Les fonctions lambda"}
+Une fonction `lambda` est une petite fonction anonyme. Elle peut prendre n'importe quel nombre d'arguments, mais ne peut avoir qu'une seule expression. Dans l'exemple ci-dessus, la fonction `lambda` prend une ligne en argument et renvoie la somme des colonnes `var1` et `var2` pour cette ligne. 
+
+Les fonctions `lambda` permettent de définir simplement des fonctions "à la volée", sans devoir leur donner un nom. Dans notre exemple, cela aurait été parfaitement équivalent au code suivant : 
+
+```{python}
+def sum_row(row):
+    return row['var1'] + row['var2']
+
+df['sum_row'] = df.apply(sum_row, axis=1)
+```
+:::
+
+Bien que `apply()` offre une grande flexibilité, elle n'est pas la méthode la plus efficiente, notamment pour de grands jeux de données. Les opérations vectorisées sont toujours préférables car elles traitent les données en bloc plutôt que ligne par ligne. Dans notre cas, il aurait été bien entendu préférable de créer notre variable en utilisant des opérations sur les colonnes.
+
+```{python}
+df['sum_row_vect'] = df['var1'] + df['var2']
+
+df.head()
+```
+
+Néanmoins, on peut se retrouver dans certains (rares) cas où une opération ne peut pas être facilement vectorisée ou où la logique est complexe. Supposons par exemple que l'on souhaite combiner les valeurs de plusieurs colonnes en fonction de certaines conditions.
+
+```{python}
+def combine_columns(row):
+    if row['var1'] > 6:
+        return str(row['var2'])
+    else:
+        return str(row['var2']) + "_" + row['date']
+
+df['combined_column'] = df.apply(combine_columns, axis=1)
+
+df
+```
+
+### Trier les valeurs
+
+Le tri des données est particulièrement utile pour l'exploration et la visualisation de données. Avec Pandas, on utilise la méthode [sort_values()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html) pour trier les valeurs d'un DataFrame selon une ou plusieurs colonnes.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1, 5, 9, 13],
+        "var2": [3, 7, 11, 15],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04"],
+    }
+)
+
+df
+```
+
+Pour trier les valeurs selon une seule colonne, il suffit de passer le nom de la colonne en paramètre.
+
+```{python}
+df.sort_values(by='var1')
+```
+
+Par défaut, le tri est effectué dans l'ordre croissant. Pour trier les valeurs dans un ordre décroissant, il suffit de paramétrer `ascending=False`.
+
+```{python}
+df.sort_values(by='var1', ascending=False)
+```
+
+Si on souhaite trier le DataFrame sur plusieurs colonnes, on peut fournir une liste de noms de colonnes. On peut également choisir de trier de manière croissante pour certaines colonnes et décroissante pour d'autres.
+
+
+
+### Agréger des données
+
+L'agrégation des données est un processus dans lequel les données vont être ventilées en groupes selon certains critères, puis agrégées selon une fonction d'agrégation appliquée indépendamment à chaque groupe. Cette opération est courante lors de l'analyse exploratoire ou lors du prétraitement des données pour la visualisation ou la modélisation statistique.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", "train", "train", "validation"],
+        "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
+        "sample": "sample1"
+    }
+)
+```
+
+#### L'opération `groupBy`
+
+La méthode `groupBy` de Pandas permet de diviser le DataFrame en sous-ensembles selon les valeurs d'une ou plusieurs colonnes, puis d'appliquer une fonction d'agrégation à chaque sous-ensemble. Elle renvoie un objet de type `DataFrameGroupBy` qui ne présente pas de grand intérêt en soi, mais constitue l'étape intermédiaire indispensable pour pouvoir ensuite appliquer une ou plusieurs fonction(s) d'agrégation aux différents groupes.
+
+```{python}
+df.groupby('experiment')
+```
+
+#### Fonctions d'agrégation
+
+Une fois les données groupées, on peut appliquer des fonctions d'agrégation pour obtenir un résumé statistique. Pandas intègre un certain nombre de ces fonctions, dont la liste complète est détaillée dans la [documentation](https://pandas.pydata.org/docs/user_guide/groupby.html#built-in-aggregation-methods). Voici quelques exemples d'utilisation de ces méthodes.
+
+Par exemple, compter le nombre d'occurrences dans chaque groupe.
+
+```{python}
+df.groupby('experiment').size()
+```
+
+Calculer la somme d'une variable par groupe.
+
+```{python}
+df.groupby('experiment')['var1'].sum()
+```
+
+Ou encore compter le nombre de valeurs unique d'une variable par groupe. Les possibilités sont nombreuses..
+
+```{python}
+# Pour le nombre de valeurs uniques de 'var2' dans chaque groupe
+df.groupby('experiment')['var2'].nunique()
+```
+
+Lorsqu'on souhaite appliquer plusieurs fonctions d'agrégation à la fois ou des fonctions personnalisées, on utilise la méthode `agg`. Cette méthode accepte une liste de fonctions ou un dictionnaire qui associe les noms des colonnes aux fonctions à appliquer. Cela permet d'appliquer plus finement les fonctions d'agrégation.
+
+```{python}
+df.groupby('experiment').agg({'var1': 'mean', 'var2': 'count'})
+```
+
+::: {.callout-note title="Le chaînage de méthodes"}
+Les exemples précédents illustrent un concept important en Pandas : le chaînage de méthodes. Ce terme désigne la possibilité d'enchaîner les transformations appliquées à un DataFrame en lui appliquant à la chaîne des méthodes. A chaque méthode appliquée, un DataFrame intermédiaire est créé (mais non assigné à une variable), qui devient l'input de la méthode suivante.
+
+Le chaînage de méthodes permet de combiner plusieurs opérations en une seule expression de code. Cela peut améliorer l'efficacité en évitant les assignations intermédiaires et en rendant le code plus fluide et plus facile à lire.
+Cela favorise également un style de programmation fonctionnel où les données passent à travers une chaîne de transformations de manière fluide.
+:::
+
+#### Effets sur l'index
+
+Il est intéressant de noter les effets du processus d'agrégation sur l'index du DataFrame. Le dernier exemple ci-dessus l'illustre bien : les groupes, i.e. les modalités de la variable utilisée pour effectuer l'agrégation, deviennent les valeurs de l'index.
+
+On peut vouloir réutiliser cette information dans des analyses ultérieures, et donc la vouloir comme une colonne. Il suffit pour cela de réinitialiser l'index avec la méthode `reset_index()`.
+
+```{python}
+df_agg = df.groupby('experiment').agg({'var1': 'mean', 'var2': 'count'})
+df_agg.reset_index()
+```
+
+### Traiter les valeurs manquantes
+
+Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable. Pandas offre plusieurs outils pour gérer les valeurs manquantes.
+
+#### Représentation des valeurs manquantes
+
+Dans Pandas, les valeurs manquantes sont généralement représentées par `np.nan`, qui est un marqueur spécial fourni par la bibliothèque `NumPy`. S'il est préférable d'utiliser cet objet pour dénoter les valeurs manquantes, notons que l'objet `None` de `Python` est également compris comme une valeur manquante par `Pandas`.
+
+Vérifions cette propriété. Pour identifier où se trouvent les valeurs manquantes, on utilise la fonction `isna()` qui retourne un DataFrame booléen indiquant `True` là où les valeurs sont `NaN`.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", None, "train", "validation"],
+        "sample": "sample1"
+    }
+)
+
+df.isna()
+```
+
+#### Calculs sur des colonnes contenant des valeurs manquantes
+
+Lors de calculs statistiques, les valeurs manquantes sont généralement ignorées. Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
+
+```{python}
+df['var1'].mean()
+```
+
+De même, les calculs faisant intervenir plusieurs colonnes ignorent généralement les valeurs manquantes.
+
+```{python}
+df['var3'] = df['var1'] + df['var2']
+
+df
+```
+
+#### Suppression des valeurs manquantes
+
+La méthode `dropna()` permet de supprimer les lignes (`axis=0`) ou les colonnes (`axis=1`) contenant des valeurs manquantes. Par défaut, toute ligne contenant au moins une valeur manquante est supprimée.
+
+```{python}
+df.dropna()
+```
+
+En modifiant le paramètre `axis`, on peut demander à ce que toute colonné contenant au moins une valeur manquante soit supprimée.
+
+```{python}
+df.dropna(axis=1)
+```
+
+Enfin, le paramètre `how` définit la modalité de supression. Par défaut, une ligne ou colonne est supprimée lorsqu'au moins une valeur est manquante (`how=any`), mais il est possible de ne supprimer la ligne/colonne que lorsque toutes les valeurs sont manquantes (`how=all`).
+
+#### Remplacement des valeurs manquantes
+
+Pour gérer les valeurs manquantes dans un DataFrame, une approche commune est l'imputation, qui consiste à remplacer les valeurs manquantes par d'autres valeurs. La méthode `fillna()` permet d'effectuer cette opération de différentes manières. Une première possibilité est le remplacement par une valeur constante.
+
+```{python}
+df['var1'].fillna(value=0)
+```
+
+::: {.callout-warning title="Changement de représentation des valeurs manquantes"}
+On peut parfois être tentant de changer la manifestation d'une valeur manquante pour des raisons de visibilité, par exemple en la remplaçant par une chaîne de caractères :
+
+```{python}
+df['var1'].fillna(value="MISSING")
+```
+
+En pratique, cette façon de faire n'est pas recommandée. Il est en effet préférable de conserver la convention standard de `Pandas` (l'utilisation des `np.nan`), d'abord pour des questions de standardisation des pratiques qui facilitent la lecture et la maintenance du code, mais également parce que la convention standard est optimisée pour la performance et les calculs à partir de données contenant des valeurs manquantes.
+:::
+
+Une autre méthode d'imputation fréquente est d'utiliser une valeur statistique, comme la moyenne ou la médiane de la variable.
+
+```{python}
+df['var1'].fillna(value=df['var1'].mean())
+```
+
+::: {.callout-warning title="Biais d'imputation"}
+Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la moyenne ou la médiane, peut être problématique. Si les données ne sont pas manquantes au hasard (*Missing Not At Random* - *MNAR*), cela peut introduire un biais dans l'analyse. Les variables *MNAR* sont des variables dont la probabilité d'être manquantes est liée à leur propre valeur ou à d'autres variables dans les données. Dans de tels cas, une imputation plus sophistiquée peut être nécessaire pour minimiser les distorsions. Nous en verrons un exemple en exercice de fin de tutoriel.
+:::
+
+### Traiter les données de types spécifiques
+
+#### Données textuelles
+
+Les données textuelles nécessitent souvent un nettoyage et une préparation avant l'analyse. Pandas fournit via la librairie de méthodes `str` un ensemble d'opérations vectorisées qui rendent la préparation des données textuelles à la fois simple et très efficace. Là encore, les possibilités sont multiples et détaillées dans la [documentation](https://pandas.pydata.org/docs/user_guide/text.html). Nous présentons ici les méthodes les plus fréquemment utilisées dans l'analyse de données.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", "test", "train", "validation"],
+        "sample": ["  sample1", "sample1", "sample2", "   sample2   ", "sample2  ", "sample1"]
+    }
+)
+
+df
+```
+
+Une première opération fréquente consiste à extraire certains caractères d'une chaîne. On utilise pour cela la fonction (à la syntaxe un peu particulière) `str[n:]` Par exemple, si l'on veut extraire le dernier caractère de la variable `sample` afin de ne retenir que le chiffre de l'échantillon.
+
+```{python}
+df["sample_n"] = df["sample"].str[-1:]
+
+df
+```
+
+Le principe était le bon, mais la présence d'espaces superflus dans nos données textuelles (qui ne se voyaient pas à la visualisation du DataFrame !) a rendu l'opération plus difficile que prévue. C'est l'occasion d'introduire la famille de méthode `strip` (`.str.strip()`, `.str.lstrip()` et `.str.rstrip()`) qui respectivement retirent les espaces superflus des deux côtés ou d'un seul.
+
+```{python}
+df["sample"] = df["sample"].str.strip()
+df["sample_n"] = df["sample"].str[-1:]
+
+df
+```
+
+On peut également vouloir filtrer un DataFrame en fonction de la présence ou non d'une certaine chaîne (ou sous-chaîne) de caractères. On utilise pour cela la méthode `.str.contains()`.
+
+```{python}
+df[df['experiment'].str.contains('test')]
+```
+
+Enfin, on peut vouloir remplacer une chaîne (ou sous-chaîne) de caractères par une autre, ce que permet la méthode `str.replace()`.
+
+```{python}
+df['experiment'] = df['experiment'].str.replace('validation', 'val')
+
+df
+```
+
+#### Données catégorielles
+
+Les données catégorielles sont des variables textuelles qui contiennent un nombre restreint de modalités. A l'instarde `R` avec la notion de `factor`, Pandas a un type de données spécial, `category`, qui est utile pour représenter des données catégorielles de manière plus efficace et plus informative. Les données catégorielles sont en effet optimisées pour certains types de données et peuvent accélérer les opérations comme le groupement et le tri. Elles sont également utiles pour la visualisation, car elles permettent d'assurer que les catégories sont affichées dans un ordre cohérent et logique.
+
+Pour convertir une variable au format `category`, on utilise la méthode `astype()`.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1.3, 5.6, np.nan, np.nan, 0, np.nan],
+        "var2": np.random.randint(-10, 10, 6),
+        "experiment": ["test", "train", "test", None, "train", "validation"],
+    }
+)
+print(df.dtypes)
+```
+
+```{python}
+df['experiment'] = df['experiment'].astype('category')
+
+print(df.dtypes)
+```
+
+Cette conversion nous donne accès à quelques méthodes bien pratiques, spécifiques au traitement des variables catégorielles. Il peut par exemple être utile de renommer les catégories pour des raisons de clarté ou de standardisation.
+
+```{python}
+df['experiment'] = df['experiment'].cat.rename_categories({'test': 'Test', 'train': 'Train', 'validation': 'Validation'})
+df
+```
+
+Parfois, l'ordre des catégories est significatif, et on peut vouloir le modifier. En particulier dans le cadre de la visualisation, car les modalités seront par défaut affichées dans l'ordre spécifié.
+
+```{python}
+df_cat = df['experiment'].cat.reorder_categories(['Test', 'Train', 'Validation'], ordered=True)
+df.groupby("experiment").mean().plot(kind='bar')
+```
+
+#### Données temporelles
+
+Les données temporelles sont souvent présentes dans les données tabulaires afin d'identifier temporellement les observations recueillies. Pandas offre des fonctionnalités pour manipuler ces types de données, notamment grâce au type `datetime64` qui permet une manipulation précise des dates et des heures.
+
+```{python}
+df = pd.DataFrame(
+    data = {
+        "var1": [1, 5, 9, 13],
+        "var2": [3, 7, 11, 15],
+        "date": ["2022-01-01", "2022-01-02", "2023-01-01", "2023-01-02"],
+        "sample": ["sample1", "sample1", "sample2", "sample2"]
+    }
+)
+
+df.dtypes
+```
+
+Pour manipuler les données temporelles, il est nécessaire de convertir les chaînes de caractères en objets `datetime`. Pandas le fait via la fonction `to_datetime()`.
+
+```{python}
+df['date'] = pd.to_datetime(df['date'])
+
+df.dtypes
+```
+
+Une fois converties, les dates peuvent être formatées, comparées et utilisées dans des calculs. En particulier, Pandas comprend à présent l'"ordre" des dates présentes dans les données, et permet donc le filtrage sur des périodes données.
+
+```python
+df[(df['date'] >= "2022-01-01") & (df['date'] < "2022-01-03")]
+```
+
+On peut également vouloir réaliser des filtrages moins précis, faisant intervenir l'année ou le mois. Pandas permet d'extraire facilement des composants spécifiques de la date, comme l'année, le mois, le jour, l'heure, etc.
+
+```{python}
+df['year'] = df['date'].dt.year
+df['month'] = df['date'].dt.month
+df['day'] = df['date'].dt.day
+
+df[df['year'] == 2023]
+```
+
+Enfin, les calculs faisant intervenir des dates deviennent possible. On peut ajouter ou soustraire des périodes temporelles à des dates, et les comparer entre elles. Les fonctions utilisées sont issues de `Pandas`, mais sont très semblables dans leur fonctionnement à celles du module [time](https://docs.python.org/fr/3/library/time.html)de Python.
+
+On peut par exemple ajouter des intervalles de temps, ou bien calculer des écarts à une date de référence.
+
+```{python}
+df['date_plus_one'] = df['date'] + pd.Timedelta(days=1)
+df['date_diff'] = df['date'] - pd.to_datetime('2022-01-01')
+
+df
+```
+
+### Joindre des tables
+
+Dans le cadre d'une analyse de données, il est courant de vouloir combiner différentes sources de données. Cette combinaison peut se faire verticalement (un DataFrame par dessus l'autre), par exemple lorsque l'on souhaite combiner deux millésimes d'une même enquête afin de les analyser conjointement. La combinaison peut également se faire horizontalement (côte à côte) selon une ou plusieurs clé(s) de jointure, souvent dans le but d'enrichir une source de données à partir d'une autre source portant sur les mêmes unités statistiques.
+
+#### Concaténer des tables
+
+La concaténation verticale de tables se fait à l'aide de la fonction `concat()` de Pandas.
+
+```{python}
+df1 = pd.DataFrame(
+    data = {
+        "var1": [1, 5],
+        "var2": [3, 7],
+        "date": ["2022-01-01", "2022-01-02"],
+        "sample": ["sample1", "sample1"]
+    }
+)
+
+df2 = pd.DataFrame(
+    data = {
+        "var1": [9, 13],
+        "date": ["2023-01-01", "2023-01-02"],
+        "var2": [11, 15],
+        "sample": ["sample2", "sample2"]
+    }
+)
+
+df_concat = pd.concat([df1, df2])
+
+df_concat
+```
+
+Notons que l'ordre des variables dans les deux DataFrames n'est pas important. Pandas ne juxtapose pas "bêtement" les deux DataFrames, il fait une correspondance des schémas pour faire correspondre les variables par nom. Si deux variables ont le même nom mais pas le même type - par exemple dans le cas où une variable numérique aurait été interprétée comme des strings - Pandas va résoudre le problème en prenant le dénominateur commun, c'est à dire en général convertir en strings (type `object`).
+
+Par contre, la concaténation précédente laisse apparaître un problème de répétition au niveau de l'index. C'est logique : on n'a pas spécifié d'index pour nos deux DataFrames initiaux, qui ont donc le même index de position ([0, 1]). Dans ce cas (où l'index n'est pas important), on peut passer le paramètre `ignore_index=True` pour reconstruire de zéro l'index final.
+
+```{python}
+df_concat = pd.concat([df1, df2], ignore_index=True)
+
+df_concat
+```
+
+::: {.callout-warning title="Construction itérative d'un DataFrame"}
+On pourrait avoir l'idée d'utiliser `pd.concat()` pour construire un DataFrame de manière itérative, en ajoutant à chaque itération d'une boucle une nouvelle ligne au DataFrame existant. Ce n'est néanmoins pas une bonne idée : comme nous l'avons vu, un DataFrame est représenté dans la mémoire commme une juxtaposition de Series. Ainsi, ajouter une colonne à un DataFrame est peu coûteux, mais ajouter une ligne implique de modifier chaque élément constituant du DataFrame. Pour construire un DataFrame, il est donc plutôt conseillé de stocker les lignes dans une liste de listes (une par colonne) ou un dictionnaire, puis d'appeler `pd.DataFrame()` pour construire le DataFrame, comme nous l'avons fait au début de ce tutoriel.
+:::
+
+#### Fusionner des tables
+
+La fusion de tables est une opération qui permet d'associer des lignes de deux DataFrames différents en se basant sur une ou plusieurs clés communes, similaire aux jointures dans les bases de données SQL. Différents types de jointure sont possible selon les données que l'on souhaite conserver, dont les principaux sont représentés sur le graphique suivant.
+
+![](img/joins.png)
+
+Source : [lien](https://medium.com/swlh/merging-dataframes-with-pandas-pd-merge-7764c7e2d46d)
+
+En Pandas, les jointures se font avec la fonction [merge()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html). Pour réaliser une jointure, on doit spécifier (au minimum) deux informations :
+
+- le type de jointure : par défaut, Pandas effectue une jointure de type `inner`. Le paramètre `how` permet de spécifier d'autres types de jointure ;
+
+- la clé de jointure. Par défaut, Pandas essaie de joindre les deux DataFrame à partir de leurs index. En pratique, on spécifie souvent une variable présente dans le DataFrame comme clé de jointure (paramètre `on` si la variable porte le même nom dans les deux DataFrame, ou `left_on` et `right_on` sinon).
+
+Analysons la différence entre les différents types de jointure à travers des exemples.
+
+```{python}
+df_a = pd.DataFrame({
+    'key': ['K0', 'K1', 'K2', 'K3', 'K4'],
+    'A': ['A0', 'A1', 'A2', 'A3', 'A4'],
+    'B': ['B0', 'B1', 'B2', 'B3', 'A4']
+})
+
+df_b = pd.DataFrame({
+    'key': ['K0', 'K1', 'K2', 'K5', 'K6'],
+    'C': ['C0', 'C1', 'C2', 'C5', 'C6'],
+    'D': ['D0', 'D1', 'D2', 'D5', 'D6']
+})
+
+display(df_a)
+display(df_b)
+```
+
+La jointure de type `inner` conserve les observations dont la clé est présente dans les deux DataFrame. 
+
+```{python}
+df_merged_inner = pd.merge(df_a, df_b, on='key')
+df_merged_inner
+```
+
+::: {.callout-warning title="Jointures inner"}
+La jointure de type `inner` est la plus intuitive : elle ne crée généralement pas de valeurs manquantes et permet donc de travailler directement sur la table fusionnée. Mais attention : si beaucoup de clés ne sont pas présentes dans les deux DataFrame à la fois, une jointure `inner` peut aboutit à des pertes importantes de données, et donc à des résultats finaux biaisés. Dans ce cas, il vaut mieux choisir une jointure à gauche ou à droite, selon la source que l'on cherche à enrichir et pour laquelle il est donc le plus important de limiter les pertes de données.
+:::
+
+Une jointure de type `left` conserve toutes les observations contenues dans le DataFrame de gauche (premier DataFrame spécifié dans `pd.merge()`). Par conséquent, si des clés sont présentes dans le DataFrame de gauche mais pas dans celui de droite, le DataFrame final contient des valeurs manquantes au niveau de ces observations (pour les variables du DataFrame de droite).
+
+```{python}
+df_merged_left = pd.merge(df_a, df_b, how="left", on='key')
+df_merged_left
+```
+
+La jointure de type `outer` contient toutes les observations et variables contenues dans les deux DataFrame. Ainsi, l'information retenue est maximale, mais en contrepartie les valeurs manquantes peuvent être assez nombreuses. Il sera donc nécessaire de bien traiter les valeurs manquantes avant de procéder aux analyses.
+
+```{python}
+df_merged_outer = pd.merge(df_a, df_b, how="outer", on='key')
+df_merged_outer
+```
+
+## Exercices
+
+### Questions de compréhension
+
+
+- 1/ Qu'est-ce qu'un DataFrame dans le contexte de Pandas et à quel type de structure de données peut-on le comparer dans le langage Python ?
+
+- 2/ Quelle est la différence fondamentale entre un array Numpy et une Pandas Series ?
+
+- 3/ Quel est le lien entre Series et DataFrame dans Pandas ?
+
+- 4/ Comment sont structurées les données dans un DataFrame Pandas ?
+
+- 5/ Quel est le rôle de l'index dans un DataFrame Pandas et comment peut-il être utilisé lors de la manipulation des données ?
+
+- 6/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
+
+- 7/ Dans Pandas, quelle est la différence entre assigner le résultat d'une opération à une nouvelle variable et utiliser une méthode avec l'argument `inplace=True` ?
+
+- 8/ Comment s'applique le principe de la vectorisation dans Pandas et pourquoi est-ce avantageux pour manipuler les données ?
+
+- 9/Comment Pandas représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
+
+- 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 3-47 solutions.py
+```
+
+### Exercice : plusieurs manières de créer un DataFrame
+
+Dans la cellule suivante, nous avons récupéré des données de caisses sur les ventes de différentes enseignes. Les données sont cependant présentées de deux manières différentes, dans un cas sous forme d'observations (chaque liste contient les données d'une ligne), dans l'autre sous forme de variables (chaque liste contient les données d'une colonne).
+
+```{python}
+data_list1 = [
+    ['Carrefour', '01.1.1', 3, 1.50],
+    ['Casino', '02.1.1', 2, 2.30],
+    ['Lidl', '01.1.1', 7, 0.99],
+    ['Carrefour', '03.1.1', 5, 5.00],
+    ['Casino', '01.1.1', 10, 1.20],
+    ['Lidl', '02.1.1', 1, 3.10]
+]
+
+data_list2 = [
+    ['Carrefour', 'Casino', 'Lidl', 'Carrefour', 'Casino', 'Lidl'],
+    ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
+    [3, 2, 7, 5, 10, 1],
+    [1.50, 2.30, 0.99, 5.00, 1.20, 3.10]
+]
+```
+
+L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrame sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 53-84 solutions.py
+```
+
+### Exercice : sélection de données dans un DataFrame Pandas
+
+Un DataFrame Pandas est créé avec des données de caisse (mêmes données que l'exercice précédent).
+
+```{python}
+data = {
+    'enseigne': ['Carrefour', 'Casino', 'Lidl', 'Carrefour', 'Casino', 'Lidl'],
+    'produit': ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
+    'quantite': [3, 2, 7, 5, 10, 1],
+    'prix': [1.50, 2.30, 0.99, 5.00, 1.20, 3.10],
+    'date_heure': pd.to_datetime(["2022-01-01 14:05", "2022-01-02 09:30", 
+                                  "2022-01-03 17:45", "2022-01-04 08:20", 
+                                  "2022-01-05 19:00", "2022-01-06 16:30"])
+}
+
+df_caisse = pd.DataFrame(data)
+```
+
+Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiques :
+
+- Sélectionner les données de la première ligne.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 90-91 solutions.py
+```
+
+- Sélectionner toutes les données de la colonne "prix".
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 93-94 solutions.py
+```
+
+- Sélectionner les lignes correspondant à l'enseigne "Carrefour" uniquement.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 96-97 solutions.py
+```
+
+- Sélectionner les quantités achetées pour les produits classifiés "01.1.1" (Pain).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 99-100 solutions.py
+```
+
+- Sélectionner les données des colonnes "enseigne" et "prix" pour toutes les lignes.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 102-103 solutions.py
+```
+
+- Sélectionner les lignes où la quantité achetée est supérieure à 5.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 105-106 solutions.py
+```
+
+- Filtrer pour sélectionner toutes les transactions qui ont eu lieu après 15h.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 108-109 solutions.py
+```
+
+- Sélectionner les transactions qui ont eu lieu le "2022-01-03".
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 111-112 solutions.py
+```
+
+### Exercice : exploration du fichier des prénoms
+
+Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262) contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021. Ces données sont disponibles au niveau France, par département et par région. L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
+
+#### Partie 1 : Import et exploration des données
+
+
+- Importez les données dans un DataFrame en utilisant cette [URL](https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip).
+- Visualisez un échantillon des données. Repérez-vous d'éventuelles anomalies ?
+- Affichez les principales informations du DataFrame. Repérez d'éventuelles variables dont le type serait incorrect, ou bien d'éventuelles valeurs manquantes.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 120-129 solutions.py
+```
+
+#### Partie 2 : Nettoyage des données
+
+
+- L'output de la méthode `info()` suggère des valeurs manquantes dans la colonne des prénoms. Affichez ces lignes. Vérifiez que ces valeurs manquantes sont correctement spécifiées.
+- L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 133-137 solutions.py
+```
+
+- On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 139-142 solutions.py
+```
+
+- Supprimer les lignes contenant des valeurs manquantes de l'échantillon.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 144-145 solutions.py
+```
+
+- Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 147-149 solutions.py
+```
+
+- Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 151-152 solutions.py
+```
+
+#### Partie 3 : Statistiques descriptives sur les naissances
+
+
+- La [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) du fichier nous informe qu'on peut considérer les données comme quasi-exhaustives à partir de 1946. Pour cette partie seulement, filtrer les données pour ne conserver que les données ultérieures.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 156-157 solutions.py
+```
+
+- Calculez le nombre total de naissances par sexe.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 159-161 solutions.py
+```
+
+- Identifiez les cinq années ayant le plus grand nombre de naissances.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 163-165 solutions.py
+```
+
+#### Partie 4 : Analyse des prénoms
+
+
+- Identifiez le nombre total de prénoms uniques dans le DataFrame.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 169-171 solutions.py
+```
+
+- Compter le nombre de personnes possédant un prénom d'une seule lettre.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 173-175 solutions.py
+```
+
+- Créez une "fonction de popularité" qui, pour un prénom donné, affihce l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 177-190 solutions.py
+```
+
+- Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 192-211 solutions.py
+```
+
+### Exercice : calcul d'une empreinte carbone par habitant au niveau communal
+
+L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données : 
+
+- les populations légales au niveau des communes, issues du recensement de la population ([source](https://www.insee.fr/fr/statistiques/6683037))
+
+- les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
+
+Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/). 
+
+#### Partie 1 : Exploration des données sur les populations légales communales
+
+- Importez le fichier CSV `communes.csv`.
+- Utilisez les méthodes `.sample()`, `.info()` et `.describe()` pour obtenir un aperçu des données.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 219-225 solutions.py
+```
+
+- Identifiez et retirez les lignes correspondant aux communes sans population.
+- Supprimez les colonnes "PMUN" et "PCAP", non pertinentes pour l'analyse.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 227-233 solutions.py
+```
+
+Les communes qui ont les noms les plus longs sont-elles aussi les communes les moins peuplées ? Pour le savoir :
+- Créez une nouvelle variable qui contient le nombre de caractères de chaque commune à l'aide de la méthode [str.len()](https://pandas.pydata.org/docs/reference/api/pandas.Series.str.len.html)
+- Calculez la corrélation entre cette variable et la population totale avec la méthode [corr()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 235-238 solutions.py
+```
+
+#### Partie 2 : Exploration des données sur les émissions communales
+
+- Importez les données d'émission depuis cette [URL](https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv)
+- Utilisez les méthodes `.sample()`, `.info()` et `.describe()` pour obtenir un aperçu des données.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 242-254 solutions.py
+```
+
+- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [isnull()](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html) et [all()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 251-254 solutions.py
+```
+
+- Créez une nouvelle colonne qui donne les émissions totales par commune
+- Afficher les 10 communes les plus émettrices. Qu'observez-vous dans les résultats ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 256-261 solutions.py
+```
+
+- Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corrwith()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 263-264 solutions.py
+```
+
+- Extraire du code commune le numéro de département dans une nouvelle variable
+- Calculer les émissions totales par département
+- Afficher les 10 principaux départements émetteurs. Les résultats sont-ils logiques par rapport à l'analyse au niveau communal ? 
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 266-268 solutions.py
+```
+
+#### Partie 3 : Vérifications préalables pour la jointure des sources de données
+
+Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jointure, i.e. une colonne commune aux deux sources, qui identifie uniquement les unités statistiques. L'objet de cette partie est de trouver la clé de jointure pertinente.
+
+- Vérifiez si la variable contenant les noms de commune contient des doublons
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 272-276 solutions.py
+```
+
+- Filtrez dans le DataFrame initial les communes dont le nom est dupliqué, et triez-le par code commune. Les doublons semblent-ils problématiques ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 278-280 solutions.py
+```
+
+- Vérifiez que les codes commune identifient de manière unique la commune associée
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 282-283 solutions.py
+```
+
+- Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement. Qu'en concluez-vous ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 285-289 solutions.py
+```
+
+#### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
+
+- Joindre les deux DataFrame à l'aide de la fonction à partir du code commune. Attention : les variables ne s'appellent pas de la même manière des deux côtés !
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 293-295 solutions.py
+```
+
+- Calculer une empreinte carbone pour chaque commune, correspondant aux émissions totales de la commune divisées par sa population totale.
+- Affichez les 10 communes avec les empreintes carbones les plus élevées. 
+- Les résultats sont-ils identiques à ceux avec les émissions totales ? Qu'en concluez-vous ?
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 297-301 solutions.py
+```
+
+### Exercice : Analyse de l'évolution d'un indice de production
+
+Vous avez à disposition dans le dossier `data/` deux jeux de données CSV :
+- `serie_glaces_valeurs.csv` contient les valeurs mensuelles de l'indice de prix de production de l'industrie française des glaces et sorbets
+- `serie_glaces_metadonnees.csv` contient les métadonnées associées, notamment les codes indiquant le statut des données.
+
+L'objectif est d'utiliser `Pandas` pour calculer :
+- l'évolution de l'indice entre chaque période (mois)
+- l'évolution de l'indice en glissement annuel (entre un mois donné et le même mois l'année suivante).
+
+#### Partie 1 : Import des données
+
+- Importez les deux fichiers CSV dans des DataFrames. Attention, dans les deux cas, il y a des lignes superflues avant les données, qu'il faudra sauter à l'aide du paramètre `skiprows` de la fonction [read_csv()](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
+- Donnez des noms simples et pertinents aux différentes variables.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 309-313 solutions.py
+```
+
+#### Partie 2 : Filtrage des données pertinentes
+
+- Fusionner les deux DataFrames afin de récupérer la signification des codes présents dans les données.
+- Filtrer les données de sorte à ne conserver que les données de type "Valeur normale".
+- Supprimer les colonnes liées aux codes, dont nous n'avons plus besoin pour la suite.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 317-322 solutions.py
+```
+
+#### Partie 3 : Pré-traitement des données
+
+Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, convertissez-les avec les fonctions idoines.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 326-330 solutions.py
+```
+
+#### Partie 4 : Calcul de l'évolution périodique
+
+- Utilisez la méthode [shift()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
+- Calculez la différence entre l'indice actuel et l'indice décalé pour obtenir l'évolution (en pourcentage) d'un trimestre à l'autre
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 334-339 solutions.py
+```
+
+#### Partie 5 : Calcul de l'évolution glissante sur 12 mois
+
+Comme vous avez pu le voir dans la solution de l'exercice précédent, la méthode [pct_change()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html) permet précisément de calculer une évolution entre deux périodes. Utiliser cette méthode pour calculer une évolution (en pourcentage) en glissement annuel pour chaque mois.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+```{python}
+# Exécuter cette cellule pour afficher la solution
+%load -r 343-345 solutions.py
+```

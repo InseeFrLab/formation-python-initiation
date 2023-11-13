@@ -13,8 +13,11 @@ Dans les précédents tutoriels, nous avons étudié le fonctionnement des tests
 
 
 Une **fonction** peut être définie comme un bloc de code structuré qui : 
+
 - prend un ensemble d'**arguments** (des objets Python) en entrée
+
 - effectue une **action spécifique** via un ensemble d'instructions
+
 - **renvoie** un résultat (un objet Python) en sortie
 
 Nous avons déjà vu et utilisé un certains nombres de fonctions dans les tutoriels précédents (`range`, `len`, etc.). Nous avons également utilisé des **méthodes**, qui sont simplement des fonctions *attachées* à un type d'objet particulier. Utilisons une fonction bien connue pour illustrer leur fonctionnement général.
@@ -24,8 +27,11 @@ len('do re mi fa sol')
 ```
 
 Dans cet exemple, la fonction `len` :
+
 - prend un argument en entrée (une chaîne de caractères)
+
 - calcule le nombre de caractères présent dans cette chaîne
+
 - renvoie ce nombre en sortie
 
 L'"ensemble d'instructions" qui permettent de calculer la longueur de la chaîne n'est pas connu. En tant qu'utilisateur, on a seulement besoin de savoir ce que prend la fonction en entrée et ce qu'elle renvoie en sortie. Cela vaut pour les cas dans lesquels on utilise des fonctions natives de Python ou bien des fonctions issus de librairies Python auxquelles on fait confiance. On parle de "boîtes noires" pour caractériser de telles fonctions.
@@ -45,11 +51,17 @@ def accueil(prenom):
 ```
 
 Analysons la syntaxe de la definition d'une fonction : 
+
 - une instruction `def` qui :
+
     - spécifie le nom de la fonction (ici, `accueil`)
+
     - spécifie les arguments attendus entre parenthèse (ici, un seul argument : `prenom`)
+
     - se termine par `:` comme les différentes instructions que nous avons vues
+
 - un ensemble d'opérations qui seront effectuées par la fonction, qui doivent être indentées d'un niveau par rapport à l'instruction `def`
+
 - une instruction `return`, qui spécifie ce que la fonction va renvoyer lorsqu'elle sera appelée (ici, le contenu de la variable `msg`).
 
 
@@ -108,7 +120,9 @@ a
 
 
 En Python, les fonctions admettent deux modes de passage des arguments : 
+
 - le **passage par position**, qui correspond à celui que nous avons vu dans tous les exemples précédents : les arguments sont passés à la fonction dans l'ordre dans lequel ils ont été définis, sans avoir à préciser le nom du paramètre.
+
 - le **passage par mot-clé** : on précise le nom du paramètre lors du passage de l'argument, ce qui permet de ne pas avoir à suivre l'ordre indiqué lors de la définition.
 
 Illustrons cette différence à partir d'une fonction qui réalise simplement une division.
@@ -160,7 +174,9 @@ print("bonjour")
 On a modifié le comportement du premier appel à `print` via le paramètre optionnel `end`. Par défaut, cette valeur est fixée à `'\n'`, soit un retour à la ligne. On l'a modifié dans la deuxième cellule à un espace, d'où la différence de résultat.
 
 Cet exemple illustre également le lien entre le caractère obligatoire ou non d'un argument et sa modalité de passage :
+
 - en général, les **arguments obligatoires** sont **passés par position**. Ils peuvent également être passés par mot-clé, mais dans la mesure où ils sont "attendus", on les passe généralement par position pour être plus concis
+
 - les **arguments optionnels** doivent être **passés par mot-clé**, afin de bien marquer qu'on modifie le comportement par défaut de la fonction
 
 
@@ -189,7 +205,9 @@ Cet exemple illustre également la règle lorsqu'on a un mélange d'arguments po
 
 
 On a vu :
+
 - que toute fonction renvoie un résultat en sortie
+
 - que l'instruction `return` permet de spécifier ce résultat
 
 Lorsque la fonction est appelée, elle est évaluée à la valeur spécifiée par `return`, et cette valeur peut alors être récupérée dans une variable et utilisée dans des calculs ultérieurs, et ainsi de suite.
@@ -309,16 +327,27 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 ### Questions de compréhension
 
 
+
 - 1/ Pourquoi dit-on que l'utilisation de fonctions dans un programme est une bonne pratique de développement ?
+
 - 2/ Quelles sont les trois caractéristiques d'une fonction ?
+
 - 3/ Qu'est-ce qu'une fonction "boîte noire" ? A quelles autres fonctions s'oppose-t-elle ?
+
 - 4/ Que se passe-t-il quand on définit une fonction ? Et quand on l'appelle ?
+
 - 5/ Combien d'arguments peut-on passer à une fonction ?
+
 - 6/ Quelles sont les deux modalités de passage d'arguments à une fonction ?
+
 - 7/ Quelle est l'utilité de passer des arguments optionnels à une fonction ?
+
 - 8/ Dans quel ordre doivent être passés les arguments d'une fonction si celle-ci a à la fois des arguments obligatoires et optionnels ?
+
 - 9/ Existe-il des fonctions qui ne renvoient rien ?
+
 - 10/ Une fonction peut-elle renvoyer plusieurs objets ?
+
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
 ```{python}
@@ -429,7 +458,9 @@ print(total)
 
 
 Ecrire une fonction `calculatrice` qui :
+
 - prend deux nombres en entrée
+
 - renvoie l'addition, la soustraction, la multiplication et la division de ces deux nombres en sortie
 
 Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des variables en une seule ligne.
@@ -449,8 +480,11 @@ Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des
 
 
 Ecrire une fonction qui :
+
 - prend en entrée une liste d'éléments quelconques
+
 - renvoie une nouvelle liste constituée des éléments uniques de la liste initiale
+
 - permet via un paramètre optionnel de trier ou non la liste finale par ordre alphanumérique. Le comportement par défaut doit être de ne pas trier.
 
 Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.
@@ -470,9 +504,13 @@ Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires e
 
 
 Ecrire une fonction qui :
+
 - prend en entrée une liste de nombres
+
 - imprime : "Il y a $n$ nombres dans la liste." avec $n$ le nombre effectif
+
 - multiplie tous les éléments de la liste (sans utiliser de fonction pré-codée)
+
 - retourne le résultat
 
 
@@ -494,8 +532,11 @@ Dans un exercice du précédent tutoriel, nous avons codé "à la main" le calcu
 En toute rigueur, cette formule est valide lorsqu'on calcule la **variance en population complète**. Si l'on n'observe qu'un échantillon de la population, on ne calcule pas la variance mais on l'estime, et il faut alors utiliser la formule suivante pour obtenir un **estimateur sans biais de la vraie variance** : $$s^2 = {\frac {1}{n-1}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$.
 
 Pour tenir compte de cette distinction :
+
 - coder une fonction `mean`  qui calcule la moyenne comme dans l'exercice du tutoriel précédent
+
 - coder une fonction `var`  qui calcule la variance comme dans l'exercice du tutoriel précédent (en appelant la fonction `mean` pour calculer la moyenne)
+
 - modifier la fonction `var` afin de permettre à l'utilisateur de choisir la méthode de calcul via un paramètre optionnel `mode` (valeur par défaut : 'population' pour le calcul via la formule en population ; valeur alternative : 'sample' pour le calcul via la formule en échantillon)
 
 Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction *black box* `var` de la librarie `numpy` (cf. corrigé de l'exercice du tutoriel précédent pour la syntaxe, et voir la [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) de la fonction et en particulier le paramètre `ddof` pour faire varier la méthode de calcul).
