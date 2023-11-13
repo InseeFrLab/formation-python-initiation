@@ -1,6 +1,6 @@
 ---
 title: "Introduction à la visualisation de données"
-abstract: "Exploration des bases de la visualisation de données avec Python : les graphiques simples de Pandas, les visualisations esthétiques de Seaborn, et les personnalisations avancées de Matplotlib"
+abstract: "Exploration des bases de la visualisation de données avec Python : les graphiques simples de Pandas et les visualisations esthétiques de Seaborn"
 execute:
     echo: true
     eval: false
@@ -8,7 +8,7 @@ execute:
 
 La visualisation de données (ou *dataviz*) est un outil indispensable pour faciliter la compréhension des données et mettre en lumière des phénomènes à partir de celles-ci, ainsi que pour favoriser une communication efficace des résultats des analyses. C'est néanmoins un domaine qui dépasse largement la seule compétence technique : les meilleures visualisations sont celles qui sont adaptées à la donnée qu'elles représentent, et qui parviennent à raconter une histoire à partir de celles-ci (*data storytelling*). Ce tutoriel ne vise donc pas à présenter en détails le sujet, mais propose une introduction aux principaux outils existants en `Python` pour produire des visualisations de données.
 
-Nous commencerons notre exploration par les graphiques intégrés dans `Pandas`, très simples et donc parfaits pour une analyse rapide des données. Puis, nous découvrirons `Seaborn`, une librairie qui permet de créer des visualisations attrayantes en très peu de lignes de code. Enfin, nous finirons par aborder `Matplotlib`, la très complète librairie de référence pour la visualisation en `Python`, sur laquelle les deux précédentes sont basées.
+Nous commencerons notre exploration par les graphiques intégrés dans `Pandas`, très simples et donc parfaits pour une analyse rapide des données. Puis, nous découvrirons `Seaborn`, une librairie qui permet de créer des visualisations attrayantes en très peu de lignes de code. Ces deux librairies sont basées sur `Matplotlib`, la très complète librairie de référence pour la visualisation en `Python`, qui permet des niveaux de personnalisation très avancés mais dont l'utilisation s'avère plus complexe, et ne sera donc pas directement abordée dans ce TP.
 
 
 
@@ -119,6 +119,8 @@ plt.xlabel('Quantité vendue')
 plt.xlabel('Prix (en €)')
 ```
 
+### Aller plus loin
+
 Là encore, de nombreuses autres possibilités sont décrites dans la [documentation](https://pandas.pydata.org/docs/user_guide/visualization.html#basic-plotting-plot). Néanmoins, les fonctionnalités graphiques intégrées à Pandas restent avant tout faites pour de la visualisation rapide des données analysées. Pour des visualisations plus attrayantes sans avoir besoin de produire beaucoup plus de code, on préférera la librairie `Seaborn`.
 
 
@@ -136,7 +138,7 @@ import seaborn as sns
 
 ### Exemples de graphiques
 
-Pour les mêmes graphiques que ceux réalisés précédemment avec Pandas, Seaborn offre des représentations beaucoup plus agréables à l'oeil. On en présente quelques unes dans la suite de ce tutoriel. La [gallerie](https://seaborn.pydata.org/examples/index.html) d'exexemples de Seaborn illustre de nombreuses possibilités selon les données et les problématiques étudiées.
+Pour les mêmes graphiques que ceux réalisés précédemment avec Pandas, Seaborn offre des représentations beaucoup plus agréables à l'oeil. On en présente quelques unes dans la suite de ce tutoriel. 
 
 #### Nuage de points
 
@@ -180,8 +182,9 @@ sns.scatterplot(data=df_caisse, x='Prix', y='Quantité', hue='Enseigne', alpha=0
 plt.title('Relation entre prix et quantité selon les enseignes')
 ```
 
+### Aller plus loin
 
-
-## Matplotlib
-
-
+Les possibilités de Seaborn sont vraiment larges, et la [gallerie](https://seaborn.pydata.org/examples/index.html) d'exemples de Seaborn illustre de nombreuses possibilités visuellement agréables et faciles à reproduire. Pour des besoins plus avancés, on pourra s'orienter selon les cas vers d'autres librairies graphiques :
+- pour des possibilités de personnalisation maximales (au prix d'un certain coût d'apprentissage) : [Matplotlib](https://matplotlib.org/stable/tutorials/pyplot.html), la librairie fondamentale de visualisation en Python ;
+- pour les utilisateurs de R : [plotnine](https://plotnine.readthedocs.io/en/v0.12.4/), une librairie qui implémente la "grammaire graphique" propre à [ggplot2](https://ggplot2.tidyverse.org/) ;
+- pour de la visualisation interactive : [plotly](https://plotly.com/) et [bokeh](http://bokeh.org/) sont les plus utilisées.
