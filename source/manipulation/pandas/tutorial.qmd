@@ -44,7 +44,7 @@ On peut notamment accéder aux données d'une Series par position, comme pour un
 print(s[1])
 ```
 
-A priori, on ne voit pas beaucoup de différence entre une Series et un *array* `NumPy` à 1 dimension. Pourtant, il existe une différence de taille qui est la présence d'un index : les observations ont un label associé. Lorsqu'on crée une Series sans rien spécifier, l'index est automatiquement fixé aux entiers de 0 à n (le nombre d'éléments de la Series). Mais il est possible de passer un index spécifique (ex : des dates, des noms de communes, etc.).
+A priori, on ne voit pas beaucoup de différence entre une Series et un *array* `NumPy` à 1 dimension. Pourtant, il existe une différence de taille qui est la présence d'un index : les observations ont un label associé. Lorsqu'on crée une Series sans rien spécifier, l'index est automatiquement fixé aux entiers de 0 à n-1 (avec n le nombre d'éléments de la Series). Mais il est possible de passer un index spécifique (ex : des dates, des noms de communes, etc.).
 
 ```{python}
 s = pd.Series(l, index=["a", "b", "c"])
@@ -68,9 +68,7 @@ s.values
 
 Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://medium.com/epfl-extension-school/selecting-data-from-a-pandas-dataframe-53917dc39953)) permet de bien comprendre cette structure de données.
 
-<div>
-<img src="img/structure_df.png" width="800">
-</div>
+![](img/structure_df.png){fig-align="center" width="800"}
 
 Un DataFrame peut être construit de multiples manières. En pratique, on construit généralement un DataFrame directement à partir de fichiers de données tabulaires (ex : CSV, excel), rarement à la main. On illustrera donc seulement la méthode de construction manuelle la plus usuelle : à partir d'un dictionnaire de données.
 
