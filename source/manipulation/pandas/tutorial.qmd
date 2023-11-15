@@ -86,7 +86,7 @@ df = pd.DataFrame(
 df
 ```
 
-Un DataFrame Pandas dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons nous aux plus basiques : l'index et le nom des colonnes. Par défaut, l'index est initialisé comme pour les Series à la liste des positions des observations. On aurait pu spécifier un index alternatif lors de la construction du DataFrame en spécifiant l'argument `index` de la fonction `pd.DataFrame`.
+Un DataFrame Pandas dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons-nous aux plus basiques : l'index et le nom des colonnes. Par défaut, l'index est initialisé comme pour les Series à la liste des positions des observations. On aurait pu spécifier un index alternatif lors de la construction du DataFrame en spécifiant l'argument `index` de la fonction `pd.DataFrame`.
 
 ```{python}
 df.index
@@ -190,24 +190,24 @@ En pratique, plutôt que de sélectionner des lignes basées sur des positions o
 
 - **Inégalités** : On peut vouloir garder seulement les lignes qui respectent une certaine condition. 
 
-Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
+Exemple, filtrer les lignes où la valeur de la colonne `var2` est supérieure à 0 : 
 ```{python}
-df[df['var2'] > 10]
+df[df['var2'] >= 0]
 ```
 
 
 - **Appartenance avec `isin`** : Si on veut filtrer les données basées sur une liste de valeurs possibles, la méthode `isin` est très utile.
 
-Exemple, pour garder uniquement les lignes où la colonne `var2` a des valeurs 'test' ou 'validation':
+Exemple, pour garder uniquement les lignes où la colonne `experiment` a des valeurs 'test' ou 'validation' :
 ```{python}
 df[df['experiment'].isin(['train', 'validation'])]
 ```
 
 Ces méthodes peuvent être combinées pour créer des conditions plus complexes. Il est aussi possible d'utiliser les opérateurs logiques (`&` pour "et", `|` pour "ou") pour combiner plusieurs conditions. Attention, il faut bien prendre soin d'encadrer chaque condition par des parenthèses lors de la combinaison.
 
-Exemple, sélectionner les lignes où `var2` est supérieur à 10 et `experiment` est égal à 'test' ou 'validation':
+Exemple, sélectionner les lignes où `var2` est supérieur à 0 et `experiment` est égal à 'test' ou 'validation':
 ```{python}
-df[(df['var2'] > 10) & (df['experiment'].isin(['train', 'validation']))]
+df[(df['var2'] >= 0) & (df['experiment'].isin(['train', 'validation']))]
 ```
 
 
@@ -310,6 +310,11 @@ df = pd.DataFrame(
         "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
         "sample": "sample1"
     }
+)
+
+df = df.assign(
+    experiment=pd.Categorical(df["experiment"]),
+    date=pd.to_datetime(df["date"])
 )
 ```
 
