@@ -17,7 +17,7 @@ quarto render $SOURCE_FILE --to ipynb
 rm $SOURCE_FILE
 
 # Put chapter files in the training dir
-cp ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
+cp -r ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${WORK_DIR}/requirements.txt
