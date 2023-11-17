@@ -66,7 +66,7 @@ s.values
 
 ### Le `DataFrame`
 
-Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://medium.com/epfl-extension-school/selecting-data-from-a-pandas-dataframe-53917dc39953)) permet de bien comprendre cette structure de données.
+Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://www.geeksforgeeks.org/creating-a-pandas-dataframe/)) permet de bien comprendre cette structure de données.
 
 ![](img/structure_df.png){fig-align="center" width="800"}
 
