@@ -431,7 +431,7 @@ df = pd.DataFrame(
 df ** 2
 ```
 
-ou les passer à la valeur absolue :
+ou les passer en valeur absolue :
 
 ```{python}
 np.abs(df)
@@ -513,7 +513,7 @@ df.drop(columns=['var1'])
 
 #### Transformer les lignes
 
-En statistique, on applique généralement des tranformations faisant intervenir une ou plusieurs colonnes. Néanmoins, dans certains cas, il est nécessaire d'appliquer des transformations au niveau des lignes. Pour cela, on peut utiliser la méthode [apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) de Pandas, appliquée à l'axe des lignes (`axis=1`). Illustrons son fonctionnement avec un cas simple. Pour cela, on génère d'abord des données.
+En statistiques, on applique généralement des tranformations faisant intervenir une ou plusieurs colonnes. Néanmoins, dans certains cas, il est nécessaire d'appliquer des transformations au niveau des lignes. Pour cela, on peut utiliser la méthode [apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) de Pandas, appliquée à l'axe des lignes (`axis=1`). Illustrons son fonctionnement avec un cas simple. Pour cela, on génère d'abord des données.
 
 ```{python}
 df = pd.DataFrame(
@@ -616,6 +616,8 @@ df = pd.DataFrame(
         "sample": "sample1"
     }
 )
+
+df.head()
 ```
 
 #### L'opération `groupBy`
@@ -704,7 +706,7 @@ Lors de calculs statistiques, les valeurs manquantes sont généralement ignoré
 df['var1'].mean()
 ```
 
-De même, les calculs faisant intervenir plusieurs colonnes ignorent généralement les valeurs manquantes.
+En revanche, les calculs faisant intervenir plusieurs colonnes n'ignorent pas toujours les valeurs manquantes et peuvent souvent donner des résultats en `NaN`.
 
 ```{python}
 df['var3'] = df['var1'] + df['var2']
@@ -720,7 +722,7 @@ La méthode `dropna()` permet de supprimer les lignes (`axis=0`) ou les colonnes
 df.dropna()
 ```
 
-En modifiant le paramètre `axis`, on peut demander à ce que toute colonné contenant au moins une valeur manquante soit supprimée.
+En modifiant le paramètre `axis`, on peut demander à ce que toute colonne contenant au moins une valeur manquante soit supprimée.
 
 ```{python}
 df.dropna(axis=1)
@@ -808,7 +810,7 @@ df
 
 #### Données catégorielles
 
-Les données catégorielles sont des variables textuelles qui contiennent un nombre restreint de modalités. A l'instarde `R` avec la notion de `factor`, Pandas a un type de données spécial, `category`, qui est utile pour représenter des données catégorielles de manière plus efficace et plus informative. Les données catégorielles sont en effet optimisées pour certains types de données et peuvent accélérer les opérations comme le groupement et le tri. Elles sont également utiles pour la visualisation, car elles permettent d'assurer que les catégories sont affichées dans un ordre cohérent et logique.
+Les données catégorielles sont des variables qui contiennent un nombre restreint de modalités. A l'instar de `R` avec la notion de `factor`, Pandas a un type de données spécial, `category`, qui est utile pour représenter des données catégorielles de manière plus efficace et plus informative. Les données catégorielles sont en effet optimisées pour certains types de données et peuvent accélérer les opérations comme le groupement et le tri. Elles sont également utiles pour la visualisation, car elles permettent d'assurer que les catégories sont affichées dans un ordre cohérent et logique.
 
 Pour convertir une variable au format `category`, on utilise la méthode `astype()`.
 
