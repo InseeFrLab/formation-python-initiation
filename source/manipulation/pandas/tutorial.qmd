@@ -44,7 +44,7 @@ On peut notamment accéder aux données d'une Series par position, comme pour un
 print(s[1])
 ```
 
-A priori, on ne voit pas beaucoup de différence entre une Series et un *array* `NumPy` à 1 dimension. Pourtant, il existe une différence de taille qui est la présence d'un index : les observations ont un label associé. Lorsqu'on crée une Series sans rien spécifier, l'index est automatiquement fixé aux entiers de 0 à n (le nombre d'éléments de la Series). Mais il est possible de passer un index spécifique (ex : des dates, des noms de communes, etc.).
+A priori, on ne voit pas beaucoup de différence entre une Series et un *array* `NumPy` à 1 dimension. Pourtant, il existe une différence de taille qui est la présence d'un index : les observations ont un label associé. Lorsqu'on crée une Series sans rien spécifier, l'index est automatiquement fixé aux entiers de 0 à n-1 (avec n le nombre d'éléments de la Series). Mais il est possible de passer un index spécifique (ex : des dates, des noms de communes, etc.).
 
 ```{python}
 s = pd.Series(l, index=["a", "b", "c"])
@@ -66,11 +66,9 @@ s.values
 
 ### Le `DataFrame`
 
-Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://medium.com/epfl-extension-school/selecting-data-from-a-pandas-dataframe-53917dc39953)) permet de bien comprendre cette structure de données.
+Fondamentalement, un DataFrame consiste en une collection de Series, alignées par les index. Cette concaténation construit donc une table de données, dont les Series correspondent aux colonnes, et dont l'index identifie les lignes. La figure suivante ([source](https://www.geeksforgeeks.org/creating-a-pandas-dataframe/)) permet de bien comprendre cette structure de données.
 
-<div>
-<img src="img/structure_df.png" width="800">
-</div>
+![](img/structure_df.png){fig-align="center" width="800"}
 
 Un DataFrame peut être construit de multiples manières. En pratique, on construit généralement un DataFrame directement à partir de fichiers de données tabulaires (ex : CSV, excel), rarement à la main. On illustrera donc seulement la méthode de construction manuelle la plus usuelle : à partir d'un dictionnaire de données.
 
@@ -88,7 +86,7 @@ df = pd.DataFrame(
 df
 ```
 
-Un DataFrame Pandas dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons nous aux plus basiques : l'index et le nom des colonnes. Par défaut, l'index est initialisé comme pour les Series à la liste des positions des observations. On aurait pu spécifier un index alternatif lors de la construction du DataFrame en spécifiant l'argument `index` de la fonction `pd.DataFrame`.
+Un DataFrame Pandas dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons-nous aux plus basiques : l'index et le nom des colonnes. Par défaut, l'index est initialisé comme pour les Series à la liste des positions des observations. On aurait pu spécifier un index alternatif lors de la construction du DataFrame en spécifiant l'argument `index` de la fonction `pd.DataFrame`.
 
 ```{python}
 df.index
@@ -192,24 +190,24 @@ En pratique, plutôt que de sélectionner des lignes basées sur des positions o
 
 - **Inégalités** : On peut vouloir garder seulement les lignes qui respectent une certaine condition. 
 
-Exemple, filtrer les lignes où la valeur de la colonne `var1` est supérieure à 10 : 
+Exemple, filtrer les lignes où la valeur de la colonne `var2` est supérieure à 0 : 
 ```{python}
-df[df['var2'] > 10]
+df[df['var2'] >= 0]
 ```
 
 
 - **Appartenance avec `isin`** : Si on veut filtrer les données basées sur une liste de valeurs possibles, la méthode `isin` est très utile.
 
-Exemple, pour garder uniquement les lignes où la colonne `var2` a des valeurs 'test' ou 'validation':
+Exemple, pour garder uniquement les lignes où la colonne `experiment` a des valeurs 'test' ou 'validation' :
 ```{python}
 df[df['experiment'].isin(['train', 'validation'])]
 ```
 
 Ces méthodes peuvent être combinées pour créer des conditions plus complexes. Il est aussi possible d'utiliser les opérateurs logiques (`&` pour "et", `|` pour "ou") pour combiner plusieurs conditions. Attention, il faut bien prendre soin d'encadrer chaque condition par des parenthèses lors de la combinaison.
 
-Exemple, sélectionner les lignes où `var2` est supérieur à 10 et `experiment` est égal à 'test' ou 'validation':
+Exemple, sélectionner les lignes où `var2` est supérieur à 0 et `experiment` est égal à 'test' ou 'validation':
 ```{python}
-df[(df['var2'] > 10) & (df['experiment'].isin(['train', 'validation']))]
+df[(df['var2'] >= 0) & (df['experiment'].isin(['train', 'validation']))]
 ```
 
 
@@ -312,6 +310,11 @@ df = pd.DataFrame(
         "date": ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04", "2022-01-05", "2022-01-06"],
         "sample": "sample1"
     }
+)
+
+df = df.assign(
+    experiment=pd.Categorical(df["experiment"]),
+    date=pd.to_datetime(df["date"])
 )
 ```
 
@@ -428,7 +431,7 @@ df = pd.DataFrame(
 df ** 2
 ```
 
-ou les passer à la valeur absolue :
+ou les passer en valeur absolue :
 
 ```{python}
 np.abs(df)
@@ -510,7 +513,7 @@ df.drop(columns=['var1'])
 
 #### Transformer les lignes
 
-En statistique, on applique généralement des tranformations faisant intervenir une ou plusieurs colonnes. Néanmoins, dans certains cas, il est nécessaire d'appliquer des transformations au niveau des lignes. Pour cela, on peut utiliser la méthode [apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) de Pandas, appliquée à l'axe des lignes (`axis=1`). Illustrons son fonctionnement avec un cas simple. Pour cela, on génère d'abord des données.
+En statistiques, on applique généralement des tranformations faisant intervenir une ou plusieurs colonnes. Néanmoins, dans certains cas, il est nécessaire d'appliquer des transformations au niveau des lignes. Pour cela, on peut utiliser la méthode [apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html) de Pandas, appliquée à l'axe des lignes (`axis=1`). Illustrons son fonctionnement avec un cas simple. Pour cela, on génère d'abord des données.
 
 ```{python}
 df = pd.DataFrame(
@@ -613,6 +616,8 @@ df = pd.DataFrame(
         "sample": "sample1"
     }
 )
+
+df.head()
 ```
 
 #### L'opération `groupBy`
@@ -701,7 +706,7 @@ Lors de calculs statistiques, les valeurs manquantes sont généralement ignoré
 df['var1'].mean()
 ```
 
-De même, les calculs faisant intervenir plusieurs colonnes ignorent généralement les valeurs manquantes.
+En revanche, les calculs faisant intervenir plusieurs colonnes n'ignorent pas toujours les valeurs manquantes et peuvent souvent donner des résultats en `NaN`.
 
 ```{python}
 df['var3'] = df['var1'] + df['var2']
@@ -717,7 +722,7 @@ La méthode `dropna()` permet de supprimer les lignes (`axis=0`) ou les colonnes
 df.dropna()
 ```
 
-En modifiant le paramètre `axis`, on peut demander à ce que toute colonné contenant au moins une valeur manquante soit supprimée.
+En modifiant le paramètre `axis`, on peut demander à ce que toute colonne contenant au moins une valeur manquante soit supprimée.
 
 ```{python}
 df.dropna(axis=1)
@@ -805,7 +810,7 @@ df
 
 #### Données catégorielles
 
-Les données catégorielles sont des variables textuelles qui contiennent un nombre restreint de modalités. A l'instarde `R` avec la notion de `factor`, Pandas a un type de données spécial, `category`, qui est utile pour représenter des données catégorielles de manière plus efficace et plus informative. Les données catégorielles sont en effet optimisées pour certains types de données et peuvent accélérer les opérations comme le groupement et le tri. Elles sont également utiles pour la visualisation, car elles permettent d'assurer que les catégories sont affichées dans un ordre cohérent et logique.
+Les données catégorielles sont des variables qui contiennent un nombre restreint de modalités. A l'instar de `R` avec la notion de `factor`, Pandas a un type de données spécial, `category`, qui est utile pour représenter des données catégorielles de manière plus efficace et plus informative. Les données catégorielles sont en effet optimisées pour certains types de données et peuvent accélérer les opérations comme le groupement et le tri. Elles sont également utiles pour la visualisation, car elles permettent d'assurer que les catégories sont affichées dans un ordre cohérent et logique.
 
 Pour convertir une variable au format `category`, on utilise la méthode `astype()`.
 
@@ -881,7 +886,7 @@ df['day'] = df['date'].dt.day
 df[df['year'] == 2023]
 ```
 
-Enfin, les calculs faisant intervenir des dates deviennent possible. On peut ajouter ou soustraire des périodes temporelles à des dates, et les comparer entre elles. Les fonctions utilisées sont issues de `Pandas`, mais sont très semblables dans leur fonctionnement à celles du module [time](https://docs.python.org/fr/3/library/time.html)de Python.
+Enfin, les calculs faisant intervenir des dates deviennent possible. On peut ajouter ou soustraire des périodes temporelles à des dates, et les comparer entre elles. Les fonctions utilisées sont issues de `Pandas`, mais sont très semblables dans leur fonctionnement à celles du module [time](https://docs.python.org/fr/3/library/time.html) de Python.
 
 On peut par exemple ajouter des intervalles de temps, ou bien calculer des écarts à une date de référence.
 
@@ -950,7 +955,7 @@ En Pandas, les jointures se font avec la fonction [merge()](https://pandas.pydat
 
 - le type de jointure : par défaut, Pandas effectue une jointure de type `inner`. Le paramètre `how` permet de spécifier d'autres types de jointure ;
 
-- la clé de jointure. Par défaut, Pandas essaie de joindre les deux DataFrame à partir de leurs index. En pratique, on spécifie souvent une variable présente dans le DataFrame comme clé de jointure (paramètre `on` si la variable porte le même nom dans les deux DataFrame, ou `left_on` et `right_on` sinon).
+- la clé de jointure. Par défaut, Pandas essaie de joindre les deux DataFrames à partir de leurs index. En pratique, on spécifie souvent une variable présente dans le DataFrames comme clé de jointure (paramètre `on` si la variable porte le même nom dans les deux DataFrame, ou `left_on` et `right_on` sinon).
 
 Analysons la différence entre les différents types de jointure à travers des exemples.
 
@@ -979,7 +984,7 @@ df_merged_inner
 ```
 
 ::: {.callout-warning title="Jointures inner"}
-La jointure de type `inner` est la plus intuitive : elle ne crée généralement pas de valeurs manquantes et permet donc de travailler directement sur la table fusionnée. Mais attention : si beaucoup de clés ne sont pas présentes dans les deux DataFrame à la fois, une jointure `inner` peut aboutit à des pertes importantes de données, et donc à des résultats finaux biaisés. Dans ce cas, il vaut mieux choisir une jointure à gauche ou à droite, selon la source que l'on cherche à enrichir et pour laquelle il est donc le plus important de limiter les pertes de données.
+La jointure de type `inner` est la plus intuitive : elle ne crée généralement pas de valeurs manquantes et permet donc de travailler directement sur la table fusionnée. Mais attention : si beaucoup de clés ne sont pas présentes dans les deux DataFrames à la fois, une jointure `inner` peut aboutit à des pertes importantes de données, et donc à des résultats finaux biaisés. Dans ce cas, il vaut mieux choisir une jointure à gauche ou à droite, selon la source que l'on cherche à enrichir et pour laquelle il est donc le plus important de limiter les pertes de données.
 :::
 
 Une jointure de type `left` conserve toutes les observations contenues dans le DataFrame de gauche (premier DataFrame spécifié dans `pd.merge()`). Par conséquent, si des clés sont présentes dans le DataFrame de gauche mais pas dans celui de droite, le DataFrame final contient des valeurs manquantes au niveau de ces observations (pour les variables du DataFrame de droite).
@@ -1017,7 +1022,7 @@ df_merged_outer
 
 - 8/ Comment s'applique le principe de la vectorisation dans Pandas et pourquoi est-ce avantageux pour manipuler les données ?
 
-- 9/Comment Pandas représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
+- 9/ Comment Pandas représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
 
 - 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
 
@@ -1053,7 +1058,7 @@ data_list2 = [
 ]
 ```
 
-L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrame sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
+L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrames sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1080,7 +1085,7 @@ data = {
                                   "2022-01-05 19:00", "2022-01-06 16:30"])
 }
 
-df_caisse = pd.DataFrame(data)
+df = pd.DataFrame(data)
 ```
 
 Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiques :
@@ -1528,7 +1533,7 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 
 #### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
 
-- Joindre les deux DataFrame à l'aide de la fonction à partir du code commune. Attention : les variables ne s'appellent pas de la même manière des deux côtés !
+- Joindre les deux DataFrames à l'aide de la fonction à partir du code commune. Attention : les variables ne s'appellent pas de la même manière des deux côtés !
 
 ```{python}
 # Testez votre réponse dans cette cellule
