@@ -216,7 +216,7 @@ df[(df['var2'] >= 0) & (df['experiment'].isin(['train', 'validation']))]
 
 ## Explorer des données tabulaires
 
-En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issues d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires et les explorer en vue de manipulations plus poussées.
+En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants. Ces fichiers, qu'ils soient issus d'enquêtes, de bases administratives ou d'autres sources, constituent la matière première pour toute analyse ultérieure. Pandas offre des outils puissants pour importer ces fichiers tabulaires et les explorer en vue de manipulations plus poussées.
 
 ### Importer et exporter des données
 
