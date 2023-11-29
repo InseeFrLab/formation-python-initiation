@@ -31,6 +31,13 @@
 
 # 11/ Car l'objet représentant le fichier en Python est un itérable.
 
+# 12/ Comme nous l'avons vu, un **script** est un fichier `.py` destiné à être
+# exécuté directement. Il contient généralement un flux de travail complet ou 
+# une tâche automatisée. Un **module** est également un fichier `.py`, mais qui
+# contient des définitions de fonctions et/ou de classes destinées à être
+# utilisées par d'autres scripts ou modules. Il n'est pas destiné à être exécuté
+# seul mais importé ailleurs.
+
 # -------------------------------------------------------------------------- #
 
 import numpy as np
