@@ -1,6 +1,5 @@
 ---
 title: "Notions de programmation orientée objet"
-abstract: "Un rapide tour dans le monde des objets, leurs attributs et leurs méthodes"
 execute:
     echo: true
     eval: false

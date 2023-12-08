@@ -1,6 +1,5 @@
 ---
 title: "Manipulation de fichiers"
-abstract: "Manipulation de fichiers externes : import de modules et lecture/écriture de fichiers texte."
 execute:
     echo: true
     eval: false

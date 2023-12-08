@@ -1,6 +1,5 @@
 ---
 title: Projet 2 - Interaction avec des APIs
-abstract: "Ce projet vise à introduire au requêtage d'API et à la manipulation de données qui en sont issues, en utilisant des fonctions afin de faciliter la reproductibilité des analyses."
 execute:
     echo: true
     eval: false

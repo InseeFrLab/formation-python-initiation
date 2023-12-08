@@ -1,6 +1,5 @@
 ---
 title: "Structures de données 1 : listes et tuples"
-abstract: "Découverte des structures de données séquentielles : listes et tuples."
 execute:
     echo: true
     eval: false

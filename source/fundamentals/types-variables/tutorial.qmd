@@ -1,6 +1,5 @@
 ---
 title: "Types de base et variables"
-abstract: "Découverte des types de base (nombres et chaînes de caractères) et des variables."
 execute:
     echo: true
     eval: false

@@ -1,6 +1,5 @@
 ---
 title: "Tests"
-abstract: "Découverte des tests et des structures conditionnelles, qui permettent à un programme de prendre des décisions de manière automatisée."
 execute:
     echo: true
     eval: false

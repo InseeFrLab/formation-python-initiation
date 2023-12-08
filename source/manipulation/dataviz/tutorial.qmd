@@ -1,6 +1,5 @@
 ---
 title: "Introduction à la visualisation de données"
-abstract: "Exploration des bases de la visualisation de données avec Python : les graphiques simples de Pandas et les visualisations esthétiques de Seaborn"
 execute:
     echo: true
     eval: false

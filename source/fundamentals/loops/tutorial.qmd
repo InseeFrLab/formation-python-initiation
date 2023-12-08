@@ -1,6 +1,5 @@
 ---
 title: "Boucles"
-abstract: "Automatisation d'opérations répétitives à l'aide des boucles for et des boucles while."
 execute:
     echo: true
     eval: false

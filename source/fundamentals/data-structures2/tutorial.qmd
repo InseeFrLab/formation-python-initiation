@@ -1,6 +1,5 @@
 ---
 title: "Structures de données 2 : dictionnaires et sets"
-abstract: "Découverte des structures de données non-ordonnées : dictionnaires et sets."
 execute:
     echo: true
     eval: false

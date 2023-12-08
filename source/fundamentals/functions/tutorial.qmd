@@ -1,6 +1,5 @@
 ---
 title: "Fonctions"
-abstract: "Rendre son code mieux structuré et plus lisible avec les fonctions."
 execute:
     echo: true
     eval: false

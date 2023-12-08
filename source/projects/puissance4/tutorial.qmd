@@ -1,6 +1,5 @@
 ---
 title: "Projet 1 - Puissance 4"
-abstract: "Un projet de code pour mettre en pratique les éléments fondamentaux de Python : structures de données, boucles, fonctions, conditions."
 execute:
     echo: true
     eval: false

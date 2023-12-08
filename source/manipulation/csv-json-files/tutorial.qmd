@@ -1,6 +1,5 @@
 ---
 title: "Travailler avec des fichiers CSV et JSON"
-abstract: "Manipulation des fichiers CSV et JSON, deux types de fichiers très utilisés pour la diffusion de données."
 execute:
     echo: true
     eval: false

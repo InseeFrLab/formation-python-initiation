@@ -1,6 +1,5 @@
 ---
 title: "Calcul numérique avec NumPy"
-abstract: "Manipulation des arrays et des fonctions de NumPy, la librairie de référence pour le calcul numérique."
 execute:
     echo: true
     eval: false
