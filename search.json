@@ -74,7 +74,7 @@
     "href": "slides/index.html#comment-résoudre-les-bugs",
     "title": "Introduction à Python",
     "section": "Comment résoudre les bugs ?",
-    "text": "Comment résoudre les bugs ?"
+    "text": "Comment résoudre les bugs ?\n\nEtapes de résolution\n\n1/ Bien lire les logs\n2/ Chercher sur internet (de préférence en Anglais et sur Google)\n3/ Sources fréquentes : documentations officielles et Stackoverflow\n4/ Poser une question détaillée (problème ET logs) sur le canal Tchap"
   },
   {
     "objectID": "slides/index.html#accès-aux-supports",
