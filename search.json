@@ -7,18 +7,32 @@
     "text": "Python en résumé\n\nCréé par Guido van Rossum en 1991\nLangage de haut-niveau\n\nSyntaxe simple et lisible\nPrincipes : “Zen de Python”\n\nLangage puissant\n\nVersatile : riche bibliothèque de packages\nFédère des communautés diverses"
   },
   {
-    "objectID": "slides/index.html#pourquoi-se-former-à-python-dans-le-ssp",
-    "href": "slides/index.html#pourquoi-se-former-à-python-dans-le-ssp",
+    "objectID": "slides/index.html#pourquoi-se-former-à-python",
+    "href": "slides/index.html#pourquoi-se-former-à-python",
     "title": "Introduction à Python",
-    "section": "Pourquoi se former à Python dans le SSP ?",
-    "text": "Pourquoi se former à Python dans le SSP ?"
+    "section": "Pourquoi se former à Python ?",
+    "text": "Pourquoi se former à Python ?\n\nUn langage extrêmement dynamique"
+  },
+  {
+    "objectID": "slides/index.html#pourquoi-se-former-à-python-1",
+    "href": "slides/index.html#pourquoi-se-former-à-python-1",
+    "title": "Introduction à Python",
+    "section": "Pourquoi se former à Python ?",
+    "text": "Pourquoi se former à Python ?\n\nLangage central de l’écosystème data science\n\n\n\n\n\n\nSource : josephsalmon.eu"
+  },
+  {
+    "objectID": "slides/index.html#pourquoi-se-former-à-python-2",
+    "href": "slides/index.html#pourquoi-se-former-à-python-2",
+    "title": "Introduction à Python",
+    "section": "Pourquoi se former à Python ?",
+    "text": "Pourquoi se former à Python ?\n\nUnifier les pratiques via un langage commun ?\n\nMétier : application des méthodes de data science\nDéveloppement : frameworks de développement applicatif\nProduction : adapté à la production informatique"
   },
   {
     "objectID": "slides/index.html#python-vs.-r",
     "href": "slides/index.html#python-vs.-r",
     "title": "Introduction à Python",
     "section": "Python vs. R ?",
-    "text": "Python vs. R ?"
+    "text": "Python vs. R ?\n\nDifférence fondamentale\n\nR : langage statistique\nPython : langage généraliste\n\nPlutôt complémentaires que concurrents\n\nPréférer l’un ou l’autre selon le cas d’usage\n\nTransition d’un langage à l’autre accessible"
   },
   {
     "objectID": "slides/index.html#une-e-formation-tutorée",
