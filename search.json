@@ -39,7 +39,7 @@
     "href": "slides/index.html#une-e-formation-tutorée",
     "title": "Introduction à Python",
     "section": "Une “e-formation tutorée”",
-    "text": "Une “e-formation tutorée”"
+    "text": "Une “e-formation tutorée”\n\nMode de formation innovant\n\nFormation sur un temps long\nPédagogie par la pratique"
   },
   {
     "objectID": "slides/index.html#hébergée-sur-le-ssp-cloud",
@@ -53,7 +53,7 @@
     "href": "slides/index.html#programme-de-la-formation",
     "title": "Introduction à Python",
     "section": "Programme de la formation",
-    "text": "Programme de la formation"
+    "text": "Programme de la formation\n\nTrois grandes parties\n\nFondamentaux du langage\nManipulation de données\nProjets\n\nApplications : cas d’usage de statistique publique"
   },
   {
     "objectID": "slides/index.html#les-notebooks-jupyter",
@@ -81,6 +81,6 @@
     "href": "slides/index.html#après-la-formation",
     "title": "Introduction à Python",
     "section": "Après la formation ?",
-    "text": "Après la formation ?\n\n\nFormation “Introduction à Python”"
+    "text": "Après la formation ?\n\nSuite logique : Python pour la data science (ENSAE)\nOrientation algorithmie : Advent of Code\n\n\n\nFormation “Introduction à Python”"
   }
 ]
