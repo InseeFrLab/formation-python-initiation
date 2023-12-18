@@ -89,6 +89,13 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Les notebooks `Jupyter`
 
+- Un format de type [***notebook***]{.orange} (cahier) [**interactif**]{.orange} qui combine
+    - Du texte `Markdown` (texte, équations, etc.)
+    - Du code `Python`
+    - Du code `HTML` (visualisations, animations..)
+
+- Particulièrement adapté aux phases d'[**expérimentation**]{.orange}
+
 ## Démo
 
 - Seul pré-requis : [créer un compte sur le SSP Cloud](https://auth.lab.sspcloud.fr/auth/realms/sspcloud/login-actions/registration?client_id=onyxia&tab_id=IU7LpltKvV8)
