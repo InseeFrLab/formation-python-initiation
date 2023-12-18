@@ -68,11 +68,13 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Une "e-formation tutorée"
 
-- Mode de formation innovant
-    - Formation sur un temps long
-    - Pédagogie par la pratique
+- [**E-formation**]{.orange}
+    - Formation sur un [**temps long**]{.blue2}
+    - Pédagogie par la [**pratique**]{.blue2}
 
-- 
+- [**Tutorat**]{.orange}
+    - [Canal Tchap](https://tchap.gouv.fr/#/room/!XKtsUhPslGXsbIUOIw:agent.finances.tchap.gouv.fr?via=agent.finances.tchap.gouv.fr) : pour poser toutes vos questions en continu
+    - [**Visio périodique**]{.orange} (dates à définir) : questions de fond, déroulement pas à pas..
 
 ## Hébergée sur le SSP Cloud
 
@@ -106,7 +108,7 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Accès aux supports
 
-- Tous les supports de formation restent accessibles sur le SSP Cloud
+- Tous les supports de formation restent accessibles sur le SSP Cloud après la formation
 
 - Le code qui génère les supports est disponible sur [GitHub](https://github.com/InseeFrLab/formation-python-initiation.git)
 
