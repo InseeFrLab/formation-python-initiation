@@ -91,9 +91,17 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Démo
 
+- Seul pré-requis : [créer un compte sur le SSP Cloud](https://auth.lab.sspcloud.fr/auth/realms/sspcloud/login-actions/registration?client_id=onyxia&tab_id=IU7LpltKvV8)
+
 ## Comment résoudre les *bugs* ?
 
 # FAQ
+
+## Accès aux supports
+
+- Tous les supports de formation restent accessibles sur le SSP Cloud
+
+- Le code qui génère les supports est disponible sur [GitHub](https://github.com/InseeFrLab/formation-python-initiation.git)
 
 ## Après la formation ?
 
