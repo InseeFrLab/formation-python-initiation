@@ -1,5 +1,5 @@
 project:
+  type: website
   render:
-    - source/
-
-format: ipynb
+    - /slides/index.qmd
+  
