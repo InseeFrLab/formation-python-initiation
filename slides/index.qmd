@@ -78,7 +78,7 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Hébergée sur le SSP Cloud
 
-- Plateforme développée à l'Insee
+- [Plateforme](https://datalab.sspcloud.fr/) développée à l'Insee
     - [**Expérimentation**]{.blue2} autour de la data science
     - Travail sur [**données ouvertes**]{.blue2}
 
