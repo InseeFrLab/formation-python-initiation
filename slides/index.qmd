@@ -18,3 +18,31 @@ css: ./custom.css
 from: markdown+emoji
 ---
 
+# Contexte
+
+## Brève histoire de `Python`
+
+## Pourquoi se former à `Python` ?
+
+## `Python` vs. `R` ?
+
+# Modalités de formation
+
+## Une "e-formation tutorée"
+
+## Hébergée sur le SSP Cloud
+
+## Programme de la formation
+
+# En pratique
+
+## Les notebooks `Jupyter`
+
+## Démo
+
+## Comment résoudre les *bugs* ?
+
+# FAQ
+
+## Après la formation ?
+
