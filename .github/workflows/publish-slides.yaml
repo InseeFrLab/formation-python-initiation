@@ -21,4 +21,5 @@ jobs:
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
+          path: slides/index.qmd
           target: gh-pages
