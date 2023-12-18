@@ -60,7 +60,7 @@
     "href": "slides/index.html#les-notebooks-jupyter",
     "title": "Introduction à Python",
     "section": "Les notebooks Jupyter",
-    "text": "Les notebooks Jupyter"
+    "text": "Les notebooks Jupyter\n\nUn format de type notebook (cahier) interactif qui combine\n\nDu texte Markdown (texte, équations, etc.)\nDu code Python\nDu code HTML (visualisations, animations..)\n\nParticulièrement adapté aux phases d’expérimentation"
   },
   {
     "objectID": "slides/index.html#démo",
