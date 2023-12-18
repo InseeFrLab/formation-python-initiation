@@ -11,7 +11,6 @@ chalkboard: # press the B key to toggle chalkboard
   theme: whiteboard
 format:
   onyxia-revealjs:
-    incremental: true 
     output-file: index.html
 controls: true
 css: ./custom.css
@@ -32,9 +31,38 @@ from: markdown+emoji
     - [**Versatile**]{.blue2} : riche bibliothèque de [***packages***]{.blue2}
     - Fédère des [**communautés diverses**]{.blue2}
 
-## Pourquoi se former à `Python` dans le SSP ?
+## Pourquoi se former à `Python` ?
+
+- Un langage extrêmement [**dynamique**]{.blue2}
+
+![](img/pythontrend.jpeg){fig-align="center" height=500}
+
+## Pourquoi se former à `Python` ?
+
+- Langage central de l'[**écosystème data science**]{.blue2}
+
+![](img/python_ecosystem.svg){fig-align="center" height=300}
+
+Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
+
+## Pourquoi se former à `Python` ?
+
+- Unifier les pratiques via un [**langage commun**]{.orange} ?
+    - [**Métier**]{.blue2} : application des méthodes de data science
+    - [**Développement**]{.blue2} : *frameworks* de développement applicatif
+    - [**Production**]{.blue2} : adapté à la production informatique
+
 
 ## `Python` vs. `R` ?
+
+- Différence fondamentale 
+    - `R` : langage [**statistique**]{.blue2}
+    - `Python` : langage [**généraliste**]{.blue2}
+
+- Plutôt [**complémentaires**]{.orange} que concurrents
+    - Préférer l'un ou l'autre selon le cas d'usage
+
+- Transition d'un langage à l'autre accessible
 
 # Modalités de formation
 
