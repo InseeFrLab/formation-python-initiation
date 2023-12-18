@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "slides/index.html#brève-histoire-de-python",
-    "href": "slides/index.html#brève-histoire-de-python",
+    "objectID": "slides/index.html#python-en-résumé",
+    "href": "slides/index.html#python-en-résumé",
     "title": "Introduction à Python",
-    "section": "Brève histoire de Python",
-    "text": "Brève histoire de Python"
+    "section": "Python en résumé",
+    "text": "Python en résumé\n\nCréé par Guido van Rossum en 1991\nLangage de haut-niveau\n\nSyntaxe simple et lisible\nPrincipes : “Zen de Python”\n\nLangage puissant\n\nVersatile : riche bibliothèque de packages\nFédère des communautés diverses"
   },
   {
-    "objectID": "slides/index.html#pourquoi-se-former-à-python",
-    "href": "slides/index.html#pourquoi-se-former-à-python",
+    "objectID": "slides/index.html#pourquoi-se-former-à-python-dans-le-ssp",
+    "href": "slides/index.html#pourquoi-se-former-à-python-dans-le-ssp",
     "title": "Introduction à Python",
-    "section": "Pourquoi se former à Python ?",
-    "text": "Pourquoi se former à Python ?"
+    "section": "Pourquoi se former à Python dans le SSP ?",
+    "text": "Pourquoi se former à Python dans le SSP ?"
   },
   {
     "objectID": "slides/index.html#python-vs.-r",
