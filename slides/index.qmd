@@ -20,9 +20,19 @@ from: markdown+emoji
 
 # Contexte
 
-## Brève histoire de `Python`
+## `Python` en résumé
 
-## Pourquoi se former à `Python` ?
+- Créé par Guido van Rossum en [**1991**]{.orange}
+
+- Langage de [**haut-niveau**]{.orange}
+    - Syntaxe [**simple**]{.blue2} et [**lisible**]{.blue2}
+    - Principes : ["Zen de Python"](https://fr.wikipedia.org/wiki/Zen_de_Python)
+
+- Langage [**puissant**]{.orange}
+    - [**Versatile**]{.blue2} : riche bibliothèque de [***packages***]{.blue2}
+    - Fédère des [**communautés diverses**]{.blue2}
+
+## Pourquoi se former à `Python` dans le SSP ?
 
 ## `Python` vs. `R` ?
 
