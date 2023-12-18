@@ -112,6 +112,12 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Comment résoudre les *bugs* ?
 
+- [**Etapes de résolution**]{.orange}
+    - 1/ Bien lire les *logs*
+    - 2/ Chercher sur internet (de préférence en Anglais et sur Google)
+    - 3/ Sources fréquentes : documentations officielles et [Stackoverflow](https://stackoverflow.com/)
+    - 4/ Poser une question détaillée (problème ET *logs*) sur le [canal Tchap](https://tchap.gouv.fr/#/room/!XKtsUhPslGXsbIUOIw:agent.finances.tchap.gouv.fr?via=agent.finances.tchap.gouv.fr)
+
 # FAQ
 
 ## Accès aux supports
