@@ -1,0 +1,20 @@
+---
+title: Introduction à Python
+subtitle: |
+  [**[Romain Avouac, Yves-Laurent Benichou]**]{.orange}
+slide-number: true
+footer: |
+  Formation "Introduction à Python"
+lang: fr-FR
+slide-tone: false
+chalkboard: # press the B key to toggle chalkboard
+  theme: whiteboard
+format:
+  onyxia-revealjs:
+    incremental: true 
+    output-file: index.html
+controls: true
+css: ./custom.css
+from: markdown+emoji
+---
+

@@ -1,3 +1,9 @@
+index.html
+index_files/
+background.svg
+favicon-32x32.png
+logo.svg
+
 *.ipynb
 
 # Byte-compiled / optimized / DLL files
