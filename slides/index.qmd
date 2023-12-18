@@ -78,6 +78,14 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Hébergée sur le SSP Cloud
 
+- Plateforme développée à l'Insee
+    - [**Expérimentation**]{.blue2} autour de la data science
+    - Travail sur [**données ouvertes**]{.blue2}
+
+- Environnement particulièrement adapté à la [**formation**]{.orange}
+    - [**Pré-configuré**]{.blue2}
+    - [**Reproductibilité**]{.blue2}
+
 ## Programme de la formation
 
 - Trois grandes parties
