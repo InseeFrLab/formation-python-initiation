@@ -1,5 +1,0 @@
-project:
-  render:
-    - source/
-
-format: ipynb
