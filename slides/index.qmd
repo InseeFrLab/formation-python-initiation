@@ -68,9 +68,22 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Une "e-formation tutorée"
 
+- Mode de formation innovant
+    - Formation sur un temps long
+    - Pédagogie par la pratique
+
+- 
+
 ## Hébergée sur le SSP Cloud
 
 ## Programme de la formation
+
+- Trois grandes parties
+    - [**Fondamentaux du langage**]{.blue2}
+    - [**Manipulation de données**]{.blue2}
+    - [**Projets**]{.blue2}
+
+- [**Applications**]{.orange} : cas d'usage de statistique publique
 
 # En pratique
 
@@ -84,3 +97,6 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ## Après la formation ?
 
+- Suite logique : [Python pour la data science (ENSAE)](https://www.sspcloud.fr/formation?search=&path=%5B%22Python%20pour%20la%20data%20science%22%5D)
+
+- Orientation algorithmie : [Advent of Code](https://adventofcode.com/2023)
