@@ -361,7 +361,7 @@ a.sum(axis=1)
 
 `NumPy` est la librairie quasi-standard de calcul scientifique en Python. Elle est à privilégier dès lors que vous souhaitez effectuer des opérations sur des données numériques, *a fortiori* lorsqu'il s'agit d'opérations vectorisées et/ou mobilisant des objets multidimensionnels comme des matrices.
 
-Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu qu'un aperçu. La [documentation officielle](https://numpy.org/doc/stable/user/) présente l'ensemble de ces possibilités. Cette [*cheat sheet*](http://datacamp-community-prod.s3.amazonaws.com/ba1fe95a-8b70-4d2f-95b0-bc954e9071b0) peut également s'avérer utile en cas d'oubli. Nous verrons également des fonctions supplémentaires à travers les exercices de fin de chapitre.
+Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu qu'un aperçu. La [documentation officielle](https://numpy.org/doc/stable/user/) présente l'ensemble de ces possibilités. Cette [*cheat sheet*](https://assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf) peut également s'avérer utile en cas d'oubli. Nous verrons également des fonctions supplémentaires à travers les exercices de fin de chapitre.
 
 
 ## Exercices
