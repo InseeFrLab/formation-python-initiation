@@ -1187,7 +1187,7 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 ### Exercice : exploration du fichier des prénoms
 
-Le [fichier des prénoms](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262) contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021. Ces données sont disponibles au niveau France, par département et par région. L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
+Le fichier des prénoms contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021. Ces données sont disponibles au niveau France, par département et par région, à l'adresse suivante : [https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262). L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
 
 #### Partie 1 : Import et exploration des données
 
