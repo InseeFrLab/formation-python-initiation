@@ -387,11 +387,13 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 - 9/ A quoi sert le paramètre `axis` des fonctions mathématiques de `NumPy` ?
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -424,11 +426,13 @@ print(X)
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-44 solutions.py
 ```
@@ -455,11 +459,13 @@ print(Y)
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 48-54 solutions.py
 ```
@@ -494,11 +500,13 @@ Y = np.array([[10,11,12],
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 58-76 solutions.py
 ```
@@ -532,11 +540,13 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 - un vecteur contenant 5 valeurs uniformément espacées entre $2$ et $3$ inclus (fonction `np.linspace`)
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 80-106 solutions.py
 ```
@@ -551,11 +561,13 @@ Vérifiez ensuite à l'aide des fonctions mathématiques de `NumPy` que la moyen
 Indice : attention à la manière dont est spécifiée la variance dans la fonction `NumPy` de génération d'une loi normale. 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 110-112 solutions.py
 ```
@@ -568,11 +580,13 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 En utilisant la fonction `np.all` et un test booléen, vérifier que tous les nombres contenus dans `U` sont bien compris entre -1 et 1.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 116-119 solutions.py
 ```
@@ -593,11 +607,13 @@ X = np.random.randint(0, 50, size=(6, 6))
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 123-136 solutions.py
 ```
@@ -632,11 +648,13 @@ print(X)
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 140-157 solutions.py
 ```
@@ -659,11 +677,13 @@ print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 161-169 solutions.py
 ```

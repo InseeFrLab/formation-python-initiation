@@ -342,11 +342,13 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
@@ -379,11 +381,13 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-45 solutions.py
 ```
@@ -428,11 +432,13 @@ prédire les résultats du programme :
 Vérifiez vos résultats.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-59 solutions.py
 ```
@@ -451,11 +457,13 @@ Ecrire un programme qui réalise les opérations suivantes :
 - Réaliser le test à nouveau, il ne devrait plus y avoir d'output.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 63-73 solutions.py
 ```
@@ -478,11 +486,13 @@ La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 77-85 solutions.py
 ```
@@ -522,11 +532,13 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 - `{-1}`
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 89-98 solutions.py
 ```
@@ -539,11 +551,13 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 `5 < 7 <= 8 < 18`
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 102-109 solutions.py
 ```
@@ -559,11 +573,13 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 - utiliser des booléens dans le cadre de calculs mathématiques pour vérifier leur comportement dans ce contexte.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-117 solutions.py
 ```
@@ -574,11 +590,13 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 Que renvoient les tests de comparaison de type inégalités appliqués à des chaînes de caractères ? Produire quelques exemples pour tester le comportement.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-130 solutions.py
 ```
@@ -594,11 +612,13 @@ Pour comprendre le résultat du test, effectuer le calcul du membre de gauche du
 Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalités, qui permettrait de tester l'égalité approchée.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 134-146 solutions.py
 ```

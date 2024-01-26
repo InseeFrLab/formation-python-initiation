@@ -1,5 +1,7 @@
 ---
 title: Projet 2 - Interaction avec des APIs
+execute:
+  eval: false
 ---
 
 ## Contexte du projet

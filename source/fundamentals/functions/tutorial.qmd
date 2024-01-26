@@ -347,11 +347,13 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-38 solutions.py
 ```
@@ -362,11 +364,13 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et renvoie la fonction puissance $x^y$.
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-45 solutions.py
 ```
@@ -409,11 +413,13 @@ def f9(x, y, z=5):
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-65 solutions.py
 ```
@@ -441,11 +447,13 @@ print(total)
 ```
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-93 solutions.py
 ```
@@ -463,11 +471,13 @@ Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 97-101 solutions.py
 ```
@@ -487,11 +497,13 @@ Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires e
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 105-113 solutions.py
 ```
@@ -511,11 +523,13 @@ Ecrire une fonction qui :
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 117-125 solutions.py
 ```
@@ -539,11 +553,13 @@ Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction 
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-158 solutions.py
 ```
@@ -559,11 +575,13 @@ Coder cette fonction et vérifier qu'elle fonctionne correctement.
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 162-169 solutions.py
 ```

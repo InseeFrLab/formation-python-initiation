@@ -298,12 +298,14 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-20 solutions.py
 ```
@@ -342,12 +344,14 @@ resultats = {
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 24-38 solutions.py
 ```
@@ -358,12 +362,14 @@ Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de 
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-50 solutions.py
 ```
@@ -380,12 +386,14 @@ Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces de
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 54-65 solutions.py
 ```
@@ -396,12 +404,14 @@ En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-73 solutions.py
 ```
@@ -425,12 +435,14 @@ Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédiction
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 77-91 solutions.py
 ```
@@ -441,12 +453,14 @@ Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait 
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 95-104 solutions.py
 ```
@@ -465,12 +479,14 @@ Indice : la procédure est semblable au fait de supprimer les doublons d'une lis
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 108-111 solutions.py
 ```
@@ -489,12 +505,14 @@ Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux 
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 115-126 solutions.py
 ```
@@ -515,12 +533,14 @@ print(x[:10])
 
 
 ```{python}
+#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
+#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 130-141 solutions.py
 ```

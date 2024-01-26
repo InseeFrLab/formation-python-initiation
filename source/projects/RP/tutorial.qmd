@@ -1,5 +1,7 @@
 ---
 title: "Projet 3 - Analyse du recensement de la population"
+execute:
+  eval: false
 ---
 
 Le but de ce projet est de réaliser une analyse statistique rapide d'un jeu de données dont le format n'est pas directement optimisé pour une analyse en python. Nous allons utiliser exclusivement la librairie `pandas` pour l'analyse de données. Pour reproduire au mieux une situation à laquelle vous pouvez être confrontés, nous vous invitons vivement à consulter la documentation de la librairie ([docs](https://pandas.pydata.org/docs/user_guide/index.html#user-guide)).
