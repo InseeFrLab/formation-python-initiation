@@ -1,4 +1,4 @@
-name: Publish slides
+name: Publish slides and notebooks
 
 on: 
   push:
@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - slides/**
+      - source/**
   workflow_dispatch:
 
 jobs:
