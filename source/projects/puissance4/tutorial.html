@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Dans ce projet nous allons implémenter un puissance 4 avec une interface graphique assez sommaire. Pour y arriver, nous allons utiliser les objets fondamentaux de Python.</p>
-<div id="3e90762f" class="cell" data-execution_count="1">
+<div id="268c3f54" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> solutions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -365,55 +365,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Attention</strong> : Bien faire attention à ce que les lignes soient des objets indépendants, autrement dit que modifier l’une des listes n’affecte pas les autres.</p>
 <section id="résultat-attendu" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu">Résultat attendu</h3>
-<div id="00f5d45f" class="cell" data-execution_count="2">
+<div id="a4a7e83e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>[[' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' ']]</code></pre>
 </div>
-</div>
-<div id="e0588384" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grille)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grille[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Nombre de lignes : 6
-Nombre de colonnes : 7</code></pre>
-</div>
+<div id="6824eea6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grille)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grille[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer">A vous de jouer !</h3>
-<div id="29386a85" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialise_grille():</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a0fb6cce" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialise_grille():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="707737f6" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>[[' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' '],
- [' ', ' ', ' ', ' ', ' ', ' ', ' ']]</code></pre>
+<div id="6b6c846e" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="38f32d41" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grille)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grille[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Nombre de lignes : 6
-Nombre de colonnes : 7</code></pre>
-</div>
+<div id="a7916bdd" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grille)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grille[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -422,43 +398,26 @@ Nombre de colonnes : 7</code></pre>
 <p>Notre grille est initialisée, mais son affichage est assez sommaire. L’idée de cette partie est d’offrir une représentation plus visuelle du jeu pendant une partie.</p>
 <p>Pour cela, nous allons créer <strong>une fonction qui prend en entrée la grille précédemment initialisée et renvoie sa représentation</strong> (via la fonction <code>print</code>). Les colonnes seront séparées par le caractère | (barre verticale).</p>
 <p><strong>Indice</strong> : une solution possible fait intervenir deux notions que nous avons vues dans les TP précédents : la concaténation de <em>strings</em> et la fonction <code>join</code> qui “joint” les éléments d’une liste en les séparant par un certain caractère. Pour rappel, voici un exemple qui utilise ces deux concepts :</p>
-<div id="69af4069" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>l_join <span class="op">=</span> <span class="st">"DEBUT "</span> <span class="op">+</span> <span class="st">", "</span>.join(l) <span class="op">+</span> <span class="st">" FIN"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>DEBUT a, b, c, d, e FIN</code></pre>
-</div>
+<div id="3b1b1f34" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>l_join <span class="op">=</span> <span class="st">"DEBUT "</span> <span class="op">+</span> <span class="st">", "</span>.join(l) <span class="op">+</span> <span class="st">" FIN"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="résultat-attendu-1" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-1">Résultat attendu</h3>
-<div id="56775b3c" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |</code></pre>
-</div>
+<div id="fb6010ea" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-1" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-1">A vous de jouer !</h3>
-<div id="977947b0" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> affiche_grille():</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>SyntaxError: incomplete input (2610191757.py, line 2)</code></pre>
+<div id="580a991b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> affiche_grille():</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="4be32c92" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'affiche_grille' is not defined</code></pre>
-</div>
+<div id="28d1fe76" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -477,40 +436,29 @@ Nombre de colonnes : 7</code></pre>
 <p>Optionnel : Renvoyer un message d’erreur si un joueur essaie de jouer dans une colonne inexistante ou bien avec une couleur non autorisée.</p>
 <section id="résultat-attendu-2" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-2">Résultat attendu</h3>
-<div id="c44ac250" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   | R |   |   |   |   |
-|   |   | R |   |   | J |   |</code></pre>
-</div>
+<div id="7d49657f" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-2" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-2">A vous de jouer !</h3>
-<div id="f4992398" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tour(grille, colonne_a_jouer, couleur_pion):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    new_grille <span class="op">=</span> copy.deepcopy(grille)  <span class="co"># Evite la modification de la grille initiale</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="af63e0e7" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tour(grille, colonne_a_jouer, couleur_pion):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    new_grille <span class="op">=</span> copy.deepcopy(grille)  <span class="co"># Evite la modification de la grille initiale</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d754682b" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'affiche_grille' is not defined</code></pre>
-</div>
+<div id="fcc640ef" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -524,91 +472,60 @@ Nombre de colonnes : 7</code></pre>
 </ul>
 <section id="résultat-attendu-3" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-3">Résultat attendu</h3>
-<div id="03d51821" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une ligne</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_ligne(ligne1))  <span class="co"># Renvoie False</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_ligne(ligne2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>False
-
-Les pions rouges ont gagné, félicitations !
-True</code></pre>
+<div id="16a8a94f" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une ligne</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_ligne(ligne1))  <span class="co"># Renvoie False</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_ligne(ligne2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="6dd1fea1" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une grille</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_horizontale_grille(grille))  <span class="co"># Renvoie False</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">3</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">4</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_horizontale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>False
-
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   | R | R | R | R |   |
-
-Les pions rouges ont gagné, félicitations !
-True</code></pre>
-</div>
+<div id="0c042bd0" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une grille</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_horizontale_grille(grille))  <span class="co"># Renvoie False</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">3</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">4</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_horizontale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-3" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-3">A vous de jouer !</h3>
-<div id="84263ff6" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire_ligne(ligne):</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>SyntaxError: incomplete input (1026232501.py, line 2)</code></pre>
+<div id="222c6387" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire_ligne(ligne):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="87affeaa" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"R"</span>, <span class="st">" "</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_ligne(ligne1))  <span class="co"># Renvoie False</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_ligne(ligne2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ba336e70" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"R"</span>, <span class="st">" "</span>]</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_ligne(ligne1))  <span class="co"># Renvoie False</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_ligne(ligne2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'victoire_ligne' is not defined</code></pre>
+<div id="99c42bc4" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire_horizontale_grille(grille):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="11726117" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire_horizontale_grille(grille):</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>SyntaxError: incomplete input (2282423907.py, line 2)</code></pre>
-</div>
-</div>
-<div id="be21fce1" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_horizontale_grille(grille))  <span class="co"># Renvoie False</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">3</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">4</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_horizontale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'victoire_horizontale_grille' is not defined</code></pre>
-</div>
+<div id="141060bc" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_horizontale_grille(grille))  <span class="co"># Renvoie False</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">3</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">4</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">5</span>, couleur_pion<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_horizontale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -621,61 +538,42 @@ True</code></pre>
 </ul>
 <section id="résultat-attendu-4" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-4">Résultat attendu</h3>
-<div id="66b3ac95" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (verticale) sur une grille</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_verticale_grille(grille))  <span class="co"># Renvoie False</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_verticale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>False
-
-|   |   |   |   |   |   |   |
-|   |   |   |   |   |   |   |
-|   |   | J |   |   |   |   |
-|   |   | J |   |   |   |   |
-|   |   | J |   |   |   |   |
-|   |   | J |   |   |   |   |
-
-Les pions jaunes ont gagné, félicitations !
-True</code></pre>
-</div>
+<div id="a0e4bce2" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (verticale) sur une grille</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_verticale_grille(grille))  <span class="co"># Renvoie False</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>solutions.affiche_grille(grille)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.victoire_verticale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-4" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-4">A vous de jouer !</h3>
-<div id="546e3a1b" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire_verticale_grille(grille):</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>SyntaxError: incomplete input (3810613278.py, line 2)</code></pre>
+<div id="26c2bf39" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire_verticale_grille(grille):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="b03dc10a" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_verticale_grille(grille))  <span class="co"># Renvoie False</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_verticale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'victoire_verticale_grille' is not defined</code></pre>
-</div>
+<div id="38526d26" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_verticale_grille(grille))  <span class="co"># Renvoie False</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>affiche_grille(grille)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(victoire_verticale_grille(grille))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -691,58 +589,41 @@ True</code></pre>
 </ul>
 <section id="résultat-attendu-5" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-5">Résultat attendu</h3>
-<div id="90fb72ab" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tour 1
-Tour 2
-Tour 3
-Tour 4
-Les pions jaunes ont gagné, félicitations !
-FIN DE PARTIE</code></pre>
-</div>
+<div id="b1d77159" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> solutions.tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-5" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-5">A vous de jouer !</h3>
-<div id="44a6a46d" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire(grille):</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>SyntaxError: incomplete input (3939440052.py, line 2)</code></pre>
+<div id="fffbc014" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> victoire(grille):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="58f4382b" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tour_test_victoire(grille, colonne_a_jouer, couleur_pion):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    grille <span class="op">=</span> copy.deepcopy(grille)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="78a3101e" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tour_test_victoire(grille, colonne_a_jouer, couleur_pion):</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    grille <span class="op">=</span> copy.deepcopy(grille)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grille</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="d5f18959" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tour 1
-Tour 2
-Tour 3
-Tour 4</code></pre>
-</div>
+<div id="fb24909e" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> initialise_grille()  <span class="co"># Initialisation</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>grille <span class="op">=</span> tour_test_victoire(grille<span class="op">=</span>grille, colonne_a_jouer<span class="op">=</span><span class="dv">2</span>, couleur_pion<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
