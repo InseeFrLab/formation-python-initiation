@@ -1,0 +1,34 @@
+
+.no-anchor.card-title.listing-title {
+    font-weight: bolder !important;
+    color: #802a03 !important;
+    }
+
+
+.navbar-title code {
+    color: #ff562c;
+    background-color: inherit;
+  }
+
+.grid-item-link {
+    color: inherit;
+    text-decoration: none; /* Remove underline */
+    transition: transform 0.2s ease-in-out; /* Add transition for smooth effect */
+}
+  
+.grid-item-link:hover {
+    transform: scale(1.05); /* Increase the scale for a zoom effect */
+}
+
+.observable-logo path {
+    fill: #ff562c;
+}
+
+.badge{
+  text-justify: center;
+}
+  
+  
+.highlight-line{
+  color: "yellow";
+}
