@@ -358,7 +358,7 @@ window.Quarto = {
 
 <p>Dans le tutoriel précédent, nous avons étudié les tests, qui permettent à un ordinateur de prendre des décisions selon des conditions spécifiées dans un programme. Nous allons à présent aller encore plus loin dans l’automatisation des opérations, grâce à la notion de <strong>boucle</strong>. Les boucles vont permettre de répéter plusieurs fois une instruction semblable sans avoir à réécrire le même code à chaque fois.</p>
 <p>Pour illustrer cette idée, imaginons que l’on souhaite afficher chaque élément d’une liste. Pour l’instant, on ferait :</p>
-<div id="778c0e33" class="cell" data-execution_count="1">
+<div id="ca7c6510" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gamme[<span class="dv">0</span>])</span>
@@ -377,7 +377,7 @@ mi</code></pre>
 <h3 class="anchored" data-anchor-id="définition">Définition</h3>
 <p>Le premier type de boucles auquel nous allons nous intéresser est la boucle <code>for</code>. Une boucle <code>for</code> permet de parcourir les différents éléments contenus dans un objet dit <strong>itérable</strong>, et de réaliser des opérations avec ces éléments. Les objets itérables incluent notamment tous les objets séquentiels que nous avons vus jusqu’à présent : chaînes de caractères, listes, tuples, etc.</p>
 <p>Illustrons le fonctionnement d’une boucle <code>for</code> en résolvant le problème exposé précédemment.</p>
-<div id="566209e7" class="cell" data-execution_count="2">
+<div id="5ad0deff" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> note <span class="kw">in</span> gamme:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(note)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -399,7 +399,7 @@ si</code></pre>
 <li><p>Vient ensuite un <strong>bloc d’instructions</strong>, i.e.&nbsp;une suite d’opérations (une seule dans notre exemple) qui sera exécutée à chaque itération de la boucle. Ce bloc est visible par son <strong>niveau d’indentation</strong>, incrémenté de 1 par rapport à l’instruction. Le bloc s’arrête dès lors que l’indentation revient à son niveau initial.</p></li>
 </ul>
 <p>Comme pour les instructions conditionnelles de type <code>if</code>/<code>else</code>, l’indentation est donc capitale. Si on l’oublie, Python renvoie une erreur.</p>
-<div id="4a1f6511" class="cell" data-execution_count="3">
+<div id="3487c726" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> note <span class="kw">in</span> gamme:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(note)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -417,14 +417,14 @@ si</code></pre>
 <h3 class="anchored" data-anchor-id="fonctionnement">Fonctionnement</h3>
 <p>Regardons maintenant plus en détail ce que fait l’instruction <code>for</code>. Elle définit une <strong>variable d’itération</strong> (appelée <code>note</code> dans notre exemple), qui va parcourir les éléments de l’<strong>itérateur</strong> spécifié après le <code>in</code> (la liste <code>gamme</code> dans notre exemple). La syntaxe d’une boucle en Python se prête bien à une description littérale ; dans notre cas : “pour chaque note contenue dans la liste gamme, imprime la note”.</p>
 <p>Insistons sur le fait qu’une boucle définit une variable, sans que l’on ait besoin de passer par la syntaxe traditionnelle d’assignation <code>variable = valeur</code>. De plus, cette variable n’est pas supprimée une fois la boucle terminée, elle prend alors la valeur du dernier élément de l’itérateur.</p>
-<div id="f986c550" class="cell" data-execution_count="4">
+<div id="fc5b4eef" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'si'</code></pre>
 </div>
 </div>
 <p>L’itérateur n’est pas nécessairement une liste, il peut être tout objet itérable. Cela inclut notamment tous les objets séquentiels que nous avons vu.</p>
-<div id="99797674" class="cell" data-execution_count="5">
+<div id="d137d937" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> char <span class="kw">in</span> <span class="st">"YMCA"</span>:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(char)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -447,7 +447,7 @@ A
 </div>
 </div>
 <p>La classe des objets itérables est cependant bien plus grande que les seuls objets séquentiels. Par exemple, on peut itérer sur les clés d’un dictionnaire, alors que l’on a vu dans un tutoriel précédent que ce n’était pas un objet séquentiel, puisqu’il n’y a pas de notion d’ordre dans un dictionnaire.</p>
-<div id="9d30f76d" class="cell" data-execution_count="6">
+<div id="7a9fc404" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>, <span class="st">'cereales'</span>: <span class="st">'1kg'</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> inventaire:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key)</span>
@@ -470,7 +470,7 @@ cereales
 <h3 class="anchored" data-anchor-id="itération-sur-des-entiers-avec-la-fonction-range">Itération sur des entiers avec la fonction <code>range</code></h3>
 <p>En programmation, il est courant de vouloir itérer sur une suite d’entiers. Plutôt que de spécifier cette suite dans une liste, ce qui n’est pas très pratique si la suite est longue, on utilise pour ce faire la fonction <code>range(n)</code>. Celle-ci crée un objet itérable qui contient tous les entiers compris entre <span class="math inline">\(0\)</span> et <span class="math inline">\(n-1\)</span>, et qui peut être utilisé dans le cadre d’une boucle.</p>
 <p>Regardons par exemple comment on peut très simplement afficher une table de multiplication à l’aide de cette fonction.</p>
-<div id="d8c10aa4" class="cell" data-execution_count="7">
+<div id="03aab320" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> <span class="dv">9</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">11</span>):</span>
@@ -493,7 +493,7 @@ cereales
 <section id="itération-sur-les-indices" class="level3">
 <h3 class="anchored" data-anchor-id="itération-sur-les-indices">Itération sur les indices</h3>
 <p>On a vu qu’une boucle <code>for</code> avait pour principe d’itérer sur les <em>éléments</em> d’un itérable. Cependant, dans le cas d’un objet séquentiel comme une liste, on peut parfois vouloir itérer sur les <em>indices</em> de l’objet, afin de pouvoir manipuler à la fois les indices et les éléments contenus dans l’objet. Dans ce cas, la fonction <code>range</code> peut être utilisée en combinaison avec la fonction <code>len</code> pour créer un objet itérable qui contient exactement les indices de la liste initiale.</p>
-<div id="46597168" class="cell" data-execution_count="8">
+<div id="000d746d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(gamme)):</span>
@@ -510,14 +510,14 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 </div>
 <p>Comme ce besoin est fréquent mais que le code ci-dessus n’est pas très lisible, il existe une fonction <em>built-in</em> de Python appelée <code>enumerate</code> qui permet d’itérer à la fois sur les objets et les indices. Il est donc préférable d’utiliser cette syntaxe, plus claire, et qui permet d’éviter certaines erreurs.</p>
 <p>La fonction <code>enumerate</code> appliquée à un objet itérable renvoie un nouvel objet itérable qui contient l’ensemble des couples <code>(indice, élément)</code> contenus dans l’objet, sous forme de tuples. Comme c’est un objet de type particulier – un générateur, que nous verrons dans un tutoriel plus avancé – il faut lui appliquer la fonction <code>list</code> pour afficher son contenu.</p>
-<div id="5871e753" class="cell" data-execution_count="9">
+<div id="a8d21524" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">enumerate</span>(gamme))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>[(0, 'do'), (1, 're'), (2, 'mi'), (3, 'fa'), (4, 'sol'), (5, 'la'), (6, 'si')]</code></pre>
 </div>
 </div>
 <p>Regardons comment réécrire la boucle précédente avec cette nouvelle syntaxe.</p>
-<div id="8c306893" class="cell" data-execution_count="10">
+<div id="aeeaab19" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, note <span class="kw">in</span> <span class="bu">enumerate</span>(gamme):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"La note numéro "</span> <span class="op">+</span> <span class="bu">str</span>(i) <span class="op">+</span> <span class="st">" de la gamme de do majeur est "</span> <span class="op">+</span> note)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -531,7 +531,7 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 </div>
 </div>
 <p>NB : pour faire l’assignation de variables dans l’instruction <code>if</code>, on a utilisé une technique bien pratique que l’on avait déjà évoquée dans un exercice du tutoriel sur les listes et les tuples : le <em>tuple unpacking</em>. Illustrons le par un exemple :</p>
-<div id="df1e51e5" class="cell" data-execution_count="11">
+<div id="f3ffddde" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> t</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
@@ -550,7 +550,7 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 <section id="définition-1" class="level3">
 <h3 class="anchored" data-anchor-id="définition-1">Définition</h3>
 <p>Les boucles <code>while</code> fournissent une manière alternative de spécifier des procédures répétitives. L’idée n’est plus d’itérer sur un nombre d’objets fixé à l’avance, mais d’<strong>itérer tant qu’une condition (test logique) est remplie</strong>.</p>
-<div id="2b3537db" class="cell" data-execution_count="12">
+<div id="1c109b02" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
@@ -574,7 +574,7 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 <p>Une différence essentielle des boucles <code>while</code> par rapport aux boucles <code>for</code> tient au critère d’arrêt. Dans une boucle <code>for</code>, ce critère est clair : la boucle itère sur les éléments d’un objet itérable, nécessairement de taille finie. La boucle s’arrête donc lorsque chaque élément de l’itérable a été parcouru.</p>
 <p>Dans une boucle <code>while</code> au contraire, le critère d’arrêt est donné par une condition logique, c’est donc l’utilisateur qui doit fixer le critère d’arrêt. Dans l’exemple, pour que la boucle s’arrête, il faut que la condition <code>i &lt;= 5</code> devienne <code>False</code>, c’est à dire que <code>i</code> devienne strictement supérieur à <span class="math inline">\(5\)</span>. On s’est assuré de cela en initialisant <code>i</code> à <span class="math inline">\(1\)</span> avant le début de la boucle, puis en incrémentant <code>i</code> d’une unité à chaque itération.</p>
 <p>Que se passe-t-il si l’on oublie d’incrémenter <code>i</code> ? Le critère d’arrêt n’est jamais atteint, la boucle est donc infinie, et il faut utiliser le bouton “Stop” (carré noir) de Jupyter pour arrêter le programme en cours. Vérifions cela en incrémentant la mauvaise variable.</p>
-<div id="dc5f0640" class="cell" data-execution_count="13">
+<div id="f15e6d22" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
@@ -586,7 +586,7 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 <h3 class="anchored" data-anchor-id="linstruction-break">L’instruction <code>break</code></h3>
 <p>Une manière alternative de spécifier un critère d’arrêt est d’utiliser l’instruction <code>break</code>. Lorsque cette instruction est atteinte et exécutée, la boucle est immédiatement interrompue.</p>
 <p>Illustrons son fonctionnement à l’aide d’un exemple. La première ligne crée une boucle infinie, dans la mesure où, par définition, <code>True</code> est toujours évalué à <code>True</code>. Le programme demande ensuite à l’utilisateur de taper un prénom, et ce infiniment jusqu’à que l’utilisateur tape le prénom attendu. Dans ce cas seulement, l’instruction <code>break</code> est atteinte et la boucle s’arrête. Le message “Bienvenue <votre_prenom>” s’affiche enfin, dans la mesure où le deuxième <code>print</code> n’est pas inclus dans la boucle.</votre_prenom></p>
-<div id="3a92afb2" class="cell" data-execution_count="14">
+<div id="4d4524f1" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>votre_prenom <span class="op">=</span> <span class="st">"Romain"</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -598,7 +598,7 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 </div>
 <p>Il est important de noter qu’une instruction <code>break</code> ne met fin qu’à la boucle de niveau directement supérieur à elle. Dans le cas d’une boucle à plusieurs niveaux, il est tout à fait possible que les opérations continuent même lorsqu’une instruction <code>break</code> a été atteinte.</p>
 <p>Illustrons ce principe avec un exemple.</p>
-<div id="10305ea0" class="cell" data-execution_count="15">
+<div id="487f0ae2" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
@@ -621,7 +621,7 @@ Break.</code></pre>
 <h3 class="anchored" data-anchor-id="linstruction-continue">L’instruction <code>continue</code></h3>
 <p>L’instruction <code>continue</code> permet de passer à l’itération suivante de la boucle.</p>
 <p>Agrémentons l’exemple précédent pour illustrer son fonctionnement. Tant qu’un prénom différent de celui attendu est rentré, l’instruction <code>continue</code> est évaluée, et le programme continue à demander un prénom à l’utilisateur. Lorsque le bon prénom est rentré, le programme demande à l’utilisateur de rentrer un mot de passe. Si le mot de passe est celui attendu, l’instruction <code>break</code> est atteinte et exécutée, la boucle s’arrête. En cas de mauvais mot de passe en revanche, la boucle redémarre au début du bloc d’exécution, il faut donc de nouveau rentrer un prénom avant le mot de passe.</p>
-<div id="e059cab7" class="cell" data-execution_count="16">
+<div id="ae4ca040" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>votre_prenom <span class="op">=</span> <span class="st">""</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -656,7 +656,7 @@ Break.</code></pre>
 <section id="prédiction-de-résultats-de-boucles-while" class="level3">
 <h3 class="anchored" data-anchor-id="prédiction-de-résultats-de-boucles-while">Prédiction de résultats de boucles <code>while</code></h3>
 <p>Essayer de prédire ce que vont produire les boucles <code>while</code> suivantes, et vérifiez vos résultats.</p>
-<div id="fe5f0d9e" class="cell" data-execution_count="19">
+<div id="0063e9a0" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
@@ -689,7 +689,7 @@ Break.</code></pre>
 <h3 class="anchored" data-anchor-id="effet-dune-erreur-dindentation">Effet d’une erreur d’indentation</h3>
 <p>Source : <a href="https://python.sdv.univ-paris-diderot.fr/06_tests/">python.sdv.univ-paris-diderot.fr</a></p>
 <p>Afin de visualiser l’importance de l’indentation dans les blocs d’instruction, essayez de prédire ce que vont respectivement retourner les deux programmes suivants. Lequel a l’effet attendu ?</p>
-<div id="0c631f35" class="cell" data-execution_count="22">
+<div id="8c537e63" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>nombres <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nb <span class="kw">in</span> nombres:</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nb <span class="op">==</span> <span class="dv">5</span>:</span>
@@ -700,7 +700,7 @@ Break.</code></pre>
 car la variable nb vaut {nb}</code></pre>
 </div>
 </div>
-<div id="87ca489a" class="cell" data-execution_count="23">
+<div id="ca5a0378" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>nombres <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nb <span class="kw">in</span> nombres:</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nb <span class="op">==</span> <span class="dv">5</span>:</span>
@@ -717,7 +717,7 @@ car la variable nb vaut {nb}</code></pre>
 <section id="convertir-une-boucle-for-en-boucle-while" class="level3">
 <h3 class="anchored" data-anchor-id="convertir-une-boucle-for-en-boucle-while">Convertir une boucle <code>for</code> en boucle <code>while</code></h3>
 <p>Réécrivez la boucle <code>for</code> suivante à l’aide d’une boucle <code>while</code>.</p>
-<div id="2cd51dc0" class="cell" data-execution_count="26">
+<div id="e8149b8b" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, note <span class="kw">in</span> <span class="bu">enumerate</span>(gamme):</span>
@@ -740,7 +740,7 @@ La note numéro 6 de la gamme de do majeur est si</code></pre>
 <li><p>vérifier si l’entier cible est présent dans la liste <code>l</code>.</p></li>
 <li><p>si oui, afficher le message ‘Le nombre <code>n_cible</code> est à la position <code>i</code> de la liste’, et mettre fin à la boucle.</p></li>
 </ul>
-<div id="4856e98f" class="cell" data-execution_count="29">
+<div id="69016dc4" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>n_cible <span class="op">=</span> <span class="dv">78</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">98</span>, <span class="dv">65</span>, <span class="dv">39</span>, <span class="dv">78</span>, <span class="dv">55</span>, <span class="dv">119</span>, <span class="dv">27</span>, <span class="dv">33</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
