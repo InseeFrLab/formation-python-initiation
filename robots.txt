@@ -1,1 +1,1 @@
-Sitemap: https://github.com/InseeFrLab/formation-python-initiation/sitemap.xml
+Sitemap: https://InseeFrLab.github.io/formation-python-initiation/sitemap.xml
