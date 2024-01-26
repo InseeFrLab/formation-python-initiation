@@ -181,6 +181,9 @@ plt.title('Relation entre prix et quantité selon les enseignes')
 ### Aller plus loin
 
 Les possibilités de Seaborn sont vraiment larges, et la [gallerie](https://seaborn.pydata.org/examples/index.html) d'exemples de Seaborn illustre de nombreuses possibilités visuellement agréables et faciles à reproduire. Pour des besoins plus avancés, on pourra s'orienter selon les cas vers d'autres librairies graphiques :
+
 - pour des possibilités de personnalisation maximales (au prix d'un certain coût d'apprentissage) : [Matplotlib](https://matplotlib.org/stable/tutorials/pyplot.html), la librairie fondamentale de visualisation en Python ;
+
 - pour les utilisateurs de R : [plotnine](https://plotnine.readthedocs.io/en/v0.12.4/), une librairie qui implémente la "grammaire graphique" propre à [ggplot2](https://ggplot2.tidyverse.org/) ;
+
 - pour de la visualisation interactive : [plotly](https://plotly.com/) et [bokeh](http://bokeh.org/) sont les plus utilisées.
