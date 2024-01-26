@@ -1,6 +1,5 @@
 project:
   type: website
   render:
-    - /slides/index.qmd
-    - /source/*.qmd
+    - '*.qmd'
   
