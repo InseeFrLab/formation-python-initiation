@@ -1,5 +1,5 @@
 ---
-title: "SSPy - Formation d'initiation à Python dans le SSP"
+title: "Formation d'initiation à Python dans le SSP"
 ---
 
 - [slides d'introduction](https://inseefrlab.github.io/formation-python-initiation/slides/#/title-slide)
