@@ -163,15 +163,18 @@ Une différence essentielle des boucles `while` par rapport aux boucles `for` ti
 
 Dans une boucle `while` au contraire, le critère d'arrêt est donné par une condition logique, c'est donc l'utilisateur qui doit fixer le critère d'arrêt. Dans l'exemple, pour que la boucle s'arrête, il faut que la condition `i <= 5` devienne `False`, c'est à dire que `i` devienne strictement supérieur à $5$. On s'est assuré de cela en initialisant `i` à $1$ avant le début de la boucle, puis en incrémentant `i` d'une unité à chaque itération.
 
-Que se passe-t-il si l'on oublie d'incrémenter `i` ? Le critère d'arrêt n'est jamais atteint, la boucle est donc infinie, et il faut arrêter manuellement la cellule en cours. Lorsqu'on pressent qu'une boucle `while` met trop longtemps à tourner, il faut considérer l'hypothèse que l'on soit tombé dans une boucle infinie, et bien vérifier que le critère d'arrêt est atteignable.
-
-Par exemple, le code ci-dessous (commenté pour ne pas empêcher l'exécution) génère une boucle infinie car le critère d'arrêt n'est jamais atteint.
+Que se passe-t-il si l'on oublie d'incrémenter `i` ? Le critère d'arrêt n'est jamais atteint, la boucle est donc infinie, et il faut utiliser le bouton "Stop" (carré noir) de Jupyter pour arrêter le programme en cours. Vérifions cela en incrémentant la mauvaise variable.
 
 ```{python}
-# i = 1
-# j = 1
-# while i <= 5:
-#     j = j + 1
+i = 1
+j = 1
+while i <= 5:
+    j = j + 1
+```
+
+```{python}
+print(i)
+print(j)
 ```
 
 ### L'instruction `break`
