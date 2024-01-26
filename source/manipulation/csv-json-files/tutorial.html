@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Travailler avec des fichiers CSV et JSON</title>
+<title>Formation SSPy - Travailler avec des fichiers CSV et JSON</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
@@ -101,20 +102,209 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/manipulation/modules-files/tutorial.html">Manipulation de données</a></li><li class="breadcrumb-item"><a href="../../../source/manipulation/csv-json-files/tutorial.html">Travailler avec des fichiers CSV et JSON</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">Formation SSPy</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fondamentaux du langage</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/types-variables/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types de base et variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures1/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structures de données 1 : listes et tuples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures2/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structures de données 2 : dictionnaires et sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/tests/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/loops/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/functions/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fonctions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/oop/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notions de programmation orientée objet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manipulation de données</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/modules-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulation de fichiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/csv-json-files/tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Travailler avec des fichiers CSV et JSON</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/numpy/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calcul numérique avec NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/pandas/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traiter des données tabulaires avec Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/dataviz/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction à la visualisation de données</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Projets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/puissance4/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 1 - Puissance 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 2 - Interaction avec des APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 3 - Analyse du recensement de la population</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#manipuler-des-fichiers-csv" id="toc-manipuler-des-fichiers-csv" class="nav-link active" data-scroll-target="#manipuler-des-fichiers-csv">Manipuler des fichiers CSV</a>
+  <ul class="collapse">
+  <li><a href="#les-fichiers-csv" id="toc-les-fichiers-csv" class="nav-link" data-scroll-target="#les-fichiers-csv">Les fichiers CSV</a></li>
+  <li><a href="#le-module-csv" id="toc-le-module-csv" class="nav-link" data-scroll-target="#le-module-csv">Le module <code>csv</code></a></li>
+  <li><a href="#lecture" id="toc-lecture" class="nav-link" data-scroll-target="#lecture">Lecture</a></li>
+  <li><a href="#écriture" id="toc-écriture" class="nav-link" data-scroll-target="#écriture">Écriture</a></li>
+  <li><a href="#le-header" id="toc-le-header" class="nav-link" data-scroll-target="#le-header">Le <em>header</em></a></li>
+  <li><a href="#importance-du-délimiteur" id="toc-importance-du-délimiteur" class="nav-link" data-scroll-target="#importance-du-délimiteur">Importance du délimiteur</a></li>
+  </ul></li>
+  <li><a href="#manipuler-des-fichiers-json" id="toc-manipuler-des-fichiers-json" class="nav-link" data-scroll-target="#manipuler-des-fichiers-json">Manipuler des fichiers JSON</a>
+  <ul class="collapse">
+  <li><a href="#les-fichiers-json" id="toc-les-fichiers-json" class="nav-link" data-scroll-target="#les-fichiers-json">Les fichiers JSON</a></li>
+  <li><a href="#le-module-json" id="toc-le-module-json" class="nav-link" data-scroll-target="#le-module-json">Le module <code>json</code></a></li>
+  <li><a href="#écriture-1" id="toc-écriture-1" class="nav-link" data-scroll-target="#écriture-1">Écriture</a></li>
+  <li><a href="#lecture-1" id="toc-lecture-1" class="nav-link" data-scroll-target="#lecture-1">Lecture</a></li>
+  </ul></li>
+  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices">Exercices</a>
+  <ul class="collapse">
+  <li><a href="#questions-de-compréhension" id="toc-questions-de-compréhension" class="nav-link" data-scroll-target="#questions-de-compréhension">Questions de compréhension</a></li>
+  <li><a href="#exercice-trier-les-clés-lors-de-lécriture-dun-json" id="toc-exercice-trier-les-clés-lors-de-lécriture-dun-json" class="nav-link" data-scroll-target="#exercice-trier-les-clés-lors-de-lécriture-dun-json">Exercice : trier les clés lors de l’écriture d’un JSON</a></li>
+  <li><a href="#exercice-convertir-un-objet-non-sérialisable-en-json" id="toc-exercice-convertir-un-objet-non-sérialisable-en-json" class="nav-link" data-scroll-target="#exercice-convertir-un-objet-non-sérialisable-en-json">Exercice : convertir un objet non-sérialisable en JSON</a></li>
+  <li><a href="#exercice-changer-le-délimiteur-dun-fichier-csv" id="toc-exercice-changer-le-délimiteur-dun-fichier-csv" class="nav-link" data-scroll-target="#exercice-changer-le-délimiteur-dun-fichier-csv">Exercice : changer le délimiteur d’un fichier CSV</a></li>
+  <li><a href="#exercice-extraire-et-sauvegarder-des-données-issues-dune-api" id="toc-exercice-extraire-et-sauvegarder-des-données-issues-dune-api" class="nav-link" data-scroll-target="#exercice-extraire-et-sauvegarder-des-données-issues-dune-api">Exercice : extraire et sauvegarder des données issues d’une API</a></li>
+  <li><a href="#exercice-découper-la-base-des-départements-par-régions" id="toc-exercice-découper-la-base-des-départements-par-régions" class="nav-link" data-scroll-target="#exercice-découper-la-base-des-départements-par-régions">Exercice : découper la base des départements par régions</a></li>
+  <li><a href="#exercice-rajouter-des-headers-manquants" id="toc-exercice-rajouter-des-headers-manquants" class="nav-link" data-scroll-target="#exercice-rajouter-des-headers-manquants">Exercice : rajouter des <em>headers</em> manquants</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/manipulation/modules-files/tutorial.html">Manipulation de données</a></li><li class="breadcrumb-item"><a href="../../../source/manipulation/csv-json-files/tutorial.html">Travailler avec des fichiers CSV et JSON</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Travailler avec des fichiers CSV et JSON</h1>
 </div>
@@ -140,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="les-fichiers-csv">Les fichiers CSV</h3>
 <p>CSV signifie <strong><em>comma-separated values</em></strong>, soit en bon français “valeurs séparées par des virgules”. Les fichiers CSV visent à reproduire la <strong>structure des données issues de tableurs</strong> type Excel de Microsoft ou Calc de LibreOffice, réduite à la stricte donnée textuelle (plus de formatage, plus de types de colonne, etc.).</p>
 <p>Nous allons prendre pour exemple le fichier CSV qui contient la liste des départements en 2021, issue du Code Officiel Géographique (COG). Regardons les premières lignes de ce fichier à l’aide d’une commande <code>shell</code> pour avoir bien en tête la structure d’un tel fichier.</p>
-<div id="62a0d205" class="cell" data-execution_count="1">
+<div id="96798b72" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">5</span> departement2021.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pour reprendre l’analogie avec un fichier issu d’un tableur, chaque ligne du fichier représente une ligne du tableur, et les cellules d’une ligne sont séparées par des virgules. La première ligne peut contenir un <code>header</code> (en-tête), c’est à dire le nom des colonnes, mais ce n’est pas toujours le cas.</p>
@@ -158,11 +348,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="lecture" class="level3">
 <h3 class="anchored" data-anchor-id="lecture">Lecture</h3>
-<div id="5bbd5333" class="cell" data-execution_count="2">
+<div id="1aa51814" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>La syntaxe permettant de lire et manipuler des fichiers CSV en Python est très proche de celle pour les fichiers texte simples. La seule différence est que l’on doit créer un objet <code>reader</code> à partir de l’objet fichier pour pouvoir itérer sur les lignes.</p>
-<div id="b370946f" class="cell" data-execution_count="3">
+<div id="aec12197" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"departement2021.csv"</span>) <span class="im">as</span> file_in:</span>
@@ -175,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>On retrouve bien la même syntaxe que pour les fichiers texte simples : une fois le <code>reader</code> créé, on peut itérer sur les lignes et réaliser des opérations avec celles-ci ; par exemple, les stocker dans une liste comme ci-dessus.</p>
 <p>Lorsqu’on a un fichier CSV avec des noms de colonne comme dans notre cas, il est intéressant de les utiliser pour manipuler la donnée nommée, plutôt que par position en utilisant une liste simple. On utilise pour cela un <code>DictReader</code> au lieu du <code>reader</code>. A présent, lorsqu’on itère sur l’objet <code>DictReader</code> créé, chaque ligne est un dictionnaire, donc la clé est le nom de la colonne et la valeur la donnée de la cellule.</p>
 <p>Pour illustrer son intérêt, affichons les noms des départements donc le numéro de département est compris entre 20 et 29.</p>
-<div id="2addcebd" class="cell" data-execution_count="4">
+<div id="c3f3c997" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"departement2021.csv"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    dict_reader <span class="op">=</span> csv.DictReader(file_in)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> dict_reader:</span>
@@ -187,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="écriture" class="level3">
 <h3 class="anchored" data-anchor-id="écriture">Écriture</h3>
 <p>La syntaxe pour l’écriture est là encore assez proche de celle pour les fichiers texte. La différence est que l’on traite des données en 2D (ligne x colonne), on ne peut donc plus passer seulement une chaîne de caractère à l’écriture, il faut <strong>passer une liste d’éléments</strong>.</p>
-<div id="1132ad72" class="cell" data-execution_count="5">
+<div id="eb49ca02" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> [<span class="st">"nom"</span>, <span class="st">"classe"</span>, <span class="st">"age"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">"Maurice"</span>, <span class="st">"5èmeB"</span>, <span class="dv">12</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">"Manuela"</span>, <span class="st">"6èmeA"</span>, <span class="dv">11</span>]</span>
@@ -199,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    csv_writer.writerow(row2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vérifions que notre fichier CSV brut ressemble bien à ce que nous attendions.</p>
-<div id="ef788edd" class="cell" data-execution_count="6">
+<div id="8e89c025" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Commande shell pour afficher le contenu d'un fichier</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat test.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -208,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="le-header">Le <em>header</em></h3>
 <p>Comme dans un document de type tableur, la première ligne d’un fichier CSV contient généralement les <strong>noms des variables</strong> (colonnes). On appelle cette ligne le <strong><em>header</em></strong>. Cette ligne n’est pas obligatoire en théorie, mais elle est quand même bien pratique pour comprendre rapidement la nature des données qui se trouvent dans un fichier CSV. C’est donc une bonne pratique d’inclure un <em>header</em> lorsqu’on génère un fichier CSV.</p>
 <p>Nous avons vu dans l’exemple précédent que l’écriture du <em>header</em> se faisait comme celle de n’importe quelle autre ligne de donnée. C’est lors de la lecture que les choses se compliquent, puisqu’il faut récupérer le <em>header</em> séparément des autres données si le fichier CSV en contient un. Utilisons le CSV généré à l’étape précédente pour illustrer cela.</p>
-<div id="b083f394" class="cell" data-execution_count="7">
+<div id="6b18b6e5" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.csv"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    csv_reader <span class="op">=</span> csv.reader(file_in)</span>
@@ -216,10 +406,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        data.append(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1c502c1e" class="cell" data-execution_count="8">
+<div id="58d20419" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(header)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6c11d73a" class="cell" data-execution_count="9">
+<div id="5444e15c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pour récupérer le <em>header</em>, on utilise la fonction <code>next</code>. C’est une fonction <em>built-in</em> qui va appeler la méthode <code>__next__</code> de l’objet <code>reader</code>, qui permet d’itérer d’un pas sur le <code>reader</code>. Le premier appel à la fonction <code>next</code> renvoie donc la première ligne du document. Si un <em>header</em> est présent dans le fichier (ce dont il faut s’assurer), l’élément renvoyé est le <em>header</em>. On récupère ensuite classiquement le reste des données via une boucle sur l’objet <code>reader</code>, que l’on stocke dans une liste de listes (une liste par ligne).</p>
@@ -239,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Comme son nom le suggère, le JSON est lié au langage <em>JavaScript</em> dans la mesure où il constitue un dérivé de la notation des objets dans ce langage. Le format est cependant désormais indépendant de tout langage de programmation, mais est très fréquemment utilisé dans différents langages.</p>
 <p>Le format JSON est particulièrement important pour les statisticiens et data scientists car il constitue le <strong>format quasi-standard de réponse des <a href="https://fr.wikipedia.org/wiki/Interface_de_programmation">API</a></strong>. Le dialogue avec les API va au delà du programme de ce cours d’introduction. Cependant, les API tendant à se généraliser comme mode de communication standard pour l’échange de données, il est important de maîtriser les bases du format JSON afin de manipuler les réponses des API lorsqu’on doit interagir avec celles-ci.</p>
 <p>Le JSON stockant les objets sous forme de <strong>paires clé-valeur</strong> et où les valeurs peuvent être des <strong><em>arrays</em></strong> — un concept assez large en informatique qui inclut notamment les listes que nous connaissons — il ressemble fortement aux dictionnaires Python. Il constitue ainsi un format de fichier assez naturel pour <strong><em>sérialiser</em></strong> ces derniers, c’est à dire passer d’une structure de données en mémoire (ici, un dictionnaire) à une séquence d’octets qui peut être universellement lue par tout ordinateur. Regardons à titre d’exemple la représentation JSON d’un dictionnaire Python.</p>
-<div id="b31fec21" class="cell" data-execution_count="10">
+<div id="30b86251" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> {</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"poste"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"couture"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"miranda"</span>: {<span class="st">"poste"</span>: <span class="st">"ingénieure"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"trekking"</span>]}</span>
@@ -247,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b036b694" class="cell" data-execution_count="11">
+<div id="d1433931" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(cv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -262,20 +452,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="écriture-1" class="level3">
 <h3 class="anchored" data-anchor-id="écriture-1">Écriture</h3>
 <p>Commençons cette fois par l’écriture. Comme nous l’avons vu dans l’exemple précédent, la fonction <code>dumps</code> (pour <em>dump string</em>) convertit une valeur Python <strong>sérialisable</strong> en sa représentation JSON sous forme de chaîne de caractères.</p>
-<div id="c5fac1b6" class="cell" data-execution_count="12">
+<div id="e20f5440" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"test"</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>json.dumps(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="14475b1c" class="cell" data-execution_count="13">
+<div id="cc4577ab" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>json.dumps(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ecrire un fichier JSON à partir de Python revient simplement à écrire cette représentation dans un fichier texte, auquel on donnera l’extension <code>.json</code> pour bien marquer qu’il s’agit d’un fichier texte particulier. Comme cette opération est très fréquente, il existe une fonction très proche, <code>dump</code>, qui effectue à la fois la conversion et l’écriture.</p>
-<div id="cbfb5e4f" class="cell" data-execution_count="14">
+<div id="fdf87ad4" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"cv.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    json.dump(cv, file_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b5f8ddde" class="cell" data-execution_count="15">
+<div id="a36a81f8" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat cv.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>En une seule opération, on a sérialisé un dictionnaire Python (l’objet <code>cv</code>) dans un fichier JSON.</p>
@@ -288,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>la fonction <code>loads</code> permet de convertir du contenu JSON présent dans une chaîne de caractères en un dictionnaire</p></li>
 </ul>
 <p>Reprenons le CV que nous avons sérialisé précédemment au format JSON pour illustrer la lecture à partir d’un fichier.</p>
-<div id="7b95b526" class="cell" data-execution_count="16">
+<div id="ac80618a" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"cv.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.load(file_in)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -296,29 +486,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Nous allons illustrer la lecture de contenu JSON à partir d’une chaîne de caractères à partir d’un exemple réaliste : celui du requêtage d’une API. Pour l’exemple, nous allons requêter la Base Adresse Nationale (BAN), qui permet de géolocaliser n’importe quelle adresse nationale.</p>
 <p>Le requêtage d’API en Python se fait très simplement grâce à la librairie <code>requests</code>. Regardons par exemple comment l’on peut récupérer en seulement deux lignes de code les informations géographiques sur toutes les voies qui contiennent le nom “comédie” en France.</p>
-<div id="e8faa7b8" class="cell" data-execution_count="17">
+<div id="64c09f3f" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d3f7bcae" class="cell" data-execution_count="18">
+<div id="83350a32" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://api-adresse.data.gouv.fr/search/?q=comedie&amp;type=street"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>r_text <span class="op">=</span> response.text</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_text[:<span class="dv">150</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>L’API nous renvoie une réponse, dont on extrait le contenu textuel. Comme pour la très grande majorité des API, ce contenu est du JSON. On peut alors l’importer dans un dictionnaire Python via la fonction <code>loads</code> (pour <em>load string</em>) pour pouvoir manipuler la donnée qu’il contient.</p>
-<div id="88908388" class="cell" data-execution_count="19">
+<div id="0d23aab7" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>r_dict <span class="op">=</span> json.loads(r_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f81ae672" class="cell" data-execution_count="20">
+<div id="60c3dec7" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>r_dict.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="de3efd6f" class="cell" data-execution_count="21">
+<div id="27e3cbc9" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(r_dict[<span class="st">"features"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Les résultats qui nous intéressent sont contenues dans la valeur du dictionnaire associée à la clé <code>features</code>, qui est une liste de dictionnaires, un par résultat.</p>
-<div id="39e7e692" class="cell" data-execution_count="22">
+<div id="d07e3c24" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>r_dict[<span class="st">"features"</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4609301d" class="cell" data-execution_count="23">
+<div id="5c13c336" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>r_dict[<span class="st">"features"</span>][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -340,10 +530,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>10/ Quel est le principal point commun entre les fichiers CSV et les fichiers JSON ?</p></li>
 <li><p>11/ Un fichier dont l’extension est .json contient-il nécessairement du JSON ?</p></li>
 </ul>
-<div id="2750df69" class="cell" data-execution_count="24">
+<div id="f3083f2a" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1a941a6a" class="cell" data-execution_count="25">
+<div id="3c2ed36d" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">3</span><span class="op">-</span><span class="dv">39</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -352,13 +542,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="exercice-trier-les-clés-lors-de-lécriture-dun-json">Exercice : trier les clés lors de l’écriture d’un JSON</h3>
 <p>La cellule suivante contient un dictionnaire. Le but de l’exercice est d’écrire ces données dans un fichier JSON, en triant les clés du dictionnaire par ordre alphabétique.</p>
 <p>Indice : la fonction <code>dump</code> du module <code>json</code> contient un paramètre permettant de trier les clés. Lisez la <a href="https://docs.python.org/fr/3/library/json.html#json.dump">documentation de la fonction</a> pour le déterminer.</p>
-<div id="9408f986" class="cell" data-execution_count="26">
+<div id="46a56126" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"nom"</span>: <span class="st">"Isidore"</span>, <span class="st">"age"</span>: <span class="dv">29</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5bb2a06f" class="cell" data-execution_count="27">
+<div id="6604a2cd" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d4e97adc" class="cell" data-execution_count="28">
+<div id="3ae3fcfb" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">43</span><span class="op">-</span><span class="dv">48</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -371,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>convertir l’instance <code>mon_citron</code> en utilisant la méthode <em>built-in</em> <code>__dict__</code> que possèdent tous les objets Python</p></li>
 <li><p>convertir le dictionnaire obtenu en JSON sous forme de chaîne de caractères</p></li>
 </ul>
-<div id="986b2b49" class="cell" data-execution_count="29">
+<div id="a72ff466" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
@@ -384,10 +574,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>mon_citron <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>json.dumps(mon_citron)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ce7796cf" class="cell" data-execution_count="30">
+<div id="78d73446" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b42e8203" class="cell" data-execution_count="31">
+<div id="b9510357" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">52</span><span class="op">-</span><span class="dv">64</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -400,10 +590,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>trouver le séparateur utilisé (via l’éditeur de texte Jupyter, via une commande shell, en testant avec le module <code>csv</code> en Python..) pour lire correctement le fichier</p></li>
 <li><p>générer un nouveau fichier CSV <code>nat2020_corr.csv</code> contenant les mêmes données, mais cette fois avec la virgule comme séparateur.</p></li>
 </ul>
-<div id="604ae82b" class="cell" data-execution_count="32">
+<div id="32de270a" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="72e0ef34" class="cell" data-execution_count="33">
+<div id="f94e78a6" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">68</span><span class="op">-</span><span class="dv">81</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -423,10 +613,10 @@ Place de la Comédie,Montpellier,34172,3.879638,43.608525
 Rue de la Comédie,Cherbourg-en-Cotentin,50129,-1.629732,49.641574
 Allee de la Comedie,Villeneuve-d'Ascq,59009,3.162808,50.64628
 Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457</code></pre>
-<div id="1f4bd8db" class="cell" data-execution_count="34">
+<div id="93e0bab4" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bd723721" class="cell" data-execution_count="35">
+<div id="d9f2e215" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">85</span><span class="op">-</span><span class="dv">99</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -444,10 +634,10 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457</code></pre>
 <li><p>ouvrir ce fichier CSV en mode <code>append</code> pour écrire la ligne à la fin du fichier</p></li>
 </ul></li>
 </ul>
-<div id="5c885a66" class="cell" data-execution_count="36">
+<div id="08a9e65c" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f55cb096" class="cell" data-execution_count="37">
+<div id="ab887987" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">103</span><span class="op">-</span><span class="dv">117</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -465,10 +655,10 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457</code></pre>
 <li><p>ouvrir le fichier CSV en écriture pour le réinitialiser, écrire le header en premier lieu, puis écrire les données que l’on a au préalable sauvegardées dans une liste de liste</p></li>
 </ul></li>
 </ul>
-<div id="755a61df" class="cell" data-execution_count="38">
+<div id="cba8d159" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f4fc8876" class="cell" data-execution_count="39">
+<div id="308e64f6" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">121</span><span class="op">-</span><span class="dv">141</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -806,25 +996,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;

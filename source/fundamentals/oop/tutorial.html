@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Notions de programmation orientée objet</title>
+<title>Formation SSPy - Notions de programmation orientée objet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
@@ -130,20 +131,205 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/oop/tutorial.html">Notions de programmation orientée objet</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">Formation SSPy</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fondamentaux du langage</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/types-variables/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types de base et variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures1/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structures de données 1 : listes et tuples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures2/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structures de données 2 : dictionnaires et sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/tests/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/loops/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/functions/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fonctions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/oop/tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Notions de programmation orientée objet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manipulation de données</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/modules-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulation de fichiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/csv-json-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Travailler avec des fichiers CSV et JSON</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/numpy/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calcul numérique avec NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/pandas/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traiter des données tabulaires avec Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/dataviz/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction à la visualisation de données</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Projets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/puissance4/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 1 - Puissance 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 2 - Interaction avec des APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 3 - Analyse du recensement de la population</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#la-programmation-orientée-objet" id="toc-la-programmation-orientée-objet" class="nav-link active" data-scroll-target="#la-programmation-orientée-objet">La programmation orientée objet</a></li>
+  <li><a href="#tout-est-un-objet" id="toc-tout-est-un-objet" class="nav-link" data-scroll-target="#tout-est-un-objet">“Tout est un objet”</a></li>
+  <li><a href="#définir-ses-propres-objets" id="toc-définir-ses-propres-objets" class="nav-link" data-scroll-target="#définir-ses-propres-objets">Définir ses propres objets</a></li>
+  <li><a href="#la-classe-et-ses-instances" id="toc-la-classe-et-ses-instances" class="nav-link" data-scroll-target="#la-classe-et-ses-instances">La classe et ses instances</a></li>
+  <li><a href="#attributs" id="toc-attributs" class="nav-link" data-scroll-target="#attributs">Attributs</a>
+  <ul class="collapse">
+  <li><a href="#accéder-aux-attributs" id="toc-accéder-aux-attributs" class="nav-link" data-scroll-target="#accéder-aux-attributs">Accéder aux attributs</a></li>
+  <li><a href="#modifier-un-attribut" id="toc-modifier-un-attribut" class="nav-link" data-scroll-target="#modifier-un-attribut">Modifier un attribut</a></li>
+  <li><a href="#attributs-de-classe-et-attributs-dinstance" id="toc-attributs-de-classe-et-attributs-dinstance" class="nav-link" data-scroll-target="#attributs-de-classe-et-attributs-dinstance">Attributs de classe et attributs d’instance</a></li>
+  </ul></li>
+  <li><a href="#méthodes" id="toc-méthodes" class="nav-link" data-scroll-target="#méthodes">Méthodes</a>
+  <ul class="collapse">
+  <li><a href="#appeler-une-méthode" id="toc-appeler-une-méthode" class="nav-link" data-scroll-target="#appeler-une-méthode">Appeler une méthode</a></li>
+  <li><a href="#agir-sur-les-attributs" id="toc-agir-sur-les-attributs" class="nav-link" data-scroll-target="#agir-sur-les-attributs">Agir sur les attributs</a></li>
+  </ul></li>
+  <li><a href="#quand-utilise-t-on-la-poo" id="toc-quand-utilise-t-on-la-poo" class="nav-link" data-scroll-target="#quand-utilise-t-on-la-poo">Quand utilise-t-on la POO ?</a></li>
+  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices">Exercices</a>
+  <ul class="collapse">
+  <li><a href="#questions-de-compréhension" id="toc-questions-de-compréhension" class="nav-link" data-scroll-target="#questions-de-compréhension">Questions de compréhension</a></li>
+  <li><a href="#de-la-masse-au-jus" id="toc-de-la-masse-au-jus" class="nav-link" data-scroll-target="#de-la-masse-au-jus">De la masse au jus</a></li>
+  <li><a href="#comptes-bancaires" id="toc-comptes-bancaires" class="nav-link" data-scroll-target="#comptes-bancaires">Comptes bancaires</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/oop/tutorial.html">Notions de programmation orientée objet</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Notions de programmation orientée objet</h1>
 </div>
@@ -170,7 +356,7 @@ window.Quarto = {
 <section id="tout-est-un-objet" class="level2">
 <h2 class="anchored" data-anchor-id="tout-est-un-objet">“Tout est un objet”</h2>
 <p><strong>En Python, tout est un objet</strong> (au sens de la POO). Regardons ce que cela signifie en récupérant le type de différents objets que nous avons vus dans les précédents tutoriels.</p>
-<div id="f5cc4a6e" class="cell" data-execution_count="1">
+<div id="df0d1b5d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">1</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"bonjour"</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>([]))</span>
@@ -187,7 +373,7 @@ window.Quarto = {
 <section id="définir-ses-propres-objets" class="level2">
 <h2 class="anchored" data-anchor-id="définir-ses-propres-objets">Définir ses propres objets</h2>
 <p>Regardons comment on peut utiliser l’instruction <code>class</code> pour définir notre objet “citron”.</p>
-<div id="5e8e7388" class="cell" data-execution_count="2">
+<div id="61131863" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -216,7 +402,7 @@ window.Quarto = {
 <section id="la-classe-et-ses-instances" class="level2">
 <h2 class="anchored" data-anchor-id="la-classe-et-ses-instances">La classe et ses instances</h2>
 <p>La <strong>classe</strong> peut être vue comme la <strong>recette qui permet de créer un objet</strong> : elle définit les attributs et les méthodes que possèderont tous les objets définis à partir de cette classe. Définir une classe comme ci-dessus revient simplement à mettre cette recette dans l’environnement Python. Pour créer un objet selon cette classe, il faut l’<strong>instancier</strong>.</p>
-<div id="4a6a12cf" class="cell" data-execution_count="3">
+<div id="91a765bd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>citron2 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"vert"</span>, qte_jus<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -232,7 +418,7 @@ window.Quarto = {
 <section id="accéder-aux-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="accéder-aux-attributs">Accéder aux attributs</h3>
 <p>Une fois que l’objet est instancié, il est possible d’accéder à ses attributs. La syntaxe est simple : <code>instance.attribut</code>.</p>
-<div id="08d127c1" class="cell" data-execution_count="4">
+<div id="7067ce39" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.couleur)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.jus)</span>
@@ -243,7 +429,7 @@ window.Quarto = {
 <section id="modifier-un-attribut" class="level3">
 <h3 class="anchored" data-anchor-id="modifier-un-attribut">Modifier un attribut</h3>
 <p>Modifier un attribut d’une instance est très simple, la syntaxe est : <code>instance.attribut = nouvelle_valeur</code>.</p>
-<div id="3d9923cf" class="cell" data-execution_count="5">
+<div id="f42636c8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>citron2.couleur <span class="op">=</span> <span class="st">"rouge"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -264,11 +450,11 @@ window.Quarto = {
 <section id="appeler-une-méthode" class="level3">
 <h3 class="anchored" data-anchor-id="appeler-une-méthode">Appeler une méthode</h3>
 <p>La syntaxe pour appeler une méthode d’un objet instancié est la suivante : <code>instance.methode(parametres)</code>.</p>
-<div id="821a19ec" class="cell" data-execution_count="6">
+<div id="7abe92a2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>On peut faire deux remarques sur cette syntaxe. La première est qu’<strong>une méthode est une fonction <em>attachée</em> à une instance d’un objet</strong>. Contrairement aux fonctions définies via l’instruction <code>def</code>, les méthodes n’ont pas d’existence propre.</p>
-<div id="fa07e4fb" class="cell" data-execution_count="7">
+<div id="4b21a06c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>La seconde remarque est qu’<strong>on ne spécifie plus le paramètre <code>self</code> lorsqu’on manipule une instance</strong>. L’instance est devenue le <code>self</code> (ou plutôt <em>un</em> self) elle-même. Le lien entre la méthode et son instance est déjà fait, puisqu’on ne peut pas utiliser la méthode sans appeler l’instance auparavant.</p>
@@ -276,7 +462,7 @@ window.Quarto = {
 <section id="agir-sur-les-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="agir-sur-les-attributs">Agir sur les attributs</h3>
 <p>Tout l’intérêt des méthodes est qu’elles peuvent accéder aux attributs, et ainsi réaliser des opérations à partir de ceux-ci, mais également les modifier. Reprenons notre exemple pour illustrer cette possibilité.</p>
-<div id="622022ec" class="cell" data-execution_count="8">
+<div id="e003d4a4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
@@ -295,7 +481,7 @@ window.Quarto = {
 <li><p>le fonctionnement en continu d’une application web. Une telle application doit garder des choses en mémoire pour fournir à l’utilisateur une expérience fluide : le fait que l’utilisateur se soit connecté, son historique, etc. Là encore, la plupart des <em>frameworks</em> web (<code>Django</code>, <code>Flask</code>..) reposent sur de la POO.</p></li>
 </ul>
 <p>Dans le même temps, le fait d’utiliser des objets qui gardent en mémoire un état peut <strong>limiter la reproductibilité des analyses</strong>. Pour illustrer cela, revenons à l’exemple du tutoriel : exécutez plusieurs fois d’affilée la cellule suivante.</p>
-<div id="21b01c72" class="cell" data-execution_count="9">
+<div id="32b82712" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -318,10 +504,10 @@ window.Quarto = {
 <li><p>9/ Peut-on modifier un attribut avec une méthode ? Peut-on modifier un attribut en dehors d’une méthode ?</p></li>
 <li><p>10/ Quand utilise-t-on généralement la POO ?</p></li>
 </ul>
-<div id="4a0a7762" class="cell" data-execution_count="10">
+<div id="54592cf5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a3194a54" class="cell" data-execution_count="11">
+<div id="9d4c715d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">3</span><span class="op">-</span><span class="dv">33</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -336,7 +522,7 @@ window.Quarto = {
 <li><p>rajouter une méthode qui affiche “La masse du citron est x grammes.”</p></li>
 </ul>
 <p>Instanciez ensuite un nouveau citron est vérifiez que tout fonctionne comme prévu.</p>
-<div id="6b4a3405" class="cell" data-execution_count="12">
+<div id="2725e4ed" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -353,10 +539,10 @@ window.Quarto = {
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.jus <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.jus <span class="op">-</span> quantite)  <span class="co"># évite toute valeur négative de `jus`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ca9483c6" class="cell" data-execution_count="13">
+<div id="839f696e" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="863b5be5" class="cell" data-execution_count="14">
+<div id="e3c76e54" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">37</span><span class="op">-</span><span class="dv">60</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -382,10 +568,10 @@ window.Quarto = {
 </ul></li>
 </ul>
 <p>Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.</p>
-<div id="3796c1fb" class="cell" data-execution_count="15">
+<div id="de0805d8" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="894214b7" class="cell" data-execution_count="16">
+<div id="1cdc81b1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">64</span><span class="op">-</span><span class="dv">119</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -723,25 +909,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
