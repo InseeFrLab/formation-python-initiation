@@ -345,15 +345,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="import-de-module">Import de module</h3>
 <p>Pour pouvoir exploiter les fonctions d’un module et les différents modules qui constituent un <em>package</em>, il nous faut en premier lieu les importer.</p>
 <p>La syntaxe est très simple, illustrons là à travers un exemple.</p>
-<div id="c095df68" class="cell" data-execution_count="1">
+<div id="b7041a56" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>random.randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>7</code></pre>
+</div>
 </div>
 <p>Nous avons importé le module <code>random</code> (complet) de la librairie standard de <code>Python</code> via l’instruction <code>import</code>. Ensuite, nous avons fait appel à la fonction <code>randint</code> contenue dans le module <code>random</code>, qui renvoie un nombre aléatoire entre <code>a</code> et <code>b</code> ses paramètres.</p>
 <p>On aurait pu également importer <em>seulement</em> la fonction <code>randint</code> en utilisant la syntaxe <code>from module import fonction</code>. Il n’est alors plus nécessaire de spécifier le nom du module lorsqu’on appelle la fonction.</p>
-<div id="cd6986b0" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="86c2f889" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>93</code></pre>
+</div>
 </div>
 <p>Notons qu’une fois qu’un import est effectué, le module importé est disponible pour toute la durée de la session <code>Python</code>. Il n’y a donc pas besoin d’importer le module avant chaque utilisation d’une de ses fonctions, une fois au début de son notebook ou script suffit.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Trop d'imports tue l'import">
@@ -378,29 +384,42 @@ Trop d’imports tue l’import
 <h3 class="anchored" data-anchor-id="import-de-package">Import de <em>package</em></h3>
 <p>Un <em>package</em> est simplement une collection de modules, structurée selon une arborescence. La syntaxe pour importer un <em>package</em> est identique à celle pour importer un module.</p>
 <p>Par exemple, regardons à nouveau comment utiliser la fonction <code>randint</code>, mais cette fois celle du package <code>numpy</code> (qui fait la même chose).</p>
-<div id="406c3647" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1391f6f8" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="abfde71b" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>numpy.random.randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5ffe7391" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>numpy.random.randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>42</code></pre>
+</div>
 </div>
 <p>On a importé le package <code>numpy</code>, qui nous a permis d’accéder via son module <code>random</code> à la fonction <code>randint</code>. Là encore, on aurait pu importer directement la fonction.</p>
-<div id="bbdbb238" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.random <span class="im">import</span> randint</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="92250239" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.random <span class="im">import</span> randint</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="88e71730" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4a750a26" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>randint(<span class="dv">0</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>20</code></pre>
+</div>
 </div>
 <p>En pratique, la première syntaxe est préférable : il est toujours plus lisible de montrer explicitement d’où vient la fonction que l’on appelle. Pour réduire la verbosité, il est fréquent de donner un <strong><em>alias</em></strong> aux packages que l’on importe. Voici les trois plus fréquents, que l’on rencontrera très souvent dans les tutoriels du prochain chapitre sur la manipulation de données.</p>
-<div id="fba297b1" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="771cfb2e" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>On peut alors utiliser ces <em>alias</em> pour appeler des modules et des fonctions.</p>
-<div id="e3cf7efc" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, np.sin(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8a86263a" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, np.sin(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-9-output-1.png" width="590" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="installation-de-packages" class="level3">
@@ -411,18 +430,35 @@ Trop d’imports tue l’import
 <li><p>les autres packages “tiers” sont développés par la communauté des utilisateurs de <code>Python</code>, et doivent être installés pour pouvoir être utilisés. C’est notamment le cas de <code>numpy</code> et <code>pandas</code>. Dans notre cas, nous n’avons pas eu à les installer car l’environnement fourni pour la formation contient déjà l’ensemble des packages nécessaires pour exécuter les différents chapitres.</p></li>
 </ul>
 <p>Illustrons l’installation de package à travers le package <a href="https://pypi.org/project/emoji/">emoji</a>, qui permet de représenter des émoticônes dans les sorties de <code>Python</code>. Pour le coup, celui-ci n’est pas encore installé ; essayer de l’importer produit une <code>ModuleNotFoundError</code>.</p>
-<div id="7e409b44" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> emoji</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0935f9ef" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> emoji</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>ModuleNotFoundError: No module named 'emoji'</code></pre>
+</div>
 </div>
 <p>Pour installer un package, la commande est simple : <code>pip install nom_du_package</code>. Sans rentrer dans les détails, <code>pip</code> est un gestionnaire de packages, installé avec <code>Python</code>, qui s’utilise en ligne de commande (i.e.&nbsp;dans un terminal). Pour pouvoir envoyer une commande au terminal depuis un notebook Jupyter, on rajoute un <code>!</code> devant la commande.</p>
-<div id="8147c314" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install emoji</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b13d50e7" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install emoji</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting emoji
+  Downloading emoji-2.10.0-py2.py3-none-any.whl.metadata (5.3 kB)
+Downloading emoji-2.10.0-py2.py3-none-any.whl (457 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0.0/457.9 kB ? eta -:--:--   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺ 450.6/457.9 kB 14.5 MB/s eta 0:00:01   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 457.9/457.9 kB 12.8 MB/s eta 0:00:00
+Installing collected packages: emoji
+Successfully installed emoji-2.10.0
+
+[notice] A new release of pip is available: 23.0.1 -&gt; 23.3.2
+[notice] To update, run: pip install --upgrade pip</code></pre>
+</div>
 </div>
 <p>Il est à présent possible d’importer le package et d’utiliser ses fonctions.</p>
-<div id="691f518e" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> emoji</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(emoji.emojize(<span class="st">'Python est :thumbs_up:'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="695fc30c" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> emoji</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(emoji.emojize(<span class="st">'Python est :thumbs_up:'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Python est 👍</code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="pip et PyPI">
 <div class="callout-header d-flex align-content-center">
@@ -447,8 +483,8 @@ pip et PyPI
 <p>Pour pouvoir lire et écrire des fichiers avec <code>Python</code>, il nous faut d’abord comprendre comment ceux-ci sont représentés sur le système de fichiers (<em>file system</em>) local, et comment <code>Python</code> interagit avec ce dernier.</p>
 <p><strong>Le module <code>pathlib</code></strong></p>
 <p>Pour ce faire, nous allons utiliser de manière répétée le module <code>pathlib</code> et en particulier la classe <code>Path</code>. Ce module permet d’interagir avec le système de fichiers sous forme d’objets, en manipulant des attributs et leurs méthodes. Pas de panique, nous avons vu tout ce qu’il nous fallait savoir à ce propos dans le précédent tutoriel.</p>
-<div id="e5fcfe93" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6f4a53ff" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Propriétés d’un fichier</strong></p>
 <p>Un fichier a deux propriétés :</p>
@@ -457,17 +493,33 @@ pip et PyPI
 <li><p>un <strong>chemin</strong> (<em>path</em>), qui spécifie sa localisation dans le système de fichiers.</p></li>
 </ul>
 <p>A titre d’exemple, regardons les fichiers qui se trouvent dans notre répertoire courant (par défaut, le dossier dans lequel se trouve ce notebook). La méthode à utiliser s’appelle <code>cwd</code>, pour <em>current working directory</em>.</p>
-<div id="25331f53" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Path.cwd()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="795e3a52" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Path.cwd()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files')</code></pre>
+</div>
 </div>
 <p>Le chemin de notre répertoire courant est contenu dans un objet <code>PosixPath</code>, ce qui signifie simplement que <code>pathlib</code> a compris que nous étions sur un environnement de type Unix (les serveurs du SSP Cloud sont sous Linux). Si vous exécutiez ce notebook en local sur un ordinateur Windows, l’objet serait <code>WindowsPath</code>. Concrètement, cela ne change pas grand chose pour vous mais c’est en fait assez important : les systèmes de fichiers n’utilisent pas les mêmes conventions entre les différents environnements (ex : les séparateurs entre dossiers dans un chemin ne sont pas les mêmes), mais <code>pathlib</code> vous permet d’interagir avec ces différents systèmes de manière harmonisée.</p>
 <p>Maintenant, listons tous les fichiers contenus dans notre répertoire courant. On utilise pour cela une seconde méthode <code>glob</code> qui va simplement renvoyer tous les fichiers dont le nom a une certaine structure. Par exemple, <code>.glob('*.txt')</code> va récupérer tous les fichiers dont l’extension est <code>.txt</code> et <code>.glob('test.*')</code> va récupérer tous les fichiers dont le nom est <code>test</code>, quelle que soit leur extension. Ici, on récupère tous les fichiers en utilisant des <em>wildcards</em> <code>*</code> aux deux positions.</p>
 <p>Cette méthode renvoie un objet un peu spécial (un <em>générateur</em>). Si vous vous rappelez bien, on avait déjà rencontré le même cas avec la fonction <code>range</code>. Il suffit d’appeler la fonction <code>list</code> sur le tout pour afficher les résultats de manière lisible.</p>
-<div id="eb829cf4" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Path.cwd().glob(<span class="st">'*.*'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7fd6d3ea" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Path.cwd().glob(<span class="st">'*.*'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>&lt;generator object Path.glob at 0x7feb291a3a70&gt;</code></pre>
 </div>
-<div id="6d3e61b3" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(Path.cwd().glob(<span class="st">'*.*'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="60f9fa5b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(Path.cwd().glob(<span class="st">'*.*'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>[PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/write_list.py'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/solutions.py'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/normalisation.py'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/notes.txt'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/gamme.txt'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/tutorial.ipynb'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/tutorial.qmd'),
+ PosixPath('/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/notes_clean.txt')]</code></pre>
+</div>
 </div>
 <p>On retrouve notre notebook, un fichier qui contient les solutions des exercices du tutoriel, et un certain nombre de fichiers texte qui vont servir d’exemples dans la suite du tutoriel. Si l’on prend le notebook par exemple, on distingue bien :</p>
 <ul>
@@ -485,13 +537,19 @@ pip et PyPI
 <p>En pratique, ce qui nous intéresse est de pouvoir constituer nos propres chemins – qu’ils soient absolus ou relatifs au répertoire courant – afin de spécifier où se trouvent les fichiers que nous souhaitons lire ou bien où doivent se trouver les fichiers que l’on souhaite écrire.</p>
 <p><code>pathlib</code> offre une syntaxe très intuitive pour constituer des chemins, très similaire à la concaténation des chaînes de caractères que nous avons déjà vue. Au lieu d’un <code>+</code>, on va cette fois utiliser un <code>/</code> pour concaténer les différentes parties d’un chemin.</p>
 <p>Par exemple, essayons de reconstruire le chemin complet de ce notebook. On peut commencer par trouver le chemin du <em>home</em> directory, qui est le dossier standard dans lequel se trouvent tous les fichiers de l’utilisateur.</p>
-<div id="96d6aed2" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Path.home()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d2ba196f" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Path.home()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>PosixPath('/home/runner')</code></pre>
+</div>
 </div>
 <p>On peut alors concaténer les différents sous-dossier et le nom de fichier du notebook pour obtenir le chemin complet vers celui-ci.</p>
-<div id="3507e29a" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>path_nb <span class="op">=</span> Path.home() <span class="op">/</span> <span class="st">'work'</span> <span class="op">/</span> <span class="st">'formation'</span> <span class="op">/</span> <span class="st">'tutorial.ipynb'</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>path_nb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c150023f" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>path_nb <span class="op">=</span> Path.home() <span class="op">/</span> <span class="st">'work'</span> <span class="op">/</span> <span class="st">'formation'</span> <span class="op">/</span> <span class="st">'tutorial.ipynb'</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>path_nb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>PosixPath('/home/runner/work/formation/tutorial.ipynb')</code></pre>
+</div>
 </div>
 <p>On retrouve bien exactement le même chemin que celui obtenu en listant les fichiers présents dans le répertoire courant.</p>
 <p><strong>Plus sur <code>pathlib</code></strong></p>
@@ -510,10 +568,13 @@ pip et PyPI
 <h3 class="anchored" data-anchor-id="ouvrir-un-fichier">Ouvrir un fichier</h3>
 <p>Demander à <code>Python</code> d’ouvrir un fichier revient à ouvrir une connexion entre l’environnement <code>Python</code> sur lequel vous êtes et le fichier. Tant que cette connexion est ouverte, il est possible de manipuler le fichier.</p>
 <p>Pour ouvrir un fichier, on utilise la fonction <code>open</code>. On va par exemple ouvrir le fichier <code>gamme.txt</code> qui a été mis dans le répertoire courant.</p>
-<div id="ec763647" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>path_gamme <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">'gamme.txt'</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>file_in <span class="op">=</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>file_in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6f52406e" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>path_gamme <span class="op">=</span> Path.cwd() <span class="op">/</span> <span class="st">'gamme.txt'</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>file_in <span class="op">=</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>file_in</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>&lt;_io.TextIOWrapper name='/home/runner/work/formation-python-initiation/formation-python-initiation/source/manipulation/modules-files/gamme.txt' mode='r' encoding='UTF-8'&gt;</code></pre>
+</div>
 </div>
 <p>La fonction <code>open</code> renvoie un objet de type <code>_io.TextIOWrapper</code>, qui spécifie le <strong>mode d’encodage</strong> du fichier et le <strong>mode d’ouverture</strong>.</p>
 <p>L’encodage et le décodage sont des sujets techniques, que nous n’aborderons pas dans ce tutoriel. Retenons simplement que le mode d’encodage par défaut est l’<code>UTF-8</code>, et qu’il n’y a jamais vraiment de bonne raison de choisir un autre mode.</p>
@@ -524,74 +585,117 @@ pip et PyPI
 <li><p><code>a</code> : <strong>appending</strong>. Ce mode ne permet que de rajouter des lignes à la fin d’un fichier existant.</p></li>
 </ul>
 <p>Une fois le fichier ouvert, on peut réaliser des opérations sur ce fichier à l’aide de méthodes attachées à l’objet qui le représente. On verra dans la section suivante ce que fait la méthode <code>readlines</code>.</p>
-<div id="b0092430" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>file_in.readlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="476cac70" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>file_in.readlines()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>['do\n', 're\n', 'mi\n', 'fa\n', 'sol\n', 'la\n', 'si']</code></pre>
+</div>
 </div>
 <p>Une fois les manipulations terminées, on ferme la connexion avec la méthode <code>close</code>. Il n’est alors plus possible de manipuler le fichier.</p>
-<div id="1bd54d55" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>file_in.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="25967069" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>file_in.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>En pratique, on oublie facilement de fermer la connexion à un fichier, ce qui peut créer des erreurs pénibles. Il existe une syntaxe qui permet d’éviter ce problème en utilisant un <strong>context manager</strong> qui gère toute la connexion pour nous.</p>
-<div id="2ff8c375" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> file_in.readlines()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>lines</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="76d170da" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> file_in.readlines()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>lines</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>['do\n', 're\n', 'mi\n', 'fa\n', 'sol\n', 'la\n', 'si']</code></pre>
+</div>
 </div>
 <p>Cette syntaxe est beaucoup plus lisible : grâce à l’indentation, on voit clairement les opérations qui sont effectuées tant que le fichier est ouvert, et ce dernier est automatiquement fermé dès lors que l’on revient au niveau initial d’indentation. On préférera toujours utiliser cette syntaxe si possible, c’est une bonne pratique de programmation.</p>
 </section>
 <section id="lire-un-fichier" class="level3">
 <h3 class="anchored" data-anchor-id="lire-un-fichier">Lire un fichier</h3>
 <p>Une fois un fichier ouvert, on peut vouloir lire son contenu. Il existe différentes manières de faire. Une méthode simple et élégante est de parcourir le fichier à l’aide d’une boucle, ce qui est rendu possible par le fait que l’objet <code>Python</code> représentant le fichier est <strong>itérable</strong>.</p>
-<div id="49482dfa" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> file_in:</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0d3a0381" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> file_in:</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>do
+
+re
+
+mi
+
+fa
+
+sol
+
+la
+
+si</code></pre>
+</div>
 </div>
 <p>Dans notre exemple, nous avons simplement affiché les lignes, mais on peut faire de nombreuses choses à partir des données présentes dans le fichier texte : les stocker dans un objet <code>Python</code>, les utiliser pour faire des calculs, ne conserver que les lignes qui répondent à une condition donnée via une instruction <code>if</code>, etc.</p>
 <p>Il existe également des méthodes toutes faites pour lire le contenu d’un fichier. La plus basique est la méthode <code>read</code>, qui retourne l’ensemble du fichier comme une (potentiellement très longue) chaîne de caractères.</p>
-<div id="724d7be1" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    txt <span class="op">=</span> file_in.read()</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="89e28b63" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    txt <span class="op">=</span> file_in.read()</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>'do\nre\nmi\nfa\nsol\nla\nsi'</code></pre>
+</div>
 </div>
 <p>C’est rarement très utile : on préfère en général récupérer individuellement les lignes d’un fichier. La méthode <code>readlines</code> parcourt le fichier complet, et renvoie une liste dont les éléments sont les lignes du fichier, dans l’ordre d’apparition.</p>
-<div id="0b69a3b7" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> file_in.readlines()</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="05f3c466" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path_gamme, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> file_in.readlines()</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>['do\n', 're\n', 'mi\n', 'fa\n', 'sol\n', 'la\n', 'si']</code></pre>
+</div>
 </div>
 <p>Notons que chaque élément de la liste (sauf le dernier) se termine par le caractère spécial <code>\n</code> (“retour à la ligne”) qui marque simplement la fin de chaque ligne dans un fichier texte. C’est la présence (cachée) de ce même caractère à la fin de chaque appel à la fonction <code>print</code> qui fait que l’on revient à la ligne à chaque fois que l’on utilise un <code>print</code>.</p>
 </section>
 <section id="écrire-dans-un-fichier" class="level3">
 <h3 class="anchored" data-anchor-id="écrire-dans-un-fichier">Écrire dans un fichier</h3>
 <p>L’écriture dans un fichier est très simple, elle s’effectue à l’aide de la méthode <code>write</code>. Par exemple, écrivons dans un fichier ligne à ligne les différents éléments contenus dans une liste.</p>
-<div id="9f0578f8" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> [<span class="st">"ceci"</span>, <span class="st">"est"</span>, <span class="st">"un"</span>, <span class="st">"exemple"</span>, <span class="st">"très"</span>, <span class="st">"original"</span>]</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> elem <span class="kw">in</span> ex:</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        file_out.write(elem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="632f1f5c" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> [<span class="st">"ceci"</span>, <span class="st">"est"</span>, <span class="st">"un"</span>, <span class="st">"exemple"</span>, <span class="st">"très"</span>, <span class="st">"original"</span>]</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> elem <span class="kw">in</span> ex:</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        file_out.write(elem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Tout semble s’être passé sans encombre. On peut vérifier que notre fichier a bien été crée via l’explorateur de fichier de <code>Jupyter</code> (sur la gauche) ou bien via la commande <code>ls</code> dans le terminal.</p>
-<div id="c3a26a53" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e2471936" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gamme.txt     notes.txt    solutions.py  tutorial.ipynb  write_list.py
+normalisation.py  notes_clean.txt  test.txt  tutorial.qmd</code></pre>
+</div>
 </div>
 <p>Il est bien là. Vérifions maintenant que son contenu est bien celui que l’on souhaitait.</p>
-<div id="4787b494" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_out:</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(file_out.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7e954c14" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(file_out.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ceciestunexempletrèsoriginal</code></pre>
+</div>
 </div>
 <p>Les différents éléments de notre liste se sont fusionnés en un seul bloc de texte ! C’est parce que, contrairement à la fonction <code>print</code> par exemple, la fonction <code>write</code> n’ajoute pas automatiquement le caractère de retour à la ligne. Il faut l’ajouter manuellement.</p>
-<div id="8fa39517" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> elem <span class="kw">in</span> ex:</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        file_out.write(elem <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_out:</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(file_out.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a5aa9aae" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> elem <span class="kw">in</span> ex:</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>        file_out.write(elem <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(file_out.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ceci
+est
+un
+exemple
+très
+original
+</code></pre>
+</div>
 </div>
 <p>C’est beaucoup mieux.</p>
 <p>Quelques remarques supplémentaires sur l’écriture de fichiers :</p>
@@ -609,13 +713,26 @@ pip et PyPI
 <h3 class="anchored" data-anchor-id="les-scripts-python">Les scripts <code>Python</code></h3>
 <p>Dans un environnement de notebook <code>Jupyter</code> (comme celui dans lequel vous vous trouvez), le code <code>Python</code> est exécuté de manière <strong>interactive</strong>, cellule par cellule. Cela est possible car un <em>kernel</em> (noyau) <code>Python</code> tourne en arrière-plan pendant tout le long de la session d’utilisation du notebook. Cependant, en dehors de <code>Jupyter</code>, le code est généralement écrit et exécuté sous forme de scripts. Un script <code>Python</code> est simplement un fichier texte portant l’extension <code>.py</code> et qui contient une série d’instructions <code>Python</code> qui vont être exécutées linéairement par l’interpréteur <code>Python</code>.</p>
 <p>Le fichier <code>write_list.py</code> reprend une cellule de code vue précédemment. Affichons son contenu.</p>
-<div id="862d7d13" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'write_list.py'</span>, <span class="st">'r'</span>) <span class="im">as</span> script:</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(script.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b56bc41d" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'write_list.py'</span>, <span class="st">'r'</span>) <span class="im">as</span> script:</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(script.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ex = ["ceci", "est", "un", "exemple", "très", "original"]
+
+with open("output_script.txt", "w") as file_out:
+    for elem in ex:
+        file_out.write(elem)
+
+print("Succès !")
+</code></pre>
+</div>
 </div>
 <p>Un script <code>Python</code> s’exécute dans un terminal via la commande <code>python nom_du_script.py</code>. Pour l’exécuter depuis un notebook <code>Jupyter</code>, on rajoute là encore un <code>!</code> en début de ligne.</p>
-<div id="2530235a" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python write_list.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6a286129" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python write_list.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Succès !</code></pre>
+</div>
 </div>
 <p>Le fichier <code>output_script.txt</code> a bien été créé en local (il faut parfois attendre un peu ou actualiser pour qu’il s’affiche) et le message attendu a été imprimé dans la sortie de la console.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Notebook vs. scripts">
@@ -641,19 +758,37 @@ Notebook vs.&nbsp;scripts
 <h3 class="anchored" data-anchor-id="scripts-et-modules">Scripts et modules</h3>
 <p>Comme nous l’avons vu, un <strong>script</strong> est un fichier <code>.py</code> destiné à être exécuté directement. Il contient généralement un flux de travail complet ou une tâche automatisée. Un <strong>module</strong> est également un fichier <code>.py</code>, mais qui contient des définitions de fonctions et/ou de classes destinées à être utilisées par d’autres scripts ou modules. Il n’est pas destiné à être exécuté seul mais importé ailleurs. Au début de ce tutoriel, nous avons utilisé des modules issus de packages écrits par d’autres. Voyons maintenant comment l’on peut écrire nos propres modules et les importer selon les mêmes principes.</p>
 <p>Affichons le contenu du fichier <code>normalisation.py</code> qui nous servira d’exemple.</p>
-<div id="4447e903" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'normalisation.py'</span>, <span class="st">'r'</span>) <span class="im">as</span> module:</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(module.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dca4df75" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'normalisation.py'</span>, <span class="st">'r'</span>) <span class="im">as</span> module:</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(module.read())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>import numpy as np
+
+
+def normalise(x):
+    """Normalise un vecteur de valeurs à une moyenne de 0 et un écart-type de 1."""
+    return (x - np.mean(x)) / np.std(x)
+
+
+if __name__ == "__main__":
+    vec = [2, 4, 6, 8, 10]
+    vec_norm = normalise(vec)
+    print(np.mean(vec), np.var(vec), np.mean(vec_norm), np.var(vec_norm))
+</code></pre>
+</div>
 </div>
 <p>La fonction contenue dans ce module peut être importée comme nous l’avons vu dans ce tutoriel. Notons que le module doit lui même importer les packages/modules nécessaires au bon fonctionnement des fonctions qu’il contient (en l’occurence, <code>numpy</code>).</p>
 <p>Pour importer un module local, on utilise l’instruction <code>from</code> suivie du nom du fichier, sans l’extension.</p>
-<div id="b422d3da" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> normalisation</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>x_norm <span class="op">=</span> normalisation.normalise(x)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="114f3458" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> normalisation</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>x_norm <span class="op">=</span> normalisation.normalise(x)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_norm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-1.41421356 -0.70710678  0.          0.70710678  1.41421356]</code></pre>
+</div>
 </div>
 <p>Enfin, notons qu’un fichier <code>.py</code> peut à la fois servir comme module et comme script. Pour différencier les deux usages, on utilise la variable <code>__name__</code>, qui est définie par défaut par <code>Python</code> dès lors que l’on utilise un fichier <code>.py</code> :</p>
 <ul>
@@ -661,8 +796,11 @@ Notebook vs.&nbsp;scripts
 <li><p>si le fichier est utilisé comme un <strong>script</strong> (ex : <code>python mon_fichier.py</code>), la variable <code>__name__</code> vaut <code>__main__</code></p></li>
 </ul>
 <p>Dans la cellule précédente, le fichier <code>normalisation.py</code> était importé comme un module. Dans ce cas, la variable <code>__name__</code> vaut <code>normalisation</code> et c’est pourquoi le code sous la condition <code>if</code> n’a pas été exécuté. Lorsque le fichier est exécuté comme script, ce code est exécuté.</p>
-<div id="f7783e30" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python normalisation.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8fd95608" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python normalisation.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>6.0 8.0 0.0 0.9999999999999998</code></pre>
+</div>
 </div>
 <p>Il est dont très fréquent de croiser la condition <code>if __name__ == "__main__"</code> dans les scripts <code>Python</code>, qui distingue l’usage comme module et l’usage comme script.</p>
 </section>
@@ -685,12 +823,12 @@ Notebook vs.&nbsp;scripts
 <li><p>11/ Pourquoi peut-on parcourir les lignes d’un fichier à l’aide d’une boucle ?</p></li>
 <li><p>12/ Quelle est la différence entre un module et un script ?</p></li>
 </ul>
-<div id="3854cb19" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="de11acab" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8606f58f" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">3</span><span class="op">-</span><span class="dv">39</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d614750e" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">3</span><span class="op">-</span><span class="dv">39</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="moyenne-et-écart-type-des-notes-obtenues-à-un-examen" class="level3">
@@ -703,12 +841,12 @@ Notebook vs.&nbsp;scripts
 <li><p>il faudra convertir les notes au format numérique pour pouvoir leur appliquer des fonctions mathématiques</p></li>
 <li><p>vous pouvez utiliser les fonctions du package <code>numpy</code> pour calculer les statistiques demandées</p></li>
 </ul>
-<div id="9f299c69" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6efdb2d4" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2266fece" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">43</span><span class="op">-</span><span class="dv">54</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6d909925" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">43</span><span class="op">-</span><span class="dv">54</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="admis-ou-recalé" class="level3">
@@ -724,12 +862,12 @@ Notebook vs.&nbsp;scripts
 <pre><code>5 recalé
 5 recalé
 18 admis</code></pre>
-<div id="5570ca2f" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bdc6aada" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="79518503" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">58</span><span class="op">-</span><span class="dv">70</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d3eacae0" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">58</span><span class="op">-</span><span class="dv">70</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="retardataires" class="level3">
@@ -743,15 +881,15 @@ Notebook vs.&nbsp;scripts
 <p>Chaque élève aura une note finale égale à la note obtenue moins le nombre de jours de retard. Une note ne pouvant être négative, elle sera remplacée par 0.</p>
 <p>Les informations nécessaires ont été placées dans une liste dans la cellule suivante. A l’aide d’une boucle sur cette liste, <strong>ajouter</strong> (sans réécrire complètement le fichier !). les notes au fichier <code>notes_clean.txt</code> (sans la mention).</p>
 <p>NB : si vous avez écrasé le contenu d’un fichier par erreur, vous pouvez retrouver les fichiers propres sur le <a href="https://github.com/InseeFrLab/formation-python-initiation/tree/main/source/manipulation/modules-files">dépôt GitHub associé à la formation</a>.</p>
-<div id="d2242705" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>supp <span class="op">=</span> [(<span class="dv">16</span>, <span class="dv">3</span>), (<span class="dv">11</span>, <span class="dv">1</span>), (<span class="dv">3</span>, <span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="01524f88" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>supp <span class="op">=</span> [(<span class="dv">16</span>, <span class="dv">3</span>), (<span class="dv">11</span>, <span class="dv">1</span>), (<span class="dv">3</span>, <span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="da1eaef9" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3aaa5646" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="32cc409f" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">74</span><span class="op">-</span><span class="dv">80</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6afc550a" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">74</span><span class="op">-</span><span class="dv">80</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scanner-des-fichiers" class="level3">
@@ -762,12 +900,12 @@ Notebook vs.&nbsp;scripts
 <li><p>faire une boucle qui parcourt ces chemins et ouvre chaque fichier séquentiellement</p></li>
 <li><p>pour chaque fichier, faire un test d’appartenance (rappel de la syntaxe : <code>if pattern in string: ...</code>) pour tester si le fichier contient le mot “sol”. Si c’est le cas, imprimer son chemin absolu dans la console (seul le chemin du fichier <code>gamme.txt</code> devrait donc apparaître)</p></li>
 </ul>
-<div id="764c8fc1" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ca15f103" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5c93354e" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">84</span><span class="op">-</span><span class="dv">92</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8445da3a" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécuter cette cellule pour afficher la solution</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load <span class="op">-</span>r <span class="dv">84</span><span class="op">-</span><span class="dv">92</span> solutions.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
