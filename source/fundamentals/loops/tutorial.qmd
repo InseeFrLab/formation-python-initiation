@@ -276,6 +276,7 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 Essayer de prédire ce que vont produire les boucles `while` suivantes, et vérifiez vos résultats.
 
 ```{python}
+#| eval: false
 # 1.
 i = 0
 while i <= 10:
