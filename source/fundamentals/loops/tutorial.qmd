@@ -166,16 +166,14 @@ Dans une boucle `while` au contraire, le critère d'arrêt est donné par une co
 Que se passe-t-il si l'on oublie d'incrémenter `i` ? Le critère d'arrêt n'est jamais atteint, la boucle est donc infinie, et il faut utiliser le bouton "Stop" (carré noir) de Jupyter pour arrêter le programme en cours. Vérifions cela en incrémentant la mauvaise variable.
 
 ```{python}
+#| eval: false
 i = 1
 j = 1
 while i <= 5:
     j = j + 1
 ```
 
-```{python}
-print(i)
-print(j)
-```
+Ainsi, lorsqu'on pressent qu'une boucle `while` met trop longtemps à tourner, il faut considérer l'hypothèse que l'on soit tombé dans une boucle infinie, et bien vérifier que le critère d'arrêt est atteignable.
 
 ### L'instruction `break`
 
@@ -185,6 +183,7 @@ Une manière alternative de spécifier un critère d'arrêt est d'utiliser l'ins
 Illustrons son fonctionnement à l'aide d'un exemple. La première ligne crée une boucle infinie, dans la mesure où, par définition, `True` est toujours évalué à `True`. Le programme demande ensuite à l'utilisateur de taper un prénom, et ce infiniment jusqu'à que l'utilisateur tape le prénom attendu. Dans ce cas seulement, l'instruction `break` est atteinte et la boucle s'arrête. Le message "Bienvenue <votre_prenom>" s'affiche enfin, dans la mesure où le deuxième `print` n'est pas inclus dans la boucle.
 
 ```{python}
+#| eval: false
 votre_prenom = "Romain"
 
 while True:
@@ -220,6 +219,7 @@ L'instruction `continue` permet de passer à l'itération suivante de la boucle.
 Agrémentons l'exemple précédent pour illustrer son fonctionnement. Tant qu'un prénom différent de celui attendu est rentré, l'instruction `continue` est évaluée, et le programme continue à demander un prénom à l'utilisateur. Lorsque le bon prénom est rentré, le programme demande à l'utilisateur de rentrer un mot de passe. Si le mot de passe est celui attendu, l'instruction `break` est atteinte et exécutée, la boucle s'arrête. En cas de mauvais mot de passe en revanche, la boucle redémarre au début du bloc d'exécution, il faut donc de nouveau rentrer un prénom avant le mot de passe.
 
 ```{python}
+#| eval: false
 votre_prenom = ""
 
 while True:
