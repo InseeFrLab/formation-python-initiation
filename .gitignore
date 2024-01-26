@@ -4,6 +4,7 @@ slides/background.svg
 slides/favicon-32x32.png
 slides/logo.svg
 _site/
+site_libs/
 
 *.ipynb
 

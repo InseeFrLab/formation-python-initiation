@@ -1,8 +1,5 @@
 ---
 title: Projet 2 - Interaction avec des APIs
-execute:
-    echo: true
-    eval: false
 ---
 
 ## Contexte du projet

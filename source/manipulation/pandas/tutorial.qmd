@@ -1,8 +1,5 @@
 ---
 title: "Traiter des données tabulaires avec Pandas"
-execute:
-    echo: true
-    eval: false
 ---
 
 

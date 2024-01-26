@@ -2,10 +2,6 @@
 title: "SSPy - Formation d'initiation à Python dans le SSP"
 ---
 
-Site companion de la formation SSPy - Initiation à Python dans le SSP. 
-
-Liens utiles :
-
 - [slides d'introduction](https://inseefrlab.github.io/formation-python-initiation/slides/#/title-slide)
 
 - [déploiement via le SSP Cloud](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D)

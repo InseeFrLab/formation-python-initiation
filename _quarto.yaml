@@ -37,3 +37,9 @@ format:
     toc: true
     code-annotations: hover
     code-link: true
+    execute:
+      echo: true
+      eval: true
+      output: true
+      warning: true
+      error: true
