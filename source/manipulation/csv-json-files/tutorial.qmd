@@ -291,6 +291,7 @@ r_dict["features"][1]
 
 - 11/ Un fichier dont l'extension est .json contient-il nécessairement du JSON ?
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -300,6 +301,7 @@ r_dict["features"][1]
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-39 solutions.py
 ```
+:::
 
 ### Exercice : trier les clés lors de l'écriture d'un JSON
 
@@ -312,6 +314,7 @@ Indice : la fonction `dump` du module `json` contient un paramètre permettant d
 data = {"id": 1, "nom": "Isidore", "age": 29}
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -321,6 +324,7 @@ data = {"id": 1, "nom": "Isidore", "age": 29}
 # Exécuter cette cellule pour afficher la solution
 %load -r 43-48 solutions.py
 ```
+:::
 
 ### Exercice : convertir un objet non-sérialisable en JSON
 
@@ -347,6 +351,7 @@ mon_citron = Citron(couleur="jaune", qte_jus=45)
 json.dumps(mon_citron)
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -356,6 +361,7 @@ json.dumps(mon_citron)
 # Exécuter cette cellule pour afficher la solution
 %load -r 52-64 solutions.py
 ```
+:::
 
 ### Exercice : changer le délimiteur d'un fichier CSV
 
@@ -368,6 +374,7 @@ Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la 
 
 - générer un nouveau fichier CSV `nat2020_corr.csv` contenant les mêmes données, mais cette fois avec la virgule comme séparateur.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -377,6 +384,7 @@ Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la 
 # Exécuter cette cellule pour afficher la solution
 %load -r 68-81 solutions.py
 ```
+:::
 
 ### Exercice : extraire et sauvegarder des données issues d'une API
 
@@ -400,6 +408,7 @@ Allee de la Comedie,Villeneuve-d'Ascq,59009,3.162808,50.64628
 Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -409,6 +418,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 # Exécuter cette cellule pour afficher la solution
 %load -r 85-99 solutions.py
 ```
+:::
 
 ### Exercice : découper la base des départements par régions
 
@@ -427,6 +437,7 @@ Voici la liste des opérations à effectuer :
 
     - ouvrir ce fichier CSV en mode `append` pour écrire la ligne à la fin du fichier
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -436,6 +447,7 @@ Voici la liste des opérations à effectuer :
 # Exécuter cette cellule pour afficher la solution
 %load -r 103-117 solutions.py
 ```
+:::
 
 ### Exercice : rajouter des *headers* manquants
 
@@ -454,6 +466,7 @@ Voici la liste des opérations à effectuer :
 
     - ouvrir le fichier CSV en écriture pour le réinitialiser, écrire le header en premier lieu, puis écrire les données que l'on a au préalable sauvegardées dans une liste de liste
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -463,3 +476,4 @@ Voici la liste des opérations à effectuer :
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-141 solutions.py
 ```
+:::

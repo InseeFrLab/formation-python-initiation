@@ -217,6 +217,7 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 
 - 10/ Quand utilise-t-on généralement la POO ?
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -226,6 +227,7 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-33 solutions.py
 ```
+:::
 
 ### Exercice : de la masse au jus
 
@@ -260,6 +262,7 @@ class Citron:
             self.jus = max(0, self.jus - quantite)  # évite toute valeur négative de `jus`
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -269,6 +272,7 @@ class Citron:
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-60 solutions.py
 ```
+:::
 
 ### Exercice : comptes bancaires
 
@@ -299,6 +303,7 @@ Implémenter une classe `Compte` avec :
     
 Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -308,3 +313,4 @@ Créer deux clients et tester que les différentes fonctionnalités à implémen
 # Exécuter cette cellule pour afficher la solution
 %load -r 64-119 solutions.py
 ```
+:::

@@ -450,6 +450,7 @@ Afficher le type de x lorsque :
 # Exécuter cette cellule pour afficher la solution
 %load -r 2-9 solutions.py
 ```
+:::
 
 ### Longueurs de chaînes
 
@@ -475,6 +476,7 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 # Exécuter cette cellule pour afficher la solution
 %load -r 12-16 solutions.py
 ```
+:::
 
 ### Formattage des codes postaux
 
@@ -500,6 +502,7 @@ Que concluez-vous ?
 # Exécuter cette cellule pour afficher la solution
 %load -r 19-26 solutions.py
 ```
+:::
 
 ### Comptage de lettres
 
@@ -520,6 +523,7 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 # Exécuter cette cellule pour afficher la solution
 %load -r 29-30 solutions.py
 ```
+:::
 
 ### Détection de lettres
 
@@ -539,6 +543,7 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 # Exécuter cette cellule pour afficher la solution
 %load -r 33-34 solutions.py
 ```
+:::
 
 ### Suppression d'espaces dans une chaîne
 
@@ -557,6 +562,7 @@ a = "    Un string très mal formatté.         "
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-38 solutions.py
 ```
+:::
 
 ### Echappement de caractères
 
@@ -601,6 +607,7 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 # Exécuter cette cellule pour afficher la solution
 %load -r 44-48 solutions.py
 ```
+:::
 
 ### Composition de chaînes de caractères
 
@@ -624,6 +631,7 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 # Exécuter cette cellule pour afficher la solution
 %load -r 51-56 solutions.py
 ```
+:::
 
 ### Les `f-strings`
 
@@ -654,3 +662,4 @@ En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/
 # Exécuter cette cellule pour afficher la solution
 %load -r 59-92 solutions.py
 ```
+:::

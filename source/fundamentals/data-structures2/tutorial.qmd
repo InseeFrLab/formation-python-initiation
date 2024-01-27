@@ -297,6 +297,7 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 - 7/ Pourquoi les sets sont-ils plus pertinents que les listes pour réaliser des tests d'appartenance ?
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -307,6 +308,7 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-20 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -341,6 +343,7 @@ resultats = {
 ```
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -351,12 +354,14 @@ resultats = {
 # Exécuter cette cellule pour afficher la solution
 %load -r 24-38 solutions.py
 ```
+:::
 
 ### Exercice
 
 Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de compter le nombre d'éléments d'une séquence. Est-ce que cette fonction fonctionne avec les dictionnaires ? Que compte-t-elle alors ?
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -367,6 +372,7 @@ Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de 
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-50 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -379,6 +385,7 @@ Nous avons vu qu'on pouvait supprimer une clé d'un dictionnaire de deux manièr
 Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces deux manières de supprimer une clé d'un dictionnaire ? N'hésitez pas à expérimenter avec des exemples de votre choix.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -389,12 +396,14 @@ Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces de
 # Exécuter cette cellule pour afficher la solution
 %load -r 54-65 solutions.py
 ```
+:::
 
 ### Exercice
 
 En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'un dictionnaire renvoie la valeur associée à cette clé, proposez une méthode pour renommer une clé d'un dictionnaire en une seule opération.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -405,6 +414,7 @@ En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-73 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -424,6 +434,7 @@ Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédiction
 - `'chats' in animaux`
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -434,12 +445,14 @@ Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédiction
 # Exécuter cette cellule pour afficher la solution
 %load -r 77-91 solutions.py
 ```
+:::
 
 ### Exercice
 
 Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait pour supprimer une clé inexistante d'un dictionnaire. A l'aide de vos nouvelles connaissances sur les tests d'appartenance, pouvez-vous imaginer une méthode (sans nécessairement l'implémenter) qui permettrait de traiter ce cas sans erreur ?
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -450,6 +463,7 @@ Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait 
 # Exécuter cette cellule pour afficher la solution
 %load -r 95-104 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -464,6 +478,7 @@ Construisez une liste des caractères uniques se trouvant dans cette chaîne, cl
 Indice : la procédure est semblable au fait de supprimer les doublons d'une liste.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -474,6 +489,7 @@ Indice : la procédure est semblable au fait de supprimer les doublons d'une lis
 # Exécuter cette cellule pour afficher la solution
 %load -r 108-111 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -488,6 +504,7 @@ Question 1 : trouvez les caractères qui apparaissent à la fois dans les deux c
 Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux textes.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -498,6 +515,7 @@ Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux 
 # Exécuter cette cellule pour afficher la solution
 %load -r 115-126 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -514,6 +532,7 @@ print(x[:10])
 ```
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -524,6 +543,7 @@ print(x[:10])
 # Exécuter cette cellule pour afficher la solution
 %load -r 130-141 solutions.py
 ```
+:::
 
 
 

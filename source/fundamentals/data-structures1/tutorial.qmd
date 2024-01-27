@@ -330,6 +330,7 @@ Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des m
 - `saisons * 3`
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -340,6 +341,7 @@ Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des m
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-41 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -348,6 +350,7 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 `l = ["do", "re", "re", "re", "fa", "sol", "solsi", "la"]`
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -358,12 +361,14 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 # Exécuter cette cellule pour afficher la solution
 %load -r 45-56 solutions.py
 ```
+:::
 
 ### Exercice
 
 Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`. Quelle est la différence majeure entre les deux méthodes ?
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -374,12 +379,14 @@ Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`.
 # Exécuter cette cellule pour afficher la solution
 %load -r 60-75 solutions.py
 ```
+:::
 
 ### Exercice
 
 Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément de la liste `ma_liste`. A l'aide de la documentation Python ou d'une recherche sur Google, déterminez le comportement par défaut de cette méthode, c'est à dire ce qu'il se passe lorsqu'on ne donne aucun paramètre à la fonction `pop`. Vérifiez que vous observez bien ce comportement à l'aide d'un exemple de votre choix.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -390,6 +397,7 @@ Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément
 # Exécuter cette cellule pour afficher la solution
 %load -r 79-81 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -402,6 +410,7 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 - sur une liste composée d'un mélange d'objets numériques et textuels.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -412,12 +421,14 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 # Exécuter cette cellule pour afficher la solution
 %load -r 85-91 solutions.py
 ```
+:::
 
 ### Exercice
 
 Essayer de créer une liste vide. Vérifiez son type. Quel intérêt cela pourrait-il avoir ?
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -428,6 +439,7 @@ Essayer de créer une liste vide. Vérifiez son type. Quel intérêt cela pourra
 # Exécuter cette cellule pour afficher la solution
 %load -r 95-107 solutions.py
 ```
+:::
 
 ### Exercice
 
@@ -442,6 +454,7 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 - l'entier `c = 5`
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -452,12 +465,14 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 # Exécuter cette cellule pour afficher la solution
 %load -r 111-125 solutions.py
 ```
+:::
 
 ### Exercice
 
 Nous avons vu que les tuples avaient la particularité d'être non-modifiables. Mais est-ce que cette propriété se transfère de manière récursive ? Par exemple, est-ce qu'une liste contenue dans un tuple est-elle même non-modifiable ? Vérifiez à l'aide d'un exemple de votre choix.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -468,12 +483,14 @@ Nous avons vu que les tuples avaient la particularité d'être non-modifiables. 
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-134 solutions.py
 ```
+:::
 
 ### Exercice
 
 Lisez la partie concernant l'agrégation et la dissociation de séquences dans la [documentation Python](https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences). La dissociation est une propriété souvent utilisée en pratique. Vérifiez qu'elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu'à maintenant (chaînes de caractères, listes et tuples).
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -484,6 +501,7 @@ Lisez la partie concernant l'agrégation et la dissociation de séquences dans l
 # Exécuter cette cellule pour afficher la solution
 %load -r 138-145 solutions.py
 ```
+:::
 
 
 

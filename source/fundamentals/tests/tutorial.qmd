@@ -341,6 +341,7 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -350,6 +351,7 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-32 solutions.py
 ```
+:::
 
 ### Exercice : prédiction de résultats de tests
 
@@ -378,6 +380,7 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 - `(not False) or (not True)`
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -387,6 +390,7 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 # Exécuter cette cellule pour afficher la solution
 %load -r 36-45 solutions.py
 ```
+:::
 
 ### Exercice : prédiction de test imbriqué
 
@@ -427,6 +431,7 @@ prédire les résultats du programme :
 
 Vérifiez vos résultats.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -436,6 +441,7 @@ Vérifiez vos résultats.
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-59 solutions.py
 ```
+:::
 
 ### Exercice : trois et pas plus
 
@@ -450,6 +456,7 @@ Ecrire un programme qui réalise les opérations suivantes :
 
 - Réaliser le test à nouveau, il ne devrait plus y avoir d'output.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -459,6 +466,7 @@ Ecrire un programme qui réalise les opérations suivantes :
 # Exécuter cette cellule pour afficher la solution
 %load -r 63-73 solutions.py
 ```
+:::
 
 ### Exercice : le juste prix
 
@@ -477,6 +485,7 @@ La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans
 
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -486,6 +495,7 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 # Exécuter cette cellule pour afficher la solution
 %load -r 77-85 solutions.py
 ```
+:::
 
 ### Exercice : évaluation booléenne d'objets divers
 
@@ -521,6 +531,7 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 
 - `{-1}`
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -530,6 +541,7 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 # Exécuter cette cellule pour afficher la solution
 %load -r 89-98 solutions.py
 ```
+:::
 
 ### Exercice : comparaisons en chaîne
 
@@ -538,6 +550,7 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 
 `5 < 7 <= 8 < 18`
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -547,6 +560,7 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 # Exécuter cette cellule pour afficher la solution
 %load -r 102-109 solutions.py
 ```
+:::
 
 
 ### Exercice : Booléens et langage binaire
@@ -558,6 +572,7 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 
 - utiliser des booléens dans le cadre de calculs mathématiques pour vérifier leur comportement dans ce contexte.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -567,12 +582,14 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-117 solutions.py
 ```
+:::
 
 ### Exercice : comparaisons de *strings*
 
 
 Que renvoient les tests de comparaison de type inégalités appliqués à des chaînes de caractères ? Produire quelques exemples pour tester le comportement.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -582,6 +599,7 @@ Que renvoient les tests de comparaison de type inégalités appliqués à des ch
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-130 solutions.py
 ```
+:::
 
 ### Exercice : tests d'égalité sur les *floats*
 
@@ -593,6 +611,7 @@ Pour comprendre le résultat du test, effectuer le calcul du membre de gauche du
 
 Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalités, qui permettrait de tester l'égalité approchée.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -602,5 +621,6 @@ Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalit
 # Exécuter cette cellule pour afficher la solution
 %load -r 134-146 solutions.py
 ```
+:::
 
 

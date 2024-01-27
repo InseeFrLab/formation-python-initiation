@@ -480,6 +480,7 @@ Il est dont très fréquent de croiser la condition `if __name__ == "__main__"` 
 
 - 12/ Quelle est la différence entre un module et un script ?
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -489,6 +490,7 @@ Il est dont très fréquent de croiser la condition `if __name__ == "__main__"` 
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-39 solutions.py
 ```
+:::
 
 ### Moyenne et écart-type des notes obtenues à un examen 
 
@@ -505,6 +507,7 @@ Indices :
 
 - vous pouvez utiliser les fonctions du package `numpy` pour calculer les statistiques demandées
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -514,6 +517,7 @@ Indices :
 # Exécuter cette cellule pour afficher la solution
 %load -r 43-54 solutions.py
 ```
+:::
 
 ### Admis ou recalé
 
@@ -535,6 +539,7 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 18 admis
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -544,6 +549,7 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 # Exécuter cette cellule pour afficher la solution
 %load -r 58-70 solutions.py
 ```
+:::
 
 ### Retardataires
 
@@ -566,6 +572,7 @@ NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retro
 supp = [(16, 3), (11, 1), (3, 5)]
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -575,6 +582,7 @@ supp = [(16, 3), (11, 1), (3, 5)]
 # Exécuter cette cellule pour afficher la solution
 %load -r 74-80 solutions.py
 ```
+:::
 
 ### Scanner des fichiers
 
@@ -587,6 +595,7 @@ supp = [(16, 3), (11, 1), (3, 5)]
 
 - pour chaque fichier, faire un test d'appartenance (rappel de la syntaxe : `if pattern in string: ...`) pour tester si le fichier contient le mot "sol". Si c'est le cas, imprimer son chemin absolu dans la console (seul le chemin du fichier `gamme.txt` devrait donc apparaître)
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -596,4 +605,5 @@ supp = [(16, 3), (11, 1), (3, 5)]
 # Exécuter cette cellule pour afficher la solution
 %load -r 84-92 solutions.py
 ```
+:::
 

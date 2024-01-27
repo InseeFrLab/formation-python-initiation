@@ -346,6 +346,7 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -355,12 +356,14 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-38 solutions.py
 ```
+:::
 
 ### Fonction puissance
 
 
 Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et renvoie la fonction puissance $x^y$.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -370,6 +373,7 @@ Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et 
 # Exécuter cette cellule pour afficher la solution
 %load -r 42-45 solutions.py
 ```
+:::
 
 ### Prédiction de valeurs retournées par des fonctions
 
@@ -408,6 +412,7 @@ def f9(x, y, z=5):
     return x + y + z
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -417,6 +422,7 @@ def f9(x, y, z=5):
 # Exécuter cette cellule pour afficher la solution
 %load -r 49-65 solutions.py
 ```
+:::
 
 ### Variables globales et variables locales
 
@@ -440,6 +446,7 @@ total = f1(2, 3) + f2(3, 1) + f3(1, 0)
 print(total)
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -449,6 +456,7 @@ print(total)
 # Exécuter cette cellule pour afficher la solution
 %load -r 69-93 solutions.py
 ```
+:::
 
 ### Calculatrice
 
@@ -462,6 +470,7 @@ Ecrire une fonction `calculatrice` qui :
 Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des variables en une seule ligne.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -471,6 +480,7 @@ Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des
 # Exécuter cette cellule pour afficher la solution
 %load -r 97-101 solutions.py
 ```
+:::
 
 ### Dédupliquer une liste
 
@@ -486,6 +496,7 @@ Ecrire une fonction qui :
 Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -495,6 +506,7 @@ Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires e
 # Exécuter cette cellule pour afficher la solution
 %load -r 105-113 solutions.py
 ```
+:::
 
 ### Multiplier les éléments d'une liste
 
@@ -510,6 +522,7 @@ Ecrire une fonction qui :
 - retourne le résultat
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -519,6 +532,7 @@ Ecrire une fonction qui :
 # Exécuter cette cellule pour afficher la solution
 %load -r 117-125 solutions.py
 ```
+:::
 
 ### Variance dans une population et variance dans un échantillon
 
@@ -538,6 +552,7 @@ Pour tenir compte de cette distinction :
 Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction *black box* `var` de la librarie `numpy` (cf. corrigé de l'exercice du tutoriel précédent pour la syntaxe, et voir la [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) de la fonction et en particulier le paramètre `ddof` pour faire varier la méthode de calcul).
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -547,6 +562,7 @@ Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction 
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-158 solutions.py
 ```
+:::
 
 ### Fonctions récursives : factorielle
 
@@ -558,6 +574,7 @@ Un bon exemple de fonction récursive est la fonction qui calcule la factorielle
 Coder cette fonction et vérifier qu'elle fonctionne correctement.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -567,5 +584,6 @@ Coder cette fonction et vérifier qu'elle fonctionne correctement.
 # Exécuter cette cellule pour afficher la solution
 %load -r 162-169 solutions.py
 ```
+:::
 
 

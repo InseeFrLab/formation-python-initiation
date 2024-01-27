@@ -307,6 +307,7 @@ while 5 >= 3:
     print("hello world")
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -316,6 +317,7 @@ while 5 >= 3:
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-51 solutions.py
 ```
+:::
 
 ### Effet d'une erreur d'indentation
 
@@ -341,6 +343,7 @@ for nb in nombres:
     print(f"car la variable nb vaut {nb}")
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -350,6 +353,7 @@ for nb in nombres:
 # Exécuter cette cellule pour afficher la solution
 %load -r 55-58 solutions.py
 ```
+:::
 
 ### Convertir une boucle `for` en boucle `while`
 
@@ -363,6 +367,7 @@ for i, note in enumerate(gamme):
     print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -372,6 +377,7 @@ for i, note in enumerate(gamme):
 # Exécuter cette cellule pour afficher la solution
 %load -r 62-68 solutions.py
 ```
+:::
 
 ### Recherche d'un élément dans une liste
 
@@ -388,6 +394,7 @@ n_cible = 78
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 ```
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -397,6 +404,7 @@ l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 # Exécuter cette cellule pour afficher la solution
 %load -r 72-84 solutions.py
 ```
+:::
 
 ### Suite de Fibonacci
 
@@ -410,6 +418,7 @@ La suite de Fibonacci se définit de la manière suivante :
 Ecrire un programme permettant de calculer les $n$ premiers termes de la suite à l'aide d'une boucle `for`.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -419,6 +428,7 @@ Ecrire un programme permettant de calculer les $n$ premiers termes de la suite �
 # Exécuter cette cellule pour afficher la solution
 %load -r 88-96 solutions.py
 ```
+:::
 
 ### Dictionnaire des tables de multiplication
 
@@ -434,6 +444,7 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 - tables[12][7] -> 84
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -443,6 +454,7 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 # Exécuter cette cellule pour afficher la solution
 %load -r 100-109 solutions.py
 ```
+:::
 
 ### Calcul du minimum et du maximum d'une série "à la main"
 
@@ -452,6 +464,7 @@ Calculer le minimum et le maximum de la série de valeurs suivantes, sans utilis
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -461,6 +474,7 @@ x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-124 solutions.py
 ```
+:::
 
 ### Calcul de moyenne et de variance "à la main"
 
@@ -482,6 +496,7 @@ NB :
 - en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -491,6 +506,7 @@ NB :
 # Exécuter cette cellule pour afficher la solution
 %load -r 128-147 solutions.py
 ```
+:::
 
 ### Usage avancé de la fonction `range`
 
@@ -520,6 +536,7 @@ En utilisant la fonction `range`, afficher :
 - l'ensemble des entiers de 10 à 20 (20 inclus), dans l'ordre inverse (de 20 à 10)
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -529,6 +546,7 @@ En utilisant la fonction `range`, afficher :
 # Exécuter cette cellule pour afficher la solution
 %load -r 151-159 solutions.py
 ```
+:::
 
 ### Le juste prix, version améliorée
 
@@ -550,6 +568,7 @@ Rappel des règles :
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -559,5 +578,6 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 # Exécuter cette cellule pour afficher la solution
 %load -r 163-178 solutions.py
 ```
+:::
 
 
