@@ -623,6 +623,4 @@ Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalit
 %load -r 134-146 solutions.py
 ```
 
-```{python}
 
-```

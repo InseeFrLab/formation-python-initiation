@@ -477,7 +477,3 @@ Voici la liste des opérations à effectuer :
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-141 solutions.py
 ```
-
-```{python}
-
-```

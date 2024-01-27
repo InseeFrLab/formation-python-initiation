@@ -504,6 +504,4 @@ Lisez la partie concernant l'agrégation et la dissociation de séquences dans l
 ```
 
 
-```{python}
 
-```

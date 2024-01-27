@@ -50,7 +50,43 @@ print(a)
 # Ex 9
 a1 = "nous sommes en"
 a2 = "nous sommes en {}"
-b = "2022"
+b = "2024"
 
 print(a1 + " " + b)
 print(a2.format(b))
+
+# Ex 10
+# Premier problème : composition de strings avec des valeurs numériques
+# La concaténation directe renvoie une erreur -> il faut au préalable
+# convertir la valeur numérique en string
+a1 = "nous sommes en"
+b = 2024
+
+# print(a1 + " " + b)  # Erreur
+print(a1 + " " + str(b))
+
+# Deuxième problème : juxtaposition de multiples chaînes de caractères
+# La syntaxe devient vite illisible, car il faut ajouter les séparateurs (espace)
+# manuellement entre chaque partie.
+a = "nous sommes en"
+b = "2024"
+c = "et je m'appelle"
+d = "Miranda"
+
+print(a + " " + b + " " + c + " " + d)
+
+# Troisième problème : composition de chaînes de caractères avec injection de variables
+# La syntaxe reste illisible, car il faut injecter les valeurs dans chaque chaîne
+a = "nous sommes en {}"
+b = "2024"
+c = "et je m'appelle {}"
+d = "Miranda"
+
+print(a.format(b) + " " + c.format(d))
+
+# Solution : avec les f-strings
+# Beaucoup plus lisible !
+annee = 2024
+prenom = "Miranda"
+
+print(f"nous sommes en {annee} et je m'appelle {prenom}")

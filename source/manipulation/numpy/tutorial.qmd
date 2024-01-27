@@ -688,6 +688,4 @@ print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 %load -r 161-169 solutions.py
 ```
 
-```{python}
 
-```

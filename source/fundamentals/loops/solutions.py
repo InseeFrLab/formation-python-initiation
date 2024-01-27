@@ -6,7 +6,7 @@
 
 # 2/ Oui, et sa valeur finale est égale à la dernière valeur de l'objet itérable.
 
-# 3/ La fonction `range(n)` crée un objet itérable qui contient tous les entiers 
+# 3/ La fonction `range(n)` crée un objet itérable qui contient tous les entiers
 # compris entre 0 et n-1. Elle est très utilisée comme itérable dans les boucles
 # `for` car elle permet d'itérer sur une séquence d'entiers sans avoir à mettre
 # celle-ci dans une liste à la main.
@@ -26,10 +26,10 @@
 # jamais infinie, dans la mesure où elle s'arrête dès lors qu'elle a terminé
 # de parcourir l'objet.
 
-# 7/ L'instruction `break` force la boucle de niveau directement supérieur à 
+# 7/ L'instruction `break` force la boucle de niveau directement supérieur à
 # se terminer.
 
-# 8/ L'instruction `continue` force la boucle de niveau directement supérieur 
+# 8/ L'instruction `continue` force la boucle de niveau directement supérieur
 # à passer à l'itération suivante.
 
 # -------------------------------------------------------------------------- #
@@ -42,19 +42,19 @@
 
 # 3. False évalue à False => la boucle ne s'exécute pas du tout. Aucun output.
 
-# 4. True évalue à True => la boucle est théoriquement infinie, mais il y a un 
-# break. Il va donc y avoir une seule itération, soit un seul print de 
+# 4. True évalue à True => la boucle est théoriquement infinie, mais il y a un
+# break. Il va donc y avoir une seule itération, soit un seul print de
 # "hello world"
 
 # 5. 5 >= 3 évalue à True => la boucle est infinie.
-# Le continue est exécuté à chaque itération avant que le print ne puisse 
+# Le continue est exécuté à chaque itération avant que le print ne puisse
 # s'exécuter. La boucle tourne à l'infini, mais sans output.
 
 # -------------------------------------------------------------------------- #
 
 # Le premier programme est correct.
 # Dans le second, le second `print` n'est pas correctement indenté
-# En conséquence, il s'exécute à chaque itération et non pas juste lorsque 
+# En conséquence, il s'exécute à chaque itération et non pas juste lorsque
 # nb == 5.
 
 # -------------------------------------------------------------------------- #
@@ -77,7 +77,7 @@ for i, n in enumerate(l):
     if n == n_cible:
         print("Le nombre " + str(n) + " est à la position " + str(i) + " de la liste.")
         break
-        
+
 # NB : version plus efficiente sans boucle
 if n_cible in l:
     pos = l.index(n_cible)
@@ -89,7 +89,7 @@ n_termes = 20
 num1 = 0
 num2 = 1
 
-for i in range (n_termes):
+for i in range(n_termes):
     print(num1)
     num3 = num1 + num2
     num1 = num2
@@ -103,7 +103,7 @@ for i in range(13):
     tables[i] = {}
     for j in range(13):
         tables[i][j] = i*j
-        
+
 print(tables[2][3])
 print(tables[9][5])
 print(tables[12][7])
@@ -119,7 +119,7 @@ for n in x[1:]:
         current_min = n
     if n >= current_max:
         current_max = n
-        
+
 print(current_min == min(x))
 print(current_max == max(x))
 
@@ -174,7 +174,7 @@ while True:
         continue
     else:
         break
-        
+
 print("dans le mille !")
 
 # -------------------------------------------------------------------------- #

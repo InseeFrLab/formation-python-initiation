@@ -197,8 +197,6 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 
 ### Questions de compréhension
 
-
-
 - 1/ "En Python, tout est un objet" : qu'est-ce que cette phrase signifie ?
 
 - 2/ A quoi sert l'instruction `class` ?
@@ -231,7 +229,7 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 %load -r 3-33 solutions.py
 ```
 
-### De la masse au jus
+### Exercice : de la masse au jus
 
 
 Admettons que le jus contenu dans un citron soit une fonction proportionnelle de sa masse, défini de la manière suivante : $jus = \frac {masse} {4}$ où la masse est en grammes et le jus en mL.
@@ -276,7 +274,7 @@ class Citron:
 %load -r 37-60 solutions.py
 ```
 
-### Comptes bancaires
+### Exercice : comptes bancaires
 
 
 Exercice librement inspiré de : [https://github.com/Pierian-Data/Complete-Python-3-Bootcamp](https://github.com/Pierian-Data/Complete-Python-3-Bootcamp)
@@ -315,8 +313,4 @@ Créer deux clients et tester que les différentes fonctionnalités à implémen
 #| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 64-119 solutions.py
-```
-
-```{python}
-
 ```

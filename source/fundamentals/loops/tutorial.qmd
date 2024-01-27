@@ -332,7 +332,7 @@ nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
         print("Le test est vrai")
-        print("car la variable nb vaut {nb}")
+        print(f"car la variable nb vaut {nb}")
 ```
 
 ```{python}
@@ -340,7 +340,7 @@ nombres = [4, 5, 6]
 for nb in nombres:
     if nb == 5:
         print("Le test est vrai")
-    print("car la variable nb vaut {nb}")
+    print(f"car la variable nb vaut {nb}")
 ```
 
 ```{python}
@@ -580,6 +580,4 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 %load -r 163-178 solutions.py
 ```
 
-```{python}
 
-```

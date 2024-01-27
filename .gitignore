@@ -1,4 +1,5 @@
 *.html
+*.ipynb
 index_files/
 slides/background.svg
 slides/favicon-32x32.png
