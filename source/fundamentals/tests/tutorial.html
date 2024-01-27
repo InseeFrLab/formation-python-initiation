@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Formation SSPy  - Tests</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/tests/tutorial.html">Tests</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">Formation SSPy <i class="fa-brands fa-python" aria-label="python"></i></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Fondamentaux du langage</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/types-variables/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types de base et variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures1/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structures de données 1 : listes et tuples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures2/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structures de données 2 : dictionnaires et sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/tests/tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/loops/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boucles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/functions/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fonctions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/oop/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notions de programmation orientée objet</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Manipulation de données</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/modules-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulation de fichiers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/csv-json-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Travailler avec des fichiers CSV et JSON</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/numpy/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calcul numérique avec NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/pandas/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traiter des données tabulaires avec Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/dataviz/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction à la visualisation de données</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Projets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/puissance4/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 1 - Puissance 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 2 - Interaction avec des APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projet 3 - Analyse du recensement de la population</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#le-type-booléen" id="toc-le-type-booléen" class="nav-link active" data-scroll-target="#le-type-booléen">Le type Booléen</a></li>
+  <li><a href="#opérateurs-de-comparaison" id="toc-opérateurs-de-comparaison" class="nav-link" data-scroll-target="#opérateurs-de-comparaison">Opérateurs de comparaison</a></li>
+  <li><a href="#opérateurs-booléens" id="toc-opérateurs-booléens" class="nav-link" data-scroll-target="#opérateurs-booléens">Opérateurs booléens</a>
+  <ul class="collapse">
+  <li><a href="#opérateur-and" id="toc-opérateur-and" class="nav-link" data-scroll-target="#opérateur-and">Opérateur <code>and</code></a></li>
+  <li><a href="#lopérateur-or" id="toc-lopérateur-or" class="nav-link" data-scroll-target="#lopérateur-or">L’opérateur <code>or</code></a></li>
+  <li><a href="#lopérateur-not" id="toc-lopérateur-not" class="nav-link" data-scroll-target="#lopérateur-not">L’opérateur <code>not</code></a></li>
+  </ul></li>
+  <li><a href="#structures-conditionnelles" id="toc-structures-conditionnelles" class="nav-link" data-scroll-target="#structures-conditionnelles">Structures conditionnelles</a>
+  <ul class="collapse">
+  <li><a href="#blocs-dinstruction-et-indentation" id="toc-blocs-dinstruction-et-indentation" class="nav-link" data-scroll-target="#blocs-dinstruction-et-indentation">Blocs d’instruction et indentation</a></li>
+  <li><a href="#instructions-if-else-et-elif" id="toc-instructions-if-else-et-elif" class="nav-link" data-scroll-target="#instructions-if-else-et-elif">Instructions <code>if</code>, <code>else</code> et <code>elif</code></a></li>
+  </ul></li>
+  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices">Exercices</a>
+  <ul class="collapse">
+  <li><a href="#questions-de-compréhension" id="toc-questions-de-compréhension" class="nav-link" data-scroll-target="#questions-de-compréhension">Questions de compréhension</a></li>
+  <li><a href="#exercice-prédiction-de-résultats-de-tests" id="toc-exercice-prédiction-de-résultats-de-tests" class="nav-link" data-scroll-target="#exercice-prédiction-de-résultats-de-tests">Exercice : prédiction de résultats de tests</a></li>
+  <li><a href="#exercice-prédiction-de-test-imbriqué" id="toc-exercice-prédiction-de-test-imbriqué" class="nav-link" data-scroll-target="#exercice-prédiction-de-test-imbriqué">Exercice : prédiction de test imbriqué</a></li>
+  <li><a href="#exercice-trois-et-pas-plus" id="toc-exercice-trois-et-pas-plus" class="nav-link" data-scroll-target="#exercice-trois-et-pas-plus">Exercice : trois et pas plus</a></li>
+  <li><a href="#exercice-le-juste-prix" id="toc-exercice-le-juste-prix" class="nav-link" data-scroll-target="#exercice-le-juste-prix">Exercice : le juste prix</a></li>
+  <li><a href="#exercice-évaluation-booléenne-dobjets-divers" id="toc-exercice-évaluation-booléenne-dobjets-divers" class="nav-link" data-scroll-target="#exercice-évaluation-booléenne-dobjets-divers">Exercice : évaluation booléenne d’objets divers</a></li>
+  <li><a href="#exercice-comparaisons-en-chaîne" id="toc-exercice-comparaisons-en-chaîne" class="nav-link" data-scroll-target="#exercice-comparaisons-en-chaîne">Exercice : comparaisons en chaîne</a></li>
+  <li><a href="#exercice-booléens-et-langage-binaire" id="toc-exercice-booléens-et-langage-binaire" class="nav-link" data-scroll-target="#exercice-booléens-et-langage-binaire">Exercice : Booléens et langage binaire</a></li>
+  <li><a href="#exercice-comparaisons-de-strings" id="toc-exercice-comparaisons-de-strings" class="nav-link" data-scroll-target="#exercice-comparaisons-de-strings">Exercice : comparaisons de <em>strings</em></a></li>
+  <li><a href="#exercice-tests-dégalité-sur-les-floats" id="toc-exercice-tests-dégalité-sur-les-floats" class="nav-link" data-scroll-target="#exercice-tests-dégalité-sur-les-floats">Exercice : tests d’égalité sur les <em>floats</em></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/tests/tutorial.html">Tests</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Tests</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Dans le tutoriel précédent, nous avons évoqué – sans l’expliciter – la notion de <strong>test</strong>, à travers l’exemple des tests d’appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests en Python. Les tests sont une étape majeure dans la création de programmes permettant d’automatiser des opérations, dans la mesure où ils permettent d’<strong>exécuter – ou non – du code selon certaines conditions</strong>. Ils permettent donc à l’ordinateur de prendre des décisions selon des critères fixés par l’utilisateur.</p>
+<section id="le-type-booléen" class="level2">
+<h2 class="anchored" data-anchor-id="le-type-booléen">Le type Booléen</h2>
+<p>Dans sa plus simple forme, un test en Python est une expression qui évalue à “vrai” ou “faux”. Par exemple, l’expression <span class="math inline">\(3 &gt; 2\)</span> est vraie, le test associé renverra donc “vrai”. Pour ce type d’évaluation, Python dispose d’un type d’objets particulier : les <strong>Booléens</strong>. Contrairement aux types d’objet que nous avons déjà vus (<code>int</code>, <code>float</code>, <code>str</code>..), les Booléens ne peuvent prendre que deux valeurs : <code>True</code> et <code>False</code>.</p>
+<div id="88423c46" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>bool</code></pre>
+</div>
+</div>
+<p>Comme n’importe quel objet, les Booléens peuvent être assignés à des variables.</p>
+<div id="21c6e92c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+&lt;class 'bool'&gt;</code></pre>
+</div>
+</div>
+<p>Les valeurs <code>True</code> et <code>False</code> doivent être écrites de cette manière précisément (première lettre en majuscule, pas de guillemets). Elles ne peuvent par ailleurs pas être utilisées comme noms de variable afin de limiter les ambiguïtés.</p>
+<div id="58b671f8" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> true  <span class="co"># Python chercher la variable `true` mais elle n'existe pas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>NameError: name 'true' is not defined</code></pre>
+</div>
+</div>
+<div id="801a77c5" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>SyntaxError: cannot assign to True (1139628231.py, line 1)</code></pre>
+</div>
+</div>
+</section>
+<section id="opérateurs-de-comparaison" class="level2">
+<h2 class="anchored" data-anchor-id="opérateurs-de-comparaison">Opérateurs de comparaison</h2>
+<p>Les opérateurs de comparaison formalisent les opérations mathématiques de comparaison (égalité, non-égalité, inégalités). Ils <strong>comparent deux valeurs et renvoient une valeur booléenne</strong>.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Opérateur</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>==</td>
+<td>Egal à</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>Non égal à</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>Strictement inférieur à</td>
+</tr>
+<tr class="even">
+<td>&gt;</td>
+<td>Strictement supérieur à</td>
+</tr>
+<tr class="odd">
+<td>&lt;=</td>
+<td>Inférieur ou égal à</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>Supérieur ou égal à</td>
+</tr>
+</tbody>
+</table>
+<p>Illustrons ces opérateurs à l’aide de quelques exemples.</p>
+<div id="bfe87ebd" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="80e9c2da" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">63</span> <span class="op">==</span> <span class="dv">36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="de3ad809" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="0f8f8a3b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">!=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="2830b02c" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="02307221" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">36</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">&lt;=</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="0c322e3e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">&lt;</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>Tout semble fonctionner correctement pour des opérations mathématiques usuelles. Mais ces opérateurs fonctionnent en réalité sur n’importe quel type d’objet.</p>
+<div id="79907b3d" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">'do re mi fa sol'</span> <span class="op">==</span> <span class="st">'do re mi fa sol'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="f56e9a67" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'do re mi fa sol'</span> <span class="op">==</span> <span class="st">'Do Re Mi Fa Sol'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="188748c1" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">'canard'</span> <span class="op">!=</span> <span class="st">'abeille'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="9fabf78f" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">==</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="eaa19377" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">==</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="01779a98" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="20e54d72" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">!=</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Enfin, il est possible de réaliser des comparaisons en chaîne. L’expression renvoie <code>True</code> à condition que chacune des comparaisons soit vraie.</p>
+<div id="739cc190" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">&lt;</span> <span class="dv">7</span> <span class="op">&lt;=</span> <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="18eb058d" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">&lt;</span> <span class="dv">7</span> <span class="op">&lt;=</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>False</code></pre>
+</div>
+</div>
+</section>
+<section id="opérateurs-booléens" class="level2">
+<h2 class="anchored" data-anchor-id="opérateurs-booléens">Opérateurs booléens</h2>
+<p>Les opérateurs booléens permettent de <strong>tester simultanément plusieurs expressions logiques</strong>. Fondamentalement, ces opérateurs prennent en entrée deux valeurs booléennes, et renvoient une unique valeur booléenne selon des règles de logique fixées. Ces règles sont énoncées dans des <strong>tables de vérité</strong>.</p>
+<section id="opérateur-and" class="level3">
+<h3 class="anchored" data-anchor-id="opérateur-and">Opérateur <code>and</code></h3>
+<p>Le premier opérateur booléen est <code>and</code>. Regardons sa table de vérité :</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Expression</th>
+<th>Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>True and True</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>True and False</code></td>
+<td><code>False</code></td>
+</tr>
+<tr class="odd">
+<td><code>False and True</code></td>
+<td><code>False</code></td>
+</tr>
+<tr class="even">
+<td><code>False and False</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Vérifions ces règles en pratique à l’aide de quelques exemples.</p>
+<div id="9d183980" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="6293cb2d" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>Les règles ont l’air de fonctionner sur les valeurs booléennes. Bien entendu, en pratique, on s’intéresse plutôt à évaluer de vraies expressions logiques. On peut donc utiliser ces opérateurs pour tester des expressions qui <em>renvoient</em> une valeur booléenne.</p>
+<div id="f8d8e799" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span>) <span class="kw">and</span> (<span class="dv">5</span> <span class="op">&lt;=</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="9b86bc0e" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="st">"x"</span> <span class="op">!=</span> <span class="st">"z"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (<span class="st">"x"</span> <span class="op">==</span> <span class="st">"y"</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>a <span class="kw">and</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>Notez l’usage des parenthèses pour délimiter les tests : elles ne sont pas obligatoires, mais fortement recommandées dans la mesure où elles améliorent grandement la lisibilité tes tests.</p>
+</section>
+<section id="lopérateur-or" class="level3">
+<h3 class="anchored" data-anchor-id="lopérateur-or">L’opérateur <code>or</code></h3>
+<p>Le second opérateur booléen est <code>or</code>. Sa table de vérité est la suivante :</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Expression</th>
+<th>Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>True or True</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>True or False</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>False or True</code></td>
+<td><code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>False or False</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<div id="79b4787d" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">or</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="1fa9ccd5" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">or</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="908bf79b" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span>) <span class="kw">or</span> (<span class="dv">5</span> <span class="op">&lt;=</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="24a482b5" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="st">"x"</span> <span class="op">!=</span> <span class="st">"z"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (<span class="st">"x"</span> <span class="op">==</span> <span class="st">"y"</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>a <span class="kw">or</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+<section id="lopérateur-not" class="level3">
+<h3 class="anchored" data-anchor-id="lopérateur-not">L’opérateur <code>not</code></h3>
+<p>Le dernier opérateur booléen est <code>not</code>. Sa table de vérité est la suivante :</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Expression</th>
+<th>Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>not True</code></td>
+<td><code>False</code></td>
+</tr>
+<tr class="even">
+<td><code>not False</code></td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<div id="7ffc0f65" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="04d0a46e" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="5c65feed" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="a9f2f750" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> (<span class="dv">7</span> <span class="op">&lt;</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="structures-conditionnelles" class="level2">
+<h2 class="anchored" data-anchor-id="structures-conditionnelles">Structures conditionnelles</h2>
+<p>Toutes les expressions que nous avons vues précédemment sont des expressions booléennes : un test est effectué, et l’opération renvoie <code>True</code> or <code>False</code> selon que l’expression évaluée est vraie ou non. Dans le cadre d’un programme informatique qui réalise des opérations automatisées, on va vouloir les utiliser comme des <strong>conditions</strong> : <em>si</em> l’expression est vraie, alors l’ordinateur doit effectuer telle ou telle opération. Les <strong>structures conditionnelles</strong> permettent précisément cet usage.</p>
+<p>Illustrons ce principe en implémentant le programme suivant :</p>
+<ul>
+<li><p>Soit une variable <code>x</code>.</p></li>
+<li><p>Si <code>x</code> est supérieur à <span class="math inline">\(5\)</span>, alors imprimer dans la console le message “L’expression est vraie.”</p></li>
+<li><p>Dans le cas contraire, imprimer dans la console le message “L’expression est fausse.”</p></li>
+</ul>
+<p>Faîtes varier la valeur de <code>x</code> pour vérifier le bon fonctionnement du test.</p>
+<div id="8ec777ae" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"L'expression est vraie."</span>)</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"L'expression est fausse."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>L'expression est vraie.</code></pre>
+</div>
+</div>
+<section id="blocs-dinstruction-et-indentation" class="level3">
+<h3 class="anchored" data-anchor-id="blocs-dinstruction-et-indentation">Blocs d’instruction et indentation</h3>
+<p>L’exemple précédent illustre la syntaxe des structures conditionnelles en Python. Ces structures sont basées sur des <em>blocs d’instructions</em>, qui délimitent l’ensemble des instructions qui doivent être exécutées lorsqu’un test est vrai. Les structures conditionnelles ont trois règles :</p>
+<ul>
+<li><p>la ligne qui spécifie le test se termine par <code>:</code></p></li>
+<li><p>toutes les instructions qui doivent être exécutées si le test est vrai se situent à un même niveau d’indentation ;</p></li>
+<li><p>la structure conditionnelle se termine lorsque l’indentation revient à son niveau d’origine.</p></li>
+</ul>
+<p>Notons que les structures conditionnelles peuvent tout à fait être imbriquées, ce qu’illustre l’exemple suivant.</p>
+<div id="3153c88f" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"L'expression 1 est vraie."</span>)</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">12</span>:</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"L'expression 2 est vraie."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>L'expression 1 est vraie.</code></pre>
+</div>
+</div>
+<p>Lorsque <code>x = 7</code>, le premier test renvoie <code>True</code>, le bloc d’instructions au niveau d’indentation 1 est donc exécuté ligne par ligne. Le second test renvoie quant à lui <code>False</code>, le bloc d’instructions au niveau d’indentation 2 n’est pas exécuté.</p>
+<p>Faîtes varier la valeur de <code>x</code> pour que les deux blocs soient exécutés.</p>
+</section>
+<section id="instructions-if-else-et-elif" class="level3">
+<h3 class="anchored" data-anchor-id="instructions-if-else-et-elif">Instructions <code>if</code>, <code>else</code> et <code>elif</code></h3>
+<p>Dans les structures conditionnelles, les tests peuvent être spécifiés à l’aide de trois instructions : <code>if</code>, <code>else</code> et <code>elif</code>. Les exemples précédents ont déjà illustré le fonctionnement des deux premières (et plus fréquentes) instructions.</p>
+<p>En cas d’un test simple (une seule condition), on n’utilisera qu’une instruction <code>if</code>, dont le fonctionnement est simple : si la condition (test) renvoie <code>True</code>, alors le bloc d’instructions (indenté) qui suit est exécuté. Si la condition renvoie <code>False</code>, il ne se passe rien. Illustrons cela avec un test d’appartenance, dont nous avons vu des exemples dans le tutoriel précédent.</p>
+<div id="ed7e7e90" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> <span class="st">"Isidore"</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> client <span class="kw">in</span> [<span class="st">"Alexandrine"</span>, <span class="st">"Achille"</span>, <span class="st">"Colette"</span>]:</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Client connu."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>En pratique, on souhaite souvent spécifier une alternative, lorsque la condition de l’instruction <code>if</code> renvoie <code>False</code>. L’instruction <code>else</code> permet de spécifier un bloc d’instructions alternatif.</p>
+<div id="322fbc35" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> <span class="st">"Isidore"</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> client <span class="kw">in</span> [<span class="st">"Alexandrine"</span>, <span class="st">"Achille"</span>, <span class="st">"Colette"</span>]:</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Client connu."</span>)</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Client inconnu."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Client inconnu.</code></pre>
+</div>
+</div>
+<p>Enfin, on peut vouloir spécifier plusieurs alternatives. Dans ce cas, on va utiliser des instructions <code>elif</code>. La première instruction <code>elif</code> ne va s’éxécuter que si le test de l’instruction <code>if</code> renvoie False. La seconde instruction <code>elif</code> ne va s’exécuter que si le test de la première instruction <code>elif</code> renvoie <code>False</code>, et ainsi de suite. Là encore, on peut spécifier une instruction finale <code>else</code>, qui ne s’exécute que si aucun des tests précédents n’a renvoyé <code>True</code>.</p>
+<div id="9353bc36" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> <span class="st">"Isidore"</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> client <span class="op">==</span> <span class="st">"Alexandrine"</span>:</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Bonjour Alexandrine."</span>)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> client <span class="op">==</span> <span class="st">"Achille"</span>:</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Bonjour Achille."</span>)</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> client <span class="op">==</span> <span class="st">"Colette"</span>:</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Bonjour Colette."</span>)</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Bonjour cher inconnu."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bonjour cher inconnu.</code></pre>
+</div>
+</div>
+<p>NB : les instructions précédentes ont seulement valeur d’exemple. En pratique, il y a des manières beaucoup plus concises de coder un programme qui effectue les mêmes opérations.</p>
+</section>
+</section>
+<section id="exercices" class="level2">
+<h2 class="anchored" data-anchor-id="exercices">Exercices</h2>
+<section id="questions-de-compréhension" class="level3">
+<h3 class="anchored" data-anchor-id="questions-de-compréhension">Questions de compréhension</h3>
+<ul>
+<li><p>1/ Quelle est la particularité des Booléens par rapport aux autres types d’objets de base en Python ?</p></li>
+<li><p>2/ Quels sont les inputs et les outputs d’un opérateur de comparaison ?</p></li>
+<li><p>3/ Quels types d’objets peut-on comparer à l’aide d’un opérateur de comparaison ?</p></li>
+<li><p>4/ Quelle est la différence entre l’opérateur <code>=</code> et l’opérateur <code>==</code> ?</p></li>
+<li><p>5/ Quels sont les inputs et les outputs d’un opérateur booléen ?</p></li>
+<li><p>6/ Expliquer en français le principe de l’opérateur booléen <code>and</code>. Mêmes questions pour <code>or</code> et <code>not</code>.</p></li>
+<li><p>7/ Quelle est la différence entre expression booléenne et condition ?</p></li>
+<li><p>8/ Quelle est la structure d’une instruction conditionnelle ?</p></li>
+<li><p>9/ Peut-on imbriquer les instructions conditionnelles ?</p></li>
+<li><p>10/ Parmi les instructions <code>if</code>, <code>else</code>, et <code>elif</code>, lesquelles sont obligatoires et lesquelles sont facultatives ?</p></li>
+</ul>
+</section>
+<section id="exercice-prédiction-de-résultats-de-tests" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-prédiction-de-résultats-de-tests">Exercice : prédiction de résultats de tests</h3>
+<p>Prédire le résultats des tests suivants, et vérifier vos prédictions :</p>
+<ul>
+<li><p><code>'Simon' in ['simon', 'oceane', 'veronique']</code></p></li>
+<li><p><code>[1, 2, 3] == ['1', '2', '3']</code></p></li>
+<li><p><code>'x' != 'x'</code></p></li>
+<li><p><code>(9 &gt; 5) and (3 == 5)</code></p></li>
+<li><p><code>(3 &gt; 2 and 5 &gt;= 1) or (5 &lt;= 9 and 6 &gt; 12)</code></p></li>
+<li><p><code>not (9 &gt; 2*3)</code></p></li>
+<li><p><code>not (9 &gt; (2*3))</code></p></li>
+<li><p><code>not ((7 &gt; 8) or (5 &lt;= 5))</code></p></li>
+<li><p><code>(True and True) or (True == False)</code></p></li>
+<li><p><code>(not False) or (not True)</code></p></li>
+</ul>
+</section>
+<section id="exercice-prédiction-de-test-imbriqué" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-prédiction-de-test-imbriqué">Exercice : prédiction de test imbriqué</h3>
+<p>Considérons le programme écrit dans la cellule suivante.</p>
+<div id="e613c1a8" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span>:</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Initialisation."</span>)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>    l <span class="op">=</span> []</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">8</span>:</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>        l.append(<span class="st">"a"</span>)</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>        l.append(<span class="st">"b"</span>)</span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>        l.append(<span class="st">"c"</span>)</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">-</span> <span class="dv">6</span> <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Négatif."</span>)</span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initialisation.
+['a']</code></pre>
+</div>
+</div>
+<p>Pour les valeurs suivantes :</p>
+<ul>
+<li><p>x = 1</p></li>
+<li><p>x = 5</p></li>
+<li><p>x = 10</p></li>
+</ul>
+<p>prédire les résultats du programme :</p>
+<ul>
+<li><p>que vaut <code>l</code> à la fin du programme ?</p></li>
+<li><p>qu’est ce qui est imprimé dans la console au fil du programme ?</p></li>
+</ul>
+<p>Vérifiez vos résultats.</p>
+</section>
+<section id="exercice-trois-et-pas-plus" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-trois-et-pas-plus">Exercice : trois et pas plus</h3>
+<p>Ecrire un programme qui réalise les opérations suivantes :</p>
+<ul>
+<li><p>Définir une liste qui contient 4 prénoms</p></li>
+<li><p>Ecrire un test qui affiche le message (‘Trop de monde.’) si la liste contient plus de trois personnes</p></li>
+<li><p>Supprimer une personne de la liste (en utilisant la fonction <code>del</code> ou la méthode <code>pop</code> vues dans un tutoriel précédent)</p></li>
+<li><p>Réaliser le test à nouveau, il ne devrait plus y avoir d’output.</p></li>
+</ul>
+</section>
+<section id="exercice-le-juste-prix" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-le-juste-prix">Exercice : le juste prix</h3>
+<p>La fonction <code>input</code> permet de demander à l’utilisateur d’entrer une valeur dans le cadre d’un programme Python. La syntaxe est la suivante : <code>x = input()</code>. Lorsque cette commande est exécutée, l’utilisateur doit rentrer une valeur, qui est alors assignée à la variable x.</p>
+<p><strong>En utilisant <code>input</code> et les instructions <code>if</code>, <code>elif</code> et <code>else</code></strong>, coder le programme suivant :</p>
+<ul>
+<li><p>demander une valeur à l’utilisateur, qui sera stockée dans une variable <code>p</code></p></li>
+<li><p>si <code>p</code> est strictement inférieur à <span class="math inline">\(15\)</span>, imprimer (avec la fonction <code>print</code>) le message “trop bas !”.</p></li>
+<li><p>si <code>p</code> est strictement supérieur à <span class="math inline">\(15\)</span>, imprimer le message “trop haut !”.</p></li>
+<li><p>si <code>p</code> est égal à <span class="math inline">\(15\)</span>, imprimer le message “dans le mille !”</p></li>
+</ul>
+<p>Attention, <code>input</code> renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de <code>p</code> au format entier (via la fonction <code>int</code>) pour que le jeu fonctionne.</p>
+</section>
+<section id="exercice-évaluation-booléenne-dobjets-divers" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-évaluation-booléenne-dobjets-divers">Exercice : évaluation booléenne d’objets divers</h3>
+<p>En Python, tous les objets s’évaluent à <code>True</code> or <code>False</code> dans le cadre d’un test conditionnel (<code>if</code>/<code>else</code>). La règle générale est que les objets qui sont zéro ou vides (ex : une liste vide, un dictionnaire vide) s’évaluent à <code>False</code>, et inversement. Mais il n’y a pas besoin de connaître ces règles par coeur : elles se retrouvent facilement en pratique ! Par exemple, on peut utiliser le test conditionnel suivant :</p>
+<div id="82775181" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"test"</span>:</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"True."</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"False."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True.</code></pre>
+</div>
+</div>
+<p>Prédire à quelle valeur booléenne vont s’évaluer les objets suivants, et vérifier à l’aide de la syntaxe précédente.</p>
+<ul>
+<li><p><code>0</code></p></li>
+<li><p><code>1</code></p></li>
+<li><p><code>12</code></p></li>
+<li><p><code>-1</code></p></li>
+<li><p>’’ (<em>string</em> vide)</p></li>
+<li><p>’ ’ (<em>string</em> contenant seulement un espace)</p></li>
+<li><p><code>[]</code> (liste vide)</p></li>
+<li><p><code>['']</code> (liste contenant seulement un <em>string</em> vide)</p></li>
+<li><p><code>{}</code></p></li>
+<li><p><code>{-1}</code></p></li>
+</ul>
+</section>
+<section id="exercice-comparaisons-en-chaîne" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-comparaisons-en-chaîne">Exercice : comparaisons en chaîne</h3>
+<p>Nous avons vu qu’il était possible de réaliser des comparaisons en chaîne, qui renvoient <code>True</code> à condition que chacune des comparaisons inclues soit vraie. Trouvez une manière de réécrire la comparaison en chaîne suivante à l’aide d’opérateurs booléens.</p>
+<p><code>5 &lt; 7 &lt;= 8 &lt; 18</code></p>
+</section>
+<section id="exercice-booléens-et-langage-binaire" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-booléens-et-langage-binaire">Exercice : Booléens et langage binaire</h3>
+<p>Les Booléens sont fortement liés au langage binaire, dans lequel le <code>1</code> correspond à “vrai” et le <code>0</code> à “faux”. On va vérifier si ce lien existe dans le contexte de Python. Pour ce faire :</p>
+<ul>
+<li><p>calculer la “représentation en entier” de la valeur booléenne de votre choix à l’aide de la fonction <code>int</code> ;</p></li>
+<li><p>utiliser des booléens dans le cadre de calculs mathématiques pour vérifier leur comportement dans ce contexte.</p></li>
+</ul>
+</section>
+<section id="exercice-comparaisons-de-strings" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-comparaisons-de-strings">Exercice : comparaisons de <em>strings</em></h3>
+<p>Que renvoient les tests de comparaison de type inégalités appliqués à des chaînes de caractères ? Produire quelques exemples pour tester le comportement.</p>
+</section>
+<section id="exercice-tests-dégalité-sur-les-floats" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-tests-dégalité-sur-les-floats">Exercice : tests d’égalité sur les <em>floats</em></h3>
+<p>Les tests d’égalité entre nombres réels (type <code>float</code> en Python) peuvent être trompeurs. Pour vous en convaincre, effectuez le test suivant : <code>(6 - 5.8) == 0.2</code></p>
+<p>Pour comprendre le résultat du test, effectuer le calcul du membre de gauche du test seul. Que remarquez-vous ?</p>
+<p>Imaginez (sans forcément l’implémenter) un autre test, basé sur des inégalités, qui permettrait de tester l’égalité approchée.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
