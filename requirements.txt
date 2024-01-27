@@ -6,4 +6,4 @@ pandas
 pyarrow
 requests
 seaborn
-sklearn
+scikit-learn
