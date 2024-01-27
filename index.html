@@ -238,14 +238,43 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#contexte" id="toc-contexte" class="nav-link active" data-scroll-target="#contexte">Contexte</a>
+  <ul class="collapse">
+  <li><a href="#but-de-la-formation" id="toc-but-de-la-formation" class="nav-link" data-scroll-target="#but-de-la-formation">But de la formation</a></li>
+  <li><a href="#python-en-résumé" id="toc-python-en-résumé" class="nav-link" data-scroll-target="#python-en-résumé"><code>Python</code> en résumé</a></li>
+  <li><a href="#pourquoi-se-former-à-python" id="toc-pourquoi-se-former-à-python" class="nav-link" data-scroll-target="#pourquoi-se-former-à-python">Pourquoi se former à <code>Python</code> ?</a></li>
+  <li><a href="#python-vs.-r" id="toc-python-vs.-r" class="nav-link" data-scroll-target="#python-vs.-r"><code>Python</code> vs.&nbsp;<code>R</code></a></li>
+  </ul></li>
+  <li><a href="#modalités-de-formation" id="toc-modalités-de-formation" class="nav-link" data-scroll-target="#modalités-de-formation">Modalités de formation</a>
+  <ul class="collapse">
+  <li><a href="#une-e-formation-tutorée" id="toc-une-e-formation-tutorée" class="nav-link" data-scroll-target="#une-e-formation-tutorée">Une “e-formation tutorée”</a></li>
+  <li><a href="#hébergée-sur-le-ssp-cloud" id="toc-hébergée-sur-le-ssp-cloud" class="nav-link" data-scroll-target="#hébergée-sur-le-ssp-cloud">Hébergée sur le <code>SSP Cloud</code></a></li>
+  <li><a href="#programme-de-la-formation" id="toc-programme-de-la-formation" class="nav-link" data-scroll-target="#programme-de-la-formation">Programme de la formation</a></li>
+  </ul></li>
+  <li><a href="#en-pratique" id="toc-en-pratique" class="nav-link" data-scroll-target="#en-pratique">En pratique</a>
+  <ul class="collapse">
+  <li><a href="#les-notebooks-jupyter" id="toc-les-notebooks-jupyter" class="nav-link" data-scroll-target="#les-notebooks-jupyter">Les notebooks Jupyter</a></li>
+  <li><a href="#lancer-un-chapitre" id="toc-lancer-un-chapitre" class="nav-link" data-scroll-target="#lancer-un-chapitre">Lancer un chapitre</a></li>
+  <li><a href="#comment-résoudre-les-erreurs" id="toc-comment-résoudre-les-erreurs" class="nav-link" data-scroll-target="#comment-résoudre-les-erreurs">Comment résoudre les erreurs ?</a></li>
+  </ul></li>
+  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq">FAQ</a>
+  <ul class="collapse">
+  <li><a href="#accès-aux-supports" id="toc-accès-aux-supports" class="nav-link" data-scroll-target="#accès-aux-supports">Accès aux supports</a></li>
+  <li><a href="#après-la-formation" id="toc-après-la-formation" class="nav-link" data-scroll-target="#après-la-formation">Après la formation ?</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Formation d’initiation à Python dans le SSP</h1>
+<h1 class="title">Formation d’initiation à <code>Python</code> dans le SSP</h1>
 </div>
 
 
@@ -262,13 +291,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="contexte" class="level2">
+<h2 class="anchored" data-anchor-id="contexte">Contexte</h2>
+<section id="but-de-la-formation" class="level3">
+<h3 class="anchored" data-anchor-id="but-de-la-formation">But de la formation</h3>
+<p>La formation <code>SSPy</code> propose une introduction à l’utilisation de <code>Python</code> dans le cadre des projet statistiques. Elle est particulièrement pensée pour les agents du service statistique public (SSP), avec des applications faisant intervenir dans la mesure du possible des données issues de la statistique publique française. Néanmoins, ses supports sont complètement <em>open-source</em> (<a href="https://github.com/InseeFrLab/formation-python-initiation">dépôt GitHub</a>) et elle peut donc être ré-utilisée dans n’importe quel cadre de formation à <code>Python</code>.</p>
+</section>
+<section id="python-en-résumé" class="level3">
+<h3 class="anchored" data-anchor-id="python-en-résumé"><code>Python</code> en résumé</h3>
+<p><code>Python</code>, créé par le développeur néerlandais Guido van Rossum en 1991, est un langage de programmation dit <a href="https://fr.wikipedia.org/wiki/Langage_de_programmation_de_haut_niveau">de haut niveau</a> connu pour sa syntaxe simple et lisible. Les principes fondateurs du langage sont résumés dans un manifeste appelé <a href="https://fr.wikipedia.org/wiki/Zen_de_Python">“Zen de <code>Python</code>”</a>. <code>Python</code> est un langage particulièrement versatile, dans la mesure où il dispose d’une riche bibliothèque de packages et fédère des communautés diverses, le rendant idéal pour de nombreux domaines d’application.</p>
+</section>
+<section id="pourquoi-se-former-à-python" class="level3">
+<h3 class="anchored" data-anchor-id="pourquoi-se-former-à-python">Pourquoi se former à <code>Python</code> ?</h3>
+<p>Malgré déjà plus de 30 années d’existence, <code>Python</code> reste un langage extrêmement dynamique. Plus que cela : non seulement fait-il déjà partie des langages les plus populaires, mais il est également celui qui connaît la plus forte croissance en termes de nombre d’utilisateurs d’année en année.</p>
+<p><img src="img/pythontrend.jpg" class="img-fluid"></p>
+<p>Une des principales raison de cette forte croissance actuelle est la montée en puissance du domaine de la <em>data science</em>, au sein duquel <code>Python</code> s’est progressivement imposé comme le langage central. De nombreuses librairies phares dans le domaine de la manipulation de données, de la <em>datavisualisation</em>, du <em>machine learning</em> et du déploiement applicatif sont disponibles en <code>Python</code>. Cette adoption croissante dans divers secteurs en fait un choix privilégié pour unifier les pratiques via un langage commun, s’appliquant aussi bien aux métiers de la data science, au développement, qu’à la production informatique et statistique.</p>
+<p><img src="img/python_ecosystem.svg" class="img-fluid"></p>
+<p>Source : <a href="https://josephsalmon.eu/HMMA238.html">josephsalmon.eu</a></p>
+</section>
+<section id="python-vs.-r" class="level3">
+<h3 class="anchored" data-anchor-id="python-vs.-r"><code>Python</code> vs.&nbsp;<code>R</code></h3>
+<p><code>Python</code> et <code>R</code> sont souvent comparés en raison de leur large utilisation dans le domaine statistique. La différence fondamentale est que <code>Python</code> est un langage généraliste, tandis que <code>R</code> est spécifiquement orienté vers les statistiques. Néanmoins, en pratique, ils sont plutôt complémentaires que concurrents, et le choix entre les deux va souvent dépendre du cas d’usage : par exemple, là où l’éco-système du <code>tidyverse</code> en <code>R</code> n’a sans doute pas d’égal pour la manipulation de données, l’éco-système qui s’est développé en <code>Python</code> autour des techniques de <em>machine learning</em> (en particulier le package <code>scikit-learn</code>) ne possède pas d’équivalent direct dans le monde <code>R</code>. Enfin, les deux langages se ressemblent et la transition d’un langage à l’autre est donc accessible sans nécessiter un ré-apprentissage complet et coûteux.</p>
+</section>
+</section>
+<section id="modalités-de-formation" class="level2">
+<h2 class="anchored" data-anchor-id="modalités-de-formation">Modalités de formation</h2>
+<section id="une-e-formation-tutorée" class="level3">
+<h3 class="anchored" data-anchor-id="une-e-formation-tutorée">Une “e-formation tutorée”</h3>
+<p>Cette formation adopte un format d’e-formation tutorée. Elle se déroule sur une période étendue (plusieurs mois), avec un accent mis sur la pédagogie pratique. Un tutorat est également disponible via le <a href="https://tchap.gouv.fr/#/room/!XKtsUhPslGXsbIUOIw:agent.finances.tchap.gouv.fr?via=agent.finances.tchap.gouv.fr">Canal Tchap</a>, où les participants peuvent poser leurs questions en continu, ainsi que lors de sessions de visioconférence périodiques.</p>
+</section>
+<section id="hébergée-sur-le-ssp-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="hébergée-sur-le-ssp-cloud">Hébergée sur le <code>SSP Cloud</code></h3>
+<p>La formation est hébergée sur la plateforme <a href="https://datalab.sspcloud.fr/">SSP Cloud</a> développée par l’Insee. Cette plateforme, dédiée à l’expérimentation autour de la data science et au travail sur des données ouvertes, offre un environnement particulièrement adapté à la formation avec des environnements pré-configurés disposant de toute la puissance de calcul nécessaire à des traitements statistiques courants et innovants.</p>
+</section>
+<section id="programme-de-la-formation" class="level3">
+<h3 class="anchored" data-anchor-id="programme-de-la-formation">Programme de la formation</h3>
+<p>Le programme de la formation est divisé en trois grandes parties :</p>
 <ul>
-<li><p><a href="https://inseefrlab.github.io/formation-python-initiation/slides/#/title-slide">slides d’introduction</a></p></li>
-<li><p><a href="https://www.sspcloud.fr/formation?search=&amp;path=%5B%22Initiation%20%C3%A0%20Python%22%5D">déploiement via le SSP Cloud</a></p></li>
-<li><p><a href="https://github.com/InseeFrLab/formation-python-initiation">code source de la formation</a></p></li>
+<li><p><strong>fondamentaux</strong> du langage <code>Python</code> : types de base, structures de données, instructions conditionnelles, fonctions, et une introduction à la programmation orientée-objet en <code>Python</code> ;</p></li>
+<li><p><strong>manipulation de données</strong> : manipulation de fichiers, travail avec des fichiers <code>CSV</code> et <code>JSON</code>, calcul numérique avec <code>NumPy</code>, traitement des données tabulaires avec <code>Pandas</code>, et une introduction à la visuation de données en <code>Python</code> ;</p></li>
+<li><p><strong>projets d’application</strong> : construction d’un jeu de Puissance 4, prédictions météorologiques à l’aide de données issues d’API, et analyse du recensement de la population.</p></li>
 </ul>
+<p>Chaque chapitre se termine sur une série d’exercices guidés qui visent à mettre en application directe les concepts étudiés dans le chapitre. Les projets d’application sont quant à eux plus exploratoires, et visent à mettre en application les concepts étudiés tout au long de la formation sur des cas d’usage réalistes.</p>
+</section>
+</section>
+<section id="en-pratique" class="level2">
+<h2 class="anchored" data-anchor-id="en-pratique">En pratique</h2>
+<section id="les-notebooks-jupyter" class="level3">
+<h3 class="anchored" data-anchor-id="les-notebooks-jupyter">Les notebooks Jupyter</h3>
+<p>La formation utilise le format de notebook interactif <code>Jupyter</code>, combinant du texte au format <code>Markdown</code>, du code <code>Python</code>, et du code <code>HTML</code> pour les visualisations et animations. Ce format est particulièrement adapté à la formation et aux phases d’expérimentation. Il permet par ailleurs de publier simplement à la fois les notebooks d’exercices et le site associé au cours.</p>
+<p><img src="img/notebook.png" class="img-fluid"></p>
+</section>
+<section id="lancer-un-chapitre" class="level3">
+<h3 class="anchored" data-anchor-id="lancer-un-chapitre">Lancer un chapitre</h3>
+<p>Les notebooks associés aux différents chapitres peuvent ensuite être lancés en un clic depuis l’<a href="https://www.sspcloud.fr/formation?search=&amp;path=%5B%22Initiation%20%C3%A0%20Python%22%5D">espace formation</a> du SSP Cloud.</p>
+<p><img src="img/lancement.gif" class="img-fluid"></p>
+</section>
+<section id="comment-résoudre-les-erreurs" class="level3">
+<h3 class="anchored" data-anchor-id="comment-résoudre-les-erreurs">Comment résoudre les erreurs ?</h3>
+<p>La survenue d’erreurs est tout à fait naturelle et attendue lors de l’apprentissage (et même après !) d’un langage informatique. La résolution de ces erreurs est vraiment l’occasion de comprendre comment fonctionne le langage et de devenir autonome dans sa pratique de celui-ci. Voici une proposition d’étapes à suivre (dans cet ordre) pour résoudre une erreur :</p>
+<ul>
+<li><p>1/ Bien lire les <em>logs</em>, i.e.&nbsp;les sorties renvoyées par <code>Python</code> en cas d’erreur. Souvent, elles sont informatives et peuvent contenir directement la réponse.</p></li>
+<li><p>2/ Chercher sur internet (de préférence en Anglais et sur <code>Google</code>). Par exemple, donner le nom de l’erreur et une partie informative du message d’erreur renvoyé par <code>Python</code> permet généralement de bien orienter les résultats vers ce que l’on cherche.</p></li>
+<li><p>3/ Souvent, la recherche amènera vers le forum <a href="https://stackoverflow.com/">Stackoverflow</a>, destiné à cet usage. Si l’on ne trouve vraiment pas la réponse à son problème, on peut poster sur <code>Stackoverflow</code> en détaillant bien le problème rencontré de sorte à ce que les utilisateurs du forum puissent le reproduire et trouver une solution.</p></li>
+<li><p>4/ Les documentations officielles (de <code>Python</code> et des différents packages) sont souvent un peu arides, mais généralement exhaustives. Elles permettent notamment de bien comprendre la manière d’utiliser les différents objets. Par exemple pour les fonctions : ce qu’elles attendent en entrée, les paramètres et leur type, ce qu’elles renvoient en sortie, etc.</p></li>
+</ul>
+</section>
+</section>
+<section id="faq" class="level2">
+<h2 class="anchored" data-anchor-id="faq">FAQ</h2>
+<section id="accès-aux-supports" class="level3">
+<h3 class="anchored" data-anchor-id="accès-aux-supports">Accès aux supports</h3>
+<p>Tous les supports de formation restent accessibles sur le <code>SSP Cloud</code> après la formation. Le code qui génère les supports est disponible sur <a href="https://github.com/InseeFrLab/formation-python-initiation.git">GitHub</a>.</p>
+</section>
+<section id="après-la-formation" class="level3">
+<h3 class="anchored" data-anchor-id="après-la-formation">Après la formation ?</h3>
+<p>Pour approfondir vos connaissances, vous pouvez poursuivre avec la formation “<code>Python</code> pour la data science” de l’ENSAE, disponible sur le <code>SSP Cloud</code>. Pour ceux intéressés par l’algorithmie, “Advent of Code”</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
