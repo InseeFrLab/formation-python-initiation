@@ -1,0 +1,9 @@
+project:
+  render:
+    - source/
+
+format:
+  ipynb:
+    execute:
+      echo: true
+      eval: false
