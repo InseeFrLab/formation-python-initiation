@@ -576,6 +576,7 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 # Exécuter cette cellule pour afficher la solution
 %load -r 41 solutions.py
 ```
+:::
 
 ### Un premier algorithme
 
