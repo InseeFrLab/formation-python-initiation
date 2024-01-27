@@ -325,11 +325,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="exemples-de-graphiques">Exemples de graphiques</h3>
 <p>Même si la méthode <code>.plot()</code> permet de produire simplement et rapidement des graphiques, les possibilités sont très nombreuses et dépendent des données en entrée. Dans cette section, nous proposons quelques exemples standards pour comprendre le fonctionnement de la méthode. Pour découvrir plus de possibilités, on pourra s’inspirer des nombreux exemples de la <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html">documentation officielle</a>.</p>
 <p>Générons des données de synthèse imitant les données de caisse, qu’on utilisera comme base des graphiques.</p>
-<div id="38f7dcbd" class="cell" data-execution_count="1">
+<div id="cee0fbb4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="31418885" class="cell" data-execution_count="2">
+<div id="fbee7776" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration pour la reproductibilité</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -371,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="nuage-de-points-scatter-plot" class="level4">
 <h4 class="anchored" data-anchor-id="nuage-de-points-scatter-plot">Nuage de points (<em>scatter plot</em>)</h4>
 <p>Les nuages de point permettent de visualiser la relation entre deux variables numériques continues. Illustrons cela à travers la relation entre le prix et les quantités des transactions.</p>
-<div id="119789b8" class="cell" data-execution_count="3">
+<div id="eccaff5f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_caisse.plot(x<span class="op">=</span><span class="st">'Quantité'</span>, y<span class="op">=</span><span class="st">'Prix'</span>, kind<span class="op">=</span><span class="st">'scatter'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="diagrammes-à-barres-bar-chart" class="level4">
 <h4 class="anchored" data-anchor-id="diagrammes-à-barres-bar-chart">Diagrammes à barres (<em>bar chart</em>)</h4>
 <p>Les diagrammes en bâtons sont idéaux pour la comparaison visuelle de différentes catégories. Ici, on utilise la méthode <code>.value_counts()</code> pour récupérer les fréquences de chaque modalité dans une <code>Series</code>, à laquelle on applique la méthode <code>.plot()</code> pour visualiser un diagramme à barres.</p>
-<div id="66b434cb" class="cell" data-execution_count="4">
+<div id="7f2f5e71" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_caisse[<span class="st">'Enseigne'</span>].value_counts().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="boîte-à-moustaches" class="level4">
 <h4 class="anchored" data-anchor-id="boîte-à-moustaches">Boîte à moustaches</h4>
 <p>La boîte à moustache permet de visualiser rapidement les statistiques de dispersion d’une série statistique (médiane, quartiles, min, max) ainsi que la présence éventuelle de valeurs aberrantes</p>
-<div id="31fbae7b" class="cell" data-execution_count="5">
+<div id="72e343fe" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_caisse[<span class="st">'Prix'</span>].plot(kind<span class="op">=</span><span class="st">"box"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="histogrammes-histogram" class="level4">
 <h4 class="anchored" data-anchor-id="histogrammes-histogram">Histogrammes (<em>histogram</em>)</h4>
 <p>Les histogrammes aident à comprendre la distribution d’une variable numérique. Calculons l’histogramme des prix des transactions sur la période étudiée.</p>
-<div id="d77c2c20" class="cell" data-execution_count="6">
+<div id="174e759b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_caisse[<span class="st">'Prix'</span>].plot(kind<span class="op">=</span><span class="st">'hist'</span>, bins<span class="op">=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -426,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="graphique-linéaire-lineplot" class="level4">
 <h4 class="anchored" data-anchor-id="graphique-linéaire-lineplot">Graphique linéaire (<em>lineplot</em>)</h4>
-<div id="6f58ca7b" class="cell" data-execution_count="7">
+<div id="657cb502" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_caisse.groupby(<span class="st">'Date'</span>)[<span class="st">'Quantité'</span>].<span class="bu">sum</span>().plot(kind<span class="op">=</span><span class="st">'line'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -441,11 +441,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="personnalisation" class="level3">
 <h3 class="anchored" data-anchor-id="personnalisation">Personnalisation</h3>
 <p>Comme évoqué précédemment, la fonctionnalité de graphiques intégrée à Pandas repose en fait sur la librairie Matplotlib, dans la mesure où la méthode <code>.plot()</code> de Pandas n’est qu’une surcouche (<em>wrapper</em>) autour de la fonction <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot()</a> de Matplotlib. En théorie, toutes les possibilités de personnalisation permises par Matplotlib le sont avec les graphiques créés par ce biais en Pandas. Pour y accéder, il faut importer Matplotlib en plus de Pandas.</p>
-<div id="f90927b8" class="cell" data-execution_count="8">
+<div id="cab6e093" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Illustrons quelques possibilités de personnalisation en reprenant un des graphiques précédents.</p>
-<div id="6d943ead" class="cell" data-execution_count="9">
+<div id="b5b350fd" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_caisse.plot(x<span class="op">=</span><span class="st">'Quantité'</span>, y<span class="op">=</span><span class="st">'Prix'</span>, kind<span class="op">=</span><span class="st">'scatter'</span>, color<span class="op">=</span><span class="st">"green"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relation entre le prix et la quantité des produits'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Quantité vendue'</span>)</span>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="seaborn">Seaborn</h2>
 <p>Seaborn est une bibliothèque de visualisation de données qui offre une interface de haut niveau pour créer des graphiques statistiques esthétiques. Elle est également construite sur Matplotlib et s’intègre bien avec les structures de données Pandas, permettant des visualisations plus élaborées que celles proposées nativement par Pandas sans pour autant exiger une quantité de code significative. Cela en fait un excellent choix pour aller au-delà des capacités graphiques de Pandas tout en évitant la complexité de Matplotlib.</p>
 <p>Importons le package Seaborn. L’usage courant est de lui donner l’alias <code>sns</code> pour éviter les redondances de code.</p>
-<div id="2a750d0b" class="cell" data-execution_count="10">
+<div id="7d415f38" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="exemples-de-graphiques-1" class="level3">
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="nuage-de-points" class="level4">
 <h4 class="anchored" data-anchor-id="nuage-de-points">Nuage de points</h4>
 <p>On peut facilement ajouter de l’information à un nuage de point, par exemple via la couleur des points ou leur style (taille, marqueur..). Analysons le nuage de points des prix en fonction de la quantité selon l’enseigne dans laquelle a eu lieu la transaction.</p>
-<div id="9daf42c3" class="cell" data-execution_count="11">
+<div id="a591d82a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df_caisse, x<span class="op">=</span><span class="st">'Prix'</span>, y<span class="op">=</span><span class="st">'Quantité'</span>, hue<span class="op">=</span><span class="st">'Enseigne'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -494,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="histogramme" class="level4">
 <h4 class="anchored" data-anchor-id="histogramme">Histogramme</h4>
 <p>Avec Seaborn, on peut facilement ajouter une courbe d’estimation de densité à un histogramme. Cela permet de vérifier visuellement la normalité des données.</p>
-<div id="a277565e" class="cell" data-execution_count="12">
+<div id="21692077" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(df_caisse[<span class="st">'Prix'</span>], kde<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">'skyblue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pair-plot" class="level4">
 <h4 class="anchored" data-anchor-id="pair-plot">Pair plot</h4>
 <p>Le <em>pair plot</em> permet d’analyser les relations entre deux variables continues en couplant un nuage de points et des courbes de densité.</p>
-<div id="49793c9f" class="cell" data-execution_count="13">
+<div id="977ad3fa" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> df_caisse[[<span class="st">'Prix'</span>, <span class="st">'Quantité'</span>, <span class="st">'Enseigne'</span>]]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(subset, hue<span class="op">=</span><span class="st">'Enseigne'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -523,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="violin-plot" class="level4">
 <h4 class="anchored" data-anchor-id="violin-plot">Violin plot</h4>
 <p>Similaire à la boîte à moustache, le <em>violin plot</em> ajoute une courbe d’estimation de densité afin de mieux visualiser les masses de la distribution.</p>
-<div id="3033768f" class="cell" data-execution_count="14">
+<div id="7beba939" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.violinplot(data<span class="op">=</span>df_caisse, x<span class="op">=</span><span class="st">'Enseigne'</span>, y<span class="op">=</span><span class="st">'Prix'</span>, hue<span class="op">=</span><span class="st">"Enseigne"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -538,7 +538,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="personnalisation-1" class="level3">
 <h3 class="anchored" data-anchor-id="personnalisation-1">Personnalisation</h3>
 <p>Comme Pandas, les fonctionnalités graphiques de Seaborn sont basées sur celles de Matplotlib. Là encore, on peut donc personnaliser les graphiques en faisant appel aux fonctions <code>plt.xxx</code> de Matplotlib.</p>
-<div id="07903b3d" class="cell" data-execution_count="15">
+<div id="bbd8195d" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df_caisse, x<span class="op">=</span><span class="st">'Prix'</span>, y<span class="op">=</span><span class="st">'Quantité'</span>, hue<span class="op">=</span><span class="st">'Enseigne'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relation entre prix et quantité selon les enseignes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
