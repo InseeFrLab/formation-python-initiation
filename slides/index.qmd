@@ -35,13 +35,13 @@ from: markdown+emoji
 
 - Un langage extrêmement [**dynamique**]{.blue2}
 
-![](img/pythontrend.jpeg){fig-align="center" height=500}
+![](../img/pythontrend.jpg){fig-align="center" height=500}
 
 ## Pourquoi se former à `Python` ?
 
 - Langage central de l'[**écosystème data science**]{.blue2}
 
-![](img/python_ecosystem.svg){fig-align="center" height=300}
+![](../img/python_ecosystem.svg){fig-align="center" height=300}
 
 Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
