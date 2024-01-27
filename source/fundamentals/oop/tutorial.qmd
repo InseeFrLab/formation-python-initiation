@@ -145,7 +145,7 @@ La syntaxe pour appeler une méthode d'un objet instancié est la suivante : `in
 citron1.recup_qte_jus()
 ```
 
-On peut faire deux remarques sur cette syntaxe. La première est qu'**une méthode est une fonction *attachée* à une instance d'un objet**. Contrairement aux fonctions définies via l'instruction `def`, les méthodes n'ont pas d'existence propre.
+On peut faire deux remarques sur cette syntaxe. La première est qu'**une méthode est une fonction *attachée* à une instance d'un objet**. Contrairement aux fonctions définies via l'instruction `def`, les méthodes n'ont pas d'existence propre en dehors de l'instance de l'objet. Dans notre cas, appeler la *fonction* `recup_qte_jus()` indépendamment de l'objet renvoie donc une erreur.
 
 ```{python}
 recup_qte_jus()
