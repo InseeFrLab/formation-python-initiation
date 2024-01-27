@@ -481,13 +481,11 @@ Il est dont très fréquent de croiser la condition `if __name__ == "__main__"` 
 - 12/ Quelle est la différence entre un module et un script ?
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-39 solutions.py
 ```
@@ -508,13 +506,11 @@ Indices :
 - vous pouvez utiliser les fonctions du package `numpy` pour calculer les statistiques demandées
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 43-54 solutions.py
 ```
@@ -540,13 +536,11 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 58-70 solutions.py
 ```
@@ -573,13 +567,11 @@ supp = [(16, 3), (11, 1), (3, 5)]
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 74-80 solutions.py
 ```
@@ -596,13 +588,11 @@ supp = [(16, 3), (11, 1), (3, 5)]
 - pour chaque fichier, faire un test d'appartenance (rappel de la syntaxe : `if pattern in string: ...`) pour tester si le fichier contient le mot "sol". Si c'est le cas, imprimer son chemin absolu dans la console (seul le chemin du fichier `gamme.txt` devrait donc apparaître)
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 84-92 solutions.py
 ```

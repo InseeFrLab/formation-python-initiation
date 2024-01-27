@@ -13,7 +13,7 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Build notebook from sources
 SOURCE_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/tutorial.qmd
-quarto render $SOURCE_FILE
+quarto render $SOURCE_FILE --profile notebooks --no-execute
 rm $SOURCE_FILE
 
 # Put chapter files in the training dir

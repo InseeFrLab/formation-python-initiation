@@ -331,14 +331,12 @@ Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des m
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-41 solutions.py
 ```
@@ -351,14 +349,12 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 45-56 solutions.py
 ```
@@ -369,14 +365,12 @@ Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`.
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 60-75 solutions.py
 ```
@@ -387,14 +381,12 @@ Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 79-81 solutions.py
 ```
@@ -411,14 +403,12 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 85-91 solutions.py
 ```
@@ -429,14 +419,12 @@ Essayer de créer une liste vide. Vérifiez son type. Quel intérêt cela pourra
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 95-107 solutions.py
 ```
@@ -455,14 +443,12 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 111-125 solutions.py
 ```
@@ -473,14 +459,12 @@ Nous avons vu que les tuples avaient la particularité d'être non-modifiables. 
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 129-134 solutions.py
 ```
@@ -491,14 +475,12 @@ Lisez la partie concernant l'agrégation et la dissociation de séquences dans l
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 138-145 solutions.py
 ```

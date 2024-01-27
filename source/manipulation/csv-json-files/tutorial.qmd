@@ -292,13 +292,11 @@ r_dict["features"][1]
 - 11/ Un fichier dont l'extension est .json contient-il nécessairement du JSON ?
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-39 solutions.py
 ```
@@ -315,13 +313,11 @@ data = {"id": 1, "nom": "Isidore", "age": 29}
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 43-48 solutions.py
 ```
@@ -352,13 +348,11 @@ json.dumps(mon_citron)
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 52-64 solutions.py
 ```
@@ -375,13 +369,11 @@ Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la 
 - générer un nouveau fichier CSV `nat2020_corr.csv` contenant les mêmes données, mais cette fois avec la virgule comme séparateur.
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 68-81 solutions.py
 ```
@@ -409,13 +401,11 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 85-99 solutions.py
 ```
@@ -438,13 +428,11 @@ Voici la liste des opérations à effectuer :
     - ouvrir ce fichier CSV en mode `append` pour écrire la ligne à la fin du fichier
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 103-117 solutions.py
 ```
@@ -467,13 +455,11 @@ Voici la liste des opérations à effectuer :
     - ouvrir le fichier CSV en écriture pour le réinitialiser, écrire le header en premier lieu, puis écrire les données que l'on a au préalable sauvegardées dans une liste de liste
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 121-141 solutions.py
 ```

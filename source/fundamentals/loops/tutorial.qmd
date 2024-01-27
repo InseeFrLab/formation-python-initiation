@@ -260,17 +260,17 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 
 - 8/ Que fait l'instruction `continue` ?
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-33 solutions.py
 ```
+::: {.content-visible when-profile="notebooks"}
 
 ### Prédiction de résultats de boucles `while`
 
@@ -308,13 +308,11 @@ while 5 >= 3:
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-51 solutions.py
 ```
@@ -344,13 +342,11 @@ for nb in nombres:
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 55-58 solutions.py
 ```
@@ -368,13 +364,11 @@ for i, note in enumerate(gamme):
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 62-68 solutions.py
 ```
@@ -395,13 +389,11 @@ l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 ```
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 72-84 solutions.py
 ```
@@ -419,13 +411,11 @@ Ecrire un programme permettant de calculer les $n$ premiers termes de la suite �
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 88-96 solutions.py
 ```
@@ -445,13 +435,11 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 100-109 solutions.py
 ```
@@ -465,13 +453,11 @@ x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 113-124 solutions.py
 ```
@@ -497,13 +483,11 @@ NB :
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 128-147 solutions.py
 ```
@@ -537,13 +521,11 @@ En utilisant la fonction `range`, afficher :
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 151-159 solutions.py
 ```
@@ -569,13 +551,11 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 
 
 ```{python}
-#| echo: false
 # Testez votre réponse dans cette cellule
 
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 163-178 solutions.py
 ```

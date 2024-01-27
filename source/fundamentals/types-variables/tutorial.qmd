@@ -447,7 +447,6 @@ Afficher le type de x lorsque :
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 2-9 solutions.py
 ```
@@ -473,7 +472,6 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 12-16 solutions.py
 ```
@@ -499,7 +497,6 @@ Que concluez-vous ?
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 19-26 solutions.py
 ```
@@ -520,7 +517,6 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 29-30 solutions.py
 ```
@@ -540,7 +536,6 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 33-34 solutions.py
 ```
@@ -559,7 +554,6 @@ a = "    Un string très mal formatté.         "
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 37-38 solutions.py
 ```
@@ -579,7 +573,6 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 41 solutions.py
 ```
@@ -605,7 +598,6 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 44-48 solutions.py
 ```
@@ -629,7 +621,6 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 ```
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 51-56 solutions.py
 ```
@@ -660,7 +651,6 @@ Ces deux méthodes fonctionnent mais présentent des limites. Réfléchissez à 
 En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/tutorial/inputoutput.html#formatted-string-literals), utilisez les `f-strings` pour résoudre ces différents problèmes.
 
 ```{python}
-#| echo: false
 # Exécuter cette cellule pour afficher la solution
 %load -r 59-92 solutions.py
 ```
