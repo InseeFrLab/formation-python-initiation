@@ -1,5 +1,5 @@
-format:
-  ipynb:
-    execute:
-      echo: true
-      eval: false
+project:
+  render:
+    - source/
+
+format: ipynb
