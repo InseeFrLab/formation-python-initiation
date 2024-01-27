@@ -6,3 +6,4 @@ pandas
 pyarrow
 requests
 seaborn
+sklearn
