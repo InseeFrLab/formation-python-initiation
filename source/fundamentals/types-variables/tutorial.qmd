@@ -438,9 +438,8 @@ Afficher le type de x lorsque :
 
 - x = 3.5
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -464,9 +463,8 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 
 - "jamais deux sans trois"
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -490,9 +488,8 @@ Essayer de définir les codes postaux suivants au format `int` et au format `str
 
 Que concluez-vous ?
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -511,9 +508,8 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 
 **Indice** : on peut utiliser la méthode *built-in* [count](https://docs.python.org/fr/3/library/stdtypes.html#str.count).
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -531,9 +527,8 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 
 **Indice** : on peut utiliser la méthode *built-in* [find](https://docs.python.org/fr/3/library/stdtypes.html#str.find).
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -551,8 +546,8 @@ Supprimer les espaces superflus au début et à la fin de la chaîne suivante :
 
 **Indice** : on peut utiliser la méthode *built-in* [strip](https://docs.python.org/fr/3/library/stdtypes.html#str.strip).
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 a = "    Un string très mal formatté.         "
 ```
@@ -570,9 +565,8 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 
 **Indice** : des exemples d'utilisation sont disponibles dans la [documentation officielle](https://docs.python.org/fr/3.8/reference/lexical_analysis.html#literals).
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -595,9 +589,8 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 
 - lui ajouter 22
 
-
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -621,8 +614,8 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 
 **Indice** : l'une des deux méthodes implique de modifier (légèrement) une des deux séquences.
 
+::: {.content-visible when-profile="notebooks"}
 ```{python}
-#| echo: false
 # Tapez votre réponse dans cette cellule
 
 ```
@@ -638,8 +631,6 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 Les `f-strings` sont une forme de *strings* un peu particulière mais très pratique, qui ont été ajoutés dans la version 3.6 de `Python`. Pour comprendre leur intérêt, repartons de la solution de l'exercice précédent, qui illustrait deux manières de composer la chaîne "nous sommes en 2024".
 
 ```{python}
-#| echo: false
-# Tapez votre réponse dans cette cellule
 a1 = "nous sommes en"
 a2 = "nous sommes en {}"
 b = "2024"
@@ -657,6 +648,12 @@ Ces deux méthodes fonctionnent mais présentent des limites. Réfléchissez à 
 - si l'on souhaite concaténer plusieurs *strings* ensemble et qu'en plus on souhaite injecter les valeurs d'autres variables dans chaque partie ?
 
 En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/tutorial/inputoutput.html#formatted-string-literals), utilisez les `f-strings` pour résoudre ces différents problèmes.
+
+::: {.content-visible when-profile="notebooks"}
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
