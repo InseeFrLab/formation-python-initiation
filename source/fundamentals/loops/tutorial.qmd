@@ -270,7 +270,7 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 # Exécuter cette cellule pour afficher la solution
 %load -r 3-33 solutions.py
 ```
-::: {.content-visible when-profile="notebooks"}
+:::
 
 ### Prédiction de résultats de boucles `while`
 
