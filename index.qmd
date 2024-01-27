@@ -16,11 +16,11 @@ La formation `SSPy` propose une introduction à l'utilisation de `Python` dans l
 
 Malgré déjà plus de 30 années d'existence, `Python` reste un langage extrêmement dynamique. Plus que cela : non seulement fait-il déjà partie des langages les plus populaires, mais il est également celui qui connaît la plus forte croissance en termes de nombre d'utilisateurs d'année en année.
 
-![](img/pythontrend.jpg)
+![](img/pythontrend.jpg){fig-align="center" height=500}
 
 Une des principales raison de cette forte croissance actuelle est la montée en puissance du domaine de la *data science*, au sein duquel `Python` s'est progressivement imposé comme le langage central. De nombreuses librairies phares dans le domaine de la manipulation de données, de la *datavisualisation*, du *machine learning* et du déploiement applicatif sont disponibles en `Python`. Cette adoption croissante dans divers secteurs en fait un choix privilégié pour unifier les pratiques via un langage commun, s'appliquant aussi bien aux métiers de la data science, au développement, qu'à la production informatique et statistique.
 
-![](img/python_ecosystem.svg)
+![](img/python_ecosystem.svg){fig-align="center"}
 
 Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
@@ -32,7 +32,7 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ### Une "e-formation tutorée"
 
-Cette formation adopte un format d'e-formation tutorée. Elle se déroule sur une période étendue (plusieurs mois), avec un accent mis sur la pédagogie pratique. Un tutorat est également disponible via le [Canal Tchap](https://tchap.gouv.fr/#/room/!XKtsUhPslGXsbIUOIw:agent.finances.tchap.gouv.fr?via=agent.finances.tchap.gouv.fr), où les participants peuvent poser leurs questions en continu, ainsi que lors de sessions de visioconférence périodiques.
+Cette formation adopte un format d'e-formation tutorée. Elle se déroule sur une période étendue (plusieurs mois), avec un accent mis sur la pédagogie pratique. Un tutorat est également disponible via un [Canal Tchap](https://tchap.gouv.fr/#/room/!XKtsUhPslGXsbIUOIw:agent.finances.tchap.gouv.fr?via=agent.finances.tchap.gouv.fr), où les participants peuvent poser leurs questions en continu, ainsi que lors de sessions de visioconférence périodiques.
 
 ### Hébergée sur le `SSP Cloud`
 
@@ -56,13 +56,13 @@ Chaque chapitre se termine sur une série d'exercices guidés qui visent à mett
 
 La formation utilise le format de notebook interactif `Jupyter`, combinant du texte au format `Markdown`, du code `Python`, et du code `HTML` pour les visualisations et animations. Ce format est particulièrement adapté à la formation et aux phases d'expérimentation. Il permet par ailleurs de publier simplement à la fois les notebooks d'exercices et le site associé au cours.
 
-![](img/notebook.png)
+![](img/notebook.png){fig-align="center"}
 
 ### Lancer un chapitre
 
 Les notebooks associés aux différents chapitres peuvent ensuite être lancés en un clic depuis l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D) du SSP Cloud.
 
-![](img/lancement.gif)
+![](img/lancement.gif){fig-align="center"}
 
 ### Comment résoudre les erreurs ?
 
