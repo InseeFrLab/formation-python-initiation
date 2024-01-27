@@ -650,8 +650,11 @@ print(a2.format(b))
 ```
 
 Ces deux méthodes fonctionnent mais présentent des limites. Réfléchissez à ce qui se passerait dans les cas suivants, et n'hésitez pas à faire des tests pour vous en convaincre :
+
 - si l'on souhaite injecter via la méthode `format()` une variable qui n'est pas un *string* (ex : si "2024" était un entier et non un *string*) ?
+
 - si l'on souhaite concaténer plusieurs *strings* ensemble ?
+
 - si l'on souhaite concaténer plusieurs *strings* ensemble et qu'en plus on souhaite injecter les valeurs d'autres variables dans chaque partie ?
 
 En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/tutorial/inputoutput.html#formatted-string-literals), utilisez les `f-strings` pour résoudre ces différents problèmes.
