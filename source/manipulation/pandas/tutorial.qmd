@@ -1034,7 +1034,7 @@ df_merged_outer
 ```
 :::
 
-### Exercice : plusieurs manières de créer un DataFrame
+### Plusieurs manières de créer un DataFrame
 
 Dans la cellule suivante, nous avons récupéré des données de caisses sur les ventes de différentes enseignes. Les données sont cependant présentées de deux manières différentes, dans un cas sous forme d'observations (chaque liste contient les données d'une ligne), dans l'autre sous forme de variables (chaque liste contient les données d'une colonne).
 
@@ -1070,7 +1070,7 @@ L'objectif est de construire dans les deux cas un même DataFrame qui contient c
 ```
 :::
 
-### Exercice : sélection de données dans un DataFrame Pandas
+### Sélection de données dans un DataFrame
 
 Un DataFrame Pandas est créé avec des données de caisse (mêmes données que l'exercice précédent).
 
@@ -1202,7 +1202,7 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 ```
 :::
 
-### Exercice : exploration du fichier des prénoms
+### Exploration du fichier des prénoms
 
 Le fichier des prénoms contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021. Ces données sont disponibles au niveau France, par département et par région, à l'adresse suivante : [https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262). L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
 
@@ -1403,7 +1403,7 @@ Le fichier des prénoms contient des données sur les prénoms attribués aux en
 ```
 :::
 
-### Exercice : calcul d'une empreinte carbone par habitant au niveau communal
+### Calcul d'une empreinte carbone par habitant au niveau communal
 
 L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données : 
 
@@ -1629,7 +1629,7 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 ```
 :::
 
-### Exercice : Analyse de l'évolution d'un indice de production
+### Analyse de l'évolution d'un indice de production
 
 Vous avez à disposition dans le dossier `data/` deux jeux de données CSV :
 - `serie_glaces_valeurs.csv` contient les valeurs mensuelles de l'indice de prix de production de l'industrie française des glaces et sorbets

@@ -303,7 +303,7 @@ r_dict["features"][1]
 ```
 :::
 
-### Exercice : trier les clés lors de l'écriture d'un JSON
+### Trier les clés lors de l'écriture d'un JSON
 
 
 La cellule suivante contient un dictionnaire. Le but de l'exercice est d'écrire ces données dans un fichier JSON, en triant les clés du dictionnaire par ordre alphabétique.
@@ -326,7 +326,7 @@ data = {"id": 1, "nom": "Isidore", "age": 29}
 ```
 :::
 
-### Exercice : convertir un objet non-sérialisable en JSON
+### Convertir un objet non-sérialisable en JSON
 
 
 Nous avons vu que les objets que l'on crée manuellement via des classes ne sont généralement pas sérialisables. La cellule suivante en montre un exemple avec notre objet `Citron` utilisé dans le tutoriel sur la POO. Essayer de convertir directement l'objet en JSON renvoie une erreur.
@@ -363,7 +363,7 @@ json.dumps(mon_citron)
 ```
 :::
 
-### Exercice : changer le délimiteur d'un fichier CSV
+### Changer le délimiteur d'un fichier CSV
 
 
 Votre répertoire courant contient le fichier `nat2020.csv`. Il s'agit du fichier des prénoms diffusé par l'Insee : il contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2020. 
@@ -386,7 +386,7 @@ Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la 
 ```
 :::
 
-### Exercice : extraire et sauvegarder des données issues d'une API
+### Extraire et sauvegarder des données issues d'une API
 
 
 L'exercice consiste à effectuer une requête à l'API de la Base Adresse Nationale, et sauvegarder les résultats dans un fichier CSV. Voici les étapes à implémenter :
@@ -420,7 +420,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 ```
 :::
 
-### Exercice : découper la base des départements par régions
+### Découper la base des départements par régions
 
 
 L'objectif de cet exercice est de découper le fichier CSV des départements que nous avons utilisé dans le tutoriel en plusieurs petits CSV, un par région. Ce type d'opération peut être utile par exemple lorsqu'on travaille avec un fichier de très grande taille, qui ne passe pas en mémoire ; le découper en plusieurs fichiers que l'on traite indépendamment, lorsque cela est possible, permet de réduire la volumétrie.
@@ -449,7 +449,7 @@ Voici la liste des opérations à effectuer :
 ```
 :::
 
-### Exercice : rajouter des *headers* manquants
+### Rajouter des *headers* manquants
 
 
 Dans l'exercice précédent, nous avons découpé le fichier CSV des départements français en plusieurs fichiers CSV, un par région. Mais nous n'avons pas inclus dans les différents fichiers le *header*, i.e. la première ligne qui contient les noms de colonnes. On va donc l'ajouter manuellement à chacun des fichiers CSV créés lors de l'exercice précédent.

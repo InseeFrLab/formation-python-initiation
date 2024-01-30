@@ -310,7 +310,7 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 ```
 :::
 
-### Exercice
+### Requêtage d'un dictionnaire
 
 Soit le dictionnaire défini dans la cellule ci-dessous.
 
@@ -356,7 +356,7 @@ resultats = {
 ```
 :::
 
-### Exercice
+### Longueur d'un dictionnaire
 
 Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de compter le nombre d'éléments d'une séquence. Est-ce que cette fonction fonctionne avec les dictionnaires ? Que compte-t-elle alors ?
 
@@ -374,7 +374,7 @@ Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de 
 ```
 :::
 
-### Exercice
+### Suppression d'éléments de dictionnaire
 
 Nous avons vu qu'on pouvait supprimer une clé d'un dictionnaire de deux manières différentes :
 
@@ -398,7 +398,7 @@ Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces de
 ```
 :::
 
-### Exercice
+### Renommage d'une clé de dictionnaire
 
 En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'un dictionnaire renvoie la valeur associée à cette clé, proposez une méthode pour renommer une clé d'un dictionnaire en une seule opération.
 
@@ -416,7 +416,7 @@ En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'
 ```
 :::
 
-### Exercice
+### Tests d'appartenance à un dictionnaire
 
 Soit le dictionnaire suivant :
 
@@ -447,7 +447,7 @@ Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédiction
 ```
 :::
 
-### Exercice
+### Suppression d'une clé inexistante
 
 Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait pour supprimer une clé inexistante d'un dictionnaire. A l'aide de vos nouvelles connaissances sur les tests d'appartenance, pouvez-vous imaginer une méthode (sans nécessairement l'implémenter) qui permettrait de traiter ce cas sans erreur ?
 
@@ -465,7 +465,7 @@ Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait 
 ```
 :::
 
-### Exercice
+### Déduplication
 
 Soit la chaîne de caractères avec répétition suivante :
 
@@ -491,7 +491,7 @@ Indice : la procédure est semblable au fait de supprimer les doublons d'une lis
 ```
 :::
 
-### Exercice
+### Intersections et unions de chaînes de caractères
 
 Soit les deux chaînes de caractères suivantes.
 
@@ -517,7 +517,7 @@ Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux 
 ```
 :::
 
-### Exercice
+### De l'intérêt des sets pour les tests d'appartenance
 
 Le code ci-dessous génère une liste avec les lettres a, b, c et d répétées 1 million de fois. Ensuite, il réalise un test d'appartenance d'une lettre qui n'existe pas dans la liste, et calcule le temps mis par l'interpréteur Python pour réaliser le test.
 

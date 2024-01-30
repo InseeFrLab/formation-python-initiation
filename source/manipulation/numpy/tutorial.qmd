@@ -400,7 +400,7 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 
 ### Exercice : plusieurs manières de créer un DataFrame
 
-### Exercice : manipulations simples des données d'un DataFrame
+### Manipulations simples des données d'un DataFrame
 
 
 Un vecteur comprenant les entiers compris entre 10 et 20 est défini dans la cellule suivante. En utilisant l'indexation des *arrays* `NumPy` :
@@ -437,7 +437,7 @@ print(X)
 ```
 :::
 
-### Exercice : sélectionner des éléments dans une matrice
+### Sélectionner des éléments dans une matrice
 
 
 Une matrice de taille 5x5 comprenant tous les entiers compris entre 0 et 24 est définie dans la cellule suivante. En utilisant l'indexation des *arrays* `NumPy` :
@@ -470,7 +470,7 @@ print(Y)
 ```
 :::
 
-### Exercice : un peu de calcul
+### Un peu de calcul
 
 
 Deux matrices carrées de taille 3x3 sont définies sous forme d'*arrays* `NumPy` dans la cellule suivante. A partir de ces matrices, réaliser les opérations mathématiques suivantes :
@@ -511,7 +511,7 @@ Y = np.array([[10,11,12],
 ```
 :::
 
-### Exercice : initialisation d'*arrays* de diverses natures
+### Initialisation d'*arrays* de diverses natures
 
 
 Dans le tutoriel, nous avons vu que la méthode standard pour créer un *array* `NumPy` consistait à initialiser une liste, que l'on convertit ensuite en *array*. On peut également utiliser des fonctions natives de `NumPy` qui créent des *array* d'une taille donnée, contenant des valeurs basiques (ex : valeurs "quasi-vides", zéros, uns, une valeur spécifiée par l'utilisateur, etc.).
@@ -551,7 +551,7 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 ```
 :::
 
-### Exercice : tirage d'un vecteur selon une loi normale
+### Tirage d'un vecteur selon une loi normale
 
 
 En vous référant à la [documentation](https://numpy.org/doc/stable/reference/random/generator.html) des fonctions de génération de nombres aléatoires de `NumPy`, générer un vecteur `X` de taille 10000, contenant des nombres tirés selon une loi normale de moyenne 0 et de variance 2.
@@ -572,7 +572,7 @@ Indice : attention à la manière dont est spécifiée la variance dans la fonct
 ```
 :::
 
-### Exercice : tirage d'une matrice selon une loi uniforme
+### Tirage d'une matrice selon une loi uniforme
 
 
 En vous référant à la [documentation](https://numpy.org/doc/stable/reference/random/generator.html) des fonctions de génération de nombres aléatoires de `NumPy`, générer une matrice `U` de taille 1000 par 1000, contenant des nombres tirés selon une loi uniforme dans l'intervalle [-1, 1].
@@ -591,7 +591,7 @@ En utilisant la fonction `np.all` et un test booléen, vérifier que tous les no
 ```
 :::
 
-### Exercice : binariser une matrice de nombres
+### Binariser une matrice de nombres
 
 
 On peut parfois avoir besoin de binariser une matrice numérique, c'est à dire de fixer un seuil au delà duquel les valeurs numériques sont fixées à 1, et à 0 en-dessous. `NumPy` propose plusieurs méthodes pour réaliser une telle opération, nous allons en voir deux. 
@@ -618,7 +618,7 @@ X = np.random.randint(0, 50, size=(6, 6))
 ```
 :::
 
-### Exercice : touché-coulé
+### Touché-coulé
 
 
 L'objectif de cet exercice est de programmer seulement à l'aide d'objets et de fonctions de `NumPy` un touché-coulé très basique. 
@@ -659,7 +659,7 @@ print(X)
 ```
 :::
 
-### Exercice : One Hot Encoding
+### One Hot Encoding
 
 
 En statistique, il est fréquent de vouloir encoder numériquement un vecteur de catégories. Une manière fréquente d'encoder des catégories est le *one hot encoding* (OHE) : chaque valeur est représentée par un vecteur binaire, qui contient un $1$ sur la colonne correspondant à la catégorie et des $0$ partout ailleurs.

@@ -229,7 +229,7 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 ```
 :::
 
-### Exercice : de la masse au jus
+### De la masse au jus
 
 
 Admettons que le jus contenu dans un citron soit une fonction proportionnelle de sa masse, défini de la manière suivante : $jus = \frac {masse} {4}$ où la masse est en grammes et le jus en mL.
@@ -274,7 +274,7 @@ class Citron:
 ```
 :::
 
-### Exercice : comptes bancaires
+### Comptes bancaires
 
 
 Exercice librement inspiré de : [https://github.com/Pierian-Data/Complete-Python-3-Bootcamp](https://github.com/Pierian-Data/Complete-Python-3-Bootcamp)

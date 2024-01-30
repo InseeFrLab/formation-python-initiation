@@ -353,7 +353,7 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 ```
 :::
 
-### Exercice : prédiction de résultats de tests
+### Prédiction de résultats de tests
 
 
 Prédire le résultats des tests suivants, et vérifier vos prédictions : 
@@ -392,7 +392,7 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 ```
 :::
 
-### Exercice : prédiction de test imbriqué
+### Prédiction de test imbriqué
 
 
 Considérons le programme écrit dans la cellule suivante.
@@ -443,7 +443,7 @@ Vérifiez vos résultats.
 ```
 :::
 
-### Exercice : trois et pas plus
+### Trois et pas plus
 
 
 Ecrire un programme qui réalise les opérations suivantes :
@@ -468,7 +468,7 @@ Ecrire un programme qui réalise les opérations suivantes :
 ```
 :::
 
-### Exercice : le juste prix
+### Le juste prix
 
 
 La fonction `input` permet de demander à l'utilisateur d'entrer une valeur dans le cadre d'un programme Python. La syntaxe est la suivante : `x = input()`. Lorsque cette commande est exécutée, l'utilisateur doit rentrer une valeur, qui est alors assignée à la variable x.
@@ -497,7 +497,7 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 ```
 :::
 
-### Exercice : évaluation booléenne d'objets divers
+### Evaluation booléenne d'objets divers
 
 
 En Python, tous les objets s'évaluent à `True` or `False` dans le cadre d'un test conditionnel (`if`/`else`). La règle générale est que les objets qui sont zéro ou vides (ex : une liste vide, un dictionnaire vide) s'évaluent à `False`, et inversement. Mais il n'y a pas besoin de connaître ces règles par coeur : elles se retrouvent facilement en pratique ! Par exemple, on peut utiliser le test conditionnel suivant : 
@@ -543,7 +543,7 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 ```
 :::
 
-### Exercice : comparaisons en chaîne
+### Comparaisons en chaîne
 
 
 Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qui renvoient `True` à condition que chacune des comparaisons inclues soit vraie. Trouvez une manière de réécrire la comparaison en chaîne suivante à l'aide d'opérateurs booléens.
@@ -563,7 +563,7 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 :::
 
 
-### Exercice : Booléens et langage binaire
+### Booléens et langage binaire
 
 
 Les Booléens sont fortement liés au langage binaire, dans lequel le `1` correspond à "vrai" et le `0` à "faux". On va vérifier si ce lien existe dans le contexte de Python. Pour ce faire : 
@@ -584,7 +584,7 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 ```
 :::
 
-### Exercice : comparaisons de *strings*
+### Comparaisons de *strings*
 
 
 Que renvoient les tests de comparaison de type inégalités appliqués à des chaînes de caractères ? Produire quelques exemples pour tester le comportement.
@@ -601,7 +601,7 @@ Que renvoient les tests de comparaison de type inégalités appliqués à des ch
 ```
 :::
 
-### Exercice : tests d'égalité sur les *floats*
+### Tests d'égalité sur les *floats*
 
 
 Les tests d'égalité entre nombres réels (type `float` en Python) peuvent être trompeurs. Pour vous en convaincre, effectuez le test suivant : 

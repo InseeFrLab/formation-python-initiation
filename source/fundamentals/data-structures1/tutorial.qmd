@@ -302,7 +302,7 @@ Ces fonctions ont d'autres usages en pratique, que nous verrons en exercice.
 
 Si les réponses à ces questions ne sont pas encore claires, n'hésitez pas à revenir au tutoriel, ou bien à tester par vous-même dans une cellule.
 
-### Exercice
+### Les 4 saisons
 
 Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des mois associés (les mois de changement de saison seront attribués à la saison précédente). Puis créez une liste `saisons` contenant les 4 listes. Essayez de prévoir ce que vont renvoyer (type de l'objet, nombre d'éléments et contenu) les instructions suivantes, puis vérifiez le. 
 
@@ -343,7 +343,7 @@ Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des m
 ```
 :::
 
-### Exercice
+### Faire ses gammes
 
 En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante pour qu'elle contienne les notes de musique "do re mi fa sol la si" dans le bon ordre.
 
@@ -363,7 +363,7 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 ```
 :::
 
-### Exercice
+### Inversion de liste
 
 Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`. Quelle est la différence majeure entre les deux méthodes ?
 
@@ -381,7 +381,7 @@ Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`.
 ```
 :::
 
-### Exercice
+### Pop'it
 
 Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément de la liste `ma_liste`. A l'aide de la documentation Python ou d'une recherche sur Google, déterminez le comportement par défaut de cette méthode, c'est à dire ce qu'il se passe lorsqu'on ne donne aucun paramètre à la fonction `pop`. Vérifiez que vous observez bien ce comportement à l'aide d'un exemple de votre choix.
 
@@ -399,7 +399,7 @@ Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément
 ```
 :::
 
-### Exercice
+### Min et max de différentes listes
 
 Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que nous avons déjà vues. Par exemple : `min` et `max`. Vérifiez leur comportement : 
 
@@ -423,9 +423,9 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 ```
 :::
 
-### Exercice
+### Liste vide
 
-Essayer de créer une liste vide. Vérifiez son type. Quel intérêt cela pourrait-il avoir ?
+Essayer de créer une liste vide. Vérifiez son type. Quel intérêt pourrait avoir un tel objet ?
 
 
 ::: {.content-visible when-profile="notebooks"}
@@ -441,7 +441,7 @@ Essayer de créer une liste vide. Vérifiez son type. Quel intérêt cela pourra
 ```
 :::
 
-### Exercice
+### La fonction `list`
 
 Dans le tutoriel, nous avons vu les fonctions `list` et `tuple` qui permettent de passer d'un type à l'autre. En réalité, le fonctionnement de ces fonctions est plus subtil : le code `list(mon_objet)` renvoie la "version liste" de cet objet, de la même manière par exemple que `str(3)` renvoie `'3'`, c'est à dire la version *string* de l'entier `3`.
 
@@ -467,7 +467,7 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 ```
 :::
 
-### Exercice
+### Immutabilité des tuples
 
 Nous avons vu que les tuples avaient la particularité d'être non-modifiables. Mais est-ce que cette propriété se transfère de manière récursive ? Par exemple, est-ce qu'une liste contenue dans un tuple est-elle même non-modifiable ? Vérifiez à l'aide d'un exemple de votre choix.
 
@@ -485,7 +485,7 @@ Nous avons vu que les tuples avaient la particularité d'être non-modifiables. 
 ```
 :::
 
-### Exercice
+### Dissociation de séquences
 
 Lisez la partie concernant l'agrégation et la dissociation de séquences dans la [documentation Python](https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences). La dissociation est une propriété souvent utilisée en pratique. Vérifiez qu'elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu'à maintenant (chaînes de caractères, listes et tuples).
 
