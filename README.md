@@ -1,6 +1,8 @@
 # Formation - Initiation à Python
 
-*Contributeurs : Romain Avouac, Yves-Laurent Bénichou, Olivier Chateau, Thomas Faria, Antoine Palazzolo*
+*Auteur : Romain Avouac*
+
+*Contributeurs : Yves-Laurent Bénichou, Olivier Chateau, Thomas Faria, Antoine Palazzolo*
 
 ## Site associé
 
