@@ -26,7 +26,7 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 ### `Python` vs. `R`
 
-`Python` et `R` sont souvent comparés en raison de leur large utilisation dans le domaine statistique. La différence fondamentale est que `Python` est un langage généraliste, tandis que `R` est spécifiquement orienté vers les statistiques. Néanmoins, en pratique, ils sont plutôt complémentaires que concurrents, et le choix entre les deux va souvent dépendre du cas d'usage : par exemple, là où l'éco-système du `tidyverse` en `R` n'a sans doute pas d'égal pour la manipulation de données, l'éco-système qui s'est développé en `Python` autour des techniques de *machine learning* (en particulier le package `scikit-learn`) ne possède pas d'équivalent direct dans le monde `R`. Enfin, les deux langages se ressemblent et la transition d'un langage à l'autre est donc accessible sans nécessiter un ré-apprentissage complet et coûteux.
+`Python` et `R` sont souvent comparés en raison de leur large utilisation dans le domaine statistique. La différence fondamentale est que `Python` est un langage généraliste, tandis que `R` est spécifiquement orienté vers les statistiques. Néanmoins, en pratique, ils sont plutôt complémentaires que concurrents, et le choix entre les deux va souvent dépendre du cas d'usage : par exemple, là où l'écosystème du `tidyverse` en `R` n'a sans doute pas d'égal pour la manipulation de données, l'écosystème qui s'est développé en `Python` autour des techniques de *machine learning* (en particulier le package `scikit-learn`) ne possède pas d'équivalent direct dans le monde `R`. Enfin, les deux langages se ressemblent et la transition d'un langage à l'autre est donc accessible sans nécessiter un ré-apprentissage complet et coûteux.
 
 ## Modalités de formation
 
@@ -44,7 +44,7 @@ Le programme de la formation est divisé en trois grandes parties :
 
 - **fondamentaux** du langage `Python` : types de base, structures de données, instructions conditionnelles, fonctions, et une introduction à la programmation orientée-objet en `Python` ;
 
-- **manipulation de données** : manipulation de fichiers, travail avec des fichiers `CSV` et `JSON`, calcul numérique avec `NumPy`, traitement des données tabulaires avec `Pandas`, et une introduction à la visuation de données en `Python` ;
+- **manipulation de données** : manipulation de fichiers, travail avec des fichiers `CSV` et `JSON`, calcul numérique avec `NumPy`, traitement des données tabulaires avec `Pandas`, et une introduction à la visualisation de données en `Python` ;
 
 - **projets d'application** : construction d'un jeu de Puissance 4, prédictions météorologiques à l'aide de données issues d'API, et analyse du recensement de la population.
 
