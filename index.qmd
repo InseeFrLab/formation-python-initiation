@@ -52,17 +52,25 @@ Chaque chapitre se termine sur une série d'exercices guidés qui visent à mett
 
 ## En pratique
 
+### Lancer un chapitre
+
+Les différents chapitres peuvent être lancés en un clic depuis l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D) du `SSP Cloud`. Lancer un chapitre revient à lancer un service `jupyter-python` sur le `SSP Cloud`, pré-configuré pour la formation et qui va s'ouvrir directement sur le *notebook* associé au chapitre.
+
+![](img/lancement.gif){fig-align="center"}
+
 ### Les notebooks Jupyter
+
+#### Principe
 
 La formation utilise le format de notebook interactif `Jupyter`, combinant du texte au format `Markdown`, du code `Python`, et du code `HTML` pour les visualisations et animations. Ce format est particulièrement adapté à la formation et aux phases d'expérimentation. Il permet par ailleurs de publier simplement à la fois les notebooks d'exercices et le site associé au cours.
 
 ![](img/notebook.png){fig-align="center"}
 
-### Lancer un chapitre
+#### Utilisation
 
-Les notebooks associés aux différents chapitres peuvent ensuite être lancés en un clic depuis l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D) du SSP Cloud.
+La base du notebook est le *kernel*, visible en haut à droite (`Python 3 (ipykernel)`) et qui se lance automatiquement à l'ouverture d'un *notebook*. Concrètement, il s'agit d'un interpréteur `Python` qui tourne en continu en arrière-plan et qui permet d'exécuter dynamiquement des cellules de code `Python`. Ainsi, les objets créés dans une cellule sont persistés et peuvent être appelés dans une autre cellule, ce qui permet une exécution linéaire du *notebook* comme un script. Lorsque l'on souhaite nettoyer l'environnement de travail de tous les objets créés lors de la session, on peut le redémarrer (`menu Kernel -> Restart Kernel`).
 
-![](img/lancement.gif){fig-align="center"}
+Les cellules grisées correspondent aux cellules de code. Pour exécuter le contenu d'une cellule, il suffit de cliquer dessus puis d'utiliser les raccourcis clavier `Ctrl + Entrée` (exécute la cellule et reste sur la cellule active) ou `Shift + Entrée` (exécute la cellule et passe à la cellule suivante). Attention, exécuter une cellule revient à exécuter l'ensemble de son contenu. Si l'on souhaite exécuter ligne à ligne, on peut créer des nouvelles cellules (bouton ➕) et y insérer les différentes lignes de code. D'autres éditeurs de code (comme `VSCode`, disponible sur le `SSP Cloud`) permettent, comme `RStudio` par exemple, d'exécuter du code ligne à ligne, mais ils sont moins adaptés à la découverte de `Python`.
 
 ### Comment résoudre les erreurs ?
 
