@@ -20,7 +20,7 @@ rm $SOURCE_FILE
 cp -r ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
 
 # Install additional packages if needed
-REQUIREMENTS_FILE=${WORK_DIR}/requirements.txt
+REQUIREMENTS_FILE=${CLONE_DIR}/requirements.txt
 [ -f $REQUIREMENTS_FILE ] && pip install -r $REQUIREMENTS_FILE && rm $REQUIREMENTS_FILE
 
 # Remove course Git repository
