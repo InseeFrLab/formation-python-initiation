@@ -29,7 +29,7 @@ def reshape_table_by_year(df, year):
 
     # Reshaping dataframe by stacking levels and using melt function (from wide to long format)
     df = pd.melt(
-        df.stack(level=0).reset_index(),
+        df.stack(level=0, future_stack=True).reset_index(),
         id_vars=["Départements", "level_1"],
         value_name="population",
         var_name="age",
@@ -151,8 +151,8 @@ def plot_age_pyramid(df, year, ax=None):
     data = get_age_pyramid_data(df, year)
     idx = [f"{i-4} à {i} ans" for i in range(94, 0, -5)]
 
-    ax1 = sns.barplot(x="Hommes", y="age", data=data, order=idx, palette="RdPu", ax=ax)
-    ax2 = sns.barplot(x="Femmes", y="age", data=data, order=idx, palette="Blues", ax=ax)
+    ax1 = sns.barplot(x="Hommes", y="age", data=data, order=idx, color="purple", ax=ax, legend=False)
+    ax2 = sns.barplot(x="Femmes", y="age", data=data, order=idx, color="blue", ax=ax, legend=False)
     ax1.set(ylabel=None)
     ax1.set_title(f"Pyramides des âges de la France en {year}")
     ax1.set_xlabel("Hommes - Femmes")
