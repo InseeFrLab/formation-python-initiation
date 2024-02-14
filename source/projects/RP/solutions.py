@@ -7,7 +7,6 @@ import seaborn as sns
 def load_data():
     data = pd.read_excel(
         "https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls",
-        engine="odf",
         sheet_name=None,
         header=[3, 4],
     )
