@@ -7,3 +7,4 @@ pyarrow
 requests
 seaborn
 scikit-learn
+xlrd

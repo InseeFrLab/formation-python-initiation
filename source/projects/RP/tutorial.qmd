@@ -8,7 +8,7 @@ Le but de ce projet est de réaliser une analyse statistique rapide d'un jeu de 
 
 
 Nous allons nous intéresser à l’estimation de la population au 1er janvier de chaque année, cette estimation étant effectuée à partir des recensements et des modèles d’évolution de la population. Les données sont accessibles sur le site de l'Insee à l'adresse suivante : [https://www.insee.fr/fr/statistiques/1893198](https://www.insee.fr/fr/statistiques/1893198).
-Une copie du fichier a été déposée dans un *bucket* et peut être téléchargée via cet url : [https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods).
+Le fichier que nous allons utilisé peut être téléchargé directement via cet url : [https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls](https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls).
 
 ```{python}
 import copy
@@ -22,11 +22,11 @@ import solutions
 
 ## Partie 1 : Téléchargement et mise en forme des données
 
-Avant d'effectuer le téléchargement des données avec python il est nécessaire de connaitre le format de nos données. Dans notre cas, il s'agit du format Excel (`.xlsx`). De plus, il peut être utile de regarder à quoi ressemble les données que l'on souhaite importer, notamment lorsque leur format n'est pas standard. Ainsi, avant de commencer, prenez le temps de jeter un oeil aux données.
+Avant d'effectuer le téléchargement des données avec python il est nécessaire de connaître le format de nos données. Dans notre cas, il s'agit du format Excel (`.xlsx`). De plus, il peut être utile de regarder à quoi ressemble les données que l'on souhaite importer, notamment lorsque leur format n'est pas standard. Ainsi, avant de commencer, prenez le temps de jeter un œil  aux données.
 
 ### Question 0 
 
-Téléchargez les données en cliquant sur ce [lien](https://minio.lab.sspcloud.fr/tfaria/public/estim-pop-dep-sexe-aq-1975-2022.ods) et ouvrez-le avec votre logiciel tableur préféré. Analysez la structure des données.
+Téléchargez les données en cliquant sur ce [lien](https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls) et ouvrez-le avec votre logiciel tableur préféré. Analysez la structure des données.
 
 ### Question 1
 
