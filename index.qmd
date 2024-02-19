@@ -84,16 +84,32 @@ La survenue d'erreurs est tout à fait naturelle et attendue lors de l'apprentis
 
 - 4/ Les documentations officielles (de `Python` et des différents packages) sont souvent un peu arides, mais généralement exhaustives. Elles permettent notamment de bien comprendre la manière d'utiliser les différents objets. Par exemple pour les fonctions : ce qu'elles attendent en entrée, les paramètres et leur type, ce qu'elles renvoient en sortie, etc.
 
-## FAQ
+## Et après la formation ?
 
 ### Accès aux supports
 
 Tous les supports de formation restent accessibles sur le `SSP Cloud` après la formation. Le code qui génère les supports est disponible sur [GitHub](https://github.com/InseeFrLab/formation-python-initiation.git).
 
-### Après la formation ?
+### Utiliser `Python` dans des projets statistiques
 
-Pour approfondir sa connaissance du langage `Python` après cette formation d'introduction, rien de telle que la pratique sur des sujets concrets ! Néanmoins, selon la direction que l'on souhaite prendre, voici quelques ressources pertinentes pour l'après.
+Pour approfondir sa connaissance du langage `Python` après cette formation d'introduction, rien de tel que la mise en pratique sur des sujets concrets ! Pour les modalités d'utilisation de `Python` dans le cadre des projets statistiques, cela va dépendre de l'organisation : 
 
-La suite "naturelle" de cette formation est le cours de [Python pour la data science](https://pythonds.linogaliana.fr/) donné par Lino Galiana à l'ENSAE, également déployé dans l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Python%20pour%20la%20data%20science%22%5D) du `SSP Cloud`. Le cours reprend là où cette formation s'arrête, et dresse un panorama très complet des différentes méthodes de data science qui peuvent être effectuées grâce à `Python`.
+- pour des **projets open-data et inter-administrations**, le `SSP Cloud` est une bonne alternative dans la mesure où les services `Python` y sont déjà pré-configurés et où un service de stockage de données y est proposé (cf. [documentation](https://www.sspcloud.fr/formation) pour plus de détails) ;
+
+- pour des **projets internes à l'Insee**, se référer à la [documentation](https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/) sur l'utilisation de `Python` en interne ;
+
+- pour des **projets internes à d'autres administrations**, se rapprocher de sa DSI pour connaître les modalités d'utilisation recommandées.
+
+### Continuer sa formation
+
+La suite "naturelle" de cette formation est le cours de [Python pour la data science](https://pythonds.linogaliana.fr/) donné par Lino Galiana à l'ENSAE, également déployé dans l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Python%20pour%20la%20data%20science%22%5D) du `SSP Cloud`. Le cours reprend là où cette formation s'arrête, et dresse un panorama très complet des différentes méthodes de data science qui peuvent être mobilisées en `Python`.
 
 Pour approfondir l'approche plus algorithmique du code, l'[Advent of Code](https://adventofcode.com/) propose, chaque mois de Décembre, un exercice par jour sous forme d'énigmes en deux parties, qui impliquent une résolution algorithmique. C'est une très bonne opportunité de développer à la fois ses réflexes algorithmiques et sa connaissance de `Python`. Attention : si les premiers jours restent accessibles, la difficulté des énigmes devient rapidement assez élevée.
+
+## Contact
+
+Deux canaux de contact sont disponibles : 
+
+- pour les demandes pratiques liées à l'exécution de la formation : le [Canal Tchap](https://tchap.gouv.fr/#/room/!XKtsUhPslGXsbIUOIw:agent.finances.tchap.gouv.fr?via=agent.finances.tchap.gouv.fr) associé à la formation ;
+
+- pour toute autre demande : [innovation@insee.fr]([innovation@insee.fr])
