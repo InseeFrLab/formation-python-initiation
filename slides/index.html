@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.550">
+  <meta name="generator" content="quarto-1.4.553">
 
   <title>Formation SSPy  - Introduction à Python</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -509,6 +509,16 @@
 <li><p>Suite logique : <a href="https://www.sspcloud.fr/formation?search=&amp;path=%5B%22Python%20pour%20la%20data%20science%22%5D">Python pour la data science (ENSAE)</a></p></li>
 <li><p>Orientation algorithmie : <a href="https://adventofcode.com/2023">Advent of Code</a></p></li>
 </ul>
+</section>
+<section id="utiliser-python-dans-des-projets-statistiques" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Utiliser <code>Python</code> dans des projets statistiques</h2>
+<ul>
+<li>Modalités selon la nature des données utilisées
+<ul>
+<li>Projets open-data : <a href="https://datalab.sspcloud.fr/">SSP Cloud</a></li>
+<li>Projets internes : <a href="https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/">AUSV3 / LS3</a></li>
+</ul></li>
+</ul>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -804,6 +814,24 @@
         // clear code selection
         e.clearSelection();
       });
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/InseeFrLab\.github\.io\/formation-python-initiation\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -840,7 +868,11 @@
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
