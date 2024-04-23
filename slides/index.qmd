@@ -131,3 +131,9 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 - Suite logique : [Python pour la data science (ENSAE)](https://www.sspcloud.fr/formation?search=&path=%5B%22Python%20pour%20la%20data%20science%22%5D)
 
 - Orientation algorithmie : [Advent of Code](https://adventofcode.com/2023)
+
+## Utiliser `Python` dans des projets statistiques
+
+- Modalités selon la nature des données utilisées
+  - Projets open-data : [SSP Cloud](https://datalab.sspcloud.fr/)
+  - Projets internes : [AUSV3 / LS3](https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/)
