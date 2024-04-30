@@ -493,7 +493,7 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 77-85 solutions.py
+%load -r 78-86 solutions.py
 ```
 :::
 
@@ -539,7 +539,7 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 89-98 solutions.py
+%load -r 90-99 solutions.py
 ```
 :::
 
@@ -558,7 +558,7 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 102-109 solutions.py
+%load -r 103-110 solutions.py
 ```
 :::
 
@@ -580,7 +580,7 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 113-117 solutions.py
+%load -r 114-118 solutions.py
 ```
 :::
 
@@ -597,7 +597,7 @@ Que renvoient les tests de comparaison de type inégalités appliqués à des ch
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 121-130 solutions.py
+%load -r 122-131 solutions.py
 ```
 :::
 
@@ -619,8 +619,6 @@ Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalit
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 134-146 solutions.py
+%load -r 135-147 solutions.py
 ```
 :::
-
-
