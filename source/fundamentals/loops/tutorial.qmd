@@ -576,7 +576,7 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 
 ```{python}
 # Exécuter cette cellule pour afficher la solution
-%load -r 163-178 solutions.py
+%load -r 163-176 solutions.py
 ```
 :::
 

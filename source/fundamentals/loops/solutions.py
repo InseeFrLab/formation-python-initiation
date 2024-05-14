@@ -168,10 +168,8 @@ while True:
     p = int(p)
     if p < juste_prix:
         print("trop bas !")
-        continue
     elif p > juste_prix:
         print("trop haut !")
-        continue
     else:
         break
 
