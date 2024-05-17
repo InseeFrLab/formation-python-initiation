@@ -424,7 +424,7 @@ with open('normalisation.py', 'r') as module:
 
 La fonction contenue dans ce module peut être importée comme nous l'avons vu dans ce tutoriel. Notons que le module doit lui même importer les packages/modules nécessaires au bon fonctionnement des fonctions qu'il contient (en l'occurence, `numpy`). 
 
-Pour importer un module local, on utilise l'instruction `from` suivie du nom du fichier, sans l'extension.
+Pour importer un module local, on utilise l'instruction `import` suivie du nom du fichier, sans l'extension. Toutes les fonctions définies dans le module peuvent alors être utilisées via la syntaxe `nom_du_module.nom_de_la_fonction`. 
 
 ```{python}
 import normalisation
@@ -434,6 +434,36 @@ x_norm = normalisation.normalise(x)
 
 print(x_norm)
 ```
+
+Comme expliqué en début de chapitre, on pourrait également importer la fonction directement afin de ne pas avoir à rappeler le nom du module qui la contient. C'est notamment pratique si cette fonction est amenée à être utilisée plusieurs fois dans un même notebook/script. 
+
+```{python}
+from normalisation import normalise
+
+x = [1, 2, 3, 4, 5]
+x_norm = normalise(x)
+
+print(x_norm)
+```
+
+::: {.callout-warning title="La fausse bonne idée : import *"}
+Une bonne pratique essentielle est de favoriser la lisibilité de son code. Dans les deux variantes d'import présentées ci-dessus, le code est lisible : on voit bien de quel module provient la fonction utilisée.
+
+En revance, il n'est pas rare de voir dans du code Python l'instruction `from mon_module import *`, qui permet d'importer toutes les fonctions définies dans le fichier `mon_module.py`. C'est à proscrire dans la mesure du possible pour deux raisons :
+
+- il devient difficile de déterminer de quel module ou package proviennent les fonctions utilisées ;
+- si des fonctions importées à partir de différents packages/modules ont le même nom, elles peuvent se remplacer et générer des erreurs pénibles à débugger.
+
+Afin de limiter la longueur de la ligne d'instruction en cas d'import de multiples fonctions, on peut adopter la syntaxe suivante :
+
+```{python}
+from mon_module import (
+    fonction1,
+    fonction2,
+    fonction3
+)
+```
+:::
 
 Enfin, notons qu'un fichier `.py` peut à la fois servir comme module et comme script. Pour différencier les deux usages, on utilise la variable `__name__`, qui est définie par défaut par `Python` dès lors que l'on utilise un fichier `.py` :
 
