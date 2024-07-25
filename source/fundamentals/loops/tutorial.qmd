@@ -260,20 +260,28 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 
 - 8/ Que fait l'instruction `continue` ?
 
-::: {.content-visible when-profile="notebooks"}
-```{python}
-# Testez votre réponse dans cette cellule
+<details>
+<summary>Afficher la solution</summary>
 
-```
+1/ Une boucle `for` définit une variable d'itération qui va parcourir chaque élément d'un objet itérable. A chaque itération, une série d'instructions est effectuée.
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 3-33 solutions.py
-```
-:::
+2/ Oui, et sa valeur finale est égale à la dernière valeur de l'objet itérable.
+
+3/ La fonction `range(n)` crée un objet itérable qui contient tous les entiers compris entre 0 et n-1. Elle est très utilisée comme itérable dans les boucles `for` car elle permet d'itérer sur une séquence d'entiers sans avoir à mettre celle-ci dans une liste à la main.
+
+4/ La fonction `enumerate` appliquée à un objet itérable renvoie un nouvel objet itérable qui contient l'ensemble des couples (indice, élément) associés à l'objet initial, sous forme de tuples. Dans le cadre d'une boucle `for`, elle permet d'itérer à la fois sur les éléments d'un itérable et sur les positions de ces éléments.
+
+5/ Une boucle `while` exécute une série d'instructions de manière répétée tant que la condition logique spécifiée évalue à True.
+
+6/ Une boucle `while` s'arrête dès lors que la condition logique spécifiée évalue à False. Si ce cas ne se produit jamais, une boucle `while` peut donc être infinie. A l'inverse, une boucle `for` peut être très longue mais jamais infinie, dans la mesure où elle s'arrête dès lors qu'elle a terminé de parcourir l'objet.
+
+7/ L'instruction `break` force la boucle de niveau directement supérieur à se terminer.
+
+8/ L'instruction `continue` force la boucle de niveau directement supérieur à passer à l'itération suivante.
+
+</details>
 
 ### Prédiction de résultats de boucles `while`
-
 
 Essayer de prédire ce que vont produire les boucles `while` suivantes, et vérifiez vos résultats.
 
@@ -307,20 +315,26 @@ while 5 >= 3:
     print("hello world")
 ```
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 37-51 solutions.py
-```
-:::
+<details>
+<summary>Afficher la solution</summary>
+
+- 1. Boucle infinie car le i n'est jamais incrémenté, la condition est donc toujours vérifiée. 0 va s'imprimer à l'infini.
+
+- 2. La boucle va s'arrêter à la 4ème itération, lorsque a vaut 5. Cependant, le print est mal indenté => il va s'imprimer 3 fois au lieu d'1.
+
+- 3. False évalue à False => la boucle ne s'exécute pas du tout. Aucun output.
+
+- 4. True évalue à True => la boucle est théoriquement infinie, mais il y a un break. Il va donc y avoir une seule itération, soit un seul print de "hello world"
+
+- 5. 5 >= 3 évalue à True => la boucle est infinie. Le continue est exécuté à chaque itération avant que le print ne puisse s'exécuter. La boucle tourne à l'infini, mais sans output.
+</details>
 
 ### Effet d'une erreur d'indentation
-
 
 Source : [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/06_tests/)
 
@@ -343,20 +357,18 @@ for nb in nombres:
     print(f"car la variable nb vaut {nb}")
 ```
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 55-58 solutions.py
-```
-:::
+<details>
+<summary>Afficher la solution</summary>
+
+Le premier programme est correct. Dans le second, le second `print` n'est pas correctement indenté. En conséquence, il s'exécute à chaque itération et non pas juste lorsque `nb == 5`.
+</details>
 
 ### Convertir une boucle `for` en boucle `while`
-
 
 Réécrivez la boucle `for` suivante à l'aide d'une boucle `while`.
 
@@ -367,20 +379,26 @@ for i, note in enumerate(gamme):
     print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
 ```
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 62-68 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
+
+i = 0
+while i <= (len(gamme) - 1):
+    # On soustrait 1 à la longueur de `gamme` car l'index maximal est 6
+    print("La note numéro " + str(i) + " de la gamme de do majeur est " + gamme[i])
+    i += 1
 ```
-:::
+</details>
 
 ### Recherche d'un élément dans une liste
-
 
 Soit un entier cible `n_cible` et une liste d'entiers `l` tels que définis dans la cellule suivante. A l'aide d'une boucle `for` et de la fonction `enumerate` :
 
@@ -394,20 +412,32 @@ n_cible = 78
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 ```
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 72-84 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+n_cible = 78
+
+l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
+
+for i, n in enumerate(l):
+    if n == n_cible:
+        print("Le nombre " + str(n) + " est à la position " + str(i) + " de la liste.")
+        break
+
+# NB : version plus efficiente sans boucle
+if n_cible in l:
+    pos = l.index(n_cible)
+    print("Le nombre " + str(n_cible) + " est à la position " + str(pos) + " de la liste.")
 ```
-:::
+</details>
 
 ### Suite de Fibonacci
-
 
 La suite de Fibonacci se définit de la manière suivante : 
 
@@ -417,21 +447,28 @@ La suite de Fibonacci se définit de la manière suivante :
 
 Ecrire un programme permettant de calculer les $n$ premiers termes de la suite à l'aide d'une boucle `for`.
 
-
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 88-96 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+n_termes = 20
+num1 = 0
+num2 = 1
+
+for i in range(n_termes):
+    print(num1)
+    num3 = num1 + num2
+    num1 = num2
+    num2 = num3
 ```
-:::
+</details>
 
 ### Dictionnaire des tables de multiplication
-
 
 A l'aide de deux boucles `for` imbriquées, construire un dictionnaire `tables` permettant de réaliser les tables de multiplication jusqu'à la table de 12. Requêtez votre dictionnaire pour vérifier sa pertinence.
 
@@ -443,41 +480,59 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 
 - tables[12][7] -> 84
 
-
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 100-109 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+tables = {}
+
+for i in range(13):
+    tables[i] = {}
+    for j in range(13):
+        tables[i][j] = i*j
+
+print(tables[2][3])
+print(tables[9][5])
+print(tables[12][7])
 ```
-:::
+</details>
 
 ### Calcul du minimum et du maximum d'une série "à la main"
-
 
 Calculer le minimum et le maximum de la série de valeurs suivantes, sans utiliser les fonctions `min` et `max` de Python. 
 
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
-
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 113-124 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+x = [8, 18, 6, 0, 15, 17.5, 9, 1]
+
+current_min = x[0]
+current_max = x[0]
+for n in x[1:]:
+    if n <= current_min:
+        current_min = n
+    if n >= current_max:
+        current_max = n
+
+print(current_min == min(x))
+print(current_max == max(x))
 ```
-:::
+</details>
 
 ### Calcul de moyenne et de variance "à la main"
-
 
 Calculer la moyenne et la variance de la série de valeurs suivantes, sans utiliser des fonctions déjà codées : 
 
@@ -495,21 +550,39 @@ NB :
 
 - en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
 
-
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 128-147 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+x = [8, 18, 6, 0, 15, 17.5, 9, 1]
+n = len(x)
+
+somme_moy = 0
+for x_i in x:
+    somme_moy += x_i
+moyenne = somme_moy / n
+
+somme_var = 0
+for x_i in x:
+    somme_var += (x_i - moyenne)**2
+variance = somme_var / n
+
+print(moyenne)
+print(variance)
+
+# Vérification avec les fonctions du package numpy
+import numpy as np
+print(np.mean(x))
+print(np.var(x))
 ```
-:::
+</details>
 
 ### Usage avancé de la fonction `range`
-
 
 Nous avons vu plus haut l'usage basique de la fonction `range` : `range(n)` crée un objet itérable qui contient l'ensemble des entiers de $0$ à $n-1$. Les usages possibles de cette fonction sont cependant plus complets, et parfois utiles dans le cadre de problèmes précis.
 
@@ -535,21 +608,28 @@ En utilisant la fonction `range`, afficher :
 
 - l'ensemble des entiers de 10 à 20 (20 inclus), dans l'ordre inverse (de 20 à 10)
 
-
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 151-159 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+print(list(range(10)))
+
+print(list(range(10, 21)))
+
+print(list(range(30, 41, 2)))
+
+print(list(range(10, 100, 10)))
+
+print(list(range(20, 9, -1)))
 ```
-:::
+</details>
 
 ### Le juste prix, version améliorée
-
 
 Dans le précédent tutoriel, nous avons codé un jeu du juste prix. Mais il était un peu limité, puisqu'il fallait réexécuter le code à chaque étape du jeu. A l'aide de boucles, réécrivez le jeu de manière complètement automatique.
 
@@ -567,17 +647,28 @@ Rappel des règles :
 
 Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
 
-
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 163-176 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+juste_prix = 15
+
+while True:
+    print("Proposer un nombre entre 1 et 50.")
+    p = input()
+    p = int(p)
+    if p < juste_prix:
+        print("trop bas !")
+    elif p > juste_prix:
+        print("trop haut !")
+    else:
+        break
+
+print("dans le mille !")
 ```
-:::
-
-
+</details>

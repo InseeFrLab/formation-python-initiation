@@ -391,6 +391,7 @@ def puissance(x, y):
 
 puissance(2, 3)
 ```
+</details>
 
 ### Prédiction de valeurs retournées par des fonctions
 
@@ -456,6 +457,7 @@ def f9(x, y, z=5):
 
 - f9. Valeur : 13 ; Type : int
 ```
+</details>
 
 ### Variables globales et variables locales
 
@@ -514,6 +516,7 @@ print(f3(1, 0))
 
 print(total)
 ```
+</details>
 
 ### Calculatrice
 
@@ -541,6 +544,7 @@ def calculatrice(a, b):
 add, sub, mult, div = calculatrice(5, 3)
 print(add, sub, mult, div)
 ```
+</details>
 
 ### Dédupliquer une liste
 
@@ -573,6 +577,7 @@ l = ["a", "a", "b", "c"]
 print(dedup(l))  # Comportement par défaut : pas de tri
 print(dedup(l, sort=True))  # Comportement modifié : tri
 ```
+</details>
 
 ### Multiplier les éléments d'une liste
 
@@ -606,6 +611,7 @@ def multiplier(l):
 l = [2, 8, 3]
 multiplier(l)
 ```
+</details>
 
 ### Variance dans une population et variance dans un échantillon
 
@@ -664,6 +670,7 @@ print(np.mean(x))
 print(np.var(x))  # population
 print(np.var(x, ddof=1))  # sample
 ```
+</details>
 
 ### Fonctions récursives : factorielle
 
@@ -691,3 +698,4 @@ def factorielle(n):
 
 factorielle(5)
 ```
+</details>
