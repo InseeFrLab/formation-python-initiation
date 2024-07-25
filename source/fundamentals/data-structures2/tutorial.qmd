@@ -295,11 +295,6 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 
 - 7/ Pourquoi les sets sont-ils plus pertinents que les listes pour réaliser des tests d'appartenance ?
 
-```{python}
-# Testez votre réponse dans cette cellule
-
-```
-
 <details>
 <summary>Afficher la solution</summary>
 
