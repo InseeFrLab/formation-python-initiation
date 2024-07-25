@@ -92,8 +92,13 @@ type(2e3)
 3 / 0
 ```
 
-C'était bien sûr prévisible. Mais il n'est pas rare d'avoir de telles erreurs dans le cadre de calculs statistiques, notamment avec *NumPy* ou *Pandas*, produisant une erreur similaire qu'il faut alors débugger.
+La division par 0 produit une erreur. C'était bien sûr prévisible. Mais il n'est pas rare d'avoir de telles erreurs dans le cadre de calculs statistiques, notamment avec *NumPy* ou *Pandas*, produisant une erreur similaire qu'il faut alors débugger.
 
+::: {.callout-tip title="Debugger une erreur"}
+Les erreurs de code sont un passage obligatoire et en réalité nécessaire de l'apprentissage d'un langage: c'est en debuggant les erreurs que notre code produit que l'on apprend à les éviter à l'avenir ! Pour ce faire, il est nécessaire de bien les comprendre en premier lieu.
+
+L'erreur ci-dessus, liée à la division par 0, a produit un `Traceback`, i.e. un log détaillé précisant à quelle étape des différentes opérations effectuées par Python s'est produite l'erreur, ainsi que le nom de l'erreur (`ZeroDivisionError`) et un descriptif ("division by zero"). En l'occurence, l'erreur est simple, le message permet donc de comprendre directement le problème. Pour des opérations plus compliquées, les noms et messages peuvent être moins évidents... mais néanmoins utiles pour comprendre la source de l'erreur - en les indiquant dans un moteur de recherche par exemple.
+:::
 
 ```{python}
 # Division euclidienne : quotient
@@ -152,7 +157,17 @@ Un *string* se définit en mettant l'information entre apostrophes ou entre guil
 
 Erreur de syntaxe : la seconde apostrophe est comprise comme la fin du *string*, et Python ne sait pas interpréter le reste de la séquence.
 
-Il faut donc varier en cas de besoin :
+::: {.callout-note title="Erreurs de syntaxe et exception"}
+Depuis le début du TP, on a vu plusieurs erreurs produites par le code. En pratique, il est important de distinguer deux types d'erreurs :
+
+- les **erreurs de syntaxe**: le code ne respecte pas les règles de syntaxe de Python, comme l'erreur ci-dessus. Le `Traceback` (message d'erreur) indique avec des flèches pointant vers le haut la ligne et le moment où à commencé le problème
+
+- les **exceptions**: le code est syntaxiquement correct mais produit une erreur lors de son exécution, comme la division par zéro effectuée plus haut. 
+
+Pourquoi alors est-il important de distinguer ces deux types d'erreur ? Car là où une syntaxe incorrecte génère nécessairement une `SyntaxError` et arrête l'exécution du code, une exception peut être gérée dans le code. Par exemple, dans le cadre d'un code où l'on réaliserait de multiples divisions avec des paramètres multiples, on pourrait vouloir faire en sorte qu'une division par zéro ne renvoie pas une erreur qui interrompe l'exécution du code, mais une valeur arbitraire (infini, valeur manquante...).
+:::
+
+Pour éviter l'erreur de syntaxe, il faut varier les caractères en cas de besoin :
 
 
 ```{python}
@@ -425,6 +440,57 @@ b
 
 ## Exercices
 
+### Questions de compréhension
+
+- Quels sont les différents types de base de Python vus dans ce tutoriel ?
+
+- Comment convertir un entier en réel et inversement ?
+
+- Comment définit-on une chaîne de caractères en Python ?
+
+- Qu'est ce qu'un *Traceback* ?
+
+- Quelle est la différence entre une erreur de syntaxe et une exception ?
+
+- A quoi sert la fonction `print` ?
+
+- Comment afficher plusieurs valeurs dans une cellule de notebook Jupyter ?
+
+- A quoi sert la fonction `len` ?
+
+- Qu'est-ce qu'une méthode *built-in* et comment la reconnaître ?
+
+- A quoi servent les variables ?
+
+- Pourquoi dit-on que Python est "*dynamiquement* typé" ?
+
+<details>
+<summary>Afficher la solution</summary>
+
+- 1/ Les types de base en Python vus dans ce tutoriel sont les types numériques, notamment les entiers (`int`) et les réels (nombres à virgule flottante, `float`), et les chaînes de caractères (`str`), qui stockent de l'information textuelle.
+
+- 2/ Pour convertir un entier en réel, on utilise la fonction `float()`. Pour convertir un réel en entier, on utilise la fonction `int()`.
+
+- 3/ Une chaîne de caractères est définie en mettant l'information entre apostrophes (') ou entre guillemets (").
+
+- 4/ Un `Traceback` est un rapport d'erreur qui montre la séquence d'opérations qui ont conduit à une exception. Il aide à identifier l'origine de l'erreur dans le code.
+
+- 5/ Une erreur de syntaxe survient lorsque le code Python ne respecte pas les règles de syntaxe du langage, rendant le script non exécutable. Une exception est une erreur détectée pendant l'exécution, même si le code a une syntaxe correcte. Les exceptions peuvent être gérées dans le code, alors que les erreurs de syntaxe produisent conduisent nécessairement à l'arrêt de l'exécution du code.
+
+- 6/ La fonction `print` affiche le contenu de l'argument qu'on lui passe entre parenthèses sur la console Python ou dans une cellule de notebook Jupyter.
+
+- 7/ Par défaut, l'exécution d'une cellule Jupyter affiche la dernière valeur renvoyée par le code exécuté dans cette cellule. Si deux lignes de code renvoient quelque chose, seul le dernier sera donc affiché. Pour pouvoir afficher plusieurs éléments dans une même cellule, on utilise la fonction `print` pour chaque opération dont on souhaite afficher le résultat.
+
+- 8/ La fonction `len` renvoie le nombre d'éléments d'un objet. Par exemple, le nombre de caractères dans une chaîne de caractères. Cette fonction n'a de sens que pour les objets de type séquence.
+
+- 9/ Une méthode *built-in* est une fonction intégrée à un type d'objet en Python qui permet d'effectuer des opérations spécifiques sur cet objet. On la reconnaît car elle est appelée directement sur l'objet avec la syntaxe `objet.methode()`.
+
+- 10/ Les variables servent à stocker des valeurs ou des objets pour pouvoir les réutiliser et les manipuler plus facilement dans le code. Elles permettent égalemetn de donner un nom aux données pour les rendre plus lisibles et faciliter leur manipulation.
+
+- 11/ Python est dit *dynamiquement typé* parce que le type des variables est déterminé au moment de l'exécution et peut changer au cours de l'exécution. Ainsi, une variable initialement définie comme chaîne de caractère peut tout à fait devenir une variable numérique au cours de l'exécution du code, ce qui est impossible dans les langages de programmation basés sur un *typage statique*.
+
+</details>
+
 ### Affichage de types de base
 
 Afficher le type de x lorsque : 
@@ -438,24 +504,31 @@ Afficher le type de x lorsque :
 
 - x = 3.5
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 2-9 solutions.py
+```python
+x = 3
+print(type(x))
+
+x = "test"
+print(type(x))
+
+x = 3.5
+print(type(x))
 ```
-:::
+</details>
 
 ### Longueurs de chaînes
 
 
 
-Calculer la somme des longueurs de chacune des chaînes de caractères suivantes : 
+Calculer la somme des longueurs des trois chaînes de caractères suivantes : 
 
 - "une première chaîne"
 
@@ -463,18 +536,22 @@ Calculer la somme des longueurs de chacune des chaînes de caractères suivantes
 
 - "jamais deux sans trois"
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 12-16 solutions.py
+```python
+a = "une première chaîne"
+b = "et une deuxième"
+c = "jamais deux sans trois"
+
+len(a) + len(b) + len(c)
 ```
-:::
+</details>
 
 ### Formattage des codes postaux
 
@@ -488,18 +565,26 @@ Essayer de définir les codes postaux suivants au format `int` et au format `str
 
 Que concluez-vous ?
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 19-26 solutions.py
+```python
+cp1_int = 92120
+cp1_str = "92120"
+
+print(cp1_int, cp1_str) # Pas de problème
+
+cp2_int = 02350 
 ```
-:::
+
+Erreur : Python n'accepte pas de définir un entier qui commence par un 0. Il faut donc définir les codes postaux comme des strings.
+
+</details>
 
 ### Comptage de lettres
 
@@ -508,18 +593,19 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 
 **Indice** : on peut utiliser la méthode *built-in* [count](https://docs.python.org/fr/3/library/stdtypes.html#str.count).
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 29-30 solutions.py
+```python
+a = "Je fais un comptage des e."
+a.count('e')
 ```
-:::
+</details>
 
 ### Détection de lettres
 
@@ -527,18 +613,19 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 
 **Indice** : on peut utiliser la méthode *built-in* [find](https://docs.python.org/fr/3/library/stdtypes.html#str.find).
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 33-34 solutions.py
+```python
+a = "Je fais un comptage des e."
+a.find('e')
 ```
-:::
+</details>
 
 ### Suppression d'espaces dans une chaîne
 
@@ -546,18 +633,19 @@ Supprimer les espaces superflus au début et à la fin de la chaîne suivante :
 
 **Indice** : on peut utiliser la méthode *built-in* [strip](https://docs.python.org/fr/3/library/stdtypes.html#str.strip).
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 a = "    Un string très mal formatté.         "
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 37-38 solutions.py
+```python
+a = "    Un string très mal formatté.         "
+a.strip()
 ```
-:::
+</details>
 
 ### Echappement de caractères
 
@@ -565,18 +653,18 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 
 **Indice** : des exemples d'utilisation sont disponibles dans la [documentation officielle](https://docs.python.org/fr/3.8/reference/lexical_analysis.html#literals).
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 41 solutions.py
+```python
+"juste un \"petit\" test"
 ```
-:::
+</details>
 
 ### Un premier algorithme
 
@@ -590,18 +678,22 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 
 - lui ajouter 22
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
+<details>
+<summary>Afficher la solution</summary>
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 44-48 solutions.py
+```python
+a = 1
+a -= 5
+a *= 4
+a += 22
+print(a)
 ```
-:::
+</details>
 
 ### Composition de chaînes de caractères
 
@@ -615,17 +707,23 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 
 **Indice** : l'une des deux méthodes implique de modifier (légèrement) une des deux séquences.
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 51-56 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a1 = "nous sommes en"
+a2 = "nous sommes en {}"
+b = "2024"
+
+print(a1 + " " + b)
+print(a2.format(b))
 ```
-:::
+</details>
 
 ### Les `f-strings`
 
@@ -650,14 +748,59 @@ Ces deux méthodes fonctionnent mais présentent des limites. Réfléchissez à 
 
 En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/tutorial/inputoutput.html#formatted-string-literals), utilisez les `f-strings` pour résoudre ces différents problèmes.
 
-::: {.content-visible when-profile="notebooks"}
 ```{python}
 # Tapez votre réponse dans cette cellule
 
 ```
 
-```{python}
-# Exécuter cette cellule pour afficher la solution
-%load -r 59-92 solutions.py
+<details>
+<summary>Afficher la solution</summary>
+
+Premier problème : composition de strings avec des valeurs numériques.
+
+```python
+a1 = "nous sommes en"
+b = 2024
+
+# print(a1 + " " + b)  # Erreur
+print(a1 + " " + str(b))
 ```
-:::
+La concaténation directe renvoie une erreur -> il faut au préalable convertir la valeur numérique en string.
+
+Deuxième problème : juxtaposition de multiples chaînes de caractères.
+
+```python
+a = "nous sommes en"
+b = "2024"
+c = "et je m'appelle"
+d = "Miranda"
+
+print(a + " " + b + " " + c + " " + d)
+```
+
+La syntaxe devient vite illisible, car il faut ajouter les séparateurs (espace) manuellement entre chaque partie.
+
+Troisième problème : composition de chaînes de caractères avec injection de variables.
+
+```python
+a = "nous sommes en {}"
+b = "2024"
+c = "et je m'appelle {}"
+d = "Miranda"
+
+print(a.format(b) + " " + c.format(d))
+```
+
+La syntaxe reste peu lisibile, car il faut injecter les valeurs dans chaque chaîne.
+
+Solution : avec les f-strings.
+
+```python
+annee = 2024
+prenom = "Miranda"
+
+print(f"nous sommes en {annee} et je m'appelle {prenom}")
+```
+
+Beaucoup plus lisible !
+</details>
