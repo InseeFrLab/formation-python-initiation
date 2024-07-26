@@ -1,303 +1,286 @@
-# Boucles
+# Loops
 
-Dans le tutoriel précédent, nous avons étudié les tests, qui permettent à un ordinateur de prendre des décisions selon des conditions spécifiées dans un programme. Nous allons à présent aller encore plus loin dans l'automatisation des opérations, grâce à la notion de **boucle**. Les boucles vont permettre de répéter plusieurs fois une instruction semblable sans avoir à réécrire le même code à chaque fois.
+In the previous tutorial, we studied tests, which allow a computer to make decisions based on conditions specified in a program. We will now go even further in automating operations with the concept of **loops**. Loops will allow us to repeat an instruction several times without having to rewrite the same code each time.
 
-Pour illustrer cette idée, imaginons que l'on souhaite afficher chaque élément d'une liste. Pour l'instant, on ferait :
+To illustrate this idea, let's imagine we want to display each element of a list. For now, we would do:
 
-```{python}
+---{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 print(gamme[0])
 print(gamme[1])
 print(gamme[2])
-```
+---
 
-Et ainsi de suite. On voit tout de suite qu'une telle opération serait impraticable pour une liste contenant des centaines d'éléments. Les boucles vont résoudre ce problème de manière élégante et efficiente.
+And so on. We can immediately see that such an operation would be impractical for a list containing hundreds of elements. Loops will solve this problem in an elegant and efficient manner.
 
+## for loops
 
-## Boucles `for`
+### Definition
 
+The first type of loop we will look at is the `for` loop. A `for` loop allows you to traverse the different elements contained in an object called an **iterable**, and perform operations with these elements. Iterable objects include all the sequential objects we have seen so far: strings, lists, tuples, etc.
 
-### Définition
+Let's illustrate how a `for` loop works by solving the problem presented earlier.
 
-
-Le premier type de boucles auquel nous allons nous intéresser est la boucle `for`. Une boucle `for` permet de parcourir les différents éléments contenus dans un objet dit **itérable**, et de réaliser des opérations avec ces éléments. Les objets itérables incluent notamment tous les objets séquentiels que nous avons vus jusqu'à présent : chaînes de caractères, listes, tuples, etc.
-
-Illustrons le fonctionnement d'une boucle `for` en résolvant le problème exposé précédemment.
-
-```{python}
+---{python}
 for note in gamme:
     print(note)
-```
+---
 
-### Syntaxe
+### Syntax
 
+Let's analyze the structure of a `for` loop:
 
-Analysons la structure d'une boucle `for` :
+- The first line specifies a **`for` statement**, and like any statement in Python ends with `:`.
 
-- La première ligne spécifie une **instruction `for`**, et comme toute instruction en Python se termine par `:`. 
+- This is followed by a **block of instructions**, i.e., a series of operations (just one in our example) that will be executed at each iteration of the loop. This block is visible by its **level of indentation**, incremented by 1 compared to the statement. The block ends as soon as the indentation returns to its initial level.
 
-- Vient ensuite un **bloc d'instructions**, i.e. une suite d'opérations (une seule dans notre exemple) qui sera exécutée à chaque itération de la boucle. Ce bloc est visible par son **niveau d'indentation**, incrémenté de 1 par rapport à l'instruction. Le bloc s'arrête dès lors que l'indentation revient à son niveau initial.
+As with conditional statements like `if`/`else`, indentation is crucial. If you forget it, Python returns an error.
 
-Comme pour les instructions conditionnelles de type `if`/`else`, l'indentation est donc capitale. Si on l'oublie, Python renvoie une erreur.
-
-```{python}
+---{python}
 for note in gamme:
     print(note)
-```
+---
 
-### Fonctionnement
+### Operation
 
+Now let's look in more detail at what the `for` statement does. It defines an **iteration variable** (called `note` in our example), which will traverse the elements of the **iterator** specified after the `in` (the list `gamme` in our example). The syntax of a loop in Python lends itself well to a literal description; in our case: "for each note in the list gamme, print the note."
 
-Regardons maintenant plus en détail ce que fait l'instruction `for`. Elle définit une **variable d'itération** (appelée `note` dans notre exemple), qui va parcourir les éléments de l'**itérateur** spécifié après le `in` (la liste `gamme` dans notre exemple). La syntaxe d'une boucle en Python se prête bien à une description littérale ; dans notre cas : "pour chaque note contenue dans la liste gamme, imprime la note".
+Note that a loop defines a variable without needing the traditional `variable = value` assignment syntax. Furthermore, this variable is not deleted once the loop is finished; it then takes the value of the last element of the iterator.
 
-Insistons sur le fait qu'une boucle définit une variable, sans que l'on ait besoin de passer par la syntaxe traditionnelle d'assignation `variable = valeur`. De plus, cette variable n'est pas supprimée une fois la boucle terminée, elle prend alors la valeur du dernier élément de l'itérateur.
-
-```{python}
+---{python}
 note
-```
+---
 
-L'itérateur n'est pas nécessairement une liste, il peut être tout objet itérable. Cela inclut notamment tous les objets séquentiels que nous avons vu.
+The iterator does not necessarily have to be a list; it can be any iterable object. This includes all the sequential objects we have seen.
 
-```{python}
+---{python}
 for char in "YMCA":
     print(char)
-    
-print()  # Saut de ligne
-    
+
+print()  # Newline
+
 t = (1, 2, 3, 4, 5)
 for i in t:
     print(i*9)
-```
+---
 
-La classe des objets itérables est cependant bien plus grande que les seuls objets séquentiels. Par exemple, on peut itérer sur les clés d'un dictionnaire, alors que l'on a vu dans un tutoriel précédent que ce n'était pas un objet séquentiel, puisqu'il n'y a pas de notion d'ordre dans un dictionnaire.
+However, the class of iterable objects is much larger than just sequential objects. For example, you can iterate over the keys of a dictionary, even though we saw in a previous tutorial that it is not a sequential object, since there is no notion of order in a dictionary.
 
-```{python}
-inventaire = {'cafe': '500g', 'lait': '1,5L', 'cereales': '1kg'}
+---{python}
+inventaire = {'coffee': '500g', 'milk': '1.5L', 'cereal': '1kg'}
 for key in inventaire:
     print(key)
     print(inventaire[key])
-    print()  # Saut de ligne
-```
+    print()  # Newline
+---
 
-### Itération sur des entiers avec la fonction `range`
+### Iteration over integers with the `range` function
 
+In programming, it is common to want to iterate over a series of integers. Instead of specifying this series in a list, which is not very practical if the series is long, we use the `range(n)` function. This creates an iterable object that contains all the integers between 0 and n-1, and can be used within a loop.
 
-En programmation, il est courant de vouloir itérer sur une suite d'entiers. Plutôt que de spécifier cette suite dans une liste, ce qui n'est pas très pratique si la suite est longue, on utilise pour ce faire la fonction `range(n)`. Celle-ci crée un objet itérable qui contient tous les entiers compris entre $0$ et $n-1$, et qui peut être utilisé dans le cadre d'une boucle.
+For example, let's see how we can very simply display a multiplication table using this function.
 
-Regardons par exemple comment on peut très simplement afficher une table de multiplication à l'aide de cette fonction.
-
-```{python}
+---{python}
 table = 9
 
 for i in range(11):
     print(i, i*9)
-```
+---
 
-### Itération sur les indices
+### Iteration over indices
 
+We have seen that a `for` loop works by iterating over the *elements* of an iterable. However, in the case of a sequential object like a list, we may sometimes want to iterate over the *indices* of the object to manipulate both the indices and the elements contained in the object. In this case, the `range` function can be used in combination with the `len` function to create an iterable object that contains exactly the indices of the initial list.
 
-On a vu qu'une boucle `for` avait pour principe d'itérer sur les *éléments* d'un itérable. Cependant, dans le cas d'un objet séquentiel comme une liste, on peut parfois vouloir itérer sur les *indices* de l'objet, afin de pouvoir manipuler à la fois les indices et les éléments contenus dans l'objet. Dans ce cas, la fonction `range` peut être utilisée en combinaison avec la fonction `len` pour créer un objet itérable qui contient exactement les indices de la liste initiale.
-
-```{python}
+---{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i in range(len(gamme)):
-    print("La note numéro " + str(i) + " de la gamme de do majeur est " + gamme[i])
-```
+    print("The note number " + str(i) + " in the C major scale is " + gamme[i])
+---
 
-Comme ce besoin est fréquent mais que le code ci-dessus n'est pas très lisible, il existe une fonction *built-in* de Python appelée `enumerate` qui permet d'itérer à la fois sur les objets et les indices. Il est donc préférable d'utiliser cette syntaxe, plus claire, et qui permet d'éviter certaines erreurs.
+Since this need is frequent but the code above is not very readable, there is a built-in Python function called `enumerate` that allows iterating over both objects and indices. It is therefore preferable to use this syntax, which is clearer and helps avoid some errors.
 
-La fonction `enumerate` appliquée à un objet itérable renvoie un nouvel objet itérable qui contient l'ensemble des couples `(indice, élément)` contenus dans l'objet, sous forme de tuples. Comme c'est un objet de type particulier -- un générateur, que nous verrons dans un tutoriel plus avancé -- il faut lui appliquer la fonction `list` pour afficher son contenu.
+The `enumerate` function applied to an iterable object returns a new iterable object that contains all the pairs `(index, element)` in the object, in the form of tuples. Since it is a special type of object -- a generator, which we will see in a more advanced tutorial -- you need to apply the `list` function to display its content.
 
-```{python}
+---{python}
 list(enumerate(gamme))
-```
+---
 
-Regardons comment réécrire la boucle précédente avec cette nouvelle syntaxe.
+Let's see how to rewrite the previous loop with this new syntax.
 
-```{python}
+---{python}
 for i, note in enumerate(gamme):
-    print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
-```
+    print("The note number " + str(i) + " in the C major scale is " + note)
+---
 
-NB : pour faire l'assignation de variables dans l'instruction `if`, on a utilisé une technique bien pratique que l'on avait déjà évoquée dans un exercice du tutoriel sur les listes et les tuples : le *tuple unpacking*. Illustrons le par un exemple :
+NB: To assign variables in the `if` statement, we used a handy technique we had already mentioned in an exercise in the tutorial on lists and tuples: tuple unpacking. Let's illustrate it with an example:
 
-```{python}
+---{python}
 t = (1, 2, 3)
 a, b, c = t
 print(a)
 print(b)
 print(c)
-```
+---
 
-## Boucles `while`
+## while loops
 
+### Definition
 
-### Définition
+`while` loops provide an alternative way to specify repetitive procedures. The idea is no longer to iterate over a fixed number of objects, but to **iterate as long as a condition (logical test) is met**.
 
-
-Les boucles `while` fournissent une manière alternative de spécifier des procédures répétitives. L'idée n'est plus d'itérer sur un nombre d'objets fixé à l'avance, mais d'**itérer tant qu'une condition (test logique) est remplie**.
-
-```{python}
+---{python}
 i = 1
 while i <= 5:
     print(i)
     i = i + 1
-```
+---
 
-### Syntaxe
+### Syntax
 
+The main difference from the `for` loop is the statement: it is now a `while` statement, followed by a condition (test), and like any statement, ends with `:`.
 
-La différence essentielle avec la boucle `for` est l'instruction : c'est désormais une instruction `while`, suivie d'une condition (test), et comme toute instruction de `:`.
+The principle is the same for the rest: the `while` statement is followed by a block of instructions, indented by one level, which is executed sequentially at each iteration of the loop.
 
-Pour le reste, le principe est le même : l'instruction `while` est suivi d'un bloc d'instructions, indenté d'un niveau, et qui s'exécute séquentiellement à chaque itération de la boucle.
+### Stopping criterion
 
+An essential difference between `while` loops and `for` loops lies in the stopping criterion. In a `for` loop, this criterion is clear: the loop iterates over the elements of an iterable object, necessarily of finite size. The loop stops when each element of the iterable has been traversed.
 
-### Critère d'arrêt
+In a `while` loop, on the other hand, the stopping criterion is given by a logical condition, so the user must set the stopping criterion. In the example, for the loop to stop, the condition `i <= 5` must become `False`, meaning `i` must become strictly greater than 5. We ensured this by initializing `i` to 1 before the loop starts, and then incrementing `i` by one unit at each iteration.
 
+What happens if we forget to increment `i`? The stopping criterion is never reached, so the loop is infinite, and we must use the "Stop" button (black square) in Jupyter to stop the running program. Let's verify this by incrementing the wrong variable.
 
-Une différence essentielle des boucles `while` par rapport aux boucles `for` tient au critère d'arrêt. Dans une boucle `for`, ce critère est clair : la boucle itère sur les éléments d'un objet itérable, nécessairement de taille finie. La boucle s'arrête donc lorsque chaque élément de l'itérable a été parcouru.
-
-Dans une boucle `while` au contraire, le critère d'arrêt est donné par une condition logique, c'est donc l'utilisateur qui doit fixer le critère d'arrêt. Dans l'exemple, pour que la boucle s'arrête, il faut que la condition `i <= 5` devienne `False`, c'est à dire que `i` devienne strictement supérieur à $5$. On s'est assuré de cela en initialisant `i` à $1$ avant le début de la boucle, puis en incrémentant `i` d'une unité à chaque itération.
-
-Que se passe-t-il si l'on oublie d'incrémenter `i` ? Le critère d'arrêt n'est jamais atteint, la boucle est donc infinie, et il faut utiliser le bouton "Stop" (carré noir) de Jupyter pour arrêter le programme en cours. Vérifions cela en incrémentant la mauvaise variable.
-
-```{python}
+---{python}
 #| eval: false
 i = 1
 j = 1
 while i <= 5:
     j = j + 1
-```
+---
 
-Ainsi, lorsqu'on pressent qu'une boucle `while` met trop longtemps à tourner, il faut considérer l'hypothèse que l'on soit tombé dans une boucle infinie, et bien vérifier que le critère d'arrêt est atteignable.
+Therefore, when we suspect that a `while` loop is taking too long to run, we must consider the possibility that we have fallen into an infinite loop, and ensure that the stopping criterion is reachable.
 
-### L'instruction `break`
+### The `break` statement
 
+An alternative way to specify a stopping criterion is to use the `break` statement. When this statement is reached and executed, the loop is immediately interrupted.
 
-Une manière alternative de spécifier un critère d'arrêt est d'utiliser l'instruction `break`. Lorsque cette instruction est atteinte et exécutée, la boucle est immédiatement interrompue.
+Let's illustrate its operation with an example. The first line creates an infinite loop because, by definition, `True` is always evaluated as `True`. The program then asks the user to type a name, and does so indefinitely until the user types the expected name. Only then is the `break` statement reached, and the loop stops. The message "Welcome <your_name>" is finally displayed, as the second `print` is not included in the loop.
 
-Illustrons son fonctionnement à l'aide d'un exemple. La première ligne crée une boucle infinie, dans la mesure où, par définition, `True` est toujours évalué à `True`. Le programme demande ensuite à l'utilisateur de taper un prénom, et ce infiniment jusqu'à que l'utilisateur tape le prénom attendu. Dans ce cas seulement, l'instruction `break` est atteinte et la boucle s'arrête. Le message "Bienvenue <votre_prenom>" s'affiche enfin, dans la mesure où le deuxième `print` n'est pas inclus dans la boucle.
-
-```{python}
+---{python}
 #| eval: false
-votre_prenom = "Romain"
+your_name = "Romain"
 
 while True:
-    print("Veuillez entrer votre prénom.")
-    prenom = input()
-    if prenom == votre_prenom:
+    print("Please enter your name.")
+    name = input()
+    if name == your_name:
         break
-print("Bienvenue " + votre_prenom)
-```
+print("Welcome " + your_name)
+---
 
-Il est important de noter qu'une instruction `break` ne met fin qu'à la boucle de niveau directement supérieur à elle. Dans le cas d'une boucle à plusieurs niveaux, il est tout à fait possible que les opérations continuent même lorsqu'une instruction `break` a été atteinte. 
+It is important to note that a `break` statement only terminates the loop of the directly superior level. In the case of a multi-level loop, it is entirely possible for operations to continue even when a `break` statement has been reached.
 
-Illustrons ce principe avec un exemple.
+Let's illustrate this principle with an example.
 
-```{python}
+---{python}
 i = 0
 while i <= 5:
     for j in range(5):
         if j == 2:
-            print("Break.")
+           
+
+ print("Break.")
             break
     i += 1
-```
+---
 
-A chaque itération de la boucle `while`, une boucle `for` est lancée, qui atteint une instruction `break` à la troisième itération (lorsque `j` vaut 2). Cela a pour effet de mettre fin à la boucle `for`, mais pas à la boucle `while`, qui exécute la suite de ses instructions (l'incrémentation de `i` d'une unité) avant de passer à l'itération suivante.
+At each iteration of the `while` loop, a `for` loop is launched, which reaches a `break` statement at the third iteration (when `j` is 2). This stops the `for` loop, but not the `while` loop, which executes its subsequent instructions (incrementing `i` by one unit) before proceeding to the next iteration.
 
+### The `continue` statement
 
-### L'instruction `continue`
+The `continue` statement allows you to skip to the next iteration of the loop.
 
+Let's enhance the previous example to illustrate its operation. As long as a different name than the expected one is entered, the `continue` statement is evaluated, and the program continues to ask for a name. When the correct name is entered, the program asks the user to enter a password. If the password is the expected one, the `break` statement is reached and executed, and the loop stops. If the password is incorrect, however, the loop restarts at the beginning of the execution block, so you need to enter a name again before the password.
 
-L'instruction `continue` permet de passer à l'itération suivante de la boucle.
-
-Agrémentons l'exemple précédent pour illustrer son fonctionnement. Tant qu'un prénom différent de celui attendu est rentré, l'instruction `continue` est évaluée, et le programme continue à demander un prénom à l'utilisateur. Lorsque le bon prénom est rentré, le programme demande à l'utilisateur de rentrer un mot de passe. Si le mot de passe est celui attendu, l'instruction `break` est atteinte et exécutée, la boucle s'arrête. En cas de mauvais mot de passe en revanche, la boucle redémarre au début du bloc d'exécution, il faut donc de nouveau rentrer un prénom avant le mot de passe.
-
-```{python}
+---{python}
 #| eval: false
-votre_prenom = ""
+your_name = ""
 
 while True:
-    print("Veuillez entrer votre prénom.")
-    prenom = input()
-    if prenom != votre_prenom:
+    print("Please enter your name.")
+    name = input()
+    if name != your_name:
         continue
-    print("Veuillez entrer votre mot de passe.")
-    mdp = input()
-    if mdp == "insee2021":
+    print("Please enter your password.")
+    password = input()
+    if password == "insee2021":
         break
-print("Bienvenue " + votre_prenom)
-```
+print("Welcome " + your_name)
+---
 
-NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un prochain tutoriel sur les bonnes pratiques de code, il ne faut **jamais écrire de secrets (mots de passe, tokens..) en clair dans son code.**
+NB: The code above is only for example purposes. As we will see in a future tutorial on best coding practices, you should **never write secrets (passwords, tokens, etc.) in plain text in your code.**
 
+## Exercises
 
-## Exercices
+### Comprehension questions
 
+- 1/ How does a `for` loop work?
 
-### Questions de compréhension
+- 2/ Does the iteration variable defined in a `for` loop persist in memory once the loop is finished?
 
+- 3/ What does the `range` function do? Why is it particularly useful in `for` loops?
 
+- 4/ What does the `enumerate` function do? Why is it particularly useful in `for` loops?
 
-- 1/ Comment fonctionne une boucle `for` ?
+- 5/ How does a `while` loop work?
 
-- 2/ La variable d'itération définie lors d'une boucle `for` persiste-t-elle en mémoire une fois la boucle terminée ?
+- 6/ When does a `while` loop stop? How does this differ from `for` loops?
 
-- 3/ Que fait la fonction `range` ? Pourquoi est-elle particulièrement utile dans le cadre des boucles `for` ?
+- 7/ What does the `break` statement do?
 
-- 4/ Que fait la fonction `enumerate` ? Pourquoi est-elle particulièrement utile dans le cadre des boucles `for` ?
-
-- 5/ Comment fonctionne une boucle `while` ?
-
-- 6/ Quand s'arrête une boucle `while` ? En quoi cela diffère-t-il des boucles `for` ? 
-
-- 7/ Que fait l'instruction `break` ?
-
-- 8/ Que fait l'instruction `continue` ?
+- 8/ What does the `continue` statement do?
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-1/ Une boucle `for` définit une variable d'itération qui va parcourir chaque élément d'un objet itérable. A chaque itération, une série d'instructions est effectuée.
+1/ A `for` loop defines an iteration variable that will traverse each element of an iterable object. At each iteration, a series of instructions is executed.
 
-2/ Oui, et sa valeur finale est égale à la dernière valeur de l'objet itérable.
+2/ Yes, and its final value is equal to the last value of the iterable object.
 
-3/ La fonction `range(n)` crée un objet itérable qui contient tous les entiers compris entre 0 et n-1. Elle est très utilisée comme itérable dans les boucles `for` car elle permet d'itérer sur une séquence d'entiers sans avoir à mettre celle-ci dans une liste à la main.
+3/ The `range(n)` function creates an iterable object that contains all integers between 0 and n-1. It is widely used as an iterable in `for` loops because it allows iterating over a sequence of integers without having to manually put them in a list.
 
-4/ La fonction `enumerate` appliquée à un objet itérable renvoie un nouvel objet itérable qui contient l'ensemble des couples (indice, élément) associés à l'objet initial, sous forme de tuples. Dans le cadre d'une boucle `for`, elle permet d'itérer à la fois sur les éléments d'un itérable et sur les positions de ces éléments.
+4/ The `enumerate` function applied to an iterable object returns a new iterable object that contains all pairs (index, element) associated with the initial object, in the form of tuples. In the context of a `for` loop, it allows iterating over both the elements of an iterable and their positions.
 
-5/ Une boucle `while` exécute une série d'instructions de manière répétée tant que la condition logique spécifiée évalue à True.
+5/ A `while` loop executes a series of instructions repeatedly as long as the specified logical condition evaluates to True.
 
-6/ Une boucle `while` s'arrête dès lors que la condition logique spécifiée évalue à False. Si ce cas ne se produit jamais, une boucle `while` peut donc être infinie. A l'inverse, une boucle `for` peut être très longue mais jamais infinie, dans la mesure où elle s'arrête dès lors qu'elle a terminé de parcourir l'objet.
+6/ A `while` loop stops as soon as the specified logical condition evaluates to False. If this never happens, a `while` loop can be infinite. In contrast, a `for` loop can be very long but never infinite, as it stops as soon as it finishes traversing the object.
 
-7/ L'instruction `break` force la boucle de niveau directement supérieur à se terminer.
+7/ The `break` statement forces the loop of the directly superior level to terminate.
 
-8/ L'instruction `continue` force la boucle de niveau directement supérieur à passer à l'itération suivante.
+8/ The `continue` statement forces the loop of the directly superior level to skip to the next iteration.
 
 </details>
 
-### Prédiction de résultats de boucles `while`
+### Predicting results of `while` loops
 
-Essayer de prédire ce que vont produire les boucles `while` suivantes, et vérifiez vos résultats.
+Try to predict what the following `while` loops will produce, and check your results.
 
-```{python}
+---{python}
 #| eval: false
 # 1.
 i = 0
 while i <= 10:
     print(i)
-    
+
 # 2.
 a = 1
 while (a < 10):
     a += 1
     if a == 5:
         break
-    print("Condition d'arrêt atteinte.")
-    
+    print("Stopping condition reached.")
+
 # 3.
 while False:
     print("hello world")
@@ -311,166 +294,172 @@ while True:
 while 5 >= 3:
     continue
     print("hello world")
-```
+---
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
-
-<details>
-<summary>Afficher la solution</summary>
-
-- 1. Boucle infinie car le i n'est jamais incrémenté, la condition est donc toujours vérifiée. 0 va s'imprimer à l'infini.
-
-- 2. La boucle va s'arrêter à la 4ème itération, lorsque a vaut 5. Cependant, le print est mal indenté => il va s'imprimer 3 fois au lieu d'1.
-
-- 3. False évalue à False => la boucle ne s'exécute pas du tout. Aucun output.
-
-- 4. True évalue à True => la boucle est théoriquement infinie, mais il y a un break. Il va donc y avoir une seule itération, soit un seul print de "hello world"
-
-- 5. 5 >= 3 évalue à True => la boucle est infinie. Le continue est exécuté à chaque itération avant que le print ne puisse s'exécuter. La boucle tourne à l'infini, mais sans output.
-</details>
-
-### Effet d'une erreur d'indentation
-
-Source : [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/06_tests/)
-
-
-Afin de visualiser l'importance de l'indentation dans les blocs d'instruction, essayez de prédire ce que vont respectivement retourner les deux programmes suivants. Lequel a l'effet attendu ?
-
-```{python}
-nombres = [4, 5, 6]
-for nb in nombres:
-    if nb == 5:
-        print("Le test est vrai")
-        print(f"car la variable nb vaut {nb}")
-```
-
-```{python}
-nombres = [4, 5, 6]
-for nb in nombres:
-    if nb == 5:
-        print("Le test est vrai")
-    print(f"car la variable nb vaut {nb}")
-```
-
-```{python}
-# Testez votre réponse dans cette cellule
-
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-Le premier programme est correct. Dans le second, le second `print` n'est pas correctement indenté. En conséquence, il s'exécute à chaque itération et non pas juste lorsque `nb == 5`.
+- 1. Infinite loop because `i` is never incremented, so the condition is always true. 0 will print infinitely.
+
+- 2. The loop will stop at the 4th iteration when `a` is 5. However, the print statement is misindented, so it will print 3 times instead of 1.
+
+- 3. `False` evaluates to `False`, so the loop does not execute at all. No output.
+
+- 4. `True` evaluates to `True`, so the loop is theoretically infinite, but there is a break. Thus, there will be only one iteration, resulting in one "hello world" print.
+
+- 5. `5 >= 3` evaluates to `True`, so the loop is infinite. The continue statement is executed at each iteration before the print can execute. The loop runs infinitely, but with no output.
+
 </details>
 
-### Convertir une boucle `for` en boucle `while`
+### Effect of an indentation error
 
-Réécrivez la boucle `for` suivante à l'aide d'une boucle `while`.
+Source: [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/06_tests/)
 
-```{python}
+To visualize the importance of indentation in instruction blocks, try to predict what the following two programs will return. Which one has the expected effect?
+
+---{python}
+numbers = [4, 5, 6]
+for num in numbers:
+    if num == 5:
+        print("The test is true")
+        print(f"because the variable num is {num}")
+---
+
+---{python}
+numbers = [4, 5, 6]
+for num in numbers:
+    if num == 5:
+        print("The test is true")
+    print(f"because the variable num is {num}")
+---
+
+---{python}
+# Test your answer in this cell
+
+---
+
+<details>
+<summary>Show solution</summary>
+
+The first program is correct. In the second, the second `print` is not correctly indented. As a result, it executes at each iteration and not just when `num == 5`.
+
+</details>
+
+### Converting a `for` loop to a `while` loop
+
+Rewrite the following `for` loop using a `while` loop.
+
+---{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i, note in enumerate(gamme):
-    print("La note numéro " + str(i) + " de la gamme de do majeur est " + note)
-```
+    print("The note number " + str(i) + " in the C major scale is " + note)
+---
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
+---{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 i = 0
 while i <= (len(gamme) - 1):
-    # On soustrait 1 à la longueur de `gamme` car l'index maximal est 6
-    print("La note numéro " + str(i) + " de la gamme de do majeur est " + gamme[i])
+    # Subtract 1 from the length of `gamme` because the max index is 6
+    print("The note number " + str(i) + " in the C major scale is " + gamme[i])
     i += 1
-```
+---
+
 </details>
 
-### Recherche d'un élément dans une liste
+### Finding an element in a list
 
-Soit un entier cible `n_cible` et une liste d'entiers `l` tels que définis dans la cellule suivante. A l'aide d'une boucle `for` et de la fonction `enumerate` :
+Given a target integer `target_num` and a list of integers `l` as defined in the following cell. Using a `for` loop and the `enumerate` function:
 
-- vérifier si l'entier cible est présent dans la liste `l`. 
+- Check if the target integer is present in the list `l`.
 
-- si oui, afficher le message 'Le nombre `n_cible` est à la position `i` de la liste', et mettre fin à la boucle.
+- If yes, display the message 'The number `target_num` is at position `i` in the list', and end the loop.
 
-```{python}
-n_cible = 78
+---{python}
+target_num = 78
 
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
-```
+---
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
-n_cible = 78
+---{python}
+target_num = 78
 
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 
 for i, n in enumerate(l):
-    if n == n_cible:
-        print("Le nombre " + str(n) + " est à la position " + str(i) + " de la liste.")
+    if n == target_num:
+        print("The number " + str(n) + " is at position " + str(i) + " in the list.")
         break
 
-# NB : version plus efficiente sans boucle
-if n_cible in l:
-    pos = l.index(n_cible)
-    print("Le nombre " + str(n_cible) + " est à la position " + str(pos) + " de la liste.")
-```
+# NB: more efficient version without loop
+if target_num in l:
+    pos = l.index(target_num)
+    print("The number " + str(target_num) + " is at position " + str(pos) + " in the list.")
+---
+
 </details>
 
-### Suite de Fibonacci
+### Fibonacci sequence
 
-La suite de Fibonacci se définit de la manière suivante : 
+The Fibonacci sequence is defined as follows:
 
-- les deux premiers nombres sont 0 et 1
+- The first two numbers are 0 and 1
 
-- chaque autre nombre de la suite s'obtient en additionnant les deux nombres qui le précèdent
+- Each subsequent number in the sequence is obtained by adding the two preceding numbers
 
-Ecrire un programme permettant de calculer les $n$ premiers termes de la suite à l'aide d'une boucle `for`.
+Write a program to calculate the first $n$ terms of the sequence using a `for` loop.
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
-n_termes = 20
+---{python}
+n_terms = 20
 num1 = 0
 num2 = 1
 
-for i in range(n_termes):
+for i in range(n_terms):
     print(num1)
     num3 = num1 + num2
     num1 = num2
-    num2 = num3
-```
+    num2 =
+
+ num3
+---
+
 </details>
 
-### Dictionnaire des tables de multiplication
+### Multiplication table dictionary
 
-A l'aide de deux boucles `for` imbriquées, construire un dictionnaire `tables` permettant de réaliser les tables de multiplication jusqu'à la table de 12. Requêtez votre dictionnaire pour vérifier sa pertinence.
+Using two nested `for` loops, build a dictionary `tables` that allows generating multiplication tables up to the table of 12. Query your dictionary to check its accuracy.
 
-Voici quelques exemples de requête que doit renvoyer votre dictionnaire : 
+Here are some examples of queries your dictionary should return:
 
 - tables[2][3] -> 6
 
@@ -478,15 +467,15 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 
 - tables[12][7] -> 84
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
+---{python}
 tables = {}
 
 for i in range(13):
@@ -497,24 +486,25 @@ for i in range(13):
 print(tables[2][3])
 print(tables[9][5])
 print(tables[12][7])
-```
+---
+
 </details>
 
-### Calcul du minimum et du maximum d'une série "à la main"
+### Calculating the minimum and maximum of a series "by hand"
 
-Calculer le minimum et le maximum de la série de valeurs suivantes, sans utiliser les fonctions `min` et `max` de Python. 
+Calculate the minimum and maximum of the following series of values without using Python's `min` and `max` functions.
 
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
+---{python}
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
 current_min = x[0]
@@ -527,94 +517,96 @@ for n in x[1:]:
 
 print(current_min == min(x))
 print(current_max == max(x))
-```
+---
+
 </details>
 
-### Calcul de moyenne et de variance "à la main"
+### Calculating the mean and variance "by hand"
 
-Calculer la moyenne et la variance de la série de valeurs suivantes, sans utiliser des fonctions déjà codées : 
+Calculate the mean and variance of the following series of values without using pre-coded functions:
 
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
-Pour rappel, les formules sont :
+To recall, the formulas are:
 
-- moyenne : $$\bar{x} = {\frac {1}{n}}\sum_{i=1}^{n}x_{i}$$
+- mean: $$\bar{x} = {\frac {1}{n}}\sum_{i=1}^{n}x_{i}$$
 
-- variance : $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
+- variance: $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
 
-NB : 
+NB:
 
-- n à la puissance k s'écrit en Python `n**k`
+- n to the power of k is written in Python as `n**k`
 
-- en pratique, il ne faut surtout pas essayer de recoder soi-même ce genre de fonctions, mais utiliser des fonctions issues de packages adaptés, comme `numpy`.
+- in practice, you should never try to recode such functions yourself, but use functions from suitable packages like `numpy`.
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
+---{python}
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 n = len(x)
 
-somme_moy = 0
+sum_mean = 0
 for x_i in x:
-    somme_moy += x_i
-moyenne = somme_moy / n
+    sum_mean += x_i
+mean = sum_mean / n
 
-somme_var = 0
+sum_var = 0
 for x_i in x:
-    somme_var += (x_i - moyenne)**2
-variance = somme_var / n
+    sum_var += (x_i - mean)**2
+variance = sum_var / n
 
-print(moyenne)
+print(mean)
 print(variance)
 
-# Vérification avec les fonctions du package numpy
+# Verification with numpy package functions
 import numpy as np
 print(np.mean(x))
 print(np.var(x))
-```
+---
+
 </details>
 
-### Usage avancé de la fonction `range`
+### Advanced use of the `range` function
 
-Nous avons vu plus haut l'usage basique de la fonction `range` : `range(n)` crée un objet itérable qui contient l'ensemble des entiers de $0$ à $n-1$. Les usages possibles de cette fonction sont cependant plus complets, et parfois utiles dans le cadre de problèmes précis.
+We saw earlier the basic use of the `range` function: `range(n)` creates an iterable object that contains all integers from 0 to n-1. The possible uses of this function are, however, more comprehensive and sometimes useful for specific problems.
 
-La syntaxe complète de la fonction est `range(start, stop, step)` où :
+The complete syntax of the function is `range(start, stop, step)` where:
 
-- `start` est l'entier à partir duquel commence la séquence d'entiers
+- `start` is the integer at which the sequence of integers starts
 
-- `stop` est l'entier avant lequel se termine la séquence d'entiers
+- `stop` is the integer before which the sequence of integers ends
 
-- `step` est le pas, i.e. la valeur de l'incrément entre chaque entier de la séquence.
+- `step` is the step, i.e., the value of the increment between each integer in the sequence.
 
-Seul le paramètre `stop` est obligatoire, c'est celui qui est utilisé lorsqu'on appelle `range(n)`.
+Only the `stop` parameter is mandatory, which is used when calling `range(n)`.
 
-En utilisant la fonction `range`, afficher :
+Using the `range` function, display:
 
-- l'ensemble des entiers de 0 à 10 (10 exclu)
+- All integers from 0 to 10 (10 excluded)
 
-- l'ensemble des entiers de 10 à 20 (20 inclus)
+- All integers from 10 to 20 (20 included)
 
-- l'ensemble des nombres pairs compris entre 30 et 40 (40 inclus)
+- All even numbers between 30 and 40 (40 included)
 
-- l'ensemble des multiples de 10 entre 1 et 100 (100 exclu)
+- All multiples of 10 between 1 and 100 (100 excluded)
 
-- l'ensemble des entiers de 10 à 20 (20 inclus), dans l'ordre inverse (de 20 à 10)
+- All integers from 10 to 20 (20 included), in reverse order (from 20 to 10)
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
+---{python}
 print(list(range(10)))
 
 print(list(range(10, 21)))
@@ -624,49 +616,51 @@ print(list(range(30, 41, 2)))
 print(list(range(10, 100, 10)))
 
 print(list(range(20, 9, -1)))
-```
+---
+
 </details>
 
-### Le juste prix, version améliorée
+### The price is right, improved version
 
-Dans le précédent tutoriel, nous avons codé un jeu du juste prix. Mais il était un peu limité, puisqu'il fallait réexécuter le code à chaque étape du jeu. A l'aide de boucles, réécrivez le jeu de manière complètement automatique.
+In the previous tutorial, we coded a game of "The Price is Right". But it was somewhat limited because you had to rerun the code at each stage of the game. Using loops, rewrite the game to be fully automatic.
 
-Rappel des règles : 
+Game rules reminder:
 
-**En utilisant `input` et les instructions `if`, `elif` et `else`**, coder le programme suivant : 
+**Using `input` and the `if`, `elif`, and `else` statements**, code the following program:
 
-- demander une valeur à l'utilisateur, qui sera stockée dans une variable `p`
+- Ask the user for a value, which will be stored in a variable `p`
 
-- si `p` est strictement inférieur à $15$, imprimer (avec la fonction `print`) le message "trop bas !".
+- If `p` is strictly less than $15, print (using the `print` function) the message "too low!".
 
-- si `p` est strictement supérieur à $15$, imprimer le message "trop haut !".
+- If `p` is strictly greater than $15, print the message "too high!".
 
-- si `p` est égal à $15$, imprimer le message "dans le mille !"
+- If `p` equals $15, print the message "spot on!"
 
-Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de `p` au format entier (via la fonction `int`) pour que le jeu fonctionne.
+Note, `input` returns a string by default. Therefore, you need to convert the value of `p` to an integer (using the `int` function) for the game to work.
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
-juste_prix = 15
+---{python}
+right_price = 15
 
 while True:
-    print("Proposer un nombre entre 1 et 50.")
+    print("Propose a number between 1 and 50.")
     p = input()
     p = int(p)
-    if p < juste_prix:
-        print("trop bas !")
-    elif p > juste_prix:
-        print("trop haut !")
+    if p < right_price:
+        print("too low!")
+    elif p > right_price:
+        print("too high!")
     else:
         break
 
-print("dans le mille !")
-```
+print("spot on!")
+---
+
 </details>

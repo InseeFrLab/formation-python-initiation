@@ -1,407 +1,383 @@
-# Notions de programmation orientée objet
+# Introduction to object-oriented programming
 
-Python est un langage dit "multi-paradigmes", c'est à dire qu'il admet plusieurs manières de coder et de concevoir ses programmes. L'une d'entre elle est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n'impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des *packages* les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.
+Python is a so-called "multi-paradigm" language, meaning it allows for multiple ways to code and design programs. One of these ways is object-oriented programming (OOP). OOP is a powerful paradigm but involves fairly complex concepts (polymorphism, inheritance, etc.). Fortunately for us, Python does not enforce coding in OOP. However, the internal workings of Python are heavily influenced by OOP, and most widely used packages rely on objects to varying degrees. In this tutorial, we will study the basics of OOP to be autonomous when its use is necessary.
 
+## Object-oriented programming
 
-## La programmation orientée objet
+You may have heard that Python is an "object-oriented programming" language. OOP is a programming paradigm that structures programs around an abstraction, the **object**, which contains **attributes** (characteristics of the object) and **methods** (functions specific to the object) that act on itself. To illustrate this somewhat abstract definition, we can take the example ([source](https://python.sdv.univ-paris-diderot.fr/19_avoir_la_classe_avec_les_objets/)) of a "lemon" object that contains the attributes "flavor" and "color", and a method "squeeze" that allows extracting its juice.
 
+## "Everything is an object"
 
-Vous avez peut-être déjà entendu que Python était un langage de "programmation orientée objet". La POO est un paradigme de programmation qui permet de structurer les programmes autour d'une abstraction, l'**objet**, qui contient des **attributs** (caractéristiques de l'objet) et des **méthodes** (fonctions propres à l'objet) qui agissent sur lui-même. Afin d'illustrer cette définition un peu abstraite , on peut prendre l'exemple ([source](https://python.sdv.univ-paris-diderot.fr/19_avoir_la_classe_avec_les_objets/)) d'un objet "citron" qui contient les attributs "saveur" et "couleur", et une méthode "presser" qui permet d'extraire son jus.
+**In Python, everything is an object** (in the OOP sense). Let's see what this means by retrieving the type of various objects we've seen in previous tutorials.
 
-
-## "Tout est un objet"
-
-
-**En Python, tout est un objet** (au sens de la POO). Regardons ce que cela signifie en récupérant le type de différents objets que nous avons vus dans les précédents tutoriels.
-
-```{python}
+---{python}
 print(type(1))
-print(type("bonjour"))
+print(type("hello"))
 print(type([]))
 print(type(()))
 print(type({}))
 
 def f(x):
     print(x)
-          
+
 print(type(f))
-```
+---
 
-Ces éléments sont tous de type différent, mais ils ont un point commun : le terme `class`. De même que l'instruction `def` définit une fonction, l'instruction `class` définit une classe d'objets Python. Ainsi, chacun des objets utilisables en Python a une classe qui définit l'objet, ses attributs et ses méthodes.
+These elements are all of different types, but they have one thing in common: the term `class`. Just as the `def` statement defines a function, the `class` statement defines a class of Python objects. Thus, each object usable in Python has a class that defines the object, its attributes, and its methods.
 
+## Defining your own objects
 
-## Définir ses propres objets
+Let's see how we can use the `class` statement to define our "lemon" object.
 
+---{python}
+class Lemon:
 
-Regardons comment on peut utiliser l'instruction `class` pour définir notre objet "citron".
+    def __init__(self, color, juice_qty):
+        self.flavor = "sour"
+        self.color = color
+        self.juice = juice_qty
 
-```{python}
-class Citron:
+    def get_juice_qty(self):
+        print("There is " + str(self.juice) + " mL of juice left in the lemon.")
 
-    def __init__(self, couleur, qte_jus):
-        self.saveur = "acide"
-        self.couleur = couleur
-        self.jus = qte_jus
-        
-    def recup_qte_jus(self):
-        print("Il reste " + str(self.jus) + " mL de jus dans le citron.")
-        
-    def extraire_jus(self, quantite):
-        if quantite > self.jus:
-            print("Il n'y a pas assez de jus dans le citron pour la quantité demandée.")
+    def squeeze_juice(self, amount):
+        if amount > self.juice:
+            print("There is not enough juice in the lemon for the requested amount.")
         else:
-            self.jus = max(0, self.jus - quantite)  # évite toute valeur négative de `jus`
-```
+            self.juice = max(0, self.juice - amount)  # avoids any negative value of `juice`
+---
 
-Analysons la syntaxe de construction d'une classe d'objets :
+Let's analyze the syntax for constructing a class of objects:
 
-- l'instruction `class` définit la **classe d'objets**. Différents objets pourront être créés selon le modèle défini par cette classe. Par convention, le nom de la classe doit commencer par une majuscule.
+- The `class` statement defines the **class of objects**. Different objects can be created according to the model defined by this class. By convention, the class name should start with an uppercase letter.
 
-- la classe spécifie un certains nombres de fonctions. Dans ce contexte particulier, on appelle ces fonctions "**méthodes**" : ce sont des fonctions spécifiques à la classe d'objets définie.
+- The class specifies several functions. In this particular context, these functions are called "**methods**": they are specific to the defined class of objects.
 
-- une première méthode bien spécifique, nommée `__init__`, est appelée le **constructeur**. Elle permet de définir les **attributs** attachés à cette classe d'objets. Il est possible de passer des paramètres à la fonction (comme `couleur` et `qte_jus`) pour définir des attributs propres à une **instance** de l'objet (plus de détails sur cette notion dans la section suivante).
+- A first very specific method, named `__init__`, is called the **constructor**. It allows defining the **attributes** attached to this class of objects. It is possible to pass parameters to the function (such as `color` and `juice_qty`) to define attributes specific to an **instance** of the object (more details on this concept in the next section).
 
-- le constructeur a un paramètre obligatoire : `self`. C'est une référence aux **instances** qui vont être créées à partir de cette classe. Notons la syntaxe qui définit un attribut : `self.attribut = valeur`.
+- The constructor has a mandatory parameter: `self`. It is a reference to the **instances** that will be created from this class. Note the syntax that defines an attribute: `self.attribute = value`.
 
-- les autres méthodes sont définies par l'utilisateur. Elles prennent également le `self` en paramètre, ce qui leur permet d'effectuer des opérations sur / à partir des attributs. Comme ce sont des fonctions, elles peuvent également admettre d'autres paramètres. Ainsi, la fonction `extraire_jus` prend un paramètre `quantite` qui définit quelle quantité de jus on extrait du citron lorsqu'on le presse.
+- The other methods are defined by the user. They also take `self` as a parameter, allowing them to perform operations on/from the attributes. As they are functions, they can also accept other parameters. Thus, the `squeeze_juice` function takes an `amount` parameter that defines how much juice is extracted from the lemon when squeezed.
 
+## The class and its instances
 
-## La classe et ses instances
+The **class** can be seen as the **recipe that allows creating an object**: it defines the attributes and methods that all objects defined from this class will have. Defining a class as above simply makes this recipe available in the Python environment. To create an object according to this class, it must be **instantiated**.
 
+---{python}
+lemon1 = Lemon(color="yellow", juice_qty=45)
+lemon2 = Lemon(color="green", juice_qty=32)
 
-La **classe** peut être vue comme la **recette qui permet de créer un objet** : elle définit les attributs et les méthodes que possèderont tous les objets définis à partir de cette classe. Définir une classe comme ci-dessus revient simplement à mettre cette recette dans l'environnement Python. Pour créer un objet selon cette classe, il faut l'**instancier**.
+print(type(lemon1))
+print(type(lemon2))
+---
 
-```{python}
-citron1 = Citron(couleur="jaune", qte_jus=45)
-citron2 = Citron(couleur="vert", qte_jus=32)
+Here, we have created two instances of the `Lemon` class. These two instances are independent: Python sees them as two distinct objects. However, they were created from the same class and therefore have the same type.
 
-print(type(citron1))
-print(type(citron2))
-```
+This distinction between the class and its instances helps to better understand the meaning of the `self` parameter. It is a reference to the instances that will be created according to the class, allowing the specification of their attributes and methods. When a given instance is created, it essentially becomes the `self`.
 
-On a ici créé deux instances de la classe `Citron`. Ces deux instances sont autonomes : Python les voit comme deux objets bien distincts. Ils ont cependant été créés à partir de la même classe et ont donc le même type.
+## Attributes
 
-Cette distinction entre la classe et ses instances permet de mieux comprendre la signification du paramètre `self`. Il s'agit d'une référence aux instances qui vont être créées selon la classe, qui permet de spécifier leurs attributs et leurs méthodes. Lorsqu'on crée une instance donnée, celle-ci devient en quelque sorte le `self`.
+An attribute is a **variable associated with an object**. An attribute can contain any Python object.
 
+### Accessing attributes
 
-## Attributs
+Once the object is instantiated, it is possible to access its attributes. The syntax is simple: `instance.attribute`.
 
+---{python}
+print(lemon1.color)
+print(lemon2.color)
+print(lemon1.juice)
+print(lemon2.juice)
+---
 
-Un attribut est une **variable associée à un objet**. Un attribut peut contenir n'importe quel objet Python.
+We can see that the two instances are **independent**: although they are of the same type, their attributes differ.
 
+### Modifying an attribute
 
-### Accéder aux attributs
+Modifying an attribute of an instance is very simple, the syntax is: `instance.attribute = new_value`.
 
+---{python}
+lemon2.color = "red"
+print(lemon2.color)
+---
 
-Une fois que l'objet est instancié, il est possible d'accéder à ses attributs. La syntaxe est simple : `instance.attribut`.
+It is also possible to add an attribute according to the same logic: `instance.new_attribute = value`. However, this is not good programming practice, as the class precisely serves to define the attributes that objects of a given class can have. Therefore, it is generally preferable to define attributes within the class rather than outside.
 
-```{python}
-print(citron1.couleur)
-print(citron2.couleur)
-print(citron1.jus)
-print(citron2.jus)
-```
+### Class attributes and instance attributes
 
-On voit bien que les deux instances sont **autonomes** : bien qu'elles soient du même type, leurs attributs diffèrent.
+The two instances we created illustrate different types of attributes:
 
+- **Class attributes**. These are attributes that have the same value for every instance created according to this class. Here, it is the `flavor` attribute: all lemons are sour, so there is no reason to allow modifying this parameter during instantiation. Strictly speaking, we could even define this attribute outside the constructor.
 
-### Modifier un attribut
+- **Instance attributes**. These are attributes whose values can vary between different instances created according to the same class. Here, these are the `color` and `juice` attributes: there are lemons of different colors and larger or smaller lemons that will therefore have different amounts of juice. It is up to the user to define these attributes during instantiation.
 
+## Methods
 
-Modifier un attribut d'une instance est très simple, la syntaxe est : `instance.attribut = nouvelle_valeur`.
+A method is a **function associated with an object**. It can use its attributes, modify them, and involve other methods of the object.
 
-```{python}
-citron2.couleur = "rouge"
-print(citron2.couleur)
-```
+### Calling a method
 
-Il est également possible d'ajouter un attribut selon la même logique : `instance.nouvel_attribut = valeur`. Cependant, ce n'est pas une bonne pratique de programmation, la classe servant précisément à définir les attributs que peuvent admettre les objets d'une classe donnée. On préférera donc généralement définir les attributs au sein de la classe plutôt qu'en dehors.
+The syntax for calling a method of an instantiated object is as follows: `instance.method(parameters)`.
 
+---{python}
+lemon1.get_juice_qty()
+---
 
-### Attributs de classe et attributs d'instance
+Two remarks can be made about this syntax. The first is that **a method is a function *attached* to an instance of an object**. Unlike functions defined via the `def` statement, methods do not have an independent existence outside the object's instance. In our case, calling the `get_juice_qty()` function independently of the object returns an error.
 
+---{python}
+get_juice_qty()
+---
 
-Les deux instances que nous avons créées permettent d'illustrer les différents types d'attributs :
+The second remark is that **we no longer specify the `self` parameter when manipulating an instance**. The instance itself has become the `self` (or rather *a* self). The link between the method and its instance is already made since the method cannot be used without first calling the instance.
 
-- les **attributs de classe**. Ce sont les attributs qui ont la même valeur pour toute instance créée selon cette classe. Ici, c'est l'attribut `saveur` : tous les citrons sont acides, il n'y a donc pas lieu de permettre de modifier ce paramètre lors de l'instanciation. En toute rigueur, on aurait donc même pu définir cet attribut hors du constructeur.
+### Acting on attributes
 
-- les **attributs d'instance**. Ce sont les attributs dont la valeur peut varier entre les différentes instances créées selon une même classe. Ici, ce sont les attributs `couleur` et `jus` : il existe des citrons de différentes couleurs, et des citrons plus ou moins gros, qui auront donc des quantités de jus différentes. C'est donc à l'utilisateur de définir ces attributs lors de l'instanciation.
+The main interest of methods is that they can access attributes and perform operations based on them, as well as modify them. Let's take our example again to illustrate this possibility.
 
+---{python}
+lemon1 = Lemon(color="yellow", juice_qty=45)
 
-## Méthodes
+lemon1.get_juice_qty()
+lemon1.squeeze_juice(12)
+lemon1.get_juice_qty()
+---
 
+The `get_juice_qty` method simply displays the value of an attribute in a formatted way. The `squeeze_juice` method, on the other hand, permanently modifies the value of the `juice` attribute, as shown by the second call to `get_juice_qty`.
 
-Une méthode est une **fonction associée à un objet**. Elle peut utiliser ses attributs, les modifier, et faire intervenir d'autres méthodes de l'objet.
+## When to use OOP?
 
+The previous example is interesting because it illustrates both an advantage and a disadvantage of OOP.
 
-### Appeler une méthode
+The fact that objects have attributes allows maintaining the **state of a resource**—in our example, the amount of juice contained in a given `Lemon` class object. To take more realistic examples, this property is interesting and used in several cases:
 
+- Training a machine learning model. It is common to train a model once and then want to continue training it longer or with different data. Saving the state in an instance of the `Model` class allows for this. This is why most machine learning packages in Python are based on OOP.
 
-La syntaxe pour appeler une méthode d'un objet instancié est la suivante : `instance.methode(parametres)`.
+- The continuous operation of a web application. Such an application must keep things in memory to provide a smooth user experience: the fact that the user has logged in, their history, etc. Again, most web frameworks (`Django`, `Flask`, etc.) rely on OOP.
 
-```{python}
-citron1.recup_qte_jus()
-```
+At the same time, using objects that keep a state in memory can **limit the reproducibility of analyses**. To illustrate this, let's return to the example in the tutorial: execute the following cell several times in a row.
 
-On peut faire deux remarques sur cette syntaxe. La première est qu'**une méthode est une fonction *attachée* à une instance d'un objet**. Contrairement aux fonctions définies via l'instruction `def`, les méthodes n'ont pas d'existence propre en dehors de l'instance de l'objet. Dans notre cas, appeler la *fonction* `recup_qte_jus()` indépendamment de l'objet renvoie donc une erreur.
+---
 
-```{python}
-recup_qte_jus()
-```
+{python}
+lemon1.get_juice_qty()
+lemon1.squeeze_juice(12)
+lemon1.get_juice_qty()
+---
 
-La seconde remarque est qu'**on ne spécifie plus le paramètre `self` lorsqu'on manipule une instance**. L'instance est devenue le `self` (ou plutôt *un* self) elle-même. Le lien entre la méthode et son instance est déjà fait, puisqu'on ne peut pas utiliser la méthode sans appeler l'instance auparavant.
+The three executions give different results, even though the executed code is strictly the same. This illustrates the reproducibility issue: when using OOP, you must be mindful of the state of objects kept in memory, or you risk not getting the same results when replicating an analysis.
 
+## Exercises
 
-### Agir sur les attributs
+### Comprehension questions
 
+- 1/ "In Python, everything is an object": what does this phrase mean?
 
-Tout l'intérêt des méthodes est qu'elles peuvent accéder aux attributs, et ainsi réaliser des opérations à partir de ceux-ci, mais également les modifier. Reprenons notre exemple pour illustrer cette possibilité.
+- 2/ What is the purpose of the `class` statement?
 
-```{python}
-citron1 = Citron(couleur="jaune", qte_jus=45)
+- 3/ What is the purpose of the `__init__` constructor?
 
-citron1.recup_qte_jus()
-citron1.extraire_jus(12)
-citron1.recup_qte_jus()
-```
+- 4/ What is the purpose of `self`?
 
-La méthode `recup_qte_jus` permet simplement d'afficher la valeur d'un attribut de manière formattée. La méthode `extraire_jus` en revanche modifie durablement la valeur de l'attribut `jus`, ce que montre le second appel à `recup_qte_jus`.
+- 5/ What is the difference between a class and an instance?
 
+- 6/ What is an attribute?
 
-## Quand utilise-t-on la POO ?
+- 7/ What is the difference between a method and a function?
 
+- 8/ How can you tell the difference between an attribute and a method when calling them?
 
-L'exemple précédent est intéressant car il illustre à la fois un avantage et un inconvénient de la POO.
+- 9/ Can an attribute be modified by a method? Can an attribute be modified outside a method?
 
-Le fait que les objets possèdent des attributs permet de garder en mémoire **l'état d'une ressource** -- dans notre exemple, la quantité de jus contenu dans un objet de classe `Citron` donné. Pour prendre des exemples plus réalistes, cette propriété est intéressante et utilisée dans plusieurs cas :
-
-- l'entraînement d'un modèle de machine-learning. Il est fréquent d'entraîner un modèle une première fois, et de vouloir ensuite continuer l'entraînement plus longtemps, ou bien avec d'autres données. Sauvegarder l'état dans une instance de la classe `Modele` permet de faire cela. C'est pourquoi la plupart des *packages* de machine-learning en Python sont fondés sur de la POO.
-
-- le fonctionnement en continu d'une application web. Une telle application doit garder des choses en mémoire pour fournir à l'utilisateur une expérience fluide : le fait que l'utilisateur se soit connecté, son historique, etc. Là encore, la plupart des *frameworks* web (`Django`, `Flask`..) reposent sur de la POO.
-
-Dans le même temps, le fait d'utiliser des objets qui gardent en mémoire un état peut **limiter la reproductibilité des analyses**. Pour illustrer cela, revenons à l'exemple du tutoriel : exécutez plusieurs fois d'affilée la cellule suivante.
-
-```{python}
-citron1.recup_qte_jus()
-citron1.extraire_jus(12)
-citron1.recup_qte_jus()
-```
-
-Les trois exécutions donnent des résultats différents, alors que le code exécuté est strictement le même. Cela illustre bien le problème de reproductibilité : lorsqu'on utilise la POO, il faut bien faire attention à l'état des objets qui est conservé en mémoire, au risque de ne pas tomber sur les mêmes résultats lorsqu'on réplique une même analyse.
-
-
-## Exercices
-
-
-### Questions de compréhension
-
-- 1/ "En Python, tout est un objet" : qu'est-ce que cette phrase signifie ?
-
-- 2/ A quoi sert l'instruction `class` ?
-
-- 3/ A quoi sert le constructeur `__init__` ?
-
-- 4/ A quoi sert le `self` ? 
-
-- 5/ Quelle est la différence entre une classe et une instance ?
-
-- 6/ Qu'est-ce qu'un attribut ?
-
-- 7/ Quelle est la différence entre une méthode et une fonction ?
-
-- 8/ A quoi voit-on la différence entre un attribut et une méthode lorsqu'on les appelle ?
-
-- 9/ Peut-on modifier un attribut avec une méthode ? Peut-on modifier un attribut en dehors d'une méthode ?
-
-- 10/ Quand utilise-t-on généralement la POO ?
+- 10/ When is OOP generally used?
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-- 1/ Cela signifie que tous les objets Python (nombres, strings, listes, etc..) sont des objets au sens de la POO : ils ont des attributs et des méthodes, qui sont définis par une classe.
+- 1/ It means that all Python objects (numbers, strings, lists, etc.) are objects in the OOP sense: they have attributes and methods defined by a class.
 
-- 2/ L'instruction `class` sert à définir une classe d'objets.
+- 2/ The `class` statement is used to define a class of objects.
 
-- 3/ Le constructeur `__init__` est un méthode spéciale qui permet à l'utilisateur de définir les attributs d'un objet.
+- 3/ The `__init__` constructor is a special method that allows the user to define an object's attributes.
 
-- 4/ Le self sert de référence à l'instance au sein de la classe. Il souligne qui va porter les attributs et les méthodes une fois l'objet instancié.
+- 4/ `self` serves as a reference to the instance within the class. It indicates who will carry the attributes and methods once the object is instantiated.
 
-- 5/ La classe est la "recette" qui définit toutes les caractéristiques de l'objet. Mais l'objet n'est vraiment créée que lorsque la classe est instanciée, c'est à dire lorsqu'on crée une instance selon cette classe.
+- 5/ The class is the "recipe" that defines all the characteristics of the object. But the object is not truly created until the class is instantiated, i.e., when an instance is created from the class.
 
-- 6/ Un attribut est une variable associée à un objet.
+- 6/ An attribute is a variable associated with an object.
 
-- 7/ Une méthode est une fonction particulière : elle est associée à un objet et n'existe pas indépendamment de lui.
+- 7/ A method is a specific function: it is associated with an object and does not exist independently of it.
 
-- 8/ La présence de parenthèses permet de différencier l'appel d'un attribut et l'appel d'une méthode.
-Appel d'un attribut : instance.attribut
-Appel d'une méthode : instance.methode() avec d'éventuels paramètres.
+- 8/ The presence of parentheses distinguishes between calling an attribute and calling a method. Attribute call: instance.attribute Method call: instance.method() with any parameters.
 
-- 9/ Oui, c'est même un des usages principaux des méthodes. Mais on peut également modifier un attribut manuellement.
+- 9/ Yes, this is one of the main uses of methods. But an attribute can also be manually modified.
 
-- 10/ Lorsque l'on manipule des objets dont on souhaitent qu'ils conservent l'état d'une ressource au sein d'un programme.
+- 10/ When manipulating objects whose state of a resource should be maintained within a program.
 
 </details>
 
-### De la masse au jus
+### From mass to juice
 
-Admettons que le jus contenu dans un citron soit une fonction proportionnelle de sa masse, défini de la manière suivante : $jus = \frac {masse} {4}$ où la masse est en grammes et le jus en mL.
+Assume that the juice contained in a lemon is a proportional function of its mass, defined as follows: $juice = \frac {mass} {4}$ where mass is in grams and juice in mL.
 
-Modifiez la classe `Citron`, reproduite dans la cellule suivante, de telle sorte que :
+Modify the `Lemon` class, reproduced in the following cell, so that:
 
-- lors de l'instanciation, l'utilisateur ne définit plus la quantité de jus, mais la masse du citron
+- During instantiation, the user no longer defines the quantity of juice, but the mass of the lemon.
 
-- l'attribut `jus` est calculé selon la formule ci-dessus
+- The `juice` attribute is calculated according to the above formula.
 
-- rajouter une méthode qui affiche "La masse du citron est x grammes."
+- Add a method that displays "The mass of the lemon is x grams."
 
-Instanciez ensuite un nouveau citron est vérifiez que tout fonctionne comme prévu.
+Instantiate a new lemon and verify that everything works as expected.
 
-```{python}
-class Citron:
+---{python}
+class Lemon:
 
-    def __init__(self, couleur, qte_jus):
-        self.saveur = "acide"
-        self.couleur = couleur
-        self.jus = qte_jus
-        
-    def recup_qte_jus(self):
-        print("Il reste " + str(self.jus) + " mL de jus dans le citron.")
-        
-    def extraire_jus(self, quantite):
-        if quantite > self.jus:
-            print("Il n'y a pas assez de jus dans le citron pour la quantité demandée.")
+    def __init__(self, color, juice_qty):
+        self.flavor = "sour"
+        self.color = color
+        self.juice = juice_qty
+
+    def get_juice_qty(self):
+        print("There is " + str(self.juice) + " mL of juice left in the lemon.")
+
+    def squeeze_juice(self, amount):
+        if amount > self.juice:
+            print("There is not enough juice in the lemon for the requested amount.")
         else:
-            self.jus = max(0, self.jus - quantite)  # évite toute valeur négative de `jus`
-```
+            self.juice = max(0, self.juice - amount)  # avoids any negative value of `juice`
+---
 
-```{python}
-# Testez votre réponse dans cette cellule
+---{python}
+# Test your answer in this cell
 
-```
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
-class Citron:
+---{python}
+class Lemon:
 
-    def __init__(self, couleur, masse):
-        self.saveur = "acide"
-        self.couleur = couleur
-        self.masse = masse
-        self.jus = masse / 4
-        
-    def recup_masse(self):
-        print("La masse du citron est " + str(self.masse) + " grammes.")
-        
-    def recup_qte_jus(self):
-        print("Il reste " + str(self.jus) + " mL de jus dans le citron.")
-        
-    def extraire_jus(self, quantite):
-        if quantite > self.jus:
-            print("Il n'y a pas assez de jus dans le citron pour la quantité demandée.")
+    def __init__(self, color, mass):
+        self.flavor = "sour"
+        self.color = color
+        self.mass = mass
+        self.juice = mass / 4
+
+    def get_mass(self):
+        print("The mass of the lemon is " + str(self.mass) + " grams.")
+
+    def get_juice_qty(self):
+        print("There is " + str(self.juice) + " mL of juice left in the lemon.")
+
+    def squeeze_juice(self, amount):
+        if amount > self.juice:
+            print("There is not enough juice in the lemon for the requested amount.")
         else:
-            self.jus = max(0, self.jus - quantite)  # évite toute valeur négative de `jus`
-            
-citron = Citron("jaune", 500)
+            self.juice = max(0, self.juice - amount)  # avoids any negative value of `juice`
 
-citron.recup_masse()
-citron.recup_qte_jus()
-```
+lemon = Lemon("yellow", 500)
+
+lemon.get_mass()
+lemon.get_juice_qty()
+---
+
 </details>
 
-### Comptes bancaires
+### Bank accounts
 
-Exercice librement inspiré de : [https://github.com/Pierian-Data/Complete-Python-3-Bootcamp](https://github.com/Pierian-Data/Complete-Python-3-Bootcamp)
+Exercise freely inspired by: [https://github.com/Pierian-Data/Complete-Python-3-Bootcamp](https://github.com/Pierian-Data/Complete-Python-3-Bootcamp)
 
-Nous avons vu que la POO était particulièrement intéressante lorsque l'on souhaite manipuler des objets qui gardent l'état d'une ressource. C'est par exemple le cas d'un compte bancaire, qui garde un solde et permet ou non certaines opérations en fonction de ce solde.
+We have seen that OOP is particularly interesting when we want to manipulate objects that keep the state of a resource. This is, for example, the case of a bank account, which keeps a balance and allows or disallows certain operations based on this balance.
 
-Implémenter une classe `Compte` avec :
+Implement a `BankAccount` class with:
 
-- deux attributs : `titulaire` (nom du client) et `solde` (solde en euros du compte)
+- Two attributes: `holder` (account holder's name) and `balance` (account balance in euros).
 
-- une méthode `affiche_solde` qui affiche : "Le solde du compte de nom_client est x euros."
+- A `show_balance` method that displays: "The balance of the account of holder_name is x euros."
 
-- une méthode `depot` qui admet un paramètre `montant`. Lorsqu'un dépôt est effectué, le solde du compte est incrémenté du montant du dépôt.
+- A `deposit` method that accepts an `amount` parameter. When a deposit is made, the account balance is incremented by the deposit amount.
 
-- une méthode `retrait` qui admet un paramètre `montant`. Lorsqu'un retrait est effectué : 
+- A `withdraw` method that accepts an `amount` parameter. When a withdrawal is made:
 
-    - si le montant est inférieur au solde : le solde est décrémenté du montant, est on affiche "Retrait accepté.".
+    - If the amount is less than the balance: the balance is decremented by the amount, and "Withdrawal accepted." is displayed.
 
-    - si le montant est supérieur au solde : on affiche "Retrait refusé : fonds insuffisants." et le solde est inchangé
+    - If the amount is greater than the balance: "Withdrawal denied: insufficient funds." is displayed and the balance remains unchanged.
 
-- une méthode `transfert` qui admet un paramètre `montant` et un paramètre `destinataire` qui admet une autre instance de la classe `Compte` (i.e. un autre client). Par exemple, `client1.transfert(destinataire=client2, montant=1000)` a pour effet de :
+- A `transfer` method that accepts an `amount` parameter and a `recipient` parameter that takes another instance of the `BankAccount` class (i.e., another client). For example, `client1.transfer(recipient=client2, amount=1000)`:
 
-    - si le montant est inférieur au solde de client1 : le solde de client1 est décrémenté du montant, le solde de client2 est incrémenté du montant.
+    - If the amount is less than client1's balance: client1's balance is decremented by the amount, client2's balance is incremented by the amount.
 
-    - si le montant est supérieur au solde de client1 : on affiche "Transfert refusé : fonds insuffisants." et les soldes des deux clients restent inchangés.
-    
-Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.
+    - If the amount is greater than client1's balance: "Transfer denied: insufficient funds." is displayed and the balances of both clients remain unchanged.
 
-```{python}
-# Testez votre réponse dans cette cellule
+Create two clients and test that the various functionalities to be implemented work as expected.
 
-```
+---{python}
+# Test your answer in this cell
+
+---
 
 <details>
-<summary>Afficher la solution</summary>
+<summary>Show solution</summary>
 
-```python
-class Compte:
-    def __init__(self, titulaire, solde):
-        self.titulaire = titulaire
-        self.solde = solde
-        
-    def affiche_solde(self):
-        print("Le solde du compte de " + self.titulaire + " est " + str(self.solde) + " euros.")
-        
-    def depot(self, montant):
-        self.solde += montant
-    
-    def retrait(self, montant):
-        if self.solde >= montant:
-            self.solde -= montant
-            print("Retrait accepté.")
+---{python}
+class BankAccount:
+    def __init__(self, holder, balance):
+        self.holder = holder
+        self.balance = balance
+
+    def show_balance(self):
+        print("The balance of the account of " + self.holder + " is " + str(self.balance) + " euros.")
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+            print("Withdrawal accepted.")
         else:
-            print("Retrait refusé : fonds insuffisants.")
-            
-    def transfert(self, destinataire, montant):
-        if self.solde >= montant:
-            destinataire.solde += montant
-            self.solde -= montant
+            print("Withdrawal denied: insufficient funds.")
+
+    def transfer(self, recipient, amount):
+        if self.balance >= amount:
+            recipient.balance += amount
+            self.balance -= amount
         else:
-            print("Transfert refusé : fonds insuffisants.")
-            
-client1 = Compte("Bernard", 2000)
-client2 = Compte("Bianca", 5000)
+            print("Transfer denied: insufficient funds.")
 
-client1.affiche_solde()
-client2.affiche_solde()
+client1 = BankAccount("Bernard", 2000)
+client2 = BankAccount("Bianca", 5000)
 
-print()  # saut de ligne
+client1.show_balance()
+client2.show_balance()
 
-client1.depot(1000)
-client1.affiche_solde() # +1000
+print()  # newline
 
-print()
-
-client2.retrait(6000)
-client2.affiche_solde() # aucun changement
+client1.deposit(1000)
+client1.show_balance() # +1000
 
 print()
 
-client2.retrait(1000)
-client2.affiche_solde() # -1000
+client2.withdraw(6000)
+client2.show_balance() # no change
 
 print()
 
-client2.transfert(client1, 5000)
-client2.affiche_solde() # aucun changement
+client2.withdraw(1000)
+client2.show_balance() # -1000
 
 print()
 
-client2.transfert(client1, 2000)
-client2.affiche_solde() # - 2000
-client1.affiche_solde() # + 2000
-```
+client2.transfer(client1, 5000)
+client2.show_balance() # no change
+
+print()
+
+client2.transfer(client1, 2000)
+client2.show_balance() # - 2000
+client1.show_balance() # + 2000
+---
+
 </details>
