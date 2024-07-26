@@ -1,11 +1,12 @@
 #!/bin/sh
 
-SECTION=$1
-CHAPTER=$2
+LANGUAGE=$1
+SECTION=$2
+CHAPTER=$3
 
 WORK_DIR=/home/onyxia/work
 CLONE_DIR=${WORK_DIR}/repo-git
-COURSE_DIR=${CLONE_DIR}/source
+COURSE_DIR=${CLONE_DIR}/source/${LANGUAGE}
 
 # Clone course repository
 REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
