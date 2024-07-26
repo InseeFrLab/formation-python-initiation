@@ -1,6 +1,3 @@
-project:
-  output-dir: _site/en
-
 website:
   title: "SSPy training course {{< fa brands python >}}"
   sidebar:
@@ -8,22 +5,37 @@ website:
     contents:
       - section: "Fundamentals"
         contents: 
-          - source/en/fundamentals/types-variables/tutorial.qmd
-          - source/en/fundamentals/data-structures1/tutorial.qmd
-          - source/en/fundamentals/data-structures2/tutorial.qmd
-          - source/en/fundamentals/tests/tutorial.qmd
-          - source/en/fundamentals/loops/tutorial.qmd
-          - source/en/fundamentals/functions/tutorial.qmd
-          - source/en/fundamentals/oop/tutorial.qmd
+          - text: "Basic types and variables"
+            href: source/fundamentals/types-variables/tutorial.qmd
+          - text: "Data structures 1: lists and tuples"
+            href: source/fundamentals/data-structures1/tutorial.qmd
+          - text: "Data structures 2: dictionaries and sets"
+            href: source/fundamentals/data-structures2/tutorial.qmd
+          - text: "Conditionals"
+            href: source/fundamentals/tests/tutorial.qmd
+          - text: "Loops"
+            href: source/fundamentals/loops/tutorial.qmd
+          - text: "Functions"
+            href: source/fundamentals/functions/tutorial.qmd
+          - text: "Introduction to object-oriented programming"
+            href: source/fundamentals/oop/tutorial.qmd
       - section: "Data handling"
         contents: 
-          - source/en/manipulation/modules-files/tutorial.qmd
-          - source/en/manipulation/csv-json-files/tutorial.qmd
-          - source/en/manipulation/numpy/tutorial.qmd
-          - source/en/manipulation/pandas/tutorial.qmd
-          - source/en/manipulation/dataviz/tutorial.qmd
+          - text: "File manipulation"
+            href: source/manipulation/modules-files/tutorial.qmd
+          - text: "Working with CSV and JSON files"
+            href: source/manipulation/csv-json-files/tutorial.qmd
+          - text: "Numerical computation with NumPy"
+            href: source/manipulation/numpy/tutorial.qmd
+          - text: "Processing tabular data with Pandas"
+            href: source/manipulation/pandas/tutorial.qmd
+          - text: "Introduction to data visualization"
+            href: source/manipulation/dataviz/tutorial.qmd
       - section: "Projects"
         contents: 
-          - source/en/projects/puissance4/tutorial.qmd
-          - source/en/projects/meteo/tutorial.qmd
-          - source/en/projects/RP/tutorial.qmd
+          - text: "Project 1 - Connect 4"
+            href: source/projects/puissance4/tutorial.qmd
+          - text: "Project 2 - API interaction"
+            href: source/projects/meteo/tutorial.qmd
+          - text: "Project 3 - Population census analysis"
+            href: source/projects/RP/tutorial.qmd

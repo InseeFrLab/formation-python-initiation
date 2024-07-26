@@ -3,6 +3,10 @@ project:
   render:
     - '*.qmd'
 
+profile:
+  group: [fr, en]
+  default: fr
+
 format:
   html:
     theme: cosmo

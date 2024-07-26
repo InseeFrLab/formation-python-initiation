@@ -379,7 +379,7 @@ grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 
 # Project 1 - Connect 4
 
-In this project, we will implement a Connect 4 game (called "Puissance 4" in French) with a rather basic graphical interface. To achieve this, we will use the fundamental objects of Python.
+In this project, we will implement a Connect 4 game with a rather basic graphical interface. To achieve this, we will use the fundamental objects of Python.
 
 ```{python}
 import copy

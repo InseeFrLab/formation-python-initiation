@@ -124,7 +124,7 @@ Deux canaux de contact sont disponibles :
 
 
 ::: {.content-visible when-profile="en"}
-# Introductory training to `Python` in SSP
+# Introductory training to `Python`
 
 ## Context
 
