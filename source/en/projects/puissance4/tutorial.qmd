@@ -1,368 +1,337 @@
----
-title: "Projet 1 - Puissance 4"
-execute:
-  eval: false
----
+# Project 1 - Connect 4
 
-Dans ce projet nous allons implémenter un puissance 4 avec une interface graphique assez sommaire. Pour y arriver, nous allons utiliser les objets fondamentaux de Python.
+In this project, we will implement a Connect 4 game with a rather basic graphical interface. To achieve this, we will use the fundamental objects of Python.
 
-```{python}
+---{python}
 import copy
 
 import solutions
-```
+---
 
-## Règles du jeu
+## Game rules
 
-Le but du jeu de Puissance 4 est d'aligner une suite de 4 pions de même couleur sur une grille comptant 6 rangées et 7 colonnes. Chaque joueur dispose de 21 pions d'une couleur (par convention, en général jaune ou rouge). Tour à tour, les deux joueurs placent un pion dans la colonne de leur choix, le pion coulisse alors jusqu'à la position la plus basse possible dans la dite colonne à la suite de quoi c'est à l'adversaire de jouer. Le vainqueur est le joueur qui réalise le premier un alignement (horizontal, vertical ou diagonal) consécutif d'au moins quatre pions de sa couleur. Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n'a réalisé un tel alignement, la partie est déclarée nulle.
+The goal of Connect 4 is to align a sequence of 4 pieces of the same color on a grid with 6 rows and 7 columns. Each player has 21 pieces of one color (usually yellow or red by convention). The two players take turns placing a piece in the column of their choice, and the piece slides down to the lowest possible position in that column, after which it is the opponent's turn to play. The winner is the player who first aligns (horizontally, vertically, or diagonally) at least four consecutive pieces of their color. If, when all the grid cells are filled, neither player has achieved such an alignment, the game is declared a draw.
 
-Afin de simplifier le code de ce projet, on partira du principe que les alignements victorieux ne peuvent être qu'horizontaux ou verticaux. Les diagonales ne seront donc pas considérées (mais constituent un exercice intéressant pour aller plus loin !).
+To simplify the code for this project, we will assume that winning alignments can only be horizontal or vertical. Diagonals will not be considered (but they are an interesting exercise to go further!).
 
-## Plan du projet
+## Project plan
 
-Nous allons décomposer la construction du jeu en différentes parties :
+We will break down the construction of the game into different parts:
 
-- initialisation de la grille
+- initialization of the grid
 
-- représentation de la grille
+- representation of the grid
 
-- fonction de jeu
+- game function
 
-- détection d'une victoire (horizontale)
+- detection of a victory (horizontal)
 
-- détection d'une victoire (verticale)
+- detection of a victory (vertical)
 
-- fin de partie
+- end of game
 
-## Initialisation de la grille
+## Initialization of the grid
 
-L'objectif de cette partie est d'initialiser un objet Python qui représente une grille de puissance 4. Le choix que nous allons faire est de **représenter la grille comme une liste de listes**. Il s'agira d'une matrice 6x7 : on aura par conséquent une **liste de 6 élements** (qui représenteront les lignes de la grille), dont chacun des éléments sera une **liste contenant 7 éléments** (qui représenterons les pions). 
+The objective of this part is to initialize a Python object that represents a Connect 4 grid. The choice we will make is to **represent the grid as a list of lists**. It will be a 6x7 matrix: we will therefore have a **list of 6 elements** (which will represent the rows of the grid), each of which will be a **list containing 7 elements** (which will represent the pieces).
 
-Chaque élément de la grille sera représenté par un *string*, qui pourra prendre trois valeurs :
+Each element of the grid will be represented by a *string*, which can take three values:
 
-- ' ' : s'il s'agit d'une case vide
+- ' ' : if it is an empty cell
 
-- 'R' : s'il s'agit d'un pion rouge. 
+- 'R' : if it is a red piece.
 
-- 'Y' : s'il s'agit d'un pion jaune (yellow). 
+- 'Y' : if it is a yellow piece.
 
-Dans la fonction d'initialisation de la grille, chaque élément sera donc initialisé comme un ***string* contenant un espace**.
+In the grid initialization function, each element will therefore be initialized as a ***string* containing a space**.
 
-**Attention** : Bien faire attention à ce que les lignes soient des objets indépendants, autrement dit que modifier l'une des listes n'affecte pas les autres.
+**Note**: Make sure that the rows are independent objects, in other words, modifying one of the lists does not affect the others.
 
-### Résultat attendu
+### Expected result
 
-
-```{python}
+---{python}
 grid = solutions.display_grid()
 grid
-```
+---
 
+---{python}
+print(f'Number of rows: {len(grid)}')
+print(f'Number of columns: {len(grid[0])}')
+---
 
-```{python}
-print(f'Nombre de lignes : {len(grid)}')
-print(f'Nombre de colonnes : {len(grid[0])}')
-```
+### Your turn!
 
-### A vous de jouer !
-
-
-```{python}
+---{python}
 def display_grid():
-    # Votre code ici
+    # Your code here
     return grid
-```
+---
 
-
-```{python}
-# Vérification du résultat
+---{python}
+# Checking the result
 grid = display_grid()
 grid
-```
+---
 
+---{python}
+# Checking the result
+print(f'Number of rows: {len(grid)}')
+print(f'Number of columns: {len(grid[0])}')
+---
 
-```{python}
-# Vérification du résultat
-print(f'Nombre de lignes : {len(grid)}')
-print(f'Nombre de colonnes : {len(grid[0])}')
-```
+## Representation of the grid
 
-## Représentation de la grille
+Our grid is initialized, but its display is quite basic. The idea of this part is to provide a more visual representation of the game during a game.
 
-Notre grille est initialisée, mais son affichage est assez sommaire. L'idée de cette partie est d'offrir une représentation plus visuelle du jeu pendant une partie.
+To do this, we will create **a function that takes the previously initialized grid as input and returns its representation** (via the `print` function). The columns will be separated by the | character (vertical bar).
 
-Pour cela, nous allons créer **une fonction qui prend en entrée la grille précédemment initialisée et renvoie sa représentation** (via la fonction `print`). Les colonnes seront séparées par le caractère | (barre verticale).
+**Hint**: A possible solution involves two concepts we have seen in previous exercises: string concatenation and the `join` function, which "joins" the elements of a list by separating them with a certain character. Here is a reminder of an example using these two concepts:
 
-**Indice** : une solution possible fait intervenir deux notions que nous avons vues dans les TP précédents : la concaténation de *strings* et la fonction `join` qui "joint" les éléments d'une liste en les séparant par un certain caractère. Pour rappel, voici un exemple qui utilise ces deux concepts : 
-
-
-```{python}
+---{python}
 l = ["a", "b", "c", "d", "e"]
-l_join = "DEBUT " + ", ".join(l) + " FIN"
+l_join = "START " + ", ".join(l) + " END"
 print(l_join)
-```
+---
 
-### Résultat attendu
+### Expected result
 
-
-```{python}
+---{python}
 solutions.display_grid(grid)
-```
+---
 
-### A vous de jouer !
+### Your turn!
 
-
-```{python}
+---{python}
 def display_grid():
-    # Votre code ici
-```
+    # Your code here
+---
 
-
-```{python}
-# Vérification du résultat
+---{python}
+# Checking the result
 display_grid(grid)
-```
+---
 
-## Fonction de jeu
+## Game function
 
-Maintenant que nous pouvons représenter notre grille, intéressons-nous au coeur du puissance 4 : le jeu. L'objectif de cette partie est de **coder une fonction `make_move` qui va modifier la grille lorsqu'un joueur joue son tour**.
+Now that we can represent our grid, let's focus on the core of Connect 4: the game. The objective of this part is to **code a `make_move` function that will modify the grid when a player takes their turn**.
 
-Cette fonction prend en entrée :
+This function takes as input:
 
-- la grille
+- the grid
 
-- la colonne choisie par le joueur
+- the column chosen by the player
 
-- la couleur du pion ('R' pour le pion rouge, et 'Y' pour le pion jaune)
+- the color of the piece ('R' for the red piece, and 'Y' for the yellow piece)
 
-et renvoie en sortie la grille actualisée suite au tour du joueur.
+and returns the updated grid after the player's turn.
 
-Si la colonne choisie est déjà complète, renvoyer un message d'erreur.
+If the chosen column is already full, return an error message.
 
-**Attention** : en Python, la numérotation commence à 0. La première colonne correspond donc à la colonne 0 du point de vue de l'indexation.
+**Note**: In Python, numbering starts at 0. The first column is therefore column 0 from the indexing point of view.
 
-Optionnel : Renvoyer un message d'erreur si un joueur essaie de jouer dans une colonne inexistante ou bien avec une couleur non autorisée.
+Optional: Return an error message if a player tries to play in a nonexistent column or with an unauthorized color.
 
-### Résultat attendu
+### Expected result
 
-
-```{python}
-grid = solutions.display_grid()  # Initialisation
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 1er tour de jeu
-grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="J")  # 2ème tour de jeu
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 3ème tour de jeu
+---{python}
+grid = solutions.display_grid()  # Initialization
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 1st turn
+grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="Y")  # 2nd turn
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 3rd turn
 solutions.display_grid(grid)
-```
+---
 
-### A vous de jouer !
+### Your turn!
 
-
-```{python}
+---{python}
 def make_move(grid, column_to_play, disc_color):
-    new_grid = copy.deepcopy(grid)  # Evite la modification de la grille initiale
-    # Votre code ici
+    new_grid = copy.deepcopy(grid)  # Avoid modifying the initial grid
+    # Your code here
     return new_grid
-```
+---
 
-
-```{python}
-# Vérification du résultat
-grid = display_grid()  # Initialisation
-grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 1er tour de jeu
-grid = make_move(grid=grid, column_to_play=5, disc_color="J")  # 2ème tour de jeu
-grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 3ème tour de jeu
+---{python}
+# Checking the result
+grid = display_grid()  # Initialization
+grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 1st turn
+grid = make_move(grid=grid, column_to_play=5, disc_color="Y")  # 2nd turn
+grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 3rd turn
 display_grid(grid)
-```
+---
 
-## Détection d'une victoire (horizontale)
+## Detection of a victory (horizontal)
 
-Maintenant qu'il est possible de jouer effectivement à notre puissance 4, il faut pouvoir détecter une victoire pour mettre fin à la partie en cours. Pour se faire, on va simplifier le problème en le décomposant au maximum.
+Now that it is possible to actually play Connect 4, we need to detect a victory to end the current game. To do this, we will simplify the problem by breaking it down as much as possible.
 
-Dans un premier temps, on s'intéresse à la détection d'une victoire horizontale. Pour cela, on va s'aider de deux fonctions :
+First, we focus on detecting a horizontal victory. To do this, we will use two functions:
 
-- une fonction `check_row_victory` qui prend en entrée une ligne du puissance 4 (i.e. une liste de taille 7) et retourne `True` si jamais 4 pions consécutifs de même couleur se trouvent sur la ligne, et `False` sinon
+- a `check_row_victory` function that takes a Connect 4 row as input (i.e., a list of size 7) and returns `True` if 4 consecutive pieces of the same color are found on the row, and `False` otherwise
 
-- une fonction `check_horizontal_victory` qui prend en entrée une grille complète et retourne `True` si jamais une ligne de la grille remplit la condition précédente, et `False` sinon
+- a `check_horizontal_victory` function that takes a complete grid as input and returns `True` if any row in the grid meets the previous condition, and `False` otherwise
 
-### Résultat attendu
+### Expected result
 
+---{python}
+# Detection of a (horizontal) victory on a row
+row1 = [" ", "R", "R", "R", "Y", "Y", " "]
+row2 = [" ", "R", "R", "R", "R", "Y", " "]
 
-```{python}
-# Détection d'une victoire (horizontale) sur une ligne
-ligne1 = [" ", "R", "R", "R", "J", "J", " "]
-ligne2 = [" ", "R", "R", "R", "R", "J", " "]
+print(solutions.check_row_victory(row1))  # Returns False
+print()  # New line
+print(solutions.check_row_victory(row2))  # Returns True
+---
 
-print(solutions.check_row_victory(ligne1))  # Renvoie False
-print()  # Retour à la ligne
-print(solutions.check_row_victory(ligne2))  # Renvoie True
-```
-
-
-```{python}
-# Détection d'une victoire (horizontale) sur une grille
-grid = solutions.display_grid()  # Initialisation
-print(solutions.check_horizontal_victory(grid))  # Renvoie False
-print()  # Retour à la ligne
+---{python}
+# Detection of a (horizontal) victory on a grid
+grid = solutions.display_grid()  # Initialization
+print(solutions.check_horizontal_victory(grid))  # Returns False
+print()  # New line
 
 grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")
 grid = solutions.make_move(grid=grid, column_to_play=3, disc_color="R")
 grid = solutions.make_move(grid=grid, column_to_play=4, disc_color="R")
 grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="R")
 solutions.display_grid(grid)
-print()  # Retour à la ligne
+print()  # New line
 
-print(solutions.check_horizontal_victory(grid))  # Renvoie True
-```
+print(solutions.check_horizontal_victory(grid))  # Returns True
+---
 
-### A vous de jouer !
+### Your turn!
 
+---{python}
+def check_row_victory(row):
+    # Your code here
+---
 
-```{python}
-def check_row_victory(ligne):
-    # Votre code ici
-```
+---{python}
+# Checking the result
+row1 = [" ", "R", "R", "R", "Y", "R", " "]
+row2 = [" ", "R", "R", "R", "R", "Y", " "]
 
+print(check_row_victory(row1))  # Returns False
+print(check_row_victory(row2))  # Returns True
+---
 
-```{python}
-# Vérification du résultat
-row1 = [" ", "R", "R", "R", "J", "R", " "]
-row2 = [" ", "R", "R", "R", "R", "J", " "]
-
-print(check_row_victory(row1))  # Renvoie False
-print(check_row_victory(row2))  # Renvoie True
-```
-
-
-```{python}
+---{python}
 def check_horizontal_victory(grid):
-    # Votre code ici
-```
+    # Your code here
+---
 
-
-```{python}
-# Vérification du résultat
-grid = display_grid()  # Initialisation
-print(check_horizontal_victory(grid))  # Renvoie False
+---{python}
+# Checking the result
+grid = display_grid()  # Initialization
+print(check_horizontal_victory(grid))  # Returns False
 
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")
 grid = make_move(grid=grid, column_to_play=3, disc_color="R")
 grid = make_move(grid=grid, column_to_play=4, disc_color="R")
 grid = make_move(grid=grid, column_to_play=5, disc_color="R")
 display_grid(grid)
-print(check_horizontal_victory(grid))  # Renvoie True
-```
+print(check_horizontal_victory(grid))  # Returns True
+---
 
-## Détection d'une victoire (verticale)
+## Detection of a victory (vertical)
 
-A présent, on s'intéresse à la détection d'une victoire verticale. Par rapport à la situation précédente, la difficulté est que l'on ne peut pas directement boucler sur les colonnes. On va donc construire une fonction `check_vertical_victory` qui, pour chaque colonne :
+Now, we focus on detecting a vertical victory. Compared to the previous situation, the difficulty is that we cannot directly loop over the columns. We will therefore build a `check_vertical_victory` function that, for each column:
 
-- récupère les éléments de la colonne dans une liste
+- retrieves the elements of the column in a list
 
-- applique à cette liste la fonction `check_row_victory` pour vérifier la présence de 4 pions consécutifs de même couleur dans la colonne considérée
+- applies the `check_row_victory` function to this list to check for 4 consecutive pieces of the same color in the considered column
 
-### Résultat attendu
+### Expected result
+
+---{python}
 
 
-```{python}
-# Détection d'une victoire (verticale) sur une grille
-grid = solutions.display_grid()  # Initialisation
-print(solutions.check_vertical_victory(grid))  # Renvoie False
-print()  # Retour à la ligne
+# Detection of a (vertical) victory on a grid
+grid = solutions.display_grid()  # Initialization
+print(solutions.check_vertical_victory(grid))  # Returns False
+print()  # New line
 
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
 solutions.display_grid(grid)
-print()  # Retour à la ligne
+print()  # New line
 
-print(solutions.check_vertical_victory(grid))  # Renvoie True
-```
+print(solutions.check_vertical_victory(grid))  # Returns True
+---
 
-### A vous de jouer !
+### Your turn!
 
-
-```{python}
+---{python}
 def check_vertical_victory(grid):
-    # Votre code ici
-```
+    # Your code here
+---
 
+---{python}
+# Checking the result
+grid = display_grid()  # Initialization
+print(check_vertical_victory(grid))  # Returns False
+print()  # New line
 
-```{python}
-# Vérification du résultat
-grid = display_grid()  # Initialisation
-print(check_vertical_victory(grid))  # Renvoie False
-print()  # Retour à la ligne
-
-grid = make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = make_move(grid=grid, column_to_play=2, disc_color="Y")
+grid = make_move(grid=grid, column_to_play=2, disc_color="Y")
+grid = make_move(grid=grid, column_to_play=2, disc_color="Y")
+grid = make_move(grid=grid, column_to_play=2, disc_color="Y")
 display_grid(grid)
-print()  # Retour à la ligne
+print()  # New line
 
-print(check_vertical_victory(grid))  # Renvoie True
-```
+print(check_vertical_victory(grid))  # Returns True
+---
 
-## Fin de partie
+## End of game
 
-Dans notre version simplifiée du puissance 4, on peut à présent déclarer la **fin de partie : dès lors qu'une victoire horizontale ou verticale est détectée**.
+In our simplified version of Connect 4, we can now declare the **end of the game: as soon as a horizontal or vertical victory is detected**.
 
-On va donc pour commencer créer une fonction `victoire` qui prend la grille en entrée et renvoie `True` si une victoire horizontale **ou** verticale est détectée, et `False` sinon.
+We will first create a `check_victory` function that takes the grid as input and returns `True` if a horizontal **or** vertical victory is detected, and `False` otherwise.
 
-Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque coup si la partie est terminée afin de limiter la duplication de code. On va donc ensuite créer une fonction `make_move_and_check_victory` qui :
+Ideally, we would not want to manually test after each move if the game is over to limit code duplication. We will therefore create a `make_move_and_check_victory` function that:
 
-- prend en entrée les mêmes *inputs* que la fonction `tour`
+- takes the same inputs as the `make_move` function
 
-- va appeler la fonction `tour` pour réaliser le tour de jeu
+- calls the `make_move` function to make the move
 
-- va tester après le tour de jeu si une victoire est détectée via la fonction `victoire`. Si une victoire est détectée, la fonction imprime "FIN DE PARTIE".
+- tests after the move if a victory is detected via the `check_victory` function. If a victory is detected, the function prints "END OF GAME".
 
-### Résultat attendu
+### Expected result
 
+---{python}
+grid = solutions.initialize_grid()  # Initialization
+print("Turn 1")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+print("Turn 2")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+print("Turn 3")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+print("Turn 4")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+---
 
-```{python}
-grid = solutions.initialize_grid()  # Initialisation
-print("Tour 1")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-print("Tour 2")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-print("Tour 3")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-print("Tour 4")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-```
+### Your turn!
 
-
-### A vous de jouer !
-
-
-```{python}
+---{python}
 def check_victory(grid):
-    # Votre code ici
-```
+    # Your code here
+---
 
-
-```{python}
-def make_move_and_check_victory(grille, column_to_play, disc_color):
+---{python}
+def make_move_and_check_victory(grid, column_to_play, disc_color):
     grid = copy.deepcopy(grid)
-    # Votre code ici
+    # Your code here
     return grid
-```
+---
 
-
-```{python}
-# Vérification du résultat
-grid = initialize_grid()  # Initialisation
-print("Tour 1")
-grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-print("Tour 2")
-grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-print("Tour 3")
-grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-print("Tour 4")
-grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
-```
-
-
-
+---{python}
+# Checking the result
+grid = initialize_grid()  # Initialization
+print("Turn 1")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+print("Turn 2")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+print("Turn 3")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+print("Turn 4")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+---
