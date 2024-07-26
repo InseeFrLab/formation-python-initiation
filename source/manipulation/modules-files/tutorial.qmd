@@ -1,0 +1,1324 @@
+::: {.content-visible when-profile="fr"}
+# Manipulation de fichiers
+
+Dans les tutoriels précédents, nous avons utilisé systématiquement des variables pour stocker des données et réaliser des opérations sur celles-ci. Cette façon de faire peut suffire dans le cadre d'une session `Python` donnée, comme ici dans un notebook Jupyter ou bien dans un programme. 
+
+Mais que se passe-t-il par exemple si l'on souhaite conserver les sorties des calculs réalisés ou bien des données transformées une fois la session terminée ? Il nous faut alors sauvegarder ces éléments dans un fichier, à un endroit où ces données vont persister dans le temps en vue d'une utilisation ultérieure. Dans ce tutoriel, nous allons voir comment **lire et écrire des fichiers avec `Python`**.
+
+
+## Quelques notions sur les modules et les *packages*
+
+
+Avant de parler de manipulation de fichiers, nous devons faire un bref détour par le monde des modules et des ***packages*** (librairies). 
+
+Jusqu'à maintenant, nous avons essentiellement utilisé des objets et des instructions standards de `Python`, qui ne nécessitaient donc pas d'import tiers. Dans ce tutoriel et tous ceux qui vont suivre, nous allons réaliser des opérations plus complexes (interagir avec un système de fichiers, faire du calcul vectoriel, manipuler des données tabulaires, etc.) qu'il serait très coûteux, inefficient, et avec un potentiel d'erreur énorme, de coder à la main en utilisant les objets de base de `Python`. 
+
+C'est pourquoi nous allons utiliser des *packages*, sortes de boîtes à outils  remplies de **fonctions** et de **classes** développées par d'autres (souvent, de manière communautaire) et qui permettent de réaliser des opérations complexes à moindre coût.
+
+
+### Terminologie
+
+
+Commençons par quelques brefs éléments de terminologie pour bien se repérer dans l'écosystème `Python` : 
+
+- un **module** est un fichier texte (portant l'extension .py pour bien marquer le lien à `Python`) contenant un ensemble de définitions (de **classes**, de **fonctions**) et d'instructions, que l'on peut importer dans un environnement `Python` afin de les utiliser.
+
+- un **package** est un ensemble de modules réunis dans un même répertoire
+
+Par exemple, nous allons voir en détails dans la prochaine partie l'utilisation de `numpy`. `numpy` est un *package* qui permet de faire du calcul scientifique sur des objets multidimensionnels. Pour ce faire, `numpy` met à disposition un nombre gigantesque de fonctions et d'outils. Toutes les mettre dans un seul et même module serait franchement illisible. Ainsi, `numpy` est structuré en différents modules qui groupent les fonctions réalisant des opérations similaires : les fonctions générant de l'aléatoire dans le module `random`, celles réalisant de l'algèbre linéaire dans le module `linalg`, etc.
+
+
+### Import de module
+
+
+Pour pouvoir exploiter les fonctions d'un module et les différents modules qui constituent un *package*, il nous faut en premier lieu les importer.
+
+La syntaxe est très simple, illustrons là à travers un exemple.
+
+```{python}
+import random
+random.randint(0, 100)
+```
+
+Nous avons importé le module `random` (complet) de la librairie standard de `Python` via l'instruction `import`. Ensuite, nous avons fait appel à la fonction `randint` contenue dans le module `random`, qui renvoie un nombre aléatoire entre `a` et `b` ses paramètres.
+
+
+On aurait pu également importer *seulement* la fonction `randint` en utilisant la syntaxe `from module import fonction`. Il n'est alors plus nécessaire de spécifier le nom du module lorsqu'on appelle la fonction.
+
+```{python}
+from random import randint
+randint(0, 100)
+```
+
+Notons qu'une fois qu'un import est effectué, le module importé est disponible pour toute la durée de la session `Python`. Il n'y a donc pas besoin d'importer le module avant chaque utilisation d'une de ses fonctions, une fois au début de son notebook ou script suffit.
+
+::: {.callout-warning title="Trop d'imports tue l'import"}
+Il arrive parfois de voir la syntaxe `from module import *` (`*` s'appelle le *wildcard*) qui a pour effet d'importer en mémoire *toutes* les fonctions du module. Si cela permet de gagner du temps, ce n'est pourtant pas une bonne pratique :
+
+- d'une part, cela charge plus de code en mémoire qu'il n'est nécessaire pour notre application ;
+
+- d'autre part, cela limite la lisibilité du code dans la mesure où l'on ne voit pas explicitement d'où ont été importées les fonctions qui sont utilisées dans le code.
+:::
+
+
+### Import de *package*
+
+
+Un *package* est simplement une collection de modules, structurée selon une arborescence. La syntaxe pour importer un *package* est identique à celle pour importer un module.
+
+Par exemple, regardons à nouveau comment utiliser la fonction `randint`, mais cette fois celle du package `numpy` (qui fait la même chose).
+
+```{python}
+import numpy
+```
+
+```{python}
+numpy.random.randint(0, 100)
+```
+
+On a importé le package `numpy`, qui nous a permis d'accéder via son module `random` à la fonction `randint`. Là encore, on aurait pu importer directement la fonction.
+
+```{python}
+from numpy.random import randint
+```
+
+```{python}
+randint(0, 100)
+```
+
+En pratique, la première syntaxe est préférable : il est toujours plus lisible de montrer explicitement d'où vient la fonction que l'on appelle. Pour réduire la verbosité, il est fréquent de donner un ***alias*** aux packages que l'on importe. Voici les trois plus fréquents, que l'on rencontrera très souvent dans les tutoriels du prochain chapitre sur la manipulation de données. 
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+On peut alors utiliser ces *alias* pour appeler des modules et des fonctions.
+
+```{python}
+x = np.linspace(0, 10, 1000)
+plt.plot(x, np.sin(x))
+```
+
+### Installation de *packages*
+
+Jusqu'à maintenant, nous avons pu importer sans problème les différents packages via l'instruction `import`. Mais comment ont-ils été installés ? Il faut distinguer deux cas de figure : 
+
+- un certain nombre de packages font partie de la **bibilothèque standard**, ce qui signifie qu'ils sont installés en même temps que `Python`. C'est par exemple le cas du package `random` utilisé plus haut, mais il en existe [beaucoup d'autres](https://docs.python.org/fr/3/library/) ;
+
+- les autres packages "tiers" sont développés par la communauté des utilisateurs de `Python`, et doivent être installés pour pouvoir être utilisés. C'est notamment le cas de `numpy` et `pandas`. Dans notre cas, nous n'avons pas eu à les installer car l'environnement fourni pour la formation contient déjà l'ensemble des packages nécessaires pour exécuter les différents chapitres.
+
+Illustrons l'installation de package à travers le package [emoji](https://pypi.org/project/emoji/), qui permet de représenter des émoticônes dans les sorties de `Python`. Pour le coup, celui-ci n'est pas encore installé ; essayer de l'importer produit une `ModuleNotFoundError`.
+
+```{python}
+import emoji
+```
+
+Pour installer un package, la commande est simple : `pip install nom_du_package`. Sans rentrer dans les détails, `pip` est un gestionnaire de packages, installé avec `Python`, qui s'utilise en ligne de commande (i.e. dans un terminal). Pour pouvoir envoyer une commande au terminal depuis un notebook Jupyter, on rajoute un `!` devant la commande.
+
+```{python}
+!pip install emoji
+```
+
+Il est à présent possible d'importer le package et d'utiliser ses fonctions.
+
+```{python}
+import emoji
+
+print(emoji.emojize('Python est :thumbs_up:'))
+```
+
+::: {.callout-tip title="pip et PyPI"}
+`pip` est le gestionnaire de paquets standard pour `Python`. Il permet d'installer, de mettre à jour et de supprimer des packages `Python` trouvés dans le `Python` Package Index (`PyPI`), un répertoire de packages pour la programmation en `Python`. Ce répertoire contient un nombre gigantesque de projets (environ 500,000 à l'heure de l'écriture de ce tutoriel), des plus amateurs aux plus essentiels. 
+
+De manière générale, il est toujours préférable, avant de se lancer dans l'écriture d'une application "à la main", de vérifier qu'un package faisant la même chose ou presque n'existe pas déjà. Une simple recherche google - de préférence en Anglais - contenant les mots-clés de ce que l'on cherche à faire permet souvent de s'en assurer.
+:::
+
+
+
+
+
+
+## Manipulation de fichiers
+
+
+### Interagir avec le système de fichiers local
+
+
+Pour pouvoir lire et écrire des fichiers avec `Python`, il nous faut d'abord comprendre comment ceux-ci sont représentés sur le système de fichiers (*file system*) local, et comment `Python` interagit avec ce dernier. 
+
+**Le module `pathlib`**
+
+Pour ce faire, nous allons utiliser de manière répétée le module `pathlib` et en particulier la classe `Path`. Ce module permet d'interagir avec le système de fichiers sous forme d'objets, en manipulant des attributs et leurs méthodes. Pas de panique, nous avons vu tout ce qu'il nous fallait savoir à ce propos dans le précédent tutoriel.
+
+```{python}
+from pathlib import Path
+```
+
+**Propriétés d'un fichier**
+
+Un fichier a deux propriétés : 
+
+- un **nom de fichier**
+
+- un **chemin** (*path*), qui spécifie sa localisation dans le système de fichiers.
+
+A titre d'exemple, regardons les fichiers qui se trouvent dans notre répertoire courant (par défaut, le dossier dans lequel se trouve ce notebook). La méthode à utiliser s'appelle `cwd`, pour *current working directory*.
+
+```{python}
+Path.cwd()
+```
+
+Le chemin de notre répertoire courant est contenu dans un objet `PosixPath`, ce qui signifie simplement que `pathlib` a compris que nous étions sur un environnement de type Unix (les serveurs du SSP Cloud sont sous Linux). Si vous exécutiez ce notebook en local sur un ordinateur Windows, l'objet serait `WindowsPath`. Concrètement, cela ne change pas grand chose pour vous mais c'est en fait assez important : les systèmes de fichiers n'utilisent pas les mêmes conventions entre les différents environnements (ex : les séparateurs entre dossiers dans un chemin ne sont pas les mêmes), mais `pathlib` vous permet d'interagir avec ces différents systèmes de manière harmonisée.
+
+
+Maintenant, listons tous les fichiers contenus dans notre répertoire courant. On utilise pour cela une seconde méthode `glob` qui va simplement renvoyer tous les fichiers dont le nom a une certaine structure. Par exemple, `.glob('*.txt')` va récupérer tous les fichiers dont l'extension est `.txt` et `.glob('test.*')` va récupérer tous les fichiers dont le nom est `test`, quelle que soit leur extension. Ici, on récupère tous les fichiers en utilisant des *wildcards* `*` aux deux positions.
+
+Cette méthode renvoie un objet un peu spécial (un *générateur*). Si vous vous rappelez bien, on avait déjà rencontré le même cas avec la fonction `range`. Il suffit d'appeler la fonction `list` sur le tout pour afficher les résultats de manière lisible.
+
+```{python}
+Path.cwd().glob('*.*')
+```
+
+```{python}
+list(Path.cwd().glob('*.*'))
+```
+
+On retrouve notre notebook, un fichier qui contient les solutions des exercices du tutoriel, et un certain nombre de fichiers texte qui vont servir d'exemples dans la suite du tutoriel. Si l'on prend le notebook par exemple, on distingue bien :
+
+- son nom de fichier : `tutorial.ipynb`
+
+- son chemin : `/home/onyxia/work/formation/`
+
+
+**Chemins absolus et chemins relatifs**
+
+Il y a deux manières possibles de spécifier le chemin d'un fichier : 
+
+- de manière **absolue**, le chemin commence alors par la racine (`/` en Unix, `C:\` en Windows, etc.). Les chemins renvoyés ci-dessus sont donc absolus.
+
+- de manière **relative**, i.e. relativement au répertoire courant du programme `Python`. Dès lors qu'un chemin ne commence pas par la racine, `pathlib` va le considérer relatif.
+
+Cette distinction va s'avérer assez importante par la suite, lorsqu'il sera question de lire et d'écrire des fichiers.
+
+
+**Former des chemins**
+
+En pratique, ce qui nous intéresse est de pouvoir constituer nos propres chemins -- qu'ils soient absolus ou relatifs au répertoire courant -- afin de spécifier où se trouvent les fichiers que nous souhaitons lire ou bien où doivent se trouver les fichiers que l'on souhaite écrire.
+
+`pathlib` offre une syntaxe très intuitive pour constituer des chemins, très similaire à la concaténation des chaînes de caractères que nous avons déjà vue. Au lieu d'un `+`, on va cette fois utiliser un `/` pour concaténer les différentes parties d'un chemin.
+
+Par exemple, essayons de reconstruire le chemin complet de ce notebook. On peut commencer par trouver le chemin du *home* directory, qui est le dossier standard dans lequel se trouvent tous les fichiers de l'utilisateur.
+
+```{python}
+Path.home()
+```
+
+On peut alors concaténer les différents sous-dossier et le nom de fichier du notebook pour obtenir le chemin complet vers celui-ci.
+
+```{python}
+path_nb = Path.home() / 'work' / 'formation' / 'tutorial.ipynb'
+path_nb
+```
+
+On retrouve bien exactement le même chemin que celui obtenu en listant les fichiers présents dans le répertoire courant. 
+
+
+**Plus sur `pathlib`**
+
+Nous n'avons vu qu'un aperçu des outils qu'offre le module `pathlib` pour interagir avec le système de fichiers local. La [documentation officielle](https://docs.python.org/fr/3/library/pathlib.html) présente de manière exhaustive ces possibilités. Nous présenterons dans ce tutoriel et dans les suivants d'autres méthodes issues de cette librairie, à mesure que l'occasion se présente. Pour l'heure, nous en savons suffisamment pour lire et écrire des fichiers sur le système de fichiers.
+
+
+### Fichiers texte et fichiers binaires
+
+
+En programmation, on est généralement amenés à manipuler deux grandes familles de fichiers bien différentes : 
+
+- les **fichiers texte**. Ils ne contiennent que des caractères textuels standards -- techniquement, qui respectent le standard [Unicode](https://fr.wikipedia.org/wiki/Unicode) -- sans informations de *formatting* (police, couleur, etc.). Les fichiers *.txt* ou encore les scripts `Python` finissant en *.py* sont des exemples de fichiers texte. Ces fichiers peuvent être lus avec n'importe quel éditeur de texte.
+
+- les **fichiers binaires**. Ce sont en fait tous les autres types de fichiers : fichiers compressés (*.zip*, *tar.gz*, etc.), documents PDFs, images, programmes, etc. Ouvrir un tel fichier avec un éditeur de texte produit généralement une grande suite de caractères incompréhensibles, car la représentation textuelle n'est pas adaptée à ces données.
+
+Comme vous pouvez l'imaginer, ces deux types de fichier se traitent avec des outils différents. Par ailleurs, du fait de la diversité des fichiers binaires, chacun de ses fichiers nécessite un traitement particulier. Dans un contexte de programmation, on est cependant principalement à manipuler du code, qui est une donnée textuelle. On va donc s'intéresser uniquement à l'**écriture et à la lecture de fichiers texte** dans ce tutoriel, mais il est important de savoir reconnaître des données binaires lorsqu'on est amené à en traiter.
+
+
+### Ouvrir un fichier
+
+
+Demander à `Python` d'ouvrir un fichier revient à ouvrir une connexion entre l'environnement `Python` sur lequel vous êtes et le fichier. Tant que cette connexion est ouverte, il est possible de manipuler le fichier. 
+
+Pour ouvrir un fichier, on utilise la fonction `open`. On va par exemple ouvrir le fichier `gamme.txt` qui a été mis dans le répertoire courant.
+
+```{python}
+path_gamme = Path.cwd() / 'gamme.txt'
+file_in = open(path_gamme, 'r')
+file_in
+```
+
+La fonction `open` renvoie un objet de type `_io.TextIOWrapper `, qui spécifie le **mode d'encodage** du fichier et le **mode d'ouverture**.
+
+L'encodage et le décodage sont des sujets techniques, que nous n'aborderons pas dans ce tutoriel. Retenons simplement que le mode d'encodage par défaut est l'`UTF-8`, et qu'il n'y a jamais vraiment de bonne raison de choisir un autre mode. 
+
+En revanche, le **mode d'ouverture** est très important. Il y a trois modes principaux :
+
+- `r` : **lecture seule**. Le fichier ne peut qu'être lu, mais pas modifié. C'est le mode par défaut lorsqu'on ne spécifie aucun mode.
+
+- `w` : **écriture**. Il est possible dans ce mode d'écrire sur un fichier. **Attention : si un fichier avec le même nom existe déjà, il sera automatiquement écrasé.**
+
+- `a` : **appending**. Ce mode ne permet que de rajouter des lignes à la fin d'un fichier existant.
+
+Une fois le fichier ouvert, on peut réaliser des opérations sur ce fichier à l'aide de méthodes attachées à l'objet qui le représente. On verra dans la section suivante ce que fait la méthode `readlines`.
+
+```{python}
+file_in.readlines()
+```
+
+Une fois les manipulations terminées, on ferme la connexion avec la méthode `close`. Il n'est alors plus possible de manipuler le fichier.
+
+```{python}
+file_in.close()
+```
+
+En pratique, on oublie facilement de fermer la connexion à un fichier, ce qui peut créer des erreurs pénibles. Il existe une syntaxe qui permet d'éviter ce problème en utilisant un **context manager** qui gère toute la connexion pour nous.
+
+```{python}
+with open(path_gamme, 'r') as file_in:
+    lines = file_in.readlines()
+    
+lines
+```
+
+Cette syntaxe est beaucoup plus lisible : grâce à l'indentation, on voit clairement les opérations qui sont effectuées tant que le fichier est ouvert, et ce dernier est automatiquement fermé dès lors que l'on revient au niveau initial d'indentation. On préférera toujours utiliser cette syntaxe si possible, c'est une bonne pratique de programmation. 
+
+
+### Lire un fichier
+
+
+Une fois un fichier ouvert, on peut vouloir lire son contenu. Il existe différentes manières de faire. Une méthode simple et élégante est de parcourir le fichier à l'aide d'une boucle, ce qui est rendu possible par le fait que l'objet `Python` représentant le fichier est **itérable**.
+
+```{python}
+with open(path_gamme, 'r') as file_in:
+    for line in file_in:
+        print(line)
+```
+
+Dans notre exemple, nous avons simplement affiché les lignes, mais on peut faire de nombreuses choses à partir des données présentes dans le fichier texte : les stocker dans un objet `Python`, les utiliser pour faire des calculs, ne conserver que les lignes qui répondent à une condition donnée via une instruction `if`, etc.
+
+
+Il existe également des méthodes toutes faites pour lire le contenu d'un fichier. La plus basique est la méthode `read`, qui retourne l'ensemble du fichier comme une (potentiellement très longue) chaîne de caractères.
+
+```{python}
+with open(path_gamme, 'r') as file_in:
+    txt = file_in.read()
+    
+txt
+```
+
+C'est rarement très utile : on préfère en général récupérer individuellement les lignes d'un fichier. La méthode `readlines` parcourt le fichier complet, et renvoie une liste dont les éléments sont les lignes du fichier, dans l'ordre d'apparition.
+
+```{python}
+with open(path_gamme, 'r') as file_in:
+    l = file_in.readlines()
+    
+l
+```
+
+Notons que chaque élément de la liste (sauf le dernier) se termine par le caractère spécial `\n` ("retour à la ligne") qui marque simplement la fin de chaque ligne dans un fichier texte. C'est la présence (cachée) de ce même caractère à la fin de chaque appel à la fonction `print` qui fait que l'on revient à la ligne à chaque fois que l'on utilise un `print`.
+
+
+### Écrire dans un fichier
+
+
+L'écriture dans un fichier est très simple, elle s'effectue à l'aide de la méthode `write`. Par exemple, écrivons dans un fichier ligne à ligne les différents éléments contenus dans une liste.
+
+```{python}
+ex = ["ceci", "est", "un", "exemple", "très", "original"]
+
+with open("test.txt", "w") as file_out:
+    for elem in ex:
+        file_out.write(elem)
+```
+
+Tout semble s'être passé sans encombre. On peut vérifier que notre fichier a bien été crée via l'explorateur de fichier de `Jupyter` (sur la gauche) ou bien via la commande `ls` dans le terminal.
+
+```{python}
+!ls
+```
+
+Il est bien là. Vérifions maintenant que son contenu est bien celui que l'on souhaitait.
+
+```{python}
+with open("test.txt", "r") as file_out:
+    print(file_out.read())
+```
+
+Les différents éléments de notre liste se sont fusionnés en un seul bloc de texte ! C'est parce que, contrairement à la fonction `print` par exemple, la fonction `write` n'ajoute pas automatiquement le caractère de retour à la ligne. Il faut l'ajouter manuellement.
+
+```{python}
+with open("test.txt", "w") as file_out:
+    for elem in ex:
+        file_out.write(elem + "\n")
+        
+with open("test.txt", "r") as file_out:
+    print(file_out.read())
+```
+
+C'est beaucoup mieux. 
+
+Quelques remarques supplémentaires sur l'écriture de fichiers :
+
+- mieux vaut le répéter : **utiliser le mode d'ouverture `\w` pour un fichier écrase complètement son contenu**. Lorsqu'on a réécrit notre fichier avec les sauts de ligne, on a complètement écrasé l'ancien.
+
+- pourquoi a-t-on pu mettre juste le nom du fichier dans la fonction `open` et pas un objet `Path` comprenant le chemin complet vers le fichier que l'on souhaitait créer ? C'est parce que `Python` l'a automatiquement interprété comme un **chemin relatif** (à notre répertoire courant) du fait de l'absence de racine.
+
+- on ne peut écrire dans un fichier **que des éléments de type `str`** (chaîne de caractère). Si un des éléments de la liste ci-dessus avait été de type `int` ou `float` par exemple, il aurait fallu le convertir via la fonction `str()` avant de l'écrire dans le fichier. Sinon, `Python` aurait renvoyé une erreur.
+
+
+
+
+
+## Exécuter du code depuis des fichiers `.py`
+
+Jusqu'à présent dans ce tutoriel, nous avons exploré l'utilisation de packages/modules, qu'ils proviennent de la bibliothèque standard de Python ou soient développés par des tiers. Nous avons également abordé l'interaction avec le système de fichiers local. À présent, découvrons comment combiner ces compétences en écrivant et exécutant nos propres scripts et modules Python sous forme de fichiers `.py`.
+
+### Les scripts `Python`
+
+Dans un environnement de notebook `Jupyter` (comme celui dans lequel vous vous trouvez), le code `Python` est exécuté de manière **interactive**, cellule par cellule. Cela est possible car un *kernel* (noyau) `Python` tourne en arrière-plan pendant tout le long de la session d'utilisation du notebook. Cependant, en dehors de `Jupyter`, le code est généralement écrit et exécuté sous forme de scripts. Un script `Python` est simplement un fichier texte portant l'extension `.py` et qui contient une série d'instructions `Python` qui vont être exécutées linéairement par l'interpréteur `Python`.
+
+Le fichier `write_list.py` reprend une cellule de code vue précédemment. Affichons son contenu.
+
+```{python}
+with open('write_list.py', 'r') as script:
+    print(script.read())
+```
+
+Un script `Python` s'exécute dans un terminal via la commande `python nom_du_script.py`. Pour l'exécuter depuis un notebook `Jupyter`, on rajoute là encore un `!` en début de ligne.
+
+```{python}
+!python write_list.py
+```
+
+Le fichier `output_script.txt` a bien été créé en local (il faut parfois attendre un peu ou actualiser pour qu'il s'affiche) et le message attendu a été imprimé dans la sortie de la console.
+
+::: {.callout-note title="Notebook vs. scripts"}
+Faut-il préférer l'utilisation de notebooks `Jupyter`, comme dans le cadre de cette formation, ou bien préférer l'exécution via des scripts ? Il n'y a pas de réponse définitive à cette question : 
+
+- les notebooks permettent une exécution **interactive**, très pratique pour l'expérimentation ;
+
+- les scripts rendent plus facile l'automatisation d'une procédure, dans la mesure où ils sont exécutés linéairement et sans requérir d'actions intermédiaires de la part de l'utilisateur.
+
+En somme, les notebooks sont très utiles durant la phase de développement, mais on préfèrera les script dès lors qu'il est question d'automatiser des traitements ou de produire du code visant à tourner en production.
+:::
+
+### Scripts et modules
+
+Comme nous l'avons vu, un **script** est un fichier `.py` destiné à être exécuté directement. Il contient généralement un flux de travail complet ou une tâche automatisée. Un **module** est également un fichier `.py`, mais qui contient des définitions de fonctions et/ou de classes destinées à être utilisées par d'autres scripts ou modules. Il n'est pas destiné à être exécuté seul mais importé ailleurs. Au début de ce tutoriel, nous avons utilisé des modules issus de packages écrits par d'autres. Voyons maintenant comment l'on peut écrire nos propres modules et les importer selon les mêmes principes.
+
+Affichons le contenu du fichier `normalisation.py` qui nous servira d'exemple. 
+
+```{python}
+with open('normalisation.py', 'r') as module:
+    print(module.read())
+```
+
+La fonction contenue dans ce module peut être importée comme nous l'avons vu dans ce tutoriel. Notons que le module doit lui même importer les packages/modules nécessaires au bon fonctionnement des fonctions qu'il contient (en l'occurence, `numpy`). 
+
+Pour importer un module local, on utilise l'instruction `import` suivie du nom du fichier, sans l'extension. Toutes les fonctions définies dans le module peuvent alors être utilisées via la syntaxe `nom_du_module.nom_de_la_fonction`. 
+
+```{python}
+import normalisation
+
+x = [1, 2, 3, 4, 5]
+x_norm = normalisation.normalise(x)
+
+print(x_norm)
+```
+
+Comme expliqué en début de chapitre, on pourrait également importer la fonction directement afin de ne pas avoir à rappeler le nom du module qui la contient. C'est notamment pratique si cette fonction est amenée à être utilisée plusieurs fois dans un même notebook/script. 
+
+```{python}
+from normalisation import normalise
+
+x = [1, 2, 3, 4, 5]
+x_norm = normalise(x)
+
+print(x_norm)
+```
+
+::: {.callout-warning title="La fausse bonne idée : import *"}
+Une bonne pratique essentielle est de favoriser la lisibilité de son code. Dans les deux variantes d'import présentées ci-dessus, le code est lisible : on voit bien de quel module provient la fonction utilisée.
+
+En revance, il n'est pas rare de voir dans du code Python l'instruction `from mon_module import *`, qui permet d'importer toutes les fonctions définies dans le fichier `mon_module.py`. C'est à proscrire dans la mesure du possible pour deux raisons :
+
+- il devient difficile de déterminer de quel module ou package proviennent les fonctions utilisées ;
+- si des fonctions importées à partir de différents packages/modules ont le même nom, elles peuvent se remplacer et générer des erreurs pénibles à débugger.
+
+Afin de limiter la longueur de la ligne d'instruction en cas d'import de multiples fonctions, on peut adopter la syntaxe suivante :
+
+```{python}
+from mon_module import (
+    fonction1,
+    fonction2,
+    fonction3
+)
+```
+:::
+
+Enfin, notons qu'un fichier `.py` peut à la fois servir comme module et comme script. Pour différencier les deux usages, on utilise la variable `__name__`, qui est définie par défaut par `Python` dès lors que l'on utilise un fichier `.py` :
+
+- si le fichier est utilisé comme un **module** (ex : `import mon_fichier`), la variable `__name__` vaut le nom du fichier (ex : `mon_fichier`)
+
+- si le fichier est utilisé comme un **script** (ex : `python mon_fichier.py`), la variable `__name__` vaut `__main__`
+
+Dans la cellule précédente, le fichier `normalisation.py` était importé comme un module. Dans ce cas, la variable `__name__` vaut `normalisation` et c'est pourquoi le code sous la condition `if` n'a pas été exécuté. Lorsque le fichier est exécuté comme script, ce code est exécuté.
+
+```{python}
+!python normalisation.py
+```
+
+Il est dont très fréquent de croiser la condition `if __name__ == "__main__"` dans les scripts `Python`, qui distingue l'usage comme module et l'usage comme script.
+
+## Exercices
+
+
+### Questions de compréhension
+
+
+
+- 1/ Qu'est-ce qu'un module ?
+
+- 2/ Qu'est ce qu'un package ?
+
+- 3/ Pourquoi n'est-ce pas une bonne pratique d'importer toutes les fonctions d'un module avec la syntaxe `from module import *`
+
+- 4/ Quels sont les avantages de la librairie `pathlib` ?
+
+- 5/ Quelles sont les deux propriétés d'un fichier qui permettent de repérer sa position dans le système de fichiers ?
+
+- 6/ Qu'est-ce que le répertoire courant ?
+
+- 7/ Quelles sont les deux manières de spécifier un chemin ? Comment `Python` fait-il la différence entre les deux ?
+
+- 8/ Quels sont les deux grandes familles de fichiers que l'on est amenés à manipuler en programmation ?
+
+- 9/ Quels sont les différents modes d'ouverture d'un fichier ?
+
+- 10/ Pourquoi est-il préférable d'utiliser la syntaxe `with open(...) as ...` pour ouvrir un fichier ?
+
+- 11/ Pourquoi peut-on parcourir les lignes d'un fichier à l'aide d'une boucle ?
+
+- 12/ Quelle est la différence entre un module et un script ?
+
+<details>
+<summary>Afficher la solution</summary>
+
+- 1/ un **module** est un fichier texte (portant l'extension .py pour bien marquer le lien à Python) contenant un ensemble de définitions (de **classes**, de **fonctions**) et d'instructions
+
+- 2/ Un package est une collection de modules.
+
+- 3/ Cela surcharge la mémoire si l'on a besoin que de quelques fonctions, et cela réduit la lisibilité puisqu'on ne sait pas directement de quel module provient quelle fonction.
+
+- 4/ Elle permet d'interagir avec le système de fichiers avec une syntaxe de POO unifiée, quel que soit l'environnement sur lequel on travaille.
+
+- 5/ Nom de fichier et chemin du dossier qui contient le fichier.
+
+- 6/ C'est le répertoire dans lequel la session Python courante est ouverte. Dans le cadre d'un notebook Jupyter, c'est par défaut le dossier qui le contient.
+
+- 7/ Chemin absolu (complet) et chemin relatif (relatif au répertoire courant). Un chemin absolu se reconnaît car il part toujours de la racine du système de fichiers.
+
+- 8/ Fichiers textes et fichiers binaires (tout ce qui n'est pas du texte).
+
+- 9/ r : lecture. w : écriture. a : appending
+
+- 10/ Cette syntaxe fait intervenir un context manager, qui gère la connexion au fichier (ouverture et fermeture) pour nous.
+
+- 11/ Car l'objet représentant le fichier en Python est un itérable.
+
+- 12/ Comme nous l'avons vu, un **script** est un fichier `.py` destiné à être exécuté directement. Il contient généralement un flux de travail complet ou  une tâche automatisée. Un **module** est également un fichier `.py`, mais qui contient des définitions de fonctions et/ou de classes destinées à être utilisées par d'autres scripts ou modules. Il n'est pas destiné à être exécuté seul mais importé ailleurs.
+
+</details>
+
+### Moyenne et écart-type des notes obtenues à un examen 
+
+
+*Exercice inspiré de : [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/07_fichiers/)*
+
+Le fichier texte `notes.txt` se trouve dans votre répertoire courant. Il contient les notes obtenues par 50 élèves à un examen. Problème : toutes les notes ont été écrites sur une même ligne, avec un espace à chaque fois. Ouvrez ce fichier et calculez la moyenne et l'écart-type des notes.
+
+Indices :
+
+- les chaînes de caractère ont une méthode `split` qui permet de séparer du texte selon un caractère donné
+
+- il faudra convertir les notes au format numérique pour pouvoir leur appliquer des fonctions mathématiques
+
+- vous pouvez utiliser les fonctions du package `numpy` pour calculer les statistiques demandées
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+import numpy as np
+
+with open("notes.txt", "r") as file_in:
+    notes = file_in.read()
+
+notes = notes.split()
+notes_num = []
+for n in notes:
+    notes_num.append(int(n))
+
+print(np.mean(notes_num))
+print(np.std(notes_num))
+```
+
+</details>
+
+### Admis ou recalé
+
+
+*Exercice inspiré de : [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/07_fichiers/)*
+
+Le fichier texte `notes_clean.txt` se trouve dans votre répertoire courant. Il contient les notes obtenues par 50 élèves à un examen. Contrairement à l'exercice précédent, les notes sont cette fois bien écrites : une note par ligne.
+
+Écrire un code qui :
+
+- stocke chaque note au format `int` dans une liste
+
+- réécrit les notes dans un fichier `notes_mentions.txt` avec sur chaque ligne la note, suivie d'un espace, suivi de la mention "admis" si la note est supérieure ou égale à 10, et "recalé" sinon.
+
+Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
+```
+5 recalé
+5 recalé
+18 admis
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+notes = []
+
+with open("notes_clean.txt", "r") as file_in:
+    for n in file_in:
+        notes.append(int(n))
+        
+with open("notes_mentions.txt", "w") as file_out:
+    for n in notes:
+        if n >= 10:
+            mention = "admis"
+        else:
+            mention = "recalé"
+        file_out.write(str(n) + " " + mention + "\n")
+```
+
+</details>
+
+### Retardataires
+
+
+3 élèves n'avaient pas rendu leur copie dans les temps pour l'examen : 
+
+- Miranda a obtenu 16 et a rendu son devoir avec 3 jours de retard
+
+- Paolo a obtenu 11 et a rendu son devoir avec 1 jour de retard
+
+- Isidore a obtenu 3 et a rendu son devoir avec 5 jours de retard.
+
+Chaque élève aura une note finale égale à la note obtenue moins le nombre de jours de retard. Une note ne pouvant être négative, elle sera remplacée par 0.
+
+Les informations nécessaires ont été placées dans une liste dans la cellule suivante. A l'aide d'une boucle sur cette liste, **ajouter** (sans réécrire complètement le fichier !). les notes au fichier `notes_clean.txt` (sans la mention).
+
+NB : si vous avez écrasé le contenu d'un fichier par erreur, vous pouvez retrouver les fichiers propres sur le [dépôt GitHub associé à la formation](https://github.com/InseeFrLab/formation-python-initiation/tree/main/source/manipulation/modules-files).
+
+```{python}
+supp = [(16, 3), (11, 1), (3, 5)]
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+supp = [(16, 3), (11, 1), (3, 5)]
+
+with open("notes_clean.txt", "a") as file_out:
+    for elem in supp:
+        note_finale = elem[0] - elem[1]
+        note_finale = max(0, note_finale)
+        file_out.write(str(note_finale) + "\n")
+```
+
+</details>
+
+### Scanner des fichiers
+
+
+Écrire un programme qui réalise les opérations suivantes : 
+
+- dans le répertoire courant, lister les chemins des fichiers dont l'extension est `.txt` (la syntaxe a été vue dans la partie sur `pathlib`)
+
+- faire une boucle qui parcourt ces chemins et ouvre chaque fichier séquentiellement
+
+- pour chaque fichier, faire un test d'appartenance (rappel de la syntaxe : `if pattern in string: ...`) pour tester si le fichier contient le mot "sol". Si c'est le cas, imprimer son chemin absolu dans la console (seul le chemin du fichier `gamme.txt` devrait donc apparaître)
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+from pathlib import Path
+
+txt_files_paths = list(Path.cwd().glob('*.txt'))
+
+for path in txt_files_paths:
+    with open(path, "r") as file_in:
+        content = file_in.read()
+        if "sol" in content:
+            print(path)
+```
+
+</details>
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.content-visible when-profile="en"}
+
+# File manipulation
+
+In previous tutorials, we have consistently used variables to store data and perform operations on it. This method may suffice within a given `Python` session, such as here in a Jupyter notebook or in a program.
+
+But what happens, for example, if we want to retain the outputs of the calculations performed or transformed data once the session is over? We need to save these elements in a file, in a location where this data will persist over time for future use. In this tutorial, we will see how to **read and write files with `Python`**.
+
+## Some notions about modules and packages
+
+Before discussing file manipulation, we need to make a brief detour into the world of modules and ***packages*** (libraries).
+
+So far, we have primarily used standard `Python` objects and instructions that did not require any third-party imports. In this tutorial and all the ones to follow, we will perform more complex operations (interacting with a file system, performing vector calculations, manipulating tabular data, etc.) that would be very costly, inefficient, and error-prone to code by hand using basic `Python` objects.
+
+This is why we will use *packages*, which are toolboxes filled with **functions** and **classes** developed by others (often communally) that allow us to perform complex operations at a lower cost.
+
+### Terminology
+
+Let's start with a few brief elements of terminology to navigate the `Python` ecosystem properly:
+
+- A **module** is a text file (with a .py extension to indicate it is `Python`) containing a set of definitions (of **classes**, **functions**) and instructions that can be imported into a `Python` environment for use.
+- A **package** is a collection of modules grouped in a directory.
+
+For example, we will see in detail the use of `numpy` in the next part. `numpy` is a *package* that allows for scientific computation on multidimensional objects. To do this, `numpy` provides a vast number of functions and tools. Putting them all in a single module would be highly unreadable. Thus, `numpy` is structured into different modules that group functions performing similar operations: random number generation in the `random` module, linear algebra in the `linalg` module, etc.
+
+### Importing a module
+
+To use the functions of a module and the various modules that constitute a *package*, we first need to import them.
+
+The syntax is straightforward; let's illustrate it with an example.
+
+```{python}
+import random
+random.randint(0, 100)
+```
+
+We imported the `random` module (entirely) from the standard `Python` library using the `import` statement. Then, we called the `randint` function contained in the `random` module, which returns a random number between `a` and `b`, its parameters.
+
+We could also import *only* the `randint` function using the `from module import function` syntax. Then, specifying the module name is no longer necessary when calling the function.
+
+```{python}
+from random import randint
+randint(0, 100)
+```
+
+Note that once an import is performed, the imported module is available for the entire duration of the `Python` session. Therefore, there's no need to import the module before each use of one of its functions; once at the beginning of the notebook or script is enough.
+
+::: {.callout-warning title="Too many imports spoil the import"}
+You sometimes see the syntax `from module import *` (`*` is called the wildcard), which imports *all* the functions of the module into memory. While this can save time, it is not a good practice:
+
+- On the one hand, it loads more code into memory than necessary for our application;
+- On the other hand, it limits the code's readability since you cannot explicitly see where the functions used in the code are imported from.
+:::
+
+### Importing a package
+
+A *package* is simply a collection of modules, structured hierarchically. The syntax for importing a *package* is the same as for importing a module.
+
+For example, let's see again how to use the `randint` function, but this time from the `numpy` package (which does the same thing).
+
+```{python}
+import numpy
+numpy.random.randint(0, 100)
+```
+
+We imported the `numpy` package, which allowed us to access the `randint` function via its `random` module. Again, we could import the function directly.
+
+```{python}
+from numpy.random import randint
+randint(0, 100)
+```
+
+In practice, the first syntax is preferable: it is always more readable to explicitly show where the function being called comes from. To reduce verbosity, it is common to give ***aliases*** to imported packages. Here are the three most common ones, which we will encounter very often in the tutorials of the next chapter on data manipulation.
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+We can then use these *aliases* to call modules and functions.
+
+```{python}
+x = np.linspace(0, 10, 1000)
+plt.plot(x, np.sin(x))
+```
+
+### Installing packages
+
+So far, we have been able to import various packages via the `import` statement without any issues. But how were they installed? We need to distinguish between two cases:
+
+- A certain number of packages are part of the **standard library**, which means they are installed along with `Python`. This is the case for the `random` package used earlier, but there are [many others](https://docs.python.org/fr/3/library/);
+- Other "third-party" packages are developed by the `Python` user community and must be installed to be used. This is the case for `numpy` and `pandas`. In our case, we did not have to install them because the environment provided for the training already contains all the necessary packages to run the different chapters.
+
+Let's illustrate package installation with the [emoji](https://pypi.org/project/emoji/) package, which allows for representing emojis in `Python` outputs. This package is not yet installed; trying to import it produces a `ModuleNotFoundError`.
+
+```{python}
+import emoji
+```
+
+To install a package, the command is simple: `pip install package_name`. Without going into details, `pip` is a package manager installed with `Python` that is used via the command line (i.e., in a terminal). To send a command to the terminal from a Jupyter notebook, we add a `!` at the beginning of the line.
+
+```{python}
+!pip install emoji
+```
+
+We can now import the package and use its functions.
+
+```{python}
+import emoji
+print(emoji.emojize('Python is :thumbs_up:'))
+```
+
+::: {.callout-tip title="pip and PyPI"}
+`pip` is the standard package manager for `Python`. It allows installing, updating, and removing `Python` packages found in the `Python` Package Index (`PyPI`), a directory of packages for programming in `Python`. This directory contains a vast number of projects (about 500,000 at the time of writing this tutorial), from the most amateur to the most essential.
+
+In general, it is always preferable, before starting to write an application "by hand," to check if a package doing the same thing or almost already exists. A simple Google search—preferably in English—containing the keywords of what you are looking to do often ensures this.
+:::
+
+## File manipulation
+
+### Interacting with the local file system
+
+To read and write files with `Python`, we first need to understand how they are represented on the local file system and how `Python` interacts with it.
+
+**The `pathlib` module**
+
+For this, we will repeatedly use the `pathlib` module and, in particular, the `Path` class. This module allows interacting with the file system in the form of objects, manipulating attributes and their methods. Don't worry; we have already seen everything we need to know about this in the previous tutorial.
+
+```{python}
+from pathlib import Path
+```
+
+**File properties**
+
+A file has two properties:
+
+- A **file name**
+- A **path** that specifies its location in the file system.
+
+For example, let's look at the files in our current directory (by default, the folder where this notebook is located). The method to use is called `cwd`, for *current working directory*.
+
+```{python}
+Path.cwd()
+```
+
+The path of our current directory is contained in a `PosixPath` object, which simply means that `pathlib` understood that we were on a Unix-like environment (the SSP Cloud servers run on Linux). If you were running this notebook locally on a Windows computer, the object would be `WindowsPath`. Practically, this doesn't change much for you, but it is quite important: file systems do not use the same conventions between different environments (e.g., the separators between folders in a path are not the same), but `pathlib` allows you to interact with these different systems in a harmonized way.
+
+Now, let's list all the files in our current directory. We use another method, `glob`, which will simply return all files whose name has a certain structure. For example, `.glob('*.txt')` will retrieve all files with the `.txt` extension, and `.glob('test.*')` will retrieve all files named `test`, regardless of their extension. Here, we retrieve all files using the wildcard `*` in both positions.
+
+This method returns a somewhat special object (a *generator*). If you remember, we encountered the same case with the `range` function. Simply call the `list` function on it to display the results legibly.
+
+```{python}
+Path.cwd().glob('*.*')
+```
+
+```{python}
+list(Path.cwd().glob
+
+('*.*'))
+```
+
+We find our notebook, a file that contains the solutions to the tutorial exercises, and several text files that will serve as examples in the rest of the tutorial. For instance, if we take the notebook, we can clearly distinguish:
+
+- Its file name: `tutorial.ipynb`
+- Its path: `/home/onyxia/work/training/`
+
+**Absolute paths and relative paths**
+
+There are two possible ways to specify the path of a file:
+
+- **Absolute**, the path then starts from the root (`/` on Unix, `C:\` on Windows, etc.). The paths returned above are therefore absolute.
+- **Relative**, i.e., relative to the current directory of the `Python` program. As soon as a path does not start from the root, `pathlib` will consider it relative.
+
+This distinction will prove quite important later when it comes to reading and writing files.
+
+**Forming paths**
+
+In practice, what interests us is being able to form our own paths—whether they are absolute or relative to the current directory—to specify where the files we want to read are located or where the files we want to write should be.
+
+`pathlib` offers a very intuitive syntax for forming paths, very similar to the concatenation of strings we have already seen. Instead of a `+`, this time, we will use a `/` to concatenate the different parts of a path.
+
+For example, let's try to reconstruct the full path of this notebook. We can start by finding the path of the *home* directory, which is the standard folder where all the user's files are located.
+
+```{python}
+Path.home()
+```
+
+We can then concatenate the different subfolders and the file name of the notebook to get the full path to it.
+
+```{python}
+path_nb = Path.home() / 'work' / 'training' / 'tutorial.ipynb'
+path_nb
+```
+
+We get exactly the same path as the one obtained by listing the files in the current directory.
+
+**More about `pathlib`**
+
+We have only seen a glimpse of the tools offered by the `pathlib` module to interact with the local file system. The [official documentation](https://docs.python.org/fr/3/library/pathlib.html) presents these possibilities exhaustively. We will present other methods from this library in this tutorial and the following ones as the opportunity arises. For now, we know enough to read and write files on the file system.
+
+### Text files and binary files
+
+In programming, we generally deal with two large families of files:
+
+- **Text files**. They contain only standard textual characters—technically, those that comply with the [Unicode](https://en.wikipedia.org/wiki/Unicode) standard—without formatting information (font, color, etc.). *.txt* files or `Python` scripts ending in *.py* are examples of text files. These files can be read with any text editor.
+- **Binary files**. These are all other types of files: compressed files (*.zip*, *tar.gz*, etc.), PDF documents, images, programs, etc. Opening such a file with a text editor generally produces a large sequence of incomprehensible characters because the textual representation is not suited to this data.
+
+As you can imagine, these two types of files are handled with different tools. Moreover, due to the diversity of binary files, each of them requires particular handling. In a programming context, however, we mainly deal with code, which is textual data. So, we will focus only on **writing and reading text files** in this tutorial, but it is important to recognize binary data when you need to handle it.
+
+### Opening a file
+
+Asking `Python` to open a file is like opening a connection between your `Python` environment and the file. As long as this connection is open, the file can be manipulated.
+
+To open a file, we use the `open` function. For example, let's open the `gamme.txt` file that has been placed in the current directory.
+
+```{python}
+path_range = Path.cwd() / 'gamme.txt'
+file_in = open(path_range, 'r')
+file_in
+```
+
+The `open` function returns an object of type `_io.TextIOWrapper`, which specifies the **encoding mode** of the file and the **opening mode**.
+
+Encoding and decoding are technical subjects that we will not cover in this tutorial. Let's simply note that the default encoding mode is `UTF-8`, and there is rarely a good reason to choose another mode.
+
+However, the **opening mode** is very important. There are three main modes:
+
+- `r`: **read-only**. The file can only be read, not modified. This is the default mode when no mode is specified.
+- `w`: **write**. This mode allows writing to a file. **Warning: if a file with the same name already exists, it will be automatically overwritten.**
+- `a`: **appending**. This mode only allows adding lines to the end of an existing file.
+
+Once the file is open, operations can be performed on it using methods attached to the object representing it. In the next section, we will see what the `readlines` method does.
+
+```{python}
+file_in.readlines()
+```
+
+Once the manipulations are done, close the connection with the `close` method. It is no longer possible to manipulate the file.
+
+```{python}
+file_in.close()
+```
+
+In practice, it is easy to forget to close the connection to a file, which can create annoying errors. There is a syntax that avoids this problem by using a **context manager** that handles the entire connection for us.
+
+```{python}
+with open(path_range, 'r') as file_in:
+    lines = file_in.readlines()
+lines
+```
+
+This syntax is much more readable: thanks to the indentation, it is clear which operations are performed while the file is open, and the file is automatically closed once we return to the initial indentation level. We will always prefer to use this syntax if possible, as it is a good programming practice.
+
+### Reading a file
+
+Once a file is open, we may want to read its content. There are different ways to do this. A simple and elegant method is to traverse the file using a loop, which is possible because the `Python` object representing the file is **iterable**.
+
+```{python}
+with open(path_range, 'r') as file_in:
+    for line in file_in:
+        print(line)
+```
+
+In our example, we simply displayed the lines, but many things can be done with the data in the text file: storing it in a `Python` object, using it for calculations, keeping only the lines that meet a certain condition via an `if` statement, etc.
+
+There are also built-in methods for reading the content of a file. The most basic is the `read` method, which returns the entire file as a (potentially very long) string.
+
+```{python}
+with open(path_range, 'r') as file_in:
+    txt = file_in.read()
+txt
+```
+
+This is rarely very useful: we generally prefer to retrieve individual lines from a file. The `readlines` method traverses the entire file and returns a list whose elements are the lines of the file, in order of appearance.
+
+```{python}
+with open(path_range, 'r') as file_in:
+    l = file_in.readlines()
+l
+```
+
+Note that each element of the list (except the last one) ends with the special character `\n` ("newline") which simply marks the end of each line in a text file. It is the (hidden) presence of this same character at the end of each call to the `print` function that causes a line break every time a `print` is used.
+
+### Writing to a file
+
+Writing to a file is very simple; it is done using the `write` method. For example, let's write the various elements contained in a list to a file, line by line.
+
+```{python}
+ex = ["this", "is", "a", "very", "original", "example"]
+with open("test.txt", "w") as file_out:
+    for elem in ex:
+        file_out.write(elem)
+```
+
+Everything seems to have gone smoothly. We can check that our file was created correctly via the `Jupyter` file explorer (on the left) or via the `ls` command in the terminal.
+
+```{python}
+!ls
+```
+
+It is there. Let's now verify that its content is what we wanted.
+
+```{python}
+with open("test.txt", "r") as file_out:
+    print(file_out.read())
+```
+
+The different elements of our list have merged into a single block of text! This is because, unlike the `print` function, for example, the `write` function does not automatically add the newline character. It must be added manually.
+
+```{python}
+with open("test.txt", "w") as file_out:
+    for elem in ex:
+        file_out.write(elem + "\n")
+with open("test.txt", "r") as file_out:
+    print(file_out.read())
+```
+
+That's much better.
+
+A few additional remarks about writing to files:
+
+- It bears repeating: **using the `\w` opening mode for a file completely overwrites its content**. When we rewrote our file with line breaks, we completely overwrote the old one.
+- Why were we able to just put the file name in the `open` function and not a `Path` object containing the full path to the file we wanted to create? This is because `Python` automatically interpreted it as a **relative path** (to our current directory) due to the absence of a root.
+- You can only write **elements of type `str`** (string) to a file. If one of the elements in the list above had been of type `int` or `float`, for example, it would have needed to be converted via the
+
+ `str()` function before being written to the file. Otherwise, `Python` would have returned an error.
+
+## Executing code from `.py` files
+
+So far in this tutorial, we have explored the use of packages/modules, whether from the standard Python library or developed by third parties. We have also addressed interacting with the local file system. Now, let's discover how to combine these skills by writing and executing our own Python scripts and modules as `.py` files.
+
+### Python scripts
+
+In a Jupyter notebook environment (like the one you are in), Python code is executed **interactively**, cell by cell. This is possible because a `Python` *kernel* runs in the background throughout the notebook session. However, outside of `Jupyter`, code is generally written and executed as scripts. A Python script is simply a text file with a `.py` extension containing a series of Python instructions that will be executed linearly by the `Python` interpreter.
+
+The `write_list.py` file repeats a code cell seen earlier. Let's display its content.
+
+```{python}
+with open('write_list.py', 'r') as script:
+    print(script.read())
+```
+
+A Python script is executed in a terminal using the command `python script_name.py`. To execute it from a Jupyter notebook, we again add a `!` at the beginning of the line.
+
+```{python}
+!python write_list.py
+```
+
+The `output_script.txt` file has indeed been created locally (it may take a while or require refreshing for it to appear), and the expected message was printed in the console output.
+
+::: {.callout-note title="Notebook vs. scripts"}
+Should we prefer using `Jupyter` notebooks, as in this training, or prefer execution via scripts? There is no definitive answer to this question:
+
+- Notebooks allow **interactive** execution, which is very practical for experimentation;
+- Scripts make it easier to automate a process, as they are executed linearly and do not require intermediate actions from the user.
+
+In short, notebooks are very useful during the development phase, but scripts are preferred when it comes to automating processes or producing code intended to run in production.
+:::
+
+### Scripts and modules
+
+As we have seen, a **script** is a `.py` file intended to be executed directly. It generally contains a complete workflow or an automated task. A **module** is also a `.py` file, but it contains definitions of functions and/or classes intended to be used by other scripts or modules. It is not intended to be executed alone but imported elsewhere. At the beginning of this tutorial, we used modules from packages written by others. Now let's see how we can write our own modules and import them according to the same principles.
+
+Let's display the content of the `normalisation.py` file, which will serve as an example.
+
+```{python}
+with open('normalisation.py', 'r') as module:
+    print(module.read())
+```
+
+The function contained in this module can be imported as we have seen in this tutorial. Note that the module itself must import the necessary packages/modules for the proper functioning of its functions (in this case, `numpy`).
+
+To import a local module, use the `import` statement followed by the file name without the extension. All functions defined in the module can then be used via the `module_name.function_name` syntax.
+
+```{python}
+import normalisation
+x = [1, 2, 3, 4, 5]
+x_norm = normalisation.normalize(x)
+print(x_norm)
+```
+
+As explained at the beginning of the chapter, we could also import the function directly to avoid recalling the module name containing it. This is particularly practical if this function is to be used multiple times in the same notebook/script.
+
+```{python}
+from normalisation import normalize
+x = [1, 2, 3, 4, 5]
+x_norm = normalize(x)
+print(x_norm)
+```
+
+::: {.callout-warning title="The bad idea: import *"}
+A crucial good practice is to prioritize code readability. In both import variants presented above, the code is readable: it is clear from which module the function used comes.
+
+However, it is not uncommon to see the instruction `from my_module import *` in Python code, which imports all functions defined in the `my_module.py` file. This should be avoided whenever possible for two reasons:
+
+- It becomes difficult to determine from which module or package the functions used come;
+- If functions imported from different packages/modules have the same name, they can replace each other and generate difficult-to-debug errors.
+
+To limit the length of the instruction line when importing multiple functions, you can adopt the following syntax:
+
+```{python}
+from my_module import (
+    function1,
+    function2,
+    function3
+)
+```
+:::
+
+Finally, note that a `.py` file can serve both as a module and a script. To differentiate between the two usages, use the `__name__` variable, which is defined by default by `Python` when using a `.py` file:
+
+- If the file is used as a **module** (e.g., `import my_file`), the `__name__` variable is set to the file name (e.g., `my_file`).
+- If the file is used as a **script** (e.g., `python my_file.py`), the `__name__` variable is set to `__main__`.
+
+In the previous cell, the `normalisation.py` file was imported as a module. In this case, the `__name__` variable is set to `normalisation`, and that's why the code under the `if` condition was not executed. When the file is executed as a script, this code is executed.
+
+```{python}
+!python normalisation.py
+```
+
+It is therefore very common to see the condition `if __name__ == "__main__"` in Python scripts, distinguishing the usage as a module and the usage as a script.
+
+## Exercises
+
+### Comprehension questions
+
+- 1/ What is a module?
+- 2/ What is a package?
+- 3/ Why is it not a good practice to import all functions from a module using the `from module import *` syntax?
+- 4/ What are the advantages of the `pathlib` library?
+- 5/ What are the two properties of a file that allow identifying its position in the file system?
+- 6/ What is the current directory?
+- 7/ What are the two ways to specify a path? How does `Python` differentiate between the two?
+- 8/ What are the two major families of files that we handle in programming?
+- 9/ What are the different modes for opening a file?
+- 10/ Why is it preferable to use the `with open(...) as ...` syntax to open a file?
+- 11/ Why can we traverse the lines of a file using a loop?
+- 12/ What is the difference between a module and a script?
+
+<details>
+<summary>Show the solution</summary>
+
+- 1/ A **module** is a text file (with a .py extension to indicate it is Python) containing a set of definitions (of **classes**, **functions**) and instructions.
+- 2/ A package is a collection of modules.
+- 3/ It overloads the memory if only a few functions are needed, and it reduces readability since it is not clear from which module a function originates.
+- 4/ It allows interacting with the file system using a unified OOP syntax, regardless of the environment.
+- 5/ File name and path of the folder containing the file.
+- 6/ It is the directory in which the current Python session is opened. In a Jupyter notebook context, it is by default the folder containing it.
+- 7/ Absolute path (complete) and relative path (relative to the current directory). An absolute path is recognizable because it always starts from the file system's root.
+- 8/ Text files and binary files (anything that is not text).
+- 9/ r: read. w: write. a: appending.
+- 10/ This syntax involves a context manager that handles the connection to the file (opening and closing) for us.
+- 11/ Because the object representing the file in Python is an iterable.
+- 12/ As we have seen, a **script** is a `.py` file intended to be executed directly. It generally contains a complete workflow or an automated task. A **module** is also a `.py` file, but it contains definitions of functions and/or classes intended to be used by other scripts or modules. It is not intended to be executed alone but imported elsewhere.
+
+</details>
+
+### Mean and standard deviation of exam scores
+
+*Exercise inspired by: [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/07_fichiers/)*
+
+The text file `notes.txt` is in your current directory. It contains the scores obtained by 50 students in an exam. Problem: all the scores are written on a single line, with a space each time. Open this file and calculate the mean and standard deviation of the scores.
+
+Hints:
+
+- Strings have a `split` method that allows splitting text based on a given character.
+- The scores will need to be converted to numeric format to apply mathematical functions.
+- You can use functions from the `numpy` package to calculate the required statistics.
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```python
+import numpy as np
+
+with open("notes.txt", "r") as file_in:
+    notes = file_in.read()
+
+notes = notes.split()
+notes_num = []
+for n in notes:
+    notes_num.append(int(n))
+
+print(np.mean(notes_num))
+print(np.std(notes_num))
+```
+
+</details>
+
+
+
+### Passed or failed
+
+*Exercise inspired by: [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/07_fichiers/)*
+
+The text file `notes_clean.txt` is in your current directory. It contains the scores obtained by 50 students in an exam. Unlike the previous exercise, the scores are correctly written: one score per line.
+
+Write code that:
+
+- Stores each score as an `int` in a list.
+- Rewrites the scores in a file `notes_mentions.txt` with each line containing the score, followed by a space, followed by the mention "passed" if the score is greater than or equal to 10, and "failed" otherwise.
+
+For example, the first three lines of this new file should be:
+```
+5 failed
+5 failed
+18 passed
+```
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```python
+notes = []
+
+with open("notes_clean.txt", "r") as file_in:
+    for n in file_in:
+        notes.append(int(n))
+        
+with open("notes_mentions.txt", "w") as file_out:
+    for n in notes:
+        if n >= 10:
+            mention = "passed"
+        else:
+            mention = "failed"
+        file_out.write(str(n) + " " + mention + "\n")
+```
+
+</details>
+
+### Latecomers
+
+3 students did not submit their papers on time for the exam:
+
+- Miranda scored 16 and submitted her paper 3 days late.
+- Paolo scored 11 and submitted his paper 1 day late.
+- Isidore scored 3 and submitted his paper 5 days late.
+
+Each student will have a final score equal to the obtained score minus the number of late days. A score cannot be negative; it will be replaced by 0.
+
+The necessary information is placed in a list in the following cell. Using a loop on this list, **add** (without completely rewriting the file!) the scores to the `notes_clean.txt` file (without the mention).
+
+NB: if you accidentally overwrite the content of a file, you can find the clean files on the [GitHub repository associated with the training](https://github.com/InseeFrLab/formation-python-initiation/tree/main/source/manipulation/modules-files).
+
+```{python}
+supp = [(16, 3), (11, 1), (3, 5)]
+```
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```python
+supp = [(16, 3), (11, 1), (3, 5)]
+
+with open("notes_clean.txt", "a") as file_out:
+    for elem in supp:
+        final_score = elem[0] - elem[1]
+        final_score = max(0, final_score)
+        file_out.write(str(final_score) + "\n")
+```
+
+</details>
+
+### Scanning files
+
+Write a program that performs the following operations:
+
+- In the current directory, list the paths of files with the `.txt` extension (the syntax was seen in the `pathlib` part).
+- Loop through these paths and open each file sequentially.
+- For each file, perform a membership test (recall the syntax: `if pattern in string: ...`) to check if the file contains the word "sol". If so, print its absolute path in the console (only the path of the `gamme.txt` file should appear).
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```python
+from pathlib import Path
+
+txt_files_paths = list(Path.cwd().glob('*.txt'))
+
+for path in txt_files_paths:
+    with open(path, "r") as file_in:
+        content = file_in.read()
+        if "sol" in content:
+            print(path)
+```
+
+</details>
+
+
+:::

@@ -1,0 +1,1361 @@
+::: {.content-visible when-profile="fr"}
+# Fonctions
+
+Dans les précédents tutoriels, nous avons étudié le fonctionnement des tests et des boucles, qui permettent de rédiger des programmes Python qui prennent des décisions automatisées. En pratique, un programme va généralement être constitué de différents blocs, qui exécutent chacun une action ou un groupe d'actions (ex : import des données, nettoyage des données, modélisation statistique, etc.). Par ailleurs, certaines de ces actions sont amenées à être répétées avec une légère différence au fil d'un programme (ex : importer plusieurs jeux de données différents). Il va être utile de modéliser chacune de ces actions par une **fonction**, sorte de mini-programme au sein du programme global. Utiliser des fonctions est une **bonne pratique** de programmation, dans la mesure où elles rendent plus explicite la structure logique du code et permettent de réduire la duplication de code.
+
+
+## Définition
+
+
+Une **fonction** peut être définie comme un bloc de code structuré qui : 
+
+- prend un ensemble d'**arguments** (des objets Python) en entrée
+
+- effectue une **action spécifique** via un ensemble d'instructions
+
+- **renvoie** un résultat (un objet Python) en sortie
+
+Nous avons déjà vu et utilisé un certains nombres de fonctions dans les tutoriels précédents (`range`, `len`, etc.). Nous avons également utilisé des **méthodes**, qui sont simplement des fonctions *attachées* à un type d'objet particulier. Utilisons une fonction bien connue pour illustrer leur fonctionnement général.
+
+```{python}
+len('do re mi fa sol')
+```
+
+Dans cet exemple, la fonction `len` :
+
+- prend un argument en entrée (une chaîne de caractères)
+
+- calcule le nombre de caractères présent dans cette chaîne
+
+- renvoie ce nombre en sortie
+
+L'"ensemble d'instructions" qui permettent de calculer la longueur de la chaîne n'est pas connu. En tant qu'utilisateur, on a seulement besoin de savoir ce que prend la fonction en entrée et ce qu'elle renvoie en sortie. Cela vaut pour les cas dans lesquels on utilise des fonctions natives de Python ou bien des fonctions issus de librairies Python auxquelles on fait confiance. On parle de "boîtes noires" pour caractériser de telles fonctions.
+
+En pratique, on va vouloir définir ses propres fonctions pour structurer son code et le réutiliser dans les analyses. 
+
+
+## Syntaxe
+
+
+L'instruction `def` permet de définir une fonction.
+
+```{python}
+def accueil(prenom):
+    msg = "Salutations " + prenom + " !"
+    return msg
+```
+
+Analysons la syntaxe de la definition d'une fonction : 
+
+- une instruction `def` qui :
+
+    - spécifie le nom de la fonction (ici, `accueil`)
+
+    - spécifie les arguments attendus entre parenthèse (ici, un seul argument : `prenom`)
+
+    - se termine par `:` comme les différentes instructions que nous avons vues
+
+- un ensemble d'opérations qui seront effectuées par la fonction, qui doivent être indentées d'un niveau par rapport à l'instruction `def`
+
+- une instruction `return`, qui spécifie ce que la fonction va renvoyer lorsqu'elle sera appelée (ici, le contenu de la variable `msg`).
+
+
+Le fait de **définir** une fonction comme ci-dessus revient à rendre disponible dans l'environnement Python le code de la fonction. Ce n'est que lorsque celle-ci est **appelée** dans le code, avec des arguments, que le code contenu est exécuté et produit un résultat.
+
+```{python}
+accueil("Miranda")
+```
+
+Comme expliqué en introduction, tout l'intérêt d'une fonction est de pouvoir réutiliser du code sans avoir à le dupliquer dans le programme.
+
+```{python}
+accueil("Romuald")
+```
+
+## Passage d'arguments
+
+
+### Principe
+
+
+Lorsqu'on appelle une fonction en lui spécifiant des arguments, on dit qu'on lui "passe" des arguments. Ces arguments deviennent alors des variables qui peuvent être utilisées dans le contexte de la fonction. A l'inverse d'une boucle `for` par exemple, les variables créées ne persistent pas après l'appel de la fonction
+
+```{python}
+def addition(x, y):
+    return x + y
+```
+
+```{python}
+addition(5, 3)
+```
+
+```{python}
+x  # La variable ne persiste pas en mémoire après l'appel de la fonction
+```
+
+NB : on verra plus en détails ce comportement plus loin dans le tutoriel, à travers les concepts de variables globales et de variables locales.
+
+
+### Nombre d'arguments
+
+
+Le nombre d'arguments que l'on peut passer à une fonction est variable. En toute rigueur, il est possible de définir une fonction qui n'a besoin d'aucun argument, même si c'est rarement utile en pratique.
+
+```{python}
+def neuf():
+    return 9
+```
+
+```{python}
+a = neuf()
+a
+```
+
+### Passage par position et passage par mot-clé
+
+
+En Python, les fonctions admettent deux modes de passage des arguments : 
+
+- le **passage par position**, qui correspond à celui que nous avons vu dans tous les exemples précédents : les arguments sont passés à la fonction dans l'ordre dans lequel ils ont été définis, sans avoir à préciser le nom du paramètre.
+
+- le **passage par mot-clé** : on précise le nom du paramètre lors du passage de l'argument, ce qui permet de ne pas avoir à suivre l'ordre indiqué lors de la définition.
+
+Illustrons cette différence à partir d'une fonction qui réalise simplement une division.
+
+```{python}
+def division(x, y):
+    return x / y
+```
+
+```{python}
+division(4, 2)  # Passage par position
+```
+
+```{python}
+division(x=4, y=2)  # Passage par mot-clé
+```
+
+Dans le cas du passage par position, le respect de l'ordre est impératif.
+
+```{python}
+print(division(0, 5))
+print(division(5, 0))
+```
+
+Dans le cas du passage par mot-clé, l'ordre n'a plus d'importance.
+
+```{python}
+print(division(x=0, y=5))
+print(division(y=5, x=0))
+```
+
+### Arguments obligatoires et arguments optionnels
+
+
+Lorsqu'on définit une fonction, il est fréquent de vouloir faire cohabiter des arguments que doit absolument spécifier l'utilisateur, et des arguments optionnels qui spécifient un comportement par défaut de la fonction, mais peuvent également être modifiés si nécessaire. 
+
+Regardons par exemple comment on peut modifier le comportement de la fonction `print` à l'aide d'un argument optionnel.
+
+```{python}
+print("bonjour")
+print("bonjour")
+```
+
+```{python}
+print("bonjour", end=' ')
+print("bonjour")
+```
+
+On a modifié le comportement du premier appel à `print` via le paramètre optionnel `end`. Par défaut, cette valeur est fixée à `'\n'`, soit un retour à la ligne. On l'a modifié dans la deuxième cellule à un espace, d'où la différence de résultat.
+
+Cet exemple illustre également le lien entre le caractère obligatoire ou non d'un argument et sa modalité de passage :
+
+- en général, les **arguments obligatoires** sont **passés par position**. Ils peuvent également être passés par mot-clé, mais dans la mesure où ils sont "attendus", on les passe généralement par position pour être plus concis
+
+- les **arguments optionnels** doivent être **passés par mot-clé**, afin de bien marquer qu'on modifie le comportement par défaut de la fonction
+
+
+Comment spécifier qu'un argument est optionnel lorsqu'on définit une fonction soi-même ? Simplement en spécifiant une valeur par défaut de l'argument. Par exemple, construisons une fonction qui concatène deux chaînes de caractères, et laisse à l'utilisateur l'option de spécifier un séparateur.
+
+```{python}
+def concat_string(str1, str2, sep=''):
+    return str1 + sep + str2
+```
+
+```{python}
+concat_string('bonjour', 'bonjour')  # Comportement par défaut
+```
+
+```{python}
+concat_string('bonjour', 'bonjour', sep=', ')  # Comportement modifié
+```
+
+Cet exemple illustre également la règle lorsqu'on a un mélange d'arguments positionnels et par mot-clé : **les arguments positionnels doivent toujours être placés avant les arguments par mot-clé**.
+
+
+## Renvoi de résultats
+
+
+### Principe
+
+
+On a vu :
+
+- que toute fonction renvoie un résultat en sortie
+
+- que l'instruction `return` permet de spécifier ce résultat
+
+Lorsque la fonction est appelée, elle est évaluée à la valeur spécifiée par `return`, et cette valeur peut alors être récupérée dans une variable et utilisée dans des calculs ultérieurs, et ainsi de suite.
+
+```{python}
+def division(x, y):
+    return x / y
+```
+
+```{python}
+a = division(4, 2)
+b = division(9, 3)
+division(a, b)  # 2 / 3
+```
+
+Remarque importante : **lorsqu'une instruction return est atteinte dans une fonction, le reste de la fonction n'est pas exécuté**.
+
+```{python}
+def test(x):
+    return x
+    print("vais-je être affiché ?")
+    
+test(3)
+```
+
+### La valeur `None`
+
+
+Une fonction renvoie nécessairement un résultat lorsqu'elle est appelée... mais que se passe-t-il si l'on ne spécifie pas d'instruction `return` ?
+
+```{python}
+def accueil(prenom):
+    print("Salutations " + prenom + " !")
+    
+x = accueil("Léontine")
+print(x)
+print(type(x))
+```
+
+Comme attendu, la fonction a imprimé un message de bienvenue dans la console. Mais on n'a pas spécifié de valeur à retourner. Comme un objet doit malgré tout être retourné par définition, Python renvoie la valeur `None`, qui est un objet particulier, de type `NoneType`, et qui représente l'absence de valeur. Son seul intérêt est de bien marquer la différence entre une valeur réelle et l'absence de valeur.
+
+Pour tester si un objet a pour valeur `None`, on utilise une syntaxe particulière : 
+
+```{python}
+x is None  # et non pas x == None
+```
+
+### Renvoyer plusieurs résultats
+
+
+Une fonction renvoie par définition **un** résultat, qui peut être tout objet Python. Comment faire si l'on souhaite renvoyer plusieurs résultats ? On peut simplement enregistrer les différents résultats dans un conteneur (liste, tuple, dictionnaire, etc.), qui peut lui contenir un grand nombre d'objets.
+
+En pratique, il est très fréquent de renvoyer un *tuple* lorsque l'on souhaite renvoyer plusieurs objets. En effet, les *tuples* ont la propriété de *tuple unpacking*, que nous avons vues à plusieurs reprises dans les précédents tutoriels. Cette propriété rend possible une syntaxe très pratique et élégante pour l'assignation des résultats d'une fonction à des variables.
+
+```{python}
+def puissances(x):
+    return x**2, x**3, x**4
+
+a, b, c = puissances(2)
+
+print(a)
+print(b)
+print(c)
+```
+
+## Variables locales et variables globales
+
+
+Nous avons vu en introduction que les fonctions pouvaient être vues comme des mini-programmes dans un programme global. Cette interprétation nous donne l'occasion d'aborder rapidement la notion de *scope* (contexte) en Python. Un *scope* est une sorte de conteneur à objets Python, auxquels il est possible d'accéder seulement dans le cadre de ce *scope*. 
+
+Tous les objets (variables, fonctions, etc.) que l'on définit lors d'une session Python sont enregistrés dans le ***scope* global** de Python. Ces objets peuvent alors être accédés à n'importe quel endroit du programme, y compris au sein d'une fonction. Lorsque c'est le cas, on parle de **variables globales**.
+
+```{python}
+x = 5  # variable globale
+
+def ajoute(y):
+    return x + y
+
+ajoute(6)
+```
+
+La variable `x` n'a pas été passée en argument à la fonction `ajoute` ni été définie dans le cadre de cette fonction. Pourtant, on peut l'appeler au sein de la fonction. Cela permet de partager des éléments entre plusieurs fonctions. 
+
+
+En revanche, les arguments passés à une fonction ou bien les variables définies dans le cadre d'une fonction sont des **variables locales** : elles n'existent que dans le contexte spécifique de la fonction, et ne peuvent pas être réutilisées une fois que celle-ci s'est exécutée.
+
+```{python}
+def ajoute(y):
+    z = 5  # variable locale
+    return z + y
+
+ajoute(6)
+print(z)
+```
+
+Au sein d'un contexte donné, chaque variable est unique. En revanche, il est possible d'avoir des variables qui portent le même nom dans des contextes différents. Regardons par exemple ce qui se passe lorsque l'on crée une variable dans le contexte d'une fonction, alors qu'elle existe déjà dans le contexte global.
+
+```{python}
+x = 5  # variable globale
+
+def ajoute(y):
+    x = 10
+    return x + y
+
+ajoute(6)
+```
+
+C'est un bon exemple d'un principe plus général : **c'est toujours le contexte le plus local qui prime**. Lorsque Python effectue l'opération `x + y`, il va chercher les valeurs de `x` et de `y` d'abord dans le contexte local, puis, seulement s'il ne les trouve pas, dans le contexte supérieur -- en l'occurence, le contexte global.
+
+
+NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est préférable de limiter au strict minimum l'utilisation de variables globales**, car elles réduisent la reproductibilité des analyses.
+
+
+## Exercices
+
+
+### Questions de compréhension
+
+
+
+- 1/ Pourquoi dit-on que l'utilisation de fonctions dans un programme est une bonne pratique de développement ?
+
+- 2/ Quelles sont les trois caractéristiques d'une fonction ?
+
+- 3/ Qu'est-ce qu'une fonction "boîte noire" ? A quelles autres fonctions s'oppose-t-elle ?
+
+- 4/ Que se passe-t-il quand on définit une fonction ? Et quand on l'appelle ?
+
+- 5/ Combien d'arguments peut-on passer à une fonction ?
+
+- 6/ Quelles sont les deux modalités de passage d'arguments à une fonction ?
+
+- 7/ Quelle est l'utilité de passer des arguments optionnels à une fonction ?
+
+- 8/ Dans quel ordre doivent être passés les arguments d'une fonction si celle-ci a à la fois des arguments obligatoires et optionnels ?
+
+- 9/ Existe-il des fonctions qui ne renvoient rien ?
+
+- 10/ Une fonction peut-elle renvoyer plusieurs objets ?
+
+- 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
+
+<details>
+<summary>Afficher la solution</summary>
+
+- 1/ L'utilisation de fonction permet de réduire la duplication du code et de mieux isoler les différents blocs logiques d'un programme.
+
+- 2/ Une fonction prend en entrée des arguments, réalise une action donnée via un ensemble d'instructions, et renvoie un résultat en sortie.
+
+- 3/ Les fonctions "boîtes noires" sont les fonctions dont on ne connaît pas le code lorsqu'on les exécute, comme les fonctions built-in de Python (len, range..). Elles s'opposent aux fonctions créées par l'utilisateur.
+
+- 4/ Quand on définit une fonction via l'instruction def, on met en mémoire le code de la fonction. Ce n'est que quand on appelle la fonction que ce code s'exécute, et renvoie un résultat.
+
+- 5/ Autant que l'on souhaite.
+
+- 6/ Par position : on passe les arguments dans l'ordre où ils ont été spécifiés lors de la définition de la fonction. Par mot-clé : on passe les arguments en les nommant.
+
+- 7/ Modifier le comportement par défaut d'une fonction, tel qu'il a été voulu par son concepteur.
+
+- 8/ D'abord les arguments obligatoires, puis les arguments optionnels.
+
+- 9/ Non, une fonction renvoie toujours un objet. Si l'on ne spécifie pas d'instruction return, la fonction renvoie la valeur None, qui est un objet de type NoneType.
+
+- 10/ Non, une fonction renvoie un seul objet. En revanche, si l'on veut qu'une fonction renvoie plusieurs résultats, il suffit de les mettre dans un conteneur (liste, tuple, dictionnaire..).
+
+- 11/ Elles disparaissent et ne peuvent donc pas être réutilisées dans le scope global.
+
+</details>
+
+### Fonction puissance
+
+
+Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et renvoie la fonction puissance $x^y$.
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+def puissance(x, y):
+    return x**y
+
+puissance(2, 3)
+```
+</details>
+
+### Prédiction de valeurs retournées par des fonctions
+
+
+Soit `x = 5` et `y = 3` des arguments que l'on passe à chacune des fonctions définies dans la cellule suivante. Prédire ce que vont retourner les fonctions (valeur et `type` de l'objet), et vérifier vos réponses.
+
+```{python}
+def f1(x):
+    return x
+
+def f2(x):
+    return ''
+
+def f3(x):
+    print("Hello World")
+    
+def f4(x, y):
+    print(x + y)
+    
+def f5(x, y):
+    x + y
+    
+def f6(x, y):
+    if x >= 3 and y < 9:
+        return 'test ok'
+    else:
+        return 'test not ok'
+    
+def f7(x, y):
+    return f6(2, 8)
+
+def f8(x, y, z):
+    return x + y + z
+
+def f9(x, y, z=5):
+    return x + y + z
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+- f1. Valeur : 5 ; Type : int
+
+- f2. Valeur : '' ; Type : str
+
+- f3. Valeur : None ; Type : NoneType
+
+- f4. Valeur : None ; Type : NoneType
+
+- f5. Valeur : None ; Type : NoneType
+
+- f6. Valeur : 'test ok' ; Type : str
+
+- f7. Valeur : 'test not ok' ; Type : str
+
+- f8. Erreur : z n'est pas défini
+
+- f9. Valeur : 13 ; Type : int
+```
+</details>
+
+### Variables globales et variables locales
+
+
+Que vaut la variable `total` dans le programme suivant ?
+
+```{python}
+z = 3
+
+def f1(x, y):
+    z = 5
+    return x + y + z
+
+def f2(x, y, z=1):
+    return x + y + z
+
+def f3(x, y):
+    return x + y + z
+
+total = f1(2, 3) + f2(3, 1) + f3(1, 0)
+print(total)
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+z = 3
+
+def f1(x, y):
+    z = 5
+    return x + y + z
+
+def f2(x, y, z=1):
+    return x + y + z
+
+def f3(x, y):
+    return x + y + z
+
+total = f1(2, 3) + f2(3, 1) + f3(1, 0)
+
+print(f1(2, 3))  
+# c'est la variable z locale à f1 qui est utilisée -> f1 renvoie 10
+
+print(f2(3, 1))  
+# c'est la variable z locale à f1 qui est utilisée
+# sa valeur par défaut est 1 -> f2 renvoie 5
+
+print(f3(1, 0)) 
+# c'est la variable z globale qui est utilisée -> f3 renvoie 4
+
+print(total)
+```
+</details>
+
+### Calculatrice
+
+
+Ecrire une fonction `calculatrice` qui :
+
+- prend deux nombres en entrée
+
+- renvoie l'addition, la soustraction, la multiplication et la division de ces deux nombres en sortie
+
+Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des variables en une seule ligne.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+def calculatrice(a, b):
+    return a+b, a-b, a*b, a/b
+
+add, sub, mult, div = calculatrice(5, 3)
+print(add, sub, mult, div)
+```
+</details>
+
+### Dédupliquer une liste
+
+Ecrire une fonction qui :
+
+- prend en entrée une liste d'éléments quelconques
+
+- renvoie une nouvelle liste constituée des éléments uniques de la liste initiale
+
+- permet via un paramètre optionnel de trier ou non la liste finale par ordre alphanumérique. Le comportement par défaut doit être de ne pas trier.
+
+Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+def dedup(l, sort=False):
+    l_dedup = list(set(l))
+    if sort:
+        l_dedup.sort()
+    return l_dedup
+
+l = ["a", "a", "b", "c"]
+print(dedup(l))  # Comportement par défaut : pas de tri
+print(dedup(l, sort=True))  # Comportement modifié : tri
+```
+</details>
+
+### Multiplier les éléments d'une liste
+
+
+Ecrire une fonction qui :
+
+- prend en entrée une liste de nombres
+
+- imprime : "Il y a $n$ nombres dans la liste." avec $n$ le nombre effectif
+
+- multiplie tous les éléments de la liste (sans utiliser de fonction pré-codée)
+
+- retourne le résultat
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+def multiplier(l):
+    print("Il y a " + str(len(l)) + " nombres dans la liste.")
+    c = 1
+    for x in l:
+        c *= x  # Equivalent à : c = c * x
+    return c
+
+l = [2, 8, 3]
+multiplier(l)
+```
+</details>
+
+### Variance dans une population et variance dans un échantillon
+
+
+Dans un exercice du précédent tutoriel, nous avons codé "à la main" le calcul de la variance d'une liste de nombres, à partir de la formule : $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
+
+En toute rigueur, cette formule est valide lorsqu'on calcule la **variance en population complète**. Si l'on n'observe qu'un échantillon de la population, on ne calcule pas la variance mais on l'estime, et il faut alors utiliser la formule suivante pour obtenir un **estimateur sans biais de la vraie variance** : $$s^2 = {\frac {1}{n-1}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$.
+
+Pour tenir compte de cette distinction :
+
+- coder une fonction `mean`  qui calcule la moyenne comme dans l'exercice du tutoriel précédent
+
+- coder une fonction `var`  qui calcule la variance comme dans l'exercice du tutoriel précédent (en appelant la fonction `mean` pour calculer la moyenne)
+
+- modifier la fonction `var` afin de permettre à l'utilisateur de choisir la méthode de calcul via un paramètre optionnel `mode` (valeur par défaut : 'population' pour le calcul via la formule en population ; valeur alternative : 'sample' pour le calcul via la formule en échantillon)
+
+Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction *black box* `var` de la librarie `numpy` (cf. corrigé de l'exercice du tutoriel précédent pour la syntaxe, et voir la [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) de la fonction et en particulier le paramètre `ddof` pour faire varier la méthode de calcul).
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+def mean(x):
+    n = len(x)
+    somme_moy = 0
+    for x_i in x:
+        somme_moy += x_i
+    moyenne = somme_moy / n
+    return moyenne
+
+def var(x, mode="population"):
+    n = len(x)
+    moyenne = mean(x)
+    somme_var = 0
+    for x_i in x:
+        somme_var += (x_i - moyenne)**2
+    if mode == "population":
+        variance = somme_var / n
+    elif mode == "sample":
+        variance = somme_var / (n-1)
+    return variance
+
+x = [8, 18, 6, 0, 15, 17.5, 9, 1]
+print(mean(x))
+print(var(x))  # population
+print(var(x, mode="sample"))  # échantillon
+
+# Vérification avec les fonctions de la librairie numpy
+import numpy as np
+print(np.mean(x))
+print(np.var(x))  # population
+print(np.var(x, ddof=1))  # sample
+```
+</details>
+
+### Fonctions récursives : factorielle
+
+Les fonctions récursives sont des fonctions qui s'appellent elles-mêmes dans le corps de la fonction, ce qui entraîne des appels infinis jusqu'à atteindre un critère d'arrêt.
+
+Un bon exemple de fonction récursive est la fonction qui calcule la factorielle d'un entier. La factorielle d'un entier naturel $n$ est le produit des nombres entiers strictement positifs inférieurs ou égaux à n. Par exemple : $5! = 5*4*3*2*1 = 120$.
+
+Coder cette fonction et vérifier qu'elle fonctionne correctement.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+def factorielle(n):
+    if n == 0:
+        # Critère d'arrêt
+        return 1
+    else:
+        return n * factorielle(n-1)
+
+factorielle(5)
+```
+</details>
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+::: {.content-visible when-profile="en"}
+
+# Functions
+
+In previous tutorials, we studied how tests and loops work, allowing us to write Python programs that make automated decisions. In practice, a program will generally consist of different blocks, each executing an action or a group of actions (e.g., data import, data cleaning, statistical modeling, etc.). Furthermore, some of these actions are repeated with slight differences throughout a program (e.g., importing multiple different datasets). It will be useful to model each of these actions as a **function**, a sort of mini-program within the overall program. Using functions is a **best practice** in programming, as they make the logical structure of the code more explicit and help reduce code duplication.
+
+## Definition
+
+A **function** can be defined as a structured block of code that:
+
+- takes a set of **arguments** (Python objects) as input
+- performs a **specific action** through a set of instructions
+- **returns** a result (a Python object) as output
+
+We have already seen and used several functions in previous tutorials (`range`, `len`, etc.). We have also used **methods**, which are simply functions *attached* to a particular type of object. Let's use a well-known function to illustrate their general operation.
+
+```{python}
+len('do re mi fa sol')
+```
+
+In this example, the `len` function:
+
+- takes an argument as input (a string)
+- calculates the number of characters present in the string
+- returns this number as output
+
+The "set of instructions" that calculate the length of the string is not known. As a user, you only need to know what the function takes as input and what it returns as output. This is true for cases where you use Python's built-in functions or functions from trusted Python libraries. Such functions are referred to as "black boxes."
+
+In practice, you will want to define your own functions to structure your code and reuse it in analyses.
+
+## Syntax
+
+The `def` statement is used to define a function.
+
+```{python}
+def welcome(name):
+    msg = "Greetings " + name + "!"
+    return msg
+```
+
+Let's analyze the syntax of the function definition:
+
+- a `def` statement that:
+    - specifies the name of the function (here, `welcome`)
+    - specifies the expected arguments in parentheses (here, a single argument: `name`)
+    - ends with `:` like the different statements we have seen
+
+- a set of operations that will be performed by the function, which must be indented one level relative to the `def` statement
+
+- a `return` statement that specifies what the function will return when called (here, the content of the `msg` variable)
+
+Defining a function as above makes the function's code available in the Python environment. It is only when the function is **called** in the code, with arguments, that the contained code is executed and produces a result.
+
+```{python}
+welcome("Miranda")
+```
+
+As explained in the introduction, the main purpose of a function is to reuse code without duplicating it in the program.
+
+```{python}
+welcome("Romuald")
+```
+
+## Passing Arguments
+
+### Principle
+
+When you call a function and specify arguments, you are "passing" arguments to it. These arguments then become variables that can be used within the context of the function. Unlike a `for` loop, the variables created do not persist after the function call.
+
+```{python}
+def addition(x, y):
+    return x + y
+```
+
+```{python}
+addition(5, 3)
+```
+
+```{python}
+x  # The variable does not persist in memory after the function call
+```
+
+Note: We will look more closely at this behavior later in the tutorial through the concepts of global and local variables.
+
+### Number of Arguments
+
+The number of arguments you can pass to a function varies. Strictly speaking, you can define a function that does not need any arguments, although this is rarely useful in practice.
+
+```{python}
+def nine():
+    return 9
+```
+
+```{python}
+a = nine()
+a
+```
+
+### Passing by Position and Passing by Keyword
+
+In Python, functions allow two modes of passing arguments:
+
+- **passing by position**, which is the mode we have seen in all previous examples: arguments are passed to the function in the order they were defined, without specifying the parameter name.
+
+- **passing by keyword**: you specify the parameter name when passing the argument, which allows you not to follow the order specified during the definition.
+
+Let's illustrate this difference with a function that simply performs a division.
+
+```{python}
+def division(x, y):
+    return x / y
+```
+
+```{python}
+division(4, 2)  # Passing by position
+```
+
+```{python}
+division(x=4, y=2)  # Passing by keyword
+```
+
+In the case of passing by position, maintaining the order is imperative.
+
+```{python}
+print(division(0, 5))
+print(division(5, 0))
+```
+
+In the case of passing by keyword, the order no longer matters.
+
+```{python}
+print(division(x=0, y=5))
+print(division(y=5, x=0))
+```
+
+### Mandatory and Optional Arguments
+
+When defining a function, it is common to want to mix arguments that the user must specify and optional arguments that specify a default behavior of the function but can be changed if needed.
+
+Let's see how we can modify the behavior of the `print` function using an optional argument.
+
+```{python}
+print("hello")
+print("hello")
+```
+
+```{python}
+print("hello", end=' ')
+print("hello")
+```
+
+We modified the behavior of the first `print` call via the optional `end` parameter. By default, this value is set to `'\n'`, meaning a newline. We changed it to a space in the second cell, hence the difference in result.
+
+This example also illustrates the link between the mandatory or optional nature of an argument and its passing mode:
+
+- generally, **mandatory arguments** are **passed by position**. They can also be passed by keyword, but since they are "expected," they are usually passed by position for conciseness
+
+- **optional arguments** must be **passed by keyword**, to clearly indicate that the default behavior of the function is being modified
+
+How do you specify that an argument is optional when defining a function? Simply by specifying a default value for the argument. For example, let's build a function that concatenates two strings and allows the user to specify a separator.
+
+```{python}
+def concat_string(str1, str2, sep=''):
+    return str1 + sep + str2
+```
+
+```{python}
+concat_string('hello', 'world')  # Default behavior
+```
+
+```{python}
+concat_string('hello', 'world', sep=', ')  # Modified behavior
+```
+
+This example also illustrates the rule when mixing positional and keyword arguments: **positional arguments must always be placed before keyword arguments**.
+
+## Returning Results
+
+### Principle
+
+We have seen that every function returns a result as output and that the `return` statement specifies this result. When the function is called, it is evaluated to the value specified by `return`, and this value can then be stored in a variable and used in subsequent calculations, and so on.
+
+```{python}
+def division(x, y):
+    return x / y
+```
+
+```{python}
+a = division(4, 2)
+b = division(9, 3)
+division(a, b)  # 2 / 3
+```
+
+Important note: **when a `return` statement is reached in a function, the rest of the function is not executed**.
+
+```{python}
+def test(x):
+    return x
+    print("Will I be displayed?")
+    
+test(3)
+```
+
+### The `None` Value
+
+A function necessarily returns a result when called... but what happens if you do not specify a `return` statement?
+
+```{python}
+def welcome(name):
+    print("Greetings " + name + "!")
+    
+x = welcome("Leontine")
+print(x)
+print(type(x))
+```
+
+As expected, the function printed a welcome message in the console. But we did not specify a value to return. Since an object must still be returned by definition, Python returns the value `None`, which is a special object of type `NoneType` representing the absence of a value. Its only purpose is to clearly indicate the difference between a real value and the absence of a value.
+
+To test if an object has the value `None`, use the following syntax:
+
+```{python}
+x is None  # and not x == None
+```
+
+### Returning Multiple Results
+
+A function by definition returns **one** result, which can be any Python object. What if you want to return multiple results? You can simply store the different results in a container (list, tuple, dictionary, etc.), which can hold many objects.
+
+In practice, it is very common to return a *tuple* when you want to return multiple objects. Tuples have the property of *tuple unpacking*, which we have seen several times in previous tutorials. This property allows a very convenient and elegant syntax for assigning the results of a function to variables.
+
+```{python}
+def powers(x):
+    return x**2, x**3, x**4
+
+a, b, c = powers(2)
+
+print(a)
+print(b)
+print(c)
+```
+
+## Local and Global Variables
+
+In the introduction, we saw that functions could be viewed as mini-programs within a global program. This interpretation gives us an opportunity to quickly discuss the notion of *scope* in Python. A *scope* is a sort of container for Python objects, which can only be accessed within the context of that scope.
+
+All the objects (variables, functions, etc.) that you define during a Python session are
+
+ recorded in Python's ***global scope***. These objects can then be accessed anywhere in the program, including within a function. When this happens, they are referred to as **global variables**.
+
+```{python}
+x = 5  # global variable
+
+def add(y):
+    return x + y
+
+add(6)
+```
+
+The `x` variable was not passed as an argument to the `add` function nor defined within the function. Yet, it can be called within the function. This allows sharing elements between multiple functions.
+
+However, arguments passed to a function or variables defined within the function are **local variables**: they only exist within the specific context of the function and cannot be reused once the function has executed.
+
+```{python}
+def add(y):
+    z = 5  # local variable
+    return z + y
+
+add(6)
+print(z)
+```
+
+Within a given context, each variable is unique. However, it is possible to have variables with the same name in different contexts. Let's see what happens when we create a variable within the context of a function, even though it already exists in the global context.
+
+```{python}
+x = 5  # global variable
+
+def add(y):
+    x = 10
+    return x + y
+
+add(6)
+```
+
+This is a good example of a more general principle: **the most local context always takes precedence**. When Python performs the `x + y` operation, it looks for the values of `x` and `y` first in the local context and then, only if it doesn't find them, in the higher context—in this case, the global context.
+
+Note: We will see in a future tutorial on best practices that **it is best to limit the use of global variables to a strict minimum**, as they reduce the reproducibility of analyses.
+
+## Exercises
+
+### Comprehension Questions
+
+1. Why is using functions in a program considered a best practice in development?
+2. What are the three characteristics of a function?
+3. What is a "black box" function? What other functions is it opposed to?
+4. What happens when you define a function? And when you call it?
+5. How many arguments can you pass to a function?
+6. What are the two modes of passing arguments to a function?
+7. What is the usefulness of passing optional arguments to a function?
+8. In what order should arguments be passed to a function if it has both mandatory and optional arguments?
+9. Are there functions that return nothing?
+10. Can a function return multiple objects?
+11. What happens to the variables in the local scope of a function once the function has been called?
+
+<details>
+<summary>Show the solution</summary>
+
+1. Using functions helps reduce code duplication and better isolate the logical blocks of a program.
+
+2. A function takes arguments as input, performs a specific action through a set of instructions, and returns a result as output.
+
+3. "Black box" functions are functions whose code is unknown when executed, such as Python's built-in functions (len, range..). They are opposed to user-created functions.
+
+4. When you define a function using the def statement, you store the function's code in memory. It is only when you call the function that this code is executed, and a result is returned.
+
+5. As many as you want.
+
+6. By position: you pass the arguments in the order they were specified when the function was defined. By keyword: you pass the arguments by naming them.
+
+7. To modify the default behavior of a function, as intended by its designer.
+
+8. First the mandatory arguments, then the optional arguments.
+
+9. No, a function always returns an object. If no return statement is specified, the function returns the value None, which is an object of type NoneType.
+
+10. No, a function returns a single object. However, if you want a function to return multiple results, you can simply put them in a container (list, tuple, dictionary..).
+
+11. They disappear and cannot be reused in the global scope.
+
+</details>
+
+### Power Function
+
+Create a `power` function that takes two numbers `x` and `y` as input and returns the power function $x^y$.
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+def power(x, y):
+    return x**y
+
+power(2, 3)
+```
+</details>
+
+### Predicting Values Returned by Functions
+
+Given `x = 5` and `y = 3` as arguments passed to each of the functions defined in the following cell. Predict what the functions will return (value and `type` of the object), and verify your answers.
+
+```{python}
+def f1(x):
+    return x
+
+def f2(x):
+    return ''
+
+def f3(x):
+    print("Hello World")
+    
+def f4(x, y):
+    print(x + y)
+    
+def f5(x, y):
+    x + y
+    
+def f6(x, y):
+    if x >= 3 and y < 9:
+        return 'test ok'
+    else:
+        return 'test not ok'
+    
+def f7(x, y):
+    return f6(2, 8)
+
+def f8(x, y, z):
+    return x + y + z
+
+def f9(x, y, z=5):
+    return x + y + z
+```
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+- f1. Value: 5; Type: int
+
+- f2. Value: ''; Type: str
+
+- f3. Value: None; Type: NoneType
+
+- f4. Value: None; Type: NoneType
+
+- f5. Value: None; Type: NoneType
+
+- f6. Value: 'test ok'; Type: str
+
+- f7. Value: 'test not ok'; Type: str
+
+- f8. Error: z is not defined
+
+- f9. Value: 13; Type: int
+```
+</details>
+
+### Global and Local Variables
+
+What is the value of the `total` variable in the following program?
+
+```{python}
+z = 3
+
+def f1(x, y):
+    z = 5
+    return x + y + z
+
+def f2(x, y, z=1):
+    return x + y + z
+
+def f3(x, y):
+    return x + y + z
+
+total = f1(2, 3) + f2(3, 1) + f3(1, 0)
+print(total)
+```
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+z = 3
+
+def f1(x, y):
+    z = 5
+    return x + y + z
+
+def f2(x, y, z=1):
+    return x + y + z
+
+def f3(x, y):
+    return x + y + z
+
+total = f1(2, 3) + f2(3, 1) + f3(1, 0)
+
+print(f1(2, 3))  
+# The local variable z within f1 is used -> f1 returns 10
+
+print(f2(3, 1))  
+# The local variable z within f1 is used
+# Its default value is 1 -> f2 returns 5
+
+print(f3(1, 0)) 
+# The global variable z is used -> f3 returns 4
+
+print(total)
+```
+</details>
+
+### Calculator
+
+Write a `calculator` function that:
+
+- takes two numbers as input
+- returns the addition, subtraction, multiplication, and division of these two numbers as output
+
+Use the tuple unpacking property to assign the results to variables in a single line.
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+def calculator(a, b):
+    return a + b, a - b, a * b, a / b
+
+add, sub, mult, div = calculator(5, 3)
+print(add, sub, mult, div)
+```
+</details>
+
+### Deduplicating a List
+
+Write a function that:
+
+- takes a list of any elements as input
+- returns a new list consisting of the unique elements of the initial list
+- allows via an optional parameter to sort or not the final list in alphanumeric order. The default behavior should be not to sort.
+
+Hint: The procedure was discussed in the tutorial on dictionaries and sets.
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+def dedup(l, sort=False):
+    l_dedup = list(set(l))
+    if sort:
+        l_dedup.sort()
+    return l_dedup
+
+l = ["a", "a", "b", "c"]
+print(dedup(l))  # Default behavior: no sorting
+print(dedup(l, sort=True))  # Modified behavior: sorting
+```
+</details>
+
+### Multiplying List Elements
+
+Write a function that:
+
+- takes a list of numbers as input
+- prints: "There are $n$ numbers in the list." with $n$ being the actual number
+- multiplies all elements of the list (without using a pre-coded function)
+- returns the result
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+def multiply(l):
+    print("There are " + str(len(l)) + " numbers in the list.")
+    c
+
+ = 1
+    for x in l:
+        c *= x  # Equivalent to: c = c * x
+    return c
+
+l = [2, 8, 3]
+multiply(l)
+```
+</details>
+
+### Variance in a Population and Variance in a Sample
+
+In an exercise from the previous tutorial, we manually coded the calculation of the variance of a list of numbers using the formula: $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
+
+Strictly speaking, this formula is valid when calculating **population variance**. If we only observe a sample of the population, we do not calculate the variance but estimate it, and we must then use the following formula to obtain an **unbiased estimator of the true variance**: $$s^2 = {\frac {1}{n-1}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$.
+
+To account for this distinction:
+
+- code a `mean` function that calculates the mean as in the previous tutorial exercise
+- code a `var` function that calculates the variance as in the previous tutorial exercise (calling the `mean` function to calculate the mean)
+- modify the `var` function to allow the user to choose the calculation method via an optional `mode` parameter (default value: 'population' for calculation using the population formula; alternative value: 'sample' for calculation using the sample formula)
+
+Compare the values obtained in both cases with what the *black box* function `var` from the `numpy` library returns (see the solution to the previous tutorial exercise for the syntax, and see the [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) of the function, especially the `ddof` parameter to vary the calculation method).
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+def mean(x):
+    n = len(x)
+    sum_mean = 0
+    for x_i in x:
+        sum_mean += x_i
+    mean = sum_mean / n
+    return mean
+
+def var(x, mode="population"):
+    n = len(x)
+    mean_value = mean(x)
+    sum_var = 0
+    for x_i in x:
+        sum_var += (x_i - mean_value)**2
+    if mode == "population":
+        variance = sum_var / n
+    elif mode == "sample":
+        variance = sum_var / (n-1)
+    return variance
+
+x = [8, 18, 6, 0, 15, 17.5, 9, 1]
+print(mean(x))
+print(var(x))  # population
+print(var(x, mode="sample"))  # sample
+
+# Verification with numpy library functions
+import numpy as np
+print(np.mean(x))
+print(np.var(x))  # population
+print(np.var(x, ddof=1))  # sample
+```
+</details>
+
+### Recursive Functions: Factorial
+
+Recursive functions are functions that call themselves within the body of the function, causing infinite calls until a stopping criterion is reached.
+
+A good example of a recursive function is one that calculates the factorial of an integer. The factorial of a natural number $n$ is the product of all positive integers less than or equal to n. For example: $5! = 5*4*3*2*1 = 120$.
+
+Code this function and verify that it works correctly.
+
+```{python}
+# Test your answer in this cell
+
+```
+
+<details>
+<summary>Show the solution</summary>
+
+```{python}
+def factorial(n):
+    if n == 0:
+        # Stopping criterion
+        return 1
+    else:
+        return n * factorial(n-1)
+
+factorial(5)
+```
+</details>
+
+
+:::

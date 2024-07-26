@@ -1,0 +1,385 @@
+::: {.content-visible when-profile="fr"}
+# Introduction à la visualisation de données
+
+La visualisation de données (ou *dataviz*) est un outil indispensable pour faciliter la compréhension des données et mettre en lumière des phénomènes à partir de celles-ci, ainsi que pour favoriser une communication efficace des résultats des analyses. C'est néanmoins un domaine qui dépasse largement la seule compétence technique : les meilleures visualisations sont celles qui sont adaptées à la donnée qu'elles représentent, et qui parviennent à raconter une histoire à partir de celles-ci (*data storytelling*). Ce tutoriel ne vise donc pas à présenter en détails le sujet, mais propose une introduction aux principaux outils existants en `Python` pour produire des visualisations de données.
+
+Nous commencerons notre exploration par les graphiques intégrés dans `Pandas`, très simples et donc parfaits pour une analyse rapide des données. Puis, nous découvrirons `Seaborn`, une librairie qui permet de créer des visualisations attrayantes en très peu de lignes de code. Ces deux librairies sont basées sur `Matplotlib`, la très complète librairie de référence pour la visualisation en `Python`, qui permet des niveaux de personnalisation très avancés mais dont l'utilisation s'avère plus complexe, et ne sera donc pas directement abordée dans ce TP.
+
+
+
+
+## Pandas
+
+Comme nous l'avons vu dans le TP consacré, la librairie Pandas offre des outils nombreux et puissants pour manipuler les données tabulaires. Mais il est également équipé d'outils intégrés pour les visualiser. En particulier, la méthode `.plot()` permet de produire simplement des visualisations rapides des données analysées.
+
+### La méthode `.plot()`
+
+La méthode [.plot()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html), intégrée aux Series et aux DataFrames, simplifie le processus de création de graphiques en permettant de générer des visualisations standards avec une ligne de code, directement à partir de la structure de donnée. En coulisse, `.plot()` fait appel à Matplotlib pour le rendu graphique, ce qui signifie que tout graphique généré par Pandas peut être personnalisé davantage avec les fonctions de Matplotlib. Cette intégration offre un équilibre entre la commodité pour des tâches de visualisation rapides et la puissance de Matplotlib pour des besoins de personnalisation plus poussés, faisant de `.plot()` le point de départ idéal pour la visualisation de données en Python.
+
+### Exemples de graphiques
+
+Même si la méthode `.plot()` permet de produire simplement et rapidement des graphiques, les possibilités sont très nombreuses et dépendent des données en entrée. Dans cette section, nous proposons quelques exemples standards pour comprendre le fonctionnement de la méthode. Pour découvrir plus de possibilités, on pourra s'inspirer des nombreux exemples de la [documentation officielle](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html).
+
+Générons des données de synthèse imitant les données de caisse, qu'on utilisera comme base des graphiques.
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+```{python}
+# Configuration pour la reproductibilité
+np.random.seed(0)
+
+# Générer une plage de dates sur un mois
+dates = pd.date_range(start='2023-01-01', end='2023-01-31', freq='D')
+
+# Simuler des données de caisse pour le mois
+N_POINTS = 1000
+mean_price = 10
+std_dev_price = 4
+prices = np.random.normal(mean_price, std_dev_price, N_POINTS)
+quantities = 10 - 0.5 * prices + np.random.normal(0, 1.5, N_POINTS)
+data = {
+    'Date': np.random.choice(dates, N_POINTS),
+    'Transaction_ID': np.arange(N_POINTS) + 1,
+    'COICOP': np.random.choice(['01.1.1', '02.1.1', '03.1.1', '04.1.1'], N_POINTS),
+    'Enseigne': np.random.choice(['Carrefour', 'Casino', 'Lidl', 'Monoprix'], N_POINTS),
+    'Prix': prices,
+    'Quantité': quantities
+}
+
+# Créer le DataFrame
+df_caisse = pd.DataFrame(data)
+
+# Trier par date pour la cohérence
+df_caisse = df_caisse.sort_values(by='Date').reset_index(drop=True)
+
+# Afficher les premières lignes des données de caisse
+print(df_caisse.head())
+```
+
+#### Nuage de points (*scatter plot*)
+
+Les nuages de point permettent de visualiser la relation entre deux variables numériques continues. Illustrons cela à travers la relation entre le prix et les quantités des transactions.
+
+```{python}
+df_caisse.plot(x='Quantité', y='Prix', kind='scatter')
+```
+
+#### Diagrammes à barres (*bar chart*)
+
+Les diagrammes en bâtons sont idéaux pour la comparaison visuelle de différentes catégories. Ici, on utilise la méthode `.value_counts()` pour récupérer les fréquences de chaque modalité dans une `Series`, à laquelle on applique la méthode `.plot()` pour visualiser un diagramme à barres.
+
+```{python}
+df_caisse['Enseigne'].value_counts().plot(kind='bar')
+```
+
+#### Boîte à moustaches
+
+La boîte à moustache permet de visualiser rapidement les statistiques de dispersion d'une série statistique (médiane, quartiles, min, max) ainsi que la présence éventuelle de valeurs aberrantes
+
+```{python}
+df_caisse['Prix'].plot(kind="box")
+```
+
+#### Histogrammes (*histogram*)
+
+Les histogrammes aident à comprendre la distribution d'une variable numérique. Calculons l'histogramme des prix des transactions sur la période étudiée.
+
+```{python}
+df_caisse['Prix'].plot(kind='hist', bins=20)
+```
+
+#### Graphique linéaire (*lineplot*)
+
+```{python}
+df_caisse.groupby('Date')['Quantité'].sum().plot(kind='line')
+```
+
+### Personnalisation
+
+Comme évoqué précédemment, la fonctionnalité de graphiques intégrée à Pandas repose en fait sur la librairie Matplotlib, dans la mesure où la méthode `.plot()` de Pandas n'est qu'une surcouche (*wrapper*) autour de la fonction [plot()](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html) de Matplotlib. En théorie, toutes les possibilités de personnalisation permises par Matplotlib le sont avec les graphiques créés par ce biais en Pandas. Pour y accéder, il faut importer Matplotlib en plus de Pandas.
+
+```{python}
+import matplotlib.pyplot as plt
+```
+
+Illustrons quelques possibilités de personnalisation en reprenant un des graphiques précédents.
+
+```{python}
+df_caisse.plot(x='Quantité', y='Prix', kind='scatter', color="green", alpha=0.6)
+plt.title('Relation entre le prix et la quantité des produits')
+plt.xlabel('Quantité vendue')
+plt.xlabel('Prix (en €)')
+```
+
+### Aller plus loin
+
+Là encore, de nombreuses autres possibilités sont décrites dans la [documentation](https://pandas.pydata.org/docs/user_guide/visualization.html#basic-plotting-plot). Néanmoins, les fonctionnalités graphiques intégrées à Pandas restent avant tout faites pour de la visualisation rapide des données analysées. Pour des visualisations plus attrayantes sans avoir besoin de produire beaucoup plus de code, on préférera la librairie `Seaborn`.
+
+
+
+
+## Seaborn
+
+Seaborn est une bibliothèque de visualisation de données qui offre une interface de haut niveau pour créer des graphiques statistiques esthétiques. Elle est également construite sur Matplotlib et s'intègre bien avec les structures de données Pandas, permettant des visualisations plus élaborées que celles proposées nativement par Pandas sans pour autant exiger une quantité de code significative. Cela en fait un excellent choix pour aller au-delà des capacités graphiques de Pandas tout en évitant la complexité de Matplotlib.
+
+Importons le package Seaborn. L'usage courant est de lui donner l'alias `sns` pour éviter les redondances de code.
+
+```{python}
+import seaborn as sns
+```
+
+### Exemples de graphiques
+
+Pour les mêmes graphiques que ceux réalisés précédemment avec Pandas, Seaborn offre des représentations beaucoup plus agréables à l'oeil. On en présente quelques unes dans la suite de ce tutoriel. 
+
+#### Nuage de points
+
+On peut facilement ajouter de l'information à un nuage de point, par exemple via la couleur des points ou leur style (taille, marqueur..). Analysons le nuage de points des prix en fonction de la quantité selon l'enseigne dans laquelle a eu lieu la transaction.
+
+```{python}
+sns.scatterplot(data=df_caisse, x='Prix', y='Quantité', hue='Enseigne', alpha=0.6)
+```
+
+#### Histogramme
+
+Avec Seaborn, on peut facilement ajouter une courbe d'estimation de densité à un histogramme. Cela permet de vérifier visuellement la normalité des données.
+
+```{python}
+sns.histplot(df_caisse['Prix'], kde=True, color='skyblue')
+```
+
+#### Pair plot
+
+Le *pair plot* permet d'analyser les relations entre deux variables continues en couplant un nuage de points et des courbes de densité.
+
+```{python}
+subset = df_caisse[['Prix', 'Quantité', 'Enseigne']]
+sns.pairplot(subset, hue='Enseigne')
+```
+
+#### Violin plot
+
+Similaire à la boîte à moustache, le *violin plot* ajoute une courbe d'estimation de densité afin de mieux visualiser les masses de la distribution.
+
+```{python}
+sns.violinplot(data=df_caisse, x='Enseigne', y='Prix', hue="Enseigne")
+```
+
+### Personnalisation
+
+Comme Pandas, les fonctionnalités graphiques de Seaborn sont basées sur celles de Matplotlib. Là encore, on peut donc personnaliser les graphiques en faisant appel aux fonctions `plt.xxx` de Matplotlib.
+
+```{python}
+sns.scatterplot(data=df_caisse, x='Prix', y='Quantité', hue='Enseigne', alpha=0.6)
+plt.title('Relation entre prix et quantité selon les enseignes')
+```
+
+### Aller plus loin
+
+Les possibilités de Seaborn sont vraiment larges, et la [gallerie](https://seaborn.pydata.org/examples/index.html) d'exemples de Seaborn illustre de nombreuses possibilités visuellement agréables et faciles à reproduire. Pour des besoins plus avancés, on pourra s'orienter selon les cas vers d'autres librairies graphiques :
+
+- pour des possibilités de personnalisation maximales (au prix d'un certain coût d'apprentissage) : [Matplotlib](https://matplotlib.org/stable/tutorials/pyplot.html), la librairie fondamentale de visualisation en Python ;
+
+- pour les utilisateurs de R : [plotnine](https://plotnine.readthedocs.io/en/v0.12.4/), une librairie qui implémente la "grammaire graphique" propre à [ggplot2](https://ggplot2.tidyverse.org/) ;
+
+- pour de la visualisation interactive : [plotly](https://plotly.com/) et [bokeh](http://bokeh.org/) sont les plus utilisées.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+::: {.content-visible when-profile="en"}
+
+# Introduction to data visualization
+
+Data visualization (or *dataviz*) is an essential tool for understanding data and highlighting phenomena from it, as well as for effectively communicating analysis results. However, it is a field that goes far beyond mere technical skill: the best visualizations are those that are well-suited to the data they represent and can tell a story from it (*data storytelling*). This tutorial does not aim to cover the topic in detail but provides an introduction to the main tools available in `Python` for producing data visualizations.
+
+We will start our exploration with the built-in plotting capabilities in `Pandas`, which are very simple and therefore perfect for quick data analysis. Then, we will discover `Seaborn`, a library that allows you to create attractive visualizations with very few lines of code. Both libraries are based on `Matplotlib`, the comprehensive reference library for visualization in `Python`, which allows for very advanced customization but is more complex to use, and will therefore not be directly addressed in this tutorial.
+
+## Pandas
+
+As we saw in the dedicated tutorial, the Pandas library offers numerous powerful tools for manipulating tabular data. But it is also equipped with built-in tools for visualizing it. In particular, the `.plot()` method allows for quick visualizations of analyzed data.
+
+### The `.plot()` method
+
+The [.plot()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html) method, integrated into Series and DataFrames, simplifies the process of creating charts by allowing standard visualizations to be generated with a single line of code directly from the data structure. Behind the scenes, `.plot()` calls Matplotlib for the graphical rendering, which means that any chart generated by Pandas can be further customized with Matplotlib functions. This integration offers a balance between convenience for quick visualization tasks and the power of Matplotlib for more extensive customization needs, making `.plot()` the ideal starting point for data visualization in Python.
+
+### Example plots
+
+Even though the `.plot()` method allows for simple and quick chart generation, the possibilities are vast and depend on the input data. In this section, we provide some standard examples to understand the method's functionality. For more possibilities, you can refer to the numerous examples in the [official documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html).
+
+Let's generate some synthetic data mimicking cash register data, which we will use as the basis for the charts.
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+```{python}
+# Configuration for reproducibility
+np.random.seed(0)
+
+# Generate a range of dates over a month
+dates = pd.date_range(start='2023-01-01', end='2023-01-31', freq='D')
+
+# Simulate cash register data for the month
+N_POINTS = 1000
+mean_price = 10
+std_dev_price = 4
+prices = np.random.normal(mean_price, std_dev_price, N_POINTS)
+quantities = 10 - 0.5 * prices + np.random.normal(0, 1.5, N_POINTS)
+data = {
+    'Date': np.random.choice(dates, N_POINTS),
+    'Transaction_ID': np.arange(N_POINTS) + 1,
+    'COICOP': np.random.choice(['01.1.1', '02.1.1', '03.1.1', '04.1.1'], N_POINTS),
+    'Store': np.random.choice(['Carrefour', 'Casino', 'Lidl', 'Monoprix'], N_POINTS),
+    'Price': prices,
+    'Quantity': quantities
+}
+
+# Create the DataFrame
+df_cash = pd.DataFrame(data)
+
+# Sort by date for consistency
+df_cash = df_cash.sort_values(by='Date').reset_index(drop=True)
+
+# Display the first rows of the cash register data
+print(df_cash.head())
+```
+
+#### Scatter plot
+
+Scatter plots allow for visualizing the relationship between two continuous numerical variables. Let's illustrate this with the relationship between price and quantities of transactions.
+
+```{python}
+df_cash.plot(x='Quantity', y='Price', kind='scatter')
+```
+
+#### Bar chart
+
+Bar charts are ideal for visually comparing different categories. Here, we use the `.value_counts()` method to retrieve the frequencies of each category in a `Series`, and then apply the `.plot()` method to visualize a bar chart.
+
+```{python}
+df_cash['Store'].value_counts().plot(kind='bar')
+```
+
+#### Box plot
+
+The box plot allows for quickly visualizing the dispersion statistics of a statistical series (median, quartiles, min, max) as well as the presence of any outliers.
+
+```{python}
+df_cash['Price'].plot(kind="box")
+```
+
+#### Histogram
+
+Histograms help understand the distribution of a numerical variable. Let's calculate the histogram of the prices of transactions over the studied period.
+
+```{python}
+df_cash['Price'].plot(kind='hist', bins=20)
+```
+
+#### Line plot
+
+```{python}
+df_cash.groupby('Date')['Quantity'].sum().plot(kind='line')
+```
+
+### Customization
+
+As mentioned earlier, the built-in plotting functionality in Pandas is actually based on the Matplotlib library, as the `.plot()` method in Pandas is just a wrapper around the [plot()](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html) function of Matplotlib. In theory, all the customization possibilities allowed by Matplotlib are available with the charts created this way in Pandas. To access them, you need to import Matplotlib in addition to Pandas.
+
+```{python}
+import matplotlib.pyplot as plt
+```
+
+Let's illustrate some customization possibilities by revisiting one of the previous charts.
+
+```{python}
+df_cash.plot(x='Quantity', y='Price', kind='scatter', color="green", alpha=0.6)
+plt.title('Relationship between price and quantity of products')
+plt.xlabel('Quantity sold')
+plt.ylabel('Price (in €)')
+```
+
+### Going further
+
+Once again, many other possibilities are described in the [documentation](https://pandas.pydata.org/docs/user_guide/visualization.html#basic-plotting-plot). However, the built-in plotting functionality in Pandas is mainly designed for quick visualization of analyzed data. For more attractive visualizations without needing to write much more code, the `Seaborn` library is preferable.
+
+## Seaborn
+
+Seaborn is a data visualization library that provides a high-level interface for creating attractive statistical graphics. It is also built on Matplotlib and integrates well with Pandas data structures, allowing for more elaborate visualizations than those natively offered by Pandas without requiring significant amounts of code. This makes it an excellent choice for going beyond Pandas' plotting capabilities while avoiding the complexity of Matplotlib.
+
+Let's import the Seaborn package. The common practice is to give it the alias `sns` to avoid code redundancy.
+
+```{python}
+import seaborn as sns
+```
+
+### Example plots
+
+For the same charts created earlier with Pandas, Seaborn offers much more visually appealing representations. Here are a few examples.
+
+#### Scatter plot
+
+We can easily add information to a scatter plot, for example, through the color of the points or their style (size, marker, etc.). Let's analyze the scatter plot of prices against quantity by store where the transaction took place.
+
+```{python}
+sns.scatterplot(data=df_cash, x='Price', y='Quantity', hue='Store', alpha=0.6)
+```
+
+#### Histogram
+
+With Seaborn, you can easily add a density estimation curve to a histogram. This allows you to visually check the normality of the data.
+
+```{python}
+sns.histplot(df_cash['Price'], kde=True, color='skyblue')
+```
+
+#### Pair plot
+
+The pair plot allows for analyzing the relationships between two continuous variables by combining a scatter plot and density curves.
+
+```{python}
+subset = df_cash[['Price', 'Quantity', 'Store']]
+sns.pairplot(subset, hue='Store')
+```
+
+#### Violin plot
+
+Similar to the box plot, the violin plot adds a density estimation curve to better visualize the masses of the distribution.
+
+```{python}
+sns.violinplot(data=df_cash, x='Store', y='Price', hue="Store")
+```
+
+### Customization
+
+Like Pandas, Seaborn's plotting functionality is based on Matplotlib. Again, you can customize the charts by using the `plt.xxx` functions from Matplotlib.
+
+```{python}
+sns.scatterplot(data=df_cash, x='Price', y='Quantity', hue='Store', alpha=0.6)
+plt.title('Relationship between price and quantity by store')
+```
+
+### Going further
+
+Seaborn's possibilities are truly extensive, and the [gallery](https://seaborn.pydata.org/examples/index.html) of Seaborn examples illustrates many visually pleasing and easy-to-reproduce possibilities. For more advanced needs, you can consider other graphic libraries depending on the case:
+
+- For maximum customization possibilities (at the cost of some learning curve): [Matplotlib](https://matplotlib.org/stable/tutorials/pyplot.html), the fundamental visualization library in Python;
+- For R users: [plotnine](https://plotnine.readthedocs.io/en/v0.12.4/), a library that implements the "grammar of graphics" specific to [ggplot2](https://ggplot2.tidyverse.org/);
+- For interactive visualization: [plotly](https://plotly.com/) and [bokeh](http://bokeh.org/) are the most used.
+
+
+:::
