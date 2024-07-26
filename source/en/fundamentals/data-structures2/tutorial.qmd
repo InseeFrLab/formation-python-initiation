@@ -8,21 +8,21 @@ In the previous tutorial, we worked with sequential data structures: lists and t
 
 Dictionaries are **unordered collections of key-value pairs**. A dictionary is defined using the following syntax: `d = {'key1': 'value1', 'key2': 'value2'}`.
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 inventory
----
+```
 
----{python}
+```{python}
 type(inventory)
----
+```
 
 It is possible to have as many keys as desired in a dictionary. However, **keys are unique** to uniquely identify the associated value. If you try to define a dictionary with a duplicated key, Python does not return an error, but only the last duplicated key is taken into account.
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L', 'coffee': '300g'}
 inventory
----
+```
 
 What can a dictionary contain? Keys can be of different types, but strings or integers are generally used. The values of a dictionary can be any type of Python object.
 
@@ -30,37 +30,37 @@ What can a dictionary contain? Keys can be of different types, but strings or in
 
 Since dictionaries are **unordered**, there is no notion of position: you access a value by its associated key. For example, to retrieve the value (`'1.5L'`) associated with the key `'milk'`:
 
----{python}
+```{python}
 inventory['milk']
----
+```
 
 Additional key-value pairs can be added to an existing dictionary using variable assignment syntax.
 
----{python}
+```{python}
 inventory["cereal"] = "250g"
 inventory
----
+```
 
 Unlike lists, keys do not necessarily start at 0 and can be any number.
 
----{python}
+```{python}
 dic1 = {12: "Aveyron", 33: "Gironde"}
 
 print("The department 33 is " + dic1[33])  # String concatenation!
----
+```
 
 Similarly, values can be of different types, including data containers.
 
----{python}
+```{python}
 dic2 = {"scale": "C major",
         "notes": ["do", "re", "mi", "fa", "sol", "la", "si"]}
 
 dic2["notes"]
----
+```
 
 Dictionaries can also contain other dictionaries. This makes them particularly suitable for representing hierarchical data structures.
 
----{python}
+```{python}
 resume = {
     "marc": {"position": "manager", "experience": 7, "hobbies": ["sewing", "frisbee"]},
     "mirande": {"position": "engineer", "experience": 5, "hobbies": ["trekking"]}
@@ -68,77 +68,77 @@ resume = {
 
 print(resume["marc"])
 print(resume["marc"]["hobbies"][0])
----
+```
 
 Let's repeat: dictionaries have no notion of order. Therefore, there is no sense in querying the element at position `0` in a dictionary (unless the key `0` exists). Querying a non-existent key returns an error.
 
----{python}
+```{python}
 dic1 = {12: "Aveyron", 33: "Gironde"}
 
 dic1[0]
----
+```
 
 ### Modifying Elements
 
 It is possible to modify a value associated with an existing key in the dictionary. The new value can be of a different type from the original.
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 inventory['coffee'] = {'arabica': '250g', 'robusta': '400g'}
 inventory
----
+```
 
 ### Deleting Elements
 
 To delete a key (and the associated value), you can use the same operations as those used to delete elements from a list.
 
----{python}
+```{python}
 # Using the `del` operator
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 del inventory['milk']
 inventory
----
+```
 
----{python}
+```{python}
 # Using the `pop` method
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 inventory.pop('milk')
 inventory
----
+```
 
 ### Some Useful Methods
 
 We saw earlier that querying a non-existent key returns an error. The `.get()` method allows querying a key without being sure of its existence, as it does not return an error in this case, but the `None` object, which we will see in a future tutorial.
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 inventory.get('honey')
----
+```
 
 You can also specify a default value when the key does not exist.
 
----{python}
+```{python}
 inventory.get('honey', 'not found')
----
+```
 
 The `.keys()`, `.values()`, and `.items()` methods return the keys, values, and key-value pairs of a dictionary, respectively. The objects returned by these methods are a bit complex, but they can be converted to lists using the `list` function to query them by position.
 
----{python}
+```{python}
 resume = {
     "marc": {"position": "manager", "experience": 7, "hobbies": ["sewing", "frisbee"]},
     "mirande": {"position": "engineer", "experience": 5, "hobbies": ["triathlon"]}
 }
 
 list(resume.keys())
----
+```
 
----{python}
+```{python}
 list(resume.values())
----
+```
 
----{python}
+```{python}
 list(resume.items())
----
+```
 
 ## Sets
 
@@ -148,47 +148,47 @@ Sets are **unordered collections of unique elements**. As such, they can be seen
 
 Due to their similarity to dictionaries, sets are also defined using curly braces `{}`.
 
----{python}
+```{python}
 x = {3, 2, 1}
 x
----
+```
 
----{python}
+```{python}
 type(x)
----
+```
 
 Just like dictionaries, sets are **unordered**, so there is no notion of position. Asking for the element at position `i`, as in a list, returns an error.
 
----{python}
+```{python}
 x = {3, 2, 1}
 x[0]
----
+```
 
 ### Modifying Elements
 
 It is possible to add an element to a set using the `add` method.
 
----{python}
+```{python}
 x = {3, 2, 1}
 x.add("4")
 x
----
+```
 
 Adding an existing element changes nothing by definition.
 
----{python}
+```{python}
 x = {3, 2, 1}
 x.add(2)
 x
----
+```
 
 It is possible to remove an element from a set using the `remove` method.
 
----{python}
+```{python}
 x = {3, 2, 1}
 x.remove(2)
 x
----
+```
 
 ### Usage
 
@@ -198,32 +198,32 @@ Sets are not very often used in practice, but they are quite useful in certain s
 
 Suppose you want to remove duplicates from a given list. By definition, converting a list to a set removes duplicates. However, you generally want to return to a list, as sets do not offer the same flexibility as lists (for example, the ability to find an element by position). It is therefore common to perform the `list -> set -> list` chain of operations to deduplicate a list.
 
----{python}
+```{python}
 l = [1, 2, 3, 3, 2, 1]
 l_dedup = list(set(l))
 l_dedup
----
+```
 
 **Set Operations**
 
 Since sets programmatically represent mathematical sets, it is not surprising that they allow for elementary set operations. For example, union and intersection.
 
----{python}
+```{python}
 l1 = [5, 3, 2, 3, 3, 5, 8, 9]
 l2 = [3, 7, 0, 0, 1, 9, 4, 6]
----
+```
 
----{python}
+```{python}
 # Union: elements in l1, l2, or both
 l_union = list(set(l1) | set(l2))
 l_union
----
+```
 
----{python}
+```{python}
 # Intersection: elements in both l1 and l2
 l_inter = list(set(l1) & set(l2))
 l_inter
----
+```
 
 **Membership Tests**
 
@@ -231,14 +231,14 @@ Sets are also very useful for membership tests, as they offer much better perfor
 
 The concept of testing will be covered in a future tutorial. For now, let's note that a membership test such as "is element `a` in list `l`" is written in Python as `a in l` and returns `True` or `False` depending on whether `a` is actually present in list `l`.
 
----{python}
+```{python}
 l = [1, 2, 3]
 2 in l
----
+```
 
----{python}
+```{python}
 4 in l
----
+```
 
 Now, imagine performing this test on a list containing millions of elements. Exaggerating, the Python interpreter would then have to go through all the elements of the list one by one until it finds the element in question, which can take a long time.
 
@@ -293,7 +293,7 @@ Display using `print` operations:
 - the list of all subjects taught
 - the list of grades obtained by girls in both classes
 
----{python}
+```{python}
 results = {
     "6emeA": {"Miranda" : {"grades": {"physics": 16, "history": 12}},
               "Celestin": {"grades": {"physics": "absent", "history": 18}}
@@ -302,17 +302,17 @@ results = {
               "Josephine": {"grades": {"math": 16, "english": 20}}
              }
 }
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 print(list(results.keys()))
 
 print(results["6emeA"]["Miranda"]["grades"]["history"])
@@ -328,7 +328,7 @@ print(list(results["6emeA"]["Miranda"]["grades"].keys())
 
 print(list(results["6emeA"]["Miranda"]["grades"].values()) 
       + list(results["6emeB"]["Josephine"]["grades"].values()))
----
+```
 
 </details>
 
@@ -336,15 +336,15 @@ print(list(results["6emeA"]["Miranda"]["grades"].values())
 
 In previous tutorials, we saw the `len` function, which counts the number of elements in a sequence. Does this function work with dictionaries? What does it count?
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 resume = {
     "marc": {"position": "manager", "experience": 7, "hobbies": ["sewing", "frisbee"]},
     "miranda": {"position": "engineer", "experience": 5, "hobbies": ["trekking"]}
@@ -352,7 +352,7 @@ resume = {
 
 print(len(resume))
 print(len(resume["marc"]))
----
+```
 
 The `len` function applied to a dictionary counts the number of keys.
 
@@ -367,20 +367,20 @@ We saw that we can delete a key from a dictionary in two different ways:
 
 Beyond syntax, what are the two major differences between these two ways of deleting a key from a dictionary? Feel free to experiment with examples of your choice.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 
 print(inventory.pop('coffee'))
 print(inventory.pop('orange', 'unavailable'))
----
+```
 
 1st difference: when deleting an existing key with the `pop` method, the value associated with the key is returned. The `del` operation returns nothing (actually, a `None` object).
 
@@ -392,21 +392,21 @@ print(inventory.pop('orange', 'unavailable'))
 
 By exploiting the fact that the `pop` method used to delete a key from a dictionary returns the value associated with that key, propose a method to rename a dictionary key in a single operation.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 
 inventory['water'] = inventory.pop('milk')
 
 inventory
----
+```
 
 </details>
 
@@ -422,15 +422,15 @@ What will the following membership tests return? Verify your predictions.
 - `'cats' in animals.values()`
 - `'cats' in animals`
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 animals = {'cats': 5, 'dogs': 12}
 
 print(animals.keys())
@@ -446,7 +446,7 @@ print()
 print(animals)
 print('cats' in animals) 
 # True: this test is strictly equivalent to 'cats' in animals.keys()
----
+```
 
 </details>
 
@@ -454,22 +454,22 @@ print('cats' in animals)
 
 We saw that the `del` operation returns an error when used to delete a non-existent key from a dictionary. Using your new knowledge of membership tests, can you imagine a method (without necessarily implementing it) that would handle this case without an error?
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 inventory = {'coffee': '500g', 'milk': '1.5L'}
 
 key = 'chocolate'
 
 if key in inventory.keys():
     del inventory[key]
----
+```
 
 We use a membership test: if the key exists in the dictionary's keys, it is deleted. Otherwise, nothing happens. This syntax will become clearer with the next tutorial.
 
@@ -487,20 +487,20 @@ Construct a list of unique characters in this string, sorted alphabetically, i.e
 
 Hint: the procedure is similar to removing duplicates from a list.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 x = "cdabcdabcdabcdabcdabcdabcdabcdabcdab"
 l = list(set(x))
 l.sort()
 l
----
+```
 
 </details>
 
@@ -516,15 +516,15 @@ Question 1: find the characters that appear in both strings.
 
 Question 2: find the characters that appear in at least one of the two texts.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 cyrano1 = 'C’est un roc ! … c’est un pic ! … c’est un cap !'
 cyrano2 = 'Que dis-je, c’est un cap ? … C’est une péninsule !'
 
@@ -537,7 +537,7 @@ print(inter)
 
 union = list(set(cyrano1) | set(cyrano2))
 print(union)
----
+```
 
 </details>
 
@@ -547,22 +547,22 @@ The code below generates a list with the letters a, b, c, and d repeated 1 milli
 
 Using this syntax, compare the time taken for the same membership test when the list is converted to a set beforehand.
 
----{python}
+```{python}
 x = ['a', 'b', 'c', 'd'] * 1000000
 print(x[:10])
 
 %time 'e' in x
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 x = ['a', 'b', 'c', 'd'] * 1000000
 print(x[:10])
 
@@ -571,7 +571,7 @@ print(x_set)
 
 %time 'e' in x
 %time 'e' in x_set
----
+```
 
 The initial membership test is measured in milliseconds. The one performed on the set is measured in microseconds. The test is much
 

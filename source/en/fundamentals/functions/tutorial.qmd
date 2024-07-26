@@ -12,9 +12,9 @@ A **function** can be defined as a structured block of code that:
 
 We have already seen and used several functions in previous tutorials (`range`, `len`, etc.). We have also used **methods**, which are simply functions *attached* to a particular type of object. Let's use a well-known function to illustrate their general operation.
 
----{python}
+```{python}
 len('do re mi fa sol')
----
+```
 
 In this example, the `len` function:
 
@@ -30,11 +30,11 @@ In practice, you will want to define your own functions to structure your code a
 
 The `def` statement is used to define a function.
 
----{python}
+```{python}
 def welcome(name):
     msg = "Greetings " + name + "!"
     return msg
----
+```
 
 Let's analyze the syntax of the function definition:
 
@@ -49,15 +49,15 @@ Let's analyze the syntax of the function definition:
 
 Defining a function as above makes the function's code available in the Python environment. It is only when the function is **called** in the code, with arguments, that the contained code is executed and produces a result.
 
----{python}
+```{python}
 welcome("Miranda")
----
+```
 
 As explained in the introduction, the main purpose of a function is to reuse code without duplicating it in the program.
 
----{python}
+```{python}
 welcome("Romuald")
----
+```
 
 ## Passing Arguments
 
@@ -65,18 +65,18 @@ welcome("Romuald")
 
 When you call a function and specify arguments, you are "passing" arguments to it. These arguments then become variables that can be used within the context of the function. Unlike a `for` loop, the variables created do not persist after the function call.
 
----{python}
+```{python}
 def addition(x, y):
     return x + y
----
+```
 
----{python}
+```{python}
 addition(5, 3)
----
+```
 
----{python}
+```{python}
 x  # The variable does not persist in memory after the function call
----
+```
 
 Note: We will look more closely at this behavior later in the tutorial through the concepts of global and local variables.
 
@@ -84,15 +84,15 @@ Note: We will look more closely at this behavior later in the tutorial through t
 
 The number of arguments you can pass to a function varies. Strictly speaking, you can define a function that does not need any arguments, although this is rarely useful in practice.
 
----{python}
+```{python}
 def nine():
     return 9
----
+```
 
----{python}
+```{python}
 a = nine()
 a
----
+```
 
 ### Passing by Position and Passing by Keyword
 
@@ -104,32 +104,32 @@ In Python, functions allow two modes of passing arguments:
 
 Let's illustrate this difference with a function that simply performs a division.
 
----{python}
+```{python}
 def division(x, y):
     return x / y
----
+```
 
----{python}
+```{python}
 division(4, 2)  # Passing by position
----
+```
 
----{python}
+```{python}
 division(x=4, y=2)  # Passing by keyword
----
+```
 
 In the case of passing by position, maintaining the order is imperative.
 
----{python}
+```{python}
 print(division(0, 5))
 print(division(5, 0))
----
+```
 
 In the case of passing by keyword, the order no longer matters.
 
----{python}
+```{python}
 print(division(x=0, y=5))
 print(division(y=5, x=0))
----
+```
 
 ### Mandatory and Optional Arguments
 
@@ -137,15 +137,15 @@ When defining a function, it is common to want to mix arguments that the user mu
 
 Let's see how we can modify the behavior of the `print` function using an optional argument.
 
----{python}
+```{python}
 print("hello")
 print("hello")
----
+```
 
----{python}
+```{python}
 print("hello", end=' ')
 print("hello")
----
+```
 
 We modified the behavior of the first `print` call via the optional `end` parameter. By default, this value is set to `'\n'`, meaning a newline. We changed it to a space in the second cell, hence the difference in result.
 
@@ -157,18 +157,18 @@ This example also illustrates the link between the mandatory or optional nature 
 
 How do you specify that an argument is optional when defining a function? Simply by specifying a default value for the argument. For example, let's build a function that concatenates two strings and allows the user to specify a separator.
 
----{python}
+```{python}
 def concat_string(str1, str2, sep=''):
     return str1 + sep + str2
----
+```
 
----{python}
+```{python}
 concat_string('hello', 'world')  # Default behavior
----
+```
 
----{python}
+```{python}
 concat_string('hello', 'world', sep=', ')  # Modified behavior
----
+```
 
 This example also illustrates the rule when mixing positional and keyword arguments: **positional arguments must always be placed before keyword arguments**.
 
@@ -178,47 +178,47 @@ This example also illustrates the rule when mixing positional and keyword argume
 
 We have seen that every function returns a result as output and that the `return` statement specifies this result. When the function is called, it is evaluated to the value specified by `return`, and this value can then be stored in a variable and used in subsequent calculations, and so on.
 
----{python}
+```{python}
 def division(x, y):
     return x / y
----
+```
 
----{python}
+```{python}
 a = division(4, 2)
 b = division(9, 3)
 division(a, b)  # 2 / 3
----
+```
 
 Important note: **when a `return` statement is reached in a function, the rest of the function is not executed**.
 
----{python}
+```{python}
 def test(x):
     return x
     print("Will I be displayed?")
     
 test(3)
----
+```
 
 ### The `None` Value
 
 A function necessarily returns a result when called... but what happens if you do not specify a `return` statement?
 
----{python}
+```{python}
 def welcome(name):
     print("Greetings " + name + "!")
     
 x = welcome("Leontine")
 print(x)
 print(type(x))
----
+```
 
 As expected, the function printed a welcome message in the console. But we did not specify a value to return. Since an object must still be returned by definition, Python returns the value `None`, which is a special object of type `NoneType` representing the absence of a value. Its only purpose is to clearly indicate the difference between a real value and the absence of a value.
 
 To test if an object has the value `None`, use the following syntax:
 
----{python}
+```{python}
 x is None  # and not x == None
----
+```
 
 ### Returning Multiple Results
 
@@ -226,7 +226,7 @@ A function by definition returns **one** result, which can be any Python object.
 
 In practice, it is very common to return a *tuple* when you want to return multiple objects. Tuples have the property of *tuple unpacking*, which we have seen several times in previous tutorials. This property allows a very convenient and elegant syntax for assigning the results of a function to variables.
 
----{python}
+```{python}
 def powers(x):
     return x**2, x**3, x**4
 
@@ -235,7 +235,7 @@ a, b, c = powers(2)
 print(a)
 print(b)
 print(c)
----
+```
 
 ## Local and Global Variables
 
@@ -245,31 +245,31 @@ All the objects (variables, functions, etc.) that you define during a Python ses
 
  recorded in Python's ***global scope***. These objects can then be accessed anywhere in the program, including within a function. When this happens, they are referred to as **global variables**.
 
----{python}
+```{python}
 x = 5  # global variable
 
 def add(y):
     return x + y
 
 add(6)
----
+```
 
 The `x` variable was not passed as an argument to the `add` function nor defined within the function. Yet, it can be called within the function. This allows sharing elements between multiple functions.
 
 However, arguments passed to a function or variables defined within the function are **local variables**: they only exist within the specific context of the function and cannot be reused once the function has executed.
 
----{python}
+```{python}
 def add(y):
     z = 5  # local variable
     return z + y
 
 add(6)
 print(z)
----
+```
 
 Within a given context, each variable is unique. However, it is possible to have variables with the same name in different contexts. Let's see what happens when we create a variable within the context of a function, even though it already exists in the global context.
 
----{python}
+```{python}
 x = 5  # global variable
 
 def add(y):
@@ -277,7 +277,7 @@ def add(y):
     return x + y
 
 add(6)
----
+```
 
 This is a good example of a more general principle: **the most local context always takes precedence**. When Python performs the `x + y` operation, it looks for the values of `x` and `y` first in the local context and then, only if it doesn't find them, in the higher context—in this case, the global context.
 
@@ -330,27 +330,27 @@ Note: We will see in a future tutorial on best practices that **it is best to li
 
 Create a `power` function that takes two numbers `x` and `y` as input and returns the power function $x^y$.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 def power(x, y):
     return x**y
 
 power(2, 3)
----
+```
 </details>
 
 ### Predicting Values Returned by Functions
 
 Given `x = 5` and `y = 3` as arguments passed to each of the functions defined in the following cell. Predict what the functions will return (value and `type` of the object), and verify your answers.
 
----{python}
+```{python}
 def f1(x):
     return x
 
@@ -380,17 +380,17 @@ def f8(x, y, z):
 
 def f9(x, y, z=5):
     return x + y + z
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 - f1. Value: 5; Type: int
 
 - f2. Value: ''; Type: str
@@ -408,14 +408,14 @@ def f9(x, y, z=5):
 - f8. Error: z is not defined
 
 - f9. Value: 13; Type: int
----
+```
 </details>
 
 ### Global and Local Variables
 
 What is the value of the `total` variable in the following program?
 
----{python}
+```{python}
 z = 3
 
 def f1(x, y):
@@ -430,17 +430,17 @@ def f3(x, y):
 
 total = f1(2, 3) + f2(3, 1) + f3(1, 0)
 print(total)
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 z = 3
 
 def f1(x, y):
@@ -466,7 +466,7 @@ print(f3(1, 0))
 # The global variable z is used -> f3 returns 4
 
 print(total)
----
+```
 </details>
 
 ### Calculator
@@ -478,21 +478,21 @@ Write a `calculator` function that:
 
 Use the tuple unpacking property to assign the results to variables in a single line.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 def calculator(a, b):
     return a + b, a - b, a * b, a / b
 
 add, sub, mult, div = calculator(5, 3)
 print(add, sub, mult, div)
----
+```
 </details>
 
 ### Deduplicating a List
@@ -505,15 +505,15 @@ Write a function that:
 
 Hint: The procedure was discussed in the tutorial on dictionaries and sets.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 def dedup(l, sort=False):
     l_dedup = list(set(l))
     if sort:
@@ -523,7 +523,7 @@ def dedup(l, sort=False):
 l = ["a", "a", "b", "c"]
 print(dedup(l))  # Default behavior: no sorting
 print(dedup(l, sort=True))  # Modified behavior: sorting
----
+```
 </details>
 
 ### Multiplying List Elements
@@ -535,15 +535,15 @@ Write a function that:
 - multiplies all elements of the list (without using a pre-coded function)
 - returns the result
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 def multiply(l):
     print("There are " + str(len(l)) + " numbers in the list.")
     c
@@ -555,7 +555,7 @@ def multiply(l):
 
 l = [2, 8, 3]
 multiply(l)
----
+```
 </details>
 
 ### Variance in a Population and Variance in a Sample
@@ -572,15 +572,15 @@ To account for this distinction:
 
 Compare the values obtained in both cases with what the *black box* function `var` from the `numpy` library returns (see the solution to the previous tutorial exercise for the syntax, and see the [doc](https://numpy.org/doc/stable/reference/generated/numpy.var.html) of the function, especially the `ddof` parameter to vary the calculation method).
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 def mean(x):
     n = len(x)
     sum_mean = 0
@@ -611,7 +611,7 @@ import numpy as np
 print(np.mean(x))
 print(np.var(x))  # population
 print(np.var(x, ddof=1))  # sample
----
+```
 </details>
 
 ### Recursive Functions: Factorial
@@ -622,15 +622,15 @@ A good example of a recursive function is one that calculates the factorial of a
 
 Code this function and verify that it works correctly.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 def factorial(n):
     if n == 0:
         # Stopping criterion
@@ -639,5 +639,5 @@ def factorial(n):
         return n * factorial(n-1)
 
 factorial(5)
----
+```
 </details>

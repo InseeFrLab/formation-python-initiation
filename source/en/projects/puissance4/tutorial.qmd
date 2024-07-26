@@ -2,11 +2,11 @@
 
 In this project, we will implement a Connect 4 game (called "Puissance 4" in French) with a rather basic graphical interface. To achieve this, we will use the fundamental objects of Python.
 
----{python}
+```{python}
 import copy
 
 import solutions
----
+```
 
 ## Game rules
 
@@ -48,35 +48,35 @@ In the grid initialization function, each element will therefore be initialized 
 
 ### Expected result
 
----{python}
+```{python}
 grid = solutions.display_grid()
 grid
----
+```
 
----{python}
+```{python}
 print(f'Number of rows: {len(grid)}')
 print(f'Number of columns: {len(grid[0])}')
----
+```
 
 ### Your turn!
 
----{python}
+```{python}
 def display_grid():
     # Your code here
     return grid
----
+```
 
----{python}
+```{python}
 # Checking the result
 grid = display_grid()
 grid
----
+```
 
----{python}
+```{python}
 # Checking the result
 print(f'Number of rows: {len(grid)}')
 print(f'Number of columns: {len(grid[0])}')
----
+```
 
 ## Representation of the grid
 
@@ -86,29 +86,29 @@ To do this, we will create **a function that takes the previously initialized gr
 
 **Hint**: A possible solution involves two concepts we have seen in previous exercises: string concatenation and the `join` function, which "joins" the elements of a list by separating them with a certain character. Here is a reminder of an example using these two concepts:
 
----{python}
+```{python}
 l = ["a", "b", "c", "d", "e"]
 l_join = "START " + ", ".join(l) + " END"
 print(l_join)
----
+```
 
 ### Expected result
 
----{python}
+```{python}
 solutions.display_grid(grid)
----
+```
 
 ### Your turn!
 
----{python}
+```{python}
 def display_grid():
     # Your code here
----
+```
 
----{python}
+```{python}
 # Checking the result
 display_grid(grid)
----
+```
 
 ## Game function
 
@@ -132,31 +132,31 @@ Optional: Return an error message if a player tries to play in a nonexistent col
 
 ### Expected result
 
----{python}
+```{python}
 grid = solutions.display_grid()  # Initialization
 grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 1st turn
 grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="Y")  # 2nd turn
 grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 3rd turn
 solutions.display_grid(grid)
----
+```
 
 ### Your turn!
 
----{python}
+```{python}
 def make_move(grid, column_to_play, disc_color):
     new_grid = copy.deepcopy(grid)  # Avoid modifying the initial grid
     # Your code here
     return new_grid
----
+```
 
----{python}
+```{python}
 # Checking the result
 grid = display_grid()  # Initialization
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 1st turn
 grid = make_move(grid=grid, column_to_play=5, disc_color="Y")  # 2nd turn
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 3rd turn
 display_grid(grid)
----
+```
 
 ## Detection of a victory (horizontal)
 
@@ -170,7 +170,7 @@ First, we focus on detecting a horizontal victory. To do this, we will use two f
 
 ### Expected result
 
----{python}
+```{python}
 # Detection of a (horizontal) victory on a row
 row1 = [" ", "R", "R", "R", "Y", "Y", " "]
 row2 = [" ", "R", "R", "R", "R", "Y", " "]
@@ -178,9 +178,9 @@ row2 = [" ", "R", "R", "R", "R", "Y", " "]
 print(solutions.check_row_victory(row1))  # Returns False
 print()  # New line
 print(solutions.check_row_victory(row2))  # Returns True
----
+```
 
----{python}
+```{python}
 # Detection of a (horizontal) victory on a grid
 grid = solutions.display_grid()  # Initialization
 print(solutions.check_horizontal_victory(grid))  # Returns False
@@ -194,30 +194,30 @@ solutions.display_grid(grid)
 print()  # New line
 
 print(solutions.check_horizontal_victory(grid))  # Returns True
----
+```
 
 ### Your turn!
 
----{python}
+```{python}
 def check_row_victory(row):
     # Your code here
----
+```
 
----{python}
+```{python}
 # Checking the result
 row1 = [" ", "R", "R", "R", "Y", "R", " "]
 row2 = [" ", "R", "R", "R", "R", "Y", " "]
 
 print(check_row_victory(row1))  # Returns False
 print(check_row_victory(row2))  # Returns True
----
+```
 
----{python}
+```{python}
 def check_horizontal_victory(grid):
     # Your code here
----
+```
 
----{python}
+```{python}
 # Checking the result
 grid = display_grid()  # Initialization
 print(check_horizontal_victory(grid))  # Returns False
@@ -228,7 +228,7 @@ grid = make_move(grid=grid, column_to_play=4, disc_color="R")
 grid = make_move(grid=grid, column_to_play=5, disc_color="R")
 display_grid(grid)
 print(check_horizontal_victory(grid))  # Returns True
----
+```
 
 ## Detection of a victory (vertical)
 
@@ -240,7 +240,7 @@ Now, we focus on detecting a vertical victory. Compared to the previous situatio
 
 ### Expected result
 
----{python}
+```{python}
 
 
 # Detection of a (vertical) victory on a grid
@@ -256,16 +256,16 @@ solutions.display_grid(grid)
 print()  # New line
 
 print(solutions.check_vertical_victory(grid))  # Returns True
----
+```
 
 ### Your turn!
 
----{python}
+```{python}
 def check_vertical_victory(grid):
     # Your code here
----
+```
 
----{python}
+```{python}
 # Checking the result
 grid = display_grid()  # Initialization
 print(check_vertical_victory(grid))  # Returns False
@@ -279,7 +279,7 @@ display_grid(grid)
 print()  # New line
 
 print(check_vertical_victory(grid))  # Returns True
----
+```
 
 ## End of game
 
@@ -297,7 +297,7 @@ Ideally, we would not want to manually test after each move if the game is over 
 
 ### Expected result
 
----{python}
+```{python}
 grid = solutions.initialize_grid()  # Initialization
 print("Turn 1")
 grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
@@ -307,23 +307,23 @@ print("Turn 3")
 grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
 print("Turn 4")
 grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
----
+```
 
 ### Your turn!
 
----{python}
+```{python}
 def check_victory(grid):
     # Your code here
----
+```
 
----{python}
+```{python}
 def make_move_and_check_victory(grid, column_to_play, disc_color):
     grid = copy.deepcopy(grid)
     # Your code here
     return grid
----
+```
 
----{python}
+```{python}
 # Checking the result
 grid = initialize_grid()  # Initialization
 print("Turn 1")
@@ -334,4 +334,4 @@ print("Turn 3")
 grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
 print("Turn 4")
 grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
----
+```

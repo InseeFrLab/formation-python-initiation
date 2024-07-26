@@ -4,13 +4,13 @@ In the previous tutorial, we studied tests, which allow a computer to make decis
 
 To illustrate this idea, let's imagine we want to display each element of a list. For now, we would do:
 
----{python}
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 print(gamme[0])
 print(gamme[1])
 print(gamme[2])
----
+```
 
 And so on. We can immediately see that such an operation would be impractical for a list containing hundreds of elements. Loops will solve this problem in an elegant and efficient manner.
 
@@ -22,10 +22,10 @@ The first type of loop we will look at is the `for` loop. A `for` loop allows yo
 
 Let's illustrate how a `for` loop works by solving the problem presented earlier.
 
----{python}
+```{python}
 for note in gamme:
     print(note)
----
+```
 
 ### Syntax
 
@@ -37,10 +37,10 @@ Let's analyze the structure of a `for` loop:
 
 As with conditional statements like `if`/`else`, indentation is crucial. If you forget it, Python returns an error.
 
----{python}
+```{python}
 for note in gamme:
     print(note)
----
+```
 
 ### Operation
 
@@ -48,13 +48,13 @@ Now let's look in more detail at what the `for` statement does. It defines an **
 
 Note that a loop defines a variable without needing the traditional `variable = value` assignment syntax. Furthermore, this variable is not deleted once the loop is finished; it then takes the value of the last element of the iterator.
 
----{python}
+```{python}
 note
----
+```
 
 The iterator does not necessarily have to be a list; it can be any iterable object. This includes all the sequential objects we have seen.
 
----{python}
+```{python}
 for char in "YMCA":
     print(char)
 
@@ -63,17 +63,17 @@ print()  # Newline
 t = (1, 2, 3, 4, 5)
 for i in t:
     print(i*9)
----
+```
 
 However, the class of iterable objects is much larger than just sequential objects. For example, you can iterate over the keys of a dictionary, even though we saw in a previous tutorial that it is not a sequential object, since there is no notion of order in a dictionary.
 
----{python}
+```{python}
 inventaire = {'coffee': '500g', 'milk': '1.5L', 'cereal': '1kg'}
 for key in inventaire:
     print(key)
     print(inventaire[key])
     print()  # Newline
----
+```
 
 ### Iteration over integers with the `range` function
 
@@ -81,48 +81,48 @@ In programming, it is common to want to iterate over a series of integers. Inste
 
 For example, let's see how we can very simply display a multiplication table using this function.
 
----{python}
+```{python}
 table = 9
 
 for i in range(11):
     print(i, i*9)
----
+```
 
 ### Iteration over indices
 
 We have seen that a `for` loop works by iterating over the *elements* of an iterable. However, in the case of a sequential object like a list, we may sometimes want to iterate over the *indices* of the object to manipulate both the indices and the elements contained in the object. In this case, the `range` function can be used in combination with the `len` function to create an iterable object that contains exactly the indices of the initial list.
 
----{python}
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i in range(len(gamme)):
     print("The note number " + str(i) + " in the C major scale is " + gamme[i])
----
+```
 
 Since this need is frequent but the code above is not very readable, there is a built-in Python function called `enumerate` that allows iterating over both objects and indices. It is therefore preferable to use this syntax, which is clearer and helps avoid some errors.
 
 The `enumerate` function applied to an iterable object returns a new iterable object that contains all the pairs `(index, element)` in the object, in the form of tuples. Since it is a special type of object -- a generator, which we will see in a more advanced tutorial -- you need to apply the `list` function to display its content.
 
----{python}
+```{python}
 list(enumerate(gamme))
----
+```
 
 Let's see how to rewrite the previous loop with this new syntax.
 
----{python}
+```{python}
 for i, note in enumerate(gamme):
     print("The note number " + str(i) + " in the C major scale is " + note)
----
+```
 
 NB: To assign variables in the `if` statement, we used a handy technique we had already mentioned in an exercise in the tutorial on lists and tuples: tuple unpacking. Let's illustrate it with an example:
 
----{python}
+```{python}
 t = (1, 2, 3)
 a, b, c = t
 print(a)
 print(b)
 print(c)
----
+```
 
 ## while loops
 
@@ -130,12 +130,12 @@ print(c)
 
 `while` loops provide an alternative way to specify repetitive procedures. The idea is no longer to iterate over a fixed number of objects, but to **iterate as long as a condition (logical test) is met**.
 
----{python}
+```{python}
 i = 1
 while i <= 5:
     print(i)
     i = i + 1
----
+```
 
 ### Syntax
 
@@ -151,13 +151,13 @@ In a `while` loop, on the other hand, the stopping criterion is given by a logic
 
 What happens if we forget to increment `i`? The stopping criterion is never reached, so the loop is infinite, and we must use the "Stop" button (black square) in Jupyter to stop the running program. Let's verify this by incrementing the wrong variable.
 
----{python}
+```{python}
 #| eval: false
 i = 1
 j = 1
 while i <= 5:
     j = j + 1
----
+```
 
 Therefore, when we suspect that a `while` loop is taking too long to run, we must consider the possibility that we have fallen into an infinite loop, and ensure that the stopping criterion is reachable.
 
@@ -167,7 +167,7 @@ An alternative way to specify a stopping criterion is to use the `break` stateme
 
 Let's illustrate its operation with an example. The first line creates an infinite loop because, by definition, `True` is always evaluated as `True`. The program then asks the user to type a name, and does so indefinitely until the user types the expected name. Only then is the `break` statement reached, and the loop stops. The message "Welcome <your_name>" is finally displayed, as the second `print` is not included in the loop.
 
----{python}
+```{python}
 #| eval: false
 your_name = "Romain"
 
@@ -177,13 +177,13 @@ while True:
     if name == your_name:
         break
 print("Welcome " + your_name)
----
+```
 
 It is important to note that a `break` statement only terminates the loop of the directly superior level. In the case of a multi-level loop, it is entirely possible for operations to continue even when a `break` statement has been reached.
 
 Let's illustrate this principle with an example.
 
----{python}
+```{python}
 i = 0
 while i <= 5:
     for j in range(5):
@@ -193,7 +193,7 @@ while i <= 5:
  print("Break.")
             break
     i += 1
----
+```
 
 At each iteration of the `while` loop, a `for` loop is launched, which reaches a `break` statement at the third iteration (when `j` is 2). This stops the `for` loop, but not the `while` loop, which executes its subsequent instructions (incrementing `i` by one unit) before proceeding to the next iteration.
 
@@ -203,7 +203,7 @@ The `continue` statement allows you to skip to the next iteration of the loop.
 
 Let's enhance the previous example to illustrate its operation. As long as a different name than the expected one is entered, the `continue` statement is evaluated, and the program continues to ask for a name. When the correct name is entered, the program asks the user to enter a password. If the password is the expected one, the `break` statement is reached and executed, and the loop stops. If the password is incorrect, however, the loop restarts at the beginning of the execution block, so you need to enter a name again before the password.
 
----{python}
+```{python}
 #| eval: false
 your_name = ""
 
@@ -217,7 +217,7 @@ while True:
     if password == "insee2021":
         break
 print("Welcome " + your_name)
----
+```
 
 NB: The code above is only for example purposes. As we will see in a future tutorial on best coding practices, you should **never write secrets (passwords, tokens, etc.) in plain text in your code.**
 
@@ -266,7 +266,7 @@ NB: The code above is only for example purposes. As we will see in a future tuto
 
 Try to predict what the following `while` loops will produce, and check your results.
 
----{python}
+```{python}
 #| eval: false
 # 1.
 i = 0
@@ -294,12 +294,12 @@ while True:
 while 5 >= 3:
     continue
     print("hello world")
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
@@ -322,26 +322,26 @@ Source: [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot
 
 To visualize the importance of indentation in instruction blocks, try to predict what the following two programs will return. Which one has the expected effect?
 
----{python}
+```{python}
 numbers = [4, 5, 6]
 for num in numbers:
     if num == 5:
         print("The test is true")
         print(f"because the variable num is {num}")
----
+```
 
----{python}
+```{python}
 numbers = [4, 5, 6]
 for num in numbers:
     if num == 5:
         print("The test is true")
     print(f"because the variable num is {num}")
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
@@ -354,22 +354,22 @@ The first program is correct. In the second, the second `print` is not correctly
 
 Rewrite the following `for` loop using a `while` loop.
 
----{python}
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 for i, note in enumerate(gamme):
     print("The note number " + str(i) + " in the C major scale is " + note)
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 gamme = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
 
 i = 0
@@ -377,7 +377,7 @@ while i <= (len(gamme) - 1):
     # Subtract 1 from the length of `gamme` because the max index is 6
     print("The note number " + str(i) + " in the C major scale is " + gamme[i])
     i += 1
----
+```
 
 </details>
 
@@ -389,21 +389,21 @@ Given a target integer `target_num` and a list of integers `l` as defined in the
 
 - If yes, display the message 'The number `target_num` is at position `i` in the list', and end the loop.
 
----{python}
+```{python}
 target_num = 78
 
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 target_num = 78
 
 l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
@@ -417,7 +417,7 @@ for i, n in enumerate(l):
 if target_num in l:
     pos = l.index(target_num)
     print("The number " + str(target_num) + " is at position " + str(pos) + " in the list.")
----
+```
 
 </details>
 
@@ -431,15 +431,15 @@ The Fibonacci sequence is defined as follows:
 
 Write a program to calculate the first $n$ terms of the sequence using a `for` loop.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 n_terms = 20
 num1 = 0
 num2 = 1
@@ -451,7 +451,7 @@ for i in range(n_terms):
     num2 =
 
  num3
----
+```
 
 </details>
 
@@ -467,15 +467,15 @@ Here are some examples of queries your dictionary should return:
 
 - tables[12][7] -> 84
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 tables = {}
 
 for i in range(13):
@@ -486,7 +486,7 @@ for i in range(13):
 print(tables[2][3])
 print(tables[9][5])
 print(tables[12][7])
----
+```
 
 </details>
 
@@ -496,15 +496,15 @@ Calculate the minimum and maximum of the following series of values without usin
 
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 
 current_min = x[0]
@@ -517,7 +517,7 @@ for n in x[1:]:
 
 print(current_min == min(x))
 print(current_max == max(x))
----
+```
 
 </details>
 
@@ -539,15 +539,15 @@ NB:
 
 - in practice, you should never try to recode such functions yourself, but use functions from suitable packages like `numpy`.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 n = len(x)
 
@@ -568,7 +568,7 @@ print(variance)
 import numpy as np
 print(np.mean(x))
 print(np.var(x))
----
+```
 
 </details>
 
@@ -598,15 +598,15 @@ Using the `range` function, display:
 
 - All integers from 10 to 20 (20 included), in reverse order (from 20 to 10)
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 print(list(range(10)))
 
 print(list(range(10, 21)))
@@ -616,7 +616,7 @@ print(list(range(30, 41, 2)))
 print(list(range(10, 100, 10)))
 
 print(list(range(20, 9, -1)))
----
+```
 
 </details>
 
@@ -638,15 +638,15 @@ Game rules reminder:
 
 Note, `input` returns a string by default. Therefore, you need to convert the value of `p` to an integer (using the `int` function) for the game to work.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 right_price = 15
 
 while True:
@@ -661,6 +661,6 @@ while True:
         break
 
 print("spot on!")
----
+```
 
 </details>

@@ -18,12 +18,12 @@ Even though the `.plot()` method allows for simple and quick chart generation, t
 
 Let's generate some synthetic data mimicking cash register data, which we will use as the basis for the charts.
 
----{python}
+```{python}
 import pandas as pd
 import numpy as np
----
+```
 
----{python}
+```{python}
 # Configuration for reproducibility
 np.random.seed(0)
 
@@ -53,62 +53,62 @@ df_cash = df_cash.sort_values(by='Date').reset_index(drop=True)
 
 # Display the first rows of the cash register data
 print(df_cash.head())
----
+```
 
 #### Scatter plot
 
 Scatter plots allow for visualizing the relationship between two continuous numerical variables. Let's illustrate this with the relationship between price and quantities of transactions.
 
----{python}
+```{python}
 df_cash.plot(x='Quantity', y='Price', kind='scatter')
----
+```
 
 #### Bar chart
 
 Bar charts are ideal for visually comparing different categories. Here, we use the `.value_counts()` method to retrieve the frequencies of each category in a `Series`, and then apply the `.plot()` method to visualize a bar chart.
 
----{python}
+```{python}
 df_cash['Store'].value_counts().plot(kind='bar')
----
+```
 
 #### Box plot
 
 The box plot allows for quickly visualizing the dispersion statistics of a statistical series (median, quartiles, min, max) as well as the presence of any outliers.
 
----{python}
+```{python}
 df_cash['Price'].plot(kind="box")
----
+```
 
 #### Histogram
 
 Histograms help understand the distribution of a numerical variable. Let's calculate the histogram of the prices of transactions over the studied period.
 
----{python}
+```{python}
 df_cash['Price'].plot(kind='hist', bins=20)
----
+```
 
 #### Line plot
 
----{python}
+```{python}
 df_cash.groupby('Date')['Quantity'].sum().plot(kind='line')
----
+```
 
 ### Customization
 
 As mentioned earlier, the built-in plotting functionality in Pandas is actually based on the Matplotlib library, as the `.plot()` method in Pandas is just a wrapper around the [plot()](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html) function of Matplotlib. In theory, all the customization possibilities allowed by Matplotlib are available with the charts created this way in Pandas. To access them, you need to import Matplotlib in addition to Pandas.
 
----{python}
+```{python}
 import matplotlib.pyplot as plt
----
+```
 
 Let's illustrate some customization possibilities by revisiting one of the previous charts.
 
----{python}
+```{python}
 df_cash.plot(x='Quantity', y='Price', kind='scatter', color="green", alpha=0.6)
 plt.title('Relationship between price and quantity of products')
 plt.xlabel('Quantity sold')
 plt.ylabel('Price (in €)')
----
+```
 
 ### Going further
 
@@ -120,9 +120,9 @@ Seaborn is a data visualization library that provides a high-level interface for
 
 Let's import the Seaborn package. The common practice is to give it the alias `sns` to avoid code redundancy.
 
----{python}
+```{python}
 import seaborn as sns
----
+```
 
 ### Example plots
 
@@ -132,43 +132,43 @@ For the same charts created earlier with Pandas, Seaborn offers much more visual
 
 We can easily add information to a scatter plot, for example, through the color of the points or their style (size, marker, etc.). Let's analyze the scatter plot of prices against quantity by store where the transaction took place.
 
----{python}
+```{python}
 sns.scatterplot(data=df_cash, x='Price', y='Quantity', hue='Store', alpha=0.6)
----
+```
 
 #### Histogram
 
 With Seaborn, you can easily add a density estimation curve to a histogram. This allows you to visually check the normality of the data.
 
----{python}
+```{python}
 sns.histplot(df_cash['Price'], kde=True, color='skyblue')
----
+```
 
 #### Pair plot
 
 The pair plot allows for analyzing the relationships between two continuous variables by combining a scatter plot and density curves.
 
----{python}
+```{python}
 subset = df_cash[['Price', 'Quantity', 'Store']]
 sns.pairplot(subset, hue='Store')
----
+```
 
 #### Violin plot
 
 Similar to the box plot, the violin plot adds a density estimation curve to better visualize the masses of the distribution.
 
----{python}
+```{python}
 sns.violinplot(data=df_cash, x='Store', y='Price', hue="Store")
----
+```
 
 ### Customization
 
 Like Pandas, Seaborn's plotting functionality is based on Matplotlib. Again, you can customize the charts by using the `plt.xxx` functions from Matplotlib.
 
----{python}
+```{python}
 sns.scatterplot(data=df_cash, x='Price', y='Quantity', hue='Store', alpha=0.6)
 plt.title('Relationship between price and quantity by store')
----
+```
 
 ### Going further
 

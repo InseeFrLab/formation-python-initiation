@@ -10,7 +10,7 @@ You may have heard that Python is an "object-oriented programming" language. OOP
 
 **In Python, everything is an object** (in the OOP sense). Let's see what this means by retrieving the type of various objects we've seen in previous tutorials.
 
----{python}
+```{python}
 print(type(1))
 print(type("hello"))
 print(type([]))
@@ -21,7 +21,7 @@ def f(x):
     print(x)
 
 print(type(f))
----
+```
 
 These elements are all of different types, but they have one thing in common: the term `class`. Just as the `def` statement defines a function, the `class` statement defines a class of Python objects. Thus, each object usable in Python has a class that defines the object, its attributes, and its methods.
 
@@ -29,7 +29,7 @@ These elements are all of different types, but they have one thing in common: th
 
 Let's see how we can use the `class` statement to define our "lemon" object.
 
----{python}
+```{python}
 class Lemon:
 
     def __init__(self, color, juice_qty):
@@ -45,7 +45,7 @@ class Lemon:
             print("There is not enough juice in the lemon for the requested amount.")
         else:
             self.juice = max(0, self.juice - amount)  # avoids any negative value of `juice`
----
+```
 
 Let's analyze the syntax for constructing a class of objects:
 
@@ -63,13 +63,13 @@ Let's analyze the syntax for constructing a class of objects:
 
 The **class** can be seen as the **recipe that allows creating an object**: it defines the attributes and methods that all objects defined from this class will have. Defining a class as above simply makes this recipe available in the Python environment. To create an object according to this class, it must be **instantiated**.
 
----{python}
+```{python}
 lemon1 = Lemon(color="yellow", juice_qty=45)
 lemon2 = Lemon(color="green", juice_qty=32)
 
 print(type(lemon1))
 print(type(lemon2))
----
+```
 
 Here, we have created two instances of the `Lemon` class. These two instances are independent: Python sees them as two distinct objects. However, they were created from the same class and therefore have the same type.
 
@@ -83,12 +83,12 @@ An attribute is a **variable associated with an object**. An attribute can conta
 
 Once the object is instantiated, it is possible to access its attributes. The syntax is simple: `instance.attribute`.
 
----{python}
+```{python}
 print(lemon1.color)
 print(lemon2.color)
 print(lemon1.juice)
 print(lemon2.juice)
----
+```
 
 We can see that the two instances are **independent**: although they are of the same type, their attributes differ.
 
@@ -96,10 +96,10 @@ We can see that the two instances are **independent**: although they are of the 
 
 Modifying an attribute of an instance is very simple, the syntax is: `instance.attribute = new_value`.
 
----{python}
+```{python}
 lemon2.color = "red"
 print(lemon2.color)
----
+```
 
 It is also possible to add an attribute according to the same logic: `instance.new_attribute = value`. However, this is not good programming practice, as the class precisely serves to define the attributes that objects of a given class can have. Therefore, it is generally preferable to define attributes within the class rather than outside.
 
@@ -119,15 +119,15 @@ A method is a **function associated with an object**. It can use its attributes,
 
 The syntax for calling a method of an instantiated object is as follows: `instance.method(parameters)`.
 
----{python}
+```{python}
 lemon1.get_juice_qty()
----
+```
 
 Two remarks can be made about this syntax. The first is that **a method is a function *attached* to an instance of an object**. Unlike functions defined via the `def` statement, methods do not have an independent existence outside the object's instance. In our case, calling the `get_juice_qty()` function independently of the object returns an error.
 
----{python}
+```{python}
 get_juice_qty()
----
+```
 
 The second remark is that **we no longer specify the `self` parameter when manipulating an instance**. The instance itself has become the `self` (or rather *a* self). The link between the method and its instance is already made since the method cannot be used without first calling the instance.
 
@@ -135,13 +135,13 @@ The second remark is that **we no longer specify the `self` parameter when manip
 
 The main interest of methods is that they can access attributes and perform operations based on them, as well as modify them. Let's take our example again to illustrate this possibility.
 
----{python}
+```{python}
 lemon1 = Lemon(color="yellow", juice_qty=45)
 
 lemon1.get_juice_qty()
 lemon1.squeeze_juice(12)
 lemon1.get_juice_qty()
----
+```
 
 The `get_juice_qty` method simply displays the value of an attribute in a formatted way. The `squeeze_juice` method, on the other hand, permanently modifies the value of the `juice` attribute, as shown by the second call to `get_juice_qty`.
 
@@ -157,13 +157,13 @@ The fact that objects have attributes allows maintaining the **state of a resour
 
 At the same time, using objects that keep a state in memory can **limit the reproducibility of analyses**. To illustrate this, let's return to the example in the tutorial: execute the following cell several times in a row.
 
----
+```
 
 {python}
 lemon1.get_juice_qty()
 lemon1.squeeze_juice(12)
 lemon1.get_juice_qty()
----
+```
 
 The three executions give different results, even though the executed code is strictly the same. This illustrates the reproducibility issue: when using OOP, you must be mindful of the state of objects kept in memory, or you risk not getting the same results when replicating an analysis.
 
@@ -230,7 +230,7 @@ Modify the `Lemon` class, reproduced in the following cell, so that:
 
 Instantiate a new lemon and verify that everything works as expected.
 
----{python}
+```{python}
 class Lemon:
 
     def __init__(self, color, juice_qty):
@@ -246,17 +246,17 @@ class Lemon:
             print("There is not enough juice in the lemon for the requested amount.")
         else:
             self.juice = max(0, self.juice - amount)  # avoids any negative value of `juice`
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 class Lemon:
 
     def __init__(self, color, mass):
@@ -281,7 +281,7 @@ lemon = Lemon("yellow", 500)
 
 lemon.get_mass()
 lemon.get_juice_qty()
----
+```
 
 </details>
 
@@ -313,15 +313,15 @@ Implement a `BankAccount` class with:
 
 Create two clients and test that the various functionalities to be implemented work as expected.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 class BankAccount:
     def __init__(self, holder, balance):
         self.holder = holder
@@ -378,6 +378,6 @@ print()
 client2.transfer(client1, 2000)
 client2.show_balance() # - 2000
 client1.show_balance() # + 2000
----
+```
 
 </details>

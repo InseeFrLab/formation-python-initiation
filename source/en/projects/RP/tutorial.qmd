@@ -5,7 +5,7 @@ The goal of this project is to perform a quick statistical analysis of a dataset
 We will focus on the population estimate as of January 1st of each year, this estimate being made from censuses and population evolution models. The data is accessible on the Insee website at the following address: [https://www.insee.fr/en/statistics/1893198](https://www.insee.fr/en/statistics/1893198).
 The file we will use can be downloaded directly via this url: [https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls](https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls).
 
----{python}
+```{python}
 import copy
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,7 +13,7 @@ import geopandas as gpd
 import seaborn as sns
 
 import solutions
----
+```
 
 ## Part 1: Downloading and formatting data
 
@@ -29,18 +29,18 @@ Define the `load_data()` function which has no parameters and returns a `Dict` w
 
 #### Expected result
 
----{python}
+```{python}
 data = solutions.load_data()
 data["2022"]
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def load_data():
     # Your code here
     return data
----
+```
 
 ### Question 2
 
@@ -57,36 +57,36 @@ Now that the data is imported, we will format it into a single `DataFrame` with 
 
 #### Expected result
 
----{python}
+```{python}
 year = 2022
 df = solutions.reshape_table_by_year(data[f"{year}"], year)
 df
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def reshape_table_by_year(df, year):
     # Your code here
     return df
----
+```
 
 2.2 - Create a function `reshape_data(data)` which produces a `DataFrame` with the data for all the years between 1975 and 2022.
 
 #### Expected result
 
----{python}
+```{python}
 df = solutions.reshape_data(data)
 df
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def reshape_data(data):
     # Your code here
     return df
----
+```
 
 ## Part 2: Data visualization
 
@@ -99,16 +99,16 @@ You can look at the data for Haute Garonne (31), Loir-et-Cher (41), and Réunion
 
 #### Expected result
 
----{python}
+```{python}
 solutions.plot_population_by_gender_per_department(df, "31")
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def plot_population_by_gender_per_department(data, department_code):
     # Your code here
----
+```
 
 ### Question 4
 
@@ -118,39 +118,39 @@ To compare 2 graphs, it can be useful to display them side by side. Thanks to th
 
 #### Expected result
 
----{python}
+```{python}
 pyramide_data = solutions.get_age_pyramid_data(df, 2022)
 pyramide_data
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def get_age_pyramid_data(df, year):
     # Your code here
     return pyramide_data
----
+```
 
 4.2- Define the `plot_age_pyramid(df, year, ax=None)` function which represents the age pyramid of France for a given year. You can get inspiration from what was done in this [blog](https://maciejtarsa.medium.com/plotting-a-population-pyramid-in-python-52be034968b0).
 
 #### Expected result
 
----{python}
+```{python}
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
 solutions.plot_age_pyramid(df, 1975, ax=ax1)
 solutions.plot_age_pyramid(df, 2022, ax=ax2)
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def plot_age_pyramid(df, year, ax=None):
     if ax is None:
         ax = plt.gca()
     # Your code here
     return df
----
+```
 
 ## Part 3: An introduction to geographical data (optional to go further?)
 
@@ -166,18 +166,18 @@ Create a DataFrame from the `.json` file of French departments and regions menti
 
 #### Expected result
 
----{python}
+```{python}
 df_matching = solutions.load_departements_regions("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
 df_matching
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def load_departements_regions(url):
     # Your code here
     return df_matching
----
+```
 
 ### Question 6
 
@@ -185,18 +185,18 @@ Match the DataFrame containing population data by department with the DataFrame 
 
 #### Expected result
 
----{python}
+```{python}
 df_regions = solutions.match_department_regions(df, df_matching)
 df_regions
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def match_department_regions(df, df_matching):
     # Your code here
     return df_regions
----
+```
 
 ### Question 7
 
@@ -204,20 +204,20 @@ Download the geographical contour data of the regions using the `cartiflette` pa
 
 #### Expected result
 
----{python}
+```{python}
 geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS
 
 -COG-CARTO-TERRITOIRE'/raw.geojson")
 geo
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def load_geo_data(url):
     # Your code here
     return geo
----
+```
 
 ### Question 8
 
@@ -225,16 +225,16 @@ Produce a choropleth map of the 2022 population of French regions. You can consu
 
 #### Expected result
 
----{python}
+```{python}
 solutions.plot_population_by_regions(df_regions, geo, 2022)
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def plot_population_by_regions(df, geo, year):
     # Your code here
----
+```
 
 ### Question 9
 
@@ -244,47 +244,47 @@ The total population of a region is not sufficient to analyze the demographics o
 
 #### Expected result
 
----{python}
+```{python}
 df_growth = solutions.compute_population_growth_per_region(df_regions)
 df_growth
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def compute_population_growth_per_region(df_regions):
     # Your code here
     return df_growth
----
+```
 
 9.2- Write a function `compute_mean_population_growth_per_region(df, min_year, max_year)` which calculates the average population growth between two given years.
 
 #### Expected result
 
----{python}
+```{python}
 df_growth = solutions.compute_mean_population_growth_per_region(df_regions, 2015, 2022)
 df_growth
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def compute_mean_population_growth_per_region(df, geo, year):
     # Your code here
     return df_growth
----
+```
 
 9.3- Write a function `plot_growth_population_by_regions(df, geo, min_year, max_year)` which represents the average population growth between two given years for all French regions on a choropleth map.
 
 #### Expected result
 
----{python}
+```{python}
 solutions.plot_growth_population_by_regions(df_regions, geo, 2015, 2022)
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def plot_growth_population_by_regions(df, geo, min_year, max_year):
     # Your code here
----
+```

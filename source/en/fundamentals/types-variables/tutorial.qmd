@@ -13,69 +13,69 @@ Python offers different types of numerical objects. In this tutorial, we will fo
 
 In general, we use the `type` function to print the type of a Python object.
 
----{python}
+```{python}
 type(3)
----
+```
 
----{python}
+```{python}
 type(3.14)
----
+```
 
 The `float` and `int` functions can be used to convert from one type to another.
 
----{python}
+```{python}
 # Convert to float
 float(3)
----
+```
 
----{python}
+```{python}
 # Convert to float
 type(float(3))
----
+```
 
----{python}
+```{python}
 # Convert to int
 int(3.79)
----
+```
 
 Be cautious with float to int conversion, which truncates the decimal part.
 
 Floats can also be written in scientific notation:
 
----{python}
+```{python}
 2e3
----
+```
 
----{python}
+```{python}
 type(2e3)
----
+```
 
 ### Basic arithmetic operations
 
----{python}
+```{python}
 # Addition
 8 + 9
----
+```
 
----{python}
+```{python}
 # Subtraction
 5 - 2
----
+```
 
----{python}
+```{python}
 # Multiplication
 2 * 6
----
+```
 
----{python}
+```{python}
 # Division
 9 / 4
----
+```
 
----{python}
+```{python}
 # Division by 0
 3 / 0
----
+```
 
 Division by 0 produces an error. This was, of course, predictable. But it is not uncommon to have such errors in statistical calculations, especially with *NumPy* or *Pandas*, producing a similar error that needs to be debugged.
 
@@ -85,30 +85,30 @@ Code errors are a necessary and actually essential part of learning a language: 
 The error above, related to division by 0, produced a `Traceback`, i.e., a detailed log indicating at which step of the various operations performed by Python the error occurred, as well as the name of the error (`ZeroDivisionError`) and a description ("division by zero"). In this case, the error is simple, so the message allows us to understand the problem directly. For more complicated operations, the names and messages may be less obvious... but still useful to understand the source of the error - by indicating them in a search engine, for example.
 :::
 
----{python}
+```{python}
 # Euclidean division: quotient
 9 // 4
----
+```
 
----{python}
+```{python}
 # Euclidean division: remainder
 9 % 4
----
+```
 
----{python}
+```{python}
 # Power
 2 ** 5
----
+```
 
----{python}
+```{python}
 # Square root
 5 ** 0.5
----
+```
 
----{python}
+```{python}
 # Order of operations: usual convention
 2 + 5 * (10 - 4)
----
+```
 
 ## Strings
 
@@ -118,20 +118,20 @@ A *string* is defined by enclosing the information in single or double quotes.
 
 ### Definition
 
----{python}
+```{python}
 # First way
 'word'
----
+```
 
----{python}
+```{python}
 # Second way
 "this also works"
----
+```
 
----{python}
+```{python}
 # But be careful with mixing the two!
 'it's a disaster'
----
+```
 
 Syntax error: the second apostrophe is understood as the end of the string, and Python cannot interpret the rest of the sequence.
 
@@ -146,60 +146,60 @@ Why is it important to distinguish between these two types of errors? Because wh
 
 To avoid the syntax error, vary the characters when needed:
 
----{python}
+```{python}
 "it's fine"
----
+```
 
 Same in the reverse:
 
----{python}
+```{python}
 'no problem with "quotes"'
----
+```
 
 ### The `print` function
 
 Working with strings is an opportunity to discover the very practical and widely used `print` function. It simply displays the argument passed to it within parentheses **and** a newline by default.
 
----{python}
+```{python}
 # Display the string "me"
 "me"
----
+```
 
----{python}
+```{python}
 # Display the string "me" with print
 print("me")
----
+```
 
 So far, we have seen that we can simply execute a cell to display the contents of a string. But does it work with multiple strings?
 
----{python}
+```{python}
 # Who will be displayed?
 "me"
 "not me"
----
+```
 
 Here we see a characteristic behavior of Jupyter notebooks: only the last value returned in a cell is displayed. The `print` function allows us to overcome this limitation.
 
----{python}
+```{python}
 # And this time?
 print("me")
 print("me too")
----
+```
 
 ### Length of a string
 
 The `len` function counts the number of characters in a string, all characters included (letters, numbers, spaces, punctuation...).
 
----{python}
+```{python}
 len("I have 19 characters")
----
+```
 
 The "character" type does not exist in Python: a single character is defined as a string of length 1.
 
----{python}
+```{python}
 print(type("a"))
 print(len("a"))
----
+```
 
 ### Indexing
 
@@ -209,67 +209,67 @@ In Python, we use brackets `[]` to call the index of a sequence. More precisely,
 
 Important note: **indexing starts at 0 in Python**.
 
----{python}
+```{python}
 "a sequence that we will index"
----
+```
 
----{python}
+```{python}
 # First element
 "a sequence that we will index"[0]
----
+```
 
----{python}
+```{python}
 # Second element
 "a sequence that we will index"[1]
----
+```
 
----{python}
+```{python}
 # Last element
 "a sequence that we will index"[-1]
----
+```
 
----{python}
+```{python}
 # Extract everything from a certain character
 "a sequence that we will index"[4:]
----
+```
 
----{python}
+```{python}
 # Extract everything up to a certain character
 "a sequence that we will index"[:12]
----
+```
 
----{python}
+```{python}
 # Extract a substring
 "a sequence that we will index"[4:12]
----
+```
 
----{python}
+```{python}
 # Extract every 2 characters, starting from the 4th position
 "a sequence that we will index"[4::2]
----
+```
 
----{python}
+```{python}
 # Reverse a sequence
 "a sequence that we will index"[::-1]
----
+```
 
 To remember: it is because a string is considered a sequence by Python that we can index it. For example, indexing a number does not make sense and therefore returns an error.
 
----{python}
+```{python}
 2[3]
----
+```
 
 ### Some useful properties
 
----{python}
+```{python}
 # String concatenation
 "my address is: " + "10 Maple Street"
----
+```
 
----{python}
+```{python}
 # Repetition
 "echo - " * 5
----
+```
 
 ### Some useful methods
 
@@ -277,30 +277,30 @@ Different Python objects generally have **built-in methods** that allow performi
 
 We will see in a future chapter what methods in Python precisely consist of. For now, you can remember that methods are used in the format `object.method(parameters)` where the parameters are optional.
 
----{python}
+```{python}
 # Convert to uppercase
 "sequence 850".upper()
----
+```
 
----{python}
+```{python}
 # Convert to lowercase
 "sequence 850".lower()
----
+```
 
----{python}
+```{python}
 # Split words by spaces
 "a sequence    to split".split()
----
+```
 
----{python}
+```{python}
 # Split words by an arbitrary character
 "useful for making sub-sequences".split("-")
----
+```
 
----{python}
+```{python}
 # Use strings as templates
 "my address is: {}".format("10 Maple Street")
----
+```
 
 ### Going further with strings
 
@@ -316,75 +316,75 @@ To do this, we will assign objects to variables.
 
 Assignment is done in the format: `variable_name = object`. This allows us to perform operations with these variables.
 
----{python}
+```{python}
 x = 5
 x
 
 
----
+```
 
----{python}
+```{python}
 type(x)
----
+```
 
----{python}
+```{python}
 x + 5
----
+```
 
----{python}
+```{python}
 y = x + 2*x
 y
----
+```
 
 Unlike other programming languages, Python is said to be *dynamically* typed: it is possible to reassign a variable to an object of a different type. This makes reading and developing easier, but it can sometimes create problems that are difficult to debug... Therefore, always make sure that the type of the variable is the one you think you are handling.
 
----{python}
+```{python}
 x = 3
 x = "blabla"
 type(x)
----
+```
 
 Naturally, there are certain constraints on operations depending on the types of objects.
 
----{python}
+```{python}
 x = "test"
 y = 3
 x + y
----
+```
 
 However, it is possible to harmonize the types beforehand:
 
----{python}
+```{python}
 x = "test"
 y = 3
 z = str(y)
 x + z
----
+```
 
 ### Incrementation
 
 It is common to use a variable as a counter, incrementing it each time a given event occurs, for example.
 
----{python}
+```{python}
 a = 0
 print(a)
 a = a +1
 print(a)
----
+```
 
 This practice is so common that there are special operators for common arithmetic operations.
 
----{python}
+```{python}
 a = 0
 a += 1
 a
----
+```
 
----{python}
+```{python}
 b = 5
 b *= 3
 b
----
+```
 
 ## Exercises
 
@@ -437,14 +437,14 @@ Display the type of x when:
 - x = "test"
 - x = 3.5
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 x = 3
 print(type(x))
 
@@ -453,7 +453,7 @@ print(type(x))
 
 x = 3.5
 print(type(x))
----
+```
 </details>
 
 ### String lengths
@@ -464,20 +464,20 @@ Calculate the sum of the lengths of the following three strings:
 - "and a second"
 - "never two without three"
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 a = "a first string"
 b = "and a second"
 c = "never two without three"
 
 len(a) + len(b) + len(c)
----
+```
 </details>
 
 ### Formatting postal codes
@@ -491,21 +491,21 @@ Try defining the following postal codes in both `int` and `string` format:
 
 What do you conclude?
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 cp1_int = 92120
 cp1_str = "92120"
 
 print(cp1_int, cp1_str) # No problem
 
 cp2_int = 02350 
----
+```
 
 Error: Python does not accept defining an integer that starts with a 0. Postal codes must therefore be defined as strings.
 
@@ -518,17 +518,17 @@ Count the number of times the letter e appears in the following string:
 
 **Hint**: you can use the built-in method [count](https://docs.python.org/3/library/stdtypes.html#str.count).
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 a = "I am counting the e's."
 a.count('e')
----
+```
 </details>
 
 ### Detecting letters
@@ -537,17 +537,17 @@ Find the first position where the letter e appears in the following string: "I a
 
 **Hint**: you can use the built-in method [find](https://docs.python.org/3/library/stdtypes.html#str.find).
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 a = "I am counting the e's."
 a.find('e')
----
+```
 </details>
 
 ### Removing spaces in a string
@@ -556,18 +556,18 @@ Remove the extra spaces at the beginning and end of the following string:
 
 **Hint**: you can use the built-in method [strip](https://docs.python.org/3/library/stdtypes.html#str.strip).
 
----{python}
+```{python}
 # Type your answer in this cell
 a = "    A poorly formatted string.         "
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 a = "    A poorly formatted string.         "
 a.strip()
----
+```
 </details>
 
 ### Escaping characters
@@ -576,16 +576,16 @@ The `\` character allows escaping (neutralizing) a special character within a st
 
 **Hint**: examples of usage are available in the [official documentation](https://docs.python.org/3/reference/lexical_analysis.html#literals).
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 "just a \"small\" test"
----
+```
 </details>
 
 ### A first algorithm
@@ -597,20 +597,20 @@ Perform the following sequence of operations using increment operators, and prin
 - multiply it by 4
 - add 22 to it
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 a = 1
 a -= 5
 a *= 4
 a += 22
 print(a)
----
+```
 </details>
 
 ### Composing strings
@@ -624,35 +624,35 @@ Find two different ways from the tutorial to compose the sequence "we are in 202
 
 **Hint**: one of the two methods involves modifying (slightly) one of the two sequences.
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
----{python}
+```{python}
 a1 = "we are in"
 a2 = "we are in {}"
 b = "2024"
 
 print(a1 + " " + b)
 print(a2.format(b))
----
+```
 </details>
 
 ### `f-strings`
 
 `f-strings` are a somewhat special but very practical form of strings, added in Python version 3.6. To understand their interest, let's go back to the solution of the previous exercise, which illustrated two ways to compose the string "we are in 2024".
 
----{python}
+```{python}
 a1 = "we are in"
 a2 = "we are in {}"
 b = "2024"
 
 print(a1 + " " + b)
 print(a2.format(b))
----
+```
 
 These two
 
@@ -664,55 +664,55 @@ These two
 
 Using the [official documentation](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) as inspiration, use `f-strings` to solve these various problems.
 
----{python}
+```{python}
 # Type your answer in this cell
----
+```
 
 <details>
 <summary>Show solution</summary>
 
 First problem: composing strings with numeric values.
 
----{python}
+```{python}
 a1 = "we are in"
 b = 2024
 
 # print(a1 + " " + b)  # Error
 print(a1 + " " + str(b))
----
+```
 Direct concatenation returns an error -> you must convert the numeric value to a string first.
 
 Second problem: juxtaposition of multiple strings.
 
----{python}
+```{python}
 a = "we are in"
 b = "2024"
 c = "and my name is"
 d = "Miranda"
 
 print(a + " " + b + " " + c + " " + d)
----
+```
 The syntax quickly becomes unreadable, as you must manually add separators (space) between each part.
 
 Third problem: composing strings with variable injection.
 
----{python}
+```{python}
 a = "we are in {}"
 b = "2024"
 c = "and my name is {}"
 d = "Miranda"
 
 print(a.format(b) + " " + c.format(d))
----
+```
 The syntax remains unreadable, as you must inject values into each string.
 
 Solution: using f-strings.
 
----{python}
+```{python}
 year = 2024
 name = "Miranda"
 
 print(f"we are in {year} and my name is {name}")
----
+```
 Much more readable!
 </details>

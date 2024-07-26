@@ -15,12 +15,12 @@ The APIs we will use are:
 
 Let's start by importing the packages we will need throughout this project.
 
----{python}
+```{python}
 import requests
 import pandas
 import seaborn as sns
 import matplotlib.pyplot as plt
----
+```
 
 ## Part 1: Retrieving geographic coordinates for a given location
 
@@ -39,24 +39,24 @@ Define a function `build_request_nominatim` that constructs the request URL for 
 
 #### Expected result
 
----{python}
+```{python}
 url_request_nominatim = solutions.build_request_nominatim("France", "Montrouge")
 url_request_nominatim
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def build_request_nominatim(country, city):
     # Your code here
     return url_request
----
+```
 
----{python}
+```{python}
 # Checking the result
 url_request_nominatim = build_request_nominatim("France", "Montrouge")
 url_request_nominatim
----
+```
 
 ### Question 2
 
@@ -68,28 +68,28 @@ Define a function `get_lat_long` that retrieves the central latitude and longitu
 
 #### Expected result
 
----{python}
+```{python}
 lat, long = solutions.get_lat_long(query=url_request_nominatim)
 print(lat, long)
 print(type(lat))
 print(type(long))
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def get_lat_long(query):
     # Your code here
     return latitude, longitude
----
+```
 
----{python}
+```{python}
 # Checking the result
 lat, long = get_lat_long(query=url_request_nominatim)
 print(lat, long)
 print(type(lat))
 print(type(long))
----
+```
 
 ## Part 2: Retrieving weather forecasts
 
@@ -105,24 +105,24 @@ Knowing all this information and using the documentation, define a function `bui
 
 #### Expected result
 
----{python}
+```{python}
 url_request_open_meteo = solutions.build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def build_request_open_meteo(latitude, longitude):
     # Your code here
     return url_request
----
+```
 
----{python}
+```{python}
 # Checking the result
 url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
----
+```
 
 ### Question 4
 
@@ -137,43 +137,43 @@ Define a function `get_meteo_data` that retrieves the complete data dictionary r
 
 #### Expected result
 
----{python}
+```{python}
 predictions = solutions.get_meteo_data(url_request_open_meteo)
 type(predictions)
----
+```
 
----{python}
+```{python}
 wrong_request = solutions.build_request_open_meteo(latitude=lat, longitude="seventeen-point-four")
 output = solutions.get_meteo_data(wrong_request)
 print(output)
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def get_meteo_data(query):
     # Your code here
     return response.json()
----
+```
 
----{python}
+```{python}
 # Checking the result
 predictions = get_meteo_data(url_request_open_meteo)
 type(predictions)
----
+```
 
----{python}
+```{python}
 # Checking the result
 wrong_request = build_request_open_meteo(latitude=lat, longitude="seventeen-point-four")
 output = get_meteo_data(wrong_request)
 print(output)
----
+```
 
 ### Question 5
 
 To understand the structure of the data we retrieved, explore the returned predictions dictionary (keys, different levels, format of the predictions, format of the variable indicating the dates/times of the predictions, etc.)
 
----{python}
+```{python}
 #| code-fold: true
 #| code-summary: "Show code"
 
@@ -191,7 +191,7 @@ print(predictions['hourly']["time"][-5:])
 print()
 print(predictions['hourly']["relativehumidity_2m"][:5])
 print(predictions['hourly']["windspeed_10m"][:5])
----
+```
 
 ## Part 3: Constructing and visualizing a *bad hair index*
 
@@ -210,24 +210,24 @@ Define a function `preprocess_predictions` that formats the predictions from the
 
 #### Expected result
 
----{python}
+```{python}
 df_preds = solutions.preprocess_predictions(predictions)
 df_preds.head()
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def preprocess_predictions(predictions):
     # Your code here
     return df
----
+```
 
----{python}
+```{python}
 # Checking the result
 df_preds = preprocess_predictions(predictions)
 df_preds.head()
----
+```
 
 ### Question 7
 
@@ -240,31 +240,31 @@ Define a function `plot_agg_avg_bhi` that calculates the aggregated index in eac
 
 #### Expected result
 
----{python}
+```{python}
 solutions.plot_agg_avg_bhi(df_preds, agg_var="day")
----
+```
 
----{python}
+```{python}
 solutions.plot_agg_avg_bhi(df_preds, agg_var="hour")
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def plot_agg_avg_bhi(df_preds, agg_var="day"):
     # Your code here
     return None
----
+```
 
----{python}
+```{python}
 # Checking the result
 plot_agg_avg_bhi(df_preds, agg_var="day")
----
+```
 
----{python}
+```{python}
 # Checking the result
 plot_agg_avg_bhi(df_preds, agg_var="hour")
----
+```
 
 What do you conclude for the coming week?
 
@@ -276,28 +276,28 @@ Define a `main` function that represents the *bad hair index* for a given countr
 
 #### Expected result
 
----{python}
+```{python}
 solutions.main(country="Germany", city="Berlin", agg_var="day")
----
+```
 
----{python}
+```{python}
 solutions.main(country="Germany", city="Berlin", agg_var="hour")
----
+```
 
 #### Your turn!
 
----{python}
+```{python}
 def main(country, city, agg_var="day"):
     # Your code here
     return None
----
+```
 
----{python}
+```{python}
 # Checking the result
 main(country="Germany", city="Berlin", agg_var="day")
----
+```
 
----{python}
+```{python}
 # Checking the result
 main(country="Germany", city="Berlin", agg_var="hour")
----
+```

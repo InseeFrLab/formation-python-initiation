@@ -12,34 +12,34 @@ Lists are constructed with square brackets **[]**, and the elements of the list 
 
 Let's assign a first list to a variable `a`:
 
----{python}
+```{python}
 a = [1, 2, 3]
 print(a)
----
+```
 
 The list `a` consists of integers, but a list can practically contain objects of any type.
 
----{python}
+```{python}
 b = ["a sequence", 56, "d"]
 print(b)
----
+```
 
 It is also possible to create lists of lists (and so on), which allows for creating hierarchical data structures.
 
----{python}
+```{python}
 c = ["a sequence", 56, ["this list is nested", 75, "o"]]
 print(c)
----
+```
 
 A nested list can also be constructed from already defined lists.
 
----{python}
+```{python}
 item1 = ["coffee", "500g"]
 item2 = ["biscuits", "20"]
 item3 = ["milk", "1L"]
 inventory = [item1, item2, item3]
 print(inventory)
----
+```
 
 However, in the next tutorial, we will see that dictionaries are generally more suitable data structures than lists for representing hierarchical data.
 
@@ -47,69 +47,69 @@ However, in the next tutorial, we will see that dictionaries are generally more 
 
 Like strings, you can use the `len` function to count the number of elements in a list.
 
----{python}
+```{python}
 d = ["this", "is", "a", "list"]
 len(d)
----
+```
 
 ### Indexing
 
 Since lists are sequences, they are indexed similarly to strings. It is important to remember that position numbering starts at 0 in Python.
 
----{python}
+```{python}
 # Third element of the list a
 print(a[2])
----
+```
 
 Of course, it is not possible to request an element that does not exist. Python returns an error indicating that the requested index is out of bounds.
 
----{python}
+```{python}
 print(a[5])
----
+```
 
 To index a list contained within another list, use double indexing.
 
----{python}
+```{python}
 # First element of the sublist at the second position of list c
 print(c[2][0])
----
+```
 
 In terms of indexing, everything that was possible with strings is also possible with lists.
 
----{python}
+```{python}
 # All elements from the 1st position
 print(b[1:])
----
+```
 
----{python}
+```{python}
 # Reverse a list
 print(a[::-1])
----
+```
 
 ### Modifying Elements
 
 It is possible to modify elements of a list manually, with a syntax similar to variable assignment.
 
----{python}
+```{python}
 # Reassign an element
 d = [1, 2, "toto", 4]
 d[2] = 3
 print(d)
----
+```
 
----{python}
+```{python}
 # Substitute an element
 a = [1, 2, 3]
 b = ["do", "re", "mi"]
 b[0] = a[2]
 print(b)
----
+```
 
 ### Deleting Elements
 
 The `del` statement allows you to delete an element by position. The elements that were after the deleted element then have their index reduced by 1.
 
----{python}
+```{python}
 e = [1, "do", 6]
 print(e)
 print(e[2])
@@ -117,59 +117,59 @@ print(e[2])
 del e[1]
 print(e)
 print(e[1])
----
+```
 
 ### Some Useful Properties
 
 Again, we find properties inherent to sequences.
 
----{python}
+```{python}
 # Concatenation
 [1, 2, 3] + ["a", 12]
----
+```
 
----{python}
+```{python}
 # Replication
 ["a", "b", "c"] * 3
----
+```
 
 ### Some Useful Methods
 
 As with strings, lists have many built-in methods, which are used in the format `object.method(parameters)`. The most useful ones are presented below; other methods will be used in the end-of-section exercises.
 
----{python}
+```{python}
 # Add an element
 a = [1, 2, 3]
 a.append(4)
 print(a)
----
+```
 
----{python}
+```{python}
 # Delete an element by position
 b = ["do", "re", "mi"]
 b.pop(0)
 print(b)
----
+```
 
----{python}
+```{python}
 # Delete an element by value
 b = ["do", "re", "mi"]
 b.remove("mi")
 print(b)
----
+```
 
----{python}
+```{python}
 # Reverse a list
 l = [1, 2, 3, 4, 5]
 l.reverse()
 print(l)
----
+```
 
----{python}
+```{python}
 # Find the position of an element
 b = ["a", "b", "c", "d", "e"]
 b.index("d")
----
+```
 
 ## Tuples
 
@@ -181,73 +181,73 @@ When is it relevant to use a tuple rather than a list? In practice, tuples are m
 
 Another minor difference is that tuples are written with **parentheses** instead of square brackets. The different elements are still separated by commas.
 
----{python}
+```{python}
 x = (1, 2, "mi", "fa", 5)
 x
----
+```
 
 To clearly distinguish from the normal use of parentheses (in calculations or to delimit expressions), a tuple with a single element is defined with a comma after the first element.
 
----{python}
+```{python}
 x1 = ("a", )
 x1
----
+```
 
 Let's verify that it is impossible to modify or add an element to a tuple.
 
----{python}
+```{python}
 t = ("do", "rez", "mi")
 t[1] = "re"
----
+```
 
----{python}
+```{python}
 t = ("do", "re", "mi")
 t.append("fa")
----
+```
 
 ### Functionality
 
 Tuples are indexed like lists.
 
----{python}
+```{python}
 print(x[0])
 print(x[3:5])
----
+```
 
 And can also be used hierarchically.
 
----{python}
+```{python}
 t1 = ("a", "b", "c")
 t2 = (1, 2, 3)
 t3 = (t1, "and", t2)
 
 print(t3)
 print(t3[2][1])
----
+```
 
 Tuples share some built-in methods with lists: those that do not cause modification of the object.
 
----{python}
+```{python}
 t = ("do", "re", "mi")
 t.index("do")
----
+```
 
----{python}
+```{python}
 t = ("do", "re", "mi", "re", "do")
 t.count("re")
----
+```
 
 ### Conversion
 
 The `list` and `tuple` functions allow you to convert a list to a tuple and vice versa.
 
----{python}
+```{python}
 tuple(["do", "re", "mi"])
----
+```
 
----{python}
+```{python}
 list((1, 2, 3, 4, 5))
----
+```
 
 These functions have other practical uses, which we will see in exercises.
 
@@ -297,15 +297,15 @@ Create 4 lists named after the 4 seasons, each containing the names of the assoc
 - `seasons[3][::-1]`
 - `seasons * 3`
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 spring = ["April", "May", "June"]
 summer = ["July", "August", "September"]
 autumn = ["October", "November", "December"]
@@ -345,7 +345,7 @@ print(type(l), len(l), l, "\n")
 
 l = seasons * 3
 print(type(l), len(l), l, "\n")
----
+```
 
 </details>
 
@@ -355,15 +355,15 @@ By adding, deleting, and modifying elements, clean up the following list so that
 
 `l = ["do", "re", "re", "re", "fa", "sol", "solsi", "la"]`
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 l = ["do", "re", "re", "re", "fa", "sol", "solsi", "la"]
 
 del l[1]  # You could also use: l.pop(1)
@@ -372,7 +372,7 @@ del l[5]
 l.append("si")
 
 print(l)
----
+```
 
 This example was simply to practice modifying and deleting elements. In practice, it would have been much simpler to directly create the correct list.
 
@@ -382,15 +382,15 @@ This example was simply to practice modifying and deleting elements. In practice
 
 Propose two methods to reverse the list `["a", "random", "list"]`. What is the major difference between the two methods?
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 l1 = ["a", "random", "list"]
 l1.reverse()
 print(l1)
@@ -398,14 +398,14 @@ print(l1)
 l2 = ["a", "random", "list"]
 print(l2[::-1])
 print(l2)
----
+```
 
 The `reverse` method modifies the list "in place": the list is permanently reversed after executing it. In contrast, the method that reverses the list using indexing returns a new list and does not modify the existing one. To make this change permanent, you would need to overwrite the existing list or create a new one.
 
----{python}
+```{python}
 l2 = l2[::-1]
 print(l2)
----
+```
 
 </details>
 
@@ -413,19 +413,19 @@ print(l2)
 
 We saw that the `my_list.pop(i)` statement removes the i-th element from the list `my_list`. Using the Python documentation or a Google search, determine the default behavior of this method, i.e., what happens when no parameter is given to the `pop` function. Verify that you observe this behavior with an example of your choice.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 l = ["do", "re", "mi"]
 l.pop()
 print(l)
----
+```
 
 </details>
 
@@ -437,15 +437,15 @@ There are many more built-in methods for lists than those we have already seen. 
 - on a list composed solely of strings;
 - on a list composed of a mix of numeric and textual objects.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 a = [5, 800, 9.92, 0]
 b = ["do", "re", "mi", "fa", "sol"]
 c = [1, "mix", "of", 2]
@@ -453,7 +453,7 @@ c = [1, "mix", "of", 2]
 print(min(a), max(a))
 print(min(b), max(b))
 print(min(c), max(c))
----
+```
 
 The third expression returns an error: there is no relevant order relationship.
 
@@ -463,28 +463,28 @@ The third expression returns an error: there is no relevant order relationship.
 
 Try creating an empty list. Verify its type. What could be the use of such an object?
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 l = []
 print(l)
 print(type(l))
----
+```
 
 We can indeed create an empty list. But what is the use? A very common use is to initialize a list, which will then be filled as iterations of a loop progress. Loops will be the subject of a future tutorial; but here is a simple example of such use.
 
----{python}
+```{python}
 for i in range(10):
     l.append(i)
     
 print(l)
----
+```
 
 </details>
 
@@ -498,15 +498,15 @@ Using the `list` function, find the "list versions" of the following objects:
 - the string `b = "hello"`;
 - the integer `c = 5`
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 a = (1, 2, 3)
 print(list(a))
 
@@ -515,14 +515,14 @@ print(list(b))
 
 c = 5
 print(list(c))
----
+```
 
 The last expression returns an error: an integer is not a sequence, so a "list version" does not make sense. However, it is of course possible to create a list with a single element 5.
 
----{python}
+```{python}
 d = [5]
 print(d)
----
+```
 
 </details>
 
@@ -530,19 +530,19 @@ print(d)
 
 We saw that tuples are immutable. But does this property transfer recursively? For example, is a list contained in a tuple itself immutable? Verify with an example of your choice.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 t = (1, 2, ["a", "list"])
 t[2][0] = 26
 print(t)
----
+```
 
 Verdict: immutability only applies to the first level. It does not transfer to sub-elements.
 
@@ -552,15 +552,15 @@ Verdict: immutability only applies to the first level. It does not transfer to s
 
 Read the section on sequence packing and unpacking in the [Python documentation](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences). Unpacking is a commonly used feature in practice. Verify that it works on the various sequential objects we have seen so far (strings, lists, and tuples).
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
 
----{python}
+```{python}
 x, y, z = "abc"
 print(y)
 
@@ -569,6 +569,6 @@ print(c)
 
 r, s, t, u = ("a", "tuple", "of", "test")
 print(r)
----
+```
 
 </details>

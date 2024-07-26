@@ -27,19 +27,19 @@ To use the functions of a module and the various modules that constitute a *pack
 
 The syntax is straightforward; let's illustrate it with an example.
 
----{python}
+```{python}
 import random
 random.randint(0, 100)
----
+```
 
 We imported the `random` module (entirely) from the standard `Python` library using the `import` statement. Then, we called the `randint` function contained in the `random` module, which returns a random number between `a` and `b`, its parameters.
 
 We could also import *only* the `randint` function using the `from module import function` syntax. Then, specifying the module name is no longer necessary when calling the function.
 
----{python}
+```{python}
 from random import randint
 randint(0, 100)
----
+```
 
 Note that once an import is performed, the imported module is available for the entire duration of the `Python` session. Therefore, there's no need to import the module before each use of one of its functions; once at the beginning of the notebook or script is enough.
 
@@ -56,32 +56,32 @@ A *package* is simply a collection of modules, structured hierarchically. The sy
 
 For example, let's see again how to use the `randint` function, but this time from the `numpy` package (which does the same thing).
 
----{python}
+```{python}
 import numpy
 numpy.random.randint(0, 100)
----
+```
 
 We imported the `numpy` package, which allowed us to access the `randint` function via its `random` module. Again, we could import the function directly.
 
----{python}
+```{python}
 from numpy.random import randint
 randint(0, 100)
----
+```
 
 In practice, the first syntax is preferable: it is always more readable to explicitly show where the function being called comes from. To reduce verbosity, it is common to give ***aliases*** to imported packages. Here are the three most common ones, which we will encounter very often in the tutorials of the next chapter on data manipulation.
 
----{python}
+```{python}
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
----
+```
 
 We can then use these *aliases* to call modules and functions.
 
----{python}
+```{python}
 x = np.linspace(0, 10, 1000)
 plt.plot(x, np.sin(x))
----
+```
 
 ### Installing packages
 
@@ -92,22 +92,22 @@ So far, we have been able to import various packages via the `import` statement 
 
 Let's illustrate package installation with the [emoji](https://pypi.org/project/emoji/) package, which allows for representing emojis in `Python` outputs. This package is not yet installed; trying to import it produces a `ModuleNotFoundError`.
 
----{python}
+```{python}
 import emoji
----
+```
 
 To install a package, the command is simple: `pip install package_name`. Without going into details, `pip` is a package manager installed with `Python` that is used via the command line (i.e., in a terminal). To send a command to the terminal from a Jupyter notebook, we add a `!` at the beginning of the line.
 
----{python}
+```{python}
 !pip install emoji
----
+```
 
 We can now import the package and use its functions.
 
----{python}
+```{python}
 import emoji
 print(emoji.emojize('Python is :thumbs_up:'))
----
+```
 
 ::: {.callout-tip title="pip and PyPI"}
 `pip` is the standard package manager for `Python`. It allows installing, updating, and removing `Python` packages found in the `Python` Package Index (`PyPI`), a directory of packages for programming in `Python`. This directory contains a vast number of projects (about 500,000 at the time of writing this tutorial), from the most amateur to the most essential.
@@ -125,9 +125,9 @@ To read and write files with `Python`, we first need to understand how they are 
 
 For this, we will repeatedly use the `pathlib` module and, in particular, the `Path` class. This module allows interacting with the file system in the form of objects, manipulating attributes and their methods. Don't worry; we have already seen everything we need to know about this in the previous tutorial.
 
----{python}
+```{python}
 from pathlib import Path
----
+```
 
 **File properties**
 
@@ -138,9 +138,9 @@ A file has two properties:
 
 For example, let's look at the files in our current directory (by default, the folder where this notebook is located). The method to use is called `cwd`, for *current working directory*.
 
----{python}
+```{python}
 Path.cwd()
----
+```
 
 The path of our current directory is contained in a `PosixPath` object, which simply means that `pathlib` understood that we were on a Unix-like environment (the SSP Cloud servers run on Linux). If you were running this notebook locally on a Windows computer, the object would be `WindowsPath`. Practically, this doesn't change much for you, but it is quite important: file systems do not use the same conventions between different environments (e.g., the separators between folders in a path are not the same), but `pathlib` allows you to interact with these different systems in a harmonized way.
 
@@ -148,15 +148,15 @@ Now, let's list all the files in our current directory. We use another method, `
 
 This method returns a somewhat special object (a *generator*). If you remember, we encountered the same case with the `range` function. Simply call the `list` function on it to display the results legibly.
 
----{python}
+```{python}
 Path.cwd().glob('*.*')
----
+```
 
----{python}
+```{python}
 list(Path.cwd().glob
 
 ('*.*'))
----
+```
 
 We find our notebook, a file that contains the solutions to the tutorial exercises, and several text files that will serve as examples in the rest of the tutorial. For instance, if we take the notebook, we can clearly distinguish:
 
@@ -180,16 +180,16 @@ In practice, what interests us is being able to form our own paths—whether the
 
 For example, let's try to reconstruct the full path of this notebook. We can start by finding the path of the *home* directory, which is the standard folder where all the user's files are located.
 
----{python}
+```{python}
 Path.home()
----
+```
 
 We can then concatenate the different subfolders and the file name of the notebook to get the full path to it.
 
----{python}
+```{python}
 path_nb = Path.home() / 'work' / 'training' / 'tutorial.ipynb'
 path_nb
----
+```
 
 We get exactly the same path as the one obtained by listing the files in the current directory.
 
@@ -212,11 +212,11 @@ Asking `Python` to open a file is like opening a connection between your `Python
 
 To open a file, we use the `open` function. For example, let's open the `gamme.txt` file that has been placed in the current directory.
 
----{python}
+```{python}
 path_range = Path.cwd() / 'gamme.txt'
 file_in = open(path_range, 'r')
 file_in
----
+```
 
 The `open` function returns an object of type `_io.TextIOWrapper`, which specifies the **encoding mode** of the file and the **opening mode**.
 
@@ -230,23 +230,23 @@ However, the **opening mode** is very important. There are three main modes:
 
 Once the file is open, operations can be performed on it using methods attached to the object representing it. In the next section, we will see what the `readlines` method does.
 
----{python}
+```{python}
 file_in.readlines()
----
+```
 
 Once the manipulations are done, close the connection with the `close` method. It is no longer possible to manipulate the file.
 
----{python}
+```{python}
 file_in.close()
----
+```
 
 In practice, it is easy to forget to close the connection to a file, which can create annoying errors. There is a syntax that avoids this problem by using a **context manager** that handles the entire connection for us.
 
----{python}
+```{python}
 with open(path_range, 'r') as file_in:
     lines = file_in.readlines()
 lines
----
+```
 
 This syntax is much more readable: thanks to the indentation, it is clear which operations are performed while the file is open, and the file is automatically closed once we return to the initial indentation level. We will always prefer to use this syntax if possible, as it is a good programming practice.
 
@@ -254,29 +254,29 @@ This syntax is much more readable: thanks to the indentation, it is clear which 
 
 Once a file is open, we may want to read its content. There are different ways to do this. A simple and elegant method is to traverse the file using a loop, which is possible because the `Python` object representing the file is **iterable**.
 
----{python}
+```{python}
 with open(path_range, 'r') as file_in:
     for line in file_in:
         print(line)
----
+```
 
 In our example, we simply displayed the lines, but many things can be done with the data in the text file: storing it in a `Python` object, using it for calculations, keeping only the lines that meet a certain condition via an `if` statement, etc.
 
 There are also built-in methods for reading the content of a file. The most basic is the `read` method, which returns the entire file as a (potentially very long) string.
 
----{python}
+```{python}
 with open(path_range, 'r') as file_in:
     txt = file_in.read()
 txt
----
+```
 
 This is rarely very useful: we generally prefer to retrieve individual lines from a file. The `readlines` method traverses the entire file and returns a list whose elements are the lines of the file, in order of appearance.
 
----{python}
+```{python}
 with open(path_range, 'r') as file_in:
     l = file_in.readlines()
 l
----
+```
 
 Note that each element of the list (except the last one) ends with the special character `\n` ("newline") which simply marks the end of each line in a text file. It is the (hidden) presence of this same character at the end of each call to the `print` function that causes a line break every time a `print` is used.
 
@@ -284,35 +284,35 @@ Note that each element of the list (except the last one) ends with the special c
 
 Writing to a file is very simple; it is done using the `write` method. For example, let's write the various elements contained in a list to a file, line by line.
 
----{python}
+```{python}
 ex = ["this", "is", "a", "very", "original", "example"]
 with open("test.txt", "w") as file_out:
     for elem in ex:
         file_out.write(elem)
----
+```
 
 Everything seems to have gone smoothly. We can check that our file was created correctly via the `Jupyter` file explorer (on the left) or via the `ls` command in the terminal.
 
----{python}
+```{python}
 !ls
----
+```
 
 It is there. Let's now verify that its content is what we wanted.
 
----{python}
+```{python}
 with open("test.txt", "r") as file_out:
     print(file_out.read())
----
+```
 
 The different elements of our list have merged into a single block of text! This is because, unlike the `print` function, for example, the `write` function does not automatically add the newline character. It must be added manually.
 
----{python}
+```{python}
 with open("test.txt", "w") as file_out:
     for elem in ex:
         file_out.write(elem + "\n")
 with open("test.txt", "r") as file_out:
     print(file_out.read())
----
+```
 
 That's much better.
 
@@ -334,16 +334,16 @@ In a Jupyter notebook environment (like the one you are in), Python code is exec
 
 The `write_list.py` file repeats a code cell seen earlier. Let's display its content.
 
----{python}
+```{python}
 with open('write_list.py', 'r') as script:
     print(script.read())
----
+```
 
 A Python script is executed in a terminal using the command `python script_name.py`. To execute it from a Jupyter notebook, we again add a `!` at the beginning of the line.
 
----{python}
+```{python}
 !python write_list.py
----
+```
 
 The `output_script.txt` file has indeed been created locally (it may take a while or require refreshing for it to appear), and the expected message was printed in the console output.
 
@@ -362,30 +362,30 @@ As we have seen, a **script** is a `.py` file intended to be executed directly. 
 
 Let's display the content of the `normalisation.py` file, which will serve as an example.
 
----{python}
+```{python}
 with open('normalisation.py', 'r') as module:
     print(module.read())
----
+```
 
 The function contained in this module can be imported as we have seen in this tutorial. Note that the module itself must import the necessary packages/modules for the proper functioning of its functions (in this case, `numpy`).
 
 To import a local module, use the `import` statement followed by the file name without the extension. All functions defined in the module can then be used via the `module_name.function_name` syntax.
 
----{python}
+```{python}
 import normalisation
 x = [1, 2, 3, 4, 5]
 x_norm = normalisation.normalize(x)
 print(x_norm)
----
+```
 
 As explained at the beginning of the chapter, we could also import the function directly to avoid recalling the module name containing it. This is particularly practical if this function is to be used multiple times in the same notebook/script.
 
----{python}
+```{python}
 from normalisation import normalize
 x = [1, 2, 3, 4, 5]
 x_norm = normalize(x)
 print(x_norm)
----
+```
 
 ::: {.callout-warning title="The bad idea: import *"}
 A crucial good practice is to prioritize code readability. In both import variants presented above, the code is readable: it is clear from which module the function used comes.
@@ -397,13 +397,13 @@ However, it is not uncommon to see the instruction `from my_module import *` in 
 
 To limit the length of the instruction line when importing multiple functions, you can adopt the following syntax:
 
----{python}
+```{python}
 from my_module import (
     function1,
     function2,
     function3
 )
----
+```
 :::
 
 Finally, note that a `.py` file can serve both as a module and a script. To differentiate between the two usages, use the `__name__` variable, which is defined by default by `Python` when using a `.py` file:
@@ -413,9 +413,9 @@ Finally, note that a `.py` file can serve both as a module and a script. To diff
 
 In the previous cell, the `normalisation.py` file was imported as a module. In this case, the `__name__` variable is set to `normalisation`, and that's why the code under the `if` condition was not executed. When the file is executed as a script, this code is executed.
 
----{python}
+```{python}
 !python normalisation.py
----
+```
 
 It is therefore very common to see the condition `if __name__ == "__main__"` in Python scripts, distinguishing the usage as a module and the usage as a script.
 
@@ -466,10 +466,10 @@ Hints:
 - The scores will need to be converted to numeric format to apply mathematical functions.
 - You can use functions from the `numpy` package to calculate the required statistics.
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
@@ -511,10 +511,10 @@ For example, the first three lines of this new file should be:
 18 passed
 ```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
@@ -551,14 +551,14 @@ The necessary information is placed in a list in the following cell. Using a loo
 
 NB: if you accidentally overwrite the content of a file, you can find the clean files on the [GitHub repository associated with the training](https://github.com/InseeFrLab/formation-python-initiation/tree/main/source/manipulation/modules-files).
 
----{python}
+```{python}
 supp = [(16, 3), (11, 1), (3, 5)]
----
+```
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
@@ -583,10 +583,10 @@ Write a program that performs the following operations:
 - Loop through these paths and open each file sequentially.
 - For each file, perform a membership test (recall the syntax: `if pattern in string: ...`) to check if the file contains the word "sol". If so, print its absolute path in the console (only the path of the `gamme.txt` file should appear).
 
----{python}
+```{python}
 # Test your answer in this cell
 
----
+```
 
 <details>
 <summary>Show the solution</summary>
