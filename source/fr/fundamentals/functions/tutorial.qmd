@@ -1,6 +1,4 @@
----
-title: "Fonctions"
----
+# Fonctions
 
 Dans les précédents tutoriels, nous avons étudié le fonctionnement des tests et des boucles, qui permettent de rédiger des programmes Python qui prennent des décisions automatisées. En pratique, un programme va généralement être constitué de différents blocs, qui exécutent chacun une action ou un groupe d'actions (ex : import des données, nettoyage des données, modélisation statistique, etc.). Par ailleurs, certaines de ces actions sont amenées à être répétées avec une légère différence au fil d'un programme (ex : importer plusieurs jeux de données différents). Il va être utile de modéliser chacune de ces actions par une **fonction**, sorte de mini-programme au sein du programme global. Utiliser des fonctions est une **bonne pratique** de programmation, dans la mesure où elles rendent plus explicite la structure logique du code et permettent de réduire la duplication de code.
 

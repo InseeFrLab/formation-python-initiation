@@ -1,6 +1,4 @@
----
-title: "Travailler avec des fichiers CSV et JSON"
----
+# Travailler avec des fichiers CSV et JSON
 
 Dans le précédent tutoriel, nous avons vu comment utiliser des fonctions provenant de modules, ainsi que comment lire et écrire des fichiers texte. Dans ce tutoriel, nous allons mettre à profit ces nouvelles compétences en nous intéressant à **deux types de fichiers texte très fréquemment utilisés pour stocker et diffuser des données : les fichiers CSV et les fichiers JSON**. Nous allons apprendre à manipuler ces deux types de fichiers grâce aux modules Python dédiés à leur traitement respectif : **le module `csv` et le module `json`**.
 

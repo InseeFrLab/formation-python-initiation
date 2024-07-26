@@ -1,6 +1,4 @@
----
-title: "Introduction à la visualisation de données"
----
+# Introduction à la visualisation de données
 
 La visualisation de données (ou *dataviz*) est un outil indispensable pour faciliter la compréhension des données et mettre en lumière des phénomènes à partir de celles-ci, ainsi que pour favoriser une communication efficace des résultats des analyses. C'est néanmoins un domaine qui dépasse largement la seule compétence technique : les meilleures visualisations sont celles qui sont adaptées à la donnée qu'elles représentent, et qui parviennent à raconter une histoire à partir de celles-ci (*data storytelling*). Ce tutoriel ne vise donc pas à présenter en détails le sujet, mais propose une introduction aux principaux outils existants en `Python` pour produire des visualisations de données.
 

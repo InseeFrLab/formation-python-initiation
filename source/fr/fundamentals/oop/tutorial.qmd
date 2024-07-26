@@ -1,6 +1,4 @@
----
-title: "Notions de programmation orientée objet"
----
+# Notions de programmation orientée objet
 
 Python est un langage dit "multi-paradigmes", c'est à dire qu'il admet plusieurs manières de coder et de concevoir ses programmes. L'une d'entre elle est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n'impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des *packages* les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.
 

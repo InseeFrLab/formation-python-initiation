@@ -1,6 +1,4 @@
----
-title: "Manipulation de fichiers"
----
+# Manipulation de fichiers
 
 Dans les tutoriels précédents, nous avons utilisé systématiquement des variables pour stocker des données et réaliser des opérations sur celles-ci. Cette façon de faire peut suffire dans le cadre d'une session `Python` donnée, comme ici dans un notebook Jupyter ou bien dans un programme. 
 
