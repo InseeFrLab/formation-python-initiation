@@ -1,0 +1,806 @@
+---
+title: "Types de base et variables"
+---
+
+Dans ce premier TP, nous allons découvrir les objets les plus fondamentaux de Python : les **nombres** et les **chaînes de caractère**. Nous allons également voir comment l'on peut assigner des objets à des **variables**, afin de réaliser des opérations avec ces objets.
+
+## Nombres
+
+### Types de nombres
+
+Python propose différents objets de type numérique. Dans ce tutoriel, on va s'intéresser aux deux types principalement utilisés :
+
+- les entiers (type `int` pour *integer*)
+
+- les réels (type `float` pour nombres à virgule flottante)
+
+De manière générale, on utilise la fonction `type` pour imprimer le type d'un objet Python.
+
+
+```{python}
+type(3)
+```
+
+
+```{python}
+type(3.14)
+```
+
+Les fonctions `float` et `int` peuvent être utilisées pour passer d'un type à l'autre.
+
+
+```{python}
+# Conversion en float
+float(3)
+```
+
+
+```{python}
+# Conversion en float
+type(float(3))
+```
+
+
+```{python}
+# Conversion en int
+int(3.79)
+```
+
+Attention à la conversion *float* -> *int*, qui tronque la partie décimale.
+
+Les *floats* peuvent par ailleurs être écrits en notation scientifique :
+
+
+```{python}
+2e3
+```
+
+
+```{python}
+type(2e3)
+```
+
+### Opérations arithmétiques de base
+
+
+```{python}
+# Addition
+8 + 9
+```
+
+
+```{python}
+# Soustraction
+5 - 2
+```
+
+
+```{python}
+# Multiplication
+2 * 6
+```
+
+
+```{python}
+# Division
+9 / 4
+```
+
+
+```{python}
+# Division par 0
+3 / 0
+```
+
+La division par 0 produit une erreur. C'était bien sûr prévisible. Mais il n'est pas rare d'avoir de telles erreurs dans le cadre de calculs statistiques, notamment avec *NumPy* ou *Pandas*, produisant une erreur similaire qu'il faut alors débugger.
+
+::: {.callout-tip title="Debugger une erreur"}
+Les erreurs de code sont un passage obligatoire et en réalité nécessaire de l'apprentissage d'un langage: c'est en debuggant les erreurs que notre code produit que l'on apprend à les éviter à l'avenir ! Pour ce faire, il est nécessaire de bien les comprendre en premier lieu.
+
+L'erreur ci-dessus, liée à la division par 0, a produit un `Traceback`, i.e. un log détaillé précisant à quelle étape des différentes opérations effectuées par Python s'est produite l'erreur, ainsi que le nom de l'erreur (`ZeroDivisionError`) et un descriptif ("division by zero"). En l'occurence, l'erreur est simple, le message permet donc de comprendre directement le problème. Pour des opérations plus compliquées, les noms et messages peuvent être moins évidents... mais néanmoins utiles pour comprendre la source de l'erreur - en les indiquant dans un moteur de recherche par exemple.
+:::
+
+```{python}
+# Division euclidienne : quotient
+9 // 4
+```
+
+
+```{python}
+# Division euclidienne : reste
+9 % 4
+```
+
+
+```{python}
+# Puissance
+2 ** 5
+```
+
+
+```{python}
+# Racine carrée
+5 ** 0.5
+```
+
+
+```{python}
+# Ordre des opérations : convention usuelle
+2 + 5 * (10 - 4)
+```
+
+## Chaînes de charactères
+
+Les chaînes de caractères (ou *strings*) sont utilisées pour stocker de l'information textuelle. Plus précisément, elles peuvent stocker tout caractère de type [Unicode](https://fr.wikipedia.org/wiki/Unicode), ce qui inclut les lettres des différentes langues, mais également la ponctuation, les chiffres, les smileys, etc.
+
+Un *string* se définit en mettant l'information entre apostrophes ou entre guillemets (anglais). 
+
+### Définition
+
+
+```{python}
+# Première manière 
+'mot'
+```
+
+
+```{python}
+# Deuxième manière
+"ça fonctionne aussi"
+```
+
+
+```{python}
+# Mais attention au mélange des deux !
+'l'apostrophe, quelle catastrophe'
+```
+
+Erreur de syntaxe : la seconde apostrophe est comprise comme la fin du *string*, et Python ne sait pas interpréter le reste de la séquence.
+
+::: {.callout-note title="Erreurs de syntaxe et exception"}
+Depuis le début du TP, on a vu plusieurs erreurs produites par le code. En pratique, il est important de distinguer deux types d'erreurs :
+
+- les **erreurs de syntaxe**: le code ne respecte pas les règles de syntaxe de Python, comme l'erreur ci-dessus. Le `Traceback` (message d'erreur) indique avec des flèches pointant vers le haut la ligne et le moment où à commencé le problème
+
+- les **exceptions**: le code est syntaxiquement correct mais produit une erreur lors de son exécution, comme la division par zéro effectuée plus haut. 
+
+Pourquoi alors est-il important de distinguer ces deux types d'erreur ? Car là où une syntaxe incorrecte génère nécessairement une `SyntaxError` et arrête l'exécution du code, une exception peut être gérée dans le code. Par exemple, dans le cadre d'un code où l'on réaliserait de multiples divisions avec des paramètres multiples, on pourrait vouloir faire en sorte qu'une division par zéro ne renvoie pas une erreur qui interrompe l'exécution du code, mais une valeur arbitraire (infini, valeur manquante...).
+:::
+
+Pour éviter l'erreur de syntaxe, il faut varier les caractères en cas de besoin :
+
+
+```{python}
+"l'apostrophe, aucun problème"
+```
+
+Même chose en sens inverse :
+
+```{python}
+'les guillemets, "aucun problème"'
+```
+
+### La fonction `print`
+
+Le travail avec les *strings* est l'occasion de découvrir la très pratique et très utilisée fonction `print`. Elle affiche simplement l'argument qu'on lui passe entre parenthèses **et** un retour à la ligne par défaut.
+
+```{python}
+# Affichage de la chaîne "moi"
+"moi"
+```
+
+```{python}
+# Affichage de la chaîne "moi" avec print
+print("moi")
+```
+
+On a vu jusqu'à maintenant que l'on pouvait simplement exécuter une cellule pour afficher le contenu d'un *string*. Mais est-ce cela marche avec plusieurs *strings* ?
+
+
+```{python}
+# Qui va être affiché ?
+"moi"
+"non moi"
+```
+
+On voit là un comportement caractéristique des notebooks Jupyter : seule la dernière valeur renvoyée dans une cellule est affichée. La fonction `print` permet de s'affranchir de cette limite.
+
+
+```{python}
+# Et cette fois ?
+print("moi")
+print("moi aussi")
+```
+
+### Longueur d'une chaîne
+
+La fonction `len` permet de compter le nombre de caractères d'un *string*, tous caractères inclus (lettres, chiffres, espaces, ponctuation...).
+
+
+```{python}
+len("J'ai 19 charactères")
+```
+
+Le type "caractère" n'existe pas en Python : un caractère seul est défini comme un *string* de taille 1.
+
+
+```{python}
+print(type("a"))
+print(len("a"))
+```
+
+### Indexation
+
+En Python, un *string* est une **séquence**, c'est à dire une suite de caractères dans un ordre spécifique. Par conséquent, chaque caractère d'un *string* est indexé (Python connaît sa position), et l'on peut utiliser cet index pour extraire des caractères particuliers, des sous-chaînes de caractères, etc.
+
+En Python, on utilise les crochets `[]` pour appeler l'index d'une séquence. Plus précisément, l'index fonctionne sur le modèle suivant : `x[a:b:c]` renvoie un *sub-string* du *string* `x` où `a` est la position du caractère de départ, `b` la position du caractère d'arrivée plus 1, et `c` le pas de l'indexation. Tout cela sera plus clair avec les exemples suivants.
+
+Note importante : **l'indexation commence à 0 en Python**.
+
+
+```{python}
+"une séquence que l'on va indexer"
+```
+
+
+```{python}
+# Premier élémént
+"une séquence que l'on va indexer"[0]
+```
+
+
+```{python}
+# Deuxième élémént
+"une séquence que l'on va indexer"[1]
+```
+
+
+```{python}
+# Dernier élémént
+"une séquence que l'on va indexer"[-1]
+```
+
+
+```{python}
+# Extraire tout à partir d'un certain caractère
+"une séquence que l'on va indexer"[4:]
+```
+
+
+```{python}
+# Extraire tout jusqu'à un certain caractère
+"une séquence que l'on va indexer"[:12]
+```
+
+
+```{python}
+# Extraire un sub-string
+"une séquence que l'on va indexer"[4:12]
+```
+
+
+```{python}
+# Extraire tous les 2 caractères, à partir de la 4 ème position
+"une séquence que l'on va indexer"[4::2]
+```
+
+
+```{python}
+# Inverser une séquence
+"une séquence que l'on va indexer"[::-1]
+```
+
+A retenir : c'est bien parce qu'un *string* est considéré comme une séquence par Python que l'on peut l'indexer. Par exemple, indexer un nombre n'a pas de sens, et renvoie donc une erreur.
+
+
+```{python}
+2[3]
+```
+
+### Quelques propriétés utiles
+
+
+```{python}
+# Concaténation de strings
+"mon adresse est : " + "10 rue des Peupliers"
+```
+
+
+```{python}
+# Répétition
+"echo - " * 5
+```
+
+### Quelques méthodes utiles
+
+Les différents objets Python ont généralement des **méthodes** dites *built-in* (standard), qui permettent d'effectuer des opérations de base à partir de l'objet. 
+
+Nous verrons dans un prochain chapitre en quoi consistent précisément les méthodes en Python. Pour le moment, on peut retenir que les méthodes s'utilisent selon le format `objet.methode(parametres)` où les paramètres sont optionnels.
+
+
+```{python}
+# Mettre en majuscules
+"sequence 850".upper()
+```
+
+
+```{python}
+# Mettre en minuscules
+"sequence 850".lower()
+```
+
+
+```{python}
+# Séparer les mots selon les espaces
+"une séquence    à séparer".split()
+```
+
+
+```{python}
+# Séparer les mots selon un caractère arbitraire
+"pratique pour faire des sous-séquences".split("-")
+```
+
+
+```{python}
+# Utiliser les strings comme templates
+"mon adresse est : {}".format("10 rue des Peupliers")
+```
+
+### Pour aller plus loin avec les *strings*
+
+Tout ceci n'est qu'un aperçu des innombrables opérations possibles sur les *strings*. La [documentation officielle](https://docs.python.org/3/library/stdtypes.html#string-methods) liste l'ensemble des méthodes *built-in* disponibles. Les exercices du chapitre et les mini-projets de fin de partie seront l'occasion de découvrir d'autres utilisations.
+
+## Variables
+
+Jusqu'ici, nous avons dû définir à chaque fois notre objet avant de pouvoir lui appliquer une transformation. Comment faire si l'on veut réutiliser un objet et lui appliquer plusieurs transformations ? Ou faire des opérations à partir de différents objets ?
+
+Pour cela, on va assigner les objets à des variables.
+
+### Assignation et opérations
+
+L'assignation se fait suivant le format : `nom_de_la_variable = objet`. Cela permet ensuite de réaliser des opérations à partir de ces variables.
+
+
+```{python}
+x = 5
+x
+```
+
+
+```{python}
+type(x)
+```
+
+
+```{python}
+x + 5
+```
+
+
+```{python}
+y = x + 2*x
+y
+```
+
+Contrairement à d'autres langages de programmation, Python est dit *dynamiquement* typé : il est possible de réassigner une variable à un objet de type différent. Cela facilite la lecture et le développement, mais peut parfois générer des problèmes difficiles à débugger... Il faut donc toujours bien faire attention que le type de la variable est bien celui que l'on s'imagine manipuler.
+
+
+```{python}
+x = 3
+x = "blabla"
+type(x)
+```
+
+Il y a naturellement certaines contraintes sur les opérations selon les types des objets.
+
+
+```{python}
+x = "test"
+y = 3
+x + y
+```
+
+Il est par contre possible d'harmoniser les types en amont :
+
+```{python}
+x = "test"
+y = 3
+z = str(y)
+x + z
+```
+
+### Incrémentation
+
+Il est fréquent d'utiliser une variable comme un compteur, en l'incrémentant à chaque fois qu'un évènement donné apparaît par exemple.
+
+
+```{python}
+a = 0
+print(a)
+a = a +1
+print(a)
+```
+
+Cette pratique est tellement fréquente qu'il existe des opérateurs spéciaux pour les opérations arithmétiques courantes.
+
+
+```{python}
+a = 0
+a += 1
+a
+```
+
+
+```{python}
+b = 5
+b *= 3
+b
+```
+
+## Exercices
+
+### Questions de compréhension
+
+- Quels sont les différents types de base de Python vus dans ce tutoriel ?
+
+- Comment convertir un entier en réel et inversement ?
+
+- Comment définit-on une chaîne de caractères en Python ?
+
+- Qu'est ce qu'un *Traceback* ?
+
+- Quelle est la différence entre une erreur de syntaxe et une exception ?
+
+- A quoi sert la fonction `print` ?
+
+- Comment afficher plusieurs valeurs dans une cellule de notebook Jupyter ?
+
+- A quoi sert la fonction `len` ?
+
+- Qu'est-ce qu'une méthode *built-in* et comment la reconnaître ?
+
+- A quoi servent les variables ?
+
+- Pourquoi dit-on que Python est "*dynamiquement* typé" ?
+
+<details>
+<summary>Afficher la solution</summary>
+
+- 1/ Les types de base en Python vus dans ce tutoriel sont les types numériques, notamment les entiers (`int`) et les réels (nombres à virgule flottante, `float`), et les chaînes de caractères (`str`), qui stockent de l'information textuelle.
+
+- 2/ Pour convertir un entier en réel, on utilise la fonction `float()`. Pour convertir un réel en entier, on utilise la fonction `int()`.
+
+- 3/ Une chaîne de caractères est définie en mettant l'information entre apostrophes (') ou entre guillemets (").
+
+- 4/ Un `Traceback` est un rapport d'erreur qui montre la séquence d'opérations qui ont conduit à une exception. Il aide à identifier l'origine de l'erreur dans le code.
+
+- 5/ Une erreur de syntaxe survient lorsque le code Python ne respecte pas les règles de syntaxe du langage, rendant le script non exécutable. Une exception est une erreur détectée pendant l'exécution, même si le code a une syntaxe correcte. Les exceptions peuvent être gérées dans le code, alors que les erreurs de syntaxe produisent conduisent nécessairement à l'arrêt de l'exécution du code.
+
+- 6/ La fonction `print` affiche le contenu de l'argument qu'on lui passe entre parenthèses sur la console Python ou dans une cellule de notebook Jupyter.
+
+- 7/ Par défaut, l'exécution d'une cellule Jupyter affiche la dernière valeur renvoyée par le code exécuté dans cette cellule. Si deux lignes de code renvoient quelque chose, seul le dernier sera donc affiché. Pour pouvoir afficher plusieurs éléments dans une même cellule, on utilise la fonction `print` pour chaque opération dont on souhaite afficher le résultat.
+
+- 8/ La fonction `len` renvoie le nombre d'éléments d'un objet. Par exemple, le nombre de caractères dans une chaîne de caractères. Cette fonction n'a de sens que pour les objets de type séquence.
+
+- 9/ Une méthode *built-in* est une fonction intégrée à un type d'objet en Python qui permet d'effectuer des opérations spécifiques sur cet objet. On la reconnaît car elle est appelée directement sur l'objet avec la syntaxe `objet.methode()`.
+
+- 10/ Les variables servent à stocker des valeurs ou des objets pour pouvoir les réutiliser et les manipuler plus facilement dans le code. Elles permettent égalemetn de donner un nom aux données pour les rendre plus lisibles et faciliter leur manipulation.
+
+- 11/ Python est dit *dynamiquement typé* parce que le type des variables est déterminé au moment de l'exécution et peut changer au cours de l'exécution. Ainsi, une variable initialement définie comme chaîne de caractère peut tout à fait devenir une variable numérique au cours de l'exécution du code, ce qui est impossible dans les langages de programmation basés sur un *typage statique*.
+
+</details>
+
+### Affichage de types de base
+
+Afficher le type de x lorsque : 
+
+
+- x = 3
+
+
+- x = "test"
+
+
+- x = 3.5
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+x = 3
+print(type(x))
+
+x = "test"
+print(type(x))
+
+x = 3.5
+print(type(x))
+```
+</details>
+
+### Longueurs de chaînes
+
+
+
+Calculer la somme des longueurs des trois chaînes de caractères suivantes : 
+
+- "une première chaîne"
+
+- "et une deuxième"
+
+- "jamais deux sans trois"
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a = "une première chaîne"
+b = "et une deuxième"
+c = "jamais deux sans trois"
+
+len(a) + len(b) + len(c)
+```
+</details>
+
+### Formattage des codes postaux
+
+Quel est le type adapté pour définir un code postal ?
+
+Essayer de définir les codes postaux suivants au format `int` et au format `string` :
+
+- 92120
+
+- 02350
+
+Que concluez-vous ?
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+cp1_int = 92120
+cp1_str = "92120"
+
+print(cp1_int, cp1_str) # Pas de problème
+
+cp2_int = 02350 
+```
+
+Erreur : Python n'accepte pas de définir un entier qui commence par un 0. Il faut donc définir les codes postaux comme des strings.
+
+</details>
+
+### Comptage de lettres
+
+Compter le nombre de fois où la lettre e est présente dans la chaîne suivante :
+"Je fais un comptage des e."
+
+**Indice** : on peut utiliser la méthode *built-in* [count](https://docs.python.org/fr/3/library/stdtypes.html#str.count).
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a = "Je fais un comptage des e."
+a.count('e')
+```
+</details>
+
+### Détection de lettres
+
+Repérer la première position où la lettre e est présente dans la chaîne suivante : "Je fais un comptage des e."
+
+**Indice** : on peut utiliser la méthode *built-in* [find](https://docs.python.org/fr/3/library/stdtypes.html#str.find).
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a = "Je fais un comptage des e."
+a.find('e')
+```
+</details>
+
+### Suppression d'espaces dans une chaîne
+
+Supprimer les espaces superflus au début et à la fin de la chaîne suivante :
+
+**Indice** : on peut utiliser la méthode *built-in* [strip](https://docs.python.org/fr/3/library/stdtypes.html#str.strip).
+
+```{python}
+# Tapez votre réponse dans cette cellule
+a = "    Un string très mal formatté.         "
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a = "    Un string très mal formatté.         "
+a.strip()
+```
+</details>
+
+### Echappement de caractères
+
+Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sein d'une chaîne de caractères. Trouvez comment ce caractère permet de résoudre le problème lié à l'utilisation de guillemets (ou d'apostrophes) dans une chaîne définie par des guillemets (apostrophe).
+
+**Indice** : des exemples d'utilisation sont disponibles dans la [documentation officielle](https://docs.python.org/fr/3.8/reference/lexical_analysis.html#literals).
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+"juste un \"petit\" test"
+```
+</details>
+
+### Un premier algorithme
+
+Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémentation, et imprimer la valeur finale :
+
+- initialiser une variable à 1
+
+- lui soustraire 5
+
+- la multiplier par 4
+
+- lui ajouter 22
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a = 1
+a -= 5
+a *= 4
+a += 22
+print(a)
+```
+</details>
+
+### Composition de chaînes de caractères
+
+Considérons les deux séquences suivantes :
+
+- "nous sommes en"
+
+- "2024"
+
+Trouvez à partir du tutoriel deux manières différentes de les utiliser pour composer la séquence "nous sommes en 2024".
+
+**Indice** : l'une des deux méthodes implique de modifier (légèrement) une des deux séquences.
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+a1 = "nous sommes en"
+a2 = "nous sommes en {}"
+b = "2024"
+
+print(a1 + " " + b)
+print(a2.format(b))
+```
+</details>
+
+### Les `f-strings`
+
+Les `f-strings` sont une forme de *strings* un peu particulière mais très pratique, qui ont été ajoutés dans la version 3.6 de `Python`. Pour comprendre leur intérêt, repartons de la solution de l'exercice précédent, qui illustrait deux manières de composer la chaîne "nous sommes en 2024".
+
+```{python}
+a1 = "nous sommes en"
+a2 = "nous sommes en {}"
+b = "2024"
+
+print(a1 + " " + b)
+print(a2.format(b))
+```
+
+Ces deux méthodes fonctionnent mais présentent des limites. Réfléchissez à ce qui se passerait dans les cas suivants, et n'hésitez pas à faire des tests pour vous en convaincre :
+
+- si l'on souhaite injecter via la méthode `format()` une variable qui n'est pas un *string* (ex : si "2024" était un entier et non un *string*) ?
+
+- si l'on souhaite concaténer plusieurs *strings* ensemble ?
+
+- si l'on souhaite concaténer plusieurs *strings* ensemble et qu'en plus on souhaite injecter les valeurs d'autres variables dans chaque partie ?
+
+En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/tutorial/inputoutput.html#formatted-string-literals), utilisez les `f-strings` pour résoudre ces différents problèmes.
+
+```{python}
+# Tapez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+Premier problème : composition de strings avec des valeurs numériques.
+
+```python
+a1 = "nous sommes en"
+b = 2024
+
+# print(a1 + " " + b)  # Erreur
+print(a1 + " " + str(b))
+```
+La concaténation directe renvoie une erreur -> il faut au préalable convertir la valeur numérique en string.
+
+Deuxième problème : juxtaposition de multiples chaînes de caractères.
+
+```python
+a = "nous sommes en"
+b = "2024"
+c = "et je m'appelle"
+d = "Miranda"
+
+print(a + " " + b + " " + c + " " + d)
+```
+
+La syntaxe devient vite illisible, car il faut ajouter les séparateurs (espace) manuellement entre chaque partie.
+
+Troisième problème : composition de chaînes de caractères avec injection de variables.
+
+```python
+a = "nous sommes en {}"
+b = "2024"
+c = "et je m'appelle {}"
+d = "Miranda"
+
+print(a.format(b) + " " + c.format(d))
+```
+
+La syntaxe reste peu lisibile, car il faut injecter les valeurs dans chaque chaîne.
+
+Solution : avec les f-strings.
+
+```python
+annee = 2024
+prenom = "Miranda"
+
+print(f"nous sommes en {annee} et je m'appelle {prenom}")
+```
+
+Beaucoup plus lisible !
+</details>

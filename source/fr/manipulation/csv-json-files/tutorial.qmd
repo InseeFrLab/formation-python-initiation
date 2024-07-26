@@ -1,0 +1,584 @@
+---
+title: "Travailler avec des fichiers CSV et JSON"
+---
+
+Dans le précédent tutoriel, nous avons vu comment utiliser des fonctions provenant de modules, ainsi que comment lire et écrire des fichiers texte. Dans ce tutoriel, nous allons mettre à profit ces nouvelles compétences en nous intéressant à **deux types de fichiers texte très fréquemment utilisés pour stocker et diffuser des données : les fichiers CSV et les fichiers JSON**. Nous allons apprendre à manipuler ces deux types de fichiers grâce aux modules Python dédiés à leur traitement respectif : **le module `csv` et le module `json`**.
+
+
+## Manipuler des fichiers CSV
+
+
+### Les fichiers CSV
+
+
+CSV signifie ***comma-separated values***, soit en bon français "valeurs séparées par des virgules". Les fichiers CSV visent à reproduire la **structure des données issues de tableurs** type Excel de Microsoft ou Calc de LibreOffice, réduite à la stricte donnée textuelle (plus de formatage, plus de types de colonne, etc.).
+
+Nous allons prendre pour exemple le fichier CSV qui contient la liste des départements en 2021, issue du Code Officiel Géographique (COG). Regardons les premières lignes de ce fichier à l'aide d'une commande `shell` pour avoir bien en tête la structure d'un tel fichier.
+
+```{python}
+!head -n 5 departement2021.csv
+```
+
+Pour reprendre l'analogie avec un fichier issu d'un tableur, chaque ligne du fichier représente une ligne du tableur, et les cellules d'une ligne sont séparées par des virgules. La première ligne peut contenir un `header` (en-tête), c'est à dire le nom des colonnes, mais ce n'est pas toujours le cas.
+
+
+Les principaux avantages des fichiers CSV sont :
+
+- leur **simplicité** : ils contiennent des données textuelles brutes, donc très légères et qui peuvent être éditées facilement via n'importe quel éditeur de texte ou langage de programmation
+
+- leur **universalité** : ils sont très largement utilisés comme un format standard d'échanges de données
+
+
+### Le module `csv`
+
+
+Les données contenues dans un CSV étant des données textuelles, on peut se demander pourquoi l'on a besoin d'un module particulier pour les manipuler, et pourquoi les outils que l'on a vus dans le tutoriel précédent ne seraient pas suffisants. La raison principale est que les fichiers CSV ont tout de même quelques subtilités et normes, souvent invisibles à l'utilisateur, mais très importantes en pratique. Par exemple : si l'on veut séparer les différentes données selon les virgules, que se passe-t-il si les données textuelles elles-même contiennent des virgules ?
+
+C'est pour cette raison qu'on utilise le **module `csv`** pour interagir avec ce type de fichiers, afin de capitaliser sur le fait que d'autres se sont posés toutes ces questions, et donc de ne pas avoir à réinventer la roue à chaque import de fichier CSV.
+
+Notons qu'en pratique, on a plutôt tendance à manipuler ce type de données sous la forme de DataFrames (comme en `R`), afin de tirer parti de leur **structure tabulaire**. On étudiera dans un prochain tutoriel le ***package* `Pandas`** qui permet précisément de faire cela en Python. Néanmoins, il est toujours utile de savoir bien manipuler les données d'un CSV comme des données textuelles, et donc de connaître le module `csv`.
+
+
+### Lecture
+
+```{python}
+import csv
+```
+
+La syntaxe permettant de lire et manipuler des fichiers CSV en Python est très proche de celle pour les fichiers texte simples. La seule différence est que l'on doit créer un objet `reader` à partir de l'objet fichier pour pouvoir itérer sur les lignes.
+
+```{python}
+rows = []
+
+with open("departement2021.csv") as file_in:
+    csv_reader = csv.reader(file_in)
+    for row in csv_reader:
+        rows.append(row)
+
+rows[:4]
+```
+
+On retrouve bien la même syntaxe que pour les fichiers texte simples : une fois le `reader` créé, on peut itérer sur les lignes et réaliser des opérations avec celles-ci ; par exemple, les stocker dans une liste comme ci-dessus.
+
+
+Lorsqu'on a un fichier CSV avec des noms de colonne comme dans notre cas, il est intéressant de les utiliser pour manipuler la donnée nommée, plutôt que par position en utilisant une liste simple. On utilise pour cela un `DictReader` au lieu du `reader`. A présent, lorsqu'on itère sur l'objet `DictReader` créé, chaque ligne est un dictionnaire, donc la clé est le nom de la colonne et la valeur la donnée de la cellule. 
+
+Pour illustrer son intérêt, affichons les noms des départements donc le numéro de département est compris entre 20 et 29.
+
+```{python}
+with open("departement2021.csv") as file_in:
+    dict_reader = csv.DictReader(file_in)
+    for row in dict_reader:
+        if row["DEP"].startswith("2"):
+            print(row["LIBELLE"])
+```
+
+Le code est beaucoup plus lisible : on comprend facilement quelles données sont manipulées et de quelle manière.
+
+
+### Écriture
+
+
+La syntaxe pour l'écriture est là encore assez proche de celle pour les fichiers texte. La différence est que l'on traite des données en 2D (ligne x colonne), on ne peut donc plus passer seulement une chaîne de caractère à l'écriture, il faut **passer une liste d'éléments**.
+
+```{python}
+header = ["nom", "classe", "age"]
+row1 = ["Maurice", "5èmeB", 12]
+row2 = ["Manuela", "6èmeA", 11]
+
+with open("test.csv", "w") as file_out:
+    csv_writer = csv.writer(file_out)
+    csv_writer.writerow(header)
+    csv_writer.writerow(row1)
+    csv_writer.writerow(row2)
+```
+
+Vérifions que notre fichier CSV brut ressemble bien à ce que nous attendions.
+
+```{python}
+# Commande shell pour afficher le contenu d'un fichier
+!cat test.csv
+```
+
+### Le *header*
+
+
+Comme dans un document de type tableur, la première ligne d'un fichier CSV contient généralement les **noms des variables** (colonnes). On appelle cette ligne le ***header***. Cette ligne n'est pas obligatoire en théorie, mais elle est quand même bien pratique pour comprendre rapidement la nature des données qui se trouvent dans un fichier CSV. C'est donc une bonne pratique d'inclure un *header* lorsqu'on génère un fichier CSV.
+
+Nous avons vu dans l'exemple précédent que l'écriture du *header* se faisait comme celle de n'importe quelle autre ligne de donnée. C'est lors de la lecture que les choses se compliquent, puisqu'il faut récupérer le *header* séparément des autres données si le fichier CSV en contient un. Utilisons le CSV généré à l'étape précédente pour illustrer cela.
+
+```{python}
+data = []
+with open("test.csv", "r") as file_in:
+    csv_reader = csv.reader(file_in)
+    header = next(csv_reader)
+    for row in csv_reader:
+        data.append(row)
+```
+
+```{python}
+print(header)
+```
+
+```{python}
+print(data)
+```
+
+Pour récupérer le *header*, on utilise la fonction `next`. C'est une fonction *built-in* qui va appeler la méthode `__next__` de l'objet `reader`, qui permet d'itérer d'un pas sur le `reader`. Le premier appel à la fonction `next` renvoie donc la première ligne du document. Si un *header* est présent dans le fichier (ce dont il faut s'assurer), l'élément renvoyé est le *header*. On récupère ensuite classiquement le reste des données via une boucle sur l'objet `reader`, que l'on stocke dans une liste de listes (une liste par ligne).
+
+
+### Importance du délimiteur
+
+
+Le **délimiteur** correspond au caractère qui est utilisé pour délimiter les valeurs successives d'une ligne dans un fichier CSV.
+
+Le standard CSV utilise &mdash; comme son nom l'indique &mdash; la virgule comme délimiteur, mais cela est modifiable, et **il n'est pas rare de tomber sur des fichiers CSV qui ont un autre délimiteur**. Il faut dans ce cas aller regarder directement dans le texte brut quel est le délimiteur utilisé. On trouve par exemple souvent une délimitation par des `tabs` (le caractère est `\t`), i.e. un nombre d'espaces donné, auquel cas le fichier peut avoir pour extension `.tsv` pour *tab-separated value*. Il faut alors spécifier le délimiteur avec le paramètre `delimiter` lorsqu'on crée le `reader`.
+
+En pratique, comme pour l'encodage d'un fichier texte, **il y a peu de raison valable pour changer de délimiteur**. Même si des virgules apparaissent dans des valeurs du fichier — par exemple, dans une adresse — ces valeurs sont alors entourées par des guillemets, ce qui permet à la séparation des valeurs de se faire correctement dans la grande majorité des cas.
+
+
+## Manipuler des fichiers JSON
+
+
+### Les fichiers JSON
+
+
+Le JSON (*JavaScript Object Notation*) est un format de fichier très populaire pour écrire et échanger de la donnée sous la forme d'une chaîne de caractères unique et lisible par l'humain (*human-readable*) — du moins en théorie. 
+
+Comme son nom le suggère, le JSON est lié au langage *JavaScript* dans la mesure où il constitue un dérivé de la notation des objets dans ce langage. Le format est cependant désormais indépendant de tout langage de programmation, mais est très fréquemment utilisé dans différents langages. 
+
+Le format JSON est particulièrement important pour les statisticiens et data scientists car il constitue le **format quasi-standard de réponse des [API](https://fr.wikipedia.org/wiki/Interface_de_programmation)**. Le dialogue avec les API va au delà du programme de ce cours d'introduction. Cependant, les API tendant à se généraliser comme mode de communication standard pour l'échange de données, il est important de maîtriser les bases du format JSON afin de manipuler les réponses des API lorsqu'on doit interagir avec celles-ci.
+
+Le JSON stockant les objets sous forme de **paires clé-valeur** et où les valeurs peuvent être des ***arrays*** — un concept assez large en informatique qui inclut notamment les listes que nous connaissons — il ressemble fortement aux dictionnaires Python. Il constitue ainsi un format de fichier assez naturel pour ***sérialiser*** ces derniers, c'est à dire passer d'une structure de données en mémoire (ici, un dictionnaire) à une séquence d'octets qui peut être universellement lue par tout ordinateur. Regardons à titre d'exemple la représentation JSON d'un dictionnaire Python.
+
+```{python}
+cv = {
+    "marc": {"poste": "manager", "experience": 7, "hobbies": ["couture", "frisbee"]},
+    "miranda": {"poste": "ingénieure", "experience": 5, "hobbies": ["trekking"]}
+}
+
+print(cv)
+```
+
+```{python}
+import json
+
+print(json.dumps(cv))
+```
+
+On le voit : la représentation JSON est assez proche de celle du dictionnaire Python, avec **quelques particularités**. Dans ce cas par exemple, les caractères spéciaux comme les accents sont automatiquement encodés en *Unicode*.
+
+
+### Le module `json`
+
+
+Le module `json` gère l'import de fichiers JSON et l'export d'objets Python au format JSON. Il s'occupe notamment de gérer les contraintes de conversion en JSON évoquées précédemment, comme celle des accents. 
+
+En particulier, **le JSON peut stocker la majorité des types d'objets *built-in* de Python** que nous avons vus jusqu'à présent (*strings*, valeurs numériques, Booléens, listes, dictionnaires, `NoneType`) et bien d'autres, mais il ne peut pas représenter des objets Python créés manuellement via des classes par exemple.
+
+
+### Écriture
+
+
+Commençons cette fois par l'écriture. Comme nous l'avons vu dans l'exemple précédent, la fonction `dumps` (pour *dump string*) convertit une valeur Python **sérialisable** en sa représentation JSON sous forme de chaîne de caractères.
+
+```{python}
+x = "test"
+json.dumps(x)
+```
+
+```{python}
+x = [1, 2, 3]
+json.dumps(x)
+```
+
+Ecrire un fichier JSON à partir de Python revient simplement à écrire cette représentation dans un fichier texte, auquel on donnera l'extension `.json` pour bien marquer qu'il s'agit d'un fichier texte particulier. Comme cette opération est très fréquente, il existe une fonction très proche, `dump`, qui effectue à la fois la conversion et l'écriture.
+
+```{python}
+with open("cv.json", "w") as file_out:
+    json.dump(cv, file_out)
+```
+
+```{python}
+!cat cv.json
+```
+
+En une seule opération, on a sérialisé un dictionnaire Python (l'objet `cv`) dans un fichier JSON.
+
+
+### Lecture
+
+
+Le module `json` propose les fonctions `load` et `loads`, qui réalisent respectivement les opérations opposées des fonctions `dump` et `dumps` :
+
+- la fonction `load` permet d'importer du contenu JSON présent dans un fichier texte et de le convertir en un dictionnaire
+
+- la fonction `loads` permet de convertir du contenu JSON présent dans une chaîne de caractères en un dictionnaire
+
+
+Reprenons le CV que nous avons sérialisé précédemment au format JSON pour illustrer la lecture à partir d'un fichier.
+
+```{python}
+with open("cv.json", "r") as file_in:
+    data = json.load(file_in)
+    
+data
+```
+
+Nous allons illustrer la lecture de contenu JSON à partir d'une chaîne de caractères à partir d'un exemple réaliste : celui du requêtage d'une API. Pour l'exemple, nous allons requêter la Base Adresse Nationale (BAN), qui permet de géolocaliser n'importe quelle adresse nationale.
+
+Le requêtage d'API en Python se fait très simplement grâce à la librairie `requests`. Regardons par exemple comment l'on peut récupérer en seulement deux lignes de code les informations géographiques sur toutes les voies qui contiennent le nom "comédie" en France.
+
+```{python}
+import requests
+```
+
+```{python}
+response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+r_text = response.text
+print(r_text[:150])
+```
+
+L'API nous renvoie une réponse, dont on extrait le contenu textuel. Comme pour la très grande majorité des API, ce contenu est du JSON. On peut alors l'importer dans un dictionnaire Python via la fonction `loads` (pour *load string*) pour pouvoir manipuler la donnée qu'il contient.
+
+```{python}
+r_dict = json.loads(r_text)
+```
+
+```{python}
+r_dict.keys()
+```
+
+```{python}
+type(r_dict["features"])
+```
+
+Les résultats qui nous intéressent sont contenues dans la valeur du dictionnaire associée à la clé `features`, qui est une liste de dictionnaires, un par résultat.
+
+```{python}
+r_dict["features"][0]
+```
+
+```{python}
+r_dict["features"][1]
+```
+
+## Exercices
+
+### Questions de compréhension
+
+
+
+- 1/ Qu'est ce qu'un fichier CSV ?
+
+- 2/ Quel sont les avantages du format CSV ?
+
+- 3/ Pourquoi utilise-t-on le module `csv` pour lire et écrire des fichiers CSV ?
+
+- 4/ Les données d'un fichier CSV sont-elles forcément séparées par des virgules ?
+
+- 5/ Qu'est-ce que le *header* d'un fichier CSV ? Existe-t-il nécessairement ?
+
+- 6/ Pourquoi le format JSON est très utilisé dans la manipulation de données ?
+
+- 7/ A quel objet Python ressemble du contenu au format JSON ?
+
+- 8/ Quels types d'objets Python peuvent être convertis en JSON ?
+
+- 9/ Qu'est ce que la sérialisation d'un objet Python ?
+
+- 10/ Quel est le principal point commun entre les fichiers CSV et les fichiers JSON ?
+
+- 11/ Un fichier dont l'extension est .json contient-il nécessairement du JSON ?
+
+<details>
+<summary>Afficher la solution</summary>
+
+- 1/ Un CSV est un fichier texte qui représente l'information brute d'un document type tableur. Chaque ligne du fichier représente une ligne du tableur, et les cellules d'une ligne sont séparées par des virgules. La première ligne peut contenir un `header` (en-tête), c'est à dire le nom des colonnes, mais ce n'est pas toujours le cas.
+
+- 2/ Simplicité de lecture et d'édition, universalité.
+
+- 3/ Même si le format CSV est très simple, il présente certaines caractéristiques (délimiteur, caractère de fin de ligne, etc.) dont il faut tenir compte lorsqu'on lit ou édite du CSV. Le module csv fournit des fonctions qui tiennent compte de ces particularités.
+
+- 4/ Non, on peut en théorie séparer les données par n'importe quel caractère ou suite de caractères. En pratique, il faut suivre la convention dans la majorité des cas, qui est d'utiliser une virgule.
+
+- 5/ C'est la première ligne du fichier CSV, qui contient normalement les noms de variables, mais ce n'est pas toujours le cas.
+
+- 6/ C'est le format majoritaire de réponse des API, qui sont très utilisées pour la diffusion et l'échange de données.
+
+- 7/ Aux dictionnaires.
+
+- 8/ Tous les objets dits sérialisables, ce qui inclut la plupart des objets de base que l'on a vus, mais pas les objets créés manuellement via des classes.
+
+- 9/ La sérialisation d'un objet Python (sérialisable) consiste à convertir la donnée contenue dans cet objet en une séquence d'octets, c'est à dire en un message qui peut être compris par n'importe quel ordinateur.
+
+- 10/ Ce sont des fichiers texte. 
+
+- 11/ Non, les fichiers JSON comme les fichiers CSV sont des fichiers texte. L'extension est une convention qui permet dans la grande majorité des cas de savoir ce que contient le fichier, mais elle ne peut pas le garantir.
+
+</details>
+
+### Trier les clés lors de l'écriture d'un JSON
+
+
+La cellule suivante contient un dictionnaire. Le but de l'exercice est d'écrire ces données dans un fichier JSON, en triant les clés du dictionnaire par ordre alphabétique.
+
+Indice : la fonction `dump` du module `json` contient un paramètre permettant de trier les clés. Lisez la [documentation de la fonction](https://docs.python.org/fr/3/library/json.html#json.dump) pour le déterminer.
+
+```{python}
+data = {"id": 1, "nom": "Isidore", "age": 29}
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+import json
+
+data = {"id": 1, "nom": "Isidore", "age": 29}
+
+with open("data_sorted.json", "w") as file_out:
+    json.dump(data, file_out, sort_keys=True)
+```
+
+</details>
+
+### Convertir un objet non-sérialisable en JSON
+
+
+Nous avons vu que les objets que l'on crée manuellement via des classes ne sont généralement pas sérialisables. La cellule suivante en montre un exemple avec notre objet `Citron` utilisé dans le tutoriel sur la POO. Essayer de convertir directement l'objet en JSON renvoie une erreur.
+
+Vous devez modifier le code suivant afin de pouvoir sérialiser l'objet. Pour cela, vous devez : 
+
+- convertir l'instance `mon_citron` en utilisant la méthode *built-in* `__dict__` que possèdent tous les objets Python
+
+- convertir le dictionnaire obtenu en JSON sous forme de chaîne de caractères
+
+```{python}
+import json
+
+class Citron:
+
+    def __init__(self, couleur, qte_jus):
+        self.saveur = "acide"
+        self.couleur = couleur
+        self.jus = qte_jus
+        
+mon_citron = Citron(couleur="jaune", qte_jus=45)
+json.dumps(mon_citron)
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+import json
+
+class Citron:
+
+    def __init__(self, couleur, qte_jus):
+        self.saveur = "acide"
+        self.couleur = couleur
+        self.jus = qte_jus
+        
+mon_citron = Citron(couleur="jaune", qte_jus=45)
+mon_citron_dict = mon_citron.__dict__
+
+json.dumps(mon_citron_dict)
+```
+
+</details>
+
+### Changer le délimiteur d'un fichier CSV
+
+
+Votre répertoire courant contient le fichier `nat2020.csv`. Il s'agit du fichier des prénoms diffusé par l'Insee : il contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2020. 
+
+Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la virgule. Vous devez donc :
+
+- trouver le séparateur utilisé (via l'éditeur de texte Jupyter, via une commande shell, en testant avec le module `csv` en Python..) pour lire correctement le fichier
+
+- générer un nouveau fichier CSV `nat2020_corr.csv` contenant les mêmes données, mais cette fois avec la virgule comme séparateur.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+# Trouvons à l'aide d'une commande shell le séparateur utilisé
+!head -n 3 nat2020.csv
+
+with open('nat2020.csv', 'r') as file_in:
+    # Lecture du fichier CSV existant
+    reader = csv.reader(file_in, delimiter=';')
+    with open('nat2020_corr.csv', 'w') as file_out:
+        # Ecriture dans le nouveau fichier CSV
+        writer = csv.writer(file_out)  # Par défaut, le délimiteur est la virgule
+        for row in reader:
+            writer.writerow(row)
+            
+# Vérification à l'aide d'une commande shell
+!head -n 3 nat2020_corr.csv
+```
+
+</details>
+
+### Extraire et sauvegarder des données issues d'une API
+
+
+L'exercice consiste à effectuer une requête à l'API de la Base Adresse Nationale, et sauvegarder les résultats dans un fichier CSV. Voici les étapes à implémenter :
+
+- effectuer une requête de nom de rue avec un mot clé comme dans le tutoriel (si vous souhaitez faire une requête plus complexe, vous pouvez regarder la [documentation de l'API](https://adresse.data.gouv.fr/api-doc/adresse)) et stocker les résultats dans un dictionnaire
+
+- créer un fichier CSV `resultats_ban.csv` dans lequel on va stocker les informations suivantes : 'nom', 'ville', 'code_commune', 'longitude', 'latitude'
+
+- à l'aide d'un objet `writer` et d'une boucle sur les résultats renvoyés par l'API, écrivez chaque ligne dans le CSV
+
+Par exemple, pour la requête de voie contenant le mot "comedie", voici le CSV à obtenir :
+
+```
+nom,ville,code_commune,longitude,latitude
+Rue de la Vieille Comedie,Lille,59350,3.063832,50.635192
+Place de la Comédie,Montpellier,34172,3.879638,43.608525
+Rue de la Comédie,Cherbourg-en-Cotentin,50129,-1.629732,49.641574
+Allee de la Comedie,Villeneuve-d'Ascq,59009,3.162808,50.64628
+Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
+```
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+r_text = response.text
+r_dict = json.loads(r_text)
+
+with open('resultats_ban.csv', 'w') as file_out:
+    header = ['nom', 'ville', 'code_commune', 'longitude', 'latitude']
+    csv_writer = csv.writer(file_out)
+    csv_writer.writerow(header)
+    for result in r_dict['features']:
+        nom = result['properties']['name']
+        commune = result['properties']['city']
+        code_commune = result['properties']['citycode']
+        long, lat = result['geometry']['coordinates']
+        row = [nom, commune, code_commune, long, lat]
+        csv_writer.writerow(row)
+```
+
+</details>
+
+### Découper la base des départements par régions
+
+
+L'objectif de cet exercice est de découper le fichier CSV des départements que nous avons utilisé dans le tutoriel en plusieurs petits CSV, un par région. Ce type d'opération peut être utile par exemple lorsqu'on travaille avec un fichier de très grande taille, qui ne passe pas en mémoire ; le découper en plusieurs fichiers que l'on traite indépendamment, lorsque cela est possible, permet de réduire la volumétrie.
+
+Voici la liste des opérations à effectuer : 
+
+- créer un dossier `dep` dans le répertoire courant à l'aide du module `pathlib` (cf. tutoriel précédent)
+
+- avec un objet `reader` du module `csv`, faire une boucle sur les lignes du fichier CSV des départements. Attention à ne pas inclure le *header*, en utilisant la fonction `next` pour passer la première ligne. Pour chaque ligne suivante : 
+
+    - récupérer le code région (variable `REG`)
+
+    - générer le chemin du fichier CSV `dep/{REG}.csv` où {REG} est à remplacer par le code région de la ligne
+
+    - ouvrir ce fichier CSV en mode `append` pour écrire la ligne à la fin du fichier
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+from pathlib import Path
+
+path_dep = Path("dep/")
+path_dep.mkdir(exist_ok=True)
+
+with open('departement2021.csv', 'r') as file_in:
+    csv_reader = csv.reader(file_in)
+    next(csv_reader)  # Passe le header
+    for row in csv_reader:
+        reg = row[1]
+        filename = reg + '.csv'
+        path_reg_file = path_dep / filename  # Chemin du fichier csv region
+        with open(path_reg_file, 'a') as file_reg_in:
+                writer = csv.writer(file_reg_in)
+                writer.writerow(row)
+```
+
+</details>
+
+### Rajouter des *headers* manquants
+
+
+Dans l'exercice précédent, nous avons découpé le fichier CSV des départements français en plusieurs fichiers CSV, un par région. Mais nous n'avons pas inclus dans les différents fichiers le *header*, i.e. la première ligne qui contient les noms de colonnes. On va donc l'ajouter manuellement à chacun des fichiers CSV créés lors de l'exercice précédent.
+
+Voici la liste des opérations à effectuer :
+
+- lire le fichier des départements complet et récupérer le `header` dans une liste avec la fonction `next`
+
+- enregistrer dans une liste les chemins des différents fichiers CSV contenus dans le dossier `dep` avec la méthode `glob` de `pathlib` (cf. tutoriel précédent)
+
+- pour chaque chemin :
+
+    - ouvrir le fichier CSV déjà existant, et récupérer les données sous forme d'une liste de listes (une liste par ligne)
+
+    - ouvrir le fichier CSV en écriture pour le réinitialiser, écrire le header en premier lieu, puis écrire les données que l'on a au préalable sauvegardées dans une liste de liste
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+<details>
+<summary>Afficher la solution</summary>
+
+```python
+from pathlib import Path
+
+with open('departement2021.csv', 'r') as file_in:
+    csv_reader = csv.reader(file_in)
+    header = next(csv_reader)
+
+dep_files_paths = list(Path("dep/").glob('*.csv'))
+
+for path in dep_files_paths:
+    # Lecture du fichier existant, dont on stocke les lignes dans une liste
+    with open(path, 'r') as file_dep_in:
+        reader = csv.reader(file_dep_in)
+        dep_rows = []
+        for row in reader:
+            dep_rows.append(row)
+    # On réécrit le fichier de sortie, en rajoutant au préalable le header
+    with open(path, 'w') as file_dep_out:
+        writer = csv.writer(file_dep_out)
+        writer.writerow(header)
+        for row in dep_rows:
+            writer.writerow(row)
+```
+
+</details>

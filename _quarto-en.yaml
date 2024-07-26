@@ -1,0 +1,26 @@
+website:
+  title: "SSPy training course {{< fa brands python >}}"
+  sidebar:
+    style: 'docked'
+    contents:
+      - section: "Fundamentals"
+        contents: 
+          - source/en/fundamentals/types-variables/tutorial.qmd
+          - source/en/fundamentals/data-structures1/tutorial.qmd
+          - source/en/fundamentals/data-structures2/tutorial.qmd
+          - source/en/fundamentals/tests/tutorial.qmd
+          - source/en/fundamentals/loops/tutorial.qmd
+          - source/en/fundamentals/functions/tutorial.qmd
+          - source/en/fundamentals/oop/tutorial.qmd
+      - section: "Data handling"
+        contents: 
+          - source/en/manipulation/modules-files/tutorial.qmd
+          - source/en/manipulation/csv-json-files/tutorial.qmd
+          - source/en/manipulation/numpy/tutorial.qmd
+          - source/en/manipulation/pandas/tutorial.qmd
+          - source/en/manipulation/dataviz/tutorial.qmd
+      - section: "Projects"
+        contents: 
+          - source/en/projects/puissance4/tutorial.qmd
+          - source/en/projects/meteo/tutorial.qmd
+          - source/en/projects/RP/tutorial.qmd
