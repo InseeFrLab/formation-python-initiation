@@ -24,8 +24,6 @@ import requests
 import pandas
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-import solutions
 ```
 
 ## Partie 1 : récupération des coordonnées géographiques pour une localisation donnée

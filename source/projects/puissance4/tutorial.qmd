@@ -44,7 +44,7 @@ Chaque élément de la grille sera représenté par un *string*, qui pourra pren
 
 - 'R' : s'il s'agit d'un pion rouge. 
 
-- 'J' : s'il s'agit d'un pion jaune. 
+- 'Y' : s'il s'agit d'un pion jaune (yellow). 
 
 Dans la fonction d'initialisation de la grille, chaque élément sera donc initialisé comme un ***string* contenant un espace**.
 
@@ -54,37 +54,37 @@ Dans la fonction d'initialisation de la grille, chaque élément sera donc initi
 
 
 ```{python}
-grille = solutions.initialise_grille()
-grille
+grid = solutions.display_grid()
+grid
 ```
 
 
 ```{python}
-print(f'Nombre de lignes : {len(grille)}')
-print(f'Nombre de colonnes : {len(grille[0])}')
+print(f'Nombre de lignes : {len(grid)}')
+print(f'Nombre de colonnes : {len(grid[0])}')
 ```
 
 ### A vous de jouer !
 
 
 ```{python}
-def initialise_grille():
+def display_grid():
     # Votre code ici
-    return grille
+    return grid
 ```
 
 
 ```{python}
 # Vérification du résultat
-grille = initialise_grille()
-grille
+grid = display_grid()
+grid
 ```
 
 
 ```{python}
 # Vérification du résultat
-print(f'Nombre de lignes : {len(grille)}')
-print(f'Nombre de colonnes : {len(grille[0])}')
+print(f'Nombre de lignes : {len(grid)}')
+print(f'Nombre de colonnes : {len(grid[0])}')
 ```
 
 ## Représentation de la grille
@@ -106,26 +106,26 @@ print(l_join)
 
 
 ```{python}
-solutions.affiche_grille(grille)
+solutions.display_grid(grid)
 ```
 
 ### A vous de jouer !
 
 
 ```{python}
-def affiche_grille():
+def display_grid():
     # Votre code ici
 ```
 
 
 ```{python}
 # Vérification du résultat
-affiche_grille(grille)
+display_grid(grid)
 ```
 
 ## Fonction de jeu
 
-Maintenant que nous pouvons représenter notre grille, intéressons-nous au coeur du puissance 4 : le jeu. L'objectif de cette partie est de **coder une fonction `tour` qui va modifier la grille lorsqu'un joueur joue son tour**.
+Maintenant que nous pouvons représenter notre grille, intéressons-nous au coeur du puissance 4 : le jeu. L'objectif de cette partie est de **coder une fonction `make_move` qui va modifier la grille lorsqu'un joueur joue son tour**.
 
 Cette fonction prend en entrée :
 
@@ -133,7 +133,7 @@ Cette fonction prend en entrée :
 
 - la colonne choisie par le joueur
 
-- la couleur du pion ('R' pour le pion rouge, et 'J' pour le pion jaune)
+- la couleur du pion ('R' pour le pion rouge, et 'Y' pour le pion jaune)
 
 et renvoie en sortie la grille actualisée suite au tour du joueur.
 
@@ -147,31 +147,31 @@ Optionnel : Renvoyer un message d'erreur si un joueur essaie de jouer dans une c
 
 
 ```{python}
-grille = solutions.initialise_grille()  # Initialisation
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
-grille = solutions.tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 3ème tour de jeu
-solutions.affiche_grille(grille)
+grid = solutions.display_grid()  # Initialisation
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 1er tour de jeu
+grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="J")  # 2ème tour de jeu
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 3ème tour de jeu
+solutions.display_grid(grid)
 ```
 
 ### A vous de jouer !
 
 
 ```{python}
-def tour(grille, colonne_a_jouer, couleur_pion):
-    new_grille = copy.deepcopy(grille)  # Evite la modification de la grille initiale
+def make_move(grid, column_to_play, disc_color):
+    new_grid = copy.deepcopy(grid)  # Evite la modification de la grille initiale
     # Votre code ici
-    return new_grille
+    return new_grid
 ```
 
 
 ```{python}
 # Vérification du résultat
-grille = initialise_grille()  # Initialisation
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 1er tour de jeu
-grille = tour(grille=grille, colonne_a_jouer=5, couleur_pion="J")  # 2ème tour de jeu
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")  # 3ème tour de jeu
-affiche_grille(grille)
+grid = display_grid()  # Initialisation
+grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 1er tour de jeu
+grid = make_move(grid=grid, column_to_play=5, disc_color="J")  # 2ème tour de jeu
+grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 3ème tour de jeu
+display_grid(grid)
 ```
 
 ## Détection d'une victoire (horizontale)
@@ -180,9 +180,9 @@ Maintenant qu'il est possible de jouer effectivement à notre puissance 4, il fa
 
 Dans un premier temps, on s'intéresse à la détection d'une victoire horizontale. Pour cela, on va s'aider de deux fonctions :
 
-- une fonction `victoire_ligne` qui prend en entrée une ligne du puissance 4 (i.e. une liste de taille 7) et retourne `True` si jamais 4 pions consécutifs de même couleur se trouvent sur la ligne, et `False` sinon
+- une fonction `check_row_victory` qui prend en entrée une ligne du puissance 4 (i.e. une liste de taille 7) et retourne `True` si jamais 4 pions consécutifs de même couleur se trouvent sur la ligne, et `False` sinon
 
-- une fonction `victoire_horizontale_grille` qui prend en entrée une grille complète et retourne `True` si jamais une ligne de la grille remplit la condition précédente, et `False` sinon
+- une fonction `check_horizontal_victory` qui prend en entrée une grille complète et retourne `True` si jamais une ligne de la grille remplit la condition précédente, et `False` sinon
 
 ### Résultat attendu
 
@@ -192,116 +192,116 @@ Dans un premier temps, on s'intéresse à la détection d'une victoire horizonta
 ligne1 = [" ", "R", "R", "R", "J", "J", " "]
 ligne2 = [" ", "R", "R", "R", "R", "J", " "]
 
-print(solutions.victoire_ligne(ligne1))  # Renvoie False
+print(solutions.check_row_victory(ligne1))  # Renvoie False
 print()  # Retour à la ligne
-print(solutions.victoire_ligne(ligne2))  # Renvoie True
+print(solutions.check_row_victory(ligne2))  # Renvoie True
 ```
 
 
 ```{python}
 # Détection d'une victoire (horizontale) sur une grille
-grille = solutions.initialise_grille()  # Initialisation
-print(solutions.victoire_horizontale_grille(grille))  # Renvoie False
+grid = solutions.display_grid()  # Initialisation
+print(solutions.check_horizontal_victory(grid))  # Renvoie False
 print()  # Retour à la ligne
 
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")
-grille = solutions.tour(grille=grille, colonne_a_jouer=3, couleur_pion="R")
-grille = solutions.tour(grille=grille, colonne_a_jouer=4, couleur_pion="R")
-grille = solutions.tour(grille=grille, colonne_a_jouer=5, couleur_pion="R")
-solutions.affiche_grille(grille)
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")
+grid = solutions.make_move(grid=grid, column_to_play=3, disc_color="R")
+grid = solutions.make_move(grid=grid, column_to_play=4, disc_color="R")
+grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="R")
+solutions.display_grid(grid)
 print()  # Retour à la ligne
 
-print(solutions.victoire_horizontale_grille(grille))  # Renvoie True
+print(solutions.check_horizontal_victory(grid))  # Renvoie True
 ```
 
 ### A vous de jouer !
 
 
 ```{python}
-def victoire_ligne(ligne):
+def check_row_victory(ligne):
     # Votre code ici
 ```
 
 
 ```{python}
 # Vérification du résultat
-ligne1 = [" ", "R", "R", "R", "J", "R", " "]
-ligne2 = [" ", "R", "R", "R", "R", "J", " "]
+row1 = [" ", "R", "R", "R", "J", "R", " "]
+row2 = [" ", "R", "R", "R", "R", "J", " "]
 
-print(victoire_ligne(ligne1))  # Renvoie False
-print(victoire_ligne(ligne2))  # Renvoie True
+print(check_row_victory(row1))  # Renvoie False
+print(check_row_victory(row2))  # Renvoie True
 ```
 
 
 ```{python}
-def victoire_horizontale_grille(grille):
+def check_horizontal_victory(grid):
     # Votre code ici
 ```
 
 
 ```{python}
 # Vérification du résultat
-grille = initialise_grille()  # Initialisation
-print(victoire_horizontale_grille(grille))  # Renvoie False
+grid = display_grid()  # Initialisation
+print(check_horizontal_victory(grid))  # Renvoie False
 
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="R")
-grille = tour(grille=grille, colonne_a_jouer=3, couleur_pion="R")
-grille = tour(grille=grille, colonne_a_jouer=4, couleur_pion="R")
-grille = tour(grille=grille, colonne_a_jouer=5, couleur_pion="R")
-affiche_grille(grille)
-print(victoire_horizontale_grille(grille))  # Renvoie True
+grid = make_move(grid=grid, column_to_play=2, disc_color="R")
+grid = make_move(grid=grid, column_to_play=3, disc_color="R")
+grid = make_move(grid=grid, column_to_play=4, disc_color="R")
+grid = make_move(grid=grid, column_to_play=5, disc_color="R")
+display_grid(grid)
+print(check_horizontal_victory(grid))  # Renvoie True
 ```
 
 ## Détection d'une victoire (verticale)
 
-A présent, on s'intéresse à la détection d'une victoire verticale. Par rapport à la situation précédente, la difficulté est que l'on ne peut pas directement boucler sur les colonnes. On va donc construire une fonction `victoire_verticale_grille` qui, pour chaque colonne :
+A présent, on s'intéresse à la détection d'une victoire verticale. Par rapport à la situation précédente, la difficulté est que l'on ne peut pas directement boucler sur les colonnes. On va donc construire une fonction `check_vertical_victory` qui, pour chaque colonne :
 
 - récupère les éléments de la colonne dans une liste
 
-- applique à cette liste la fonction `victoire_ligne` pour vérifier la présence de 4 pions consécutifs de même couleur dans la colonne considérée
+- applique à cette liste la fonction `check_row_victory` pour vérifier la présence de 4 pions consécutifs de même couleur dans la colonne considérée
 
 ### Résultat attendu
 
 
 ```{python}
 # Détection d'une victoire (verticale) sur une grille
-grille = solutions.initialise_grille()  # Initialisation
-print(solutions.victoire_verticale_grille(grille))  # Renvoie False
+grid = solutions.display_grid()  # Initialisation
+print(solutions.check_vertical_victory(grid))  # Renvoie False
 print()  # Retour à la ligne
 
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-grille = solutions.tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-solutions.affiche_grille(grille)
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
+solutions.display_grid(grid)
 print()  # Retour à la ligne
 
-print(solutions.victoire_verticale_grille(grille))  # Renvoie True
+print(solutions.check_vertical_victory(grid))  # Renvoie True
 ```
 
 ### A vous de jouer !
 
 
 ```{python}
-def victoire_verticale_grille(grille):
+def check_vertical_victory(grid):
     # Votre code ici
 ```
 
 
 ```{python}
 # Vérification du résultat
-grille = initialise_grille()  # Initialisation
-print(victoire_verticale_grille(grille))  # Renvoie False
+grid = display_grid()  # Initialisation
+print(check_vertical_victory(grid))  # Renvoie False
 print()  # Retour à la ligne
 
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-grille = tour(grille=grille, colonne_a_jouer=2, couleur_pion="J")
-affiche_grille(grille)
+grid = make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = make_move(grid=grid, column_to_play=2, disc_color="J")
+grid = make_move(grid=grid, column_to_play=2, disc_color="J")
+display_grid(grid)
 print()  # Retour à la ligne
 
-print(victoire_verticale_grille(grille))  # Renvoie True
+print(check_vertical_victory(grid))  # Renvoie True
 ```
 
 ## Fin de partie
@@ -310,7 +310,7 @@ Dans notre version simplifiée du puissance 4, on peut à présent déclarer la 
 
 On va donc pour commencer créer une fonction `victoire` qui prend la grille en entrée et renvoie `True` si une victoire horizontale **ou** verticale est détectée, et `False` sinon.
 
-Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque coup si la partie est terminée afin de limiter la duplication de code. On va donc ensuite créer une fonction `tour_test_victoire` qui :
+Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque coup si la partie est terminée afin de limiter la duplication de code. On va donc ensuite créer une fonction `make_move_and_check_victory` qui :
 
 - prend en entrée les mêmes *inputs* que la fonction `tour`
 
@@ -322,15 +322,15 @@ Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque cou
 
 
 ```{python}
-grille = solutions.initialise_grille()  # Initialisation
+grid = solutions.initialize_grid()  # Initialisation
 print("Tour 1")
-grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 print("Tour 2")
-grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 print("Tour 3")
-grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 print("Tour 4")
-grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 ```
 
 
@@ -338,30 +338,30 @@ grille = solutions.tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_
 
 
 ```{python}
-def victoire(grille):
+def check_victory(grid):
     # Votre code ici
 ```
 
 
 ```{python}
-def tour_test_victoire(grille, colonne_a_jouer, couleur_pion):
-    grille = copy.deepcopy(grille)
+def make_move_and_check_victory(grille, column_to_play, disc_color):
+    grid = copy.deepcopy(grid)
     # Votre code ici
-    return grille
+    return grid
 ```
 
 
 ```{python}
 # Vérification du résultat
-grille = initialise_grille()  # Initialisation
+grid = initialize_grid()  # Initialisation
 print("Tour 1")
-grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 print("Tour 2")
-grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 print("Tour 3")
-grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 print("Tour 4")
-grille = tour_test_victoire(grille=grille, colonne_a_jouer=2, couleur_pion="J")
+grid = make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
 ```
 
 

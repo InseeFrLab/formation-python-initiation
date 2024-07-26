@@ -1,86 +1,86 @@
 import copy
 
 
-def initialise_grille(n_lignes=6, n_colonnes=7):
-    grille = []
+def initialize_grid(n_rows=6, n_columns=7):
+    grid = []
 
-    for ligne in range(n_lignes):
-        colonne_espace_vide = [' ' for espace in range(n_colonnes)]
-        grille.append(colonne_espace_vide)
-    return grille
+    for row in range(n_rows):
+        empty_space_column = [' ' for space in range(n_columns)]
+        grid.append(empty_space_column)
+    return grid
 
 
-def affiche_grille(grille):
-    for row in grille:
+def display_grid(grid):
+    for row in grid:
         print("| " + " | ".join(row) + " |")
 
 
-def tour(grille, colonne_a_jouer, couleur_pion):
-    grille = copy.deepcopy(grille)
+def make_move(grid, column_to_play, disc_color):
+    grid = copy.deepcopy(grid)
 
-    if grille[0][colonne_a_jouer] != " ":
-        # Si la colonne choisie n'a aucune case vide, on renvoie une erreur
-        raise ValueError("La colonne choisie est déjà complète.")
+    if grid[0][column_to_play] != " ":
+        # If the chosen column has no empty space, raise an error
+        raise ValueError(f"Column {column_to_play} is already full.")
     else:
-        # Sinon, on parcourt la colonne du bas vers le haut jusqu'à arriver sur une case vide
-        # On ajoute alors le pion dans cette case
-        ligne = 5
-        while grille[ligne][colonne_a_jouer] != ' ':
-            ligne -= 1
-        grille[ligne][colonne_a_jouer] = couleur_pion
+        # Otherwise, go through the column from bottom to top until finding an empty space
+        # Then place the disc in that space
+        row = 5
+        while grid[row][column_to_play] != ' ':
+            row -= 1
+        grid[row][column_to_play] = disc_color
 
-    return grille
+    return grid
 
 
-def victoire_ligne(ligne):
-    for i, elem in enumerate(ligne):
-        # Pour chaque élément de la ligne
-        if elem in ["R", "J"] and i + 3 <= len(ligne) - 1:
-            # Si l'élément est un pion et qu'il existe au moins 3 éléments à sa droite
+def check_row_victory(row):
+    for i, elem in enumerate(row):
+        # For each element in the row
+        if elem in ["R", "Y"] and i + 3 <= len(row) - 1:
+            # If the element is a disc and there are at least 3 elements to its right
             count_equal = 0
             for j in range(1, 4):
-                # On compte le nombre de pions de même couleur à sa droite
-                if elem == ligne[i+j]:
+                # Count the number of discs of the same color to its right
+                if elem == row[i+j]:
                     count_equal += 1
             if count_equal == 3:
-                # Si le compteur vaut 3, c'est une victoire, la fonction retourne True
+                # If the counter is 3, it's a victory, the function returns True
                 if elem == "R":
-                    print("Les pions rouges ont gagné, félicitations !")
-                if elem == "J":
-                    print("Les pions jaunes ont gagné, félicitations !")
+                    print("Red won!")
+                if elem == "Y":
+                    print("Yellow won!")
                 return True
     return False
 
 
-def victoire_horizontale_grille(grille):
-    for ligne in grille:
-        # On teste le critère de victoire sur chaque ligne
-        if victoire_ligne(ligne):
+def check_horizontal_victory(grid):
+    for row in grid:
+        # Test the victory condition on each row
+        if check_row_victory(row):
             return True
     return False
 
 
-def victoire_verticale_grille(grille):
-    for idx_colonne in range(7):
-        # On récupère les éléments de la colonne dans une liste
-        colonne = []
-        for ligne in grille:
-            colonne.append(ligne[idx_colonne])
-        if victoire_ligne(colonne):
-            # On teste l'existence d'une victoire
+def check_vertical_victory(grid):
+    for column_idx in range(7):
+        # Get the elements of the column into a list
+        column = []
+        for row in grid:
+            column.append(row[column_idx])
+        if check_row_victory(column):
+            # Test for the existence of a victory
             return True
     return False
 
 
-def victoire(grille):
-    if victoire_horizontale_grille(grille) or victoire_verticale_grille(grille):
+def check_victory(grid):
+    if check_horizontal_victory(grid) or check_vertical_victory(grid):
         return True
     return False
 
 
-def tour_test_victoire(grille, colonne_a_jouer, couleur_pion):
-    grille = copy.deepcopy(grille)
-    grille = tour(grille, colonne_a_jouer, couleur_pion)
-    if victoire(grille):
-        print("FIN DE PARTIE")
-    return grille
+def make_move_and_check_victory(grid, column_to_play, disc_color):
+    grid = copy.deepcopy(grid)
+    grid = make_move(grid, column_to_play, disc_color)
+    if check_victory(grid):
+        print("GAME OVER")
+    return grid
