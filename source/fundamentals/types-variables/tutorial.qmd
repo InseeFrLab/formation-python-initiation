@@ -1,9 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Types de base et variables"
----
-
-
+# Types de base et variables
 
 Dans ce premier TP, nous allons découvrir les objets les plus fondamentaux de Python : les **nombres** et les **chaînes de caractère**. Nous allons également voir comment l'on peut assigner des objets à des **variables**, afin de réaliser des opérations avec ces objets.
 

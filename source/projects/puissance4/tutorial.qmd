@@ -1,9 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Projet 1 - Puissance 4"
----
-
-
+# Projet 1 - Puissance 4
 
 Dans ce projet nous allons implémenter un puissance 4 avec une interface graphique assez sommaire. Pour y arriver, nous allons utiliser les objets fondamentaux de Python.
 

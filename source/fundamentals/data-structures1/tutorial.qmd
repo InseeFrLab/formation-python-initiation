@@ -1,9 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Structures de données 1 : listes et tuples"
----
-
-
+# Structures de données 1 : listes et tuples
 
 Dans ce tutoriel, nous allons nous intéresser à des structures de données de base en Python : les **listes** et les **tuples**. Les structures de données peuvent être vues comme des conteneurs car ils permettent de stocker, d'organiser et d'accéder à des données. Les listes et les tuples sont des **conteneurs séquentiels** : les éléments qu'ils contiennent sont **ordonnés**, et leur position est enregistrée dans un **index**.
 
@@ -640,11 +636,7 @@ print(r)
 
 
 ::: {.content-visible when-profile="en"}
----
-title: "Data Structures 1: Lists and Tuples"
----
-
-
+# Data Structures 1: Lists and Tuples
 
 In this tutorial, we will focus on basic data structures in Python: **lists** and **tuples**. Data structures can be seen as containers because they allow you to store, organize, and access data. Lists and tuples are **sequential containers**: the elements they contain are **ordered**, and their position is recorded in an **index**.
 
@@ -1203,6 +1195,8 @@ Read the section on sequence packing and unpacking in the [Python documentation]
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1218,5 +1212,7 @@ print(r)
 ```
 
 </details>
+
+:::
 
 :::

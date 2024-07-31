@@ -1,9 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Projet 2 - Interaction avec des APIs"
----
-
-
+# Projet 2 - Interaction avec des APIs
 
 ## Contexte du projet
 

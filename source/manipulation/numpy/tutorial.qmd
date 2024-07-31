@@ -1,9 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Calcul numérique avec NumPy"
----
-
-
+# Calcul numérique avec NumPy
 
 En tant que statisticien, on est fréquemment amené à manipuler des séries de valeurs numériques, à partir desquelles on réalise diverses opérations mathématiques, des plus usuelles (moyenne, variance, etc.) aux plus complexes. On peut, comme on l'a fait dans les précédents tutoriels, utiliser les objets fondamentaux de Python, et en particulier les listes, pour réaliser de telles opérations. En pratique, on préférera utiliser la **librairie de référence pour le calcul scientifique**, `NumPy`, qui fournit à la fois des objets (les ***arrays***) et des fonctions qui vont grandement nous simplifier la vie pour effectuer tous nos calculs en Python de manière efficiente.
 
