@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 LANGUAGE=$1
 SECTION=$2
@@ -14,7 +14,7 @@ git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Build notebook from sources
 SOURCE_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/tutorial.qmd
-quarto convert $SOURCE_FILE
+quarto render $SOURCE_FILE --profile ${LANGUAGE} --no-execute --to ipynb
 rm $SOURCE_FILE
 
 # Put chapter files in the training dir
