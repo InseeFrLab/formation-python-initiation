@@ -1,3 +1,6 @@
+project:
+  output-dir: _site/en
+
 website:
   title: "SSPy training course {{< fa brands python >}}"
   sidebar:
