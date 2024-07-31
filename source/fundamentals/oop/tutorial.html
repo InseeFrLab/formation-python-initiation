@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Formation SSPy  - Notions de programmation orientée objet</title>
+<title>tutorial – Formation SSPy {{&lt; fa brands python &gt;}}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -142,13 +142,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/oop/tutorial.html">Notions de programmation orientée objet</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -172,9 +172,9 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Fondamentaux du langage</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -225,9 +225,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Manipulation de données</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -266,9 +266,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Projets</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -303,7 +303,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#la-programmation-orientée-objet" id="toc-la-programmation-orientée-objet" class="nav-link active" data-scroll-target="#la-programmation-orientée-objet">La programmation orientée objet</a></li>
+  <li><a href="#notions-de-programmation-orientée-objet" id="toc-notions-de-programmation-orientée-objet" class="nav-link active" data-scroll-target="#notions-de-programmation-orientée-objet">Notions de programmation orientée objet</a>
+  <ul class="collapse">
+  <li><a href="#la-programmation-orientée-objet" id="toc-la-programmation-orientée-objet" class="nav-link" data-scroll-target="#la-programmation-orientée-objet">La programmation orientée objet</a></li>
   <li><a href="#tout-est-un-objet" id="toc-tout-est-un-objet" class="nav-link" data-scroll-target="#tout-est-un-objet">“Tout est un objet”</a></li>
   <li><a href="#définir-ses-propres-objets" id="toc-définir-ses-propres-objets" class="nav-link" data-scroll-target="#définir-ses-propres-objets">Définir ses propres objets</a></li>
   <li><a href="#la-classe-et-ses-instances" id="toc-la-classe-et-ses-instances" class="nav-link" data-scroll-target="#la-classe-et-ses-instances">La classe et ses instances</a></li>
@@ -325,31 +327,18 @@ window.Quarto = {
   <li><a href="#de-la-masse-au-jus" id="toc-de-la-masse-au-jus" class="nav-link" data-scroll-target="#de-la-masse-au-jus">De la masse au jus</a></li>
   <li><a href="#comptes-bancaires" id="toc-comptes-bancaires" class="nav-link" data-scroll-target="#comptes-bancaires">Comptes bancaires</a></li>
   </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/oop/tutorial.html">Notions de programmation orientée objet</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Notions de programmation orientée objet</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="notions-de-programmation-orientée-objet" class="level1">
+<h1>Notions de programmation orientée objet</h1>
 <p>Python est un langage dit “multi-paradigmes”, c’est à dire qu’il admet plusieurs manières de coder et de concevoir ses programmes. L’une d’entre elle est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n’impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des <em>packages</em> les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.</p>
 <section id="la-programmation-orientée-objet" class="level2">
 <h2 class="anchored" data-anchor-id="la-programmation-orientée-objet">La programmation orientée objet</h2>
@@ -358,7 +347,7 @@ window.Quarto = {
 <section id="tout-est-un-objet" class="level2">
 <h2 class="anchored" data-anchor-id="tout-est-un-objet">“Tout est un objet”</h2>
 <p><strong>En Python, tout est un objet</strong> (au sens de la POO). Regardons ce que cela signifie en récupérant le type de différents objets que nous avons vus dans les précédents tutoriels.</p>
-<div id="decac4b5" class="cell" data-execution_count="1">
+<div id="f42d19e4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">1</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"bonjour"</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>([]))</span>
@@ -383,7 +372,7 @@ window.Quarto = {
 <section id="définir-ses-propres-objets" class="level2">
 <h2 class="anchored" data-anchor-id="définir-ses-propres-objets">Définir ses propres objets</h2>
 <p>Regardons comment on peut utiliser l’instruction <code>class</code> pour définir notre objet “citron”.</p>
-<div id="8dc2e829" class="cell" data-execution_count="2">
+<div id="ddb28f1c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -412,7 +401,7 @@ window.Quarto = {
 <section id="la-classe-et-ses-instances" class="level2">
 <h2 class="anchored" data-anchor-id="la-classe-et-ses-instances">La classe et ses instances</h2>
 <p>La <strong>classe</strong> peut être vue comme la <strong>recette qui permet de créer un objet</strong> : elle définit les attributs et les méthodes que possèderont tous les objets définis à partir de cette classe. Définir une classe comme ci-dessus revient simplement à mettre cette recette dans l’environnement Python. Pour créer un objet selon cette classe, il faut l’<strong>instancier</strong>.</p>
-<div id="f62dcf5c" class="cell" data-execution_count="3">
+<div id="648ab01e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>citron2 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"vert"</span>, qte_jus<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -432,7 +421,7 @@ window.Quarto = {
 <section id="accéder-aux-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="accéder-aux-attributs">Accéder aux attributs</h3>
 <p>Une fois que l’objet est instancié, il est possible d’accéder à ses attributs. La syntaxe est simple : <code>instance.attribut</code>.</p>
-<div id="eb530788" class="cell" data-execution_count="4">
+<div id="6a2f83af" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.couleur)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.jus)</span>
@@ -449,7 +438,7 @@ vert
 <section id="modifier-un-attribut" class="level3">
 <h3 class="anchored" data-anchor-id="modifier-un-attribut">Modifier un attribut</h3>
 <p>Modifier un attribut d’une instance est très simple, la syntaxe est : <code>instance.attribut = nouvelle_valeur</code>.</p>
-<div id="cc6a41d6" class="cell" data-execution_count="5">
+<div id="093f79ea" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>citron2.couleur <span class="op">=</span> <span class="st">"rouge"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -473,17 +462,24 @@ vert
 <section id="appeler-une-méthode" class="level3">
 <h3 class="anchored" data-anchor-id="appeler-une-méthode">Appeler une méthode</h3>
 <p>La syntaxe pour appeler une méthode d’un objet instancié est la suivante : <code>instance.methode(parametres)</code>.</p>
-<div id="ba4eb341" class="cell" data-execution_count="6">
+<div id="091590a8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Il reste 45 mL de jus dans le citron.</code></pre>
 </div>
 </div>
 <p>On peut faire deux remarques sur cette syntaxe. La première est qu’<strong>une méthode est une fonction <em>attachée</em> à une instance d’un objet</strong>. Contrairement aux fonctions définies via l’instruction <code>def</code>, les méthodes n’ont pas d’existence propre en dehors de l’instance de l’objet. Dans notre cas, appeler la <em>fonction</em> <code>recup_qte_jus()</code> indépendamment de l’objet renvoie donc une erreur.</p>
-<div id="1807951c" class="cell" data-execution_count="7">
+<div id="5d1909a9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>NameError: name 'recup_qte_jus' is not defined</code></pre>
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[7], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">recup_qte_jus</span>()
+
+<span class="ansi-red-fg">NameError</span>: name 'recup_qte_jus' is not defined</pre>
+</div>
 </div>
 </div>
 <p>La seconde remarque est qu’<strong>on ne spécifie plus le paramètre <code>self</code> lorsqu’on manipule une instance</strong>. L’instance est devenue le <code>self</code> (ou plutôt <em>un</em> self) elle-même. Le lien entre la méthode et son instance est déjà fait, puisqu’on ne peut pas utiliser la méthode sans appeler l’instance auparavant.</p>
@@ -491,12 +487,12 @@ vert
 <section id="agir-sur-les-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="agir-sur-les-attributs">Agir sur les attributs</h3>
 <p>Tout l’intérêt des méthodes est qu’elles peuvent accéder aux attributs, et ainsi réaliser des opérations à partir de ceux-ci, mais également les modifier. Reprenons notre exemple pour illustrer cette possibilité.</p>
-<div id="8a9d25c9" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9a4ec032" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Il reste 45 mL de jus dans le citron.
 Il reste 33 mL de jus dans le citron.</code></pre>
@@ -514,10 +510,10 @@ Il reste 33 mL de jus dans le citron.</code></pre>
 <li><p>le fonctionnement en continu d’une application web. Une telle application doit garder des choses en mémoire pour fournir à l’utilisateur une expérience fluide : le fait que l’utilisateur se soit connecté, son historique, etc. Là encore, la plupart des <em>frameworks</em> web (<code>Django</code>, <code>Flask</code>..) reposent sur de la POO.</p></li>
 </ul>
 <p>Dans le même temps, le fait d’utiliser des objets qui gardent en mémoire un état peut <strong>limiter la reproductibilité des analyses</strong>. Pour illustrer cela, revenons à l’exemple du tutoriel : exécutez plusieurs fois d’affilée la cellule suivante.</p>
-<div id="fd763646" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="22c380f9" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Il reste 33 mL de jus dans le citron.
 Il reste 21 mL de jus dans le citron.</code></pre>
@@ -541,6 +537,23 @@ Il reste 21 mL de jus dans le citron.</code></pre>
 <li><p>9/ Peut-on modifier un attribut avec une méthode ? Peut-on modifier un attribut en dehors d’une méthode ?</p></li>
 <li><p>10/ Quand utilise-t-on généralement la POO ?</p></li>
 </ul>
+<details>
+<summary>
+Afficher la solution
+</summary>
+<ul>
+<li><p>1/ Cela signifie que tous les objets Python (nombres, strings, listes, etc..) sont des objets au sens de la POO : ils ont des attributs et des méthodes, qui sont définis par une classe.</p></li>
+<li><p>2/ L’instruction <code>class</code> sert à définir une classe d’objets.</p></li>
+<li><p>3/ Le constructeur <code>__init__</code> est un méthode spéciale qui permet à l’utilisateur de définir les attributs d’un objet.</p></li>
+<li><p>4/ Le self sert de référence à l’instance au sein de la classe. Il souligne qui va porter les attributs et les méthodes une fois l’objet instancié.</p></li>
+<li><p>5/ La classe est la “recette” qui définit toutes les caractéristiques de l’objet. Mais l’objet n’est vraiment créée que lorsque la classe est instanciée, c’est à dire lorsqu’on crée une instance selon cette classe.</p></li>
+<li><p>6/ Un attribut est une variable associée à un objet.</p></li>
+<li><p>7/ Une méthode est une fonction particulière : elle est associée à un objet et n’existe pas indépendamment de lui.</p></li>
+<li><p>8/ La présence de parenthèses permet de différencier l’appel d’un attribut et l’appel d’une méthode. Appel d’un attribut : instance.attribut Appel d’une méthode : instance.methode() avec d’éventuels paramètres.</p></li>
+<li><p>9/ Oui, c’est même un des usages principaux des méthodes. Mais on peut également modifier un attribut manuellement.</p></li>
+<li><p>10/ Lorsque l’on manipule des objets dont on souhaitent qu’ils conservent l’état d’une ressource au sein d’un programme.</p></li>
+</ul>
+</details>
 </section>
 <section id="de-la-masse-au-jus" class="level3">
 <h3 class="anchored" data-anchor-id="de-la-masse-au-jus">De la masse au jus</h3>
@@ -552,23 +565,55 @@ Il reste 21 mL de jus dans le citron.</code></pre>
 <li><p>rajouter une méthode qui affiche “La masse du citron est x grammes.”</p></li>
 </ul>
 <p>Instanciez ensuite un nouveau citron est vérifiez que tout fonctionne comme prévu.</p>
-<div id="45554c66" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saveur <span class="op">=</span> <span class="st">"acide"</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.couleur <span class="op">=</span> couleur</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.jus <span class="op">=</span> qte_jus</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> recup_qte_jus(<span class="va">self</span>):</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Il reste "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.jus) <span class="op">+</span> <span class="st">" mL de jus dans le citron."</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> extraire_jus(<span class="va">self</span>, quantite):</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> quantite <span class="op">&gt;</span> <span class="va">self</span>.jus:</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Il n'y a pas assez de jus dans le citron pour la quantité demandée."</span>)</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.jus <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.jus <span class="op">-</span> quantite)  <span class="co"># évite toute valeur négative de `jus`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="916888fe" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saveur <span class="op">=</span> <span class="st">"acide"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.couleur <span class="op">=</span> couleur</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.jus <span class="op">=</span> qte_jus</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> recup_qte_jus(<span class="va">self</span>):</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Il reste "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.jus) <span class="op">+</span> <span class="st">" mL de jus dans le citron."</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> extraire_jus(<span class="va">self</span>, quantite):</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> quantite <span class="op">&gt;</span> <span class="va">self</span>.jus:</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Il n'y a pas assez de jus dans le citron pour la quantité demandée."</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.jus <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.jus <span class="op">-</span> quantite)  <span class="co"># évite toute valeur négative de `jus`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="3dee51b8" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Afficher la solution
+</summary>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, masse):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saveur <span class="op">=</span> <span class="st">"acide"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.couleur <span class="op">=</span> couleur</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.masse <span class="op">=</span> masse</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.jus <span class="op">=</span> masse <span class="op">/</span> <span class="dv">4</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> recup_masse(<span class="va">self</span>):</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"La masse du citron est "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.masse) <span class="op">+</span> <span class="st">" grammes."</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> recup_qte_jus(<span class="va">self</span>):</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Il reste "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.jus) <span class="op">+</span> <span class="st">" mL de jus dans le citron."</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> extraire_jus(<span class="va">self</span>, quantite):</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> quantite <span class="op">&gt;</span> <span class="va">self</span>.jus:</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Il n'y a pas assez de jus dans le citron pour la quantité demandée."</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.jus <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.jus <span class="op">-</span> quantite)  <span class="co"># évite toute valeur négative de `jus`</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>citron <span class="op">=</span> Citron(<span class="st">"jaune"</span>, <span class="dv">500</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>citron.recup_masse()</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>citron.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </section>
 <section id="comptes-bancaires" class="level3">
 <h3 class="anchored" data-anchor-id="comptes-bancaires">Comptes bancaires</h3>
@@ -591,8 +636,73 @@ Il reste 21 mL de jus dans le citron.</code></pre>
 </ul></li>
 </ul>
 <p>Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.</p>
+<div id="839c7332" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Afficher la solution
+</summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Compte:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titulaire, solde):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titulaire <span class="op">=</span> titulaire</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.solde <span class="op">=</span> solde</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> affiche_solde(<span class="va">self</span>):</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Le solde du compte de "</span> <span class="op">+</span> <span class="va">self</span>.titulaire <span class="op">+</span> <span class="st">" est "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="va">self</span>.solde) <span class="op">+</span> <span class="st">" euros."</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> depot(<span class="va">self</span>, montant):</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.solde <span class="op">+=</span> montant</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> retrait(<span class="va">self</span>, montant):</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.solde <span class="op">&gt;=</span> montant:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.solde <span class="op">-=</span> montant</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Retrait accepté."</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Retrait refusé : fonds insuffisants."</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transfert(<span class="va">self</span>, destinataire, montant):</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.solde <span class="op">&gt;=</span> montant:</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>            destinataire.solde <span class="op">+=</span> montant</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.solde <span class="op">-=</span> montant</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Transfert refusé : fonds insuffisants."</span>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>client1 <span class="op">=</span> Compte(<span class="st">"Bernard"</span>, <span class="dv">2000</span>)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>client2 <span class="op">=</span> Compte(<span class="st">"Bianca"</span>, <span class="dv">5000</span>)</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>client1.affiche_solde()</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>client2.affiche_solde()</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># saut de ligne</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>client1.depot(<span class="dv">1000</span>)</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>client1.affiche_solde() <span class="co"># +1000</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>client2.retrait(<span class="dv">6000</span>)</span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>client2.affiche_solde() <span class="co"># aucun changement</span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>client2.retrait(<span class="dv">1000</span>)</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>client2.affiche_solde() <span class="co"># -1000</span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>client2.transfert(client1, <span class="dv">5000</span>)</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>client2.affiche_solde() <span class="co"># aucun changement</span></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>client2.transfert(client1, <span class="dv">2000</span>)</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>client2.affiche_solde() <span class="co"># - 2000</span></span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>client1.affiche_solde() <span class="co"># + 2000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 
+</section>
 </section>
 </section>
 
@@ -632,18 +742,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -675,15 +774,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/InseeFrLab\.github\.io\/formation-python-initiation\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

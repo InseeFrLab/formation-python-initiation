@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tutorial – SSPy training course {{&lt; fa brands python &gt;}}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projects</a></li><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Project 1 - Connect 4</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">SSPy training course <i class="fa-brands fa-python" aria-label="python"></i></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/types-variables/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic types and variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures1/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures 1: lists and tuples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures2/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures 2: dictionaries and sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/tests/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/loops/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/functions/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/oop/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to object-oriented programming</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data handling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/modules-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File manipulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/csv-json-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with CSV and JSON files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/numpy/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numerical computation with NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/pandas/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Processing tabular data with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/dataviz/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to data visualization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/puissance4/tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Project 1 - Connect 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project 2 - API interaction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project 3 - Population census analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-1---connect-4" id="toc-project-1---connect-4" class="nav-link active" data-scroll-target="#project-1---connect-4">Project 1 - Connect 4</a>
+  <ul class="collapse">
+  <li><a href="#game-rules" id="toc-game-rules" class="nav-link" data-scroll-target="#game-rules">Game rules</a></li>
+  <li><a href="#project-plan" id="toc-project-plan" class="nav-link" data-scroll-target="#project-plan">Project plan</a></li>
+  <li><a href="#initialization-of-the-grid" id="toc-initialization-of-the-grid" class="nav-link" data-scroll-target="#initialization-of-the-grid">Initialization of the grid</a>
+  <ul class="collapse">
+  <li><a href="#expected-result" id="toc-expected-result" class="nav-link" data-scroll-target="#expected-result">Expected result</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn!</a></li>
+  </ul></li>
+  <li><a href="#representation-of-the-grid" id="toc-representation-of-the-grid" class="nav-link" data-scroll-target="#representation-of-the-grid">Representation of the grid</a>
+  <ul class="collapse">
+  <li><a href="#expected-result-1" id="toc-expected-result-1" class="nav-link" data-scroll-target="#expected-result-1">Expected result</a></li>
+  <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1">Your turn!</a></li>
+  </ul></li>
+  <li><a href="#game-function" id="toc-game-function" class="nav-link" data-scroll-target="#game-function">Game function</a>
+  <ul class="collapse">
+  <li><a href="#expected-result-2" id="toc-expected-result-2" class="nav-link" data-scroll-target="#expected-result-2">Expected result</a></li>
+  <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2">Your turn!</a></li>
+  </ul></li>
+  <li><a href="#detection-of-a-victory-horizontal" id="toc-detection-of-a-victory-horizontal" class="nav-link" data-scroll-target="#detection-of-a-victory-horizontal">Detection of a victory (horizontal)</a>
+  <ul class="collapse">
+  <li><a href="#expected-result-3" id="toc-expected-result-3" class="nav-link" data-scroll-target="#expected-result-3">Expected result</a></li>
+  <li><a href="#your-turn-3" id="toc-your-turn-3" class="nav-link" data-scroll-target="#your-turn-3">Your turn!</a></li>
+  </ul></li>
+  <li><a href="#detection-of-a-victory-vertical" id="toc-detection-of-a-victory-vertical" class="nav-link" data-scroll-target="#detection-of-a-victory-vertical">Detection of a victory (vertical)</a>
+  <ul class="collapse">
+  <li><a href="#expected-result-4" id="toc-expected-result-4" class="nav-link" data-scroll-target="#expected-result-4">Expected result</a></li>
+  <li><a href="#your-turn-4" id="toc-your-turn-4" class="nav-link" data-scroll-target="#your-turn-4">Your turn!</a></li>
+  </ul></li>
+  <li><a href="#end-of-game" id="toc-end-of-game" class="nav-link" data-scroll-target="#end-of-game">End of game</a>
+  <ul class="collapse">
+  <li><a href="#expected-result-5" id="toc-expected-result-5" class="nav-link" data-scroll-target="#expected-result-5">Expected result</a></li>
+  <li><a href="#your-turn-5" id="toc-your-turn-5" class="nav-link" data-scroll-target="#your-turn-5">Your turn!</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="project-1---connect-4" class="level1">
+<h1>Project 1 - Connect 4</h1>
+<p>In this project, we will implement a Connect 4 game with a rather basic graphical interface. To achieve this, we will use the fundamental objects of Python.</p>
+<div id="d7719ebc" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> solutions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="game-rules" class="level2">
+<h2 class="anchored" data-anchor-id="game-rules">Game rules</h2>
+<p>The goal of Connect 4 is to align a sequence of 4 pieces of the same color on a grid with 6 rows and 7 columns. Each player has 21 pieces of one color (usually yellow or red by convention). The two players take turns placing a piece in the column of their choice, and the piece slides down to the lowest possible position in that column, after which it is the opponent’s turn to play. The winner is the player who first aligns (horizontally, vertically, or diagonally) at least four consecutive pieces of their color. If, when all the grid cells are filled, neither player has achieved such an alignment, the game is declared a draw.</p>
+<p>To simplify the code for this project, we will assume that winning alignments can only be horizontal or vertical. Diagonals will not be considered (but they are an interesting exercise to go further!).</p>
+</section>
+<section id="project-plan" class="level2">
+<h2 class="anchored" data-anchor-id="project-plan">Project plan</h2>
+<p>We will break down the construction of the game into different parts:</p>
+<ul>
+<li><p>initialization of the grid</p></li>
+<li><p>representation of the grid</p></li>
+<li><p>game function</p></li>
+<li><p>detection of a victory (horizontal)</p></li>
+<li><p>detection of a victory (vertical)</p></li>
+<li><p>end of game</p></li>
+</ul>
+</section>
+<section id="initialization-of-the-grid" class="level2">
+<h2 class="anchored" data-anchor-id="initialization-of-the-grid">Initialization of the grid</h2>
+<p>The objective of this part is to initialize a Python object that represents a Connect 4 grid. The choice we will make is to <strong>represent the grid as a list of lists</strong>. It will be a 6x7 matrix: we will therefore have a <strong>list of 6 elements</strong> (which will represent the rows of the grid), each of which will be a <strong>list containing 7 elements</strong> (which will represent the pieces).</p>
+<p>Each element of the grid will be represented by a <em>string</em>, which can take three values:</p>
+<ul>
+<li><p>’ ’ : if it is an empty cell</p></li>
+<li><p>‘R’ : if it is a red piece.</p></li>
+<li><p>‘Y’ : if it is a yellow piece.</p></li>
+</ul>
+<p>In the grid initialization function, each element will therefore be initialized as a <strong><em>string</em> containing a space</strong>.</p>
+<p><strong>Note</strong>: Make sure that the rows are independent objects, in other words, modifying one of the lists does not affect the others.</p>
+<section id="expected-result" class="level3">
+<h3 class="anchored" data-anchor-id="expected-result">Expected result</h3>
+<div id="874465af" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[28], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">      2</span> grid
+
+<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
+</div>
+</div>
+</div>
+<div id="41e594ce" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Number of rows: </span><span class="sc">{</span><span class="bu">len</span>(grid)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Number of columns: </span><span class="sc">{</span><span class="bu">len</span>(grid[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of rows: 6
+Number of columns: 7</code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn">Your turn!</h3>
+<div id="2c723ff1" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="046dae28" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>[[' ', ' ', ' ', ' ', ' ', ' ', ' '],
+ [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+ [' ', ' ', 'J', ' ', ' ', ' ', ' '],
+ [' ', ' ', 'J', ' ', ' ', ' ', ' '],
+ [' ', ' ', 'J', ' ', ' ', ' ', ' '],
+ [' ', ' ', 'J', ' ', ' ', ' ', ' ']]</code></pre>
+</div>
+</div>
+<div id="b7f60d3e" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Number of rows: </span><span class="sc">{</span><span class="bu">len</span>(grid)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Number of columns: </span><span class="sc">{</span><span class="bu">len</span>(grid[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of rows: 6
+Number of columns: 7</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="representation-of-the-grid" class="level2">
+<h2 class="anchored" data-anchor-id="representation-of-the-grid">Representation of the grid</h2>
+<p>Our grid is initialized, but its display is quite basic. The idea of this part is to provide a more visual representation of the game during a game.</p>
+<p>To do this, we will create <strong>a function that takes the previously initialized grid as input and returns its representation</strong> (via the <code>print</code> function). The columns will be separated by the | character (vertical bar).</p>
+<p><strong>Hint</strong>: A possible solution involves two concepts we have seen in previous exercises: string concatenation and the <code>join</code> function, which “joins” the elements of a list by separating them with a certain character. Here is a reminder of an example using these two concepts:</p>
+<div id="be5c6f4b" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>l_join <span class="op">=</span> <span class="st">"START "</span> <span class="op">+</span> <span class="st">", "</span>.join(l) <span class="op">+</span> <span class="st">" END"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>START a, b, c, d, e END</code></pre>
+</div>
+</div>
+<section id="expected-result-1" class="level3">
+<h3 class="anchored" data-anchor-id="expected-result-1">Expected result</h3>
+<div id="52db4c58" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>|   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |
+|   |   | J |   |   |   |   |
+|   |   | J |   |   |   |   |
+|   |   | J |   |   |   |   |
+|   |   | J |   |   |   |   |</code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn-1" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-1">Your turn!</h3>
+<div id="90381a51" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[35], line 2</span>
+<span class="ansi-red-fg">    # Your code here</span>
+                    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
+</pre>
+</div>
+</div>
+</div>
+<div id="6ff72570" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[36], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
+<span class="ansi-green-fg">----&gt; 2</span> <span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">grid</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: display_grid() takes 0 positional arguments but 1 was given</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="game-function" class="level2">
+<h2 class="anchored" data-anchor-id="game-function">Game function</h2>
+<p>Now that we can represent our grid, let’s focus on the core of Connect 4: the game. The objective of this part is to <strong>code a <code>make_move</code> function that will modify the grid when a player takes their turn</strong>.</p>
+<p>This function takes as input:</p>
+<ul>
+<li><p>the grid</p></li>
+<li><p>the column chosen by the player</p></li>
+<li><p>the color of the piece (‘R’ for the red piece, and ‘Y’ for the yellow piece)</p></li>
+</ul>
+<p>and returns the updated grid after the player’s turn.</p>
+<p>If the chosen column is already full, return an error message.</p>
+<p><strong>Note</strong>: In Python, numbering starts at 0. The first column is therefore column 0 from the indexing point of view.</p>
+<p>Optional: Return an error message if a player tries to play in a nonexistent column or with an unauthorized color.</p>
+<section id="expected-result-2" class="level3">
+<h3 class="anchored" data-anchor-id="expected-result-2">Expected result</h3>
+<div id="4e9471e7" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialization</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1st turn</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)  <span class="co"># 2nd turn</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3rd turn</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[37], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialization</span>
+<span class="ansi-green-fg ansi-bold">      2</span> grid <span style="color:rgb(98,98,98)">=</span> solutions<span style="color:rgb(98,98,98)">.</span>make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 1st turn</span>
+<span class="ansi-green-fg ansi-bold">      3</span> grid <span style="color:rgb(98,98,98)">=</span> solutions<span style="color:rgb(98,98,98)">.</span>make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">5</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Y</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 2nd turn</span>
+
+<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-2" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-2">Your turn!</h3>
+<div id="e620e73f" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move(grid, column_to_play, disc_color):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    new_grid <span class="op">=</span> copy.deepcopy(grid)  <span class="co"># Avoid modifying the initial grid</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="65d6cd3c" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialization</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1st turn</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)  <span class="co"># 2nd turn</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3rd turn</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[39], line 6</span>
+<span class="ansi-green-fg ansi-bold">      4</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">5</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Y</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 2nd turn</span>
+<span class="ansi-green-fg ansi-bold">      5</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 3rd turn</span>
+<span class="ansi-green-fg">----&gt; 6</span> <span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">grid</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: display_grid() takes 0 positional arguments but 1 was given</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="detection-of-a-victory-horizontal" class="level2">
+<h2 class="anchored" data-anchor-id="detection-of-a-victory-horizontal">Detection of a victory (horizontal)</h2>
+<p>Now that it is possible to actually play Connect 4, we need to detect a victory to end the current game. To do this, we will simplify the problem by breaking it down as much as possible.</p>
+<p>First, we focus on detecting a horizontal victory. To do this, we will use two functions:</p>
+<ul>
+<li><p>a <code>check_row_victory</code> function that takes a Connect 4 row as input (i.e., a list of size 7) and returns <code>True</code> if 4 consecutive pieces of the same color are found on the row, and <code>False</code> otherwise</p></li>
+<li><p>a <code>check_horizontal_victory</code> function that takes a complete grid as input and returns <code>True</code> if any row in the grid meets the previous condition, and <code>False</code> otherwise</p></li>
+</ul>
+<section id="expected-result-3" class="level3">
+<h3 class="anchored" data-anchor-id="expected-result-3">Expected result</h3>
+<div id="03e6b446" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detection of a (horizontal) victory on a row</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"Y"</span>, <span class="st">"Y"</span>, <span class="st">" "</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"Y"</span>, <span class="st">" "</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_row_victory(row1))  <span class="co"># Returns False</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_row_victory(row2))  <span class="co"># Returns True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+
+Red won!
+True</code></pre>
+</div>
+</div>
+<div id="632dbe61" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detection of a (horizontal) victory on a grid</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialization</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid))  <span class="co"># Returns False</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">3</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">4</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid))  <span class="co"># Returns True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[41], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Detection of a (horizontal) victory on a grid</span>
+<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialization</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(solutions<span style="color:rgb(98,98,98)">.</span>check_horizontal_victory(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Returns False</span>
+<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># New line</span>
+
+<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-3" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-3">Your turn!</h3>
+<div id="958294d0" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_row_victory(row):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[42], line 2</span>
+<span class="ansi-red-fg">    # Your code here</span>
+                    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
+</pre>
+</div>
+</div>
+</div>
+<div id="32559228" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"Y"</span>, <span class="st">"R"</span>, <span class="st">" "</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"Y"</span>, <span class="st">" "</span>]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_row_victory(row1))  <span class="co"># Returns False</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_row_victory(row2))  <span class="co"># Returns True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[43], line 5</span>
+<span class="ansi-green-fg ansi-bold">      2</span> row1 <span style="color:rgb(98,98,98)">=</span> [<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Y</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>]
+<span class="ansi-green-fg ansi-bold">      3</span> row2 <span style="color:rgb(98,98,98)">=</span> [<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Y</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>]
+<span class="ansi-green-fg">----&gt; 5</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">check_row_victory</span>(row1))  <span style="font-style:italic;color:rgb(95,135,135)"># Returns False</span>
+<span class="ansi-green-fg ansi-bold">      6</span> <span style="color:rgb(0,135,0)">print</span>(check_row_victory(row2))  <span style="font-style:italic;color:rgb(95,135,135)"># Returns True</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'check_row_victory' is not defined</pre>
+</div>
+</div>
+</div>
+<div id="97c8953b" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_horizontal_victory(grid):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[44], line 2</span>
+<span class="ansi-red-fg">    # Your code here</span>
+                    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
+</pre>
+</div>
+</div>
+</div>
+<div id="79569d44" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialization</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Returns False</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">3</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">4</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Returns True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[45], line 3</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
+<span class="ansi-green-fg ansi-bold">      2</span> grid <span style="color:rgb(98,98,98)">=</span> display_grid()  <span style="font-style:italic;color:rgb(95,135,135)"># Initialization</span>
+<span class="ansi-green-fg">----&gt; 3</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">check_horizontal_victory</span>(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Returns False</span>
+<span class="ansi-green-fg ansi-bold">      5</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)
+<span class="ansi-green-fg ansi-bold">      6</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">3</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'check_horizontal_victory' is not defined</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="detection-of-a-victory-vertical" class="level2">
+<h2 class="anchored" data-anchor-id="detection-of-a-victory-vertical">Detection of a victory (vertical)</h2>
+<p>Now, we focus on detecting a vertical victory. Compared to the previous situation, the difficulty is that we cannot directly loop over the columns. We will therefore build a <code>check_vertical_victory</code> function that, for each column:</p>
+<ul>
+<li><p>retrieves the elements of the column in a list</p></li>
+<li><p>applies the <code>check_row_victory</code> function to this list to check for 4 consecutive pieces of the same color in the considered column</p></li>
+</ul>
+<section id="expected-result-4" class="level3">
+<h3 class="anchored" data-anchor-id="expected-result-4">Expected result</h3>
+<div id="5f354f1a" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detection of a (vertical) victory on a grid</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialization</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid))  <span class="co"># Returns False</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid))  <span class="co"># Returns True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[46], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Detection of a (vertical) victory on a grid</span>
+<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialization</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(solutions<span style="color:rgb(98,98,98)">.</span>check_vertical_victory(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Returns False</span>
+<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># New line</span>
+
+<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-4" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-4">Your turn!</h3>
+<div id="cf3c4a82" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_vertical_victory(grid):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[47], line 2</span>
+<span class="ansi-red-fg">    # Your code here</span>
+                    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
+</pre>
+</div>
+</div>
+</div>
+<div id="0198a695" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialization</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Returns False</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># New line</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Returns True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[48], line 3</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
+<span class="ansi-green-fg ansi-bold">      2</span> grid <span style="color:rgb(98,98,98)">=</span> display_grid()  <span style="font-style:italic;color:rgb(95,135,135)"># Initialization</span>
+<span class="ansi-green-fg">----&gt; 3</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">check_vertical_victory</span>(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Returns False</span>
+<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># New line</span>
+<span class="ansi-green-fg ansi-bold">      6</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Y</span><span style="color:rgb(175,0,0)">"</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'check_vertical_victory' is not defined</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="end-of-game" class="level2">
+<h2 class="anchored" data-anchor-id="end-of-game">End of game</h2>
+<p>In our simplified version of Connect 4, we can now declare the <strong>end of the game: as soon as a horizontal or vertical victory is detected</strong>.</p>
+<p>We will first create a <code>check_victory</code> function that takes the grid as input and returns <code>True</code> if a horizontal <strong>or</strong> vertical victory is detected, and <code>False</code> otherwise.</p>
+<p>Ideally, we would not want to manually test after each move if the game is over to limit code duplication. We will therefore create a <code>make_move_and_check_victory</code> function that:</p>
+<ul>
+<li><p>takes the same inputs as the <code>make_move</code> function</p></li>
+<li><p>calls the <code>make_move</code> function to make the move</p></li>
+<li><p>tests after the move if a victory is detected via the <code>check_victory</code> function. If a victory is detected, the function prints “END OF GAME”.</p></li>
+</ul>
+<section id="expected-result-5" class="level3">
+<h3 class="anchored" data-anchor-id="expected-result-5">Expected result</h3>
+<div id="0ec4bf06" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.initialize_grid()  <span class="co"># Initialization</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 1"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 2"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 3"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 4"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Turn 1
+Turn 2
+Turn 3
+Turn 4
+Yellow won!
+GAME OVER</code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn-5" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn-5">Your turn!</h3>
+<div id="bf4bf494" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_victory(grid):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[50], line 2</span>
+<span class="ansi-red-fg">    # Your code here</span>
+                    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
+</pre>
+</div>
+</div>
+</div>
+<div id="fb941016" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move_and_check_victory(grid, column_to_play, disc_color):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> copy.deepcopy(grid)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c8e809fa" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialization</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 1"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 2"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 3"</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Turn 4"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[52], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
+<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">initialize_grid</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># Initialization</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Turn 1</span><span style="color:rgb(175,0,0)">"</span>)
+<span class="ansi-green-fg ansi-bold">      4</span> grid <span style="color:rgb(98,98,98)">=</span> make_move_and_check_victory(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Y</span><span style="color:rgb(175,0,0)">"</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'initialize_grid' is not defined</pre>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

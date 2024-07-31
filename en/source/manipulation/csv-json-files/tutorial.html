@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tutorial – SSPy training course {{&lt; fa brands python &gt;}}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/manipulation/modules-files/tutorial.html">Data handling</a></li><li class="breadcrumb-item"><a href="../../../source/manipulation/csv-json-files/tutorial.html">Working with CSV and JSON files</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">SSPy training course <i class="fa-brands fa-python" aria-label="python"></i></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamentals</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/types-variables/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic types and variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures1/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures 1: lists and tuples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/data-structures2/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures 2: dictionaries and sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/tests/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/loops/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/functions/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/fundamentals/oop/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to object-oriented programming</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data handling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/modules-files/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">File manipulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/csv-json-files/tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Working with CSV and JSON files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/numpy/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numerical computation with NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/pandas/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Processing tabular data with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/manipulation/dataviz/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to data visualization</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/puissance4/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project 1 - Connect 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project 2 - API interaction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project 3 - Population census analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#working-with-csv-and-json-files" id="toc-working-with-csv-and-json-files" class="nav-link active" data-scroll-target="#working-with-csv-and-json-files">Working with CSV and JSON files</a>
+  <ul class="collapse">
+  <li><a href="#handling-csv-files" id="toc-handling-csv-files" class="nav-link" data-scroll-target="#handling-csv-files">Handling CSV files</a>
+  <ul class="collapse">
+  <li><a href="#csv-files" id="toc-csv-files" class="nav-link" data-scroll-target="#csv-files">CSV files</a></li>
+  <li><a href="#the-csv-module" id="toc-the-csv-module" class="nav-link" data-scroll-target="#the-csv-module">The <code>csv</code> module</a></li>
+  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
+  <li><a href="#writing" id="toc-writing" class="nav-link" data-scroll-target="#writing">Writing</a></li>
+  <li><a href="#the-header" id="toc-the-header" class="nav-link" data-scroll-target="#the-header">The header</a></li>
+  <li><a href="#importance-of-the-delimiter" id="toc-importance-of-the-delimiter" class="nav-link" data-scroll-target="#importance-of-the-delimiter">Importance of the delimiter</a></li>
+  </ul></li>
+  <li><a href="#handling-json-files" id="toc-handling-json-files" class="nav-link" data-scroll-target="#handling-json-files">Handling JSON files</a>
+  <ul class="collapse">
+  <li><a href="#json-files" id="toc-json-files" class="nav-link" data-scroll-target="#json-files">JSON files</a></li>
+  <li><a href="#the-json-module" id="toc-the-json-module" class="nav-link" data-scroll-target="#the-json-module">The <code>json</code> module</a></li>
+  <li><a href="#writing-1" id="toc-writing-1" class="nav-link" data-scroll-target="#writing-1">Writing</a></li>
+  <li><a href="#reading-1" id="toc-reading-1" class="nav-link" data-scroll-target="#reading-1">Reading</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#questions-of-understanding" id="toc-questions-of-understanding" class="nav-link" data-scroll-target="#questions-of-understanding">Questions of understanding</a></li>
+  <li><a href="#sort-the-keys-when-writing-a-json" id="toc-sort-the-keys-when-writing-a-json" class="nav-link" data-scroll-target="#sort-the-keys-when-writing-a-json">Sort the keys when writing a JSON</a></li>
+  <li><a href="#convert-a-non-serializable-object-to-json" id="toc-convert-a-non-serializable-object-to-json" class="nav-link" data-scroll-target="#convert-a-non-serializable-object-to-json">Convert a non-serializable object to JSON</a></li>
+  <li><a href="#change-the-delimiter-of-a-csv-file" id="toc-change-the-delimiter-of-a-csv-file" class="nav-link" data-scroll-target="#change-the-delimiter-of-a-csv-file">Change the delimiter of a CSV file</a></li>
+  <li><a href="#extract-and-save-data-from-an-api" id="toc-extract-and-save-data-from-an-api" class="nav-link" data-scroll-target="#extract-and-save-data-from-an-api">Extract and save data from an API</a></li>
+  <li><a href="#split-the-department-base-by-regions" id="toc-split-the-department-base-by-regions" class="nav-link" data-scroll-target="#split-the-department-base-by-regions">Split the department base by regions</a></li>
+  <li><a href="#add-missing-headers" id="toc-add-missing-headers" class="nav-link" data-scroll-target="#add-missing-headers">Add missing headers</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="working-with-csv-and-json-files" class="level1">
+<h1>Working with CSV and JSON files</h1>
+<p>In the previous tutorial, we learned how to use functions from modules and how to read and write text files. In this tutorial, we will leverage these new skills by focusing on <strong>two types of text files commonly used for storing and sharing data: CSV and JSON files</strong>. We will learn to handle these two types of files using Python modules dedicated to their respective processing: <strong>the <code>csv</code> module and the <code>json</code> module</strong>.</p>
+<section id="handling-csv-files" class="level2">
+<h2 class="anchored" data-anchor-id="handling-csv-files">Handling CSV files</h2>
+<section id="csv-files" class="level3">
+<h3 class="anchored" data-anchor-id="csv-files">CSV files</h3>
+<p>CSV stands for <strong><em>comma-separated values</em></strong>. CSV files aim to reproduce the <strong>structure of data from spreadsheet software</strong> like Microsoft Excel or LibreOffice Calc, reduced to strictly textual data (no formatting, no column types, etc.).</p>
+<p>We will use the CSV file containing the list of departments in 2021 from the Official Geographic Code (COG) as an example. Let’s look at the first few lines of this file using a <code>shell</code> command to keep in mind the structure of such a file.</p>
+<div id="36ad1802" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">5</span> departement2021.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DEP,REG,CHEFLIEU,TNCC,NCC,NCCENR,LIBELLE
+01,84,01053,5,AIN,Ain,Ain
+02,32,02408,5,AISNE,Aisne,Aisne
+03,84,03190,5,ALLIER,Allier,Allier
+04,93,04070,4,ALPES DE HAUTE PROVENCE,Alpes-de-Haute-Provence,Alpes-de-Haute-Provence</code></pre>
+</div>
+</div>
+<p>In analogy with a spreadsheet file, each line of the file represents a row in the spreadsheet, and the cells in a row are separated by commas. The first line may contain a <code>header</code>, i.e., the column names, but this is not always the case.</p>
+<p>The main advantages of CSV files are:</p>
+<ul>
+<li>their <strong>simplicity</strong>: they contain raw textual data, so they are very lightweight and can be easily edited using any text editor or programming language</li>
+<li>their <strong>universality</strong>: they are widely used as a standard format for data exchange</li>
+</ul>
+</section>
+<section id="the-csv-module" class="level3">
+<h3 class="anchored" data-anchor-id="the-csv-module">The <code>csv</code> module</h3>
+<p>Since the data in a CSV file is textual, one might wonder why a particular module is needed to manipulate them and why the tools we saw in the previous tutorial would not suffice. The main reason is that CSV files have some subtleties and standards, often invisible to the user, but very important in practice. For example: if we want to separate different data with commas, what happens if the text data itself contains commas?</p>
+<p>This is why we use the <strong><code>csv</code> module</strong> to interact with such files, leveraging the fact that others have already considered these questions, thus avoiding reinventing the wheel every time we import a CSV file.</p>
+<p>In practice, we tend to handle this type of data in the form of DataFrames (like in <code>R</code>) to take advantage of their <strong>tabular structure</strong>. We will study the <strong><em><code>Pandas</code> package</em></strong>, which allows us to do this in Python in a future tutorial. However, it is always useful to know how to handle CSV data as textual data and, thus, know the <code>csv</code> module.</p>
+</section>
+<section id="reading" class="level3">
+<h3 class="anchored" data-anchor-id="reading">Reading</h3>
+<div id="a268deed" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The syntax for reading and manipulating CSV files in Python is very similar to that for simple text files. The only difference is that you must create a <code>reader</code> object from the file object to iterate over the lines.</p>
+<div id="e3e896dc" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"departement2021.csv"</span>) <span class="im">as</span> file_in:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    csv_reader <span class="op">=</span> csv.reader(file_in)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        rows.append(row)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>rows[:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>[['DEP', 'REG', 'CHEFLIEU', 'TNCC', 'NCC', 'NCCENR', 'LIBELLE'],
+ ['01', '84', '01053', '5', 'AIN', 'Ain', 'Ain'],
+ ['02', '32', '02408', '5', 'AISNE', 'Aisne', 'Aisne'],
+ ['03', '84', '03190', '5', 'ALLIER', 'Allier', 'Allier']]</code></pre>
+</div>
+</div>
+<p>The syntax is the same as for simple text files: once the <code>reader</code> is created, you can iterate over the lines and perform operations with them, such as storing them in a list as shown above.</p>
+<p>When you have a CSV file with column names like in our case, it is useful to use them to manipulate named data rather than by position using a simple list. To do this, use a <code>DictReader</code> instead of a <code>reader</code>. Now, when iterating over the <code>DictReader</code> object, each line is a dictionary, with the key being the column name and the value being the cell data.</p>
+<p>To illustrate its usefulness, display the names of departments whose department number is between 20 and 29.</p>
+<div id="1668a5f1" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"departement2021.csv"</span>) <span class="im">as</span> file_in:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    dict_reader <span class="op">=</span> csv.DictReader(file_in)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> dict_reader:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">"DEP"</span>].startswith(<span class="st">"2"</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(row[<span class="st">"LIBELLE"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Côte-d'Or
+Côtes-d'Armor
+Creuse
+Dordogne
+Doubs
+Drôme
+Eure
+Eure-et-Loir
+Finistère
+Corse-du-Sud
+Haute-Corse</code></pre>
+</div>
+</div>
+<p>The code is much more readable: you can easily understand which data is being manipulated and how.</p>
+</section>
+<section id="writing" class="level3">
+<h3 class="anchored" data-anchor-id="writing">Writing</h3>
+<p>The syntax for writing is again quite similar to that for text files. The difference is that you are dealing with 2D data (row x column), so you cannot just pass a string to write, but <strong>pass a list of elements</strong>.</p>
+<div id="9e35f44a" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> [<span class="st">"name"</span>, <span class="st">"class"</span>, <span class="st">"age"</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">"Maurice"</span>, <span class="st">"5thB"</span>, <span class="dv">12</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">"Manuela"</span>, <span class="st">"6thA"</span>, <span class="dv">11</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.csv"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    csv_writer <span class="op">=</span> csv.writer(file_out)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    csv_writer.writerow(header)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    csv_writer.writerow(row1)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    csv_writer.writerow(row2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s check that our raw CSV file looks as expected.</p>
+<div id="4ca0da5b" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shell command to display the content of a file</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat test.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>name,class,age
+Maurice,5thB,12
+Manuela,6thA,11</code></pre>
+</div>
+</div>
+</section>
+<section id="the-header" class="level3">
+<h3 class="anchored" data-anchor-id="the-header">The header</h3>
+<p>Like in a spreadsheet document, the first line of a CSV file usually contains the <strong>variable names</strong> (columns). This line is called the <strong><em>header</em></strong>. This line is not mandatory in theory, but it is quite handy for quickly understanding the nature of the data in a CSV file. Therefore, it is good practice to include a header when generating a CSV file.</p>
+<p>We saw in the previous example that writing the header is done like writing any other data row. It’s during reading that things get complicated because you need to retrieve the header separately from the other data if the CSV file contains one. Let’s use the CSV generated in the previous step to illustrate this.</p>
+<div id="27199283" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.csv"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_in:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    csv_reader <span class="op">=</span> csv.reader(file_in)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> <span class="bu">next</span>(csv_reader)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        data.append(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="60cdf589" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(header)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['name', 'class', 'age']</code></pre>
+</div>
+</div>
+<div id="f13148a1" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[['Maurice', '5thB', '12'], ['Manuela', '6thA', '11']]</code></pre>
+</div>
+</div>
+<p>To retrieve the header, use the <code>next</code> function. It is a <em>built-in</em> function that calls the <code>__next__</code> method of the <code>reader</code> object, allowing it to iterate one step forward on the <code>reader</code>. The first call to the <code>next</code> function returns the first line of the document. If a header is present in the file (which must be ensured), the returned element is the header. Then, you typically retrieve the rest of the data via a loop on the <code>reader</code> object, storing it in a list of lists (one list per line).</p>
+</section>
+<section id="importance-of-the-delimiter" class="level3">
+<h3 class="anchored" data-anchor-id="importance-of-the-delimiter">Importance of the delimiter</h3>
+<p>The <strong>delimiter</strong> is the character used to separate successive values in a line in a CSV file.</p>
+<p>The CSV standard uses — as its name suggests — the comma as the delimiter, but this can be modified, and <strong>it is not uncommon to encounter CSV files that have a different delimiter</strong>. In such a case, look directly at the raw text to see the delimiter used. For example, you often find tab-separated values (the character is <code>\t</code>), i.e., a given number of spaces, and the file may have the extension <code>.tsv</code> for <em>tab-separated value</em>. In this case, specify the delimiter with the <code>delimiter</code> parameter when creating the <code>reader</code>.</p>
+<p>In practice, like text file encoding, <strong>there is little valid reason to change the delimiter</strong>. Even if commas appear in file values — for example, in an address — these values are then enclosed in quotes, allowing the separation of values to be done correctly in most cases.</p>
+</section>
+</section>
+<section id="handling-json-files" class="level2">
+<h2 class="anchored" data-anchor-id="handling-json-files">Handling JSON files</h2>
+<section id="json-files" class="level3">
+<h3 class="anchored" data-anchor-id="json-files">JSON files</h3>
+<p>JSON (<em>JavaScript Object Notation</em>) is a very popular file format for writing and exchanging data in the form of a single, human-readable string — at least in theory.</p>
+<p>As its name suggests, JSON is linked to the <em>JavaScript</em> language, as it is derived from the notation of objects in that language. However, the format is now independent of any programming language but is widely used in various languages.</p>
+<p>The JSON format is particularly important for statisticians and data scientists because it is the <strong>quasi-standard response format for <a href="https://en.wikipedia.org/wiki/Application_programming_interface">APIs</a></strong>. Interacting with APIs goes beyond this introductory course’s scope. However, as APIs are becoming the standard mode of communication for data exchange, it is essential to master the basics of the JSON format to handle API responses when interacting with them.</p>
+<p>Since JSON stores objects as <strong>key-value pairs</strong> and the values can be <strong><em>arrays</em></strong> — a broad concept in computing that includes lists we know — it closely resembles Python dictionaries. Thus, it is a natural file format for <strong><em>serializing</em></strong> them, i.e., converting a data structure in memory (here, a dictionary) to a byte sequence that any computer can read. Let’s look at the JSON representation of a Python dictionary as an example.</p>
+<div id="31193290" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"position"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"sewing"</span>, <span class="st">"frisbee"</span>]},</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"miranda"</span>: {<span class="st">"position"</span>: <span class="st">"engineer"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"trekking"</span>]}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'marc': {'position': 'manager', 'experience': 7, 'hobbies': ['sewing', 'frisbee']}, 'miranda': {'position': 'engineer', 'experience': 5, 'hobbies': ['trekking']}}</code></pre>
+</div>
+</div>
+<div id="aae6e4b0" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(cv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{"marc": {"position": "manager", "experience": 7, "hobbies": ["sewing", "frisbee"]}, "miranda": {"position": "engineer", "experience": 5, "hobbies": ["trekking"]}}</code></pre>
+</div>
+</div>
+<p>You can see that the JSON representation is quite similar to the Python dictionary, with <strong>a few peculiarities</strong>. In this case, for example, special characters like accents are automatically encoded in <em>Unicode</em>.</p>
+</section>
+<section id="the-json-module" class="level3">
+<h3 class="anchored" data-anchor-id="the-json-module">The <code>json</code> module</h3>
+<p>The <code>json</code> module handles importing JSON files and exporting Python objects to JSON format. It takes care of handling the conversion constraints to JSON mentioned earlier, such as accents.</p>
+<p>In particular, <strong>JSON can store most of the <em>built-in</em> Python object types</strong> we have seen so far (<em>strings</em>, numeric values, Booleans, lists, dictionaries, <code>NoneType</code>) and many others, but it cannot represent manually created Python objects via classes.</p>
+</section>
+<section id="writing-1" class="level3">
+<h3 class="anchored" data-anchor-id="writing-1">Writing</h3>
+<p>Let’s start with writing. As we saw in the previous example, the <code>dumps</code> function (for <em>dump string</em>) converts a <strong>serializable</strong> Python value to its JSON representation as a string.</p>
+<div id="dbac232d" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"test"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>json.dumps(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>'"test"'</code></pre>
+</div>
+</div>
+<div id="e99ec22c" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>json.dumps(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>'[1, 2, 3]'</code></pre>
+</div>
+</div>
+<p>Writing a JSON file from Python simply means writing this representation into a text file, which we will give the <code>.json</code> extension to clearly indicate that it is a particular text file. As this operation is very common, there is a similar function, <code>dump</code>, which performs both conversion and writing.</p>
+<div id="2ecbc360" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"cv.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    json.dump(cv, file_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="97f39f9e" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat cv.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{"marc": {"position": "manager", "experience": 7, "hobbies": ["sewing", "frisbee"]}, "miranda": {"position": "engineer", "experience": 5, "hobbies": ["trekking"]}}</code></pre>
+</div>
+</div>
+<p>In a single operation, we serialized a Python dictionary (the <code>cv</code> object) into a JSON file.</p>
+</section>
+<section id="reading-1" class="level3">
+<h3 class="anchored" data-anchor-id="reading-1">Reading</h3>
+<p>The <code>json</code> module provides the <code>load</code> and <code>loads</code> functions, which respectively perform the opposite operations of the <code>dump</code> and <code>dumps</code> functions:</p>
+<ul>
+<li>The <code>load</code> function imports JSON content from a text file and converts it into a dictionary.</li>
+<li>The <code>loads</code> function converts JSON content from a string into a dictionary.</li>
+</ul>
+<p>Let’s reuse the CV we serialized earlier into JSON format to illustrate reading from a file.</p>
+<div id="5e28e84d" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"cv.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_in:</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.load(file_in)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>{'marc': {'position': 'manager',
+  'experience': 7,
+  'hobbies': ['sewing', 'frisbee']},
+ 'miranda': {'position': 'engineer', 'experience': 5, 'hobbies': ['trekking']}}</code></pre>
+</div>
+</div>
+<p>We will illustrate reading JSON content from a string with a realistic example: querying an API. For example, we will query the National Address Base (BAN), which allows geolocating any national address.</p>
+<p>Querying an API in Python is straightforward with the <code>requests</code> library. Let’s see how we can retrieve geographical information about all streets that contain the name “comedie” in France in just two lines of code.</p>
+<div id="5ae1d088" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="40d25008" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://api-adresse.data.gouv.fr/search/?q=comedie&amp;type=street"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>r_text <span class="op">=</span> response.text</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_text[:<span class="dv">150</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{"type":"FeatureCollection","version":"draft","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[3.063832,50.635192]},"properties</code></pre>
+</div>
+</div>
+<p>The API sends us a response, from which we extract the textual content. As with most APIs, this content is JSON. We can then import it into a Python dictionary using the <code>loads</code> function (for <em>load string</em>) to manipulate the data it contains.</p>
+<div id="14c035c9" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>r_dict <span class="op">=</span> json.loads(r_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="856dcd48" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>r_dict.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>dict_keys(['type', 'version', 'features', 'attribution', 'licence', 'query', 'filters', 'limit'])</code></pre>
+</div>
+</div>
+<div id="ecbcc0ef" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(r_dict[<span class="st">"features"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>list</code></pre>
+</div>
+</div>
+<p>The results we are interested in are contained in the dictionary value associated with the <code>features</code> key, which is a list of dictionaries, one per result.</p>
+<div id="5de307f7" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>r_dict[<span class="st">"features"</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>{'type': 'Feature',
+ 'geometry': {'type': 'Point', 'coordinates': [3.063832, 50.635192]},
+ 'properties': {'label': 'Rue de la Vieille Comédie 59800 Lille',
+  'score': 0.7018699999999999,
+  'id': '59350_9149',
+  'name': 'Rue de la Vieille Comédie',
+  'postcode': '59800',
+  'citycode': '59350',
+  'oldcitycode': '59350',
+  'x': 704523.56,
+  'y': 7059804.63,
+  'city': 'Lille',
+  'oldcity': 'Lille',
+  'context': '59, Nord, Hauts-de-France',
+  'type': 'street',
+  'importance': 0.72057,
+  'street': 'Rue de la Vieille Comédie'}}</code></pre>
+</div>
+</div>
+<div id="d5f92465" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>r_dict[<span class="st">"features"</span>][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>{'type': 'Feature',
+ 'geometry': {'type': 'Point', 'coordinates': [3.879638, 43.608525]},
+ 'properties': {'label': 'Place de la Comédie 34000 Montpellier',
+  'score': 0.70161,
+  'id': '34172_1485',
+  'name': 'Place de la Comédie',
+  'postcode': '34000',
+  'citycode': '34172',
+  'x': 771035.57,
+  'y': 6279225.95,
+  'city': 'Montpellier',
+  'context': '34, Hérault, Occitanie',
+  'type': 'street',
+  'importance': 0.71771,
+  'street': 'Place de la Comédie'}}</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="questions-of-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="questions-of-understanding">Questions of understanding</h3>
+<ul>
+<li>1/ What is a CSV file?</li>
+<li>2/ What are the advantages of the CSV format?</li>
+<li>3/ Why do we use the <code>csv</code> module to read and write CSV files?</li>
+<li>4/ Are the data in a CSV file always separated by commas?</li>
+<li>5/ What is the header of a CSV file? Does it necessarily exist?</li>
+<li>6/ Why is the JSON format widely used in data manipulation?</li>
+<li>7/ What Python object does JSON content resemble?</li>
+<li>8/ What types of Python objects can be converted to JSON?</li>
+<li>9/ What is the serialization of a Python object?</li>
+<li>10/ What is the main similarity between CSV and JSON files?</li>
+<li>11/ Does a file with a .json extension necessarily contain JSON?</li>
+</ul>
+<details>
+<summary>
+Show solution
+</summary>
+<ul>
+<li>1/ A CSV is a text file that represents the raw data of a spreadsheet-like document. Each line of the file represents a row in the spreadsheet, and the cells in a row are separated by commas. The first line may contain a <code>header</code> (column names), but this is not always the case.</li>
+<li>2/ Simplicity of reading and editing, universality.</li>
+<li>3/ Even though the CSV format is very simple, it has some characteristics (delimiter, end-of-line character, etc.) that need to be considered when reading or editing CSV. The csv module provides functions that account for these peculiarities.</li>
+<li>4/ No, data can theoretically be separated by any character or sequence of characters. In practice, follow the convention in most cases, which is to use a comma.</li>
+<li>5/ It is the first line of the CSV file, which usually contains the variable names, but this is not always the case.</li>
+<li>6/ It is the primary response format for APIs, which are widely used for data dissemination and exchange.</li>
+<li>7/ Dictionaries.</li>
+<li>8/ All serializable objects, which include most of the basic objects we have seen, but not manually created objects via classes.</li>
+<li>9/ The serialization of a (serializable) Python object is converting the data contained in that object into a byte sequence, i.e., a message that any computer can understand.</li>
+<li>10/ They are text files.</li>
+<li>11/ No, JSON files like CSV files are text files. The extension is a convention that allows, in most cases, knowing what the file contains, but it cannot guarantee it.</li>
+</ul>
+</details>
+</section>
+<section id="sort-the-keys-when-writing-a-json" class="level3">
+<h3 class="anchored" data-anchor-id="sort-the-keys-when-writing-a-json">Sort the keys when writing a JSON</h3>
+<p>The following cell contains a dictionary. The goal of the exercise is to write this data to a JSON file, sorting the dictionary keys alphabetically.</p>
+<p>Hint: The <code>dump</code> function of the <code>json</code> module contains a parameter that allows sorting the keys. Read the <a href="https://docs.python.org/3/library/json.html#json.dump">function documentation</a> to determine it.</p>
+<div id="b31018b8" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"Isidore"</span>, <span class="st">"age"</span>: <span class="dv">29</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="106cf0e8" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Show solution
+</summary>
+<div id="77effd8c" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"Isidore"</span>, <span class="st">"age"</span>: <span class="dv">29</span>}</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data_sorted.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    json.dump(data, file_out, sort_keys<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+<section id="convert-a-non-serializable-object-to-json" class="level3">
+<h3 class="anchored" data-anchor-id="convert-a-non-serializable-object-to-json">Convert a non-serializable object to JSON</h3>
+<p>We have seen that manually created objects via classes are generally not serializable. The following cell shows an example with our <code>Citron</code> object used in the OOP tutorial. Trying to convert the object directly to JSON returns an error.</p>
+<p>You must modify the following code to serialize the object. To do this, you must:</p>
+<ul>
+<li>Convert the <code>mon_citron</code> instance using the <em>built-in</em> <code>__dict__</code> method that all Python objects have.</li>
+<li>Convert the obtained dictionary to JSON as a string.</li>
+</ul>
+<div id="ca3ac08f" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color, juice_qty):</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flavor <span class="op">=</span> <span class="st">"acidic"</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.juice <span class="op">=</span> juice_qty</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>mon_citron <span class="op">=</span> Citron(color<span class="op">=</span><span class="st">"yellow"</span>, juice_qty<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>json.dumps(mon_citron)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[58], line 11</span>
+<span class="ansi-green-fg ansi-bold">      8</span>         <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>juice <span style="color:rgb(98,98,98)">=</span> juice_qty
+<span class="ansi-green-fg ansi-bold">     10</span> mon_citron <span style="color:rgb(98,98,98)">=</span> Citron(color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">yellow</span><span style="color:rgb(175,0,0)">"</span>, juice_qty<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">45</span>)
+<span class="ansi-green-fg">---&gt; 11</span> <span class="ansi-yellow-bg">json</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">dumps</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">mon_citron</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/json/__init__.py:231</span>, in <span class="ansi-cyan-fg">dumps</span><span class="ansi-blue-fg">(obj, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, **kw)</span>
+<span class="ansi-green-fg ansi-bold">    226</span> <span style="font-style:italic;color:rgb(95,135,135)"># cached encoder</span>
+<span class="ansi-green-fg ansi-bold">    227</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> (<span style="font-weight:bold;color:rgb(175,0,255)">not</span> skipkeys <span style="font-weight:bold;color:rgb(175,0,255)">and</span> ensure_ascii <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
+<span class="ansi-green-fg ansi-bold">    228</span>     check_circular <span style="font-weight:bold;color:rgb(175,0,255)">and</span> allow_nan <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
+<span class="ansi-green-fg ansi-bold">    229</span>     <span style="color:rgb(0,135,0)">cls</span> <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> indent <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> separators <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span>
+<span class="ansi-green-fg ansi-bold">    230</span>     default <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span> <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> sort_keys <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> kw):
+<span class="ansi-green-fg">--&gt; 231</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_default_encoder</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">encode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">obj</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    232</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">cls</span> <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg ansi-bold">    233</span>     <span style="color:rgb(0,135,0)">cls</span> <span style="color:rgb(98,98,98)">=</span> JSONEncoder
+
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/json/encoder.py:199</span>, in <span class="ansi-cyan-fg">JSONEncoder.encode</span><span class="ansi-blue-fg">(self, o)</span>
+<span class="ansi-green-fg ansi-bold">    195</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> encode_basestring(o)
+<span class="ansi-green-fg ansi-bold">    196</span> <span style="font-style:italic;color:rgb(95,135,135)"># This doesn't pass the iterator directly to ''.join() because the</span>
+<span class="ansi-green-fg ansi-bold">    197</span> <span style="font-style:italic;color:rgb(95,135,135)"># exceptions aren't as detailed.  The list call should be roughly</span>
+<span class="ansi-green-fg ansi-bold">    198</span> <span style="font-style:italic;color:rgb(95,135,135)"># equivalent to the PySequence_Fast that ''.join() would do.</span>
+<span class="ansi-green-fg">--&gt; 199</span> chunks <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">iterencode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">o</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">_one_shot</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="font-weight:bold;color:rgb(0,135,0)" class="ansi-yellow-bg">True</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">    200</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="color:rgb(0,135,0)">isinstance</span>(chunks, (<span style="color:rgb(0,135,0)">list</span>, <span style="color:rgb(0,135,0)">tuple</span>)):
+<span class="ansi-green-fg ansi-bold">    201</span>     chunks <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">list</span>(chunks)
+
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/json/encoder.py:257</span>, in <span class="ansi-cyan-fg">JSONEncoder.iterencode</span><span class="ansi-blue-fg">(self, o, _one_shot)</span>
+<span class="ansi-green-fg ansi-bold">    252</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">    253</span>     _iterencode <span style="color:rgb(98,98,98)">=</span> _make_iterencode(
+<span class="ansi-green-fg ansi-bold">    254</span>         markers, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>default, _encoder, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>indent, floatstr,
+<span class="ansi-green-fg ansi-bold">    255</span>         <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>key_separator, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>item_separator, <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>sort_keys,
+<span class="ansi-green-fg ansi-bold">    256</span>         <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>skipkeys, _one_shot)
+<span class="ansi-green-fg">--&gt; 257</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">_iterencode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">o</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">0</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/json/encoder.py:179</span>, in <span class="ansi-cyan-fg">JSONEncoder.default</span><span class="ansi-blue-fg">(self, o)</span>
+<span class="ansi-green-fg ansi-bold">    160</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">default</span>(<span style="color:rgb(0,135,0)">self</span>, o):
+<span class="ansi-green-fg ansi-bold">    161</span> <span style="color:rgb(188,188,188)">    </span><span style="font-style:italic;color:rgb(175,0,0)">"""Implement this method in a subclass such that it returns</span>
+<span class="ansi-green-fg ansi-bold">    162</span> <span style="font-style:italic;color:rgb(175,0,0)">    a serializable object for ``o``, or calls the base implementation</span>
+<span class="ansi-green-fg ansi-bold">    163</span> <span style="font-style:italic;color:rgb(175,0,0)">    (to raise a ``TypeError``).</span>
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-fg ansi-bold">    177</span> 
+<span class="ansi-green-fg ansi-bold">    178</span> <span style="font-style:italic;color:rgb(175,0,0)">    """</span>
+<span class="ansi-green-fg">--&gt; 179</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Object of type </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>o<span style="color:rgb(98,98,98)">.</span><span style="color:rgb(0,0,135)">__class__</span><span style="color:rgb(98,98,98)">.</span><span style="color:rgb(0,0,135)">__name__</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">'</span>
+<span class="ansi-green-fg ansi-bold">    180</span>                     <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">is not JSON serializable</span><span style="color:rgb(175,0,0)">'</span>)
+
+<span class="ansi-red-fg">TypeError</span>: Object of type Citron is not JSON serializable</pre>
+</div>
+</div>
+</div>
+<div id="ea6cfd25" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Show solution
+</summary>
+<div id="a4b29edb" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color, juice_qty):</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.flavor <span class="op">=</span> <span class="st">"acidic"</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.color <span class="op">=</span> color</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.juice <span class="op">=</span> juice_qty</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>mon_citron <span class="op">=</span> Citron(color<span class="op">=</span><span class="st">"yellow"</span>, juice_qty<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>mon_citron_dict <span class="op">=</span> mon_citron.__dict__</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>json.dumps(mon_citron_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>'{"flavor": "acidic", "color": "yellow", "juice": 45}'</code></pre>
+</div>
+</div>
+</details>
+</section>
+<section id="change-the-delimiter-of-a-csv-file" class="level3">
+<h3 class="anchored" data-anchor-id="change-the-delimiter-of-a-csv-file">Change the delimiter of a CSV file</h3>
+<p>Your current directory contains the file <code>nat2020.csv</code>. It is the file of first names published by Insee, containing data on the first names given to children born in France between 1900 and 2020.</p>
+<p>Problem: Contrary to the CSV standard, the delimiter used is not a comma. You must:</p>
+<ul>
+<li>Find the delimiter used (via the Jupyter text editor, a shell command, or by testing with the <code>csv</code> module in Python) to read the file correctly.</li>
+<li>Generate a new CSV file <code>nat2020_corr.csv</code> containing the same data, but this time with a comma as the separator.</li>
+</ul>
+<div id="c5ae56c3" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Show solution
+</summary>
+<div id="4bfe624b" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the delimiter used with a shell command</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">3</span> nat2020.csv</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'nat2020.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the existing CSV file</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> csv.reader(file_in, delimiter<span class="op">=</span><span class="st">';'</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">'nat2020_corr.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> file_out:</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Write to the new CSV file</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>        writer <span class="op">=</span> csv.writer(file_out)  <span class="co"># By default, the delimiter is a comma</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>            writer.writerow(row)</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify with a shell command</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">3</span> nat2020_corr.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sexe;preusuel;annais;nombre
+1;TRESOR;2002;4
+2;AWATEF;1972;3
+sexe,preusuel,annais,nombre
+1,TRESOR,2002,4
+2,AWATEF,1972,3</code></pre>
+</div>
+</div>
+</details>
+</section>
+<section id="extract-and-save-data-from-an-api" class="level3">
+<h3 class="anchored" data-anchor-id="extract-and-save-data-from-an-api">Extract and save data from an API</h3>
+<p>The exercise is to make a request to the National Address Base API and save the results in a CSV file. Here are the steps to implement:</p>
+<ul>
+<li>Make a street name request with a keyword like in the tutorial (if you want to make a more complex request, you can check the <a href="https://adresse.data.gouv.fr/api-doc/adresse">API documentation</a>) and store the results in a dictionary.</li>
+<li>Create a CSV file <code>resultats_ban.csv</code> in which we will store the following information: ‘name’, ‘city’, ‘city_code’, ‘longitude’, ‘latitude’.</li>
+<li>Using a <code>writer</code> object and a loop on the results returned by the API, write each line to the CSV.</li>
+</ul>
+<p>For example, for the query of streets containing the word “comédie”, here is the CSV to obtain:</p>
+<pre><code>name,city,city_code,longitude,latitude
+Rue de la Vieille Comedie,Lille,59350,3.063832,50.635192
+Place de la Comédie,Montpellier,34172,3.879638,43.608525
+Rue de la Comédie,Cherbourg-en-Cotentin,50129,-1.629732,49.641574
+Allee de la Comedie,Villeneuve-d'Ascq,59009,3.162808,50.64628
+Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457</code></pre>
+<div id="955c9fce" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Show solution
+</summary>
+<div id="6067e83d" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://api-adresse.data.gouv.fr/search/?q=comedie&amp;type=street"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>r_text <span class="op">=</span> response.text</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>r_dict <span class="op">=</span> json.loads(r_text)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'resultats_ban.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> file_out:</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> [<span class="st">'name'</span>, <span class="st">'city'</span>, <span class="st">'city_code'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>]</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    csv_writer <span class="op">=</span> csv.writer(file_out)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    csv_writer.writerow(header)</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> result <span class="kw">in</span> r_dict[<span class="st">'features'</span>]:</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>        name <span class="op">=</span> result[<span class="st">'properties'</span>][<span class="st">'name'</span>]</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>        city <span class="op">=</span> result[<span class="st">'properties'</span>][<span class="st">'city'</span>]</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>        city_code <span class="op">=</span> result[<span class="st">'properties'</span>][<span class="st">'citycode'</span>]</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">long</span>, lat <span class="op">=</span> result[<span class="st">'geometry'</span>][<span class="st">'coordinates'</span>]</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> [name, city, city_code, <span class="bu">long</span>, lat]</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>        csv_writer.writerow(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+<section id="split-the-department-base-by-regions" class="level3">
+<h3 class="anchored" data-anchor-id="split-the-department-base-by-regions">Split the department base by regions</h3>
+<p>The goal of this exercise is to split the CSV file of French departments used in the tutorial into several small CSV files, one per region. This type of operation can be useful, for example, when working with a very large file that does not fit in memory; splitting it into several files to process independently, when possible, reduces the volume.</p>
+<p>Here are the operations to perform:</p>
+<ul>
+<li>Create a <code>dep</code> folder in the current directory using the <code>pathlib</code> module (cf.&nbsp;previous tutorial).</li>
+<li>With a <code>csv</code> module reader object, loop through the lines of the department CSV file. Be careful not to include the header, using the <code>next</code> function to skip the first line. For each following line:
+<ul>
+<li>Retrieve the region code (variable <code>REG</code>).</li>
+<li>Generate the path of the CSV file <code>dep/{REG}.csv</code> where {REG} is to be replaced by the region code of the line.</li>
+<li>Open this CSV file in <code>append</code> mode to write the line at the end of the file.</li>
+</ul></li>
+</ul>
+<div id="3b5f520a" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Show solution
+</summary>
+<div id="35dd3da4" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>path_dep <span class="op">=</span> Path(<span class="st">"dep/"</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>path_dep.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'departement2021.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    csv_reader <span class="op">=</span> csv.reader(file_in)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">next</span>(csv_reader)  <span class="co"># Skip the header</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>        reg <span class="op">=</span> row[<span class="dv">1</span>]</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>        filename <span class="op">=</span> reg <span class="op">+</span> <span class="st">'.csv'</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>        path_reg_file <span class="op">=</span> path_dep <span class="op">/</span> filename  <span class="co"># Path of the region csv file</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(path_reg_file, <span class="st">'a'</span>) <span class="im">as</span> file_reg_in:</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>                writer <span class="op">=</span> csv.writer(file_reg_in)</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>                writer.writerow(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+<section id="add-missing-headers" class="level3">
+<h3 class="anchored" data-anchor-id="add-missing-headers">Add missing headers</h3>
+<p>In the previous exercise, we split the CSV file of French departments into several CSV files, one per region. However, we did not include the header in the different files, i.e., the first line containing the column names. We will add it manually to each of the CSV files created in the previous exercise.</p>
+<p>Here are the operations to perform:</p>
+<ul>
+<li>Read the complete department file and retrieve the <code>header</code> in a list with the <code>next</code> function.</li>
+<li>Record in a list the paths of the different CSV files contained in the <code>dep</code> folder using the <code>glob</code> method of <code>pathlib</code> (cf.&nbsp;previous tutorial).</li>
+<li>For each path:
+<ul>
+<li>Open the existing CSV file and retrieve the data as a list of lists (one list per line).</li>
+<li>Open the CSV file in write mode to reset it, write the header first, and then write the data previously saved in a list of lists.</li>
+</ul></li>
+</ul>
+<div id="6edaf75f" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Show solution
+</summary>
+<div id="ba5752bf" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'departement2021.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    csv_reader <span class="op">=</span> csv.reader(file_in)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> <span class="bu">next</span>(csv_reader)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>dep_files_paths <span class="op">=</span> <span class="bu">list</span>(Path(<span class="st">"dep/"</span>).glob(<span class="st">'*.csv'</span>))</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path <span class="kw">in</span> dep_files_paths:</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the existing file, storing the lines in a list</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">'r'</span>) <span class="im">as</span> file_dep_in:</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>        reader <span class="op">=</span> csv.reader(file_dep_in)</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>        dep_rows <span class="op">=</span> []</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>            dep_rows.append(row)</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rewrite the output file, adding the header first</span></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">'w'</span>) <span class="im">as</span> file_dep_out:</span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>        writer <span class="op">=</span> csv.writer(file_dep_out)</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>        writer.writerow(header)</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> row <span class="kw">in</span> dep_rows:</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>            writer.writerow(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
