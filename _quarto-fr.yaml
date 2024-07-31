@@ -11,7 +11,7 @@ website:
             href: source/fundamentals/data-structures1/tutorial.qmd
           - text: "Structures de données 2 : dictionnaires et sets"
             href: source/fundamentals/data-structures2/tutorial.qmd
-          - text: "Tests"
+          - text: "Tests logiques et conditions"
             href: source/fundamentals/tests/tutorial.qmd
           - text: "Boucles"
             href: source/fundamentals/loops/tutorial.qmd

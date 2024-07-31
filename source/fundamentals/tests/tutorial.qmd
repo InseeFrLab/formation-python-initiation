@@ -1,9 +1,9 @@
 ::: {.content-visible when-profile="fr"}
 ---
-title: "Instructions conditionnelles"
+title: "Tests logiques"
 ---
 
-Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **condition**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des instructions conditionnelles en Python. Les tests conditionnels sont une étape majeure dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
+Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests logiques en Python. Ces derniers sont un outil essentiel dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
 
 
 ## Le type Booléen

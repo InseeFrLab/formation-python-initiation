@@ -14,7 +14,7 @@ website:
             href: source/fundamentals/data-structures1/tutorial.qmd
           - text: "Data structures 2: dictionaries and sets"
             href: source/fundamentals/data-structures2/tutorial.qmd
-          - text: "Conditionals"
+          - text: "Tests and conditions"
             href: source/fundamentals/tests/tutorial.qmd
           - text: "Loops"
             href: source/fundamentals/loops/tutorial.qmd
