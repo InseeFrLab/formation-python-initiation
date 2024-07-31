@@ -6,19 +6,17 @@ CHAPTER=$3
 
 WORK_DIR=/home/onyxia/work
 CLONE_DIR=${WORK_DIR}/repo-git
-COURSE_DIR=${CLONE_DIR}/source
 
 # Clone course repository
 REPO_URL=https://github.com/InseeFrLab/formation-python-initiation.git
 git clone --depth 1 $REPO_URL $CLONE_DIR
 
 # Build notebook from sources
-SOURCE_FILE=${COURSE_DIR}/${SECTION}/${CHAPTER}/tutorial.qmd
+SOURCE_FILE=${CLONE_DIR}/source/${SECTION}/${CHAPTER}/tutorial.qmd
 quarto render $SOURCE_FILE --profile ${LANGUAGE} --no-execute --to ipynb
-rm $SOURCE_FILE
 
 # Put chapter files in the training dir
-cp -r ${COURSE_DIR}/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
+cp -r ${CLONE_DIR}/_site/source/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
 
 # Install additional packages if needed
 REQUIREMENTS_FILE=${CLONE_DIR}/requirements.txt
