@@ -358,7 +358,7 @@ window.Quarto = {
 <section id="tout-est-un-objet" class="level2">
 <h2 class="anchored" data-anchor-id="tout-est-un-objet">“Tout est un objet”</h2>
 <p><strong>En Python, tout est un objet</strong> (au sens de la POO). Regardons ce que cela signifie en récupérant le type de différents objets que nous avons vus dans les précédents tutoriels.</p>
-<div id="704c13fb" class="cell" data-execution_count="1">
+<div id="5b4d163b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">1</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"bonjour"</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>([]))</span>
@@ -383,7 +383,7 @@ window.Quarto = {
 <section id="définir-ses-propres-objets" class="level2">
 <h2 class="anchored" data-anchor-id="définir-ses-propres-objets">Définir ses propres objets</h2>
 <p>Regardons comment on peut utiliser l’instruction <code>class</code> pour définir notre objet “citron”.</p>
-<div id="4a81fcf3" class="cell" data-execution_count="2">
+<div id="b1337824" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -412,7 +412,7 @@ window.Quarto = {
 <section id="la-classe-et-ses-instances" class="level2">
 <h2 class="anchored" data-anchor-id="la-classe-et-ses-instances">La classe et ses instances</h2>
 <p>La <strong>classe</strong> peut être vue comme la <strong>recette qui permet de créer un objet</strong> : elle définit les attributs et les méthodes que possèderont tous les objets définis à partir de cette classe. Définir une classe comme ci-dessus revient simplement à mettre cette recette dans l’environnement Python. Pour créer un objet selon cette classe, il faut l’<strong>instancier</strong>.</p>
-<div id="4384f504" class="cell" data-execution_count="3">
+<div id="0b4923b6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>citron2 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"vert"</span>, qte_jus<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -432,7 +432,7 @@ window.Quarto = {
 <section id="accéder-aux-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="accéder-aux-attributs">Accéder aux attributs</h3>
 <p>Une fois que l’objet est instancié, il est possible d’accéder à ses attributs. La syntaxe est simple : <code>instance.attribut</code>.</p>
-<div id="42c329cb" class="cell" data-execution_count="4">
+<div id="41de1154" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.couleur)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.jus)</span>
@@ -449,7 +449,7 @@ vert
 <section id="modifier-un-attribut" class="level3">
 <h3 class="anchored" data-anchor-id="modifier-un-attribut">Modifier un attribut</h3>
 <p>Modifier un attribut d’une instance est très simple, la syntaxe est : <code>instance.attribut = nouvelle_valeur</code>.</p>
-<div id="69817aad" class="cell" data-execution_count="5">
+<div id="65853371" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>citron2.couleur <span class="op">=</span> <span class="st">"rouge"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -473,14 +473,14 @@ vert
 <section id="appeler-une-méthode" class="level3">
 <h3 class="anchored" data-anchor-id="appeler-une-méthode">Appeler une méthode</h3>
 <p>La syntaxe pour appeler une méthode d’un objet instancié est la suivante : <code>instance.methode(parametres)</code>.</p>
-<div id="3d9fd949" class="cell" data-execution_count="6">
+<div id="94d717d2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Il reste 45 mL de jus dans le citron.</code></pre>
 </div>
 </div>
 <p>On peut faire deux remarques sur cette syntaxe. La première est qu’<strong>une méthode est une fonction <em>attachée</em> à une instance d’un objet</strong>. Contrairement aux fonctions définies via l’instruction <code>def</code>, les méthodes n’ont pas d’existence propre en dehors de l’instance de l’objet. Dans notre cas, appeler la <em>fonction</em> <code>recup_qte_jus()</code> indépendamment de l’objet renvoie donc une erreur.</p>
-<div id="4b44a554" class="cell" data-execution_count="7">
+<div id="d9d9d0e9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -498,7 +498,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="agir-sur-les-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="agir-sur-les-attributs">Agir sur les attributs</h3>
 <p>Tout l’intérêt des méthodes est qu’elles peuvent accéder aux attributs, et ainsi réaliser des opérations à partir de ceux-ci, mais également les modifier. Reprenons notre exemple pour illustrer cette possibilité.</p>
-<div id="9c853923" class="cell" data-execution_count="8">
+<div id="9e156d16" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
@@ -521,7 +521,7 @@ Il reste 33 mL de jus dans le citron.</code></pre>
 <li><p>le fonctionnement en continu d’une application web. Une telle application doit garder des choses en mémoire pour fournir à l’utilisateur une expérience fluide : le fait que l’utilisateur se soit connecté, son historique, etc. Là encore, la plupart des <em>frameworks</em> web (<code>Django</code>, <code>Flask</code>..) reposent sur de la POO.</p></li>
 </ul>
 <p>Dans le même temps, le fait d’utiliser des objets qui gardent en mémoire un état peut <strong>limiter la reproductibilité des analyses</strong>. Pour illustrer cela, revenons à l’exemple du tutoriel : exécutez plusieurs fois d’affilée la cellule suivante.</p>
-<div id="c63ee472" class="cell" data-execution_count="9">
+<div id="a79bb708" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -578,7 +578,7 @@ Afficher la solution
 <li><p>rajouter une méthode qui affiche “La masse du citron est x grammes.”</p></li>
 </ul>
 <p>Instanciez ensuite un nouveau citron est vérifiez que tout fonctionne comme prévu.</p>
-<div id="cfc77c9a" class="cell" data-execution_count="10">
+<div id="052632a0" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -595,7 +595,7 @@ Afficher la solution
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.jus <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.jus <span class="op">-</span> quantite)  <span class="co"># évite toute valeur négative de `jus`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="33c2b635" class="cell" data-execution_count="11">
+<div id="a2d70a41" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -651,7 +651,7 @@ Afficher la solution
 </ul></li>
 </ul>
 <p>Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.</p>
-<div id="f2d88635" class="cell" data-execution_count="12">
+<div id="501c116c" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">

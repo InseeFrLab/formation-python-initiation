@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <p>The goal of this project is to perform a quick statistical analysis of a dataset whose format is not directly optimized for analysis in python. We will exclusively use the <code>pandas</code> library for data analysis. To best reproduce a situation you might encounter, we strongly encourage you to consult the library’s documentation (<a href="https://pandas.pydata.org/docs/user_guide/index.html#user-guide">docs</a>).</p>
 <p>We will focus on the population estimate as of January 1st of each year, this estimate being made from censuses and population evolution models. The data is accessible on the Insee website at the following address: <a href="https://www.insee.fr/en/statistics/1893198">https://www.insee.fr/en/statistics/1893198</a>. The file we will use can be downloaded directly via this url: <a href="https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls">https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls</a>.</p>
-<div id="1484032a" class="cell" data-execution_count="28">
+<div id="f92a9a69" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Define the <code>load_data()</code> function which has no parameters and returns a <code>Dict</code> where the <strong>keys</strong> correspond to the names of the tabs of our file and the <strong>values</strong> correspond to the data of the different spreadsheets. To do this, use a function from the <code>pandas</code> library by specifying the correct parameters.</p>
 <section id="expected-result" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result">Expected result</h4>
-<div id="a28960ad" class="cell" data-execution_count="29">
+<div id="18f58c9e" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> solutions.load_data()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"2022"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -663,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn">Your turn!</h4>
-<div id="c3800479" class="cell" data-execution_count="30">
+<div id="4498e289" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -684,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>2.1 - To do this, create a function <code>reshape_data_by_year(df, year)</code> which takes as argument a DataFrame from your Dict <code>data</code> and a given year.</p>
 <section id="expected-result-1" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-1">Expected result</h4>
-<div id="1145a0e8" class="cell" data-execution_count="31">
+<div id="8c6370d8" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="dv">2022</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> solutions.reshape_table_by_year(data[<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>], year)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -814,7 +814,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-1" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-1">Your turn!</h4>
-<div id="5c695336" class="cell" data-execution_count="32">
+<div id="51d4f10b" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reshape_table_by_year(df, year):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -823,7 +823,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-2" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-2">Expected result</h4>
-<div id="b5205ad2" class="cell" data-execution_count="33">
+<div id="4ae7e355" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> solutions.reshape_data(data)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
@@ -952,7 +952,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-2" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-2">Your turn!</h4>
-<div id="5d4e7f7e" class="cell" data-execution_count="34">
+<div id="50d0e84a" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reshape_data(data):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -968,7 +968,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Write a function <code>plot_population_by_gender_per_department(df, department_code)</code> which returns a graph representing the population evolution in a given department. Use the <code>matplotlib</code> library. You can look at the data for Haute Garonne (31), Loir-et-Cher (41), and Réunion (974) to see disparities in evolution.</p>
 <section id="expected-result-3" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-3">Expected result</h4>
-<div id="d67ebd25" class="cell" data-execution_count="35">
+<div id="9eb396b7" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_population_by_gender_per_department(df, <span class="st">"31"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -981,7 +981,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-3" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-3">Your turn!</h4>
-<div id="0140a041" class="cell" data-execution_count="36">
+<div id="f3e8ef08" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_population_by_gender_per_department(data, department_code):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -1002,7 +1002,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>4.1- Define the <code>get_age_pyramid_data(df, year)</code> function which, from the DataFrame generated by the <code>reshape_data()</code> function, returns a DataFrame with the columns <code>age</code>, <code>Females</code>, <code>Males</code>. The <code>age</code> column should contain all the age groups present in the dataset, the <code>Females/Males</code> columns correspond to the female/male population for a given age group. For aesthetics, the <code>Males</code> column will be multiplied by -1 beforehand.</p>
 <section id="expected-result-4" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-4">Expected result</h4>
-<div id="0acdfb94" class="cell" data-execution_count="37">
+<div id="b0098819" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pyramide_data <span class="op">=</span> solutions.get_age_pyramid_data(df, <span class="dv">2022</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pyramide_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
@@ -1198,7 +1198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-4" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-4">Your turn!</h4>
-<div id="1143d9a1" class="cell" data-execution_count="38">
+<div id="dc8348b3" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_age_pyramid_data(df, year):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pyramide_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1207,7 +1207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-5" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-5">Expected result</h4>
-<div id="110ff7cf" class="cell" data-execution_count="39">
+<div id="866a707d" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>solutions.plot_age_pyramid(df, <span class="dv">1975</span>, ax<span class="op">=</span>ax1)</span>
@@ -1223,7 +1223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-5" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-5">Your turn!</h4>
-<div id="2ebd10a9" class="cell" data-execution_count="40">
+<div id="c77d022d" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_age_pyramid(df, year, ax<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> plt.gca()</span>
@@ -1243,7 +1243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Create a DataFrame from the <code>.json</code> file of French departments and regions mentioned earlier. Ensure that the columns are in the correct format.</p>
 <section id="expected-result-6" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-6">Expected result</h4>
-<div id="e4d22b33" class="cell" data-execution_count="41">
+<div id="fb66ee9b" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_matching <span class="op">=</span> solutions.load_departements_regions(<span class="st">"https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_matching</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
@@ -1336,7 +1336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-6" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-6">Your turn!</h4>
-<div id="3af2eb02" class="cell" data-execution_count="42">
+<div id="f151754b" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_departements_regions(url):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_matching</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1348,7 +1348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Match the DataFrame containing population data by department with the DataFrame of French regions.</p>
 <section id="expected-result-7" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-7">Expected result</h4>
-<div id="1fbb91fd" class="cell" data-execution_count="43">
+<div id="8c5cd440" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_regions <span class="op">=</span> solutions.match_department_regions(df, df_matching)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df_regions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
@@ -1513,7 +1513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-7" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-7">Your turn!</h4>
-<div id="7b30f090" class="cell" data-execution_count="44">
+<div id="d2a2e268" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> match_department_regions(df, df_matching):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_regions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1525,7 +1525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Download the geographical contour data of the regions using the <code>cartiflette</code> package and the <code>geopandas</code> library. The data is accessible via the following url: <a href="https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson">https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format=‘geojson’/provider=‘IGN’/source=‘EXPRESS-COG-CARTO-TERRITOIRE’/raw.geojson</a>.</p>
 <section id="expected-result-8" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-8">Expected result</h4>
-<div id="9b1008ee" class="cell" data-execution_count="45">
+<div id="ccf187fe" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>geo <span class="op">=</span> solutions.load_geo_data(<span class="st">"https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="er">-COG-CARTO-TERRITOIRE'/raw.geojson")</span></span>
@@ -1543,7 +1543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-8" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-8">Your turn!</h4>
-<div id="df232308" class="cell" data-execution_count="46">
+<div id="b1e97c99" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_geo_data(url):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> geo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1555,7 +1555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Produce a choropleth map of the 2022 population of French regions. You can consult the <code>geopandas</code> documentation <a href="https://geopandas.org/en/stable/docs/user_guide/mapping.html">here</a>.</p>
 <section id="expected-result-9" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-9">Expected result</h4>
-<div id="47405993" class="cell" data-execution_count="47">
+<div id="d1f93681" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_population_by_regions(df_regions, geo, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1568,7 +1568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-9" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-9">Your turn!</h4>
-<div id="412267ce" class="cell" data-execution_count="48">
+<div id="e8ba0ab3" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_population_by_regions(df, geo, year):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -1589,7 +1589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>9.1- Write a function <code>compute_population_growth_per_region(df)</code> which calculates the annual population growth percentage for each region.</p>
 <section id="expected-result-10" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-10">Expected result</h4>
-<div id="c2b2596e" class="cell" data-execution_count="49">
+<div id="716e6752" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_growth <span class="op">=</span> solutions.compute_population_growth_per_region(df_regions)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
@@ -2659,7 +2659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-10" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-10">Your turn!</h4>
-<div id="c1a14b60" class="cell" data-execution_count="50">
+<div id="af940560" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_population_growth_per_region(df_regions):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2668,7 +2668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-11" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-11">Expected result</h4>
-<div id="7ddb600f" class="cell" data-execution_count="51">
+<div id="443f0358" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_growth <span class="op">=</span> solutions.compute_mean_population_growth_per_region(df_regions, <span class="dv">2015</span>, <span class="dv">2022</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="51">
@@ -2788,7 +2788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-11" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-11">Your turn!</h4>
-<div id="cc5431c3" class="cell" data-execution_count="52">
+<div id="f575f242" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mean_population_growth_per_region(df, geo, year):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2797,7 +2797,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-12" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-12">Expected result</h4>
-<div id="79988c01" class="cell" data-execution_count="53">
+<div id="505f8a31" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_growth_population_by_regions(df_regions, geo, <span class="dv">2015</span>, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -2810,7 +2810,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="your-turn-12" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-12">Your turn!</h4>
-<div id="215f7dc5" class="cell" data-execution_count="54">
+<div id="d853c352" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_growth_population_by_regions(df, geo, min_year, max_year):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
