@@ -1,8 +1,8 @@
 #!/bin/bash
 
-LANGUAGE=$1
-SECTION=$2
-CHAPTER=$3
+SECTION=$1
+CHAPTER=$2
+LANGUAGE=$3
 
 WORK_DIR=/home/onyxia/work
 CLONE_DIR=${WORK_DIR}/repo-git
@@ -17,10 +17,10 @@ REQUIREMENTS_FILE=${CLONE_DIR}/requirements.txt
 
 # Build notebook from sources
 SOURCE_FILE=${CLONE_DIR}/source/${SECTION}/${CHAPTER}/tutorial.qmd
-quarto render $SOURCE_FILE --profile ${LANGUAGE} --no-execute --to ipynb
+quarto render $SOURCE_FILE --profile ${LANGUAGE:-fr} --no-execute --to ipynb
 
 # Put chapter files in the training dir
-cp -r ${CLONE_DIR}/_site/source/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
+cp -r ${CLONE_DIR}/_site/${LANGUAGE}/source/${SECTION}/${CHAPTER}/* ${WORK_DIR}/
 
 # Remove Git repository
 rm -r $CLONE_DIR
