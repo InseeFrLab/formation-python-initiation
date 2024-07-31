@@ -511,6 +511,8 @@ Il est dont très fréquent de croiser la condition `if __name__ == "__main__"` 
 
 - 12/ Quelle est la différence entre un module et un script ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -540,6 +542,8 @@ Il est dont très fréquent de croiser la condition `if __name__ == "__main__"` 
 
 </details>
 
+:::
+
 ### Moyenne et écart-type des notes obtenues à un examen 
 
 
@@ -560,6 +564,8 @@ Indices :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -579,6 +585,8 @@ print(np.std(notes_num))
 ```
 
 </details>
+
+:::
 
 ### Admis ou recalé
 
@@ -605,6 +613,8 @@ Par exemple, les trois premières lignes de ce nouveau fichier devraient être :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -625,6 +635,8 @@ with open("notes_mentions.txt", "w") as file_out:
 ```
 
 </details>
+
+:::
 
 ### Retardataires
 
@@ -652,6 +664,8 @@ supp = [(16, 3), (11, 1), (3, 5)]
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -666,6 +680,8 @@ with open("notes_clean.txt", "a") as file_out:
 ```
 
 </details>
+
+:::
 
 ### Scanner des fichiers
 
@@ -683,6 +699,8 @@ with open("notes_clean.txt", "a") as file_out:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -699,6 +717,8 @@ for path in txt_files_paths:
 ```
 
 </details>
+
+:::
 
 :::
 
@@ -1155,6 +1175,8 @@ It is therefore very common to see the condition `if __name__ == "__main__"` in 
 - 11/ Why can we traverse the lines of a file using a loop?
 - 12/ What is the difference between a module and a script?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1173,6 +1195,8 @@ It is therefore very common to see the condition `if __name__ == "__main__"` in 
 
 </details>
 
+:::
+
 ### Mean and standard deviation of exam scores
 
 *Exercise inspired by: [python.sdv.univ-paris-diderot.fr](https://python.sdv.univ-paris-diderot.fr/07_fichiers/)*
@@ -1189,6 +1213,8 @@ Hints:
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1209,6 +1235,8 @@ print(np.std(notes_num))
 ```
 
 </details>
+
+:::
 
 
 
@@ -1235,6 +1263,8 @@ For example, the first three lines of this new file should be:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1255,6 +1285,8 @@ with open("notes_mentions.txt", "w") as file_out:
 ```
 
 </details>
+
+:::
 
 ### Latecomers
 
@@ -1279,6 +1311,8 @@ supp = [(16, 3), (11, 1), (3, 5)]
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1294,6 +1328,8 @@ with open("notes_clean.txt", "a") as file_out:
 
 </details>
 
+:::
+
 ### Scanning files
 
 Write a program that performs the following operations:
@@ -1306,6 +1342,8 @@ Write a program that performs the following operations:
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1323,6 +1361,8 @@ for path in txt_files_paths:
 ```
 
 </details>
+
+:::
 
 
 :::

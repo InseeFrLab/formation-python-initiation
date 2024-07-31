@@ -342,6 +342,8 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 
 - 10/ Parmi les instructions `if`, `else`, et `elif`, lesquelles sont obligatoires et lesquelles sont facultatives ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -366,6 +368,8 @@ NB : les instructions précédentes ont seulement valeur d'exemple. En pratique,
 10/ Seule l'instruction `if` est obligatoire.
 
 </details>
+
+:::
 
 ### Prédiction de résultats de tests
 
@@ -398,6 +402,8 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -421,6 +427,8 @@ Prédire le résultats des tests suivants, et vérifier vos prédictions :
 
 - `(not False) or (not True)` : True
 </details>
+
+:::
 
 ### Prédiction de test imbriqué
 
@@ -466,6 +474,8 @@ Vérifiez vos résultats.
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -476,6 +486,8 @@ Vérifiez vos résultats.
 - `x = 10` : `l = ['a']` et messages imprimés : 'Initialisation'
 
 </details>
+
+:::
 
 ### Trois et pas plus
 
@@ -495,6 +507,8 @@ Ecrire un programme qui réalise les opérations suivantes :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -512,6 +526,8 @@ if len(people) > 3:
     print('Trop de monde.')
 ```
 </details>
+
+:::
 
 ### Le juste prix
 
@@ -535,6 +551,8 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -550,6 +568,8 @@ else:
     print("dans le mille !")
 ```
 </details>
+
+:::
 
 ### Evaluation booléenne d'objets divers
 
@@ -590,6 +610,8 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -615,6 +637,8 @@ Prédire à quelle valeur booléenne vont s'évaluer les objets suivants, et vé
 
 </details>
 
+:::
+
 ### Comparaisons en chaîne
 
 
@@ -626,6 +650,8 @@ Nous avons vu qu'il était possible de réaliser des comparaisons en chaîne, qu
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -639,6 +665,8 @@ print(5 < 7 and 7 <= 8 and 8 < 18)
 Une comparaison en chaîne peut se réécrire avec des opérateurs `and`. Logique : il faut que chaque comparaison soit vraie pour que l'ensemble le soit aussi. En pratique, la version avec les `and` est sans doute préférable pour la lisibilité.
 
 </details>
+
+:::
 
 
 ### Booléens et langage binaire
@@ -654,6 +682,8 @@ Les Booléens sont fortement liés au langage binaire, dans lequel le `1` corres
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -671,6 +701,8 @@ print(True + 3)
 Les Booléens se comportent comme leur valeur entière associée dans les calculs.
 </details>
 
+:::
+
 ### Comparaisons de *strings*
 
 
@@ -680,6 +712,8 @@ Que renvoient les tests de comparaison de type inégalités appliqués à des ch
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -694,6 +728,8 @@ print("1" < "2")
 print("A1" < "A2")
 ```
 </details>
+
+:::
 
 La relation d'ordre utilisée est l'ordre alphanumérique : chaque caractère est pris individuellement, et les ordres sont A < Z et 1 < 9.
 
@@ -711,6 +747,8 @@ Imaginez (sans forcément l'implémenter) un autre test, basé sur des inégalit
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -733,6 +771,8 @@ print(new_test)
 
 Ce dernier test permet de tester l'égalité entre diff et 0.3 de manière approchée, en permettant une certaine tolérance dans la comparaison.
 </details>
+
+:::
 
 :::
 
@@ -1073,6 +1113,8 @@ NB: The previous instructions are for example purposes only. In practice, there 
 
 - 10/ Among the `if`, `else`, and `elif` statements, which ones are mandatory and which ones are optional?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1097,6 +1139,8 @@ NB: The previous instructions are for example purposes only. In practice, there 
 10/ Only the `if` statement is mandatory.
 
 </details>
+
+:::
 
 ### Predicting test results
 
@@ -1126,6 +1170,8 @@ Predict the results of the following tests and verify your predictions:
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1149,6 +1195,8 @@ Predict the results of the following tests and verify your predictions:
 
 - `(not False) or (not True)` : True
 </details>
+
+:::
 
 ### Predicting nested test results
 
@@ -1192,6 +1240,8 @@ Verify your results.
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1202,6 +1252,8 @@ Verify your results.
 - `x = 10` : `l = ['a']` and messages printed: 'Initialization'
 
 </details>
+
+:::
 
 ### Three and no more
 
@@ -1218,6 +1270,8 @@ Write a program that performs the following operations:
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1236,6 +1290,8 @@ if len(people) > 3:
     print('Too many people.')
 ```
 </details>
+
+:::
 
 ### The price is right
 
@@ -1257,6 +1313,8 @@ Note, `input` returns a string by default. Therefore, you need to convert the va
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1272,6 +1330,8 @@ else:
     print("right on!")
 ```
 </details>
+
+:::
 
 ### Boolean evaluation of various objects
 
@@ -1310,6 +1370,8 @@ Predict which boolean value the following objects will evaluate to, and verify u
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1335,6 +1397,8 @@ Predict which boolean value the following objects will evaluate to, and verify u
 
 </details>
 
+:::
+
 ### Chained comparisons
 
 We have seen that it is possible to perform chained comparisons, which return `True` provided that each of the included comparisons is true. Find a way to rewrite the following chained comparison using boolean operators.
@@ -1344,6 +1408,8 @@ We have seen that it is possible to perform chained comparisons, which return `T
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1358,6 +1424,8 @@ A chained comparison can be rewritten with `and` operators. It makes sense: each
 
 </details>
 
+:::
+
 ### Booleans and binary language
 
 Booleans are strongly linked to binary language, where `1
@@ -1371,6 +1439,8 @@ Booleans are strongly linked to binary language, where `1
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1388,6 +1458,8 @@ print(True + 3)
 Booleans behave like their associated integer value in calculations.
 </details>
 
+:::
+
 ### *String* comparisons
 
 What do inequality comparison tests applied to strings return? Produce some examples to test the behavior.
@@ -1395,6 +1467,8 @@ What do inequality comparison tests applied to strings return? Produce some exam
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1410,6 +1484,8 @@ print("A1" < "A2")
 ```
 </details>
 
+:::
+
 The order relation used is alphanumeric order: each character is taken individually, and the orders are A < Z and 1 < 9.
 
 ### Equality tests on floats
@@ -1424,6 +1500,8 @@ Imagine (without necessarily implementing it) another test, based on inequalitie
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1446,6 +1524,8 @@ print(new_test)
 
 This last test allows testing the equality between diff and 0.3 approximately, allowing for some tolerance in the comparison.
 </details>
+
+:::
 
 
 :::

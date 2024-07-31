@@ -387,6 +387,8 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 
 - 9/ A quoi sert le paramètre `axis` des fonctions mathématiques de `NumPy` ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -409,6 +411,8 @@ Les possibilités offertes par `NumPy` sont gigantesques, et nous n'en avons vu 
 - 9/ Le paramètre axis sert à spécifier la dimension selon laquelle on souhaite performer une agrégation (fonction math, stat..).
 
 </details>
+
+:::
 
 ### Manipulations simples des données d'un DataFrame
 
@@ -440,6 +444,8 @@ print(X)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -456,6 +462,8 @@ print(X[::-1])
 ```
 
 </details>
+
+:::
 
 ### Sélectionner des éléments dans une matrice
 
@@ -483,6 +491,8 @@ print(Y)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -497,6 +507,8 @@ print(Y[np.arange(0, 5), np.arange(0, 5)])
 ```
 
 </details>
+
+:::
 
 ### Un peu de calcul
 
@@ -532,6 +544,8 @@ Y = np.array([[10,11,12],
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -558,6 +572,8 @@ print(Y.T)
 ```
 
 </details>
+
+:::
 
 ### Initialisation d'*arrays* de diverses natures
 
@@ -591,6 +607,8 @@ En vous référant à la [documentation](https://numpy.org/doc/stable/reference/
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -627,6 +645,8 @@ print()
 
 </details>
 
+:::
+
 ### Tirage d'un vecteur selon une loi normale
 
 
@@ -641,6 +661,8 @@ Indice : attention à la manière dont est spécifiée la variance dans la fonct
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -651,6 +673,8 @@ print(np.mean(X), np.var(X))
 ```
 
 </details>
+
+:::
 
 ### Tirage d'une matrice selon une loi uniforme
 
@@ -664,6 +688,8 @@ En utilisant la fonction `np.all` et un test booléen, vérifier que tous les no
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -675,6 +701,8 @@ np.all((U >= -1) & (U <= 1))
 ```
 
 </details>
+
+:::
 
 ### Binariser une matrice de nombres
 
@@ -695,6 +723,8 @@ X = np.random.randint(0, 50, size=(6, 6))
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -717,6 +747,8 @@ print(B)
 ```
 
 </details>
+
+:::
 
 ### Touché-coulé
 
@@ -752,6 +784,8 @@ print(X)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -778,6 +812,8 @@ shoot(0, 2)
 
 </details>
 
+:::
+
 ### One Hot Encoding
 
 
@@ -800,6 +836,8 @@ print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -816,6 +854,8 @@ ohe
 ```
 
 </details>
+
+:::
 
 :::
 
@@ -1189,6 +1229,8 @@ The possibilities offered by `NumPy` are vast, and we have only seen a glimpse. 
 - 8/ What is the broadcasting property?
 - 9/ What is the purpose of the `axis` parameter in `NumPy`'s mathematical functions?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1203,6 +1245,8 @@ The possibilities offered by `NumPy` are vast, and we have only seen a glimpse. 
 - 9/ The `axis` parameter specifies the dimension along which you want to perform an aggregation (math, stat functions, etc.).
 
 </details>
+
+:::
 
 ### Simple manipulations of a DataFrame's data
 
@@ -1227,6 +1271,8 @@ print(X)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1243,6 +1289,8 @@ print(X[::-1])
 ```
 
 </details>
+
+:::
 
 ### Selecting elements in a matrix
 
@@ -1265,6 +1313,8 @@ print(Y)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1279,6 +1329,8 @@ print(Y[np.arange(0, 5), np.arange(0, 5)])
 ```
 
 </details>
+
+:::
 
 ### Some calculations
 
@@ -1307,6 +1359,8 @@ Y = np.array([[10,11,12],
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1337,6 +1391,8 @@ print(Y.T)
 
 </details>
 
+:::
+
 ### Initializing arrays of various types
 
 In the tutorial, we saw that the standard method to create a `NumPy` array is to initialize a list and then convert it to an array. You can also use native `NumPy` functions that create arrays of a given size containing basic values (e.g., near-empty values, zeros, ones, a user-specified value, etc.).
@@ -1361,6 +1417,8 @@ Referring to the [documentation](https://numpy.org/doc/stable/reference/routines
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1397,6 +1455,8 @@ print()
 
 </details>
 
+:::
+
 ### Drawing a vector from a normal distribution
 
 Referring to the [documentation](https://numpy.org/doc/stable/reference/random/generator.html) of `NumPy`'s random number generation functions, generate a vector `X` of size 10000 containing numbers drawn from a normal distribution with mean 0 and variance 2.
@@ -1410,6 +1470,8 @@ Hint: Pay attention to how the variance is specified in the `NumPy` function for
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1420,6 +1482,8 @@ print(np.mean(X), np.var(X))
 ```
 
 </details>
+
+:::
 
 ### Drawing a matrix from a uniform distribution
 
@@ -1432,6 +1496,8 @@ Using the `np.all` function and a boolean test, verify that all numbers in `U` a
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1443,6 +1509,8 @@ np.all((U >= -1) & (U <= 1))
 ```
 
 </details>
+
+:::
 
 ### Binarizing a matrix of numbers
 
@@ -1461,6 +1529,8 @@ X = np.random.randint(0, 50, size=(6, 6))
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1483,6 +1553,8 @@ print(B)
 ```
 
 </details>
+
+:::
 
 ### Battleship
 
@@ -1511,6 +1583,8 @@ print(X)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1537,6 +1611,8 @@ shoot(0, 2)
 
 </details>
 
+:::
+
 ### One Hot Encoding
 
 In statistics, it is common to numerically encode a vector of categories. A frequent way to encode categories is *one hot encoding* (OHE): each value is represented by a binary vector, containing a $1$ in the column corresponding to the category and $0$ elsewhere.
@@ -1558,6 +1634,8 @@ print(OneHotEncoder().fit_transform(values.reshape((-1, 1))).todense())
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1574,6 +1652,8 @@ ohe
 ```
 
 </details>
+
+:::
 
 
 :::

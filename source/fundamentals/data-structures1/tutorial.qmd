@@ -301,6 +301,8 @@ Ces fonctions ont d'autres usages en pratique, que nous verrons en exercice.
 
 - Peut-on avoir des éléments de types différents (ex : `int` et `string`) dans une même liste ? Dans un même tuple ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -317,6 +319,8 @@ Ces fonctions ont d'autres usages en pratique, que nous verrons en exercice.
 - 6/ Oui, il est tout à fait possible d'avoir des éléments de types différents dans une même liste ou dans un même tuple. Ces éléments peuvent être de types de base (ex : `int` et `string`), mais également des conteneurs (ex : liste, tuple, dictionnaire, etc.).
 
 </details>
+
+:::
 
 ### Les 4 saisons
 
@@ -349,6 +353,8 @@ Créez 4 listes portant les noms des 4 saisons, contenant chacune les noms des m
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -397,6 +403,8 @@ print(type(l), len(l), l, "\n")
 
 </details>
 
+:::
+
 ### Faire ses gammes
 
 En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante pour qu'elle contienne les notes de musique "do re mi fa sol la si" dans le bon ordre.
@@ -407,6 +415,8 @@ En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -426,6 +436,8 @@ Cet exemple visait simplement à pratiquer la modification et la suppression d'�
 
 </details>
 
+:::
+
 ### Inversion de liste
 
 Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`. Quelle est la différence majeure entre les deux méthodes ?
@@ -434,6 +446,8 @@ Proposez deux méthodes pour inverser la liste `["une", "liste", "quelconque"]`.
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -457,6 +471,8 @@ print(l2)
 
 </details>
 
+:::
+
 ### Pop'it
 
 Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément de la liste `ma_liste`. A l'aide de la documentation Python ou d'une recherche sur Google, déterminez le comportement par défaut de cette méthode, c'est à dire ce qu'il se passe lorsqu'on ne donne aucun paramètre à la fonction `pop`. Vérifiez que vous observez bien ce comportement à l'aide d'un exemple de votre choix.
@@ -465,6 +481,8 @@ Nous avons vu que l'instruction `ma_liste.pop(i)` supprimait le i-ème élément
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -476,6 +494,8 @@ print(l)
 ```
 
 </details>
+
+:::
 
 ### Min et max de différentes listes
 
@@ -491,6 +511,8 @@ Il existe beaucoup d'autres méthodes *built-in* pour les listes que celles que 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -509,6 +531,8 @@ La troisième expression renvoie une erreur : il n'existe pas de relation d'ordr
 
 </details>
 
+:::
+
 ### Liste vide
 
 Essayer de créer une liste vide. Vérifiez son type. Quel intérêt pourrait avoir un tel objet ?
@@ -517,6 +541,8 @@ Essayer de créer une liste vide. Vérifiez son type. Quel intérêt pourrait av
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -538,6 +564,8 @@ print(l)
 
 </details>
 
+:::
+
 ### La fonction `list`
 
 Dans le tutoriel, nous avons vu les fonctions `list` et `tuple` qui permettent de passer d'un type à l'autre. En réalité, le fonctionnement de ces fonctions est plus subtil : le code `list(mon_objet)` renvoie la "version liste" de cet objet, de la même manière par exemple que `str(3)` renvoie `'3'`, c'est à dire la version *string* de l'entier `3`.
@@ -554,6 +582,8 @@ A l'aide de la fonction `list`, trouver les "versions liste" des objets suivants
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -579,6 +609,8 @@ print(d)
 
 </details>
 
+:::
+
 ### Immutabilité des tuples
 
 Nous avons vu que les tuples avaient la particularité d'être non-modifiables. Mais est-ce que cette propriété se transfère de manière récursive ? Par exemple, est-ce qu'une liste contenue dans un tuple est-elle même non-modifiable ? Vérifiez à l'aide d'un exemple de votre choix.
@@ -587,6 +619,8 @@ Nous avons vu que les tuples avaient la particularité d'être non-modifiables. 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -601,6 +635,8 @@ Verdict : la non-modifiabilité ne s'applique qu'au premier niveau. Elle ne se t
 
 </details>
 
+:::
+
 ### Dissociation de séquences
 
 Lisez la partie concernant l'agrégation et la dissociation de séquences dans la [documentation Python](https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences). La dissociation est une propriété souvent utilisée en pratique. Vérifiez qu'elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu'à maintenant (chaînes de caractères, listes et tuples).
@@ -609,6 +645,8 @@ Lisez la partie concernant l'agrégation et la dissociation de séquences dans l
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -625,6 +663,8 @@ print(r)
 ```
 
 </details>
+
+:::
 
 :::
 
@@ -904,6 +944,8 @@ These functions have other practical uses, which we will see in exercises.
 - When is it more advantageous to use a tuple rather than a list?
 - Can you have elements of different types (e.g., `int` and `string`) in the same list? In the same tuple?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -920,6 +962,8 @@ These functions have other practical uses, which we will see in exercises.
 - 6/ Yes, it is quite possible to have elements of different types in the same list or tuple. These elements can be of basic types (e.g., `int` and `string`), but also containers (e.g., list, tuple, dictionary, etc.).
 
 </details>
+
+:::
 
 ### The 4 Seasons
 
@@ -943,6 +987,8 @@ Create 4 lists named after the 4 seasons, each containing the names of the assoc
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -991,6 +1037,8 @@ print(type(l), len(l), l, "\n")
 
 </details>
 
+:::
+
 ### Doing Scales
 
 By adding, deleting, and modifying elements, clean up the following list so that it contains the musical notes "do re mi fa sol la si" in the correct order.
@@ -1001,6 +1049,8 @@ By adding, deleting, and modifying elements, clean up the following list so that
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1020,6 +1070,8 @@ This example was simply to practice modifying and deleting elements. In practice
 
 </details>
 
+:::
+
 ### List Reversal
 
 Propose two methods to reverse the list `["a", "random", "list"]`. What is the major difference between the two methods?
@@ -1028,6 +1080,8 @@ Propose two methods to reverse the list `["a", "random", "list"]`. What is the m
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1051,6 +1105,8 @@ print(l2)
 
 </details>
 
+:::
+
 ### Pop'it
 
 We saw that the `my_list.pop(i)` statement removes the i-th element from the list `my_list`. Using the Python documentation or a Google search, determine the default behavior of this method, i.e., what happens when no parameter is given to the `pop` function. Verify that you observe this behavior with an example of your choice.
@@ -1059,6 +1115,8 @@ We saw that the `my_list.pop(i)` statement removes the i-th element from the lis
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1070,6 +1128,8 @@ print(l)
 ```
 
 </details>
+
+:::
 
 ### Min and Max of Different Lists
 
@@ -1083,6 +1143,8 @@ There are many more built-in methods for lists than those we have already seen. 
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1101,6 +1163,8 @@ The third expression returns an error: there is no relevant order relationship.
 
 </details>
 
+:::
+
 ### Empty List
 
 Try creating an empty list. Verify its type. What could be the use of such an object?
@@ -1109,6 +1173,8 @@ Try creating an empty list. Verify its type. What could be the use of such an ob
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1130,6 +1196,8 @@ print(l)
 
 </details>
 
+:::
+
 ### The `list` Function
 
 In the tutorial, we saw the `list` and `tuple` functions that allow converting from one type to the other. In reality, the functionality of these functions is more subtle: the code `list(my_object)` returns the "list version" of that object, just as `str(3)` returns `'3'`, i.e., the string version of the integer `3`.
@@ -1144,6 +1212,8 @@ Using the `list` function, find the "list versions" of the following objects:
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1168,6 +1238,8 @@ print(d)
 
 </details>
 
+:::
+
 ### Immutability of Tuples
 
 We saw that tuples are immutable. But does this property transfer recursively? For example, is a list contained in a tuple itself immutable? Verify with an example of your choice.
@@ -1176,6 +1248,8 @@ We saw that tuples are immutable. But does this property transfer recursively? F
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1189,6 +1263,8 @@ print(t)
 Verdict: immutability only applies to the first level. It does not transfer to sub-elements.
 
 </details>
+
+:::
 
 ### Sequence Unpacking
 

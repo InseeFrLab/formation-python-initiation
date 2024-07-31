@@ -261,6 +261,8 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 
 - 8/ Que fait l'instruction `continue` ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -281,6 +283,8 @@ NB : le code ci-dessus à seulement valeur d'exemple. Comme on le verra dans un 
 8/ L'instruction `continue` force la boucle de niveau directement supérieur à passer à l'itération suivante.
 
 </details>
+
+:::
 
 ### Prédiction de résultats de boucles `while`
 
@@ -321,6 +325,8 @@ while 5 >= 3:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -334,6 +340,8 @@ while 5 >= 3:
 
 - 5. 5 >= 3 évalue à True => la boucle est infinie. Le continue est exécuté à chaque itération avant que le print ne puisse s'exécuter. La boucle tourne à l'infini, mais sans output.
 </details>
+
+:::
 
 ### Effet d'une erreur d'indentation
 
@@ -363,11 +371,15 @@ for nb in nombres:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
 Le premier programme est correct. Dans le second, le second `print` n'est pas correctement indenté. En conséquence, il s'exécute à chaque itération et non pas juste lorsque `nb == 5`.
 </details>
+
+:::
 
 ### Convertir une boucle `for` en boucle `while`
 
@@ -385,6 +397,8 @@ for i, note in enumerate(gamme):
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -398,6 +412,8 @@ while i <= (len(gamme) - 1):
     i += 1
 ```
 </details>
+
+:::
 
 ### Recherche d'un élément dans une liste
 
@@ -417,6 +433,8 @@ l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -438,6 +456,8 @@ if n_cible in l:
 ```
 </details>
 
+:::
+
 ### Suite de Fibonacci
 
 La suite de Fibonacci se définit de la manière suivante : 
@@ -452,6 +472,8 @@ Ecrire un programme permettant de calculer les $n$ premiers termes de la suite �
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -468,6 +490,8 @@ for i in range(n_termes):
     num2 = num3
 ```
 </details>
+
+:::
 
 ### Dictionnaire des tables de multiplication
 
@@ -486,6 +510,8 @@ Voici quelques exemples de requête que doit renvoyer votre dictionnaire :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -503,6 +529,8 @@ print(tables[12][7])
 ```
 </details>
 
+:::
+
 ### Calcul du minimum et du maximum d'une série "à la main"
 
 Calculer le minimum et le maximum de la série de valeurs suivantes, sans utiliser les fonctions `min` et `max` de Python. 
@@ -513,6 +541,8 @@ x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -532,6 +562,8 @@ print(current_min == min(x))
 print(current_max == max(x))
 ```
 </details>
+
+:::
 
 ### Calcul de moyenne et de variance "à la main"
 
@@ -555,6 +587,8 @@ NB :
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -582,6 +616,8 @@ print(np.mean(x))
 print(np.var(x))
 ```
 </details>
+
+:::
 
 ### Usage avancé de la fonction `range`
 
@@ -614,6 +650,8 @@ En utilisant la fonction `range`, afficher :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -629,6 +667,8 @@ print(list(range(10, 100, 10)))
 print(list(range(20, 9, -1)))
 ```
 </details>
+
+:::
 
 ### Le juste prix, version améliorée
 
@@ -653,6 +693,8 @@ Attention, `input` renvoie par défaut une chaîne de caractère. Il faut donc c
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -673,6 +715,8 @@ while True:
 print("dans le mille !")
 ```
 </details>
+
+:::
 
 :::
 
@@ -931,6 +975,8 @@ NB: The code above is only for example purposes. As we will see in a future tuto
 
 - 8/ What does the `continue` statement do?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -951,6 +997,8 @@ NB: The code above is only for example purposes. As we will see in a future tuto
 8/ The `continue` statement forces the loop of the directly superior level to skip to the next iteration.
 
 </details>
+
+:::
 
 ### Predicting results of `while` loops
 
@@ -991,6 +1039,8 @@ while 5 >= 3:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1005,6 +1055,8 @@ while 5 >= 3:
 - 5. `5 >= 3` evaluates to `True`, so the loop is infinite. The continue statement is executed at each iteration before the print can execute. The loop runs infinitely, but with no output.
 
 </details>
+
+:::
 
 ### Effect of an indentation error
 
@@ -1033,12 +1085,16 @@ for num in numbers:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
 The first program is correct. In the second, the second `print` is not correctly indented. As a result, it executes at each iteration and not just when `num == 5`.
 
 </details>
+
+:::
 
 ### Converting a `for` loop to a `while` loop
 
@@ -1056,6 +1112,8 @@ for i, note in enumerate(gamme):
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1070,6 +1128,8 @@ while i <= (len(gamme) - 1):
 ```
 
 </details>
+
+:::
 
 ### Finding an element in a list
 
@@ -1089,6 +1149,8 @@ l = [12, 98, 65, 39, 78, 55, 119, 27, 33]
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1111,6 +1173,8 @@ if target_num in l:
 
 </details>
 
+:::
+
 ### Fibonacci sequence
 
 The Fibonacci sequence is defined as follows:
@@ -1125,6 +1189,8 @@ Write a program to calculate the first $n$ terms of the sequence using a `for` l
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1145,6 +1211,8 @@ for i in range(n_terms):
 
 </details>
 
+:::
+
 ### Multiplication table dictionary
 
 Using two nested `for` loops, build a dictionary `tables` that allows generating multiplication tables up to the table of 12. Query your dictionary to check its accuracy.
@@ -1161,6 +1229,8 @@ Here are some examples of queries your dictionary should return:
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1180,6 +1250,8 @@ print(tables[12][7])
 
 </details>
 
+:::
+
 ### Calculating the minimum and maximum of a series "by hand"
 
 Calculate the minimum and maximum of the following series of values without using Python's `min` and `max` functions.
@@ -1190,6 +1262,8 @@ x = [8, 18, 6, 0, 15, 17.5, 9, 1]
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1210,6 +1284,8 @@ print(current_max == max(x))
 ```
 
 </details>
+
+:::
 
 ### Calculating the mean and variance "by hand"
 
@@ -1233,6 +1309,8 @@ NB:
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1261,6 +1339,8 @@ print(np.var(x))
 ```
 
 </details>
+
+:::
 
 ### Advanced use of the `range` function
 
@@ -1293,6 +1373,8 @@ Using the `range` function, display:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1309,6 +1391,8 @@ print(list(range(20, 9, -1)))
 ```
 
 </details>
+
+:::
 
 ### The price is right, improved version
 
@@ -1333,6 +1417,8 @@ Note, `input` returns a string by default. Therefore, you need to convert the va
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1354,6 +1440,8 @@ print("spot on!")
 ```
 
 </details>
+
+:::
 
 
 :::

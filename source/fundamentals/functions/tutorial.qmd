@@ -347,6 +347,8 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 
 - 11/ Que deviennent les variables du *scope* local d'une fonction une fois que la fonction a été appelée ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -374,6 +376,8 @@ NB : on verra dans un prochain tutoriel sur les bonnes pratiques qu'**il est pr�
 
 </details>
 
+:::
+
 ### Fonction puissance
 
 
@@ -382,6 +386,8 @@ Créer une fonction `puissance` qui prend en entrée deux nombres `x` et `y` et 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -393,6 +399,8 @@ def puissance(x, y):
 puissance(2, 3)
 ```
 </details>
+
+:::
 
 ### Prédiction de valeurs retournées par des fonctions
 
@@ -436,6 +444,8 @@ def f9(x, y, z=5):
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -459,6 +469,8 @@ def f9(x, y, z=5):
 - f9. Valeur : 13 ; Type : int
 ```
 </details>
+
+:::
 
 ### Variables globales et variables locales
 
@@ -486,6 +498,8 @@ print(total)
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -519,6 +533,8 @@ print(total)
 ```
 </details>
 
+:::
+
 ### Calculatrice
 
 
@@ -535,6 +551,8 @@ Utiliser la propriété de *tuple unpacking* pour assigner les résultats à des
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -546,6 +564,8 @@ add, sub, mult, div = calculatrice(5, 3)
 print(add, sub, mult, div)
 ```
 </details>
+
+:::
 
 ### Dédupliquer une liste
 
@@ -564,6 +584,8 @@ Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires e
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -579,6 +601,8 @@ print(dedup(l))  # Comportement par défaut : pas de tri
 print(dedup(l, sort=True))  # Comportement modifié : tri
 ```
 </details>
+
+:::
 
 ### Multiplier les éléments d'une liste
 
@@ -598,6 +622,8 @@ Ecrire une fonction qui :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -613,6 +639,8 @@ l = [2, 8, 3]
 multiplier(l)
 ```
 </details>
+
+:::
 
 ### Variance dans une population et variance dans un échantillon
 
@@ -635,6 +663,8 @@ Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -673,6 +703,8 @@ print(np.var(x, ddof=1))  # sample
 ```
 </details>
 
+:::
+
 ### Fonctions récursives : factorielle
 
 Les fonctions récursives sont des fonctions qui s'appellent elles-mêmes dans le corps de la fonction, ce qui entraîne des appels infinis jusqu'à atteindre un critère d'arrêt.
@@ -685,6 +717,8 @@ Coder cette fonction et vérifier qu'elle fonctionne correctement.
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -700,6 +734,8 @@ def factorielle(n):
 factorielle(5)
 ```
 </details>
+
+:::
 
 :::
 
@@ -1018,6 +1054,8 @@ Note: We will see in a future tutorial on best practices that **it is best to li
 10. Can a function return multiple objects?
 11. What happens to the variables in the local scope of a function once the function has been called?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1045,6 +1083,8 @@ Note: We will see in a future tutorial on best practices that **it is best to li
 
 </details>
 
+:::
+
 ### Power Function
 
 Create a `power` function that takes two numbers `x` and `y` as input and returns the power function $x^y$.
@@ -1053,6 +1093,8 @@ Create a `power` function that takes two numbers `x` and `y` as input and return
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1064,6 +1106,8 @@ def power(x, y):
 power(2, 3)
 ```
 </details>
+
+:::
 
 ### Predicting Values Returned by Functions
 
@@ -1106,6 +1150,8 @@ def f9(x, y, z=5):
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1129,6 +1175,8 @@ def f9(x, y, z=5):
 - f9. Value: 13; Type: int
 ```
 </details>
+
+:::
 
 ### Global and Local Variables
 
@@ -1155,6 +1203,8 @@ print(total)
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1188,6 +1238,8 @@ print(total)
 ```
 </details>
 
+:::
+
 ### Calculator
 
 Write a `calculator` function that:
@@ -1202,6 +1254,8 @@ Use the tuple unpacking property to assign the results to variables in a single 
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1213,6 +1267,8 @@ add, sub, mult, div = calculator(5, 3)
 print(add, sub, mult, div)
 ```
 </details>
+
+:::
 
 ### Deduplicating a List
 
@@ -1228,6 +1284,8 @@ Hint: The procedure was discussed in the tutorial on dictionaries and sets.
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1245,6 +1303,8 @@ print(dedup(l, sort=True))  # Modified behavior: sorting
 ```
 </details>
 
+:::
+
 ### Multiplying List Elements
 
 Write a function that:
@@ -1258,6 +1318,8 @@ Write a function that:
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1277,6 +1339,8 @@ multiply(l)
 ```
 </details>
 
+:::
+
 ### Variance in a Population and Variance in a Sample
 
 In an exercise from the previous tutorial, we manually coded the calculation of the variance of a list of numbers using the formula: $$\sigma^2 = {\frac {1}{n}}\sum_{i=1}^{n} (x_{i}-\bar{x})^2$$
@@ -1295,6 +1359,8 @@ Compare the values obtained in both cases with what the *black box* function `va
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1333,6 +1399,8 @@ print(np.var(x, ddof=1))  # sample
 ```
 </details>
 
+:::
+
 ### Recursive Functions: Factorial
 
 Recursive functions are functions that call themselves within the body of the function, causing infinite calls until a stopping criterion is reached.
@@ -1345,6 +1413,8 @@ Code this function and verify that it works correctly.
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1360,6 +1430,8 @@ def factorial(n):
 factorial(5)
 ```
 </details>
+
+:::
 
 
 :::

@@ -1023,6 +1023,8 @@ df_merged_outer
 - 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
 
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -1045,6 +1047,8 @@ df_merged_outer
 - 9/ Concaténer consiste à assembler des DataFrames en les empilant verticalement ou en les alignant horizontalement, principalement utilisé lorsque les DataFrames ont le même schéma ou lorsque vous souhaitez empiler les données. Les jointures, inspirées des opérations JOIN en SQL, combinent les DataFrames sur la base de valeurs de clés communes et sont utilisées pour enrichir un ensemble de données avec des informations d'un autre ensemble.
 
 </details>
+
+:::
 
 ### Plusieurs manières de créer un DataFrame
 
@@ -1074,6 +1078,8 @@ L'objectif est de construire dans les deux cas un même DataFrame qui contient c
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1115,6 +1121,8 @@ df_from_dict.equals(df_from_list)
 
 </details>
 
+:::
+
 ### Sélection de données dans un DataFrame
 
 Un DataFrame Pandas est créé avec des données de caisse (mêmes données que l'exercice précédent).
@@ -1142,6 +1150,8 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -1151,12 +1161,16 @@ print(df.iloc[0])
 
 </details>
 
+:::
+
 - Sélectionner toutes les données de la colonne "prix".
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1167,12 +1181,16 @@ print(df.loc[:, 'prix'])
 
 </details>
 
+:::
+
 - Sélectionner les lignes correspondant à l'enseigne "Carrefour" uniquement.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1183,12 +1201,16 @@ print(df.loc[df['enseigne'] == 'Carrefour'])
 
 </details>
 
+:::
+
 - Sélectionner les quantités achetées pour les produits classifiés "01.1.1" (Pain).
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1199,12 +1221,16 @@ print(df.loc[df['produit'] == '01.1.1', 'quantite'])
 
 </details>
 
+:::
+
 - Sélectionner les données des colonnes "enseigne" et "prix" pour toutes les lignes.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1215,12 +1241,16 @@ print(df.loc[:, ['enseigne', 'prix']])
 
 </details>
 
+:::
+
 - Sélectionner les lignes où la quantité achetée est supérieure à 5.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1231,12 +1261,16 @@ print(df.loc[df['quantite'] > 5])
 
 </details>
 
+:::
+
 - Filtrer pour sélectionner toutes les transactions qui ont eu lieu après 15h.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1247,12 +1281,16 @@ print(df.loc[df['date_heure'].dt.hour > 15])
 
 </details>
 
+:::
+
 - Sélectionner les transactions qui ont eu lieu le "2022-01-03".
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1262,6 +1300,8 @@ print(df.loc[df['date_heure'].dt.date == pd.to_datetime('2022-01-03').date()])
 ```
 
 </details>
+
+:::
 
 ### Exploration du fichier des prénoms
 
@@ -1279,6 +1319,8 @@ Le fichier des prénoms contient des données sur les prénoms attribués aux en
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -1294,6 +1336,8 @@ df_prenoms.info()
 
 </details>
 
+:::
+
 #### Partie 2 : Nettoyage des données
 
 
@@ -1304,6 +1348,8 @@ df_prenoms.info()
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1317,12 +1363,16 @@ df_prenoms = df_prenoms.replace('_PRENOMS_RARES', np.nan)
 
 </details>
 
+:::
+
 - On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1335,12 +1385,16 @@ df_prenoms = df_prenoms.replace('XXXX', np.nan)
 
 </details>
 
+:::
+
 - Supprimer les lignes contenant des valeurs manquantes de l'échantillon.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1351,12 +1405,16 @@ df_prenoms = df_prenoms.dropna()
 
 </details>
 
+:::
+
 - Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1368,12 +1426,16 @@ df_prenoms['sexe'] = df_prenoms['sexe'].astype('category')
 
 </details>
 
+:::
+
 - Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1383,6 +1445,8 @@ df_prenoms.info()
 ```
 
 </details>
+
+:::
 
 #### Partie 3 : Statistiques descriptives sur les naissances
 
@@ -1394,6 +1458,8 @@ df_prenoms.info()
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -1403,12 +1469,16 @@ df_prenoms_post_1946 = df_prenoms[df_prenoms["annais"] >= 1946]
 
 </details>
 
+:::
+
 - Calculez le nombre total de naissances par sexe.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1420,12 +1490,16 @@ print(births_per_sex)
 
 </details>
 
+:::
+
 - Identifiez les cinq années ayant le plus grand nombre de naissances.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1437,6 +1511,8 @@ print(top5_years)
 
 </details>
 
+:::
+
 #### Partie 4 : Analyse des prénoms
 
 
@@ -1446,6 +1522,8 @@ print(top5_years)
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1457,12 +1535,16 @@ print(total_unique_names)
 
 </details>
 
+:::
+
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1474,12 +1556,16 @@ print(single_letter_names)
 
 </details>
 
+:::
+
 - Créez une "fonction de popularité" qui, pour un prénom donné, affiche l'année où il a été le plus donné ainsi que le nombre de fois où il a été donné cette année-là.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1502,12 +1588,16 @@ popularite_par_annee(df_prenoms, 'ALFRED')
 
 </details>
 
+:::
+
 - Créez une fonction qui, pour un sexe donné, renvoie un DataFrame contenant le prénom le plus donné pour chaque décennie.
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1537,6 +1627,8 @@ popularite_par_decennie(df_prenoms, sexe=2)
 
 </details>
 
+:::
+
 ### Calcul d'une empreinte carbone par habitant au niveau communal
 
 L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données : 
@@ -1557,6 +1649,8 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -1570,6 +1664,8 @@ df_pop_communes.describe()
 
 </details>
 
+:::
+
 - Identifiez et retirez les lignes correspondant aux communes sans population.
 - Supprimez les colonnes "PMUN" et "PCAP", non pertinentes pour l'analyse.
 
@@ -1577,6 +1673,8 @@ df_pop_communes.describe()
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1591,6 +1689,8 @@ df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
 
 </details>
 
+:::
+
 Les communes qui ont les noms les plus longs sont-elles aussi les communes les moins peuplées ? Pour le savoir :
 - Créez une nouvelle variable qui contient le nombre de caractères de chaque commune à l'aide de la méthode [str.len()](https://pandas.pydata.org/docs/reference/api/pandas.Series.str.len.html)
 - Calculez la corrélation entre cette variable et la population totale avec la méthode [corr()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
@@ -1599,6 +1699,8 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1611,6 +1713,8 @@ df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
 
 </details>
 
+:::
+
 #### Partie 2 : Exploration des données sur les émissions communales
 
 - Importez les données d'émission depuis cette [URL](https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv)
@@ -1620,6 +1724,8 @@ df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1635,12 +1741,16 @@ df_emissions.describe()
 
 </details>
 
+:::
+
 - Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [isnull()](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html) et [all()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html).
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1653,6 +1763,8 @@ only_nan.shape[0]
 
 </details>
 
+:::
+
 - Créez une nouvelle colonne qui donne les émissions totales par commune
 - Afficher les 10 communes les plus émettrices. Qu'observez-vous dans les résultats ?
 
@@ -1660,6 +1772,8 @@ only_nan.shape[0]
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1672,12 +1786,16 @@ df_emissions.sort_values(by="emissions_totales", ascending=False).head(10)
 
 </details>
 
+:::
+
 - Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corrwith()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html).
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1688,6 +1806,8 @@ df_emissions.corrwith(df_emissions["emissions_totales"], numeric_only=True)
 
 </details>
 
+:::
+
 - Extraire du code commune le numéro de département dans une nouvelle variable
 - Calculer les émissions totales par département
 - Afficher les 10 principaux départements émetteurs. Les résultats sont-ils logiques par rapport à l'analyse au niveau communal ? 
@@ -1696,6 +1816,8 @@ df_emissions.corrwith(df_emissions["emissions_totales"], numeric_only=True)
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1707,6 +1829,8 @@ df_emissions.groupby("dep").agg({"emissions_totales": "sum"}).sort_values(by="em
 
 </details>
 
+:::
+
 #### Partie 3 : Vérifications préalables pour la jointure des sources de données
 
 Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jointure, i.e. une colonne commune aux deux sources, qui identifie uniquement les unités statistiques. L'objet de cette partie est de trouver la clé de jointure pertinente.
@@ -1717,6 +1841,8 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1730,12 +1856,16 @@ doublons
 
 </details>
 
+:::
+
 - Filtrez dans le DataFrame initial les communes dont le nom est dupliqué, et triez-le par code commune. Les doublons semblent-ils problématiques ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1747,12 +1877,16 @@ df_pop_communes_doublons.sort_values('COM')
 
 </details>
 
+:::
+
 - Vérifiez que les codes commune identifient de manière unique la commune associée
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1763,12 +1897,16 @@ df_pop_communes_doublons.sort_values('COM')
 
 </details>
 
+:::
+
 - Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement. Qu'en concluez-vous ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1783,6 +1921,8 @@ df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
 
 </details>
 
+:::
+
 #### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
 
 - Joindre les deux DataFrames à l'aide de la fonction à partir du code commune. Attention : les variables ne s'appellent pas de la même manière des deux côtés !
@@ -1791,6 +1931,8 @@ df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1802,6 +1944,8 @@ df_emissions_pop
 
 </details>
 
+:::
+
 - Calculer une empreinte carbone pour chaque commune, correspondant aux émissions totales de la commune divisées par sa population totale.
 - Affichez les 10 communes avec les empreintes carbones les plus élevées. 
 - Les résultats sont-ils identiques à ceux avec les émissions totales ? Qu'en concluez-vous ?
@@ -1810,6 +1954,8 @@ df_emissions_pop
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1820,6 +1966,8 @@ df_emissions_pop.sort_values("empreinte_carbone", ascending=False).head(10)
 ```
 
 </details>
+
+:::
 
 ### Analyse de l'évolution d'un indice de production
 
@@ -1841,6 +1989,8 @@ L'objectif est d'utiliser `Pandas` pour calculer :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -1853,6 +2003,8 @@ df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
 
 </details>
 
+:::
+
 #### Partie 2 : Filtrage des données pertinentes
 
 - Fusionner les deux DataFrames afin de récupérer la signification des codes présents dans les données.
@@ -1863,6 +2015,8 @@ df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1876,6 +2030,8 @@ df_clean = df_clean[["periode", "indice"]]
 
 </details>
 
+:::
+
 #### Partie 3 : Pré-traitement des données
 
 Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, convertissez-les avec les fonctions idoines.
@@ -1884,6 +2040,8 @@ Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, c
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1897,6 +2055,8 @@ df_clean.info()
 
 </details>
 
+:::
+
 #### Partie 4 : Calcul de l'évolution périodique
 
 - Utilisez la méthode [shift()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
@@ -1906,6 +2066,8 @@ df_clean.info()
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1920,6 +2082,8 @@ df_clean['evo_alt'] = df_clean['indice'].pct_change(periods=1) * 100
 
 </details>
 
+:::
+
 #### Partie 5 : Calcul de l'évolution glissante sur 12 mois
 
 Comme vous avez pu le voir dans la solution de l'exercice précédent, la méthode [pct_change()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html) permet précisément de calculer une évolution entre deux périodes. Utiliser cette méthode pour calculer une évolution (en pourcentage) en glissement annuel pour chaque mois.
@@ -1928,6 +2092,8 @@ Comme vous avez pu le voir dans la solution de l'exercice précédent, la métho
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -1938,6 +2104,8 @@ df_clean.head(20)
 ```
 
 </details>
+
+:::
 
 :::
 
@@ -2960,6 +3128,8 @@ df_merged_outer
 9. How does Pandas represent missing values, and what impact does this have on calculations and data transformations?
 10. What is the difference between concatenating two DataFrames and joining them via a merge, and when would you use one over the other?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -2982,6 +3152,8 @@ df_merged_outer
 9. Concatenating consists of stacking DataFrames vertically or aligning them horizontally, primarily used when the DataFrames have the same schema or when you want to stack the data. Merging, inspired by SQL JOIN operations, combines DataFrames based on common key values and is used to enrich one dataset with information from another.
 
 </details>
+
+:::
 
 ### Multiple ways to create a DataFrame
 
@@ -3010,6 +3182,8 @@ The goal is to build in both cases the same DataFrame containing each of the 6 o
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3051,6 +3225,8 @@ df_from_dict.equals(df_from_list)
 
 </details>
 
+:::
+
 ### Data selection in a DataFrame
 
 A Pandas DataFrame is created with cash register data (same data as the previous exercise).
@@ -3079,6 +3255,8 @@ Use the `loc` and `iloc` methods to select specific data:
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -3088,11 +3266,15 @@ print(df.iloc[0])
 
 </details>
 
+:::
+
 - Select all data from the "price" column.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3103,11 +3285,15 @@ print(df.loc[:, 'price'])
 
 </details>
 
+:::
+
 - Select the rows corresponding to the store "Carrefour" only.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3118,11 +3304,15 @@ print(df.loc[df['store'] == 'Carrefour'])
 
 </details>
 
+:::
+
 - Select the quantities purchased for products classified "01.1.1" (Bread).
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3133,11 +3323,15 @@ print(df.loc[df['product'] == '01.1.1', 'quantity'])
 
 </details>
 
+:::
+
 - Select the data from the "store" and "price" columns for all rows.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3148,11 +3342,15 @@ print(df.loc[:, ['store', 'price']])
 
 </details>
 
+:::
+
 - Select the rows where the purchased quantity is greater than 5.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3163,11 +3361,15 @@ print(df.loc[df['quantity'] > 5])
 
 </details>
 
+:::
+
 - Filter to select all transactions that occurred after 3 PM.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3178,11 +3380,15 @@ print(df.loc[df['date_time'].dt.hour > 15])
 
 </details>
 
+:::
+
 - Select the transactions that took place on "2022-01-03".
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3192,6 +3398,8 @@ print(df.loc[df['date_time'].dt.date == pd.to_datetime('2022-01-03').date()])
 ```
 
 </details>
+
+:::
 
 ### Exploring the first names file
 
@@ -3206,6 +3414,8 @@ The first names file contains data on the first names given to children born in 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3222,6 +3432,8 @@ df_first_names.info()
 
 </details>
 
+:::
+
 #### Part 2: Data cleaning
 
 - The output of the `info()` method suggests missing values in the first names column. Display these rows. Verify that these missing values are correctly specified.
@@ -3230,6 +3442,8 @@ df_first_names.info()
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3243,11 +3457,15 @@ df_first_names = df_first_names.replace('_PRENOMS_RARES', np.nan)
 
 </details>
 
+:::
+
 - We notice that the first names of people whose year of birth is unknown are grouped under the "XXXX" modality. What proportion of the individuals in the database does this represent? Convert these values to `np.nan`.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3260,11 +3478,15 @@ df_first_names = df_first_names.replace('XXXX', np.nan)
 
 </details>
 
+:::
+
 - Remove the rows containing missing values from the sample.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3275,11 +3497,15 @@ df_first_names = df_first_names.dropna()
 
 </details>
 
+:::
+
 - Convert the `annais` column to numeric type and the `sexe` column to categorical type.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3291,11 +3517,15 @@ df_first_names['sexe'] = df_first_names['sexe'].astype('category')
 
 </details>
 
+:::
+
 - Verify with the `info()` method that the cleaning has been correctly applied.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3306,6 +3536,8 @@ df_first_names.info()
 
 </details>
 
+:::
+
 #### Part 3: Descriptive statistics on births
 
 - The [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) of the file informs us that the data can be considered quasi-exhaustive from 1946 onwards. For this part only, filter the data to keep only data from 1946 onwards.
@@ -3313,6 +3545,8 @@ df_first_names.info()
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3323,11 +3557,15 @@ df_first_names_post_1946 = df_first_names[df_first_names["annais"] >= 1946]
 
 </details>
 
+:::
+
 - Calculate the total number of births by sex.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3339,11 +3577,15 @@ print(births_per_sex)
 
 </details>
 
+:::
+
 - Identify the five years with the highest number of births.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3355,6 +3597,8 @@ print(top5_years)
 
 </details>
 
+:::
+
 #### Part 4: First name analysis
 
 - Identify the total number of unique first names in the DataFrame.
@@ -3362,6 +3606,8 @@ print(top5_years)
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3373,11 +3619,15 @@ print(total_unique_names)
 
 </details>
 
+:::
+
 - Count the number of people with a single-letter first name.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3389,11 +3639,15 @@ print(single_letter_names)
 
 </details>
 
+:::
+
 - Create a "popularity function" that, for a given first name, displays the year it was most given and the number of times it was given that year.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3416,6 +3670,8 @@ popularity_by_year(df_first_names, 'ALFRED')
 
 </details>
 
+:::
+
 - Create a function that, for a given sex, returns a DataFrame containing the most given first name for each decade.
 
 ```{python}
@@ -3423,6 +3679,8 @@ popularity_by_year(df_first_names, 'ALFRED')
 
  your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3452,6 +3710,8 @@ popularity_by_decade(df_first_names, sex=2)
 
 </details>
 
+:::
+
 ### Calculation of a carbon footprint per inhabitant at the municipal level
 
 The goal of this exercise is to calculate a carbon footprint per inhabitant at the municipal level. To do this, we will need to combine two data sources:
@@ -3471,6 +3731,8 @@ This exercise constitutes a simplified version of a [complete practical exercise
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -3484,12 +3746,16 @@ df_pop_communes.describe()
 
 </details>
 
+:::
+
 - Identify and remove rows corresponding to municipalities without population.
 - Remove the "PMUN" and "PCAP" columns, which are irrelevant for the analysis.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3504,6 +3770,8 @@ df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
 
 </details>
 
+:::
+
 Do the municipalities with the longest names also have the smallest populations? To find out:
 - Create a new variable that contains the number of characters of each municipality using the [str.len()](https://pandas.pydata.org/docs/reference/api/pandas.Series.str.len.html) method.
 - Calculate the correlation between this variable and the total population using the [corr()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html) method.
@@ -3511,6 +3779,8 @@ Do the municipalities with the longest names also have the smallest populations?
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3523,6 +3793,8 @@ df_pop_communes_stats['length'].corr(df_pop_communes_stats['PTOT'])
 
 </details>
 
+:::
+
 #### Part 2: Exploring the municipal emissions data
 
 - Import the emissions data from this [URL](https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv).
@@ -3531,6 +3803,8 @@ df_pop_communes_stats['length'].corr(df_pop_communes_stats['PTOT'])
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3546,11 +3820,15 @@ df_emissions.describe()
 
 </details>
 
+:::
+
 - Are there rows with missing values for all emission columns? Check using the [isnull()](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html) and [all()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html) methods.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3563,12 +3841,16 @@ only_nan.shape[0]
 
 </details>
 
+:::
+
 - Create a new column that gives the total emissions per municipality.
 - Display the 10 most emitting municipalities. What do you observe in the results?
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3581,11 +3863,15 @@ df_emissions.sort_values(by="total_emissions", ascending=False).head(10)
 
 </details>
 
+:::
+
 - It seems that the major emission sectors are "Industry excluding energy" and "Other international transport." To verify if this conjecture holds, calculate the correlation between total emissions and the sectoral emission items using the [corrwith()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html) method.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3596,6 +3882,8 @@ df_emissions.corrwith(df_emissions["total_emissions"], numeric_only=True)
 
 </details>
 
+:::
+
 - Extract the department number from the municipality code into a new variable.
 - Calculate the total emissions by department.
 - Display the top 10 emitting departments. Are the results logical compared to the analysis at the municipal level?
@@ -3603,6 +3891,8 @@ df_emissions.corrwith(df_emissions["total_emissions"], numeric_only=True)
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3614,6 +3904,8 @@ df_emissions.groupby("dep").agg({"total_emissions": "sum"}).sort_values(by="tota
 
 </details>
 
+:::
+
 #### Part 3: Preliminary checks for merging data sources
 
 To perform a merge, it is always preferable to have a join key, i.e., a column common to both sources that uniquely identifies the statistical units. The purpose of this part is to find the relevant join key.
@@ -3623,6 +3915,8 @@ To perform a merge, it is always preferable to have a join key, i.e., a column c
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3636,11 +3930,15 @@ duplicates
 
 </details>
 
+:::
+
 - Filter in the initial DataFrame the municipalities with duplicated names and sort it by municipality code. Do the duplicates seem problematic?
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3652,11 +3950,15 @@ df_pop_communes_duplicates.sort_values('COM')
 
 </details>
 
+:::
+
 - Verify that the municipality codes uniquely identify the associated municipality.
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3667,11 +3969,15 @@ df_pop_communes_duplicates.sort_values('COM')
 
 </details>
 
+:::
+
 - Display the municipalities present in the population data but not in the emissions data, and vice versa. What do you conclude?
 
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3686,6 +3992,8 @@ df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
 
 </details>
 
+:::
+
 #### Part 4: Calculating a carbon footprint per inhabitant for each municipality
 
 - Merge the two DataFrames using the municipality code as the join key. Note: the variables are not named the same on both sides!
@@ -3693,6 +4001,8 @@ df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3706,6 +4016,8 @@ df_emissions_pop
 
 </details>
 
+:::
+
 - Calculate a carbon footprint for each municipality, corresponding to the total emissions of the municipality divided by its total population.
 - Display the top 10 municipalities with the highest carbon footprints.
 - Are the results the same as those with total emissions? What do you conclude?
@@ -3713,6 +4025,8 @@ df_emissions_pop
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3723,6 +4037,8 @@ df_emissions_pop.sort_values("carbon_footprint", ascending=False).head(10)
 ```
 
 </details>
+
+:::
 
 ### Analysis of the evolution of a production index
 
@@ -3743,6 +4059,8 @@ The goal is to use `Pandas` to calculate:
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -3755,6 +4073,8 @@ df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
 
 </details>
 
+:::
+
 #### Part 2: Filtering relevant data
 
 - Merge the two DataFrames to retrieve the meanings of the codes present in the data.
@@ -3764,6 +4084,8 @@ df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3777,6 +4099,8 @@ df_clean = df_clean[["period", "index"]]
 
 </details>
 
+:::
+
 #### Part 3: Data preprocessing
 
 Verify if the types of variables are relevant according to their nature. If not, convert them with the appropriate functions.
@@ -3784,6 +4108,8 @@ Verify if the types of variables are relevant according to their nature. If not,
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3797,6 +4123,8 @@ df_clean.info()
 
 </details>
 
+:::
+
 #### Part 4: Calculating periodic evolution
 
 - Use the [shift()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) method to create a new column containing the previous month's index.
@@ -3805,6 +4133,8 @@ df_clean.info()
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3819,6 +4149,8 @@ df_clean['alternative_evolution'] = df_clean['index'].pct_change(periods=1) * 10
 
 </details>
 
+:::
+
 #### Part 5: Calculating year-over-year evolution
 
 As you saw in the previous exercise's solution, the [pct_change()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html) method allows you to calculate an evolution between two periods. Use this method to calculate a year-over-year evolution for each month.
@@ -3826,6 +4158,8 @@ As you saw in the previous exercise's solution, the [pct_change()](https://panda
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -3836,6 +4170,8 @@ df_clean.head(20)
 ```
 
 </details>
+
+:::
 
 
 :::

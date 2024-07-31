@@ -292,6 +292,8 @@ r_dict["features"][1]
 
 - 11/ Un fichier dont l'extension est .json contient-il nécessairement du JSON ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -319,6 +321,8 @@ r_dict["features"][1]
 
 </details>
 
+:::
+
 ### Trier les clés lors de l'écriture d'un JSON
 
 
@@ -335,6 +339,8 @@ data = {"id": 1, "nom": "Isidore", "age": 29}
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -348,6 +354,8 @@ with open("data_sorted.json", "w") as file_out:
 ```
 
 </details>
+
+:::
 
 ### Convertir un objet non-sérialisable en JSON
 
@@ -379,6 +387,8 @@ json.dumps(mon_citron)
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -400,6 +410,8 @@ json.dumps(mon_citron_dict)
 
 </details>
 
+:::
+
 ### Changer le délimiteur d'un fichier CSV
 
 
@@ -415,6 +427,8 @@ Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -437,6 +451,8 @@ with open('nat2020.csv', 'r') as file_in:
 ```
 
 </details>
+
+:::
 
 ### Extraire et sauvegarder des données issues d'une API
 
@@ -465,6 +481,8 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -488,6 +506,8 @@ with open('resultats_ban.csv', 'w') as file_out:
 
 </details>
 
+:::
+
 ### Découper la base des départements par régions
 
 
@@ -509,6 +529,8 @@ Voici la liste des opérations à effectuer :
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -533,6 +555,8 @@ with open('departement2021.csv', 'r') as file_in:
 
 </details>
 
+:::
+
 ### Rajouter des *headers* manquants
 
 
@@ -554,6 +578,8 @@ Voici la liste des opérations à effectuer :
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -583,6 +609,8 @@ for path in dep_files_paths:
 ```
 
 </details>
+
+:::
 
 :::
 
@@ -853,6 +881,8 @@ r_dict["features"][1]
 - 10/ What is the main similarity between CSV and JSON files?
 - 11/ Does a file with a .json extension necessarily contain JSON?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -870,6 +900,8 @@ r_dict["features"][1]
 
 </details>
 
+:::
+
 ### Sort the keys when writing a JSON
 
 The following cell contains a dictionary. The goal of the exercise is to write this data to a JSON file, sorting the dictionary keys alphabetically.
@@ -884,6 +916,8 @@ data = {"id": 1, "name": "Isidore", "age": 29}
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -897,6 +931,8 @@ with open("data_sorted.json", "w") as file_out:
 ```
 
 </details>
+
+:::
 
 ### Convert a non-serializable object to JSON
 
@@ -925,6 +961,8 @@ json.dumps(mon_citron)
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -946,6 +984,8 @@ json.dumps(mon_citron_dict)
 
 </details>
 
+:::
+
 ### Change the delimiter of a CSV file
 
 Your current directory contains the file `nat2020.csv`. It is the file of first names published by Insee, containing data on the first names given to children born in France between 1900 and 2020.
@@ -958,6 +998,8 @@ Problem: Contrary to the CSV standard, the delimiter used is not a comma. You mu
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -980,6 +1022,8 @@ with open('nat2020.csv', 'r') as file_in:
 ```
 
 </details>
+
+:::
 
 ### Extract and save data from an API
 
@@ -1005,6 +1049,8 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 # Test your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1028,6 +1074,8 @@ with open('resultats_ban.csv', 'w') as file_out:
 
 </details>
 
+:::
+
 ### Split the department base by regions
 
 The goal of this exercise is to split the CSV file of French departments used in the tutorial into several small CSV files, one per region. This type of operation can be useful, for example, when working with a very large file that does not fit in memory; splitting it into several files to process independently, when possible, reduces the volume.
@@ -1043,6 +1091,8 @@ Here are the operations to perform:
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1067,6 +1117,8 @@ with open('departement2021.csv', 'r') as file_in:
 
 </details>
 
+:::
+
 ### Add missing headers
 
 In the previous exercise, we split the CSV file of French departments into several CSV files, one per region. However, we did not include the header in the different files, i.e., the first line containing the column names. We will add it manually to each of the CSV files created in the previous exercise.
@@ -1082,6 +1134,8 @@ Here are the operations to perform:
 ```{python}
 # Test your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1111,6 +1165,8 @@ for path in dep_files_paths:
 ```
 
 </details>
+
+:::
 
 
 :::

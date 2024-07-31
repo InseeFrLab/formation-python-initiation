@@ -218,6 +218,8 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 
 - 10/ Quand utilise-t-on généralement la POO ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -244,6 +246,8 @@ Appel d'une méthode : instance.methode() avec d'éventuels paramètres.
 - 10/ Lorsque l'on manipule des objets dont on souhaitent qu'ils conservent l'état d'une ressource au sein d'un programme.
 
 </details>
+
+:::
 
 ### De la masse au jus
 
@@ -282,6 +286,8 @@ class Citron:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -312,6 +318,8 @@ citron.recup_masse()
 citron.recup_qte_jus()
 ```
 </details>
+
+:::
 
 ### Comptes bancaires
 
@@ -345,6 +353,8 @@ Créer deux clients et tester que les différentes fonctionnalités à implémen
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -408,6 +418,8 @@ client2.affiche_solde() # - 2000
 client1.affiche_solde() # + 2000
 ```
 </details>
+
+:::
 
 :::
 
@@ -618,6 +630,8 @@ The three executions give different results, even though the executed code is st
 
 - 10/ When is OOP generally used?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -642,6 +656,8 @@ The three executions give different results, even though the executed code is st
 - 10/ When manipulating objects whose state of a resource should be maintained within a program.
 
 </details>
+
+:::
 
 ### From mass to juice
 
@@ -680,6 +696,8 @@ class Lemon:
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -711,6 +729,8 @@ lemon.get_juice_qty()
 ```
 
 </details>
+
+:::
 
 ### Bank accounts
 
@@ -744,6 +764,8 @@ Create two clients and test that the various functionalities to be implemented w
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -808,6 +830,8 @@ client1.show_balance() # + 2000
 ```
 
 </details>
+
+:::
 
 
 :::

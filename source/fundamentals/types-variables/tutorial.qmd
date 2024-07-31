@@ -465,6 +465,8 @@ b
 
 - Pourquoi dit-on que Python est "*dynamiquement* typé" ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -492,6 +494,8 @@ b
 
 </details>
 
+:::
+
 ### Affichage de types de base
 
 Afficher le type de x lorsque : 
@@ -510,6 +514,8 @@ Afficher le type de x lorsque :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -524,6 +530,8 @@ x = 3.5
 print(type(x))
 ```
 </details>
+
+:::
 
 ### Longueurs de chaînes
 
@@ -542,6 +550,8 @@ Calculer la somme des longueurs des trois chaînes de caractères suivantes :
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -553,6 +563,8 @@ c = "jamais deux sans trois"
 len(a) + len(b) + len(c)
 ```
 </details>
+
+:::
 
 ### Formattage des codes postaux
 
@@ -571,6 +583,8 @@ Que concluez-vous ?
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -587,6 +601,8 @@ Erreur : Python n'accepte pas de définir un entier qui commence par un 0. Il fa
 
 </details>
 
+:::
+
 ### Comptage de lettres
 
 Compter le nombre de fois où la lettre e est présente dans la chaîne suivante :
@@ -599,6 +615,8 @@ Compter le nombre de fois où la lettre e est présente dans la chaîne suivante
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -607,6 +625,8 @@ a = "Je fais un comptage des e."
 a.count('e')
 ```
 </details>
+
+:::
 
 ### Détection de lettres
 
@@ -619,6 +639,8 @@ Repérer la première position où la lettre e est présente dans la chaîne sui
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -627,6 +649,8 @@ a = "Je fais un comptage des e."
 a.find('e')
 ```
 </details>
+
+:::
 
 ### Suppression d'espaces dans une chaîne
 
@@ -639,6 +663,8 @@ Supprimer les espaces superflus au début et à la fin de la chaîne suivante :
 a = "    Un string très mal formatté.         "
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -647,6 +673,8 @@ a = "    Un string très mal formatté.         "
 a.strip()
 ```
 </details>
+
+:::
 
 ### Echappement de caractères
 
@@ -659,6 +687,8 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -666,6 +696,8 @@ Le caractère `\` permet d'échapper (neutraliser) un caractère spécial au sei
 "juste un \"petit\" test"
 ```
 </details>
+
+:::
 
 ### Un premier algorithme
 
@@ -684,6 +716,8 @@ Réaliser la suite d'opérations suivantes à l'aide des opérateurs d'incrémen
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -695,6 +729,8 @@ a += 22
 print(a)
 ```
 </details>
+
+:::
 
 ### Composition de chaînes de caractères
 
@@ -713,6 +749,8 @@ Trouvez à partir du tutoriel deux manières différentes de les utiliser pour c
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -725,6 +763,8 @@ print(a1 + " " + b)
 print(a2.format(b))
 ```
 </details>
+
+:::
 
 ### Les `f-strings`
 
@@ -753,6 +793,8 @@ En vous inspirant de la [documentation officielle](https://docs.python.org/fr/3/
 # Tapez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -805,6 +847,8 @@ print(f"nous sommes en {annee} et je m'appelle {prenom}")
 
 Beaucoup plus lisible !
 </details>
+
+:::
 
 :::
 
@@ -1225,6 +1269,8 @@ b
 - What are variables for?
 - Why is Python said to be "*dynamically* typed"?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1252,6 +1298,8 @@ b
 
 </details>
 
+:::
+
 ### Displaying basic types
 
 Display the type of x when:
@@ -1263,6 +1311,8 @@ Display the type of x when:
 ```{python}
 # Type your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1279,6 +1329,8 @@ print(type(x))
 ```
 </details>
 
+:::
+
 ### String lengths
 
 Calculate the sum of the lengths of the following three strings:
@@ -1291,6 +1343,8 @@ Calculate the sum of the lengths of the following three strings:
 # Type your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1302,6 +1356,8 @@ c = "never two without three"
 len(a) + len(b) + len(c)
 ```
 </details>
+
+:::
 
 ### Formatting postal codes
 
@@ -1317,6 +1373,8 @@ What do you conclude?
 ```{python}
 # Type your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1334,6 +1392,8 @@ Error: Python does not accept defining an integer that starts with a 0. Postal c
 
 </details>
 
+:::
+
 ### Counting letters
 
 Count the number of times the letter e appears in the following string:
@@ -1345,6 +1405,8 @@ Count the number of times the letter e appears in the following string:
 # Type your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1353,6 +1415,8 @@ a = "I am counting the e's."
 a.count('e')
 ```
 </details>
+
+:::
 
 ### Detecting letters
 
@@ -1364,6 +1428,8 @@ Find the first position where the letter e appears in the following string: "I a
 # Type your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1372,6 +1438,8 @@ a = "I am counting the e's."
 a.find('e')
 ```
 </details>
+
+:::
 
 ### Removing spaces in a string
 
@@ -1384,6 +1452,8 @@ Remove the extra spaces at the beginning and end of the following string:
 a = "    A poorly formatted string.         "
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1392,6 +1462,8 @@ a = "    A poorly formatted string.         "
 a.strip()
 ```
 </details>
+
+:::
 
 ### Escaping characters
 
@@ -1403,6 +1475,8 @@ The `\` character allows escaping (neutralizing) a special character within a st
 # Type your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1410,6 +1484,8 @@ The `\` character allows escaping (neutralizing) a special character within a st
 "just a \"small\" test"
 ```
 </details>
+
+:::
 
 ### A first algorithm
 
@@ -1424,6 +1500,8 @@ Perform the following sequence of operations using increment operators, and prin
 # Type your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1435,6 +1513,8 @@ a += 22
 print(a)
 ```
 </details>
+
+:::
 
 ### Composing strings
 
@@ -1451,6 +1531,8 @@ Find two different ways from the tutorial to compose the sequence "we are in 202
 # Type your answer in this cell
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show solution</summary>
 
@@ -1463,6 +1545,8 @@ print(a1 + " " + b)
 print(a2.format(b))
 ```
 </details>
+
+:::
 
 ### `f-strings`
 
@@ -1490,6 +1574,8 @@ Using the [official documentation](https://docs.python.org/3/tutorial/inputoutpu
 ```{python}
 # Type your answer in this cell
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show solution</summary>
@@ -1539,6 +1625,8 @@ print(f"we are in {year} and my name is {name}")
 ```
 Much more readable!
 </details>
+
+:::
 
 
 :::

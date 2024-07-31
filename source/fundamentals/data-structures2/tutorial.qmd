@@ -296,6 +296,8 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 
 - 7/ Pourquoi les sets sont-ils plus pertinents que les listes pour réaliser des tests d'appartenance ?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -314,6 +316,8 @@ NB : l'implémentation informatique des notions évoquées ci-dessus s'appelle u
 7/ Du fait de l'unicité des éléments, Python peut garder en mémoire la position des différents éléments. Les tests d'appartenance sont donc fortement optimisés par rapport à lorsqu'on les effectue avec une liste.
 
 </details>
+
+:::
 
 ### Requêtage d'un dictionnaire
 
@@ -352,6 +356,8 @@ resultats = {
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -375,6 +381,8 @@ print(list(resultats["6emeA"]["Miranda"]["notes"].values())
 
 </details>
 
+:::
+
 ### Longueur d'un dictionnaire
 
 Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de compter le nombre d'éléments d'une séquence. Est-ce que cette fonction fonctionne avec les dictionnaires ? Que compte-t-elle alors ?
@@ -383,6 +391,8 @@ Dans les tutoriels précédents, nous avons vu la fonction `len`, qui permet de 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -401,6 +411,8 @@ La fonction len appliquée à un dictionnaire compte le nombre de clés.
 
 </details>
 
+:::
+
 ### Suppression d'éléments de dictionnaire
 
 Nous avons vu qu'on pouvait supprimer une clé d'un dictionnaire de deux manières différentes :
@@ -415,6 +427,8 @@ Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces de
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -432,6 +446,8 @@ print(inventaire.pop('orange', 'indisponible'))
 
 </details>
 
+:::
+
 ### Renommage d'une clé de dictionnaire
 
 En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'un dictionnaire renvoie la valeur associée à cette clé, proposez une méthode pour renommer une clé d'un dictionnaire en une seule opération.
@@ -440,6 +456,8 @@ En exploitant le fait que la méthode `pop` utilisée pour supprimer une clé d'
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -453,6 +471,8 @@ inventaire
 ```
 
 </details>
+
+:::
 
 ### Tests d'appartenance à un dictionnaire
 
@@ -475,6 +495,8 @@ Que vont retourner les tests d'appartenance suivants ? Vérifiez vos prédiction
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -499,6 +521,8 @@ print('chats' in animaux)
 
 </details>
 
+:::
+
 ### Suppression d'une clé inexistante
 
 Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait pour supprimer une clé inexistante d'un dictionnaire. A l'aide de vos nouvelles connaissances sur les tests d'appartenance, pouvez-vous imaginer une méthode (sans nécessairement l'implémenter) qui permettrait de traiter ce cas sans erreur ?
@@ -507,6 +531,8 @@ Nous avons vu que l'opération `del` renvoyait une erreur lorsqu'on l'utilisait 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -523,6 +549,8 @@ if cle in inventaire.keys():
 On utilise un test d'appartenance : si la clé existe dans les clés du dictionnaire, elle est supprimée. Sinon, il ne se passe rien. Cette syntaxe deviendra plus claire avec le prochain tutoriel.
 
 </details>
+
+:::
 
 ### Déduplication
 
@@ -541,6 +569,8 @@ Indice : la procédure est semblable au fait de supprimer les doublons d'une lis
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -552,6 +582,8 @@ l
 ```
 
 </details>
+
+:::
 
 ### Intersections et unions de chaînes de caractères
 
@@ -569,6 +601,8 @@ Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux 
 # Testez votre réponse dans cette cellule
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Afficher la solution</summary>
@@ -590,6 +624,8 @@ print(union)
 
 </details>
 
+:::
+
 ### De l'intérêt des sets pour les tests d'appartenance
 
 Le code ci-dessous génère une liste avec les lettres a, b, c et d répétées 1 million de fois. Ensuite, il réalise un test d'appartenance d'une lettre qui n'existe pas dans la liste, et calcule le temps mis par l'interpréteur Python pour réaliser le test.
@@ -609,6 +645,8 @@ print(x[:10])
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Afficher la solution</summary>
 
@@ -626,6 +664,8 @@ print(x_set)
 Le test d'appartenance initial se chiffre en millisecondes. Celui réalisé sur le set se chiffre en microsecondes. Le test est beaucoup plus rapide lorsqu'on convertit en set au préalable.
 
 </details>
+
+:::
 
 :::
 
@@ -904,6 +944,8 @@ NB: The implementation of the concepts mentioned above is called a "hash table".
 6. Why are sets used to deduplicate lists?
 7. Why are sets more suitable than lists for membership tests?
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -922,6 +964,8 @@ NB: The implementation of the concepts mentioned above is called a "hash table".
 7. Due to the uniqueness of elements, Python can keep track of the positions of different elements. Membership tests are therefore highly optimized compared to performing them with a list.
 
 </details>
+
+:::
 
 ### Querying a Dictionary
 
@@ -953,6 +997,8 @@ results = {
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -976,6 +1022,8 @@ print(list(results["6emeA"]["Miranda"]["grades"].values())
 
 </details>
 
+:::
+
 ### Dictionary Length
 
 In previous tutorials, we saw the `len` function, which counts the number of elements in a sequence. Does this function work with dictionaries? What does it count?
@@ -984,6 +1032,8 @@ In previous tutorials, we saw the `len` function, which counts the number of ele
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1002,6 +1052,8 @@ The `len` function applied to a dictionary counts the number of keys.
 
 </details>
 
+:::
+
 ### Deleting Dictionary Elements
 
 We saw that we can delete a key from a dictionary in two different ways:
@@ -1015,6 +1067,8 @@ Beyond syntax, what are the two major differences between these two ways of dele
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1032,6 +1086,8 @@ print(inventory.pop('orange', 'unavailable'))
 
 </details>
 
+:::
+
 ### Renaming a Dictionary Key
 
 By exploiting the fact that the `pop` method used to delete a key from a dictionary returns the value associated with that key, propose a method to rename a dictionary key in a single operation.
@@ -1040,6 +1096,8 @@ By exploiting the fact that the `pop` method used to delete a key from a diction
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1053,6 +1111,8 @@ inventory
 ```
 
 </details>
+
+:::
 
 ### Dictionary Membership Tests
 
@@ -1070,6 +1130,8 @@ What will the following membership tests return? Verify your predictions.
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1094,6 +1156,8 @@ print('cats' in animals)
 
 </details>
 
+:::
+
 ### Deleting a Non-Existent Key
 
 We saw that the `del` operation returns an error when used to delete a non-existent key from a dictionary. Using your new knowledge of membership tests, can you imagine a method (without necessarily implementing it) that would handle this case without an error?
@@ -1102,6 +1166,8 @@ We saw that the `del` operation returns an error when used to delete a non-exist
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1118,6 +1184,8 @@ if key in inventory.keys():
 We use a membership test: if the key exists in the dictionary's keys, it is deleted. Otherwise, nothing happens. This syntax will become clearer with the next tutorial.
 
 </details>
+
+:::
 
 ### Deduplication
 
@@ -1136,6 +1204,8 @@ Hint: the procedure is similar to removing duplicates from a list.
 
 ```
 
+::: {.cell .markdown}
+
 <details>
 <summary>Show the solution</summary>
 
@@ -1147,6 +1217,8 @@ l
 ```
 
 </details>
+
+:::
 
 ### Intersections and Unions of Strings
 
@@ -1164,6 +1236,8 @@ Question 2: find the characters that appear in at least one of the two texts.
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1185,6 +1259,8 @@ print(union)
 
 </details>
 
+:::
+
 ### The Usefulness of Sets for Membership Tests
 
 The code below generates a list with the letters a, b, c, and d repeated 1 million times. Then, it performs a membership test for a letter that does not exist in the list and calculates the time taken by the Python interpreter to perform the test.
@@ -1202,6 +1278,8 @@ print(x[:10])
 # Test your answer in this cell
 
 ```
+
+::: {.cell .markdown}
 
 <details>
 <summary>Show the solution</summary>
@@ -1222,5 +1300,7 @@ The initial membership test is measured in milliseconds. The one performed on th
  faster when converted to a set beforehand.
 
 </details>
+
+:::
 
 :::
