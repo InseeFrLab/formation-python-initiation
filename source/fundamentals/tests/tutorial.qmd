@@ -787,13 +787,13 @@ Ce dernier test permet de tester l'égalité entre diff et 0.3 de manière appro
 
 
 
-::: {.content-visible when-profile="fr"}
+::: {.content-visible when-profile="en"}
 
 ---
-title: "Tests"
+title: "Conditionals"
 ---
 
-In the previous tutorial, we mentioned -- without detailing -- the notion of **tests**, through the example of membership tests. Now, we will delve into the details of how tests work in Python. Tests are a major step in creating programs that automate operations since they allow you to **execute or not execute code based on certain conditions**. They enable the computer to make decisions based on criteria set by the user.
+In the previous tutorial, we mentioned -- without detailing -- the notion of **conditional statements**, through the example of membership tests. Now, we will delve into the details of how conditions work in Python. They are a major step in creating programs that automate operations since they allow you to **execute or not execute code based on certain conditions**. They enable the computer to make decisions based on criteria set by the user.
 
 ## The boolean type
 
@@ -1096,8 +1096,6 @@ NB: The previous instructions are for example purposes only. In practice, there 
 - 2/ What are the inputs and outputs of a comparison operator?
 
 - 3/ What types of objects can be compared using a comparison operator?
-
-
 
 - 4/ What is the difference between the `=` operator and the `==` operator?
 

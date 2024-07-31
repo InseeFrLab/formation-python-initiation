@@ -1295,9 +1295,7 @@ print(x_set)
 %time 'e' in x_set
 ```
 
-The initial membership test is measured in milliseconds. The one performed on the set is measured in microseconds. The test is much
-
- faster when converted to a set beforehand.
+The initial membership test is measured in milliseconds. The one performed on the set is measured in microseconds. The test is much faster when converted to a set beforehand.
 
 </details>
 
