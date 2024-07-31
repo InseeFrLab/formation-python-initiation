@@ -827,7 +827,7 @@ with open("cv.json", "r") as file_in:
 data
 ```
 
-We will illustrate reading JSON content from a string with a realistic example: querying an API. For example, we will query the National Address Base (BAN), which allows geolocating any national address.
+We will illustrate reading JSON content from a string with a realistic example: querying an API. For example, we will query the French National Address Base (BAN), which allows geolocating any national address.
 
 Querying an API in Python is straightforward with the `requests` library. Let's see how we can retrieve geographical information about all streets that contain the name "comedie" in France in just two lines of code.
 
