@@ -19,7 +19,6 @@ source/manipulation/csv-json-files/test.csv
 source/manipulation/csv-json-files/nat2020_corr.csv
 source/manipulation/csv-json-files/dep/
 source/manipulation/csv-json-files/resultats_ban.csv
-source/manipulation/pandas/output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
