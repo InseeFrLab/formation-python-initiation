@@ -332,21 +332,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="définition" class="level3">
 <h3 class="anchored" data-anchor-id="définition">Définition</h3>
 <p>Les dictionnaires sont des <strong>collections non-ordonnées de couples clé-valeur</strong>. Un dictionnaire se définit selon la syntaxe suivante : <code>d = {'cle1': 'valeur1', 'cle2': 'valeur2'}</code>.</p>
-<div id="e176f035" class="cell" data-execution_count="1">
+<div id="ae2763f0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>}</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>inventaire</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>{'cafe': '500g', 'lait': '1,5L'}</code></pre>
 </div>
 </div>
-<div id="fb6d0387" class="cell" data-execution_count="2">
+<div id="944f3887" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(inventaire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>dict</code></pre>
 </div>
 </div>
 <p>Il est possible de mettre autant de clés que l’on souhaite dans un dictionnaire. En revanche, <strong>les clés sont uniques</strong>, afin d’identifier de manière certaine la valeur associée. Si l’on essaye de définir un dictionnaire avec une clé dupliquée, Python ne renvoie pas d’erreur, mais seule la dernière clé dupliquée est prise en compte.</p>
-<div id="9a446766" class="cell" data-execution_count="3">
+<div id="7eef7b17" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>, <span class="st">'cafe'</span>: <span class="st">'300g'</span>}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>inventaire</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -358,14 +358,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="utilisation" class="level3">
 <h3 class="anchored" data-anchor-id="utilisation">Utilisation</h3>
 <p>Comme les dictionnaires sont <strong>non-ordonnés</strong>, il n’y a pas de notion de position : on accède à une valeur par sa clé associée. Par exemple, pour récupérer la valeur (<code>'1,5L'</code>) associée à la clé <code>'lait'</code> :</p>
-<div id="e0c1cdfc" class="cell" data-execution_count="4">
+<div id="5162eb1c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>inventaire[<span class="st">'lait'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'1,5L'</code></pre>
 </div>
 </div>
 <p>Des couples clé-valeur supplémentaires peuvent être ajoutés à un dictionnaire déjà existant, en utilisant la syntaxe de l’assignation de variable.</p>
-<div id="ba31eb9e" class="cell" data-execution_count="5">
+<div id="b74e6b28" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>inventaire[<span class="st">"céréales"</span>] <span class="op">=</span> <span class="st">"250g"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>inventaire</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -373,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>A l’inverse des listes, les clés ne doivent pas nécessairement commencer à 0 et peuvent être n’importe quel nombre.</p>
-<div id="170c0ae4" class="cell" data-execution_count="6">
+<div id="d4424a3b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dic1 <span class="op">=</span> {<span class="dv">12</span>: <span class="st">"Averyon"</span>, <span class="dv">33</span>: <span class="st">"Gironde"</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Le département 33 est la "</span> <span class="op">+</span> dic1[<span class="dv">33</span>])  <span class="co"># Concaténation de strings !</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -382,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>De même, les valeurs peuvent être de différentes natures, y compris des conteneurs de données.</p>
-<div id="68321cb0" class="cell" data-execution_count="7">
+<div id="72644a93" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dic2 <span class="op">=</span> {<span class="st">"gamme"</span> : <span class="st">"do majeur"</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"notes"</span>: [<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>, <span class="st">"fa"</span>, <span class="st">"sol"</span>, <span class="st">"la"</span>, <span class="st">"si"</span>]}</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -392,7 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Les dictionnaires peuvent notamment contenir d’autres dictionnaires. Cela les rend particulièrement adaptés pour représenter des structures hiérarchiques de données.</p>
-<div id="2fbd7c6a" class="cell" data-execution_count="8">
+<div id="e3333b18" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"poste"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"couture"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mirande"</span>: {<span class="st">"poste"</span>: <span class="st">"ingénieure"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"trekking"</span>]}</span>
@@ -406,7 +406,7 @@ couture</code></pre>
 </div>
 </div>
 <p>Répétons-le : les dictionnaires n’ont pas de notion d’ordre. Ainsi, il n’y a pas de sens à requêter l’élément de position <code>0</code> d’un dictionnaire (sauf si la clé <code>0</code> existe..). Requêter une clé inexistante renvoie une erreur.</p>
-<div id="0e75bde3" class="cell" data-execution_count="9">
+<div id="b4ff7687" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dic1 <span class="op">=</span> {<span class="dv">12</span>: <span class="st">"Averyon"</span>, <span class="dv">33</span>: <span class="st">"Gironde"</span>}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>dic1[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -426,7 +426,7 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <section id="modification-déléments" class="level3">
 <h3 class="anchored" data-anchor-id="modification-déléments">Modification d’éléments</h3>
 <p>Il est possible de modifier une valeur associée à une clé existante dans le dictionnaire. La nouvelle valeur peut être de type différent de l’originale.</p>
-<div id="db1989cd" class="cell" data-execution_count="10">
+<div id="c8c9003b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>inventaire[<span class="st">'cafe'</span>] <span class="op">=</span> {<span class="st">'arabica'</span>: <span class="st">'250g'</span>, <span class="st">'robusta'</span>: <span class="st">'400g'</span>}</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>inventaire</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -438,7 +438,7 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <section id="suppression-déléments" class="level3">
 <h3 class="anchored" data-anchor-id="suppression-déléments">Suppression d’éléments</h3>
 <p>Pour supprimer une clé (et la valeur associée), les mêmes opérations que celles qui permettent de supprimer des éléments dans une liste peuvent être utilisées.</p>
-<div id="f1da2a0c" class="cell" data-execution_count="11">
+<div id="4f6e7613" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avec l'opérateur `del`</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>}</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> inventaire[<span class="st">'lait'</span>]</span>
@@ -447,7 +447,7 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <pre><code>{'cafe': '500g'}</code></pre>
 </div>
 </div>
-<div id="4ecc1659" class="cell" data-execution_count="12">
+<div id="1d620080" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avec la méthode `pop`</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>}</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>inventaire.pop(<span class="st">'lait'</span>)</span>
@@ -460,19 +460,19 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <section id="quelques-méthodes-utiles" class="level3">
 <h3 class="anchored" data-anchor-id="quelques-méthodes-utiles">Quelques méthodes utiles</h3>
 <p>Nous avons vu précédemment que le fait de requêter une clé qui n’existe pas renvoyait une erreur. La méthode <code>.get()</code> permet de requêter une clé sans être sûr de son existence, puisqu’elle ne renvoie aucune erreur dans ce cas, mais l’objet <code>None</code>, que nous verrons dans un prochain tutoriel.</p>
-<div id="58e7d78f" class="cell" data-execution_count="13">
+<div id="a21a21f5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'cafe'</span>: <span class="st">'500g'</span>, <span class="st">'lait'</span>: <span class="st">'1,5L'</span>}</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>inventaire.get(<span class="st">'miel'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>On peut d’ailleurs spécifier une valeur par défaut lorsque la clé n’existe pas.</p>
-<div id="1134adf0" class="cell" data-execution_count="14">
+<div id="6c5d10d4" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>inventaire.get(<span class="st">'miel'</span>, <span class="st">'introuvable'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>'introuvable'</code></pre>
 </div>
 </div>
 <p>Les méthodes <code>.keys()</code>, <code>.values()</code> et <code>.items()</code> renvoient respectivement les clés, les valeurs, et les couples clés-valeurs d’un dictionnaire. Les objets retournés par ces méthodes sont un peu complexes, mais il est possible de les transformer en liste avec la fonction <code>list</code> pour pouvoir les requêter par position.</p>
-<div id="b5c9514d" class="cell" data-execution_count="15">
+<div id="1dfedc02" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> {</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"poste"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"couture"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mirande"</span>: {<span class="st">"poste"</span>: <span class="st">"ingénieure"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"triathlon"</span>]}</span>
@@ -483,14 +483,14 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <pre><code>['marc', 'mirande']</code></pre>
 </div>
 </div>
-<div id="451facc6" class="cell" data-execution_count="16">
+<div id="a80159e0" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(cv.values())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>[{'poste': 'manager', 'experience': 7, 'hobbies': ['couture', 'frisbee']},
  {'poste': 'ingénieure', 'experience': 5, 'hobbies': ['triathlon']}]</code></pre>
 </div>
 </div>
-<div id="846dfcc2" class="cell" data-execution_count="17">
+<div id="f6fb96a1" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(cv.items())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>[('marc',
@@ -507,21 +507,21 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <h3 class="anchored" data-anchor-id="définition-1">Définition</h3>
 <p>Les sets sont des <strong>collections non-ordonnées d’éléments uniques</strong>. En cela, ils peuvent être vus comme des dictionnaires sans valeurs, dont on n’aurait conservé que les clés (uniques par définition dans un dictionnaire). Une autre analogie est celle des ensembles mathématiques, dont les éléments sont également non-ordonnés et uniques.</p>
 <p>Du fait de leur proximité avec les dictionnaires, les sets sont également définis par des accolades <code>{}</code>.</p>
-<div id="e1128328" class="cell" data-execution_count="18">
+<div id="61598899" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>{1, 2, 3}</code></pre>
 </div>
 </div>
-<div id="a7f6bef5" class="cell" data-execution_count="19">
+<div id="03abe8f7" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>set</code></pre>
 </div>
 </div>
 <p>De la même manière que les dictionnaires, les sets sont <strong>non-ordonnés</strong>, il n’y a donc pas de notion de position. Demander l’élément de position <code>i</code>, comme dans une liste, renvoie une erreur.</p>
-<div id="087531fc" class="cell" data-execution_count="20">
+<div id="42722238" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -540,7 +540,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 <section id="modification-déléments-1" class="level3">
 <h3 class="anchored" data-anchor-id="modification-déléments-1">Modification d’éléments</h3>
 <p>Il est possible d’ajouter un élément à un set via la méthode <code>add</code>.</p>
-<div id="c57f16a8" class="cell" data-execution_count="21">
+<div id="ee3eb98d" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x.add(<span class="st">"4"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -549,7 +549,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 </div>
 </div>
 <p>Ajouter un élément déjà existant ne change rien par définition.</p>
-<div id="87a17ea0" class="cell" data-execution_count="22">
+<div id="b4f257f4" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x.add(<span class="dv">2</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -558,7 +558,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 </div>
 </div>
 <p>Il est possible de retirer un élément d’un set via la méthode <code>remove</code>.</p>
-<div id="7184c2f6" class="cell" data-execution_count="23">
+<div id="f6ba6408" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x.remove(<span class="dv">2</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -572,7 +572,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 <p>Les sets ne sont pas très souvent utilisés en pratique, mais ils s’avèrent bien utiles dans certaines situations précises. Du fait de l’unicité des éléments qu’ils contiennent, les sets permettent simplement et efficacement de supprimer les doublons dans un conteneur séquentiel, comme une liste.</p>
 <p><strong>Déduplication</strong></p>
 <p>Supposons que l’on veut supprimer les doublons dans une liste donnée. Par définition, le fait de transformer une liste en set supprime les doublons. Cependant, on a généralement envie de revenir à une liste, dans la mesure où les sets n’offrent pas la même flexibilité que les listes (par exemple, la possibilité de trouver un élément par position). Il est donc fréquent de faire la chaîne d’opération <code>list -&gt; set -&gt; list</code> pour dédupliquer une liste.</p>
-<div id="a7390663" class="cell" data-execution_count="24">
+<div id="533e6a3c" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>l_dedup <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(l))</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>l_dedup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,11 +582,11 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 </div>
 <p><strong>Opérations ensemblistes</strong></p>
 <p>Comme les sets représentent programmatiquement les ensembles mathématiques, il n’est pas étonnant qu’ils permettent de réaliser des opérations ensemblistes élémentaires. Par exemple, l’union et l’intersection.</p>
-<div id="f6ea5815" class="cell" data-execution_count="25">
+<div id="089db8b9" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="12d3222c" class="cell" data-execution_count="26">
+<div id="b4d43a4d" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Union : éléments soit dans l1, soit dans l2, soit dans les deux</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>l_union <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(l1) <span class="op">|</span> <span class="bu">set</span>(l2))</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>l_union</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -594,7 +594,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
 </div>
 </div>
-<div id="56b74a9f" class="cell" data-execution_count="27">
+<div id="e7eb0dd5" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intersection : éléments à la fois dans l1 et dans l2</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>l_inter <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(l1) <span class="op">&amp;</span> <span class="bu">set</span>(l2))</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>l_inter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -605,14 +605,14 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 <p><strong>Tests d’appartenance</strong></p>
 <p>Les sets sont également très utilisés pour réaliser des tests d’appartenance, dans la mesure où ils offrent de bien meilleures performances que les listes pour ce type de test.</p>
 <p>La notion de test fera l’objet d’un prochain tutoriel. Pour l’heure, retenons qu’un test d’appartenance du type “est-ce que l’élément <code>a</code> est dans la liste <code>l</code>” s’écrit en Python <code>a in l</code> et renvoie <code>True</code> ou <code>False</code> selon que <code>a</code> est effectivement présent dans la liste <code>l</code> ou non.</p>
-<div id="e148297b" class="cell" data-execution_count="28">
+<div id="658204ef" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="kw">in</span> l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="b19737b7" class="cell" data-execution_count="29">
+<div id="3a4855da" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="kw">in</span> l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>False</code></pre>
@@ -664,7 +664,7 @@ Afficher la solution
 <li><p>la liste de toutes les matières enseignées</p></li>
 <li><p>la liste des notes obtenues par les filles des deux classes</p></li>
 </ul>
-<div id="0360ada0" class="cell" data-execution_count="30">
+<div id="7037b5f6" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>resultats <span class="op">=</span> {</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"6emeA"</span>: {<span class="st">"Miranda"</span> : {<span class="st">"notes"</span>: {<span class="st">"physique"</span>: <span class="dv">16</span>, <span class="st">"histoire"</span>: <span class="dv">12</span>}},</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Celestin"</span>: {<span class="st">"notes"</span>: {<span class="st">"physique"</span>: <span class="st">"absent"</span>, <span class="st">"histoire"</span>: <span class="dv">18</span>}}</span>
@@ -674,7 +674,7 @@ Afficher la solution
 <span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>             }</span>
 <span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b0e16f47" class="cell" data-execution_count="31">
+<div id="4d8cfc47" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -703,7 +703,7 @@ Afficher la solution
 <section id="longueur-dun-dictionnaire" class="level3">
 <h3 class="anchored" data-anchor-id="longueur-dun-dictionnaire">Longueur d’un dictionnaire</h3>
 <p>Dans les tutoriels précédents, nous avons vu la fonction <code>len</code>, qui permet de compter le nombre d’éléments d’une séquence. Est-ce que cette fonction fonctionne avec les dictionnaires ? Que compte-t-elle alors ?</p>
-<div id="42c0a88b" class="cell" data-execution_count="32">
+<div id="06e99590" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -730,7 +730,7 @@ Afficher la solution
 <li><p>avec la méthode <code>pop</code> : <code>mon_dict.pop(clé)</code></p></li>
 </ul>
 <p>Au-delà de la syntaxe, quelles sont les deux différences majeures entre ces deux manières de supprimer une clé d’un dictionnaire ? N’hésitez pas à expérimenter avec des exemples de votre choix.</p>
-<div id="acb07dc5" class="cell" data-execution_count="33">
+<div id="c341990b" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -750,7 +750,7 @@ Afficher la solution
 <section id="renommage-dune-clé-de-dictionnaire" class="level3">
 <h3 class="anchored" data-anchor-id="renommage-dune-clé-de-dictionnaire">Renommage d’une clé de dictionnaire</h3>
 <p>En exploitant le fait que la méthode <code>pop</code> utilisée pour supprimer une clé d’un dictionnaire renvoie la valeur associée à cette clé, proposez une méthode pour renommer une clé d’un dictionnaire en une seule opération.</p>
-<div id="e708d000" class="cell" data-execution_count="34">
+<div id="ea7d6e2b" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -776,7 +776,7 @@ Afficher la solution
 <li><p><code>'chats' in animaux.values()</code></p></li>
 <li><p><code>'chats' in animaux</code></p></li>
 </ul>
-<div id="a8abbfab" class="cell" data-execution_count="35">
+<div id="846c72d7" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -805,7 +805,7 @@ Afficher la solution
 <section id="suppression-dune-clé-inexistante" class="level3">
 <h3 class="anchored" data-anchor-id="suppression-dune-clé-inexistante">Suppression d’une clé inexistante</h3>
 <p>Nous avons vu que l’opération <code>del</code> renvoyait une erreur lorsqu’on l’utilisait pour supprimer une clé inexistante d’un dictionnaire. A l’aide de vos nouvelles connaissances sur les tests d’appartenance, pouvez-vous imaginer une méthode (sans nécessairement l’implémenter) qui permettrait de traiter ce cas sans erreur ?</p>
-<div id="950a207a" class="cell" data-execution_count="36">
+<div id="201fe708" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -830,7 +830,7 @@ Afficher la solution
 <p>Construisez une liste des caractères uniques se trouvant dans cette chaîne, classée par ordre alphabétique, soit :</p>
 <p><code>l = ['a', 'b', 'c', 'd']</code></p>
 <p>Indice : la procédure est semblable au fait de supprimer les doublons d’une liste.</p>
-<div id="feb83447" class="cell" data-execution_count="37">
+<div id="f0facbe6" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -852,7 +852,7 @@ Afficher la solution
 <p><code>cyrano2 = 'Que dis-je, c’est un cap ? … C’est une péninsule !'</code></p>
 <p>Question 1 : trouvez les caractères qui apparaissent à la fois dans les deux chaînes.</p>
 <p>Question 2 : trouvez les caractères qui apparaissent dans au moins un des deux textes.</p>
-<div id="2746ffa8" class="cell" data-execution_count="38">
+<div id="f3a56b9a" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -879,21 +879,21 @@ Afficher la solution
 <h3 class="anchored" data-anchor-id="de-lintérêt-des-sets-pour-les-tests-dappartenance">De l’intérêt des sets pour les tests d’appartenance</h3>
 <p>Le code ci-dessous génère une liste avec les lettres a, b, c et d répétées 1 million de fois. Ensuite, il réalise un test d’appartenance d’une lettre qui n’existe pas dans la liste, et calcule le temps mis par l’interpréteur Python pour réaliser le test.</p>
 <p>En reprenant cette syntaxe, comparez le temps mis par le même test d’appartenance lorsqu’on transforme la liste en set au préalable.</p>
-<div id="0c1528c1" class="cell" data-execution_count="39">
+<div id="23d0dc16" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>] <span class="op">*</span> <span class="dv">1000000</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[:<span class="dv">10</span>])</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="st">'e'</span> <span class="kw">in</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd', 'a', 'b']
-CPU times: user 41 ms, sys: 99 μs, total: 41.1 ms
+CPU times: user 41.1 ms, sys: 116 μs, total: 41.2 ms
 Wall time: 41.1 ms</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="ef3f5385" class="cell" data-execution_count="40">
+<div id="238955c3" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
