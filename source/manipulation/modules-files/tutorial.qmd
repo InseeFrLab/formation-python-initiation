@@ -191,7 +191,7 @@ On retrouve notre notebook, un fichier qui contient les solutions des exercices 
 
 - son nom de fichier : `tutorial.ipynb`
 
-- son chemin : `/home/onyxia/work/formation/`
+- son chemin : `/home/onyxia/work/`
 
 
 **Chemins absolus et chemins relatifs**
@@ -220,7 +220,7 @@ Path.home()
 On peut alors concaténer les différents sous-dossier et le nom de fichier du notebook pour obtenir le chemin complet vers celui-ci.
 
 ```{python}
-path_nb = Path.home() / 'work' / 'formation' / 'tutorial.ipynb'
+path_nb = Path.home() / 'work' / 'tutorial.ipynb'
 path_nb
 ```
 
@@ -892,15 +892,13 @@ Path.cwd().glob('*.*')
 ```
 
 ```{python}
-list(Path.cwd().glob
-
-('*.*'))
+list(Path.cwd().glob('*.*'))
 ```
 
 We find our notebook, a file that contains the solutions to the tutorial exercises, and several text files that will serve as examples in the rest of the tutorial. For instance, if we take the notebook, we can clearly distinguish:
 
 - Its file name: `tutorial.ipynb`
-- Its path: `/home/onyxia/work/training/`
+- Its path: `/home/onyxia/work/`
 
 **Absolute paths and relative paths**
 
@@ -926,7 +924,7 @@ Path.home()
 We can then concatenate the different subfolders and the file name of the notebook to get the full path to it.
 
 ```{python}
-path_nb = Path.home() / 'work' / 'training' / 'tutorial.ipynb'
+path_nb = Path.home() / 'work' / 'tutorial.ipynb'
 path_nb
 ```
 
@@ -1113,16 +1111,16 @@ To import a local module, use the `import` statement followed by the file name w
 ```{python}
 import normalisation
 x = [1, 2, 3, 4, 5]
-x_norm = normalisation.normalize(x)
+x_norm = normalisation.normalise(x)
 print(x_norm)
 ```
 
 As explained at the beginning of the chapter, we could also import the function directly to avoid recalling the module name containing it. This is particularly practical if this function is to be used multiple times in the same notebook/script.
 
 ```{python}
-from normalisation import normalize
+from normalisation import normalise
 x = [1, 2, 3, 4, 5]
-x_norm = normalize(x)
+x_norm = normalise(x)
 print(x_norm)
 ```
 
