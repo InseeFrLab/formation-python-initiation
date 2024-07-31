@@ -1,5 +1,7 @@
 ::: {.content-visible when-profile="fr"}
-# Projet 2 - Interaction avec des APIs
+---
+title: "Projet 2 - Interaction avec des APIs"
+---
 
 ## Contexte du projet
 
@@ -319,7 +321,9 @@ main(country="Germany", city="Berlin", agg_var="hour")
 
 ::: {.content-visible when-profile="en"}
 
-# Project 2 - Interaction with APIs
+---
+title: "Project 2 - Interaction with APIs"
+---
 
 ## Project context
 

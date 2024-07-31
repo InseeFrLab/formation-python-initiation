@@ -1,6 +1,7 @@
 ::: {.content-visible when-profile="fr"}
-# Traiter des données tabulaires avec Pandas
-
+---
+title: "Traiter des données tabulaires avec Pandas"
+---
 
 L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable. Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`. Les utilisateurs de `R` connaissent bien cette structure de données, qui est native à ce langage orienté statistique. En `Python`, langage généraliste, cet objet n'existe pas nativement. Heureusement, une librairie très complete et bien pratique, pensée comme une surcouche à `NumPy`, introduit en `Python` l'objet `DataFrame` et permet la manipulation et l'analyse de données de manière simple et intuitive : `Pandas`.
 
@@ -1954,7 +1955,9 @@ df_clean.head(20)
 
 ::: {.content-visible when-profile="en"}
 
-# Working with tabular data using Pandas
+---
+title: "Working with tabular data using Pandas"
+---
 
 Statistical analysis is generally based on **tabular data**, where each row represents an observation and each column a variable. To handle this type of data and easily apply standard data analysis methods, dedicated objects have been designed: `DataFrames`. Users of `R` are well acquainted with this data structure, which is native to this statistics-oriented language. In `Python`, a general-purpose language, this object does not exist natively. Fortunately, a very comprehensive and convenient library, designed as an overlay to `NumPy`, introduces the `DataFrame` object in `Python` and allows for simple and intuitive data manipulation and analysis: `Pandas`.
 

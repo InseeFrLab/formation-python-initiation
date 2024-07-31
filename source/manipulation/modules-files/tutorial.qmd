@@ -1,5 +1,7 @@
 ::: {.content-visible when-profile="fr"}
-# Manipulation de fichiers
+---
+title: "Manipulation de fichiers"
+---
 
 Dans les tutoriels précédents, nous avons utilisé systématiquement des variables pour stocker des données et réaliser des opérations sur celles-ci. Cette façon de faire peut suffire dans le cadre d'une session `Python` donnée, comme ici dans un notebook Jupyter ou bien dans un programme. 
 
@@ -713,7 +715,9 @@ for path in txt_files_paths:
 
 ::: {.content-visible when-profile="en"}
 
-# File manipulation
+---
+title: "File manipulation"
+---
 
 In previous tutorials, we have consistently used variables to store data and perform operations on it. This method may suffice within a given `Python` session, such as here in a Jupyter notebook or in a program.
 
