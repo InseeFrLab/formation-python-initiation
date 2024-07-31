@@ -1,0 +1,41 @@
+website:
+  title: "SSPy training course {{< fa brands python >}}"
+  sidebar:
+    style: 'docked'
+    contents:
+      - section: "Fundamentals"
+        contents: 
+          - text: "Basic types and variables"
+            href: source/fundamentals/types-variables/tutorial.qmd
+          - text: "Data structures 1: lists and tuples"
+            href: source/fundamentals/data-structures1/tutorial.qmd
+          - text: "Data structures 2: dictionaries and sets"
+            href: source/fundamentals/data-structures2/tutorial.qmd
+          - text: "Conditionals"
+            href: source/fundamentals/tests/tutorial.qmd
+          - text: "Loops"
+            href: source/fundamentals/loops/tutorial.qmd
+          - text: "Functions"
+            href: source/fundamentals/functions/tutorial.qmd
+          - text: "Introduction to object-oriented programming"
+            href: source/fundamentals/oop/tutorial.qmd
+      - section: "Data handling"
+        contents: 
+          - text: "File manipulation"
+            href: source/manipulation/modules-files/tutorial.qmd
+          - text: "Working with CSV and JSON files"
+            href: source/manipulation/csv-json-files/tutorial.qmd
+          - text: "Numerical computation with NumPy"
+            href: source/manipulation/numpy/tutorial.qmd
+          - text: "Processing tabular data with Pandas"
+            href: source/manipulation/pandas/tutorial.qmd
+          - text: "Introduction to data visualization"
+            href: source/manipulation/dataviz/tutorial.qmd
+      - section: "Projects"
+        contents: 
+          - text: "Project 1 - Connect 4"
+            href: source/projects/puissance4/tutorial.qmd
+          - text: "Project 2 - API interaction"
+            href: source/projects/meteo/tutorial.qmd
+          - text: "Project 3 - Population census analysis"
+            href: source/projects/RP/tutorial.qmd

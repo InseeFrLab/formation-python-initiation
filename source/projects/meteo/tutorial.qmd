@@ -1,8 +1,5 @@
----
-title: Projet 2 - Interaction avec des APIs
-execute:
-  eval: false
----
+::: {.content-visible when-profile="fr"}
+# Projet 2 - Interaction avec des APIs
 
 ## Contexte du projet
 
@@ -24,8 +21,6 @@ import requests
 import pandas
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-import solutions
 ```
 
 ## Partie 1 : récupération des coordonnées géographiques pour une localisation donnée
@@ -305,3 +300,328 @@ main(country="Germany", city="Berlin", agg_var="day")
 # Vérification du résultat
 main(country="Germany", city="Berlin", agg_var="hour")
 ```
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.content-visible when-profile="en"}
+
+# Project 2 - Interaction with APIs
+
+## Project context
+
+There are some days when one would prefer to stay working from home... Among those days are the ones that are both humid and windy, making it impossible to maintain a decent hairstyle despite all efforts. Could we use `Python` to predict what the Anglo-Saxons call *bad hair days*?
+
+The goal of the project is to construct a *bad hair index* from weather data and graphically represent the evolution of this index to determine in advance the days when it's better to stay warm inside. To obtain the appropriate data, we will query APIs.
+
+An API (Application Programming Interface) is a set of rules and specifications that applications follow to communicate with each other. It allows your code to **access external functionalities or data**, such as those from weather databases or location services. When querying an API, it is generally done via the **HTTP protocol**, which is the same protocol used to load web pages. In this tutorial, we will use the [requests](https://docs.python-requests.org/en/latest/) package, which simplifies the process of querying and handling HTTP responses.
+
+The APIs we will use are:
+
+- [Nominatim](https://nominatim.org/release-docs/latest/api/Overview/): a geocoding API provided by **OpenStreetMap** that allows us to convert a place name into geographic coordinates.
+- [Open-Meteo Weather Forecast](https://open-meteo.com/en/docs): an API that provides detailed weather forecasts.
+
+Let's start by importing the packages we will need throughout this project.
+
+```{python}
+import requests
+import pandas
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
+
+## Part 1: Retrieving geographic coordinates for a given location
+
+The Open-Meteo prediction API takes as input the geographic coordinates (latitude, longitude) of the location where predictions will be made. We could manually retrieve the coordinates of the location of interest, but this would limit the reproducibility of our analyses with other locations than the one chosen. We will therefore use a second API, `Nominatim`, to obtain these coordinates for a given place.
+
+When working with an API, the first step is always to read its documentation. It indicates the address to which we must send our requests, in what format, and what the API will return. In our case, the documentation for `Nominatim` can be found [here](https://nominatim.org/release-docs/develop/api/Overview/). Feel free to browse through it quickly to evaluate the possibilities of the API.
+
+### Question 1
+
+The first essential characteristic of an API is the *endpoint*, which is the URL to which we will send requests. In our case, we will use the *endpoint* `/search` since we want to find a geographic object (coordinates) from a location name. The [documentation page](https://nominatim.org/release-docs/develop/api/Search/) associated with this *endpoint* gives us all the information we need:
+
+- the format of a request is `https://nominatim.openstreetmap.org/search?<params>` where `<params>` should be replaced by the request parameters, separated by the `&` symbol
+- in the [Structured Query](https://nominatim.org/release-docs/develop/api/Search/#structured-query) section, we see that the API accepts parameters `country` and `city`, which we will use to parameterize our request.
+
+Define a function `build_request_nominatim` that constructs the request URL for a given country and city.
+
+#### Expected result
+
+```{python}
+url_request_nominatim = solutions.build_request_nominatim("France", "Montrouge")
+url_request_nominatim
+```
+
+#### Your turn!
+
+```{python}
+def build_request_nominatim(country, city):
+    # Your code here
+    return url_request
+```
+
+```{python}
+# Checking the result
+url_request_nominatim = build_request_nominatim("France", "Montrouge")
+url_request_nominatim
+```
+
+### Question 2
+
+The next step is to send our parameterized request to the API. To test it beforehand, we can simply put the address in a browser and see what the API returns. If the results look coherent, we can continue. If the API returns an error code, there is likely an error in the request.
+
+To perform this request from `Python` to retrieve the results, we use the `requests.get()` function to which we provide the request URL as the only parameter. We get back a "response" object, from which we can extract the JSON content as a `Python` dictionary by applying the `.json()` method. We then need to parse the dictionary to extract the relevant information; in our case: latitude and longitude.
+
+Define a function `get_lat_long` that retrieves the central latitude and longitude for a given country and city.
+
+#### Expected result
+
+```{python}
+lat, long = solutions.get_lat_long(query=url_request_nominatim)
+print(lat, long)
+print(type(lat))
+print(type(long))
+```
+
+#### Your turn!
+
+```{python}
+def get_lat_long(query):
+    # Your code here
+    return latitude, longitude
+```
+
+```{python}
+# Checking the result
+lat, long = get_lat_long(query=url_request_nominatim)
+print(lat, long)
+print(type(lat))
+print(type(long))
+```
+
+## Part 2: Retrieving weather forecasts
+
+Now that we can retrieve the coordinates associated with a given location, we can query the `open-meteo.com` API to get the associated weather forecast data. Again, the first step is to look at the documentation ([homepage](https://open-meteo.com/), [doc](https://open-meteo.com/en/docs)), which provides us with several pieces of information:
+
+- the *endpoint* for the prediction API is `https://api.open-meteo.com/v1/forecast`
+- the API expects as input a `latitude` and a `longitude`, as well as the desired weather variables. For our problem, we will retrieve information on relative humidity (`relativehumidity_2m`) and wind speed (`windspeed_10m`)
+- by default, the API returns 7-day forecasts
+
+### Question 3
+
+Knowing all this information and using the documentation, define a function `build_request_open_meteo` that constructs the request URL for a given latitude and longitude. Again, it is possible to test the validity of the request by executing the link in a browser and verifying that the returned results seem coherent.
+
+#### Expected result
+
+```{python}
+url_request_open_meteo = solutions.build_request_open_meteo(latitude=lat, longitude=long)
+url_request_open_meteo
+```
+
+#### Your turn!
+
+```{python}
+def build_request_open_meteo(latitude, longitude):
+    # Your code here
+    return url_request
+```
+
+```{python}
+# Checking the result
+url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
+url_request_open_meteo
+```
+
+### Question 4
+
+Again, we use the `requests.get()` function to submit the request to the API. We get back a "response" object, from which we can extract the JSON content as a `Python` dictionary by applying the `.json()` method.
+
+But what happens if the submitted request is invalid (typo, nonexistent parameters, etc.)? In this case, the API returns an error. The response object of the request contains an attribute `.status_code` that gives the response code of a request. The code `200` indicates a successful request; any other code indicates an error.
+
+Define a function `get_meteo_data` that retrieves the complete data dictionary returned by the API following our request. The function's behavior should depend on the request's response code:
+
+- if the code is `200`, the function returns the predictions dictionary;
+- if the code is different from `200`, the function displays the error code and returns `None`.
+
+#### Expected result
+
+```{python}
+predictions = solutions.get_meteo_data(url_request_open_meteo)
+type(predictions)
+```
+
+```{python}
+wrong_request = solutions.build_request_open_meteo(latitude=lat, longitude="seventeen-point-four")
+output = solutions.get_meteo_data(wrong_request)
+print(output)
+```
+
+#### Your turn!
+
+```{python}
+def get_meteo_data(query):
+    # Your code here
+    return response.json()
+```
+
+```{python}
+# Checking the result
+predictions = get_meteo_data(url_request_open_meteo)
+type(predictions)
+```
+
+```{python}
+# Checking the result
+wrong_request = build_request_open_meteo(latitude=lat, longitude="seventeen-point-four")
+output = get_meteo_data(wrong_request)
+print(output)
+```
+
+### Question 5
+
+To understand the structure of the data we retrieved, explore the returned predictions dictionary (keys, different levels, format of the predictions, format of the variable indicating the dates/times of the predictions, etc.)
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show code"
+
+# Data exploration
+print(type(predictions))
+print(predictions.keys())
+print(type(predictions["hourly"]))
+print(predictions["hourly"].keys())
+print(type(predictions["hourly"]["time"]))
+print()
+
+# Display the data
+print(predictions['hourly']["time"][:5])
+print(predictions['hourly']["time"][-5:])
+print()
+print(predictions['hourly']["relativehumidity_2m"][:5])
+print(predictions['hourly']["windspeed_10m"][:5])
+```
+
+## Part 3: Constructing and visualizing a *bad hair index*
+
+The goal of this last part is to calculate and graphically represent the *bad hair index*. Recall that we define this index as the **
+
+product of relative humidity and wind speed**. It is a playful measure of the likelihood of having a "bad hair day" due to weather conditions.
+
+### Question 6
+
+Define a function `preprocess_predictions` that formats the predictions from the API into a `Pandas DataFrame` for statistical analysis. The steps to implement are as follows:
+
+1. convert the predicted data into a 3-column `Pandas DataFrame` (observation date and time, humidity, wind speed);
+2. convert the time column to `datetime` format ([documentation](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html))
+3. add two new variables indicating the observation day and the observation hour
+4. add a variable that calculates the *bad hair index*
+
+#### Expected result
+
+```{python}
+df_preds = solutions.preprocess_predictions(predictions)
+df_preds.head()
+```
+
+#### Your turn!
+
+```{python}
+def preprocess_predictions(predictions):
+    # Your code here
+    return df
+```
+
+```{python}
+# Checking the result
+df_preds = preprocess_predictions(predictions)
+df_preds.head()
+```
+
+### Question 7
+
+For graphical representation purposes, we will represent the aggregated *bad hair index* at two levels:
+
+- average hour by hour. This will answer the question: "at what time will it generally be preferable to stay home next week?"
+- average day by day. This will answer the question: "which day will it generally be preferable to stay home next week?"
+
+Define a function `plot_agg_avg_bhi` that calculates the aggregated index in each case and represents the result as a `lineplot`.
+
+#### Expected result
+
+```{python}
+solutions.plot_agg_avg_bhi(df_preds, agg_var="day")
+```
+
+```{python}
+solutions.plot_agg_avg_bhi(df_preds, agg_var="hour")
+```
+
+#### Your turn!
+
+```{python}
+def plot_agg_avg_bhi(df_preds, agg_var="day"):
+    # Your code here
+    return None
+```
+
+```{python}
+# Checking the result
+plot_agg_avg_bhi(df_preds, agg_var="day")
+```
+
+```{python}
+# Checking the result
+plot_agg_avg_bhi(df_preds, agg_var="hour")
+```
+
+What do you conclude for the coming week?
+
+### Question 8
+
+Our *bad hair days* prediction tool works wonderfully. But it's almost vacation time, and a trip to Berlin is planned. Ideally, we would like to use our tool for any location. Fortunately, we have defined functions at each step, which will allow us to easily move on to an "orchestrator" function that calls all the others for a given location.
+
+Define a `main` function that represents the *bad hair index* for a given country, city, and aggregation level.
+
+#### Expected result
+
+```{python}
+solutions.main(country="Germany", city="Berlin", agg_var="day")
+```
+
+```{python}
+solutions.main(country="Germany", city="Berlin", agg_var="hour")
+```
+
+#### Your turn!
+
+```{python}
+def main(country, city, agg_var="day"):
+    # Your code here
+    return None
+```
+
+```{python}
+# Checking the result
+main(country="Germany", city="Berlin", agg_var="day")
+```
+
+```{python}
+# Checking the result
+main(country="Germany", city="Berlin", agg_var="hour")
+```
+
+
+:::

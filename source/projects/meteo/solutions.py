@@ -18,7 +18,7 @@ def get_lat_long(query):
         longitude = float(json_data[0]["lon"])
         return latitude, longitude
     else:
-        print(f"Erreur lors de la récupération des données météo. Code d'erreur : {code}")
+        print(f"Error code : {code}")
         return None
 
 
@@ -34,7 +34,7 @@ def get_meteo_data(query):
         data = response.json()
         return data
     else:
-        print(f"Erreur lors de la récupération des données météo. Code d'erreur : {code}")
+        print(f"Error code : {code}")
         return None
 
 
@@ -59,26 +59,24 @@ def plot_agg_avg_bhi(df_preds, agg_var="day"):
     df_agg = df_agg.reset_index()
 
     sns.lineplot(x=agg_var, y='bad_hair_index', data=df_agg)
-    plt.ylabel('Bad Hair Index moyen')
+    plt.ylabel('Average Bad Hair Index')
     if agg_var == "day":
-        plt.title("Évolution du Bad Hair Index moyen sur 7 jours")
+        plt.title("Evolution of the average BHI on 7 days")
         plt.xlabel('Jour')
     elif agg_var == "hour":
-        plt.title("Moyenne du Bad Hair Index heure par heure sur 7 jours")
+        plt.title("Average BHI by hour on 7 days")
         plt.xlabel('Heure')
 
 
 def main(country, city, agg_var="day"):
-    # Récupération de la latitude et longitude via l'API nominatim
+    # Get lat, long from Nominatim API
     url_request_nominatim = build_request_nominatim(country, city)
     lat, long = get_lat_long(query=url_request_nominatim)
 
-    # Récupération des prédictions météos
+    # Get wheather predictions
     url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
     predictions = get_meteo_data(url_request_open_meteo)
-
-    # Mise en forme des prédictions
     df_preds = preprocess_predictions(predictions)
 
-    # Représentation graphique selon l'agrégation demandée
+    # Graphical representation
     plot_agg_avg_bhi(df_preds, agg_var)

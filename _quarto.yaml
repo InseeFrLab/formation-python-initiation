@@ -1,2 +1,22 @@
+project:
+  type: website
+  render:
+    - '*.qmd'
+
 profile:
-  default: website
+  group: [fr, en]
+  default: fr
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    code-annotations: hover
+    code-link: true
+    execute:
+      echo: true
+      eval: true
+      output: true
+      warning: true
+      error: true

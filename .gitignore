@@ -8,8 +8,9 @@ _site/
 site_libs/
 source/manipulation/modules-files/test.txt
 source/manipulation/modules-files/output_script.txt
-
-*.ipynb
+source/manipulation/csv-json-files/cv.json
+source/manipulation/csv-json-files/test.csv
+source/manipulation/pandas/output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
