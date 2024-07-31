@@ -1561,9 +1561,7 @@ print(a1 + " " + b)
 print(a2.format(b))
 ```
 
-These two
-
- methods work but have limitations. Think about what would happen in the following cases, and feel free to run tests to convince yourself:
+These two methods work but have limitations. Think about what would happen in the following cases, and feel free to run tests to convince yourself:
 
 - if you want to inject a variable that is not a string using the `format()` method (e.g., if "2024" were an integer and not a string)?
 - if you want to concatenate several strings together?
@@ -1589,6 +1587,7 @@ b = 2024
 # print(a1 + " " + b)  # Error
 print(a1 + " " + str(b))
 ```
+
 Direct concatenation returns an error -> you must convert the numeric value to a string first.
 
 Second problem: juxtaposition of multiple strings.
@@ -1601,6 +1600,7 @@ d = "Miranda"
 
 print(a + " " + b + " " + c + " " + d)
 ```
+
 The syntax quickly becomes unreadable, as you must manually add separators (space) between each part.
 
 Third problem: composing strings with variable injection.
@@ -1613,6 +1613,7 @@ d = "Miranda"
 
 print(a.format(b) + " " + c.format(d))
 ```
+
 The syntax remains unreadable, as you must inject values into each string.
 
 Solution: using f-strings.
@@ -1623,6 +1624,7 @@ name = "Miranda"
 
 print(f"we are in {year} and my name is {name}")
 ```
+
 Much more readable!
 </details>
 
