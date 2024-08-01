@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Conditionals – Formation SSPy </title>
+<title>tutorial – Formation SSPy {{&lt; fa brands python &gt;}}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -303,7 +303,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#le-type-booléen" id="toc-le-type-booléen" class="nav-link active" data-scroll-target="#le-type-booléen">Le type Booléen</a></li>
+  <li><a href="#tests-logiques" id="toc-tests-logiques" class="nav-link active" data-scroll-target="#tests-logiques">Tests logiques</a>
+  <ul class="collapse">
+  <li><a href="#le-type-booléen" id="toc-le-type-booléen" class="nav-link" data-scroll-target="#le-type-booléen">Le type Booléen</a></li>
   <li><a href="#opérateurs-de-comparaison" id="toc-opérateurs-de-comparaison" class="nav-link" data-scroll-target="#opérateurs-de-comparaison">Opérateurs de comparaison</a></li>
   <li><a href="#opérateurs-booléens" id="toc-opérateurs-booléens" class="nav-link" data-scroll-target="#opérateurs-booléens">Opérateurs booléens</a>
   <ul class="collapse">
@@ -329,43 +331,30 @@ window.Quarto = {
   <li><a href="#comparaisons-de-strings" id="toc-comparaisons-de-strings" class="nav-link" data-scroll-target="#comparaisons-de-strings">Comparaisons de <em>strings</em></a></li>
   <li><a href="#tests-dégalité-sur-les-floats" id="toc-tests-dégalité-sur-les-floats" class="nav-link" data-scroll-target="#tests-dégalité-sur-les-floats">Tests d’égalité sur les <em>floats</em></a></li>
   </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/tests/tutorial.html">Tests logiques et conditions</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Conditionals</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="tests-logiques" class="level1">
+<h1>Tests logiques</h1>
 <p>Dans le tutoriel précédent, nous avons évoqué – sans l’expliciter – la notion de <strong>test</strong>, à travers l’exemple des tests d’appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests logiques en Python. Ces derniers sont un outil essentiel dans la création de programmes permettant d’automatiser des opérations, dans la mesure où ils permettent d’<strong>exécuter – ou non – du code selon certaines conditions</strong>. Ils permettent donc à l’ordinateur de prendre des décisions selon des critères fixés par l’utilisateur.</p>
 <section id="le-type-booléen" class="level2">
 <h2 class="anchored" data-anchor-id="le-type-booléen">Le type Booléen</h2>
 <p>Dans sa plus simple forme, un test en Python est une expression qui évalue à “vrai” ou “faux”. Par exemple, l’expression <span class="math inline">\(3 &gt; 2\)</span> est vraie, le test associé renverra donc “vrai”. Pour ce type d’évaluation, Python dispose d’un type d’objets particulier : les <strong>Booléens</strong>. Contrairement aux types d’objet que nous avons déjà vus (<code>int</code>, <code>float</code>, <code>str</code>..), les Booléens ne peuvent prendre que deux valeurs : <code>True</code> et <code>False</code>.</p>
-<div id="d360e70f" class="cell" data-execution_count="1">
+<div id="1430b0db" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>bool</code></pre>
 </div>
 </div>
 <p>Comme n’importe quel objet, les Booléens peuvent être assignés à des variables.</p>
-<div id="f9c245b3" class="cell" data-execution_count="2">
+<div id="65003d55" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -375,7 +364,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Les valeurs <code>True</code> et <code>False</code> doivent être écrites de cette manière précisément (première lettre en majuscule, pas de guillemets). Elles ne peuvent par ailleurs pas être utilisées comme noms de variable afin de limiter les ambiguïtés.</p>
-<div id="291ecc8d" class="cell" data-execution_count="3">
+<div id="e5b56d29" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> true  <span class="co"># Python chercher la variable `true` mais elle n'existe pas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -388,7 +377,7 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </div>
 </div>
 </div>
-<div id="4dcabc21" class="cell" data-execution_count="4">
+<div id="398748ac" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -439,100 +428,100 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </tbody>
 </table>
 <p>Illustrons ces opérateurs à l’aide de quelques exemples.</p>
-<div id="70d4ff16" class="cell" data-execution_count="5">
+<div id="f0e90917" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="04625ba1" class="cell" data-execution_count="6">
+<div id="c462fa38" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">63</span> <span class="op">==</span> <span class="dv">36</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="3d8e4dba" class="cell" data-execution_count="7">
+<div id="4aa24db8" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="1b1bf57b" class="cell" data-execution_count="8">
+<div id="46a51476" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">!=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="885569b8" class="cell" data-execution_count="9">
+<div id="c2b3c747" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="e38c6e9a" class="cell" data-execution_count="10">
+<div id="6090816d" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">36</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">&lt;=</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="92e8809e" class="cell" data-execution_count="11">
+<div id="4f0a978c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">&lt;</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>Tout semble fonctionner correctement pour des opérations mathématiques usuelles. Mais ces opérateurs fonctionnent en réalité sur n’importe quel type d’objet.</p>
-<div id="352eb087" class="cell" data-execution_count="12">
+<div id="2a4fb140" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">'do re mi fa sol'</span> <span class="op">==</span> <span class="st">'do re mi fa sol'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="b7e12daa" class="cell" data-execution_count="13">
+<div id="6d5454ee" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">'do re mi fa sol'</span> <span class="op">==</span> <span class="st">'Do Re Mi Fa Sol'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="e4e100e4" class="cell" data-execution_count="14">
+<div id="ba41882a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'canard'</span> <span class="op">!=</span> <span class="st">'abeille'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="aa7767ad" class="cell" data-execution_count="15">
+<div id="3dcf66f0" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">==</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="685f6b6b" class="cell" data-execution_count="16">
+<div id="3291d7f3" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">==</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="c464177d" class="cell" data-execution_count="17">
+<div id="03efd1d8" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="op">==</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="3a5c6f0f" class="cell" data-execution_count="18">
+<div id="41c92126" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">!=</span> [<span class="dv">3</span>, <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>Enfin, il est possible de réaliser des comparaisons en chaîne. L’expression renvoie <code>True</code> à condition que chacune des comparaisons soit vraie.</p>
-<div id="898348ef" class="cell" data-execution_count="19">
+<div id="859f1c20" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">&lt;</span> <span class="dv">7</span> <span class="op">&lt;=</span> <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="fc7d18b4" class="cell" data-execution_count="20">
+<div id="03c805f4" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">&lt;</span> <span class="dv">7</span> <span class="op">&lt;=</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>False</code></pre>
@@ -572,26 +561,26 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </tbody>
 </table>
 <p>Vérifions ces règles en pratique à l’aide de quelques exemples.</p>
-<div id="ccb2db83" class="cell" data-execution_count="21">
+<div id="2e19894e" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="f07336b7" class="cell" data-execution_count="22">
+<div id="9cf37f2d" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>Les règles ont l’air de fonctionner sur les valeurs booléennes. Bien entendu, en pratique, on s’intéresse plutôt à évaluer de vraies expressions logiques. On peut donc utiliser ces opérateurs pour tester des expressions qui <em>renvoient</em> une valeur booléenne.</p>
-<div id="bd60a777" class="cell" data-execution_count="23">
+<div id="cf32ebf5" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span>) <span class="kw">and</span> (<span class="dv">5</span> <span class="op">&lt;=</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="19274a63" class="cell" data-execution_count="24">
+<div id="a7053fa8" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="st">"x"</span> <span class="op">!=</span> <span class="st">"z"</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (<span class="st">"x"</span> <span class="op">==</span> <span class="st">"y"</span>)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>a <span class="kw">and</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -630,25 +619,25 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </tr>
 </tbody>
 </table>
-<div id="01c1c37d" class="cell" data-execution_count="25">
+<div id="4f006f9e" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">or</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="b2edaf53" class="cell" data-execution_count="26">
+<div id="6849f3ca" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">or</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="1ca31f8c" class="cell" data-execution_count="27">
+<div id="f5ddb5f6" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="op">&gt;</span> <span class="dv">2</span>) <span class="kw">or</span> (<span class="dv">5</span> <span class="op">&lt;=</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="0e40ca1b" class="cell" data-execution_count="28">
+<div id="666d576f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="st">"x"</span> <span class="op">!=</span> <span class="st">"z"</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> (<span class="st">"x"</span> <span class="op">==</span> <span class="st">"y"</span>)</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>a <span class="kw">or</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -678,25 +667,25 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </tr>
 </tbody>
 </table>
-<div id="0ff7087b" class="cell" data-execution_count="29">
+<div id="62c94a28" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="d0d5be79" class="cell" data-execution_count="30">
+<div id="497415c6" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="2174c20a" class="cell" data-execution_count="31">
+<div id="fbf3e750" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="802c74f1" class="cell" data-execution_count="32">
+<div id="0446e659" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> (<span class="dv">7</span> <span class="op">&lt;</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>True</code></pre>
@@ -714,7 +703,7 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 <li><p>Dans le cas contraire, imprimer dans la console le message “L’expression est fausse.”</p></li>
 </ul>
 <p>Faîtes varier la valeur de <code>x</code> pour vérifier le bon fonctionnement du test.</p>
-<div id="db819fda" class="cell" data-execution_count="33">
+<div id="f77517ef" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
@@ -734,7 +723,7 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 <li><p>la structure conditionnelle se termine lorsque l’indentation revient à son niveau d’origine.</p></li>
 </ul>
 <p>Notons que les structures conditionnelles peuvent tout à fait être imbriquées, ce qu’illustre l’exemple suivant.</p>
-<div id="206729a1" class="cell" data-execution_count="34">
+<div id="7725f9cc" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
@@ -752,14 +741,14 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 <h3 class="anchored" data-anchor-id="instructions-if-else-et-elif">Instructions <code>if</code>, <code>else</code> et <code>elif</code></h3>
 <p>Dans les structures conditionnelles, les tests peuvent être spécifiés à l’aide de trois instructions : <code>if</code>, <code>else</code> et <code>elif</code>. Les exemples précédents ont déjà illustré le fonctionnement des deux premières (et plus fréquentes) instructions.</p>
 <p>En cas d’un test simple (une seule condition), on n’utilisera qu’une instruction <code>if</code>, dont le fonctionnement est simple : si la condition (test) renvoie <code>True</code>, alors le bloc d’instructions (indenté) qui suit est exécuté. Si la condition renvoie <code>False</code>, il ne se passe rien. Illustrons cela avec un test d’appartenance, dont nous avons vu des exemples dans le tutoriel précédent.</p>
-<div id="c228e51f" class="cell" data-execution_count="35">
+<div id="4bdb478d" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> <span class="st">"Isidore"</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> client <span class="kw">in</span> [<span class="st">"Alexandrine"</span>, <span class="st">"Achille"</span>, <span class="st">"Colette"</span>]:</span>
 <span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Client connu."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>En pratique, on souhaite souvent spécifier une alternative, lorsque la condition de l’instruction <code>if</code> renvoie <code>False</code>. L’instruction <code>else</code> permet de spécifier un bloc d’instructions alternatif.</p>
-<div id="6c1f4f6b" class="cell" data-execution_count="36">
+<div id="9b06449f" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> <span class="st">"Isidore"</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> client <span class="kw">in</span> [<span class="st">"Alexandrine"</span>, <span class="st">"Achille"</span>, <span class="st">"Colette"</span>]:</span>
@@ -771,7 +760,7 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </div>
 </div>
 <p>Enfin, on peut vouloir spécifier plusieurs alternatives. Dans ce cas, on va utiliser des instructions <code>elif</code>. La première instruction <code>elif</code> ne va s’éxécuter que si le test de l’instruction <code>if</code> renvoie False. La seconde instruction <code>elif</code> ne va s’exécuter que si le test de la première instruction <code>elif</code> renvoie <code>False</code>, et ainsi de suite. Là encore, on peut spécifier une instruction finale <code>else</code>, qui ne s’exécute que si aucun des tests précédents n’a renvoyé <code>True</code>.</p>
-<div id="d169f94a" class="cell" data-execution_count="37">
+<div id="a327f6f9" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> <span class="st">"Isidore"</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> client <span class="op">==</span> <span class="st">"Alexandrine"</span>:</span>
@@ -838,7 +827,7 @@ Afficher la solution
 <li><p><code>(True and True) or (True == False)</code></p></li>
 <li><p><code>(not False) or (not True)</code></p></li>
 </ul>
-<div id="1f7d17a6" class="cell" data-execution_count="38">
+<div id="b9124d05" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -864,7 +853,7 @@ Afficher la solution
 <section id="prédiction-de-test-imbriqué" class="level3">
 <h3 class="anchored" data-anchor-id="prédiction-de-test-imbriqué">Prédiction de test imbriqué</h3>
 <p>Considérons le programme écrit dans la cellule suivante.</p>
-<div id="5dfb96cf" class="cell" data-execution_count="39">
+<div id="69bc97ed" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span>:</span>
@@ -897,7 +886,7 @@ Afficher la solution
 <li><p>qu’est ce qui est imprimé dans la console au fil du programme ?</p></li>
 </ul>
 <p>Vérifiez vos résultats.</p>
-<div id="ea38c852" class="cell" data-execution_count="40">
+<div id="42fbddeb" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -922,7 +911,7 @@ Afficher la solution
 <li><p>Supprimer une personne de la liste (en utilisant la fonction <code>del</code> ou la méthode <code>pop</code> vues dans un tutoriel précédent)</p></li>
 <li><p>Réaliser le test à nouveau, il ne devrait plus y avoir d’output.</p></li>
 </ul>
-<div id="d2ae3f0b" class="cell" data-execution_count="41">
+<div id="d17373b4" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -955,7 +944,7 @@ Afficher la solution
 <li><p>si <code>p</code> est égal à <span class="math inline">\(15\)</span>, imprimer le message “dans le mille !”</p></li>
 </ul>
 <p>Attention, <code>input</code> renvoie par défaut une chaîne de caractère. Il faut donc convertir la valeur de <code>p</code> au format entier (via la fonction <code>int</code>) pour que le jeu fonctionne.</p>
-<div id="629461c6" class="cell" data-execution_count="42">
+<div id="a4fa3f03" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -978,7 +967,7 @@ Afficher la solution
 <section id="evaluation-booléenne-dobjets-divers" class="level3">
 <h3 class="anchored" data-anchor-id="evaluation-booléenne-dobjets-divers">Evaluation booléenne d’objets divers</h3>
 <p>En Python, tous les objets s’évaluent à <code>True</code> or <code>False</code> dans le cadre d’un test conditionnel (<code>if</code>/<code>else</code>). La règle générale est que les objets qui sont zéro ou vides (ex : une liste vide, un dictionnaire vide) s’évaluent à <code>False</code>, et inversement. Mais il n’y a pas besoin de connaître ces règles par coeur : elles se retrouvent facilement en pratique ! Par exemple, on peut utiliser le test conditionnel suivant :</p>
-<div id="453f0c57" class="cell" data-execution_count="43">
+<div id="b1d3f9d0" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"test"</span>:</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"True."</span>)</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -1000,7 +989,7 @@ Afficher la solution
 <li><p><code>{}</code></p></li>
 <li><p><code>{-1}</code></p></li>
 </ul>
-<div id="07deacdd" class="cell" data-execution_count="44">
+<div id="5978403b" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1027,7 +1016,7 @@ Afficher la solution
 <h3 class="anchored" data-anchor-id="comparaisons-en-chaîne">Comparaisons en chaîne</h3>
 <p>Nous avons vu qu’il était possible de réaliser des comparaisons en chaîne, qui renvoient <code>True</code> à condition que chacune des comparaisons inclues soit vraie. Trouvez une manière de réécrire la comparaison en chaîne suivante à l’aide d’opérateurs booléens.</p>
 <p><code>5 &lt; 7 &lt;= 8 &lt; 18</code></p>
-<div id="6fb0b215" class="cell" data-execution_count="45">
+<div id="74f811b8" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1049,7 +1038,7 @@ Afficher la solution
 <li><p>calculer la “représentation en entier” de la valeur booléenne de votre choix à l’aide de la fonction <code>int</code> ;</p></li>
 <li><p>utiliser des booléens dans le cadre de calculs mathématiques pour vérifier leur comportement dans ce contexte.</p></li>
 </ul>
-<div id="482fcbb9" class="cell" data-execution_count="46">
+<div id="0eca5ed7" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1067,7 +1056,7 @@ Les Booléens se comportent comme leur valeur entière associée dans les calcul
 <section id="comparaisons-de-strings" class="level3">
 <h3 class="anchored" data-anchor-id="comparaisons-de-strings">Comparaisons de <em>strings</em></h3>
 <p>Que renvoient les tests de comparaison de type inégalités appliqués à des chaînes de caractères ? Produire quelques exemples pour tester le comportement.</p>
-<div id="7876b243" class="cell" data-execution_count="47">
+<div id="7f00ef99" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1091,7 +1080,7 @@ Afficher la solution
 <p>Les tests d’égalité entre nombres réels (type <code>float</code> en Python) peuvent être trompeurs. Pour vous en convaincre, effectuez le test suivant : <code>(6 - 5.8) == 0.2</code></p>
 <p>Pour comprendre le résultat du test, effectuer le calcul du membre de gauche du test seul. Que remarquez-vous ?</p>
 <p>Imaginez (sans forcément l’implémenter) un autre test, basé sur des inégalités, qui permettrait de tester l’égalité approchée.</p>
-<div id="c34278e5" class="cell" data-execution_count="48">
+<div id="ab5b326a" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1113,6 +1102,7 @@ Ce dernier test permet de tester l’égalité entre diff et 0.3 de manière app
 </div>
 
 
+</section>
 </section>
 </section>
 

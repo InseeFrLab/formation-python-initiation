@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Projet 1 - Puissance 4 – Formation SSPy {{&lt; fa brands python &gt;}}</title>
+<title>tutorial – Formation SSPy {{&lt; fa brands python &gt;}}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -274,7 +274,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#règles-du-jeu" id="toc-règles-du-jeu" class="nav-link active" data-scroll-target="#règles-du-jeu">Règles du jeu</a></li>
+  <li><a href="#projet-1---puissance-4" id="toc-projet-1---puissance-4" class="nav-link active" data-scroll-target="#projet-1---puissance-4">Projet 1 - Puissance 4</a>
+  <ul class="collapse">
+  <li><a href="#règles-du-jeu" id="toc-règles-du-jeu" class="nav-link" data-scroll-target="#règles-du-jeu">Règles du jeu</a></li>
   <li><a href="#plan-du-projet" id="toc-plan-du-projet" class="nav-link" data-scroll-target="#plan-du-projet">Plan du projet</a></li>
   <li><a href="#initialisation-de-la-grille" id="toc-initialisation-de-la-grille" class="nav-link" data-scroll-target="#initialisation-de-la-grille">Initialisation de la grille</a>
   <ul class="collapse">
@@ -306,33 +308,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#résultat-attendu-5" id="toc-résultat-attendu-5" class="nav-link" data-scroll-target="#résultat-attendu-5">Résultat attendu</a></li>
   <li><a href="#a-vous-de-jouer-5" id="toc-a-vous-de-jouer-5" class="nav-link" data-scroll-target="#a-vous-de-jouer-5">A vous de jouer !</a></li>
   </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projets</a></li><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projet 1 - Puissance 4</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Projet 1 - Puissance 4</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="projet-1---puissance-4" class="level1">
+<h1>Projet 1 - Puissance 4</h1>
 <p>Dans ce projet nous allons implémenter un puissance 4 avec une interface graphique assez sommaire. Pour y arriver, nous allons utiliser les objets fondamentaux de Python.</p>
-<div id="5ecafb05" class="cell" data-execution_count="1">
+<div id="1f5f3aeb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> solutions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -367,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Attention</strong> : Bien faire attention à ce que les lignes soient des objets indépendants, autrement dit que modifier l’une des listes n’affecte pas les autres.</p>
 <section id="résultat-attendu" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu">Résultat attendu</h3>
-<div id="407bd694" class="cell" data-execution_count="2">
+<div id="1cd7af5e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -382,7 +371,7 @@ Cell <span class="ansi-green-fg">In[2], line 1</span>
 </div>
 </div>
 </div>
-<div id="495362bc" class="cell" data-execution_count="3">
+<div id="01e7c585" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grid)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grid[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -400,12 +389,12 @@ Cell <span class="ansi-green-fg">In[3], line 1</span>
 </section>
 <section id="a-vous-de-jouer" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer">A vous de jouer !</h3>
-<div id="046a37af" class="cell" data-execution_count="4">
+<div id="a08bed5a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6a027c67" class="cell" data-execution_count="5">
+<div id="7253c796" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -427,7 +416,7 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </div>
 </div>
 </div>
-<div id="25076107" class="cell" data-execution_count="6">
+<div id="eba965e1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grid)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grid[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -451,7 +440,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <p>Notre grille est initialisée, mais son affichage est assez sommaire. L’idée de cette partie est d’offrir une représentation plus visuelle du jeu pendant une partie.</p>
 <p>Pour cela, nous allons créer <strong>une fonction qui prend en entrée la grille précédemment initialisée et renvoie sa représentation</strong> (via la fonction <code>print</code>). Les colonnes seront séparées par le caractère | (barre verticale).</p>
 <p><strong>Indice</strong> : une solution possible fait intervenir deux notions que nous avons vues dans les TP précédents : la concaténation de <em>strings</em> et la fonction <code>join</code> qui “joint” les éléments d’une liste en les séparant par un certain caractère. Pour rappel, voici un exemple qui utilise ces deux concepts :</p>
-<div id="de96de4d" class="cell" data-execution_count="7">
+<div id="7fcd0c68" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>l_join <span class="op">=</span> <span class="st">"DEBUT "</span> <span class="op">+</span> <span class="st">", "</span>.join(l) <span class="op">+</span> <span class="st">" FIN"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -461,7 +450,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 </div>
 <section id="résultat-attendu-1" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-1">Résultat attendu</h3>
-<div id="84133137" class="cell" data-execution_count="8">
+<div id="7b88636c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -477,7 +466,7 @@ Cell <span class="ansi-green-fg">In[8], line 1</span>
 </section>
 <section id="a-vous-de-jouer-1" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-1">A vous de jouer !</h3>
-<div id="ba7458c1" class="cell" data-execution_count="9">
+<div id="7bd90632" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -490,7 +479,7 @@ Cell <span class="ansi-green-fg">In[8], line 1</span>
 </div>
 </div>
 </div>
-<div id="8d17e36e" class="cell" data-execution_count="10">
+<div id="934d33a6" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -522,7 +511,7 @@ Cell <span class="ansi-green-fg">In[10], line 2</span>
 <p>Optionnel : Renvoyer un message d’erreur si un joueur essaie de jouer dans une colonne inexistante ou bien avec une couleur non autorisée.</p>
 <section id="résultat-attendu-2" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-2">Résultat attendu</h3>
-<div id="b85a79c1" class="cell" data-execution_count="11">
+<div id="dd390aaa" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
@@ -544,13 +533,13 @@ Cell <span class="ansi-green-fg">In[11], line 1</span>
 </section>
 <section id="a-vous-de-jouer-2" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-2">A vous de jouer !</h3>
-<div id="493c0b25" class="cell" data-execution_count="12">
+<div id="833a0c17" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move(grid, column_to_play, disc_color):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    new_grid <span class="op">=</span> copy.deepcopy(grid)  <span class="co"># Evite la modification de la grille initiale</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3f8dfbfe" class="cell" data-execution_count="13">
+<div id="8f230322" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
@@ -588,7 +577,7 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </ul>
 <section id="résultat-attendu-3" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-3">Résultat attendu</h3>
-<div id="181e275b" class="cell" data-execution_count="14">
+<div id="29c99350" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une ligne</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
@@ -603,7 +592,7 @@ Red won!
 True</code></pre>
 </div>
 </div>
-<div id="f5ef8c21" class="cell" data-execution_count="15">
+<div id="9dcef38e" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une grille</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid))  <span class="co"># Renvoie False</span></span>
@@ -634,7 +623,7 @@ Cell <span class="ansi-green-fg">In[15], line 2</span>
 </section>
 <section id="a-vous-de-jouer-3" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-3">A vous de jouer !</h3>
-<div id="3c049cc4" class="cell" data-execution_count="16">
+<div id="87ab185a" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_row_victory(ligne):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -647,7 +636,7 @@ Cell <span class="ansi-green-fg">In[15], line 2</span>
 </div>
 </div>
 </div>
-<div id="c75e361b" class="cell" data-execution_count="17">
+<div id="14dde795" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"R"</span>, <span class="st">" "</span>]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
@@ -668,7 +657,7 @@ Cell <span class="ansi-green-fg">In[17], line 5</span>
 </div>
 </div>
 </div>
-<div id="fa53c2b3" class="cell" data-execution_count="18">
+<div id="3232b5b5" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_horizontal_victory(grid):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -681,7 +670,7 @@ Cell <span class="ansi-green-fg">In[17], line 5</span>
 </div>
 </div>
 </div>
-<div id="f2ca77fe" class="cell" data-execution_count="19">
+<div id="2c04eac9" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Renvoie False</span></span>
@@ -722,7 +711,7 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </ul>
 <section id="résultat-attendu-4" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-4">Résultat attendu</h3>
-<div id="7827add9" class="cell" data-execution_count="20">
+<div id="47ee44b0" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (verticale) sur une grille</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid))  <span class="co"># Renvoie False</span></span>
@@ -753,7 +742,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 </section>
 <section id="a-vous-de-jouer-4" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-4">A vous de jouer !</h3>
-<div id="47ba5dd1" class="cell" data-execution_count="21">
+<div id="3b902880" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_vertical_victory(grid):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -766,7 +755,7 @@ Cell <span class="ansi-green-fg">In[20], line 2</span>
 </div>
 </div>
 </div>
-<div id="658514ff" class="cell" data-execution_count="22">
+<div id="ac02b049" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Renvoie False</span></span>
@@ -813,7 +802,7 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </ul>
 <section id="résultat-attendu-5" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-5">Résultat attendu</h3>
-<div id="c57ff85d" class="cell" data-execution_count="23">
+<div id="7e5b976a" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.initialize_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
@@ -833,7 +822,7 @@ Tour 4</code></pre>
 </section>
 <section id="a-vous-de-jouer-5" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-5">A vous de jouer !</h3>
-<div id="575a052f" class="cell" data-execution_count="24">
+<div id="ebfe58d0" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_victory(grid):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -846,13 +835,13 @@ Tour 4</code></pre>
 </div>
 </div>
 </div>
-<div id="92dbe350" class="cell" data-execution_count="25">
+<div id="823fe043" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move_and_check_victory(grille, column_to_play, disc_color):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> copy.deepcopy(grid)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dbe72745" class="cell" data-execution_count="26">
+<div id="3c0f9525" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialisation</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
@@ -879,6 +868,7 @@ Cell <span class="ansi-green-fg">In[26], line 2</span>
 </div>
 
 
+</section>
 </section>
 </section>
 
