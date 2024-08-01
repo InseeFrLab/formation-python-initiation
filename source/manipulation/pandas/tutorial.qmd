@@ -542,6 +542,7 @@ def sum_row(row):
 
 df['sum_row'] = df.apply(sum_row, axis=1)
 ```
+
 :::
 
 Bien que `apply()` offre une grande flexibilité, elle n'est pas la méthode la plus efficiente, notamment pour de grands jeux de données. Les opérations vectorisées sont toujours préférables car elles traitent les données en bloc plutôt que ligne par ligne. Dans notre cas, il aurait été bien entendu préférable de créer notre variable en utilisant des opérations sur les colonnes.
@@ -2657,6 +2658,7 @@ def sum_row(row):
 
 df['sum_row'] = df.apply(sum_row, axis=1)
 ```
+
 :::
 
 Although `apply()` offers great flexibility, it is not the most efficient method, especially for large datasets. Vectorized operations are always preferable as they process data in blocks rather than row by row. In our case, it would have been preferable to create our variable using column operations.
