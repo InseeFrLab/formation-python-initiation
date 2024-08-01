@@ -1,7 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Tests logiques"
----
+# Tests logiques
 
 Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests logiques en Python. Ces derniers sont un outil essentiel dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
 
@@ -789,9 +787,7 @@ Ce dernier test permet de tester l'égalité entre diff et 0.3 de manière appro
 
 ::: {.content-visible when-profile="en"}
 
----
-title: "Conditionals"
----
+# Conditionals
 
 In the previous tutorial, we mentioned -- without detailing -- the notion of **conditional statements**, through the example of membership tests. Now, we will delve into the details of how conditions work in Python. They are a major step in creating programs that automate operations since they allow you to **execute or not execute code based on certain conditions**. They enable the computer to make decisions based on criteria set by the user.
 

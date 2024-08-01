@@ -1,7 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Structures de données 2 : dictionnaires et sets"
----
+# Structures de données 2 : dictionnaires et sets
 
 Dans le tutoriel précédent, nous avons manipulé des structures de données de type séquentielles : les listes et les tuples. A présent, nous allons découvrir les dictionnaires et les sets, qui sont des structures de données non-ordonnées : les objets ne sont plus stockés par position (ou index) mais par **clé**, c'est à dire un identifiant unique.
 
@@ -680,9 +678,7 @@ Le test d'appartenance initial se chiffre en millisecondes. Celui réalisé sur 
 
 ::: {.content-visible when-profile="en"}
 
----
-title: "Data Structures 2: Dictionaries and Sets"
----
+# Data Structures 2: Dictionaries and Sets
 
 In the previous tutorial, we worked with sequential data structures: lists and tuples. Now, we will discover dictionaries and sets, which are unordered data structures: objects are no longer stored by position (or index) but by **key**, which is a unique identifier.
 

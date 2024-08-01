@@ -1,7 +1,5 @@
 ::: {.content-visible when-profile="fr"}
----
-title: "Boucles"
----
+# Boucles
 
 Dans le tutoriel précédent, nous avons étudié les tests, qui permettent à un ordinateur de prendre des décisions selon des conditions spécifiées dans un programme. Nous allons à présent aller encore plus loin dans l'automatisation des opérations, grâce à la notion de **boucle**. Les boucles vont permettre de répéter plusieurs fois une instruction semblable sans avoir à réécrire le même code à chaque fois.
 
@@ -730,9 +728,7 @@ print("dans le mille !")
 
 ::: {.content-visible when-profile="en"}
 
----
-title: "Loops"
----
+# Loops
 
 In the previous tutorial, we studied tests, which allow a computer to make decisions based on conditions specified in a program. We will now go even further in automating operations with the concept of **loops**. Loops will allow us to repeat an instruction several times without having to rewrite the same code each time.
 
