@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../img/python-logo.svg" rel="icon" type="image/svg+xml">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -276,7 +277,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#projet-1---puissance-4" id="toc-projet-1---puissance-4" class="nav-link active" data-scroll-target="#projet-1---puissance-4">Projet 1 - Puissance 4</a>
   <ul class="collapse">
-  <li><a href="#règles-du-jeu" id="toc-règles-du-jeu" class="nav-link" data-scroll-target="#règles-du-jeu">Règles du jeu</a></li>
   <li><a href="#plan-du-projet" id="toc-plan-du-projet" class="nav-link" data-scroll-target="#plan-du-projet">Plan du projet</a></li>
   <li><a href="#initialisation-de-la-grille" id="toc-initialisation-de-la-grille" class="nav-link" data-scroll-target="#initialisation-de-la-grille">Initialisation de la grille</a>
   <ul class="collapse">
@@ -315,22 +315,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projets</a></li><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projet 1 - Puissance 4</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Règles du jeu</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <section id="projet-1---puissance-4" class="level1">
 <h1>Projet 1 - Puissance 4</h1>
 <p>Dans ce projet nous allons implémenter un puissance 4 avec une interface graphique assez sommaire. Pour y arriver, nous allons utiliser les objets fondamentaux de Python.</p>
-<div id="1f5f3aeb" class="cell" data-execution_count="1">
+<div id="2ecb55f7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> solutions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="règles-du-jeu" class="level2">
-<h2 class="anchored" data-anchor-id="règles-du-jeu">Règles du jeu</h2>
 <p>Le but du jeu de Puissance 4 est d’aligner une suite de 4 pions de même couleur sur une grille comptant 6 rangées et 7 colonnes. Chaque joueur dispose de 21 pions d’une couleur (par convention, en général jaune ou rouge). Tour à tour, les deux joueurs placent un pion dans la colonne de leur choix, le pion coulisse alors jusqu’à la position la plus basse possible dans la dite colonne à la suite de quoi c’est à l’adversaire de jouer. Le vainqueur est le joueur qui réalise le premier un alignement (horizontal, vertical ou diagonal) consécutif d’au moins quatre pions de sa couleur. Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n’a réalisé un tel alignement, la partie est déclarée nulle.</p>
 <p>Afin de simplifier le code de ce projet, on partira du principe que les alignements victorieux ne peuvent être qu’horizontaux ou verticaux. Les diagonales ne seront donc pas considérées (mais constituent un exercice intéressant pour aller plus loin !).</p>
-</section>
 <section id="plan-du-projet" class="level2">
 <h2 class="anchored" data-anchor-id="plan-du-projet">Plan du projet</h2>
 <p>Nous allons décomposer la construction du jeu en différentes parties :</p>
@@ -356,82 +369,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Attention</strong> : Bien faire attention à ce que les lignes soient des objets indépendants, autrement dit que modifier l’une des listes n’affecte pas les autres.</p>
 <section id="résultat-attendu" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu">Résultat attendu</h3>
-<div id="1cd7af5e" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[2], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">      2</span> grid
-
-<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
+<div id="e92e96cf" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.initialize_grid()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grid_solution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="01e7c585" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grid)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grid[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[3], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Nombre de lignes : </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(<span class="ansi-yellow-bg">grid</span>)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span>)
-<span class="ansi-green-fg ansi-bold">      2</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Nombre de colonnes : </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(grid[<span style="color:rgb(98,98,98)">0</span>])<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
+<div id="5f8ad1de" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grid_solution)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grid_solution[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer">A vous de jouer !</h3>
-<div id="a08bed5a" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
+<div id="fcf91bea" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_grid():</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7253c796" class="cell" data-execution_count="5">
+<div id="c492d9ab" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[5], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">      3</span> grid
-
-Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan-fg">display_grid</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">display_grid</span>():
-<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Votre code ici</span>
-<span class="ansi-green-fg">----&gt; 3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">grid</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="eba965e1" class="cell" data-execution_count="6">
+<div id="18df37c4" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de lignes : </span><span class="sc">{</span><span class="bu">len</span>(grid)<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Nombre de colonnes : </span><span class="sc">{</span><span class="bu">len</span>(grid[<span class="dv">0</span>])<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[6], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Nombre de lignes : </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(<span class="ansi-yellow-bg">grid</span>)<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span>)
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">Nombre de colonnes : </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">len</span>(grid[<span style="color:rgb(98,98,98)">0</span>])<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -440,59 +402,26 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <p>Notre grille est initialisée, mais son affichage est assez sommaire. L’idée de cette partie est d’offrir une représentation plus visuelle du jeu pendant une partie.</p>
 <p>Pour cela, nous allons créer <strong>une fonction qui prend en entrée la grille précédemment initialisée et renvoie sa représentation</strong> (via la fonction <code>print</code>). Les colonnes seront séparées par le caractère | (barre verticale).</p>
 <p><strong>Indice</strong> : une solution possible fait intervenir deux notions que nous avons vues dans les TP précédents : la concaténation de <em>strings</em> et la fonction <code>join</code> qui “joint” les éléments d’une liste en les séparant par un certain caractère. Pour rappel, voici un exemple qui utilise ces deux concepts :</p>
-<div id="7fcd0c68" class="cell" data-execution_count="7">
+<div id="1cad61c9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>l_join <span class="op">=</span> <span class="st">"DEBUT "</span> <span class="op">+</span> <span class="st">", "</span>.join(l) <span class="op">+</span> <span class="st">" FIN"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l_join)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>DEBUT a, b, c, d, e FIN</code></pre>
-</div>
 </div>
 <section id="résultat-attendu-1" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-1">Résultat attendu</h3>
-<div id="7b88636c" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[8], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> solutions<span style="color:rgb(98,98,98)">.</span>display_grid(<span class="ansi-yellow-bg">grid</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
+<div id="30c81e68" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid_solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-1" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-1">A vous de jouer !</h3>
-<div id="7bd90632" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[9], line 2</span>
-<span class="ansi-red-fg">    # Votre code ici</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
+<div id="908c2291" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_grid():</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="934d33a6" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[10], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> display_grid(<span class="ansi-yellow-bg">grid</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
+<div id="46c73e4b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -511,59 +440,29 @@ Cell <span class="ansi-green-fg">In[10], line 2</span>
 <p>Optionnel : Renvoyer un message d’erreur si un joueur essaie de jouer dans une colonne inexistante ou bien avec une couleur non autorisée.</p>
 <section id="résultat-attendu-2" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-2">Résultat attendu</h3>
-<div id="dd390aaa" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[11], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      2</span> grid <span style="color:rgb(98,98,98)">=</span> solutions<span style="color:rgb(98,98,98)">.</span>make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 1er tour de jeu</span>
-<span class="ansi-green-fg ansi-bold">      3</span> grid <span style="color:rgb(98,98,98)">=</span> solutions<span style="color:rgb(98,98,98)">.</span>make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">5</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">J</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 2ème tour de jeu</span>
-
-<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
-</div>
-</div>
+<div id="44d77349" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.()  <span class="co"># Initialisation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid_solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-2" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-2">A vous de jouer !</h3>
-<div id="833a0c17" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move(grid, column_to_play, disc_color):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    new_grid <span class="op">=</span> copy.deepcopy(grid)  <span class="co"># Evite la modification de la grille initiale</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="039a7fd3" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move(grid, column_to_play, disc_color):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    new_grid <span class="op">=</span> copy.deepcopy(grid)  <span class="co"># Evite la modification de la grille initiale</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8f230322" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[13], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      3</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 1er tour de jeu</span>
-<span class="ansi-green-fg ansi-bold">      4</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">5</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">J</span><span style="color:rgb(175,0,0)">"</span>)  <span style="font-style:italic;color:rgb(95,135,135)"># 2ème tour de jeu</span>
-
-Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan-fg">display_grid</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">display_grid</span>():
-<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Votre code ici</span>
-<span class="ansi-green-fg">----&gt; 3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">grid</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
+<div id="c0caf512" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 1er tour de jeu</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)  <span class="co"># 2ème tour de jeu</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)  <span class="co"># 3ème tour de jeu</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -577,128 +476,60 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </ul>
 <section id="résultat-attendu-3" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-3">Résultat attendu</h3>
-<div id="29c99350" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une ligne</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_row_victory(ligne1))  <span class="co"># Renvoie False</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_row_victory(ligne2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>False
-
-Red won!
-True</code></pre>
+<div id="f9026a84" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une ligne</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ligne1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ligne2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_row_victory(ligne1))  <span class="co"># Renvoie False</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_row_victory(ligne2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="9dcef38e" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une grille</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid))  <span class="co"># Renvoie False</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">3</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">4</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[15], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Détection d'une victoire (horizontale) sur une grille</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(solutions<span style="color:rgb(98,98,98)">.</span>check_horizontal_victory(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Renvoie False</span>
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># Retour à la ligne</span>
-
-<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
-</div>
-</div>
+<div id="2e022a67" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (horizontale) sur une grille</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid_solution))  <span class="co"># Renvoie False</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">3</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">4</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid_solution)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_horizontal_victory(grid_solution))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-3" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-3">A vous de jouer !</h3>
-<div id="87ab185a" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_row_victory(ligne):</span>
+<div id="4e60448b" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_row_victory(ligne):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e61eb650" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"R"</span>, <span class="st">" "</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_row_victory(row1))  <span class="co"># Renvoie False</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_row_victory(row2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="384fb1c4" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_horizontal_victory(grid):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[16], line 2</span>
-<span class="ansi-red-fg">    # Votre code ici</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
 </div>
-</div>
-</div>
-<div id="14dde795" class="cell" data-execution_count="17">
+<div id="5238f1b1" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">"R"</span>, <span class="st">" "</span>]</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">" "</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"J"</span>, <span class="st">" "</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Renvoie False</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_row_victory(row1))  <span class="co"># Renvoie False</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_row_victory(row2))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[17], line 5</span>
-<span class="ansi-green-fg ansi-bold">      2</span> row1 <span style="color:rgb(98,98,98)">=</span> [<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">J</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>]
-<span class="ansi-green-fg ansi-bold">      3</span> row2 <span style="color:rgb(98,98,98)">=</span> [<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">J</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)"> </span><span style="color:rgb(175,0,0)">"</span>]
-<span class="ansi-green-fg">----&gt; 5</span> <span style="color:rgb(0,135,0)">print</span>(<span class="ansi-yellow-bg">check_row_victory</span>(row1))  <span style="font-style:italic;color:rgb(95,135,135)"># Renvoie False</span>
-<span class="ansi-green-fg ansi-bold">      6</span> <span style="color:rgb(0,135,0)">print</span>(check_row_victory(row2))  <span style="font-style:italic;color:rgb(95,135,135)"># Renvoie True</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'check_row_victory' is not defined</pre>
-</div>
-</div>
-</div>
-<div id="3232b5b5" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_horizontal_victory(grid):</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[18], line 2</span>
-<span class="ansi-red-fg">    # Votre code ici</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
-</div>
-</div>
-</div>
-<div id="2c04eac9" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Renvoie False</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">3</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">4</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[19], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(check_horizontal_victory(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Renvoie False</span>
-<span class="ansi-green-fg ansi-bold">      5</span> grid <span style="color:rgb(98,98,98)">=</span> make_move(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">R</span><span style="color:rgb(175,0,0)">"</span>)
-
-Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan-fg">display_grid</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">display_grid</span>():
-<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Votre code ici</span>
-<span class="ansi-green-fg">----&gt; 3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">grid</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">3</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">4</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">5</span>, disc_color<span class="op">=</span><span class="st">"R"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_horizontal_victory(grid))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -711,82 +542,42 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </ul>
 <section id="résultat-attendu-4" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-4">Résultat attendu</h3>
-<div id="47ee44b0" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (verticale) sur une grille</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.display_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid))  <span class="co"># Renvoie False</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[20], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Détection d'une victoire (verticale) sur une grille</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(solutions<span style="color:rgb(98,98,98)">.</span>check_vertical_victory(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Renvoie False</span>
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># Retour à la ligne</span>
-
-<span class="ansi-red-fg">TypeError</span>: display_grid() missing 1 required positional argument: 'grid'</pre>
-</div>
-</div>
+<div id="f20483d5" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Détection d'une victoire (verticale) sur une grille</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid_solution))  <span class="co"># Renvoie False</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>solutions.display_grid(grid_solution)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solutions.check_vertical_victory(grid_solution))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-4" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-4">A vous de jouer !</h3>
-<div id="3b902880" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_vertical_victory(grid):</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[21], line 2</span>
-<span class="ansi-red-fg">    # Votre code ici</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
+<div id="4f117f82" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_vertical_victory(grid):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="ac02b049" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> display_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Renvoie False</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[22], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">display_grid</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(check_vertical_victory(grid))  <span style="font-style:italic;color:rgb(95,135,135)"># Renvoie False</span>
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># Retour à la ligne</span>
-
-Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan-fg">display_grid</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">display_grid</span>():
-<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Votre code ici</span>
-<span class="ansi-green-fg">----&gt; 3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">grid</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'grid' is not defined</pre>
-</div>
-</div>
+<div id="fa02c269" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Renvoie False</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>display_grid(grid)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()  <span class="co"># Retour à la ligne</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(check_vertical_victory(grid))  <span class="co"># Renvoie True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -802,69 +593,41 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>, in <span class="ansi-cyan
 </ul>
 <section id="résultat-attendu-5" class="level3">
 <h3 class="anchored" data-anchor-id="résultat-attendu-5">Résultat attendu</h3>
-<div id="7e5b976a" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.initialize_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tour 1
-Tour 2
-Tour 3
-Tour 4</code></pre>
-</div>
+<div id="670bf682" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>grid_solution <span class="op">=</span> solutions.make_move_and_check_victory(grid<span class="op">=</span>grid_solution, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="a-vous-de-jouer-5" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-5">A vous de jouer !</h3>
-<div id="ebfe58d0" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_victory(grid):</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[24], line 2</span>
-<span class="ansi-red-fg">    # Votre code ici</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
+<div id="c6b96ef9" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_victory(grid):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="2cb96d19" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move_and_check_victory(grille, column_to_play, disc_color):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> copy.deepcopy(grid)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="823fe043" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_move_and_check_victory(grille, column_to_play, disc_color):</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> copy.deepcopy(grid)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="3c0f9525" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialisation</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[26], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Vérification du résultat</span>
-<span class="ansi-green-fg">----&gt; 2</span> grid <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">initialize_grid</span>()  <span style="font-style:italic;color:rgb(95,135,135)"># Initialisation</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Tour 1</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">      4</span> grid <span style="color:rgb(98,98,98)">=</span> make_move_and_check_victory(grid<span style="color:rgb(98,98,98)">=</span>grid, column_to_play<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(98,98,98)">2</span>, disc_color<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">J</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'initialize_grid' is not defined</pre>
-</div>
-</div>
+<div id="9fb1323a" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> initialize_grid()  <span class="co"># Initialisation</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 1"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 2"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 3"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tour 4"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> make_move_and_check_victory(grid<span class="op">=</span>grid, column_to_play<span class="op">=</span><span class="dv">2</span>, disc_color<span class="op">=</span><span class="st">"J"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -965,7 +728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/inseefrlab\.github\.io\/formation-python-initiation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../img/python-logo.svg" rel="icon" type="image/svg+xml">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -301,7 +302,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projects</a></li><li class="breadcrumb-item"><a href="../../../source/projects/meteo/tutorial.html">Project 2 - API interaction</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Partie 1 : récupération des coordonnées géographiques pour une localisation donnée</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <section id="project-2---interaction-with-apis" class="level1">
@@ -317,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://open-meteo.com/en/docs">Open-Meteo Weather Forecast</a>: an API that provides detailed weather forecasts.</li>
 </ul>
 <p>Let’s start by importing the packages we will need throughout this project.</p>
-<div id="80256306" class="cell" data-execution_count="30">
+<div id="9f67da22" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -338,50 +355,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Define a function <code>build_request_nominatim</code> that constructs the request URL for a given country and city.</p>
 <section id="expected-result" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result">Expected result</h4>
-<div id="580cbcb9" class="cell" data-execution_count="31">
+<div id="6d154771" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url_request_nominatim <span class="op">=</span> solutions.build_request_nominatim(<span class="st">"France"</span>, <span class="st">"Montrouge"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url_request_nominatim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[31], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> url_request_nominatim <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>build_request_nominatim(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">France</span><span style="color:rgb(175,0,0)">"</span>, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Montrouge</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">      2</span> url_request_nominatim
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn">Your turn!</h4>
-<div id="410a0acf" class="cell" data-execution_count="32">
+<div id="1d46ff5b" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_request_nominatim(country, city):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> url_request</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8ba4deda" class="cell" data-execution_count="33">
+<div id="29075e9e" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>url_request_nominatim <span class="op">=</span> build_request_nominatim(<span class="st">"France"</span>, <span class="st">"Montrouge"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>url_request_nominatim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[33], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> url_request_nominatim <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">build_request_nominatim</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">France</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">Montrouge</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">      3</span> url_request_nominatim
-
-Cell <span class="ansi-green-fg">In[32], line 3</span>, in <span class="ansi-cyan-fg">build_request_nominatim</span><span class="ansi-blue-fg">(country, city)</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">build_request_nominatim</span>(country, city):
-<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-style:italic;color:rgb(95,135,135)"># Your code here</span>
-<span class="ansi-green-fg">----&gt; 3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">url_request</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'url_request' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -392,51 +381,26 @@ Cell <span class="ansi-green-fg">In[32], line 3</span>, in <span class="ansi-cya
 <p>Define a function <code>get_lat_long</code> that retrieves the central latitude and longitude for a given country and city.</p>
 <section id="expected-result-1" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-1">Expected result</h4>
-<div id="5a9f17e3" class="cell" data-execution_count="34">
+<div id="726fb683" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lat, <span class="bu">long</span> <span class="op">=</span> solutions.get_lat_long(query<span class="op">=</span>url_request_nominatim)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lat, <span class="bu">long</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(lat))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="bu">long</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[34], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> lat, long <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>get_lat_long(query<span style="color:rgb(98,98,98)">=</span>url_request_nominatim)
-<span class="ansi-green-fg ansi-bold">      2</span> <span style="color:rgb(0,135,0)">print</span>(lat, long)
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">type</span>(lat))
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-1" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-1">Your turn!</h4>
-<div id="ae26abc7" class="cell" data-execution_count="35">
+<div id="31173f39" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_lat_long(query):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> latitude, longitude</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8b358849" class="cell" data-execution_count="36">
+<div id="45350f7b" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lat, <span class="bu">long</span> <span class="op">=</span> get_lat_long(query<span class="op">=</span>url_request_nominatim)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lat, <span class="bu">long</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(lat))</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="bu">long</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[36], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> lat, long <span style="color:rgb(98,98,98)">=</span> get_lat_long(query<span style="color:rgb(98,98,98)">=</span><span class="ansi-yellow-bg">url_request_nominatim</span>)
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(lat, long)
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">type</span>(lat))
-
-<span class="ansi-red-fg">NameError</span>: name 'url_request_nominatim' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -454,45 +418,22 @@ Cell <span class="ansi-green-fg">In[36], line 2</span>
 <p>Knowing all this information and using the documentation, define a function <code>build_request_open_meteo</code> that constructs the request URL for a given latitude and longitude. Again, it is possible to test the validity of the request by executing the link in a browser and verifying that the returned results seem coherent.</p>
 <section id="expected-result-2" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-2">Expected result</h4>
-<div id="9479cfb5" class="cell" data-execution_count="37">
+<div id="58f37f78" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo <span class="op">=</span> solutions.build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="bu">long</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[37], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> url_request_open_meteo <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>build_request_open_meteo(latitude<span style="color:rgb(98,98,98)">=</span>lat, longitude<span style="color:rgb(98,98,98)">=</span>long)
-<span class="ansi-green-fg ansi-bold">      2</span> url_request_open_meteo
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-2" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-2">Your turn!</h4>
-<div id="6c4c82a4" class="cell" data-execution_count="38">
+<div id="2bf22c89" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_request_open_meteo(latitude, longitude):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> url_request</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="62712ee6" class="cell" data-execution_count="39">
+<div id="702bb49a" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo <span class="op">=</span> build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="bu">long</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[39], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> url_request_open_meteo <span style="color:rgb(98,98,98)">=</span> build_request_open_meteo(latitude<span style="color:rgb(98,98,98)">=</span><span class="ansi-yellow-bg">lat</span>, longitude<span style="color:rgb(98,98,98)">=</span>long)
-<span class="ansi-green-fg ansi-bold">      3</span> url_request_open_meteo
-
-<span class="ansi-red-fg">NameError</span>: name 'lat' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -507,88 +448,40 @@ Cell <span class="ansi-green-fg">In[39], line 2</span>
 </ul>
 <section id="expected-result-3" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-3">Expected result</h4>
-<div id="5856aa25" class="cell" data-execution_count="40">
+<div id="9907c952" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> solutions.get_meteo_data(url_request_open_meteo)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(predictions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[40], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> predictions <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>get_meteo_data(url_request_open_meteo)
-<span class="ansi-green-fg ansi-bold">      2</span> <span style="color:rgb(0,135,0)">type</span>(predictions)
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="0c445fa3" class="cell" data-execution_count="41">
+<div id="e9193a77" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wrong_request <span class="op">=</span> solutions.build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="st">"seventeen-point-four"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> solutions.get_meteo_data(wrong_request)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[41], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> wrong_request <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>build_request_open_meteo(latitude<span style="color:rgb(98,98,98)">=</span>lat, longitude<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">seventeen-point-four</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">      2</span> output <span style="color:rgb(98,98,98)">=</span> solutions<span style="color:rgb(98,98,98)">.</span>get_meteo_data(wrong_request)
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(output)
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-3" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-3">Your turn!</h4>
-<div id="073a22ad" class="cell" data-execution_count="42">
+<div id="c38c2e53" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_meteo_data(query):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.json()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a3fad458" class="cell" data-execution_count="43">
+<div id="b3aff0b4" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> get_meteo_data(url_request_open_meteo)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(predictions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[43], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> predictions <span style="color:rgb(98,98,98)">=</span> get_meteo_data(<span class="ansi-yellow-bg">url_request_open_meteo</span>)
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">type</span>(predictions)
-
-<span class="ansi-red-fg">NameError</span>: name 'url_request_open_meteo' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="e2ef7624" class="cell" data-execution_count="44">
+<div id="325b230e" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>wrong_request <span class="op">=</span> build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="st">"seventeen-point-four"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> get_meteo_data(wrong_request)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[44], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> wrong_request <span style="color:rgb(98,98,98)">=</span> build_request_open_meteo(latitude<span style="color:rgb(98,98,98)">=</span><span class="ansi-yellow-bg">lat</span>, longitude<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">seventeen-point-four</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">      3</span> output <span style="color:rgb(98,98,98)">=</span> get_meteo_data(wrong_request)
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>(output)
-
-<span class="ansi-red-fg">NameError</span>: name 'lat' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
 <section id="question-5-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-5-1">Question 5</h3>
 <p>To understand the structure of the data we retrieved, explore the returned predictions dictionary (keys, different levels, format of the predictions, format of the variable indicating the dates/times of the predictions, etc.)</p>
-<div id="de286cba" class="cell" data-execution_count="45">
+<div id="3663c430" class="cell" data-execution_count="45">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data exploration</span></span>
@@ -606,19 +499,6 @@ Cell <span class="ansi-green-fg">In[44], line 2</span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(predictions[<span class="st">'hourly'</span>][<span class="st">"relativehumidity_2m"</span>][:<span class="dv">5</span>])</span>
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(predictions[<span class="st">'hourly'</span>][<span class="st">"windspeed_10m"</span>][:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[45], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Data exploration</span>
-<span class="ansi-green-fg">----&gt; 2</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">type</span>(<span class="ansi-yellow-bg">predictions</span>))
-<span class="ansi-green-fg ansi-bold">      3</span> <span style="color:rgb(0,135,0)">print</span>(predictions<span style="color:rgb(98,98,98)">.</span>keys())
-<span class="ansi-green-fg ansi-bold">      4</span> <span style="color:rgb(0,135,0)">print</span>(<span style="color:rgb(0,135,0)">type</span>(predictions[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">hourly</span><span style="color:rgb(175,0,0)">"</span>]))
-
-<span class="ansi-red-fg">NameError</span>: name 'predictions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -637,45 +517,22 @@ Cell <span class="ansi-green-fg">In[45], line 2</span>
 </ol>
 <section id="expected-result-4" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-4">Expected result</h4>
-<div id="4e01abc0" class="cell" data-execution_count="46">
+<div id="8ff2e0b4" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_preds <span class="op">=</span> solutions.preprocess_predictions(predictions)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_preds.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[46], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> df_preds <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>preprocess_predictions(predictions)
-<span class="ansi-green-fg ansi-bold">      2</span> df_preds<span style="color:rgb(98,98,98)">.</span>head()
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-4" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-4">Your turn!</h4>
-<div id="334b0b89" class="cell" data-execution_count="47">
+<div id="91db9653" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess_predictions(predictions):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fd9ce76d" class="cell" data-execution_count="48">
+<div id="34e2133a" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_preds <span class="op">=</span> preprocess_predictions(predictions)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_preds.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[48], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> df_preds <span style="color:rgb(98,98,98)">=</span> preprocess_predictions(<span class="ansi-yellow-bg">predictions</span>)
-<span class="ansi-green-fg ansi-bold">      3</span> df_preds<span style="color:rgb(98,98,98)">.</span>head()
-
-<span class="ansi-red-fg">NameError</span>: name 'predictions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -689,69 +546,27 @@ Cell <span class="ansi-green-fg">In[48], line 2</span>
 <p>Define a function <code>plot_agg_avg_bhi</code> that calculates the aggregated index in each case and represents the result as a <code>lineplot</code>.</p>
 <section id="expected-result-5" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-5">Expected result</h4>
-<div id="061f8d64" class="cell" data-execution_count="49">
+<div id="92c46b10" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[49], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>plot_agg_avg_bhi(df_preds, agg_var<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">day</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="21f94619" class="cell" data-execution_count="50">
+<div id="64f3266e" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[50], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>plot_agg_avg_bhi(df_preds, agg_var<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">hour</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-5" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-5">Your turn!</h4>
-<div id="7badf970" class="cell" data-execution_count="51">
+<div id="907689eb" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"day"</span>):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="588a736b" class="cell" data-execution_count="52">
+<div id="41e2a85a" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[52], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> plot_agg_avg_bhi(<span class="ansi-yellow-bg">df_preds</span>, agg_var<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">day</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'df_preds' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="5c6571e2" class="cell" data-execution_count="53">
+<div id="f9e67ea1" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[53], line 2</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Checking the result</span>
-<span class="ansi-green-fg">----&gt; 2</span> plot_agg_avg_bhi(<span class="ansi-yellow-bg">df_preds</span>, agg_var<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">hour</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'df_preds' is not defined</pre>
-</div>
-</div>
 </div>
 <p>What do you conclude for the coming week?</p>
 </section>
@@ -762,45 +577,25 @@ Cell <span class="ansi-green-fg">In[53], line 2</span>
 <p>Define a <code>main</code> function that represents the <em>bad hair index</em> for a given country, city, and aggregation level.</p>
 <section id="expected-result-6" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-6">Expected result</h4>
-<div id="b00936ca" class="cell" data-execution_count="54">
+<div id="ec7be335" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>solutions.main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[54], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>main(country<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Germany</span><span style="color:rgb(175,0,0)">"</span>, city<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Berlin</span><span style="color:rgb(175,0,0)">"</span>, agg_var<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">day</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="4368afd3" class="cell" data-execution_count="55">
+<div id="305262fb" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>solutions.main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[55], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">solutions</span><span style="color:rgb(98,98,98)">.</span>main(country<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Germany</span><span style="color:rgb(175,0,0)">"</span>, city<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Berlin</span><span style="color:rgb(175,0,0)">"</span>, agg_var<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">hour</span><span style="color:rgb(175,0,0)">"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'solutions' is not defined</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-6" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-6">Your turn!</h4>
-<div id="31a03446" class="cell" data-execution_count="56">
+<div id="37df6c19" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main(country, city, agg_var<span class="op">=</span><span class="st">"day"</span>):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a4458474" class="cell" data-execution_count="57">
+<div id="3b8b809e" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5f238150" class="cell" data-execution_count="58">
+<div id="2771cbbd" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the result</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -904,7 +699,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/inseefrlab\.github\.io\/formation-python-initiation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

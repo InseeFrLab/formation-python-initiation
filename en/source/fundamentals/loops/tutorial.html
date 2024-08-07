@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../img/python-logo.svg" rel="icon" type="image/svg+xml">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -349,7 +350,7 @@ window.Quarto = {
 <h1>Loops</h1>
 <p>In the previous tutorial, we studied tests, which allow a computer to make decisions based on conditions specified in a program. We will now go even further in automating operations with the concept of <strong>loops</strong>. Loops will allow us to repeat an instruction several times without having to rewrite the same code each time.</p>
 <p>To illustrate this idea, let’s imagine we want to display each element of a list. For now, we would do:</p>
-<div id="1dca8532" class="cell" data-execution_count="32">
+<div id="4321e30a" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gamme[<span class="dv">0</span>])</span>
@@ -368,7 +369,7 @@ mi</code></pre>
 <h3 class="anchored" data-anchor-id="definition">Definition</h3>
 <p>The first type of loop we will look at is the <code>for</code> loop. A <code>for</code> loop allows you to traverse the different elements contained in an object called an <strong>iterable</strong>, and perform operations with these elements. Iterable objects include all the sequential objects we have seen so far: strings, lists, tuples, etc.</p>
 <p>Let’s illustrate how a <code>for</code> loop works by solving the problem presented earlier.</p>
-<div id="fc4ab2a6" class="cell" data-execution_count="33">
+<div id="5a196580" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> note <span class="kw">in</span> gamme:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(note)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -390,7 +391,7 @@ si</code></pre>
 <li><p>This is followed by a <strong>block of instructions</strong>, i.e., a series of operations (just one in our example) that will be executed at each iteration of the loop. This block is visible by its <strong>level of indentation</strong>, incremented by 1 compared to the statement. The block ends as soon as the indentation returns to its initial level.</p></li>
 </ul>
 <p>As with conditional statements like <code>if</code>/<code>else</code>, indentation is crucial. If you forget it, Python returns an error.</p>
-<div id="91f264bf" class="cell" data-execution_count="34">
+<div id="f5e56e9c" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> note <span class="kw">in</span> gamme:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(note)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -408,14 +409,14 @@ si</code></pre>
 <h3 class="anchored" data-anchor-id="operation">Operation</h3>
 <p>Now let’s look in more detail at what the <code>for</code> statement does. It defines an <strong>iteration variable</strong> (called <code>note</code> in our example), which will traverse the elements of the <strong>iterator</strong> specified after the <code>in</code> (the list <code>gamme</code> in our example). The syntax of a loop in Python lends itself well to a literal description; in our case: “for each note in the list gamme, print the note.”</p>
 <p>Note that a loop defines a variable without needing the traditional <code>variable = value</code> assignment syntax. Furthermore, this variable is not deleted once the loop is finished; it then takes the value of the last element of the iterator.</p>
-<div id="f8a9bbde" class="cell" data-execution_count="35">
+<div id="b839744d" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>'si'</code></pre>
 </div>
 </div>
 <p>The iterator does not necessarily have to be a list; it can be any iterable object. This includes all the sequential objects we have seen.</p>
-<div id="197e9ad4" class="cell" data-execution_count="36">
+<div id="5d83c140" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> char <span class="kw">in</span> <span class="st">"YMCA"</span>:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(char)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -438,7 +439,7 @@ A
 </div>
 </div>
 <p>However, the class of iterable objects is much larger than just sequential objects. For example, you can iterate over the keys of a dictionary, even though we saw in a previous tutorial that it is not a sequential object, since there is no notion of order in a dictionary.</p>
-<div id="72278ed9" class="cell" data-execution_count="37">
+<div id="91f31601" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>inventaire <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>, <span class="st">'cereal'</span>: <span class="st">'1kg'</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> inventaire:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(key)</span>
@@ -461,7 +462,7 @@ cereal
 <h3 class="anchored" data-anchor-id="iteration-over-integers-with-the-range-function">Iteration over integers with the <code>range</code> function</h3>
 <p>In programming, it is common to want to iterate over a series of integers. Instead of specifying this series in a list, which is not very practical if the series is long, we use the <code>range(n)</code> function. This creates an iterable object that contains all the integers between 0 and n-1, and can be used within a loop.</p>
 <p>For example, let’s see how we can very simply display a multiplication table using this function.</p>
-<div id="6f11a534" class="cell" data-execution_count="38">
+<div id="642ef420" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> <span class="dv">9</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">11</span>):</span>
@@ -484,7 +485,7 @@ cereal
 <section id="iteration-over-indices" class="level3">
 <h3 class="anchored" data-anchor-id="iteration-over-indices">Iteration over indices</h3>
 <p>We have seen that a <code>for</code> loop works by iterating over the <em>elements</em> of an iterable. However, in the case of a sequential object like a list, we may sometimes want to iterate over the <em>indices</em> of the object to manipulate both the indices and the elements contained in the object. In this case, the <code>range</code> function can be used in combination with the <code>len</code> function to create an iterable object that contains exactly the indices of the initial list.</p>
-<div id="4bf0029c" class="cell" data-execution_count="39">
+<div id="cfe14ee7" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(gamme)):</span>
@@ -501,14 +502,14 @@ The note number 6 in the C major scale is si</code></pre>
 </div>
 <p>Since this need is frequent but the code above is not very readable, there is a built-in Python function called <code>enumerate</code> that allows iterating over both objects and indices. It is therefore preferable to use this syntax, which is clearer and helps avoid some errors.</p>
 <p>The <code>enumerate</code> function applied to an iterable object returns a new iterable object that contains all the pairs <code>(index, element)</code> in the object, in the form of tuples. Since it is a special type of object – a generator, which we will see in a more advanced tutorial – you need to apply the <code>list</code> function to display its content.</p>
-<div id="92897726" class="cell" data-execution_count="40">
+<div id="226b9bfd" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">enumerate</span>(gamme))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>[(0, 'do'), (1, 're'), (2, 'mi'), (3, 'fa'), (4, 'sol'), (5, 'la'), (6, 'si')]</code></pre>
 </div>
 </div>
 <p>Let’s see how to rewrite the previous loop with this new syntax.</p>
-<div id="0baae228" class="cell" data-execution_count="41">
+<div id="f6d23066" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, note <span class="kw">in</span> <span class="bu">enumerate</span>(gamme):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The note number "</span> <span class="op">+</span> <span class="bu">str</span>(i) <span class="op">+</span> <span class="st">" in the C major scale is "</span> <span class="op">+</span> note)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -522,7 +523,7 @@ The note number 6 in the C major scale is si</code></pre>
 </div>
 </div>
 <p>NB: To assign variables in the <code>if</code> statement, we used a handy technique we had already mentioned in an exercise in the tutorial on lists and tuples: tuple unpacking. Let’s illustrate it with an example:</p>
-<div id="a9f9e8b9" class="cell" data-execution_count="42">
+<div id="f7f9794a" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> t</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
@@ -541,7 +542,7 @@ The note number 6 in the C major scale is si</code></pre>
 <section id="definition-1" class="level3">
 <h3 class="anchored" data-anchor-id="definition-1">Definition</h3>
 <p><code>while</code> loops provide an alternative way to specify repetitive procedures. The idea is no longer to iterate over a fixed number of objects, but to <strong>iterate as long as a condition (logical test) is met</strong>.</p>
-<div id="5be36a2d" class="cell" data-execution_count="43">
+<div id="3f83c461" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
@@ -565,7 +566,7 @@ The note number 6 in the C major scale is si</code></pre>
 <p>An essential difference between <code>while</code> loops and <code>for</code> loops lies in the stopping criterion. In a <code>for</code> loop, this criterion is clear: the loop iterates over the elements of an iterable object, necessarily of finite size. The loop stops when each element of the iterable has been traversed.</p>
 <p>In a <code>while</code> loop, on the other hand, the stopping criterion is given by a logical condition, so the user must set the stopping criterion. In the example, for the loop to stop, the condition <code>i &lt;= 5</code> must become <code>False</code>, meaning <code>i</code> must become strictly greater than 5. We ensured this by initializing <code>i</code> to 1 before the loop starts, and then incrementing <code>i</code> by one unit at each iteration.</p>
 <p>What happens if we forget to increment <code>i</code>? The stopping criterion is never reached, so the loop is infinite, and we must use the “Stop” button (black square) in Jupyter to stop the running program. Let’s verify this by incrementing the wrong variable.</p>
-<div id="87f25eb9" class="cell" data-execution_count="44">
+<div id="96cbb300" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
@@ -577,7 +578,7 @@ The note number 6 in the C major scale is si</code></pre>
 <h3 class="anchored" data-anchor-id="the-break-statement">The <code>break</code> statement</h3>
 <p>An alternative way to specify a stopping criterion is to use the <code>break</code> statement. When this statement is reached and executed, the loop is immediately interrupted.</p>
 <p>Let’s illustrate its operation with an example. The first line creates an infinite loop because, by definition, <code>True</code> is always evaluated as <code>True</code>. The program then asks the user to type a name, and does so indefinitely until the user types the expected name. Only then is the <code>break</code> statement reached, and the loop stops. The message “Welcome <your_name>” is finally displayed, as the second <code>print</code> is not included in the loop.</your_name></p>
-<div id="c667660a" class="cell" data-execution_count="45">
+<div id="42e1e8df" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>your_name <span class="op">=</span> <span class="st">"Romain"</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -589,7 +590,7 @@ The note number 6 in the C major scale is si</code></pre>
 </div>
 <p>It is important to note that a <code>break</code> statement only terminates the loop of the directly superior level. In the case of a multi-level loop, it is entirely possible for operations to continue even when a <code>break</code> statement has been reached.</p>
 <p>Let’s illustrate this principle with an example.</p>
-<div id="cec28f51" class="cell" data-execution_count="46">
+<div id="7108a874" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">5</span>:</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
@@ -615,7 +616,7 @@ The note number 6 in the C major scale is si</code></pre>
 <h3 class="anchored" data-anchor-id="the-continue-statement">The <code>continue</code> statement</h3>
 <p>The <code>continue</code> statement allows you to skip to the next iteration of the loop.</p>
 <p>Let’s enhance the previous example to illustrate its operation. As long as a different name than the expected one is entered, the <code>continue</code> statement is evaluated, and the program continues to ask for a name. When the correct name is entered, the program asks the user to enter a password. If the password is the expected one, the <code>break</code> statement is reached and executed, and the loop stops. If the password is incorrect, however, the loop restarts at the beginning of the execution block, so you need to enter a name again before the password.</p>
-<div id="356a1278" class="cell" data-execution_count="47">
+<div id="e52e7d95" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>your_name <span class="op">=</span> <span class="st">""</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -665,7 +666,7 @@ Show solution
 <section id="predicting-results-of-while-loops" class="level3">
 <h3 class="anchored" data-anchor-id="predicting-results-of-while-loops">Predicting results of <code>while</code> loops</h3>
 <p>Try to predict what the following <code>while</code> loops will produce, and check your results.</p>
-<div id="078de831" class="cell" data-execution_count="48">
+<div id="b18e0466" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span> <span class="dv">10</span>:</span>
@@ -693,7 +694,7 @@ Show solution
 <span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span>
 <span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"hello world"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="09512fe6" class="cell" data-execution_count="49">
+<div id="f6965f97" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -725,7 +726,7 @@ Show solution
 <h3 class="anchored" data-anchor-id="effect-of-an-indentation-error">Effect of an indentation error</h3>
 <p>Source: <a href="https://python.sdv.univ-paris-diderot.fr/06_tests/">python.sdv.univ-paris-diderot.fr</a></p>
 <p>To visualize the importance of indentation in instruction blocks, try to predict what the following two programs will return. Which one has the expected effect?</p>
-<div id="bf0f4fe7" class="cell" data-execution_count="50">
+<div id="a22bdc14" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> numbers:</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">==</span> <span class="dv">5</span>:</span>
@@ -736,7 +737,7 @@ Show solution
 because the variable num is 5</code></pre>
 </div>
 </div>
-<div id="ae6c0044" class="cell" data-execution_count="51">
+<div id="4659cd52" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> numbers:</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">==</span> <span class="dv">5</span>:</span>
@@ -749,7 +750,7 @@ because the variable num is 5
 because the variable num is 6</code></pre>
 </div>
 </div>
-<div id="fde82880" class="cell" data-execution_count="52">
+<div id="baa6b1d2" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -764,7 +765,7 @@ Show solution
 <section id="converting-a-for-loop-to-a-while-loop" class="level3">
 <h3 class="anchored" data-anchor-id="converting-a-for-loop-to-a-while-loop">Converting a <code>for</code> loop to a <code>while</code> loop</h3>
 <p>Rewrite the following <code>for</code> loop using a <code>while</code> loop.</p>
-<div id="a4192201" class="cell" data-execution_count="53">
+<div id="9f7a63cc" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, note <span class="kw">in</span> <span class="bu">enumerate</span>(gamme):</span>
@@ -779,7 +780,7 @@ The note number 5 in the C major scale is la
 The note number 6 in the C major scale is si</code></pre>
 </div>
 </div>
-<div id="1a565f13" class="cell" data-execution_count="54">
+<div id="702b6c47" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -787,7 +788,7 @@ The note number 6 in the C major scale is si</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="93e0fe71" class="cell" data-execution_count="55">
+<div id="952b59c5" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gamme <span class="op">=</span> [<span class="st">'do'</span>, <span class="st">'re'</span>, <span class="st">'mi'</span>, <span class="st">'fa'</span>, <span class="st">'sol'</span>, <span class="st">'la'</span>, <span class="st">'si'</span>]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
@@ -815,12 +816,12 @@ The note number 6 in the C major scale is si</code></pre>
 <li><p>Check if the target integer is present in the list <code>l</code>.</p></li>
 <li><p>If yes, display the message ‘The number <code>target_num</code> is at position <code>i</code> in the list’, and end the loop.</p></li>
 </ul>
-<div id="9b13ba76" class="cell" data-execution_count="56">
+<div id="eac81685" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>target_num <span class="op">=</span> <span class="dv">78</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">98</span>, <span class="dv">65</span>, <span class="dv">39</span>, <span class="dv">78</span>, <span class="dv">55</span>, <span class="dv">119</span>, <span class="dv">27</span>, <span class="dv">33</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="492c3660" class="cell" data-execution_count="57">
+<div id="6d0d27b2" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -828,7 +829,7 @@ The note number 6 in the C major scale is si</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="be883d29" class="cell" data-execution_count="58">
+<div id="b83896ec" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>target_num <span class="op">=</span> <span class="dv">78</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">12</span>, <span class="dv">98</span>, <span class="dv">65</span>, <span class="dv">39</span>, <span class="dv">78</span>, <span class="dv">55</span>, <span class="dv">119</span>, <span class="dv">27</span>, <span class="dv">33</span>]</span>
@@ -858,7 +859,7 @@ The number 78 is at position 4 in the list.</code></pre>
 <li><p>Each subsequent number in the sequence is obtained by adding the two preceding numbers</p></li>
 </ul>
 <p>Write a program to calculate the first <span class="math inline">\(n\)</span> terms of the sequence using a <code>for</code> loop.</p>
-<div id="af7087ee" class="cell" data-execution_count="59">
+<div id="a237e702" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -866,7 +867,7 @@ The number 78 is at position 4 in the list.</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="43f8dcc5" class="cell" data-execution_count="60">
+<div id="6061cbc2" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>n_terms <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="dv">1</span></span>
@@ -900,7 +901,7 @@ Show solution
 <li><p>tables[9][5] -&gt; 45</p></li>
 <li><p>tables[12][7] -&gt; 84</p></li>
 </ul>
-<div id="6b472c5c" class="cell" data-execution_count="61">
+<div id="28be7e97" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -908,7 +909,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="cd91f7f0" class="cell" data-execution_count="62">
+<div id="3d22739f" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> {}</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">13</span>):</span>
@@ -932,7 +933,7 @@ Show solution
 <h3 class="anchored" data-anchor-id="calculating-the-minimum-and-maximum-of-a-series-by-hand">Calculating the minimum and maximum of a series “by hand”</h3>
 <p>Calculate the minimum and maximum of the following series of values without using Python’s <code>min</code> and <code>max</code> functions.</p>
 <p>x = [8, 18, 6, 0, 15, 17.5, 9, 1]</p>
-<div id="e817406e" class="cell" data-execution_count="63">
+<div id="52a485d3" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -940,7 +941,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="73814734" class="cell" data-execution_count="64">
+<div id="849a4a33" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">15</span>, <span class="fl">17.5</span>, <span class="dv">9</span>, <span class="dv">1</span>]</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>current_min <span class="op">=</span> x[<span class="dv">0</span>]</span>
@@ -975,7 +976,7 @@ True</code></pre>
 <li><p>n to the power of k is written in Python as <code>n**k</code></p></li>
 <li><p>in practice, you should never try to recode such functions yourself, but use functions from suitable packages like <code>numpy</code>.</p></li>
 </ul>
-<div id="1d8492d2" class="cell" data-execution_count="65">
+<div id="d4a734f5" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -983,7 +984,7 @@ True</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="6bf38c93" class="cell" data-execution_count="66">
+<div id="1ea618ad" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">15</span>, <span class="fl">17.5</span>, <span class="dv">9</span>, <span class="dv">1</span>]</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(x)</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1032,7 +1033,7 @@ Show solution
 <li><p>All multiples of 10 between 1 and 100 (100 excluded)</p></li>
 <li><p>All integers from 10 to 20 (20 included), in reverse order (from 20 to 10)</p></li>
 </ul>
-<div id="ebe3a978" class="cell" data-execution_count="67">
+<div id="71525616" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1040,7 +1041,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="79c68713" class="cell" data-execution_count="68">
+<div id="98846add" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>)))</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">21</span>)))</span>
@@ -1073,7 +1074,7 @@ Show solution
 <li><p>If <code>p</code> equals $15, print the message “spot on!”</p></li>
 </ul>
 <p>Note, <code>input</code> returns a string by default. Therefore, you need to convert the value of <code>p</code> to an integer (using the <code>int</code> function) for the game to work.</p>
-<div id="f985bf98" class="cell" data-execution_count="69">
+<div id="6bb887b5" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1081,7 +1082,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="75060d0a" class="cell" data-execution_count="70">
+<div id="81b27d7a" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>right_price <span class="op">=</span> <span class="dv">15</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -1226,7 +1227,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/inseefrlab\.github\.io\/formation-python-initiation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

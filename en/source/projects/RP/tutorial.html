@@ -57,13 +57,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../img/python-logo.svg" rel="icon" type="image/svg+xml">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,9 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../../styles.css">
@@ -305,14 +303,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projects</a></li><li class="breadcrumb-item"><a href="../../../source/projects/RP/tutorial.html">Project 3 - Population census analysis</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Partie 1 : Téléchargement et mise en forme des données</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <section id="project-3---population-census-analysis" class="level1">
 <h1>Project 3 - Population census analysis</h1>
 <p>The goal of this project is to perform a quick statistical analysis of a dataset whose format is not directly optimized for analysis in python. We will exclusively use the <code>pandas</code> library for data analysis. To best reproduce a situation you might encounter, we strongly encourage you to consult the library’s documentation (<a href="https://pandas.pydata.org/docs/user_guide/index.html#user-guide">docs</a>).</p>
 <p>We will focus on the population estimate as of January 1st of each year, this estimate being made from censuses and population evolution models. The data is accessible on the Insee website at the following address: <a href="https://www.insee.fr/en/statistics/1893198">https://www.insee.fr/en/statistics/1893198</a>. The file we will use can be downloaded directly via this url: <a href="https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls">https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls</a>.</p>
-<div id="e431eb90" class="cell" data-execution_count="28">
+<div id="655e46f2" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -333,323 +347,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Define the <code>load_data()</code> function which has no parameters and returns a <code>Dict</code> where the <strong>keys</strong> correspond to the names of the tabs of our file and the <strong>values</strong> correspond to the data of the different spreadsheets. To do this, use a function from the <code>pandas</code> library by specifying the correct parameters.</p>
 <section id="expected-result" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result">Expected result</h4>
-<div id="04218913" class="cell" data-execution_count="29">
+<div id="7ddc65df" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> solutions.load_data()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"2022"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">Départements</th>
-<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">Ensemble</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th colspan="10" data-quarto-table-cell-role="th" data-halign="left">Femmes</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Unnamed: 0_level_1</th>
-<th data-quarto-table-cell-role="th">Unnamed: 1_level_1</th>
-<th data-quarto-table-cell-role="th">0 à 4 ans</th>
-<th data-quarto-table-cell-role="th">5 à 9 ans</th>
-<th data-quarto-table-cell-role="th">10 à 14 ans</th>
-<th data-quarto-table-cell-role="th">15 à 19 ans</th>
-<th data-quarto-table-cell-role="th">20 à 24 ans</th>
-<th data-quarto-table-cell-role="th">25 à 29 ans</th>
-<th data-quarto-table-cell-role="th">30 à 34 ans</th>
-<th data-quarto-table-cell-role="th">35 à 39 ans</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">55 à 59 ans</th>
-<th data-quarto-table-cell-role="th">60 à 64 ans</th>
-<th data-quarto-table-cell-role="th">65 à 69 ans</th>
-<th data-quarto-table-cell-role="th">70 à 74 ans</th>
-<th data-quarto-table-cell-role="th">75 à 79 ans</th>
-<th data-quarto-table-cell-role="th">80 à 84 ans</th>
-<th data-quarto-table-cell-role="th">85 à 89 ans</th>
-<th data-quarto-table-cell-role="th">90 à 94 ans</th>
-<th data-quarto-table-cell-role="th">95 ans et plus</th>
-<th data-quarto-table-cell-role="th">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>01</td>
-<td>Ain</td>
-<td>37584.0</td>
-<td>44592.0</td>
-<td>46872.0</td>
-<td>41596.0</td>
-<td>32455.0</td>
-<td>32252.0</td>
-<td>40494.0</td>
-<td>44180.0</td>
-<td>...</td>
-<td>22455.0</td>
-<td>20459.0</td>
-<td>18543.0</td>
-<td>17382.0</td>
-<td>12387.0</td>
-<td>8494.0</td>
-<td>6821.0</td>
-<td>3955.0</td>
-<td>1583.0</td>
-<td>337889.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>02</td>
-<td>Aisne</td>
-<td>26469.0</td>
-<td>32510.0</td>
-<td>35567.0</td>
-<td>32782.0</td>
-<td>28024.0</td>
-<td>25419.0</td>
-<td>29274.0</td>
-<td>31434.0</td>
-<td>...</td>
-<td>17976.0</td>
-<td>17975.0</td>
-<td>17252.0</td>
-<td>16532.0</td>
-<td>10599.0</td>
-<td>8058.0</td>
-<td>6997.0</td>
-<td>3923.0</td>
-<td>1290.0</td>
-<td>268287.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>03</td>
-<td>Allier</td>
-<td>13508.0</td>
-<td>16754.0</td>
-<td>18159.0</td>
-<td>18286.0</td>
-<td>16279.0</td>
-<td>14083.0</td>
-<td>15296.0</td>
-<td>16672.0</td>
-<td>...</td>
-<td>11825.0</td>
-<td>12482.0</td>
-<td>13125.0</td>
-<td>13189.0</td>
-<td>9667.0</td>
-<td>7466.0</td>
-<td>6559.0</td>
-<td>3800.0</td>
-<td>1410.0</td>
-<td>173172.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>04</td>
-<td>Alpes-de-Haute-Provence</td>
-<td>7211.0</td>
-<td>8751.0</td>
-<td>9467.0</td>
-<td>8656.0</td>
-<td>6977.0</td>
-<td>6822.0</td>
-<td>8163.0</td>
-<td>9022.0</td>
-<td>...</td>
-<td>6528.0</td>
-<td>6420.0</td>
-<td>6160.0</td>
-<td>6044.0</td>
-<td>4680.0</td>
-<td>3413.0</td>
-<td>2748.0</td>
-<td>1478.0</td>
-<td>587.0</td>
-<td>85859.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>05</td>
-<td>Hautes-Alpes</td>
-<td>6041.0</td>
-<td>7183.0</td>
-<td>7943.0</td>
-<td>7522.0</td>
-<td>5521.0</td>
-<td>5804.0</td>
-<td>7219.0</td>
-<td>7987.0</td>
-<td>...</td>
-<td>5252.0</td>
-<td>5463.0</td>
-<td>5291.0</td>
-<td>5116.0</td>
-<td>3683.0</td>
-<td>2836.0</td>
-<td>2189.0</td>
-<td>1207.0</td>
-<td>375.0</td>
-<td>71697.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">101</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>47016.0</td>
-<td>43895.0</td>
-<td>39982.0</td>
-<td>29873.0</td>
-<td>19284.0</td>
-<td>19923.0</td>
-<td>20467.0</td>
-<td>19851.0</td>
-<td>...</td>
-<td>3405.0</td>
-<td>2308.0</td>
-<td>1570.0</td>
-<td>981.0</td>
-<td>701.0</td>
-<td>375.0</td>
-<td>216.0</td>
-<td>64.0</td>
-<td>65.0</td>
-<td>156507.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">102</td>
-<td>DOM</td>
-<td>NaN</td>
-<td>172294.0</td>
-<td>176252.0</td>
-<td>182101.0</td>
-<td>169777.0</td>
-<td>127009.0</td>
-<td>116519.0</td>
-<td>129841.0</td>
-<td>131092.0</td>
-<td>...</td>
-<td>77860.0</td>
-<td>64319.0</td>
-<td>55570.0</td>
-<td>42452.0</td>
-<td>30534.0</td>
-<td>22192.0</td>
-<td>14489.0</td>
-<td>7007.0</td>
-<td>3126.0</td>
-<td>1163453.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">103</td>
-<td>France métropolitaine et DOM</td>
-<td>NaN</td>
-<td>3573900.0</td>
-<td>4025667.0</td>
-<td>4271387.0</td>
-<td>4208524.0</td>
-<td>3922318.0</td>
-<td>3725962.0</td>
-<td>4064176.0</td>
-<td>4200292.0</td>
-<td>...</td>
-<td>2279864.0</td>
-<td>2177958.0</td>
-<td>2077890.0</td>
-<td>1997938.0</td>
-<td>1398856.0</td>
-<td>1054963.0</td>
-<td>870391.0</td>
-<td>491588.0</td>
-<td>182900.0</td>
-<td>35020367.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">104</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">105</td>
-<td>Source : Insee - Estimations de population (ré...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>...</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-</tbody>
-</table>
-
-<p>106 rows × 65 columns</p>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn">Your turn!</h4>
-<div id="e395dc84" class="cell" data-execution_count="30">
+<div id="0c842fda" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data():</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -670,137 +375,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>2.1 - To do this, create a function <code>reshape_data_by_year(df, year)</code> which takes as argument a DataFrame from your Dict <code>data</code> and a given year.</p>
 <section id="expected-result-1" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-1">Expected result</h4>
-<div id="b91decfe" class="cell" data-execution_count="31">
+<div id="af479ee2" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="dv">2022</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> solutions.reshape_table_by_year(data[<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>], year)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">genre</th>
-<th data-quarto-table-cell-role="th">age</th>
-<th data-quarto-table-cell-role="th">population</th>
-<th data-quarto-table-cell-role="th">dep_code</th>
-<th data-quarto-table-cell-role="th">dep</th>
-<th data-quarto-table-cell-role="th">annee</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Ensemble</td>
-<td>0 à 4 ans</td>
-<td>37584</td>
-<td>01</td>
-<td>Ain</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Hommes</td>
-<td>0 à 4 ans</td>
-<td>19489</td>
-<td>01</td>
-<td>Ain</td>
-<td>2022</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Femmes</td>
-<td>0 à 4 ans</td>
-<td>18095</td>
-<td>01</td>
-<td>Ain</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Ensemble</td>
-<td>0 à 4 ans</td>
-<td>26469</td>
-<td>02</td>
-<td>Aisne</td>
-<td>2022</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Hommes</td>
-<td>0 à 4 ans</td>
-<td>13538</td>
-<td>02</td>
-<td>Aisne</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6358</td>
-<td>Hommes</td>
-<td>Total</td>
-<td>413939</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6359</td>
-<td>Femmes</td>
-<td>Total</td>
-<td>456054</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>2022</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6360</td>
-<td>Ensemble</td>
-<td>Total</td>
-<td>299022</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6361</td>
-<td>Hommes</td>
-<td>Total</td>
-<td>142515</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6362</td>
-<td>Femmes</td>
-<td>Total</td>
-<td>156507</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-</tr>
-</tbody>
-</table>
-
-<p>6363 rows × 6 columns</p>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-1" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-1">Your turn!</h4>
-<div id="ce7ad30d" class="cell" data-execution_count="32">
+<div id="b715aa4d" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reshape_table_by_year(df, year):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -809,136 +392,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-2" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-2">Expected result</h4>
-<div id="0fd56c09" class="cell" data-execution_count="33">
+<div id="2c121391" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> solutions.reshape_data(data)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">genre</th>
-<th data-quarto-table-cell-role="th">age</th>
-<th data-quarto-table-cell-role="th">population</th>
-<th data-quarto-table-cell-role="th">dep_code</th>
-<th data-quarto-table-cell-role="th">dep</th>
-<th data-quarto-table-cell-role="th">annee</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Ensemble</td>
-<td>0 à 4 ans</td>
-<td>30696</td>
-<td>01</td>
-<td>Ain</td>
-<td>1975</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Hommes</td>
-<td>0 à 4 ans</td>
-<td>15608</td>
-<td>01</td>
-<td>Ain</td>
-<td>1975</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Femmes</td>
-<td>0 à 4 ans</td>
-<td>15088</td>
-<td>01</td>
-<td>Ain</td>
-<td>1975</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Ensemble</td>
-<td>0 à 4 ans</td>
-<td>45959</td>
-<td>02</td>
-<td>Aisne</td>
-<td>1975</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Hommes</td>
-<td>0 à 4 ans</td>
-<td>23589</td>
-<td>02</td>
-<td>Aisne</td>
-<td>1975</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6358</td>
-<td>Hommes</td>
-<td>Total</td>
-<td>413939</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6359</td>
-<td>Femmes</td>
-<td>Total</td>
-<td>456054</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>2022</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6360</td>
-<td>Ensemble</td>
-<td>Total</td>
-<td>299022</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">6361</td>
-<td>Hommes</td>
-<td>Total</td>
-<td>142515</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6362</td>
-<td>Femmes</td>
-<td>Total</td>
-<td>156507</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-</tr>
-</tbody>
-</table>
-
-<p>296919 rows × 6 columns</p>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-2" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-2">Your turn!</h4>
-<div id="d69b82a3" class="cell" data-execution_count="34">
+<div id="a8207eda" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reshape_data(data):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -954,31 +415,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Write a function <code>plot_population_by_gender_per_department(df, department_code)</code> which returns a graph representing the population evolution in a given department. Use the <code>matplotlib</code> library. You can look at the data for Haute Garonne (31), Loir-et-Cher (41), and Réunion (974) to see disparities in evolution.</p>
 <section id="expected-result-3" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-3">Expected result</h4>
-<div id="c502e4e4" class="cell" data-execution_count="35">
+<div id="d2d60f38" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_population_by_gender_per_department(df, <span class="st">"31"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-36-output-1.png" width="627" height="463" class="figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-3" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-3">Your turn!</h4>
-<div id="a1fd4d72" class="cell" data-execution_count="36">
+<div id="a38ccc85" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_population_by_gender_per_department(data, department_code):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[36], line 2</span>
-<span class="ansi-red-fg">    # Your code here</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -988,203 +433,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>4.1- Define the <code>get_age_pyramid_data(df, year)</code> function which, from the DataFrame generated by the <code>reshape_data()</code> function, returns a DataFrame with the columns <code>age</code>, <code>Females</code>, <code>Males</code>. The <code>age</code> column should contain all the age groups present in the dataset, the <code>Females/Males</code> columns correspond to the female/male population for a given age group. For aesthetics, the <code>Males</code> column will be multiplied by -1 beforehand.</p>
 <section id="expected-result-4" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-4">Expected result</h4>
-<div id="082272da" class="cell" data-execution_count="37">
+<div id="865ff3a1" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pyramide_data <span class="op">=</span> solutions.get_age_pyramid_data(df, <span class="dv">2022</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pyramide_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">genre</th>
-<th data-quarto-table-cell-role="th">age</th>
-<th data-quarto-table-cell-role="th">annee</th>
-<th data-quarto-table-cell-role="th">Ensemble</th>
-<th data-quarto-table-cell-role="th">Femmes</th>
-<th data-quarto-table-cell-role="th">Hommes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">47</td>
-<td>0 à 4 ans</td>
-<td>2022</td>
-<td>3573900</td>
-<td>1746143</td>
-<td>-1827757</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">95</td>
-<td>10 à 14 ans</td>
-<td>2022</td>
-<td>4271387</td>
-<td>2083665</td>
-<td>-2187722</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">143</td>
-<td>15 à 19 ans</td>
-<td>2022</td>
-<td>4208524</td>
-<td>2045731</td>
-<td>-2162793</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">191</td>
-<td>20 à 24 ans</td>
-<td>2022</td>
-<td>3922318</td>
-<td>1919937</td>
-<td>-2002381</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">239</td>
-<td>25 à 29 ans</td>
-<td>2022</td>
-<td>3725962</td>
-<td>1875046</td>
-<td>-1850916</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">287</td>
-<td>30 à 34 ans</td>
-<td>2022</td>
-<td>4064176</td>
-<td>2075051</td>
-<td>-1989125</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">335</td>
-<td>35 à 39 ans</td>
-<td>2022</td>
-<td>4200292</td>
-<td>2161802</td>
-<td>-2038490</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">383</td>
-<td>40 à 44 ans</td>
-<td>2022</td>
-<td>4239439</td>
-<td>2164498</td>
-<td>-2074941</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">431</td>
-<td>45 à 49 ans</td>
-<td>2022</td>
-<td>4320709</td>
-<td>2186078</td>
-<td>-2134631</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">479</td>
-<td>5 à 9 ans</td>
-<td>2022</td>
-<td>4025667</td>
-<td>1968494</td>
-<td>-2057173</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">527</td>
-<td>50 à 54 ans</td>
-<td>2022</td>
-<td>4454399</td>
-<td>2261574</td>
-<td>-2192825</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">575</td>
-<td>55 à 59 ans</td>
-<td>2022</td>
-<td>4437879</td>
-<td>2279864</td>
-<td>-2158015</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">623</td>
-<td>60 à 64 ans</td>
-<td>2022</td>
-<td>4176777</td>
-<td>2177958</td>
-<td>-1998819</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">671</td>
-<td>65 à 69 ans</td>
-<td>2022</td>
-<td>3904715</td>
-<td>2077890</td>
-<td>-1826825</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">719</td>
-<td>70 à 74 ans</td>
-<td>2022</td>
-<td>3707830</td>
-<td>1997938</td>
-<td>-1709892</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">767</td>
-<td>75 à 79 ans</td>
-<td>2022</td>
-<td>2524031</td>
-<td>1398856</td>
-<td>-1125175</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">815</td>
-<td>80 à 84 ans</td>
-<td>2022</td>
-<td>1802512</td>
-<td>1054963</td>
-<td>-747549</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">863</td>
-<td>85 à 89 ans</td>
-<td>2022</td>
-<td>1360236</td>
-<td>870391</td>
-<td>-489845</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">911</td>
-<td>90 à 94 ans</td>
-<td>2022</td>
-<td>692422</td>
-<td>491588</td>
-<td>-200834</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">959</td>
-<td>95 ans et plus</td>
-<td>2022</td>
-<td>229416</td>
-<td>182900</td>
-<td>-46516</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1007</td>
-<td>Total</td>
-<td>2022</td>
-<td>67842591</td>
-<td>35020367</td>
-<td>-32822224</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-4" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-4">Your turn!</h4>
-<div id="ff0a01c0" class="cell" data-execution_count="38">
+<div id="5d7a3ca7" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_age_pyramid_data(df, year):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pyramide_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1193,23 +449,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-5" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-5">Expected result</h4>
-<div id="ff749909" class="cell" data-execution_count="39">
+<div id="515dfd9e" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>solutions.plot_age_pyramid(df, <span class="dv">1975</span>, ax<span class="op">=</span>ax1)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>solutions.plot_age_pyramid(df, <span class="dv">2022</span>, ax<span class="op">=</span>ax2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-40-output-1.png" width="1223" height="524" class="figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-5" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-5">Your turn!</h4>
-<div id="546baf07" class="cell" data-execution_count="40">
+<div id="c3c8fcf9" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_age_pyramid(df, year, ax<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ax <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> plt.gca()</span>
@@ -1229,100 +478,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Create a DataFrame from the <code>.json</code> file of French departments and regions mentioned earlier. Ensure that the columns are in the correct format.</p>
 <section id="expected-result-6" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-6">Expected result</h4>
-<div id="caabbe3d" class="cell" data-execution_count="41">
+<div id="3faa0a9f" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_matching <span class="op">=</span> solutions.load_departements_regions(<span class="st">"https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_matching</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">num_dep</th>
-<th data-quarto-table-cell-role="th">dep_name</th>
-<th data-quarto-table-cell-role="th">region_name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>01</td>
-<td>Ain</td>
-<td>Auvergne-Rhône-Alpes</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>02</td>
-<td>Aisne</td>
-<td>Hauts-de-France</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>03</td>
-<td>Allier</td>
-<td>Auvergne-Rhône-Alpes</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>04</td>
-<td>Alpes-de-Haute-Provence</td>
-<td>Provence-Alpes-Côte d'Azur</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>05</td>
-<td>Hautes-Alpes</td>
-<td>Provence-Alpes-Côte d'Azur</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">96</td>
-<td>971</td>
-<td>Guadeloupe</td>
-<td>Guadeloupe</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">97</td>
-<td>972</td>
-<td>Martinique</td>
-<td>Martinique</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">98</td>
-<td>973</td>
-<td>Guyane</td>
-<td>Guyane</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">99</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>La Réunion</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">100</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>Mayotte</td>
-</tr>
-</tbody>
-</table>
-
-<p>101 rows × 3 columns</p>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-6" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-6">Your turn!</h4>
-<div id="db68ab50" class="cell" data-execution_count="42">
+<div id="4518de3b" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_departements_regions(url):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_matching</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1334,172 +497,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Match the DataFrame containing population data by department with the DataFrame of French regions.</p>
 <section id="expected-result-7" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-7">Expected result</h4>
-<div id="15486d70" class="cell" data-execution_count="43">
+<div id="b496e60b" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_regions <span class="op">=</span> solutions.match_department_regions(df, df_matching)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df_regions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">genre</th>
-<th data-quarto-table-cell-role="th">age</th>
-<th data-quarto-table-cell-role="th">population</th>
-<th data-quarto-table-cell-role="th">dep_code</th>
-<th data-quarto-table-cell-role="th">dep</th>
-<th data-quarto-table-cell-role="th">annee</th>
-<th data-quarto-table-cell-role="th">num_dep</th>
-<th data-quarto-table-cell-role="th">dep_name</th>
-<th data-quarto-table-cell-role="th">region_name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Ensemble</td>
-<td>0 à 4 ans</td>
-<td>30696</td>
-<td>01</td>
-<td>Ain</td>
-<td>1975</td>
-<td>01</td>
-<td>Ain</td>
-<td>Auvergne-Rhône-Alpes</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Hommes</td>
-<td>0 à 4 ans</td>
-<td>15608</td>
-<td>01</td>
-<td>Ain</td>
-<td>1975</td>
-<td>01</td>
-<td>Ain</td>
-<td>Auvergne-Rhône-Alpes</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Femmes</td>
-<td>0 à 4 ans</td>
-<td>15088</td>
-<td>01</td>
-<td>Ain</td>
-<td>1975</td>
-<td>01</td>
-<td>Ain</td>
-<td>Auvergne-Rhône-Alpes</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Ensemble</td>
-<td>0 à 4 ans</td>
-<td>45959</td>
-<td>02</td>
-<td>Aisne</td>
-<td>1975</td>
-<td>02</td>
-<td>Aisne</td>
-<td>Hauts-de-France</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Hommes</td>
-<td>0 à 4 ans</td>
-<td>23589</td>
-<td>02</td>
-<td>Aisne</td>
-<td>1975</td>
-<td>02</td>
-<td>Aisne</td>
-<td>Hauts-de-France</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">296914</td>
-<td>Hommes</td>
-<td>Total</td>
-<td>413939</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>2022</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>La Réunion</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">296915</td>
-<td>Femmes</td>
-<td>Total</td>
-<td>456054</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>2022</td>
-<td>974</td>
-<td>La Réunion</td>
-<td>La Réunion</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">296916</td>
-<td>Ensemble</td>
-<td>Total</td>
-<td>299022</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>Mayotte</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">296917</td>
-<td>Hommes</td>
-<td>Total</td>
-<td>142515</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>Mayotte</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">296918</td>
-<td>Femmes</td>
-<td>Total</td>
-<td>156507</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>2022</td>
-<td>976</td>
-<td>Mayotte</td>
-<td>Mayotte</td>
-</tr>
-</tbody>
-</table>
-
-<p>296919 rows × 9 columns</p>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-7" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-7">Your turn!</h4>
-<div id="18a1ab8e" class="cell" data-execution_count="44">
+<div id="314e4653" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> match_department_regions(df, df_matching):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_regions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1511,25 +516,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Download the geographical contour data of the regions using the <code>cartiflette</code> package and the <code>geopandas</code> library. The data is accessible via the following url: <a href="https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson">https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format=‘geojson’/provider=‘IGN’/source=‘EXPRESS-COG-CARTO-TERRITOIRE’/raw.geojson</a>.</p>
 <section id="expected-result-8" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-8">Expected result</h4>
-<div id="1ce9aef8" class="cell" data-execution_count="45">
+<div id="458b8ae8" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>geo <span class="op">=</span> solutions.load_geo_data(<span class="st">"https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="er">-COG-CARTO-TERRITOIRE'/raw.geojson")</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>geo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[45], line 1</span>
-<span class="ansi-red-fg">    geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS</span>
-                                  ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> unterminated string literal (detected at line 1)
-</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-8" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-8">Your turn!</h4>
-<div id="082db35d" class="cell" data-execution_count="46">
+<div id="c893bcb8" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_geo_data(url):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> geo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1541,31 +537,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Produce a choropleth map of the 2022 population of French regions. You can consult the <code>geopandas</code> documentation <a href="https://geopandas.org/en/stable/docs/user_guide/mapping.html">here</a>.</p>
 <section id="expected-result-9" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-9">Expected result</h4>
-<div id="5927b2f1" class="cell" data-execution_count="47">
+<div id="91de9731" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_population_by_regions(df_regions, geo, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-48-output-1.png" width="1135" height="588" class="figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-9" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-9">Your turn!</h4>
-<div id="357f9eb1" class="cell" data-execution_count="48">
+<div id="1b5ae186" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_population_by_regions(df, geo, year):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[48], line 2</span>
-<span class="ansi-red-fg">    # Your code here</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -1575,1077 +555,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>9.1- Write a function <code>compute_population_growth_per_region(df)</code> which calculates the annual population growth percentage for each region.</p>
 <section id="expected-result-10" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-10">Expected result</h4>
-<div id="ae4e9461" class="cell" data-execution_count="49">
+<div id="bfcfc0c1" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_growth <span class="op">=</span> solutions.compute_population_growth_per_region(df_regions)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">region_name</th>
-<th data-quarto-table-cell-role="th">Auvergne-Rhône-Alpes</th>
-<th data-quarto-table-cell-role="th">Bourgogne-Franche-Comté</th>
-<th data-quarto-table-cell-role="th">Bretagne</th>
-<th data-quarto-table-cell-role="th">Centre-Val de Loire</th>
-<th data-quarto-table-cell-role="th">Corse</th>
-<th data-quarto-table-cell-role="th">Grand Est</th>
-<th data-quarto-table-cell-role="th">Guadeloupe</th>
-<th data-quarto-table-cell-role="th">Guyane</th>
-<th data-quarto-table-cell-role="th">Hauts-de-France</th>
-<th data-quarto-table-cell-role="th">La Réunion</th>
-<th data-quarto-table-cell-role="th">Martinique</th>
-<th data-quarto-table-cell-role="th">Mayotte</th>
-<th data-quarto-table-cell-role="th">Normandie</th>
-<th data-quarto-table-cell-role="th">Nouvelle-Aquitaine</th>
-<th data-quarto-table-cell-role="th">Occitanie</th>
-<th data-quarto-table-cell-role="th">Pays de la Loire</th>
-<th data-quarto-table-cell-role="th">Provence-Alpes-Côte d'Azur</th>
-<th data-quarto-table-cell-role="th">Île-de-France</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">annee</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1975</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1976</td>
-<td>0.440555</td>
-<td>0.219955</td>
-<td>0.564478</td>
-<td>0.669816</td>
-<td>0.713244</td>
-<td>0.061420</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.141119</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.460176</td>
-<td>0.346167</td>
-<td>0.545603</td>
-<td>0.799056</td>
-<td>0.972566</td>
-<td>0.139918</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1977</td>
-<td>0.501002</td>
-<td>0.220041</td>
-<td>0.547561</td>
-<td>0.686405</td>
-<td>0.800052</td>
-<td>0.068762</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.117183</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.439001</td>
-<td>0.394459</td>
-<td>0.632119</td>
-<td>0.761169</td>
-<td>1.086540</td>
-<td>0.240243</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1978</td>
-<td>0.543552</td>
-<td>0.285482</td>
-<td>0.603619</td>
-<td>0.746818</td>
-<td>0.831456</td>
-<td>0.135696</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.193716</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.490210</td>
-<td>0.434355</td>
-<td>0.666995</td>
-<td>0.819542</td>
-<td>1.110065</td>
-<td>0.322886</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1979</td>
-<td>0.482266</td>
-<td>0.186234</td>
-<td>0.572699</td>
-<td>0.654878</td>
-<td>0.624045</td>
-<td>0.051279</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.109454</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.436886</td>
-<td>0.355334</td>
-<td>0.564264</td>
-<td>0.769432</td>
-<td>1.025683</td>
-<td>0.207729</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1980</td>
-<td>0.560626</td>
-<td>0.284930</td>
-<td>0.612505</td>
-<td>0.702602</td>
-<td>0.824619</td>
-<td>0.137384</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.193575</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.515840</td>
-<td>0.415768</td>
-<td>0.646836</td>
-<td>0.809755</td>
-<td>1.096914</td>
-<td>0.284899</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1981</td>
-<td>0.639192</td>
-<td>0.343167</td>
-<td>0.672048</td>
-<td>0.768892</td>
-<td>0.908655</td>
-<td>0.221558</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.295761</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.599858</td>
-<td>0.486488</td>
-<td>0.741603</td>
-<td>0.857139</td>
-<td>1.181448</td>
-<td>0.394224</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1982</td>
-<td>0.649068</td>
-<td>0.319212</td>
-<td>0.665890</td>
-<td>0.812739</td>
-<td>0.966894</td>
-<td>0.236789</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.340500</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.596950</td>
-<td>0.468565</td>
-<td>0.748759</td>
-<td>0.864358</td>
-<td>1.179598</td>
-<td>0.428124</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1983</td>
-<td>0.660477</td>
-<td>0.170043</td>
-<td>0.408204</td>
-<td>0.790898</td>
-<td>0.522119</td>
-<td>0.132003</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.547784</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.618118</td>
-<td>0.466702</td>
-<td>1.049500</td>
-<td>0.798719</td>
-<td>0.837187</td>
-<td>0.569620</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1984</td>
-<td>0.615003</td>
-<td>0.192499</td>
-<td>0.320168</td>
-<td>0.589604</td>
-<td>0.785738</td>
-<td>0.203314</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>-0.006766</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.599975</td>
-<td>0.317899</td>
-<td>0.947900</td>
-<td>0.662753</td>
-<td>0.783779</td>
-<td>0.399595</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1985</td>
-<td>0.439074</td>
-<td>0.172289</td>
-<td>0.376437</td>
-<td>0.577606</td>
-<td>0.463987</td>
-<td>0.221769</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.046509</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.496844</td>
-<td>0.400583</td>
-<td>0.948529</td>
-<td>0.524187</td>
-<td>0.804716</td>
-<td>0.652446</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1986</td>
-<td>0.441459</td>
-<td>0.005675</td>
-<td>0.380064</td>
-<td>0.524933</td>
-<td>0.374711</td>
-<td>0.117934</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.201369</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.463820</td>
-<td>0.393369</td>
-<td>0.466300</td>
-<td>0.509533</td>
-<td>0.929494</td>
-<td>0.750377</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1987</td>
-<td>0.516957</td>
-<td>0.113678</td>
-<td>0.390557</td>
-<td>0.422141</td>
-<td>0.220890</td>
-<td>-0.012922</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.227265</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.320152</td>
-<td>0.280869</td>
-<td>0.728475</td>
-<td>0.601497</td>
-<td>0.955603</td>
-<td>0.846468</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1988</td>
-<td>0.664239</td>
-<td>0.130443</td>
-<td>0.413969</td>
-<td>0.544764</td>
-<td>0.513190</td>
-<td>-0.002904</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.101615</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.553174</td>
-<td>0.389860</td>
-<td>0.787373</td>
-<td>0.239723</td>
-<td>0.968478</td>
-<td>0.841564</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1989</td>
-<td>0.730248</td>
-<td>0.101007</td>
-<td>0.426841</td>
-<td>0.603119</td>
-<td>0.476990</td>
-<td>0.112899</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.241265</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.455996</td>
-<td>0.372505</td>
-<td>0.874334</td>
-<td>0.532381</td>
-<td>0.902868</td>
-<td>0.764421</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1990</td>
-<td>0.861964</td>
-<td>0.011347</td>
-<td>0.410941</td>
-<td>0.566870</td>
-<td>0.519823</td>
-<td>-0.022899</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.340457</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.414747</td>
-<td>0.392892</td>
-<td>0.996738</td>
-<td>0.398017</td>
-<td>0.987160</td>
-<td>0.699250</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1991</td>
-<td>0.608818</td>
-<td>0.174217</td>
-<td>0.328023</td>
-<td>0.489449</td>
-<td>0.806746</td>
-<td>0.269489</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.214672</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.396532</td>
-<td>0.364489</td>
-<td>0.756250</td>
-<td>0.536888</td>
-<td>0.851607</td>
-<td>0.478089</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1992</td>
-<td>0.621292</td>
-<td>0.186347</td>
-<td>0.285003</td>
-<td>0.488619</td>
-<td>0.015497</td>
-<td>0.285462</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.249332</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.381874</td>
-<td>0.343430</td>
-<td>0.760485</td>
-<td>0.606362</td>
-<td>0.772424</td>
-<td>0.539663</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1993</td>
-<td>0.599160</td>
-<td>0.162948</td>
-<td>0.400111</td>
-<td>0.436432</td>
-<td>0.753681</td>
-<td>0.377232</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.262649</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.366458</td>
-<td>0.321189</td>
-<td>0.778556</td>
-<td>0.665291</td>
-<td>0.698275</td>
-<td>0.373263</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1994</td>
-<td>0.315172</td>
-<td>0.107757</td>
-<td>0.278490</td>
-<td>0.287374</td>
-<td>1.333623</td>
-<td>0.294869</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.163865</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.262679</td>
-<td>0.205144</td>
-<td>0.538612</td>
-<td>0.567510</td>
-<td>0.613215</td>
-<td>0.368827</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1995</td>
-<td>0.367380</td>
-<td>0.150646</td>
-<td>0.356711</td>
-<td>0.328618</td>
-<td>0.559972</td>
-<td>0.262236</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.176324</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.260099</td>
-<td>0.275161</td>
-<td>0.585658</td>
-<td>0.553599</td>
-<td>0.495484</td>
-<td>0.237713</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1996</td>
-<td>0.370379</td>
-<td>0.059478</td>
-<td>0.457074</td>
-<td>0.248561</td>
-<td>0.291004</td>
-<td>0.206722</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.188667</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.206080</td>
-<td>0.222749</td>
-<td>0.691074</td>
-<td>0.581164</td>
-<td>0.474019</td>
-<td>0.229055</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1997</td>
-<td>0.410964</td>
-<td>0.016455</td>
-<td>0.584862</td>
-<td>0.317944</td>
-<td>-0.027395</td>
-<td>0.201467</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.110328</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.206221</td>
-<td>0.296646</td>
-<td>0.700223</td>
-<td>0.577300</td>
-<td>0.560527</td>
-<td>0.106387</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1998</td>
-<td>0.399849</td>
-<td>0.000989</td>
-<td>0.623024</td>
-<td>0.253738</td>
-<td>0.142418</td>
-<td>0.072912</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.031197</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.178357</td>
-<td>0.336006</td>
-<td>0.796266</td>
-<td>0.570467</td>
-<td>0.643450</td>
-<td>0.157819</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1999</td>
-<td>0.451058</td>
-<td>-0.038877</td>
-<td>0.548362</td>
-<td>0.085719</td>
-<td>0.264389</td>
-<td>0.160629</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.062819</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.133921</td>
-<td>0.410027</td>
-<td>0.731983</td>
-<td>0.609319</td>
-<td>0.507652</td>
-<td>0.305976</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2000</td>
-<td>0.735912</td>
-<td>0.228878</td>
-<td>0.810482</td>
-<td>0.402656</td>
-<td>1.686322</td>
-<td>0.248018</td>
-<td>0.631728</td>
-<td>4.017720</td>
-<td>0.091436</td>
-<td>1.775170</td>
-<td>0.712067</td>
-<td>NaN</td>
-<td>0.282721</td>
-<td>0.739755</td>
-<td>1.190374</td>
-<td>0.901688</td>
-<td>0.868939</td>
-<td>0.675853</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2001</td>
-<td>0.815198</td>
-<td>0.293161</td>
-<td>0.912416</td>
-<td>0.475772</td>
-<td>1.789528</td>
-<td>0.293953</td>
-<td>0.676983</td>
-<td>4.071153</td>
-<td>0.155252</td>
-<td>1.772407</td>
-<td>0.773512</td>
-<td>NaN</td>
-<td>0.320816</td>
-<td>0.830550</td>
-<td>1.275936</td>
-<td>1.006004</td>
-<td>0.943982</td>
-<td>0.751661</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2002</td>
-<td>0.823526</td>
-<td>0.275166</td>
-<td>0.928842</td>
-<td>0.454956</td>
-<td>1.790005</td>
-<td>0.294789</td>
-<td>0.602040</td>
-<td>4.758798</td>
-<td>0.170224</td>
-<td>1.535919</td>
-<td>0.714023</td>
-<td>NaN</td>
-<td>0.313303</td>
-<td>0.851270</td>
-<td>1.367198</td>
-<td>1.004669</td>
-<td>0.984146</td>
-<td>0.745207</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2003</td>
-<td>0.814720</td>
-<td>0.248992</td>
-<td>0.921736</td>
-<td>0.457343</td>
-<td>1.800119</td>
-<td>0.252728</td>
-<td>0.472490</td>
-<td>4.616221</td>
-<td>0.132894</td>
-<td>1.436490</td>
-<td>0.609809</td>
-<td>NaN</td>
-<td>0.276617</td>
-<td>0.843565</td>
-<td>1.359134</td>
-<td>0.996365</td>
-<td>0.984124</td>
-<td>0.755536</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2004</td>
-<td>0.807285</td>
-<td>0.224722</td>
-<td>0.924749</td>
-<td>0.402168</td>
-<td>1.772230</td>
-<td>0.228277</td>
-<td>0.534591</td>
-<td>4.532123</td>
-<td>0.106153</td>
-<td>1.437057</td>
-<td>0.555561</td>
-<td>NaN</td>
-<td>0.258575</td>
-<td>0.824192</td>
-<td>1.342890</td>
-<td>0.959143</td>
-<td>0.942791</td>
-<td>0.711761</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2005</td>
-<td>0.880579</td>
-<td>0.325741</td>
-<td>0.971592</td>
-<td>0.519870</td>
-<td>1.802995</td>
-<td>0.300281</td>
-<td>0.550641</td>
-<td>3.126310</td>
-<td>0.181270</td>
-<td>1.480640</td>
-<td>0.540812</td>
-<td>NaN</td>
-<td>0.304135</td>
-<td>0.921700</td>
-<td>1.417286</td>
-<td>1.053529</td>
-<td>1.047481</td>
-<td>0.809257</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2006</td>
-<td>0.846671</td>
-<td>0.271543</td>
-<td>0.911405</td>
-<td>0.491416</td>
-<td>1.738547</td>
-<td>0.270708</td>
-<td>0.390302</td>
-<td>3.387448</td>
-<td>0.141550</td>
-<td>1.171551</td>
-<td>0.441939</td>
-<td>NaN</td>
-<td>0.268356</td>
-<td>0.865408</td>
-<td>1.339015</td>
-<td>1.025417</td>
-<td>0.978659</td>
-<td>0.788795</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2007</td>
-<td>0.651354</td>
-<td>0.471350</td>
-<td>0.832242</td>
-<td>0.291796</td>
-<td>1.730938</td>
-<td>0.300979</td>
-<td>-0.037930</td>
-<td>3.436204</td>
-<td>0.152731</td>
-<td>1.553145</td>
-<td>-0.000503</td>
-<td>NaN</td>
-<td>0.315100</td>
-<td>0.948013</td>
-<td>1.132581</td>
-<td>0.932671</td>
-<td>1.013098</td>
-<td>0.576359</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2008</td>
-<td>0.727677</td>
-<td>0.356554</td>
-<td>0.942637</td>
-<td>0.184770</td>
-<td>1.255644</td>
-<td>0.269421</td>
-<td>0.299563</td>
-<td>2.926804</td>
-<td>0.153005</td>
-<td>1.780994</td>
-<td>-0.009303</td>
-<td>NaN</td>
-<td>0.455959</td>
-<td>0.771278</td>
-<td>0.909103</td>
-<td>0.791824</td>
-<td>0.388527</td>
-<td>0.520689</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2009</td>
-<td>0.789801</td>
-<td>0.290060</td>
-<td>0.805251</td>
-<td>0.276585</td>
-<td>0.893830</td>
-<td>0.175063</td>
-<td>-0.057245</td>
-<td>2.372917</td>
-<td>0.223618</td>
-<td>1.003897</td>
-<td>-0.324119</td>
-<td>NaN</td>
-<td>0.325834</td>
-<td>0.659857</td>
-<td>0.989881</td>
-<td>0.822695</td>
-<td>0.125745</td>
-<td>0.591633</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2010</td>
-<td>0.799068</td>
-<td>0.114920</td>
-<td>0.755953</td>
-<td>0.373239</td>
-<td>1.314799</td>
-<td>0.025528</td>
-<td>0.448508</td>
-<td>2.036361</td>
-<td>0.145466</td>
-<td>0.584543</td>
-<td>-0.562810</td>
-<td>NaN</td>
-<td>0.200556</td>
-<td>0.647964</td>
-<td>0.813158</td>
-<td>0.916828</td>
-<td>0.206625</td>
-<td>0.494482</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2011</td>
-<td>0.740887</td>
-<td>0.081596</td>
-<td>0.584577</td>
-<td>0.344183</td>
-<td>1.547662</td>
-<td>0.117577</td>
-<td>0.317338</td>
-<td>3.715072</td>
-<td>0.120427</td>
-<td>0.906671</td>
-<td>-0.477455</td>
-<td>NaN</td>
-<td>0.139830</td>
-<td>0.480238</td>
-<td>1.003243</td>
-<td>0.829289</td>
-<td>0.345243</td>
-<td>0.565210</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2012</td>
-<td>0.799571</td>
-<td>0.022726</td>
-<td>0.600727</td>
-<td>0.264037</td>
-<td>0.563141</td>
-<td>0.179093</td>
-<td>-0.326467</td>
-<td>0.883607</td>
-<td>0.216907</td>
-<td>0.647251</td>
-<td>-1.001043</td>
-<td>NaN</td>
-<td>0.231639</td>
-<td>0.615200</td>
-<td>0.957968</td>
-<td>0.874757</td>
-<td>0.396801</td>
-<td>0.385148</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2013</td>
-<td>0.809992</td>
-<td>0.105403</td>
-<td>0.667573</td>
-<td>0.271573</td>
-<td>1.249300</td>
-<td>0.061868</td>
-<td>-0.296295</td>
-<td>1.865236</td>
-<td>0.247526</td>
-<td>0.138978</td>
-<td>-0.724320</td>
-<td>NaN</td>
-<td>0.168776</td>
-<td>0.612592</td>
-<td>1.013354</td>
-<td>0.777347</td>
-<td>0.366705</td>
-<td>0.515233</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2014</td>
-<td>0.816890</td>
-<td>0.029790</td>
-<td>0.547334</td>
-<td>0.267920</td>
-<td>1.250437</td>
-<td>0.040649</td>
-<td>-0.480703</td>
-<td>3.367224</td>
-<td>0.305166</td>
-<td>0.917731</td>
-<td>-0.425365</td>
-<td>NaN</td>
-<td>0.218756</td>
-<td>0.598322</td>
-<td>0.824701</td>
-<td>0.818962</td>
-<td>0.600827</td>
-<td>0.566548</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2015</td>
-<td>0.725384</td>
-<td>0.011239</td>
-<td>0.528209</td>
-<td>0.044890</td>
-<td>0.947220</td>
-<td>0.079321</td>
-<td>-0.548745</td>
-<td>2.982904</td>
-<td>0.063601</td>
-<td>0.944508</td>
-<td>-0.790287</td>
-<td>3.788783</td>
-<td>0.104508</td>
-<td>0.550046</td>
-<td>0.757876</td>
-<td>0.749939</td>
-<td>0.492411</td>
-<td>0.453783</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2016</td>
-<td>0.497493</td>
-<td>-0.092239</td>
-<td>0.384929</td>
-<td>-0.028155</td>
-<td>0.969192</td>
-<td>-0.069526</td>
-<td>-0.974899</td>
-<td>3.650742</td>
-<td>-0.051681</td>
-<td>0.258250</td>
-<td>-1.154441</td>
-<td>3.789155</td>
-<td>-0.095893</td>
-<td>0.408036</td>
-<td>0.593157</td>
-<td>0.514184</td>
-<td>0.278576</td>
-<td>0.289584</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2017</td>
-<td>0.396595</td>
-<td>-0.245357</td>
-<td>0.374260</td>
-<td>-0.062610</td>
-<td>1.356614</td>
-<td>-0.100807</td>
-<td>-0.978661</td>
-<td>-0.242062</td>
-<td>-0.050858</td>
-<td>0.086174</td>
-<td>-1.032193</td>
-<td>3.799375</td>
-<td>-0.163403</td>
-<td>0.360115</td>
-<td>0.631272</td>
-<td>0.534242</td>
-<td>0.178457</td>
-<td>0.476581</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2018</td>
-<td>0.580905</td>
-<td>-0.128618</td>
-<td>0.497453</td>
-<td>-0.131936</td>
-<td>1.079603</td>
-<td>0.014470</td>
-<td>-0.672384</td>
-<td>2.764421</td>
-<td>0.004880</td>
-<td>0.269663</td>
-<td>-1.022829</td>
-<td>3.789033</td>
-<td>-0.090107</td>
-<td>0.382744</td>
-<td>0.691074</td>
-<td>0.633995</td>
-<td>0.436145</td>
-<td>0.316775</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2019</td>
-<td>0.606382</td>
-<td>-0.079315</td>
-<td>0.582836</td>
-<td>0.012710</td>
-<td>0.557075</td>
-<td>0.105038</td>
-<td>-0.874548</td>
-<td>2.009937</td>
-<td>0.013974</td>
-<td>0.613229</td>
-<td>-1.159218</td>
-<td>3.835591</td>
-<td>-0.073479</td>
-<td>0.510236</td>
-<td>0.810280</td>
-<td>0.662132</td>
-<td>0.559468</td>
-<td>0.401991</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2020</td>
-<td>0.444067</td>
-<td>-0.138474</td>
-<td>0.565777</td>
-<td>0.065405</td>
-<td>0.957878</td>
-<td>0.115762</td>
-<td>-0.176973</td>
-<td>1.226578</td>
-<td>-0.120118</td>
-<td>0.217485</td>
-<td>-0.900666</td>
-<td>3.752889</td>
-<td>0.014737</td>
-<td>0.393708</td>
-<td>0.687388</td>
-<td>0.674091</td>
-<td>0.345693</td>
-<td>0.075433</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2021</td>
-<td>0.436397</td>
-<td>-0.222223</td>
-<td>0.573413</td>
-<td>-0.042604</td>
-<td>0.772765</td>
-<td>-0.039711</td>
-<td>-0.509179</td>
-<td>1.957332</td>
-<td>-0.110809</td>
-<td>0.415487</td>
-<td>-1.116755</td>
-<td>3.228148</td>
-<td>-0.091414</td>
-<td>0.452390</td>
-<td>0.731155</td>
-<td>0.655486</td>
-<td>0.421169</td>
-<td>0.207443</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2022</td>
-<td>0.523595</td>
-<td>-0.159651</td>
-<td>0.560713</td>
-<td>-0.043905</td>
-<td>0.714003</td>
-<td>0.018704</td>
-<td>-0.820218</td>
-<td>1.838233</td>
-<td>-0.093556</td>
-<td>0.383537</td>
-<td>-1.395892</td>
-<td>3.566369</td>
-<td>-0.082438</td>
-<td>0.417983</td>
-<td>0.709297</td>
-<td>0.665139</td>
-<td>0.384306</td>
-<td>0.261693</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-10" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-10">Your turn!</h4>
-<div id="b0d09b95" class="cell" data-execution_count="50">
+<div id="30792bfa" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_population_growth_per_region(df_regions):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2654,127 +571,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-11" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-11">Expected result</h4>
-<div id="94dd3768" class="cell" data-execution_count="51">
+<div id="134c18a6" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_growth <span class="op">=</span> solutions.compute_mean_population_growth_per_region(df_regions, <span class="dv">2015</span>, <span class="dv">2022</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">annee</th>
-<th data-quarto-table-cell-role="th">croissance_pop</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">region</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Auvergne-Rhône-Alpes</td>
-<td>2018.5</td>
-<td>0.526352</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Bourgogne-Franche-Comté</td>
-<td>2018.5</td>
-<td>-0.131830</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Bretagne</td>
-<td>2018.5</td>
-<td>0.508449</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Centre-Val de Loire</td>
-<td>2018.5</td>
-<td>-0.023276</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Corse</td>
-<td>2018.5</td>
-<td>0.919294</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Grand Est</td>
-<td>2018.5</td>
-<td>0.015406</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Guadeloupe</td>
-<td>2018.5</td>
-<td>-0.694451</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Guyane</td>
-<td>2018.5</td>
-<td>2.023511</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Hauts-de-France</td>
-<td>2018.5</td>
-<td>-0.043071</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">La Réunion</td>
-<td>2018.5</td>
-<td>0.398542</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Martinique</td>
-<td>2018.5</td>
-<td>-1.071535</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Mayotte</td>
-<td>2018.5</td>
-<td>3.693668</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Normandie</td>
-<td>2018.5</td>
-<td>-0.059686</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Nouvelle-Aquitaine</td>
-<td>2018.5</td>
-<td>0.434407</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Occitanie</td>
-<td>2018.5</td>
-<td>0.701437</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Pays de la Loire</td>
-<td>2018.5</td>
-<td>0.636151</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Provence-Alpes-Côte d'Azur</td>
-<td>2018.5</td>
-<td>0.387028</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Île-de-France</td>
-<td>2018.5</td>
-<td>0.310410</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-11" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-11">Your turn!</h4>
-<div id="bfcd9023" class="cell" data-execution_count="52">
+<div id="d158ef8b" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mean_population_growth_per_region(df, geo, year):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_growth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2783,31 +587,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="expected-result-12" class="level4">
 <h4 class="anchored" data-anchor-id="expected-result-12">Expected result</h4>
-<div id="28ebe8f0" class="cell" data-execution_count="53">
+<div id="f75197fa" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_growth_population_by_regions(df_regions, geo, <span class="dv">2015</span>, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-54-output-1.png" width="1135" height="588" class="figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="your-turn-12" class="level4">
 <h4 class="anchored" data-anchor-id="your-turn-12">Your turn!</h4>
-<div id="99bc0c9a" class="cell" data-execution_count="54">
+<div id="280c1967" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_growth_population_by_regions(df, geo, min_year, max_year):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[54], line 2</span>
-<span class="ansi-red-fg">    # Your code here</span>
-                    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> incomplete input
-</pre>
-</div>
-</div>
 </div>
 
 
@@ -2909,7 +697,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/inseefrlab\.github\.io\/formation-python-initiation\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -1,0 +1,1 @@
+Sitemap: https://inseefrlab.github.io/formation-python-initiation/sitemap.xml
