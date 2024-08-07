@@ -7,6 +7,11 @@ profile:
   group: [fr, en]
   default: fr
 
+website:
+  site-url: https://inseefrlab.github.io/formation-python-initiation/
+  repo-url: https://github.com/InseeFrLab/formation-python-initiation.git
+  favicon: img/python-logo.svg
+
 format:
   html:
     theme: cosmo
