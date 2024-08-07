@@ -1,3 +1,8 @@
+---
+execute:
+  eval: false
+---
+
 ::: {.content-visible when-profile="fr"}
 # Projet 1 - Puissance 4
 
@@ -51,21 +56,21 @@ Dans la fonction d'initialisation de la grille, chaque élément sera donc initi
 
 
 ```{python}
-grid = solutions.display_grid()
-grid
+grid_solution = solutions.initialize_grid()
+grid_solution
 ```
 
 
 ```{python}
-print(f'Nombre de lignes : {len(grid)}')
-print(f'Nombre de colonnes : {len(grid[0])}')
+print(f'Nombre de lignes : {len(grid_solution)}')
+print(f'Nombre de colonnes : {len(grid_solution[0])}')
 ```
 
 ### A vous de jouer !
 
 
 ```{python}
-def display_grid():
+def initialize_grid():
     # Votre code ici
     return grid
 ```
@@ -73,7 +78,7 @@ def display_grid():
 
 ```{python}
 # Vérification du résultat
-grid = display_grid()
+grid = initialize_grid()
 grid
 ```
 
@@ -103,7 +108,7 @@ print(l_join)
 
 
 ```{python}
-solutions.display_grid(grid)
+solutions.display_grid(grid_solution)
 ```
 
 ### A vous de jouer !
@@ -144,11 +149,11 @@ Optionnel : Renvoyer un message d'erreur si un joueur essaie de jouer dans une c
 
 
 ```{python}
-grid = solutions.display_grid()  # Initialisation
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 1er tour de jeu
-grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="J")  # 2ème tour de jeu
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 3ème tour de jeu
-solutions.display_grid(grid)
+grid_solution = solutions.()  # Initialisation
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="R")  # 1er tour de jeu
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=5, disc_color="J")  # 2ème tour de jeu
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="R")  # 3ème tour de jeu
+solutions.display_grid(grid_solution)
 ```
 
 ### A vous de jouer !
@@ -164,7 +169,7 @@ def make_move(grid, column_to_play, disc_color):
 
 ```{python}
 # Vérification du résultat
-grid = display_grid()  # Initialisation
+grid = initialize_grid()  # Initialisation
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 1er tour de jeu
 grid = make_move(grid=grid, column_to_play=5, disc_color="J")  # 2ème tour de jeu
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 3ème tour de jeu
@@ -197,18 +202,18 @@ print(solutions.check_row_victory(ligne2))  # Renvoie True
 
 ```{python}
 # Détection d'une victoire (horizontale) sur une grille
-grid = solutions.display_grid()  # Initialisation
-print(solutions.check_horizontal_victory(grid))  # Renvoie False
+grid_solution = solutions.initialize_grid()  # Initialisation
+print(solutions.check_horizontal_victory(grid_solution))  # Renvoie False
 print()  # Retour à la ligne
 
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")
-grid = solutions.make_move(grid=grid, column_to_play=3, disc_color="R")
-grid = solutions.make_move(grid=grid, column_to_play=4, disc_color="R")
-grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="R")
-solutions.display_grid(grid)
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="R")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=3, disc_color="R")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=4, disc_color="R")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=5, disc_color="R")
+solutions.display_grid(grid_solution)
 print()  # Retour à la ligne
 
-print(solutions.check_horizontal_victory(grid))  # Renvoie True
+print(solutions.check_horizontal_victory(grid_solution))  # Renvoie True
 ```
 
 ### A vous de jouer !
@@ -238,7 +243,7 @@ def check_horizontal_victory(grid):
 
 ```{python}
 # Vérification du résultat
-grid = display_grid()  # Initialisation
+grid = initialize_grid()  # Initialisation
 print(check_horizontal_victory(grid))  # Renvoie False
 
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")
@@ -262,18 +267,18 @@ A présent, on s'intéresse à la détection d'une victoire verticale. Par rappo
 
 ```{python}
 # Détection d'une victoire (verticale) sur une grille
-grid = solutions.display_grid()  # Initialisation
-print(solutions.check_vertical_victory(grid))  # Renvoie False
+grid_solution = solutions.initialize_grid()  # Initialisation
+print(solutions.check_vertical_victory(grid_solution))  # Renvoie False
 print()  # Retour à la ligne
 
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="J")
-solutions.display_grid(grid)
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="J")
+solutions.display_grid(grid_solution)
 print()  # Retour à la ligne
 
-print(solutions.check_vertical_victory(grid))  # Renvoie True
+print(solutions.check_vertical_victory(grid_solution))  # Renvoie True
 ```
 
 ### A vous de jouer !
@@ -287,7 +292,7 @@ def check_vertical_victory(grid):
 
 ```{python}
 # Vérification du résultat
-grid = display_grid()  # Initialisation
+grid = initialize_grid()  # Initialisation
 print(check_vertical_victory(grid))  # Renvoie False
 print()  # Retour à la ligne
 
@@ -319,15 +324,15 @@ Dans l'idéal, on voudrait ne pas avoir à tester manuellement après chaque cou
 
 
 ```{python}
-grid = solutions.initialize_grid()  # Initialisation
+grid_solution = solutions.initialize_grid()  # Initialisation
 print("Tour 1")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="J")
 print("Tour 2")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="J")
 print("Tour 3")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="J")
 print("Tour 4")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="J")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="J")
 ```
 
 
@@ -428,26 +433,26 @@ In the grid initialization function, each element will therefore be initialized 
 ### Expected result
 
 ```{python}
-grid = solutions.display_grid()
-grid
+grid_solution = solutions.initialize_grid()
+grid_solution
 ```
 
 ```{python}
-print(f'Number of rows: {len(grid)}')
-print(f'Number of columns: {len(grid[0])}')
+print(f'Number of rows: {len(grid_solution)}')
+print(f'Number of columns: {len(grid_solution[0])}')
 ```
 
 ### Your turn!
 
 ```{python}
-def display_grid():
+def initialize_grid():
     # Your code here
     return grid
 ```
 
 ```{python}
 # Checking the result
-grid = display_grid()
+grid = initialize_grid()
 grid
 ```
 
@@ -474,7 +479,7 @@ print(l_join)
 ### Expected result
 
 ```{python}
-solutions.display_grid(grid)
+solutions.display_grid(grid_solution)
 ```
 
 ### Your turn!
@@ -512,11 +517,11 @@ Optional: Return an error message if a player tries to play in a nonexistent col
 ### Expected result
 
 ```{python}
-grid = solutions.display_grid()  # Initialization
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 1st turn
-grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="Y")  # 2nd turn
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")  # 3rd turn
-solutions.display_grid(grid)
+grid_solution = solutions.initialize_grid()  # Initialization
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="R")  # 1st turn
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=5, disc_color="Y")  # 2nd turn
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="R")  # 3rd turn
+solutions.display_grid(grid_solution)
 ```
 
 ### Your turn!
@@ -530,7 +535,7 @@ def make_move(grid, column_to_play, disc_color):
 
 ```{python}
 # Checking the result
-grid = display_grid()  # Initialization
+grid = initialize_grid()  # Initialization
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 1st turn
 grid = make_move(grid=grid, column_to_play=5, disc_color="Y")  # 2nd turn
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")  # 3rd turn
@@ -561,18 +566,18 @@ print(solutions.check_row_victory(row2))  # Returns True
 
 ```{python}
 # Detection of a (horizontal) victory on a grid
-grid = solutions.display_grid()  # Initialization
-print(solutions.check_horizontal_victory(grid))  # Returns False
+grid_solution = solutions.initialize_grid()  # Initialization
+print(solutions.check_horizontal_victory(grid_solution))  # Returns False
 print()  # New line
 
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="R")
-grid = solutions.make_move(grid=grid, column_to_play=3, disc_color="R")
-grid = solutions.make_move(grid=grid, column_to_play=4, disc_color="R")
-grid = solutions.make_move(grid=grid, column_to_play=5, disc_color="R")
-solutions.display_grid(grid)
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="R")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=3, disc_color="R")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=4, disc_color="R")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=5, disc_color="R")
+solutions.display_grid(grid_solution)
 print()  # New line
 
-print(solutions.check_horizontal_victory(grid))  # Returns True
+print(solutions.check_horizontal_victory(grid_solution))  # Returns True
 ```
 
 ### Your turn!
@@ -598,7 +603,7 @@ def check_horizontal_victory(grid):
 
 ```{python}
 # Checking the result
-grid = display_grid()  # Initialization
+grid = initialize_grid()  # Initialization
 print(check_horizontal_victory(grid))  # Returns False
 
 grid = make_move(grid=grid, column_to_play=2, disc_color="R")
@@ -620,21 +625,19 @@ Now, we focus on detecting a vertical victory. Compared to the previous situatio
 ### Expected result
 
 ```{python}
-
-
 # Detection of a (vertical) victory on a grid
-grid = solutions.display_grid()  # Initialization
-print(solutions.check_vertical_victory(grid))  # Returns False
+grid_solution = solutions.initialize_grid()  # Initialization
+print(solutions.check_vertical_victory(grid_solution))  # Returns False
 print()  # New line
 
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
-grid = solutions.make_move(grid=grid, column_to_play=2, disc_color="Y")
-solutions.display_grid(grid)
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move(grid=grid_solution, column_to_play=2, disc_color="Y")
+solutions.display_grid(grid_solution)
 print()  # New line
 
-print(solutions.check_vertical_victory(grid))  # Returns True
+print(solutions.check_vertical_victory(grid_solution))  # Returns True
 ```
 
 ### Your turn!
@@ -646,7 +649,7 @@ def check_vertical_victory(grid):
 
 ```{python}
 # Checking the result
-grid = display_grid()  # Initialization
+grid = initialize_grid()  # Initialization
 print(check_vertical_victory(grid))  # Returns False
 print()  # New line
 
@@ -677,15 +680,15 @@ Ideally, we would not want to manually test after each move if the game is over 
 ### Expected result
 
 ```{python}
-grid = solutions.initialize_grid()  # Initialization
+grid_solution = solutions.initialize_grid()  # Initialization
 print("Turn 1")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="Y")
 print("Turn 2")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="Y")
 print("Turn 3")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="Y")
 print("Turn 4")
-grid = solutions.make_move_and_check_victory(grid=grid, column_to_play=2, disc_color="Y")
+grid_solution = solutions.make_move_and_check_victory(grid=grid_solution, column_to_play=2, disc_color="Y")
 ```
 
 ### Your turn!
