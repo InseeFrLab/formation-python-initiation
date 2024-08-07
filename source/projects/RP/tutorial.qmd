@@ -1,3 +1,8 @@
+---
+execute:
+  eval: false
+---
+
 ::: {.content-visible when-profile="fr"}
 # Projet 3 - Analyse du recensement de la population
 
