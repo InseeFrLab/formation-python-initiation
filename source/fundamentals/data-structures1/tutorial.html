@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Dans le tutoriel précédent, nous avons vu que les chaînes de caractères étaient des <strong>séquences</strong> de caractères. Les listes sont également des séquences, c’est à dire des suites ordonnées d’éléments, mais plus générales : les éléments peuvent être de différente nature.</p>
 <p>Les listes sont construites avec des crochets <strong>[]</strong>, et les éléments de la liste sont séparés par des virgules.</p>
 <p>Assignons une première liste à une variable <code>a</code> :</p>
-<div id="21f8da7c" class="cell" data-execution_count="1">
+<div id="59a25a42" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -334,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>La liste <code>a</code> est constituée d’entiers, mais une liste peut en pratique contenir des objets de tout type.</p>
-<div id="68276f2c" class="cell" data-execution_count="2">
+<div id="42cd3295" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">"une séquence"</span>, <span class="dv">56</span>, <span class="st">"d"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Il est notamment possible de créer des listes de listes (et ainsi de suite), ce qui permet de créer des structures hiérarchiques de données.</p>
-<div id="4a4a7485" class="cell" data-execution_count="3">
+<div id="05bf16c4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="st">"une séquence"</span>, <span class="dv">56</span>, [<span class="st">"cette liste est imbriquée"</span>, <span class="dv">75</span>, <span class="st">"o"</span>]]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -350,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Une liste imbriquée peut aussi être construite à partir de listes déjà définies.</p>
-<div id="714f62fd" class="cell" data-execution_count="4">
+<div id="dce1ce99" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>item1 <span class="op">=</span> [<span class="st">"cafe"</span>, <span class="st">"500g"</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>item2 <span class="op">=</span> [<span class="st">"biscuits"</span>, <span class="st">"20"</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>item3 <span class="op">=</span> [<span class="st">"lait"</span>, <span class="st">"1L"</span>]</span>
@@ -365,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="longueur-dune-liste" class="level3">
 <h3 class="anchored" data-anchor-id="longueur-dune-liste">Longueur d’une liste</h3>
 <p>Comme les chaînes de caractères, il est possible d’utiliser la fonction <code>len</code> pour compter le nombre d’éléments présents dans une liste.</p>
-<div id="c9cae75a" class="cell" data-execution_count="5">
+<div id="5715ba3e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> [<span class="st">"ceci"</span>, <span class="st">"est"</span>, <span class="st">"une"</span>, <span class="st">"liste"</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="indexation" class="level3">
 <h3 class="anchored" data-anchor-id="indexation">Indexation</h3>
 <p>Les listes étant des séquences, elles s’indexent de la même manière que les chaînes de caractères. Il est notamment important de se rappeler que la numérotation des positions commence à 0 en Python.</p>
-<div id="199e9a5f" class="cell" data-execution_count="6">
+<div id="70889758" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Troisième élément de la liste a</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Bien entendu, il n’est pas possible de demander un élément qui n’existe pas. Python renvoie une erreur nous indiquant que l’index demandé est hors limites.</p>
-<div id="7a2323ce" class="cell" data-execution_count="7">
+<div id="48a76e06" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -398,7 +398,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 </div>
 </div>
 <p>Pour indexer une liste contenue dans une autre liste, on utilise une double indexation.</p>
-<div id="00e0d989" class="cell" data-execution_count="8">
+<div id="950d5038" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Premier élément de la sous-liste qui est à la deuxième position de la liste c</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c[<span class="dv">2</span>][<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -406,14 +406,14 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 </div>
 </div>
 <p>En termes d’indexation, tout ce qui était possible sur les chaînes caractères l’est également avec les listes.</p>
-<div id="88cc551f" class="cell" data-execution_count="9">
+<div id="44d0e503" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tous les éléments à partir de la 1ère position</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b[<span class="dv">1</span>:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[56, 'd']</code></pre>
 </div>
 </div>
-<div id="68cc384b" class="cell" data-execution_count="10">
+<div id="c0e1521e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverser une liste</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a[::<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -424,7 +424,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="modification-déléments" class="level3">
 <h3 class="anchored" data-anchor-id="modification-déléments">Modification d’éléments</h3>
 <p>Il est possible de modifier les éléments d’une liste manuellement, avec une syntaxe similaire à l’assignation de variable.</p>
-<div id="5c7846bb" class="cell" data-execution_count="11">
+<div id="76b8c58b" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réassignation d'un élément</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"toto"</span>, <span class="dv">4</span>]</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>d[<span class="dv">2</span>] <span class="op">=</span> <span class="dv">3</span></span>
@@ -433,7 +433,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <pre><code>[1, 2, 3, 4]</code></pre>
 </div>
 </div>
-<div id="cedd68f5" class="cell" data-execution_count="12">
+<div id="92f582b2" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Substitution d'un élément</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>]</span>
@@ -447,7 +447,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="suppression-déléments" class="level3">
 <h3 class="anchored" data-anchor-id="suppression-déléments">Suppression d’éléments</h3>
 <p>L’instruction <code>del</code> permet de supprimer un élément par position. Les éléments qui se trouvaient après l’élément supprimé voient donc leur index réduit de 1.</p>
-<div id="4c21b983" class="cell" data-execution_count="13">
+<div id="348d9362" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> [<span class="dv">1</span>, <span class="st">"do"</span>, <span class="dv">6</span>]</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e[<span class="dv">2</span>])</span>
@@ -466,14 +466,14 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="quelques-propriétés-utiles" class="level3">
 <h3 class="anchored" data-anchor-id="quelques-propriétés-utiles">Quelques propriétés utiles</h3>
 <p>Là encore, on retrouve des propriétés inhérentes aux séquences.</p>
-<div id="57a8f675" class="cell" data-execution_count="14">
+<div id="98b43f95" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concaténation</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] <span class="op">+</span> [<span class="st">"a"</span>, <span class="dv">12</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>[1, 2, 3, 'a', 12]</code></pre>
 </div>
 </div>
-<div id="7f87c448" class="cell" data-execution_count="15">
+<div id="042380da" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réplication</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>] <span class="op">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -484,7 +484,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="quelques-méthodes-utiles" class="level3">
 <h3 class="anchored" data-anchor-id="quelques-méthodes-utiles">Quelques méthodes utiles</h3>
 <p>A l’instar des chaînes de caractères, les listes ont de nombreuses méthodes <em>built-in</em>, qui s’utilisent selon le format <code>objet.methode(parametres)</code>. Les plus utiles sont présentées ci-dessous ; d’autres méthodes seront utilisées dans le cadre des exercices de fin de section.</p>
-<div id="d1bee16e" class="cell" data-execution_count="16">
+<div id="cf0859b0" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter un élément</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>a.append(<span class="dv">4</span>)</span>
@@ -493,7 +493,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <pre><code>[1, 2, 3, 4]</code></pre>
 </div>
 </div>
-<div id="04711e94" class="cell" data-execution_count="17">
+<div id="240a1e3c" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supprimer un élément par position</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>]</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>b.pop(<span class="dv">0</span>)</span>
@@ -502,7 +502,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <pre><code>['re', 'mi']</code></pre>
 </div>
 </div>
-<div id="6608917f" class="cell" data-execution_count="18">
+<div id="35a19daa" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supprimer un élément par valeur</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>]</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>b.remove(<span class="st">"mi"</span>)</span>
@@ -511,7 +511,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <pre><code>['do', 're']</code></pre>
 </div>
 </div>
-<div id="f6427f8a" class="cell" data-execution_count="19">
+<div id="e138e965" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverser une liste</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>l.reverse()</span>
@@ -520,7 +520,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <pre><code>[5, 4, 3, 2, 1]</code></pre>
 </div>
 </div>
-<div id="de4c235b" class="cell" data-execution_count="20">
+<div id="3a261d09" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trouver la position d'un élément</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>]</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>b.index(<span class="st">"d"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -537,7 +537,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <p>Les <strong>tuples</strong> sont une autre structure de données basique en Python, semblable à celle des listes dans leur fonctionnement. Il y a cependant une différence fondamentale : là où les éléments d’une liste peuvent être modifiés par position comme on l’a vu précédemment, les tuples sont <strong>non-modifiables</strong> (<em>immutable</em>). Ainsi, les éléments d’un tuple ne peuvent pas être modifiés sans redéfinir complètement le tuple.</p>
 <p>Quand est-il pertinent d’utiliser un tuple plutôt qu’une liste ? En pratique, les tuples sont beaucoup moins fréquemment utilisés que les listes. On utilise généralement les tuples pour <strong>stocker des données qui n’ont pas vocation à être modifiées</strong> lors de l’exécution de notre programme Python. Cela permet de se prémunir contre des problèmes d’intégrité de données, c’est à dire de modification non-voulue des données d’entrée. On s’évite ainsi parfois de longues et pénibles séances de debugging.</p>
 <p>Une autre différence, mineure celle-ci, est que les tuples s’écrivent avec des <strong>parenthèses</strong> au lieu des crochets. Les différents éléments sont toujours séparés par des virgules.</p>
-<div id="fe5ed919" class="cell" data-execution_count="21">
+<div id="b235c7c0" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"mi"</span>, <span class="st">"fa"</span>, <span class="dv">5</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -545,7 +545,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 </div>
 </div>
 <p>Afin de bien faire la différence avec l’usage normal des parenthèses (dans les calculs ou pour délimiter les expressions), un tuple à un seul élément se définit avec une virgule après le premier élément.</p>
-<div id="68c560d6" class="cell" data-execution_count="22">
+<div id="d0e70f70" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> (<span class="st">"a"</span>, )</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -553,7 +553,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 </div>
 </div>
 <p>Vérifions qu’il est impossible de modifier ou d’ajouter un élément à un tuple.</p>
-<div id="a649504c" class="cell" data-execution_count="23">
+<div id="0fb2ad20" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">"do"</span>, <span class="st">"rez"</span>, <span class="st">"mi"</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>t[<span class="dv">1</span>] <span class="op">=</span> <span class="st">"re"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -568,7 +568,7 @@ Cell <span class="ansi-green-fg">In[23], line 2</span>
 </div>
 </div>
 </div>
-<div id="fde97c5e" class="cell" data-execution_count="24">
+<div id="9d5ff54c" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>t.append(<span class="st">"fa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -587,7 +587,7 @@ Cell <span class="ansi-green-fg">In[24], line 2</span>
 <section id="fonctionnement" class="level3">
 <h3 class="anchored" data-anchor-id="fonctionnement">Fonctionnement</h3>
 <p>Les tuples s’indexent comme les listes.</p>
-<div id="96294265" class="cell" data-execution_count="25">
+<div id="2032bd78" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">0</span>])</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">3</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -596,7 +596,7 @@ Cell <span class="ansi-green-fg">In[24], line 2</span>
 </div>
 </div>
 <p>Et peuvent également s’utiliser de manière hiérarchique.</p>
-<div id="bf86114f" class="cell" data-execution_count="26">
+<div id="248447fc" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> (<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>t3 <span class="op">=</span> (t1, <span class="st">"et"</span>, t2)</span>
@@ -609,14 +609,14 @@ Cell <span class="ansi-green-fg">In[24], line 2</span>
 </div>
 </div>
 <p>Les tuples partagent certaines méthodes <em>built-in</em> avec les listes : celles qui ne provoquent pas de modification de l’objet.</p>
-<div id="6bba74ed" class="cell" data-execution_count="27">
+<div id="348884d8" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>t.index(<span class="st">"do"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>0</code></pre>
 </div>
 </div>
-<div id="3c2d1552" class="cell" data-execution_count="28">
+<div id="d84108d4" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>, <span class="st">"re"</span>, <span class="st">"do"</span>)</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>t.count(<span class="st">"re"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -627,13 +627,13 @@ Cell <span class="ansi-green-fg">In[24], line 2</span>
 <section id="conversion" class="level3">
 <h3 class="anchored" data-anchor-id="conversion">Conversion</h3>
 <p>Les fonctions <code>list</code> et <code>tuple</code> permettent de convertir une liste en tuple et inversement.</p>
-<div id="350ca3ba" class="cell" data-execution_count="29">
+<div id="65a86ba9" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">tuple</span>([<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>('do', 're', 'mi')</code></pre>
 </div>
 </div>
-<div id="c7973855" class="cell" data-execution_count="30">
+<div id="8759873c" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>((<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>[1, 2, 3, 4, 5]</code></pre>
@@ -686,7 +686,7 @@ Afficher la solution
 <li><p><code>saisons[3][::-1]</code></p></li>
 <li><p><code>saisons * 3</code></p></li>
 </ul>
-<div id="ca8cc606" class="cell" data-execution_count="31">
+<div id="da42fae4" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -740,7 +740,7 @@ Afficher la solution
 <h3 class="anchored" data-anchor-id="faire-ses-gammes">Faire ses gammes</h3>
 <p>En ajoutant, supprimant et modifiant des éléments, nettoyez la liste suivante pour qu’elle contienne les notes de musique “do re mi fa sol la si” dans le bon ordre.</p>
 <p><code>l = ["do", "re", "re", "re", "fa", "sol", "solsi", "la"]</code></p>
-<div id="9a751c0a" class="cell" data-execution_count="32">
+<div id="35bc30f2" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -763,7 +763,7 @@ Afficher la solution
 <section id="inversion-de-liste" class="level3">
 <h3 class="anchored" data-anchor-id="inversion-de-liste">Inversion de liste</h3>
 <p>Proposez deux méthodes pour inverser la liste <code>["une", "liste", "quelconque"]</code>. Quelle est la différence majeure entre les deux méthodes ?</p>
-<div id="f213d7d5" class="cell" data-execution_count="33">
+<div id="9b587fc3" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -787,7 +787,7 @@ Afficher la solution
 <section id="popit" class="level3">
 <h3 class="anchored" data-anchor-id="popit">Pop’it</h3>
 <p>Nous avons vu que l’instruction <code>ma_liste.pop(i)</code> supprimait le i-ème élément de la liste <code>ma_liste</code>. A l’aide de la documentation Python ou d’une recherche sur Google, déterminez le comportement par défaut de cette méthode, c’est à dire ce qu’il se passe lorsqu’on ne donne aucun paramètre à la fonction <code>pop</code>. Vérifiez que vous observez bien ce comportement à l’aide d’un exemple de votre choix.</p>
-<div id="c2b58432" class="cell" data-execution_count="34">
+<div id="524ba716" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -809,7 +809,7 @@ Afficher la solution
 <li><p>sur une liste composée uniquement de chaînes de caractères ;</p></li>
 <li><p>sur une liste composée d’un mélange d’objets numériques et textuels.</p></li>
 </ul>
-<div id="5d7a544c" class="cell" data-execution_count="35">
+<div id="0d23686d" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -831,7 +831,7 @@ Afficher la solution
 <section id="liste-vide" class="level3">
 <h3 class="anchored" data-anchor-id="liste-vide">Liste vide</h3>
 <p>Essayer de créer une liste vide. Vérifiez son type. Quel intérêt pourrait avoir un tel objet ?</p>
-<div id="4a88a134" class="cell" data-execution_count="36">
+<div id="3f26e3b0" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -859,7 +859,7 @@ Afficher la solution
 <li><p>la chaîne de caractères <code>b = "bonjour"</code> ;</p></li>
 <li><p>l’entier <code>c = 5</code></p></li>
 </ul>
-<div id="46858514" class="cell" data-execution_count="37">
+<div id="e1d649b8" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -884,7 +884,7 @@ Afficher la solution
 <section id="immutabilité-des-tuples" class="level3">
 <h3 class="anchored" data-anchor-id="immutabilité-des-tuples">Immutabilité des tuples</h3>
 <p>Nous avons vu que les tuples avaient la particularité d’être non-modifiables. Mais est-ce que cette propriété se transfère de manière récursive ? Par exemple, est-ce qu’une liste contenue dans un tuple est-elle même non-modifiable ? Vérifiez à l’aide d’un exemple de votre choix.</p>
-<div id="842a1fcd" class="cell" data-execution_count="38">
+<div id="eb0bdefb" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -902,7 +902,7 @@ Afficher la solution
 <section id="dissociation-de-séquences" class="level3">
 <h3 class="anchored" data-anchor-id="dissociation-de-séquences">Dissociation de séquences</h3>
 <p>Lisez la partie concernant l’agrégation et la dissociation de séquences dans la <a href="https://docs.python.org/fr/3/tutorial/datastructures.html#tuples-and-sequences">documentation Python</a>. La dissociation est une propriété souvent utilisée en pratique. Vérifiez qu’elle fonctionne sur les différents objets séquentiels que nous avons vus jusqu’à maintenant (chaînes de caractères, listes et tuples).</p>
-<div id="dc29eabe" class="cell" data-execution_count="39">
+<div id="c08ff0e4" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
