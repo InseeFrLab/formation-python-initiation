@@ -14,7 +14,7 @@ Ce projet contient les supports de cours de l'auto-formation d'initiation à Pyt
 
 ## Génération des notebooks
 
-Afin de favoriser la reproductibilité de la formation, les sources des supports de cours sont disponibles au format `.qmd` ([Quarto](https://quarto.org/)) dans le dossier `source/`. Les notebooks `Jupyter` (format `.ipynb`) exécutables associés peuvent être générés en suivant les étapes suivantes :
+Afin de favoriser la reproductibilité de la formation, les sources des supports de cours sont disponibles au format `.qmd` ([Quarto](https://quarto.org/)) dans les différents sous-dossiers du dossier `source/`. Les notebooks `Jupyter` (format `.ipynb`) exécutables associés peuvent être générés en suivant les étapes suivantes :
 - [installer Quarto](https://quarto.org/docs/get-started/)
 - cloner le dépôt de la formation :
 
@@ -34,3 +34,5 @@ pip install -r requirements.txt
 ```bash
 quarto render --profile notebooks
 ```
+
+Une fois l'étape de *rendering* terminée, les notebooks générés au format `.ipynb` sont disponibles dans les différents sous-dossiers du dossier `source/`.
