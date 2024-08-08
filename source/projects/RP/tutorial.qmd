@@ -4,7 +4,7 @@ execute:
 ---
 
 ::: {.content-visible when-profile="fr"}
-# Projet 3 - Analyse du recensement de la population
+# Projet 3 - Estimations de population à partir du recensement
 
 Le but de ce projet est de réaliser une analyse statistique rapide d'un jeu de données dont le format n'est pas directement optimisé pour une analyse en python. Nous allons utiliser exclusivement la librairie `pandas` pour l'analyse de données. Pour reproduire au mieux une situation à laquelle vous pouvez être confrontés, nous vous invitons vivement à consulter la documentation de la librairie ([docs](https://pandas.pydata.org/docs/user_guide/index.html#user-guide)).
 
@@ -178,7 +178,7 @@ def plot_age_pyramid(df, year, ax=None):
     return df
 ```
 
-## Partie 3 : Une introduction aux données géographiques (facultatif pour aller plus loin ?)
+## Partie 3 : Une introduction aux données géographiques
 
 Les données géographiques sont très utiles car elles permettent de visualiser et d'analyser des informations liées à des emplacements spécifiques sur la terre. Les données géographiques peuvent être utilisées pour créer des cartes, des visualisations en 3D et des analyses spatiales pour comprendre les tendances, les modèles et les relations dans les données. En utilisant des bibliothèques Python telles que `Geopandas` ou `Folium`, vous pouvez facilement manipuler et visualiser des données géographiques pour répondre à vos besoins analytiques.
 
@@ -231,7 +231,7 @@ def match_department_regions(df, df_matching):
 
 ### Question 7
 
-Téléchargez les données des contours géographiques des régions en utilisant le package `cartiflette` et la librairie `geopandas`. Les données sont accessibles via l'url suivant : [https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
+Téléchargez les données des contours géographiques des régions en utilisant le package `cartiflette` et la librairie `geopandas`. Les données sont accessibles à [cette adresse](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
 
 #### Résultat attendu
 
@@ -345,7 +345,7 @@ def plot_growth_population_by_regions(df, geo, min_year, max_year):
 
 ::: {.content-visible when-profile="en"}
 
-# Project 3 - Population census analysis
+# Project 3 - Population estimation from census data
 
 The goal of this project is to perform a quick statistical analysis of a dataset whose format is not directly optimized for analysis in python. We will exclusively use the `pandas` library for data analysis. To best reproduce a situation you might encounter, we strongly encourage you to consult the library's documentation ([docs](https://pandas.pydata.org/docs/user_guide/index.html#user-guide)).
 
@@ -512,7 +512,7 @@ def plot_age_pyramid(df, year, ax=None):
     return df
 ```
 
-## Part 3: An introduction to geographical data (optional to go further?)
+## Part 3: An introduction to geographical data
 
 Geographical data is very useful because it allows for visualizing and analyzing information related to specific locations on Earth. Geographical data can be used to create maps, 3D visualizations, and spatial analyses to understand trends, patterns, and relationships in the data. By using Python libraries such as `Geopandas` or `Folium`, you can easily manipulate and visualize geographical data to meet your analytical needs.
 
@@ -564,15 +564,13 @@ def match_department_regions(df, df_matching):
 
 ### Question 7
 
-Download the geographical contour data of the regions using the `cartiflette` package and the `geopandas` library. The data is accessible via the following url: [https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
+Download the geographical contour data of the regions using the `cartiflette` package and the `geopandas` library. The data is accessible at [this URL](https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson).
 
 #### Expected result
 
 ```{python}
 #| eval: false
-geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS
-
--COG-CARTO-TERRITOIRE'/raw.geojson")
+geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson")
 geo
 ```
 
