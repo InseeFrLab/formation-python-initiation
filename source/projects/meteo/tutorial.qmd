@@ -1,5 +1,5 @@
 ::: {.content-visible when-profile="fr"}
-# Projet 2 - Interaction avec des APIs
+# Projet 2 - Prédictions météorologiques
 
 ## Contexte du projet
 
@@ -350,7 +350,7 @@ main(country="Germany", city="Berlin", agg_var="hour")
 
 ::: {.content-visible when-profile="en"}
 
-# Project 2 - Interaction with APIs
+# Project 2 - Wheather forecast
 
 ## Project context
 

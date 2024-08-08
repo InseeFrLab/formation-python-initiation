@@ -38,7 +38,7 @@ website:
         contents: 
           - text: "Project 1 - Connect 4"
             href: source/projects/puissance4/tutorial.qmd
-          - text: "Project 2 - API interaction"
+          - text: "Project 2 - Wheather forecast"
             href: source/projects/meteo/tutorial.qmd
-          - text: "Project 3 - Population census analysis"
+          - text: "Project 3 - Population estimation from census data"
             href: source/projects/RP/tutorial.qmd

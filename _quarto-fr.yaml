@@ -35,7 +35,7 @@ website:
         contents: 
           - text: "Projet 1 - Puissance 4"
             href: source/projects/puissance4/tutorial.qmd
-          - text: "Projet 2 - Interaction avec des APIs"
+          - text: "Projet 2 - Prédictions météorologiques"
             href: source/projects/meteo/tutorial.qmd
-          - text: "Projet 3 - Analyse du recensement de la population"
+          - text: "Projet 3 - Estimations de population à partir du recensement"
             href: source/projects/RP/tutorial.qmd
