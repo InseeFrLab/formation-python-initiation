@@ -283,13 +283,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project 2 - API interaction</span></a>
+ <span class="menu-text">Project 2 - Wheather forecast</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project 3 - Population census analysis</span></a>
+ <span class="menu-text">Project 3 - Population estimation from census data</span></a>
   </div>
 </li>
       </ul>
@@ -348,7 +348,7 @@ window.Quarto = {
 <section id="everything-is-an-object" class="level2">
 <h2 class="anchored" data-anchor-id="everything-is-an-object">“Everything is an object”</h2>
 <p><strong>In Python, everything is an object</strong> (in the OOP sense). Let’s see what this means by retrieving the type of various objects we’ve seen in previous tutorials.</p>
-<div id="19092618" class="cell" data-execution_count="13">
+<div id="4768d76c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">1</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"hello"</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>([]))</span>
@@ -373,7 +373,7 @@ window.Quarto = {
 <section id="defining-your-own-objects" class="level2">
 <h2 class="anchored" data-anchor-id="defining-your-own-objects">Defining your own objects</h2>
 <p>Let’s see how we can use the <code>class</code> statement to define our “lemon” object.</p>
-<div id="bd8be67a" class="cell" data-execution_count="14">
+<div id="dbcd76fb" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lemon:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color, juice_qty):</span>
@@ -402,7 +402,7 @@ window.Quarto = {
 <section id="the-class-and-its-instances" class="level2">
 <h2 class="anchored" data-anchor-id="the-class-and-its-instances">The class and its instances</h2>
 <p>The <strong>class</strong> can be seen as the <strong>recipe that allows creating an object</strong>: it defines the attributes and methods that all objects defined from this class will have. Defining a class as above simply makes this recipe available in the Python environment. To create an object according to this class, it must be <strong>instantiated</strong>.</p>
-<div id="de1a3466" class="cell" data-execution_count="15">
+<div id="4cbd16fe" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lemon1 <span class="op">=</span> Lemon(color<span class="op">=</span><span class="st">"yellow"</span>, juice_qty<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lemon2 <span class="op">=</span> Lemon(color<span class="op">=</span><span class="st">"green"</span>, juice_qty<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,7 +422,7 @@ window.Quarto = {
 <section id="accessing-attributes" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-attributes">Accessing attributes</h3>
 <p>Once the object is instantiated, it is possible to access its attributes. The syntax is simple: <code>instance.attribute</code>.</p>
-<div id="07925d4c" class="cell" data-execution_count="16">
+<div id="f9daa8b4" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lemon1.color)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lemon2.color)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lemon1.juice)</span>
@@ -439,7 +439,7 @@ green
 <section id="modifying-an-attribute" class="level3">
 <h3 class="anchored" data-anchor-id="modifying-an-attribute">Modifying an attribute</h3>
 <p>Modifying an attribute of an instance is very simple, the syntax is: <code>instance.attribute = new_value</code>.</p>
-<div id="e3b6c80f" class="cell" data-execution_count="17">
+<div id="dcc854e1" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lemon2.color <span class="op">=</span> <span class="st">"red"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lemon2.color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -463,14 +463,14 @@ green
 <section id="calling-a-method" class="level3">
 <h3 class="anchored" data-anchor-id="calling-a-method">Calling a method</h3>
 <p>The syntax for calling a method of an instantiated object is as follows: <code>instance.method(parameters)</code>.</p>
-<div id="dc220f0a" class="cell" data-execution_count="18">
+<div id="6186d654" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lemon1.get_juice_qty()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>There is 45 mL of juice left in the lemon.</code></pre>
 </div>
 </div>
 <p>Two remarks can be made about this syntax. The first is that <strong>a method is a function <em>attached</em> to an instance of an object</strong>. Unlike functions defined via the <code>def</code> statement, methods do not have an independent existence outside the object’s instance. In our case, calling the <code>get_juice_qty()</code> function independently of the object returns an error.</p>
-<div id="faecaaaa" class="cell" data-execution_count="19">
+<div id="9104578e" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>get_juice_qty()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -488,7 +488,7 @@ Cell <span class="ansi-green-fg">In[19], line 1</span>
 <section id="acting-on-attributes" class="level3">
 <h3 class="anchored" data-anchor-id="acting-on-attributes">Acting on attributes</h3>
 <p>The main interest of methods is that they can access attributes and perform operations based on them, as well as modify them. Let’s take our example again to illustrate this possibility.</p>
-<div id="2ca8bd7f" class="cell" data-execution_count="20">
+<div id="bd4fbb22" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lemon1 <span class="op">=</span> Lemon(color<span class="op">=</span><span class="st">"yellow"</span>, juice_qty<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>lemon1.get_juice_qty()</span>
@@ -564,7 +564,7 @@ Show solution
 <li><p>Add a method that displays “The mass of the lemon is x grams.”</p></li>
 </ul>
 <p>Instantiate a new lemon and verify that everything works as expected.</p>
-<div id="1d99e3b5" class="cell" data-execution_count="21">
+<div id="4dfcdf3b" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lemon:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color, juice_qty):</span>
@@ -581,7 +581,7 @@ Show solution
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.juice <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.juice <span class="op">-</span> amount)  <span class="co"># avoids any negative value of `juice`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ca654f77" class="cell" data-execution_count="22">
+<div id="2063156c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -589,7 +589,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="c4a80f25" class="cell" data-execution_count="23">
+<div id="00c5ef21" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lemon:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, color, mass):</span>
@@ -643,7 +643,7 @@ There is 125.0 mL of juice left in the lemon.</code></pre>
 </ul></li>
 </ul>
 <p>Create two clients and test that the various functionalities to be implemented work as expected.</p>
-<div id="978e4aeb" class="cell" data-execution_count="24">
+<div id="6f0ad99f" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -651,7 +651,7 @@ There is 125.0 mL of juice left in the lemon.</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="e25fec3b" class="cell" data-execution_count="25">
+<div id="d34e1035" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BankAccount:</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, holder, balance):</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.holder <span class="op">=</span> holder</span>

@@ -254,13 +254,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../source/projects/meteo/tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project 2 - API interaction</span></a>
+ <span class="menu-text">Project 2 - Wheather forecast</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../source/projects/RP/tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project 3 - Population census analysis</span></a>
+ <span class="menu-text">Project 3 - Population estimation from census data</span></a>
   </div>
 </li>
       </ul>
@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="csv-files">CSV files</h3>
 <p>CSV stands for <strong><em>comma-separated values</em></strong>. CSV files aim to reproduce the <strong>structure of data from spreadsheet software</strong> like Microsoft Excel or LibreOffice Calc, reduced to strictly textual data (no formatting, no column types, etc.).</p>
 <p>We will use the CSV file containing the list of departments in 2021 from the Official Geographic Code (COG) as an example. Let’s look at the first few lines of this file using a <code>shell</code> command to keep in mind the structure of such a file.</p>
-<div id="2bbd24f1" class="cell" data-execution_count="32">
+<div id="0a3b9ae7" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">5</span> departement2021.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>DEP,REG,CHEFLIEU,TNCC,NCC,NCCENR,LIBELLE
@@ -347,11 +347,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="reading" class="level3">
 <h3 class="anchored" data-anchor-id="reading">Reading</h3>
-<div id="99ea0749" class="cell" data-execution_count="33">
+<div id="5e29b1a9" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The syntax for reading and manipulating CSV files in Python is very similar to that for simple text files. The only difference is that you must create a <code>reader</code> object from the file object to iterate over the lines.</p>
-<div id="a860089c" class="cell" data-execution_count="34">
+<div id="6b5328da" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"departement2021.csv"</span>) <span class="im">as</span> file_in:</span>
@@ -370,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The syntax is the same as for simple text files: once the <code>reader</code> is created, you can iterate over the lines and perform operations with them, such as storing them in a list as shown above.</p>
 <p>When you have a CSV file with column names like in our case, it is useful to use them to manipulate named data rather than by position using a simple list. To do this, use a <code>DictReader</code> instead of a <code>reader</code>. Now, when iterating over the <code>DictReader</code> object, each line is a dictionary, with the key being the column name and the value being the cell data.</p>
 <p>To illustrate its usefulness, display the names of departments whose department number is between 20 and 29.</p>
-<div id="8bb2ec50" class="cell" data-execution_count="35">
+<div id="0115160e" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"departement2021.csv"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    dict_reader <span class="op">=</span> csv.DictReader(file_in)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> dict_reader:</span>
@@ -395,7 +395,7 @@ Haute-Corse</code></pre>
 <section id="writing" class="level3">
 <h3 class="anchored" data-anchor-id="writing">Writing</h3>
 <p>The syntax for writing is again quite similar to that for text files. The difference is that you are dealing with 2D data (row x column), so you cannot just pass a string to write, but <strong>pass a list of elements</strong>.</p>
-<div id="9feee970" class="cell" data-execution_count="36">
+<div id="5f3bf8a3" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> [<span class="st">"name"</span>, <span class="st">"class"</span>, <span class="st">"age"</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>row1 <span class="op">=</span> [<span class="st">"Maurice"</span>, <span class="st">"5thB"</span>, <span class="dv">12</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>row2 <span class="op">=</span> [<span class="st">"Manuela"</span>, <span class="st">"6thA"</span>, <span class="dv">11</span>]</span>
@@ -407,7 +407,7 @@ Haute-Corse</code></pre>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    csv_writer.writerow(row2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s check that our raw CSV file looks as expected.</p>
-<div id="d382c21b" class="cell" data-execution_count="37">
+<div id="1926cada" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shell command to display the content of a file</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat test.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -421,7 +421,7 @@ Manuela,6thA,11</code></pre>
 <h3 class="anchored" data-anchor-id="the-header">The header</h3>
 <p>Like in a spreadsheet document, the first line of a CSV file usually contains the <strong>variable names</strong> (columns). This line is called the <strong><em>header</em></strong>. This line is not mandatory in theory, but it is quite handy for quickly understanding the nature of the data in a CSV file. Therefore, it is good practice to include a header when generating a CSV file.</p>
 <p>We saw in the previous example that writing the header is done like writing any other data row. It’s during reading that things get complicated because you need to retrieve the header separately from the other data if the CSV file contains one. Let’s use the CSV generated in the previous step to illustrate this.</p>
-<div id="5d67b6e7" class="cell" data-execution_count="38">
+<div id="dec5de84" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.csv"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    csv_reader <span class="op">=</span> csv.reader(file_in)</span>
@@ -429,13 +429,13 @@ Manuela,6thA,11</code></pre>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> csv_reader:</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        data.append(row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1ceb0e83" class="cell" data-execution_count="39">
+<div id="df064473" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(header)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['name', 'class', 'age']</code></pre>
 </div>
 </div>
-<div id="b46afef4" class="cell" data-execution_count="40">
+<div id="dce0e39a" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[['Maurice', '5thB', '12'], ['Manuela', '6thA', '11']]</code></pre>
@@ -458,7 +458,7 @@ Manuela,6thA,11</code></pre>
 <p>As its name suggests, JSON is linked to the <em>JavaScript</em> language, as it is derived from the notation of objects in that language. However, the format is now independent of any programming language but is widely used in various languages.</p>
 <p>The JSON format is particularly important for statisticians and data scientists because it is the <strong>quasi-standard response format for <a href="https://en.wikipedia.org/wiki/Application_programming_interface">APIs</a></strong>. Interacting with APIs goes beyond this introductory course’s scope. However, as APIs are becoming the standard mode of communication for data exchange, it is essential to master the basics of the JSON format to handle API responses when interacting with them.</p>
 <p>Since JSON stores objects as <strong>key-value pairs</strong> and the values can be <strong><em>arrays</em></strong> — a broad concept in computing that includes lists we know — it closely resembles Python dictionaries. Thus, it is a natural file format for <strong><em>serializing</em></strong> them, i.e., converting a data structure in memory (here, a dictionary) to a byte sequence that any computer can read. Let’s look at the JSON representation of a Python dictionary as an example.</p>
-<div id="837d9ac2" class="cell" data-execution_count="41">
+<div id="bed38bc6" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> {</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"position"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"sewing"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"miranda"</span>: {<span class="st">"position"</span>: <span class="st">"engineer"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"trekking"</span>]}</span>
@@ -469,7 +469,7 @@ Manuela,6thA,11</code></pre>
 <pre><code>{'marc': {'position': 'manager', 'experience': 7, 'hobbies': ['sewing', 'frisbee']}, 'miranda': {'position': 'engineer', 'experience': 5, 'hobbies': ['trekking']}}</code></pre>
 </div>
 </div>
-<div id="cbccab84" class="cell" data-execution_count="42">
+<div id="893649dc" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json.dumps(cv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -487,14 +487,14 @@ Manuela,6thA,11</code></pre>
 <section id="writing-1" class="level3">
 <h3 class="anchored" data-anchor-id="writing-1">Writing</h3>
 <p>Let’s start with writing. As we saw in the previous example, the <code>dumps</code> function (for <em>dump string</em>) converts a <strong>serializable</strong> Python value to its JSON representation as a string.</p>
-<div id="2e9464cb" class="cell" data-execution_count="43">
+<div id="d11cb735" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"test"</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>json.dumps(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>'"test"'</code></pre>
 </div>
 </div>
-<div id="d89e5fd2" class="cell" data-execution_count="44">
+<div id="c202257e" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>json.dumps(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
@@ -502,11 +502,11 @@ Manuela,6thA,11</code></pre>
 </div>
 </div>
 <p>Writing a JSON file from Python simply means writing this representation into a text file, which we will give the <code>.json</code> extension to clearly indicate that it is a particular text file. As this operation is very common, there is a similar function, <code>dump</code>, which performs both conversion and writing.</p>
-<div id="f583e121" class="cell" data-execution_count="45">
+<div id="cab4af0a" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"cv.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> file_out:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    json.dump(cv, file_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="55350c7b" class="cell" data-execution_count="46">
+<div id="94e031dc" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat cv.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{"marc": {"position": "manager", "experience": 7, "hobbies": ["sewing", "frisbee"]}, "miranda": {"position": "engineer", "experience": 5, "hobbies": ["trekking"]}}</code></pre>
@@ -522,7 +522,7 @@ Manuela,6thA,11</code></pre>
 <li>The <code>loads</code> function converts JSON content from a string into a dictionary.</li>
 </ul>
 <p>Let’s reuse the CV we serialized earlier into JSON format to illustrate reading from a file.</p>
-<div id="cb1618b9" class="cell" data-execution_count="47">
+<div id="aecc8430" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"cv.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.load(file_in)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -536,10 +536,10 @@ Manuela,6thA,11</code></pre>
 </div>
 <p>We will illustrate reading JSON content from a string with a realistic example: querying an API. For example, we will query the French National Address Base (BAN), which allows geolocating any national address.</p>
 <p>Querying an API in Python is straightforward with the <code>requests</code> library. Let’s see how we can retrieve geographical information about all streets that contain the name “comedie” in France in just two lines of code.</p>
-<div id="ecd6bcb1" class="cell" data-execution_count="48">
+<div id="9e8a2d61" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b888bd86" class="cell" data-execution_count="49">
+<div id="61eaeb25" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://api-adresse.data.gouv.fr/search/?q=comedie&amp;type=street"</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>r_text <span class="op">=</span> response.text</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r_text[:<span class="dv">150</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -548,23 +548,23 @@ Manuela,6thA,11</code></pre>
 </div>
 </div>
 <p>The API sends us a response, from which we extract the textual content. As with most APIs, this content is JSON. We can then import it into a Python dictionary using the <code>loads</code> function (for <em>load string</em>) to manipulate the data it contains.</p>
-<div id="0b421ace" class="cell" data-execution_count="50">
+<div id="37ccac0b" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>r_dict <span class="op">=</span> json.loads(r_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b842da18" class="cell" data-execution_count="51">
+<div id="8afa3863" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>r_dict.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="51">
 <pre><code>dict_keys(['type', 'version', 'features', 'attribution', 'licence', 'query', 'filters', 'limit'])</code></pre>
 </div>
 </div>
-<div id="51bc586a" class="cell" data-execution_count="52">
+<div id="7e8ab0af" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(r_dict[<span class="st">"features"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>list</code></pre>
 </div>
 </div>
 <p>The results we are interested in are contained in the dictionary value associated with the <code>features</code> key, which is a list of dictionaries, one per result.</p>
-<div id="ea0c13b9" class="cell" data-execution_count="53">
+<div id="76cee6db" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>r_dict[<span class="st">"features"</span>][<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
 <pre><code>{'type': 'Feature',
@@ -586,7 +586,7 @@ Manuela,6thA,11</code></pre>
   'street': 'Rue de la Vieille Comédie'}}</code></pre>
 </div>
 </div>
-<div id="0a421eed" class="cell" data-execution_count="54">
+<div id="cc9cd7e2" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>r_dict[<span class="st">"features"</span>][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>{'type': 'Feature',
@@ -650,10 +650,10 @@ Show solution
 <h3 class="anchored" data-anchor-id="sort-the-keys-when-writing-a-json">Sort the keys when writing a JSON</h3>
 <p>The following cell contains a dictionary. The goal of the exercise is to write this data to a JSON file, sorting the dictionary keys alphabetically.</p>
 <p>Hint: The <code>dump</code> function of the <code>json</code> module contains a parameter that allows sorting the keys. Read the <a href="https://docs.python.org/3/library/json.html#json.dump">function documentation</a> to determine it.</p>
-<div id="dff92e1a" class="cell" data-execution_count="55">
+<div id="4e8be867" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"Isidore"</span>, <span class="st">"age"</span>: <span class="dv">29</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c2db9533" class="cell" data-execution_count="56">
+<div id="a6672841" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -661,7 +661,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="d25b8729" class="cell" data-execution_count="57">
+<div id="7ab189fe" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"id"</span>: <span class="dv">1</span>, <span class="st">"name"</span>: <span class="st">"Isidore"</span>, <span class="st">"age"</span>: <span class="dv">29</span>}</span>
@@ -680,7 +680,7 @@ Show solution
 <li>Convert the <code>mon_citron</code> instance using the <em>built-in</em> <code>__dict__</code> method that all Python objects have.</li>
 <li>Convert the obtained dictionary to JSON as a string.</li>
 </ul>
-<div id="94f928ab" class="cell" data-execution_count="58">
+<div id="3d5531de" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
@@ -743,7 +743,7 @@ File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.10.14/x64/lib/pyt
 </div>
 </div>
 </div>
-<div id="db181a94" class="cell" data-execution_count="59">
+<div id="462aa092" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -751,7 +751,7 @@ File <span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.10.14/x64/lib/pyt
 <summary>
 Show solution
 </summary>
-<div id="795cf53d" class="cell" data-execution_count="60">
+<div id="8be2acfd" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
@@ -780,7 +780,7 @@ Show solution
 <li>Find the delimiter used (via the Jupyter text editor, a shell command, or by testing with the <code>csv</code> module in Python) to read the file correctly.</li>
 <li>Generate a new CSV file <code>nat2020_corr.csv</code> containing the same data, but this time with a comma as the separator.</li>
 </ul>
-<div id="f27ce135" class="cell" data-execution_count="61">
+<div id="6b5bf044" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -788,7 +788,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="be85ec5c" class="cell" data-execution_count="62">
+<div id="0d827bfd" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's find the delimiter used with a shell command</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">3</span> nat2020.csv</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -830,7 +830,7 @@ Place de la Comédie,Montpellier,34172,3.879638,43.608525
 Rue de la Comédie,Cherbourg-en-Cotentin,50129,-1.629732,49.641574
 Allee de la Comedie,Villeneuve-d'Ascq,59009,3.162808,50.64628
 Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457</code></pre>
-<div id="a0a39ba6" class="cell" data-execution_count="63">
+<div id="9e73d8f2" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -838,7 +838,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="a4185273" class="cell" data-execution_count="64">
+<div id="5e1f7ef6" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://api-adresse.data.gouv.fr/search/?q=comedie&amp;type=street"</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>r_text <span class="op">=</span> response.text</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>r_dict <span class="op">=</span> json.loads(r_text)</span>
@@ -871,7 +871,7 @@ Show solution
 <li>Open this CSV file in <code>append</code> mode to write the line at the end of the file.</li>
 </ul></li>
 </ul>
-<div id="92c10446" class="cell" data-execution_count="65">
+<div id="53b488d8" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -879,7 +879,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="36a5f28c" class="cell" data-execution_count="66">
+<div id="53df9f0d" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>path_dep <span class="op">=</span> Path(<span class="st">"dep/"</span>)</span>
@@ -912,7 +912,7 @@ Show solution
 <li>Open the CSV file in write mode to reset it, write the header first, and then write the data previously saved in a list of lists.</li>
 </ul></li>
 </ul>
-<div id="98604dc3" class="cell" data-execution_count="67">
+<div id="1b0fe650" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -920,7 +920,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="eb812b78" class="cell" data-execution_count="68">
+<div id="a6a2975d" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'departement2021.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> file_in:</span>
