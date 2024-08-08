@@ -1,8 +1,3 @@
----
-execute:
-  eval: false
----
-
 ::: {.content-visible when-profile="fr"}
 # Projet 2 - Interaction avec des APIs
 
@@ -22,10 +17,13 @@ Les APIs que nous allons utiliser sont :
 Commençons par importer les packages dont nous aurons besoin au cours de ce projet.
 
 ```{python}
+#| eval: false
 import requests
 import pandas
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+import solutions
 ```
 
 ## Partie 1 : récupération des coordonnées géographiques pour une localisation donnée
@@ -46,6 +44,7 @@ Définissez une fonction `build_request_nominatim` qui construit le lien de la r
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 url_request_nominatim = solutions.build_request_nominatim("France", "Montrouge")
 url_request_nominatim
 ```
@@ -53,12 +52,14 @@ url_request_nominatim
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def build_request_nominatim(country, city):
     # Votre code ici
     return url_request
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 url_request_nominatim = build_request_nominatim("France", "Montrouge")
 url_request_nominatim
@@ -75,6 +76,7 @@ Définissez une fonction `get_lat_long` qui récupère la latitude et la longitu
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 lat, long = solutions.get_lat_long(query=url_request_nominatim)
 print(lat, long)
 print(type(lat))
@@ -84,12 +86,14 @@ print(type(long))
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def get_lat_long(query):
     # Votre code ici
     return latitude, longitude
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 lat, long = get_lat_long(query=url_request_nominatim)
 print(lat, long)
@@ -112,6 +116,7 @@ Sachant toutes ces informations et en vous aidant de la documentation, définiss
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 url_request_open_meteo = solutions.build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
 ```
@@ -119,12 +124,14 @@ url_request_open_meteo
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def build_request_open_meteo(latitude, longitude):
     # Votre code ici
     return url_request
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
@@ -144,11 +151,13 @@ Définissez une fonction `get_meteo_data` qui récupère le dictionnaire complet
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 predictions = solutions.get_meteo_data(url_request_open_meteo)
 type(predictions)
 ```
 
 ```{python}
+#| eval: false
 wrong_request = solutions.build_request_open_meteo(latitude=lat, longitude="dix-sept-virgule-quatre")
 output = solutions.get_meteo_data(wrong_request)
 print(output)
@@ -157,18 +166,21 @@ print(output)
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def get_meteo_data(query):
     # Votre code ici
     return response.json()
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 predictions = get_meteo_data(url_request_open_meteo)
 type(predictions)
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 wrong_request = build_request_open_meteo(latitude=lat, longitude="dix-sept-virgule-quatre")
 output = get_meteo_data(wrong_request)
@@ -180,6 +192,7 @@ print(output)
 Afin de bien comprendre la structure des données que nous avons récupérées, explorez le dictionnaire des prédictions retourné par l'API (clefs, différents niveaux, format des prédictions, format de la variable indiquant les dates/heures des prédictions, etc.)
 
 ```{python}
+#| eval: false
 #| code-fold: true
 #| code-summary: "Afficher le code"
 
@@ -215,6 +228,7 @@ Définissez une fonction `preprocess_predictions` qui met en forme les prédicti
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 df_preds = solutions.preprocess_predictions(predictions)
 df_preds.head()
 ```
@@ -222,12 +236,14 @@ df_preds.head()
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def preprocess_predictions(predictions):
     # Votre code ici
     return df
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 df_preds = preprocess_predictions(predictions)
 df_preds.head()
@@ -245,27 +261,32 @@ Définissez une fonction `plot_agg_avg_bhi` qui calcule l'indice agrégé dans c
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 solutions.plot_agg_avg_bhi(df_preds, agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 solutions.plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
 
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def plot_agg_avg_bhi(df_preds, agg_var="day"):
     # Votre code ici
     return None
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 plot_agg_avg_bhi(df_preds, agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
@@ -281,27 +302,32 @@ Définissez une fonction `main` qui représente le *bad hair index* pour un pays
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 solutions.main(country="Germany", city="Berlin", agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 solutions.main(country="Germany", city="Berlin", agg_var="hour")
 ```
 
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def main(country, city, agg_var="day"):
     # Votre code ici
     return None
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 main(country="Germany", city="Berlin", agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 # Vérification du résultat
 main(country="Germany", city="Berlin", agg_var="hour")
 ```
@@ -342,10 +368,13 @@ The APIs we will use are:
 Let's start by importing the packages we will need throughout this project.
 
 ```{python}
+#| eval: false
 import requests
 import pandas
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+import solutions
 ```
 
 ## Part 1: Retrieving geographic coordinates for a given location
@@ -366,6 +395,7 @@ Define a function `build_request_nominatim` that constructs the request URL for 
 #### Expected result
 
 ```{python}
+#| eval: false
 url_request_nominatim = solutions.build_request_nominatim("France", "Montrouge")
 url_request_nominatim
 ```
@@ -373,12 +403,14 @@ url_request_nominatim
 #### Your turn!
 
 ```{python}
+#| eval: false
 def build_request_nominatim(country, city):
     # Your code here
     return url_request
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 url_request_nominatim = build_request_nominatim("France", "Montrouge")
 url_request_nominatim
@@ -395,6 +427,7 @@ Define a function `get_lat_long` that retrieves the central latitude and longitu
 #### Expected result
 
 ```{python}
+#| eval: false
 lat, long = solutions.get_lat_long(query=url_request_nominatim)
 print(lat, long)
 print(type(lat))
@@ -404,12 +437,14 @@ print(type(long))
 #### Your turn!
 
 ```{python}
+#| eval: false
 def get_lat_long(query):
     # Your code here
     return latitude, longitude
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 lat, long = get_lat_long(query=url_request_nominatim)
 print(lat, long)
@@ -432,6 +467,7 @@ Knowing all this information and using the documentation, define a function `bui
 #### Expected result
 
 ```{python}
+#| eval: false
 url_request_open_meteo = solutions.build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
 ```
@@ -439,12 +475,14 @@ url_request_open_meteo
 #### Your turn!
 
 ```{python}
+#| eval: false
 def build_request_open_meteo(latitude, longitude):
     # Your code here
     return url_request
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 url_request_open_meteo = build_request_open_meteo(latitude=lat, longitude=long)
 url_request_open_meteo
@@ -464,11 +502,13 @@ Define a function `get_meteo_data` that retrieves the complete data dictionary r
 #### Expected result
 
 ```{python}
+#| eval: false
 predictions = solutions.get_meteo_data(url_request_open_meteo)
 type(predictions)
 ```
 
 ```{python}
+#| eval: false
 wrong_request = solutions.build_request_open_meteo(latitude=lat, longitude="seventeen-point-four")
 output = solutions.get_meteo_data(wrong_request)
 print(output)
@@ -477,18 +517,21 @@ print(output)
 #### Your turn!
 
 ```{python}
+#| eval: false
 def get_meteo_data(query):
     # Your code here
     return response.json()
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 predictions = get_meteo_data(url_request_open_meteo)
 type(predictions)
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 wrong_request = build_request_open_meteo(latitude=lat, longitude="seventeen-point-four")
 output = get_meteo_data(wrong_request)
@@ -500,6 +543,7 @@ print(output)
 To understand the structure of the data we retrieved, explore the returned predictions dictionary (keys, different levels, format of the predictions, format of the variable indicating the dates/times of the predictions, etc.)
 
 ```{python}
+#| eval: false
 #| code-fold: true
 #| code-summary: "Show code"
 
@@ -537,6 +581,7 @@ Define a function `preprocess_predictions` that formats the predictions from the
 #### Expected result
 
 ```{python}
+#| eval: false
 df_preds = solutions.preprocess_predictions(predictions)
 df_preds.head()
 ```
@@ -544,12 +589,14 @@ df_preds.head()
 #### Your turn!
 
 ```{python}
+#| eval: false
 def preprocess_predictions(predictions):
     # Your code here
     return df
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 df_preds = preprocess_predictions(predictions)
 df_preds.head()
@@ -567,27 +614,32 @@ Define a function `plot_agg_avg_bhi` that calculates the aggregated index in eac
 #### Expected result
 
 ```{python}
+#| eval: false
 solutions.plot_agg_avg_bhi(df_preds, agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 solutions.plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
 
 #### Your turn!
 
 ```{python}
+#| eval: false
 def plot_agg_avg_bhi(df_preds, agg_var="day"):
     # Your code here
     return None
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 plot_agg_avg_bhi(df_preds, agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 plot_agg_avg_bhi(df_preds, agg_var="hour")
 ```
@@ -603,27 +655,32 @@ Define a `main` function that represents the *bad hair index* for a given countr
 #### Expected result
 
 ```{python}
+#| eval: false
 solutions.main(country="Germany", city="Berlin", agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 solutions.main(country="Germany", city="Berlin", agg_var="hour")
 ```
 
 #### Your turn!
 
 ```{python}
+#| eval: false
 def main(country, city, agg_var="day"):
     # Your code here
     return None
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 main(country="Germany", city="Berlin", agg_var="day")
 ```
 
 ```{python}
+#| eval: false
 # Checking the result
 main(country="Germany", city="Berlin", agg_var="hour")
 ```

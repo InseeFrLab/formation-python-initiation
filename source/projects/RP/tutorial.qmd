@@ -13,6 +13,7 @@ Nous allons nous intéresser à l’estimation de la population au 1er janvier d
 Le fichier que nous allons utilisé peut être téléchargé directement via cet url : [https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls](https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls).
 
 ```{python}
+#| eval: false
 import copy
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -37,6 +38,7 @@ Définir la fonction `load_data()` qui n'a pas de paramètre et renvoie un `Dict
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 data = solutions.load_data()
 data["2022"]
 ```
@@ -44,6 +46,7 @@ data["2022"]
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def load_data():
     # Votre code ici
     return data
@@ -71,6 +74,7 @@ Maintenant que les données sont importées nous allons les mettre sous la forme
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 annee = 2022
 df = solutions.reshape_table_by_year(data[f"{annee}"], annee)
 df
@@ -79,6 +83,7 @@ df
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def reshape_table_by_year(df, year):
     # Votre code ici
     return df
@@ -89,6 +94,7 @@ def reshape_table_by_year(df, year):
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 df = solutions.reshape_data(data)
 df
 ```
@@ -96,6 +102,7 @@ df
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def reshape_data(data):
     # Votre code ici
     return df
@@ -113,12 +120,14 @@ Vous pouvez regarder les données de la Haute Garonne (31), du Loir-et-Cher (41)
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 solutions.plot_population_by_gender_per_department(df, "31")
 ```
 
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def plot_population_by_gender_per_department(data, department_code):
     # Votre code ici
 ```
@@ -132,6 +141,7 @@ Afin de comparer 2 graphiques il est parfois utile de les afficher côte à côt
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 pyramide_data = solutions.get_age_pyramid_data(df, 2022)
 pyramide_data
 ```
@@ -139,6 +149,7 @@ pyramide_data
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def get_age_pyramid_data(df, year):
     # Votre code ici
     return pyramide_data
@@ -149,6 +160,7 @@ def get_age_pyramid_data(df, year):
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 fig,(ax1,ax2) = plt.subplots(1,2,figsize=(15,6))
 
 solutions.plot_age_pyramid(df, 1975, ax=ax1)
@@ -158,6 +170,7 @@ solutions.plot_age_pyramid(df, 2022, ax=ax2)
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def plot_age_pyramid(df, year, ax=None):
     if ax is None:
         ax = plt.gca()
@@ -180,6 +193,7 @@ Créez un DataFrame à partir du fichier `.json` des départements et régions d
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 df_matching = solutions.load_departements_regions("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
 df_matching
 ```
@@ -187,6 +201,7 @@ df_matching
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def load_departements_regions(url):
     # Votre code ici
     return df_matching
@@ -199,6 +214,7 @@ Apparier le DataFrame contenant les données de population par département avec
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 df_regions = solutions.match_department_regions(df, df_matching)
 df_regions
 ```
@@ -206,6 +222,7 @@ df_regions
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def match_department_regions(df, df_matching):
     # Votre code ici
     return df_regions
@@ -219,6 +236,7 @@ Téléchargez les données des contours géographiques des régions en utilisant
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson")
 geo
 ```
@@ -226,6 +244,7 @@ geo
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def load_geo_data(url):
     # Votre code ici
     return geo
@@ -238,12 +257,14 @@ Produire une carte choropleth de la population en 2022 des régions de France. V
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 solutions.plot_population_by_regions(df_regions, geo, 2022)
 ```
 
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def plot_population_by_regions(df, geo, year):
     # Votre code ici
 ```
@@ -257,6 +278,7 @@ La population totale d'une région n'est pas suffisante pour analyser la démogr
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 df_croissance = solutions.compute_population_growth_per_region(df_regions)
 df_croissance
 ```
@@ -264,6 +286,7 @@ df_croissance
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def compute_population_growth_per_region(df_regions):
     # Votre code ici
     return df_croissance
@@ -274,6 +297,7 @@ def compute_population_growth_per_region(df_regions):
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 df_croissance = solutions.compute_mean_population_growth_per_region(df_regions, 2015, 2022)
 df_croissance
 ```
@@ -281,6 +305,7 @@ df_croissance
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def compute_mean_population_growth_per_region(df, geo, year):
     # Votre code ici
     return df_croissance
@@ -291,12 +316,14 @@ def compute_mean_population_growth_per_region(df, geo, year):
 #### Résultat attendu
 
 ```{python}
+#| eval: false
 solutions.plot_growth_population_by_regions(df_regions, geo, 2015, 2022)
 ```
 
 #### À vous de jouer !
 
 ```{python}
+#| eval: false
 def plot_growth_population_by_regions(df, geo, min_year, max_year):
     # Votre code ici
 ```
@@ -326,6 +353,7 @@ We will focus on the population estimate as of January 1st of each year, this es
 The file we will use can be downloaded directly via this url: [https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls](https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls).
 
 ```{python}
+#| eval: false
 import copy
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -350,6 +378,7 @@ Define the `load_data()` function which has no parameters and returns a `Dict` w
 #### Expected result
 
 ```{python}
+#| eval: false
 data = solutions.load_data()
 data["2022"]
 ```
@@ -357,6 +386,7 @@ data["2022"]
 #### Your turn!
 
 ```{python}
+#| eval: false
 def load_data():
     # Your code here
     return data
@@ -378,6 +408,7 @@ Now that the data is imported, we will format it into a single `DataFrame` with 
 #### Expected result
 
 ```{python}
+#| eval: false
 year = 2022
 df = solutions.reshape_table_by_year(data[f"{year}"], year)
 df
@@ -386,6 +417,7 @@ df
 #### Your turn!
 
 ```{python}
+#| eval: false
 def reshape_table_by_year(df, year):
     # Your code here
     return df
@@ -396,6 +428,7 @@ def reshape_table_by_year(df, year):
 #### Expected result
 
 ```{python}
+#| eval: false
 df = solutions.reshape_data(data)
 df
 ```
@@ -403,6 +436,7 @@ df
 #### Your turn!
 
 ```{python}
+#| eval: false
 def reshape_data(data):
     # Your code here
     return df
@@ -420,12 +454,14 @@ You can look at the data for Haute Garonne (31), Loir-et-Cher (41), and Réunion
 #### Expected result
 
 ```{python}
+#| eval: false
 solutions.plot_population_by_gender_per_department(df, "31")
 ```
 
 #### Your turn!
 
 ```{python}
+#| eval: false
 def plot_population_by_gender_per_department(data, department_code):
     # Your code here
 ```
@@ -439,6 +475,7 @@ To compare 2 graphs, it can be useful to display them side by side. Thanks to th
 #### Expected result
 
 ```{python}
+#| eval: false
 pyramide_data = solutions.get_age_pyramid_data(df, 2022)
 pyramide_data
 ```
@@ -446,6 +483,7 @@ pyramide_data
 #### Your turn!
 
 ```{python}
+#| eval: false
 def get_age_pyramid_data(df, year):
     # Your code here
     return pyramide_data
@@ -456,6 +494,7 @@ def get_age_pyramid_data(df, year):
 #### Expected result
 
 ```{python}
+#| eval: false
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
 solutions.plot_age_pyramid(df, 1975, ax=ax1)
@@ -465,6 +504,7 @@ solutions.plot_age_pyramid(df, 2022, ax=ax2)
 #### Your turn!
 
 ```{python}
+#| eval: false
 def plot_age_pyramid(df, year, ax=None):
     if ax is None:
         ax = plt.gca()
@@ -487,6 +527,7 @@ Create a DataFrame from the `.json` file of French departments and regions menti
 #### Expected result
 
 ```{python}
+#| eval: false
 df_matching = solutions.load_departements_regions("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
 df_matching
 ```
@@ -494,6 +535,7 @@ df_matching
 #### Your turn!
 
 ```{python}
+#| eval: false
 def load_departements_regions(url):
     # Your code here
     return df_matching
@@ -506,6 +548,7 @@ Match the DataFrame containing population data by department with the DataFrame 
 #### Expected result
 
 ```{python}
+#| eval: false
 df_regions = solutions.match_department_regions(df, df_matching)
 df_regions
 ```
@@ -513,6 +556,7 @@ df_regions
 #### Your turn!
 
 ```{python}
+#| eval: false
 def match_department_regions(df, df_matching):
     # Your code here
     return df_regions
@@ -525,6 +569,7 @@ Download the geographical contour data of the regions using the `cartiflette` pa
 #### Expected result
 
 ```{python}
+#| eval: false
 geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS
 
 -COG-CARTO-TERRITOIRE'/raw.geojson")
@@ -534,6 +579,7 @@ geo
 #### Your turn!
 
 ```{python}
+#| eval: false
 def load_geo_data(url):
     # Your code here
     return geo
@@ -546,12 +592,14 @@ Produce a choropleth map of the 2022 population of French regions. You can consu
 #### Expected result
 
 ```{python}
+#| eval: false
 solutions.plot_population_by_regions(df_regions, geo, 2022)
 ```
 
 #### Your turn!
 
 ```{python}
+#| eval: false
 def plot_population_by_regions(df, geo, year):
     # Your code here
 ```
@@ -565,6 +613,7 @@ The total population of a region is not sufficient to analyze the demographics o
 #### Expected result
 
 ```{python}
+#| eval: false
 df_growth = solutions.compute_population_growth_per_region(df_regions)
 df_growth
 ```
@@ -572,6 +621,7 @@ df_growth
 #### Your turn!
 
 ```{python}
+#| eval: false
 def compute_population_growth_per_region(df_regions):
     # Your code here
     return df_growth
@@ -582,6 +632,7 @@ def compute_population_growth_per_region(df_regions):
 #### Expected result
 
 ```{python}
+#| eval: false
 df_growth = solutions.compute_mean_population_growth_per_region(df_regions, 2015, 2022)
 df_growth
 ```
@@ -589,6 +640,7 @@ df_growth
 #### Your turn!
 
 ```{python}
+#| eval: false
 def compute_mean_population_growth_per_region(df, geo, year):
     # Your code here
     return df_growth
@@ -599,12 +651,14 @@ def compute_mean_population_growth_per_region(df, geo, year):
 #### Expected result
 
 ```{python}
+#| eval: false
 solutions.plot_growth_population_by_regions(df_regions, geo, 2015, 2022)
 ```
 
 #### Your turn!
 
 ```{python}
+#| eval: false
 def plot_growth_population_by_regions(df, geo, min_year, max_year):
     # Your code here
 ```
