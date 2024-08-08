@@ -2,7 +2,7 @@ project:
   render:
     - '!index.qmd'
     - '!slides/index.qmd'
-  output-dir: .
+  post-render: utils/fix_ipynb_titles.sh
 
 format: ipynb
     

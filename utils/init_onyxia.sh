@@ -20,7 +20,7 @@ REQUIREMENTS_FILE=${CLONE_DIR}/requirements.txt
 quarto render ${CHAPTER_DIR}/tutorial.qmd --profile ${LANGUAGE} --no-execute --to ipynb --output-dir .
 
 # Fix notebook formatting by removing first empty title
-jq '.cells[0].source |= .[2:]' ${CHAPTER_DIR}/tutorial.ipynb > tmp.ipynb && mv tmp.ipynb ${CHAPTER_DIR}/tutorial.ipynb
+./fix_ipynb_titles.sh ${CHAPTER_DIR}/tutorial.ipynb
 
 # Put chapter files in the training dir
 cp -r ${CHAPTER_DIR}/* ${WORK_DIR}/
