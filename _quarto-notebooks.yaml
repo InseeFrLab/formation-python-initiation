@@ -1,0 +1,10 @@
+project:
+  render:
+    - '!index.qmd'
+    - '!slides/index.qmd'
+  output-dir: .
+
+format: ipynb
+    
+execute:
+  enabled: false

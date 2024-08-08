@@ -16,5 +16,21 @@ Ce projet contient les supports de cours de l'auto-formation d'initiation à Pyt
 
 Afin de favoriser la reproductibilité de la formation, les sources des supports de cours sont disponibles au format `.qmd` ([Quarto](https://quarto.org/)) dans le dossier `source/`. Les notebooks `Jupyter` (format `.ipynb`) exécutables associés peuvent être générés en suivant les étapes suivantes :
 - [installer Quarto](https://quarto.org/docs/get-started/)
-- installer les packages `Python` nécessaires : `pip install -r requirements.txt`
-- générer les notebooks : `quarto render --profile notebooks --no-execute`
+- cloner le dépôt de la formation :
+
+```bash
+git clone https://github.com/InseeFrLab/formation-python-initiation.git
+cd formation-python-initiation
+```
+
+- installer les packages `Python` nécessaires :
+
+```bash
+pip install -r requirements.txt
+```
+
+- générer les notebooks :
+
+```bash
+quarto render --profile notebooks
+```

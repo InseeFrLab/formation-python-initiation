@@ -10,6 +10,8 @@ slides/logo.svg
 
 _site/
 site_libs/
+robots.txt
+sitemap.xml
 
 source/manipulation/modules-files/test.txt
 source/manipulation/modules-files/output_script.txt
