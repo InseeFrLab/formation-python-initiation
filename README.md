@@ -6,7 +6,7 @@
 
 ## Site associé
 
-Le site web associé à la formation est déployé à [cette adresse](https://inseefrlab.github.io/formation-python-initiation/).
+Le site web associé à la formation est déployé à [cette adresse](https://inseefrlab.github.io/formation-python-initiation/) ([version anglaise](https://inseefrlab.github.io/formation-python-initiation/en)).
 
 ## Déploiement à partir du SSP Cloud
 
