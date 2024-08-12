@@ -356,7 +356,7 @@ window.Quarto = {
 <li><p><strong>renvoie</strong> un résultat (un objet Python) en sortie</p></li>
 </ul>
 <p>Nous avons déjà vu et utilisé un certains nombres de fonctions dans les tutoriels précédents (<code>range</code>, <code>len</code>, etc.). Nous avons également utilisé des <strong>méthodes</strong>, qui sont simplement des fonctions <em>attachées</em> à un type d’objet particulier. Utilisons une fonction bien connue pour illustrer leur fonctionnement général.</p>
-<div id="1815f18b" class="cell" data-execution_count="1">
+<div id="bc93dd56" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(<span class="st">'do re mi fa sol'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>15</code></pre>
@@ -374,7 +374,7 @@ window.Quarto = {
 <section id="syntaxe" class="level2">
 <h2 class="anchored" data-anchor-id="syntaxe">Syntaxe</h2>
 <p>L’instruction <code>def</code> permet de définir une fonction.</p>
-<div id="82104245" class="cell" data-execution_count="2">
+<div id="ef27ae4b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accueil(prenom):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="st">"Salutations "</span> <span class="op">+</span> prenom <span class="op">+</span> <span class="st">" !"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> msg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -391,14 +391,14 @@ window.Quarto = {
 <li><p>une instruction <code>return</code>, qui spécifie ce que la fonction va renvoyer lorsqu’elle sera appelée (ici, le contenu de la variable <code>msg</code>).</p></li>
 </ul>
 <p>Le fait de <strong>définir</strong> une fonction comme ci-dessus revient à rendre disponible dans l’environnement Python le code de la fonction. Ce n’est que lorsque celle-ci est <strong>appelée</strong> dans le code, avec des arguments, que le code contenu est exécuté et produit un résultat.</p>
-<div id="3ffe0321" class="cell" data-execution_count="3">
+<div id="9c9a6aaf" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>accueil(<span class="st">"Miranda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>'Salutations Miranda !'</code></pre>
 </div>
 </div>
 <p>Comme expliqué en introduction, tout l’intérêt d’une fonction est de pouvoir réutiliser du code sans avoir à le dupliquer dans le programme.</p>
-<div id="1788e4a7" class="cell" data-execution_count="4">
+<div id="7b42dfa2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>accueil(<span class="st">"Romuald"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'Salutations Romuald !'</code></pre>
@@ -410,17 +410,17 @@ window.Quarto = {
 <section id="principe" class="level3">
 <h3 class="anchored" data-anchor-id="principe">Principe</h3>
 <p>Lorsqu’on appelle une fonction en lui spécifiant des arguments, on dit qu’on lui “passe” des arguments. Ces arguments deviennent alors des variables qui peuvent être utilisées dans le contexte de la fonction. A l’inverse d’une boucle <code>for</code> par exemple, les variables créées ne persistent pas après l’appel de la fonction</p>
-<div id="350041ee" class="cell" data-execution_count="5">
+<div id="be180beb" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> addition(x, y):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0d1e5cc1" class="cell" data-execution_count="6">
+<div id="5999d285" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>addition(<span class="dv">5</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>8</code></pre>
 </div>
 </div>
-<div id="f243c70f" class="cell" data-execution_count="7">
+<div id="e96211dd" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x  <span class="co"># La variable ne persiste pas en mémoire après l'appel de la fonction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -438,11 +438,11 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="nombre-darguments" class="level3">
 <h3 class="anchored" data-anchor-id="nombre-darguments">Nombre d’arguments</h3>
 <p>Le nombre d’arguments que l’on peut passer à une fonction est variable. En toute rigueur, il est possible de définir une fonction qui n’a besoin d’aucun argument, même si c’est rarement utile en pratique.</p>
-<div id="7d3e734c" class="cell" data-execution_count="8">
+<div id="57dff704" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neuf():</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cff4746f" class="cell" data-execution_count="9">
+<div id="c91d8da9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> neuf()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -458,24 +458,24 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <li><p>le <strong>passage par mot-clé</strong> : on précise le nom du paramètre lors du passage de l’argument, ce qui permet de ne pas avoir à suivre l’ordre indiqué lors de la définition.</p></li>
 </ul>
 <p>Illustrons cette différence à partir d’une fonction qui réalise simplement une division.</p>
-<div id="89b32005" class="cell" data-execution_count="10">
+<div id="db28c964" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> division(x, y):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">/</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e1d11342" class="cell" data-execution_count="11">
+<div id="5f19f905" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>division(<span class="dv">4</span>, <span class="dv">2</span>)  <span class="co"># Passage par position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div id="088c6e48" class="cell" data-execution_count="12">
+<div id="cafd2e01" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>division(x<span class="op">=</span><span class="dv">4</span>, y<span class="op">=</span><span class="dv">2</span>)  <span class="co"># Passage par mot-clé</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>2.0</code></pre>
 </div>
 </div>
 <p>Dans le cas du passage par position, le respect de l’ordre est impératif.</p>
-<div id="05b66f16" class="cell" data-execution_count="13">
+<div id="d20e89cf" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(division(<span class="dv">0</span>, <span class="dv">5</span>))</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(division(<span class="dv">5</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -498,7 +498,7 @@ Cell <span class="ansi-green-fg">In[10], line 2</span>, in <span class="ansi-cya
 </div>
 </div>
 <p>Dans le cas du passage par mot-clé, l’ordre n’a plus d’importance.</p>
-<div id="72e077c1" class="cell" data-execution_count="14">
+<div id="c16d8561" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(division(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="dv">5</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(division(y<span class="op">=</span><span class="dv">5</span>, x<span class="op">=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -511,7 +511,7 @@ Cell <span class="ansi-green-fg">In[10], line 2</span>, in <span class="ansi-cya
 <h3 class="anchored" data-anchor-id="arguments-obligatoires-et-arguments-optionnels">Arguments obligatoires et arguments optionnels</h3>
 <p>Lorsqu’on définit une fonction, il est fréquent de vouloir faire cohabiter des arguments que doit absolument spécifier l’utilisateur, et des arguments optionnels qui spécifient un comportement par défaut de la fonction, mais peuvent également être modifiés si nécessaire.</p>
 <p>Regardons par exemple comment on peut modifier le comportement de la fonction <code>print</code> à l’aide d’un argument optionnel.</p>
-<div id="7fae8258" class="cell" data-execution_count="15">
+<div id="21fdee96" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"bonjour"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"bonjour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -519,7 +519,7 @@ Cell <span class="ansi-green-fg">In[10], line 2</span>, in <span class="ansi-cya
 bonjour</code></pre>
 </div>
 </div>
-<div id="1443bd3a" class="cell" data-execution_count="16">
+<div id="94a968da" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"bonjour"</span>, end<span class="op">=</span><span class="st">' '</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"bonjour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -533,17 +533,17 @@ bonjour</code></pre>
 <li><p>les <strong>arguments optionnels</strong> doivent être <strong>passés par mot-clé</strong>, afin de bien marquer qu’on modifie le comportement par défaut de la fonction</p></li>
 </ul>
 <p>Comment spécifier qu’un argument est optionnel lorsqu’on définit une fonction soi-même ? Simplement en spécifiant une valeur par défaut de l’argument. Par exemple, construisons une fonction qui concatène deux chaînes de caractères, et laisse à l’utilisateur l’option de spécifier un séparateur.</p>
-<div id="3804630b" class="cell" data-execution_count="17">
+<div id="2f5960cb" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> concat_string(str1, str2, sep<span class="op">=</span><span class="st">''</span>):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> str1 <span class="op">+</span> sep <span class="op">+</span> str2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="27724fff" class="cell" data-execution_count="18">
+<div id="70433559" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>concat_string(<span class="st">'bonjour'</span>, <span class="st">'bonjour'</span>)  <span class="co"># Comportement par défaut</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>'bonjourbonjour'</code></pre>
 </div>
 </div>
-<div id="bf48b839" class="cell" data-execution_count="19">
+<div id="ea5a9293" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>concat_string(<span class="st">'bonjour'</span>, <span class="st">'bonjour'</span>, sep<span class="op">=</span><span class="st">', '</span>)  <span class="co"># Comportement modifié</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>'bonjour, bonjour'</code></pre>
@@ -562,11 +562,11 @@ bonjour</code></pre>
 <li><p>que l’instruction <code>return</code> permet de spécifier ce résultat</p></li>
 </ul>
 <p>Lorsque la fonction est appelée, elle est évaluée à la valeur spécifiée par <code>return</code>, et cette valeur peut alors être récupérée dans une variable et utilisée dans des calculs ultérieurs, et ainsi de suite.</p>
-<div id="762aa639" class="cell" data-execution_count="20">
+<div id="cf241321" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> division(x, y):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">/</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="78e0c234" class="cell" data-execution_count="21">
+<div id="a5856395" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> division(<span class="dv">4</span>, <span class="dv">2</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> division(<span class="dv">9</span>, <span class="dv">3</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>division(a, b)  <span class="co"># 2 / 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -575,7 +575,7 @@ bonjour</code></pre>
 </div>
 </div>
 <p>Remarque importante : <strong>lorsqu’une instruction return est atteinte dans une fonction, le reste de la fonction n’est pas exécuté</strong>.</p>
-<div id="24d38ca5" class="cell" data-execution_count="22">
+<div id="e9819221" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test(x):</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"vais-je être affiché ?"</span>)</span>
@@ -589,7 +589,7 @@ bonjour</code></pre>
 <section id="la-valeur-none" class="level3">
 <h3 class="anchored" data-anchor-id="la-valeur-none">La valeur <code>None</code></h3>
 <p>Une fonction renvoie nécessairement un résultat lorsqu’elle est appelée… mais que se passe-t-il si l’on ne spécifie pas d’instruction <code>return</code> ?</p>
-<div id="865b4849" class="cell" data-execution_count="23">
+<div id="07ec81d1" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accueil(prenom):</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Salutations "</span> <span class="op">+</span> prenom <span class="op">+</span> <span class="st">" !"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -604,7 +604,7 @@ None
 </div>
 <p>Comme attendu, la fonction a imprimé un message de bienvenue dans la console. Mais on n’a pas spécifié de valeur à retourner. Comme un objet doit malgré tout être retourné par définition, Python renvoie la valeur <code>None</code>, qui est un objet particulier, de type <code>NoneType</code>, et qui représente l’absence de valeur. Son seul intérêt est de bien marquer la différence entre une valeur réelle et l’absence de valeur.</p>
 <p>Pour tester si un objet a pour valeur <code>None</code>, on utilise une syntaxe particulière :</p>
-<div id="175bb3d7" class="cell" data-execution_count="24">
+<div id="31cabe72" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="kw">is</span> <span class="va">None</span>  <span class="co"># et non pas x == None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>True</code></pre>
@@ -615,7 +615,7 @@ None
 <h3 class="anchored" data-anchor-id="renvoyer-plusieurs-résultats">Renvoyer plusieurs résultats</h3>
 <p>Une fonction renvoie par définition <strong>un</strong> résultat, qui peut être tout objet Python. Comment faire si l’on souhaite renvoyer plusieurs résultats ? On peut simplement enregistrer les différents résultats dans un conteneur (liste, tuple, dictionnaire, etc.), qui peut lui contenir un grand nombre d’objets.</p>
 <p>En pratique, il est très fréquent de renvoyer un <em>tuple</em> lorsque l’on souhaite renvoyer plusieurs objets. En effet, les <em>tuples</em> ont la propriété de <em>tuple unpacking</em>, que nous avons vues à plusieurs reprises dans les précédents tutoriels. Cette propriété rend possible une syntaxe très pratique et élégante pour l’assignation des résultats d’une fonction à des variables.</p>
-<div id="7e07ea80" class="cell" data-execution_count="25">
+<div id="f28fd803" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> puissances(x):</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span>, x<span class="op">**</span><span class="dv">3</span>, x<span class="op">**</span><span class="dv">4</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -636,7 +636,7 @@ None
 <h2 class="anchored" data-anchor-id="variables-locales-et-variables-globales">Variables locales et variables globales</h2>
 <p>Nous avons vu en introduction que les fonctions pouvaient être vues comme des mini-programmes dans un programme global. Cette interprétation nous donne l’occasion d’aborder rapidement la notion de <em>scope</em> (contexte) en Python. Un <em>scope</em> est une sorte de conteneur à objets Python, auxquels il est possible d’accéder seulement dans le cadre de ce <em>scope</em>.</p>
 <p>Tous les objets (variables, fonctions, etc.) que l’on définit lors d’une session Python sont enregistrés dans le <strong><em>scope</em> global</strong> de Python. Ces objets peuvent alors être accédés à n’importe quel endroit du programme, y compris au sein d’une fonction. Lorsque c’est le cas, on parle de <strong>variables globales</strong>.</p>
-<div id="4d74600e" class="cell" data-execution_count="26">
+<div id="c3d6c33a" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span>  <span class="co"># variable globale</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ajoute(y):</span>
@@ -649,7 +649,7 @@ None
 </div>
 <p>La variable <code>x</code> n’a pas été passée en argument à la fonction <code>ajoute</code> ni été définie dans le cadre de cette fonction. Pourtant, on peut l’appeler au sein de la fonction. Cela permet de partager des éléments entre plusieurs fonctions.</p>
 <p>En revanche, les arguments passés à une fonction ou bien les variables définies dans le cadre d’une fonction sont des <strong>variables locales</strong> : elles n’existent que dans le contexte spécifique de la fonction, et ne peuvent pas être réutilisées une fois que celle-ci s’est exécutée.</p>
-<div id="122897b3" class="cell" data-execution_count="27">
+<div id="1758705d" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ajoute(y):</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="dv">5</span>  <span class="co"># variable locale</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z <span class="op">+</span> y</span>
@@ -670,7 +670,7 @@ Cell <span class="ansi-green-fg">In[27], line 6</span>
 </div>
 </div>
 <p>Au sein d’un contexte donné, chaque variable est unique. En revanche, il est possible d’avoir des variables qui portent le même nom dans des contextes différents. Regardons par exemple ce qui se passe lorsque l’on crée une variable dans le contexte d’une fonction, alors qu’elle existe déjà dans le contexte global.</p>
-<div id="a7f25601" class="cell" data-execution_count="28">
+<div id="81a297fe" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span>  <span class="co"># variable globale</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ajoute(y):</span>
@@ -726,7 +726,7 @@ Afficher la solution
 <section id="fonction-puissance" class="level3">
 <h3 class="anchored" data-anchor-id="fonction-puissance">Fonction puissance</h3>
 <p>Créer une fonction <code>puissance</code> qui prend en entrée deux nombres <code>x</code> et <code>y</code> et renvoie la fonction puissance <span class="math inline">\(x^y\)</span>.</p>
-<div id="b6fb688e" class="cell" data-execution_count="29">
+<div id="48fc6c04" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -744,7 +744,7 @@ Afficher la solution
 <section id="prédiction-de-valeurs-retournées-par-des-fonctions" class="level3">
 <h3 class="anchored" data-anchor-id="prédiction-de-valeurs-retournées-par-des-fonctions">Prédiction de valeurs retournées par des fonctions</h3>
 <p>Soit <code>x = 5</code> et <code>y = 3</code> des arguments que l’on passe à chacune des fonctions définies dans la cellule suivante. Prédire ce que vont retourner les fonctions (valeur et <code>type</code> de l’objet), et vérifier vos réponses.</p>
-<div id="01b259cd" class="cell" data-execution_count="30">
+<div id="09cf0c9c" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(x):</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -775,7 +775,7 @@ Afficher la solution
 <span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f9(x, y, z<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="18160fed" class="cell" data-execution_count="31">
+<div id="e098f189" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -806,7 +806,7 @@ Afficher la solution
 <section id="variables-globales-et-variables-locales" class="level3">
 <h3 class="anchored" data-anchor-id="variables-globales-et-variables-locales">Variables globales et variables locales</h3>
 <p>Que vaut la variable <code>total</code> dans le programme suivant ?</p>
-<div id="f7033c6b" class="cell" data-execution_count="32">
+<div id="3d93eeb7" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(x, y):</span>
@@ -825,7 +825,7 @@ Afficher la solution
 <pre><code>19</code></pre>
 </div>
 </div>
-<div id="72faf8d2" class="cell" data-execution_count="33">
+<div id="596b0d8e" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -869,7 +869,7 @@ Afficher la solution
 <li><p>renvoie l’addition, la soustraction, la multiplication et la division de ces deux nombres en sortie</p></li>
 </ul>
 <p>Utiliser la propriété de <em>tuple unpacking</em> pour assigner les résultats à des variables en une seule ligne.</p>
-<div id="66ee89af" class="cell" data-execution_count="34">
+<div id="aa6c5064" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -894,7 +894,7 @@ Afficher la solution
 <li><p>permet via un paramètre optionnel de trier ou non la liste finale par ordre alphanumérique. Le comportement par défaut doit être de ne pas trier.</p></li>
 </ul>
 <p>Indice : la procédure a été abordée dans le tutoriel sur les dictionnaires et les sets.</p>
-<div id="ec004159" class="cell" data-execution_count="35">
+<div id="8f5edf60" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -923,7 +923,7 @@ Afficher la solution
 <li><p>multiplie tous les éléments de la liste (sans utiliser de fonction pré-codée)</p></li>
 <li><p>retourne le résultat</p></li>
 </ul>
-<div id="467f6069" class="cell" data-execution_count="36">
+<div id="f228167f" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -954,7 +954,7 @@ Afficher la solution
 <li><p>modifier la fonction <code>var</code> afin de permettre à l’utilisateur de choisir la méthode de calcul via un paramètre optionnel <code>mode</code> (valeur par défaut : ‘population’ pour le calcul via la formule en population ; valeur alternative : ‘sample’ pour le calcul via la formule en échantillon)</p></li>
 </ul>
 <p>Comparer les valeurs obtenues dans les deux cas avec ce que renvoie la fonction <em>black box</em> <code>var</code> de la librarie <code>numpy</code> (cf.&nbsp;corrigé de l’exercice du tutoriel précédent pour la syntaxe, et voir la <a href="https://numpy.org/doc/stable/reference/generated/numpy.var.html">doc</a> de la fonction et en particulier le paramètre <code>ddof</code> pour faire varier la méthode de calcul).</p>
-<div id="70d40b74" class="cell" data-execution_count="37">
+<div id="49834e88" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -1000,7 +1000,7 @@ Afficher la solution
 <p>Les fonctions récursives sont des fonctions qui s’appellent elles-mêmes dans le corps de la fonction, ce qui entraîne des appels infinis jusqu’à atteindre un critère d’arrêt.</p>
 <p>Un bon exemple de fonction récursive est la fonction qui calcule la factorielle d’un entier. La factorielle d’un entier naturel <span class="math inline">\(n\)</span> est le produit des nombres entiers strictement positifs inférieurs ou égaux à n.&nbsp;Par exemple : <span class="math inline">\(5! = 5*4*3*2*1 = 120\)</span>.</p>
 <p>Coder cette fonction et vérifier qu’elle fonctionne correctement.</p>
-<div id="1c98af4b" class="cell" data-execution_count="38">
+<div id="05891dbe" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">

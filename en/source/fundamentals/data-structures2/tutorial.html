@@ -322,21 +322,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="definition" class="level3">
 <h3 class="anchored" data-anchor-id="definition">Definition</h3>
 <p>Dictionaries are <strong>unordered collections of key-value pairs</strong>. A dictionary is defined using the following syntax: <code>d = {'key1': 'value1', 'key2': 'value2'}</code>.</p>
-<div id="81d50a62" class="cell" data-execution_count="41">
+<div id="45f7f646" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>inventory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>{'coffee': '500g', 'milk': '1.5L'}</code></pre>
 </div>
 </div>
-<div id="25f0213c" class="cell" data-execution_count="42">
+<div id="e84af7e1" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(inventory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>dict</code></pre>
 </div>
 </div>
 <p>It is possible to have as many keys as desired in a dictionary. However, <strong>keys are unique</strong> to uniquely identify the associated value. If you try to define a dictionary with a duplicated key, Python does not return an error, but only the last duplicated key is taken into account.</p>
-<div id="8daf5d51" class="cell" data-execution_count="43">
+<div id="2a9cbd8f" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>, <span class="st">'coffee'</span>: <span class="st">'300g'</span>}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>inventory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
@@ -348,14 +348,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
 <p>Since dictionaries are <strong>unordered</strong>, there is no notion of position: you access a value by its associated key. For example, to retrieve the value (<code>'1.5L'</code>) associated with the key <code>'milk'</code>:</p>
-<div id="33de1e1b" class="cell" data-execution_count="44">
+<div id="5aa9ac81" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>inventory[<span class="st">'milk'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>'1.5L'</code></pre>
 </div>
 </div>
 <p>Additional key-value pairs can be added to an existing dictionary using variable assignment syntax.</p>
-<div id="43d3dd71" class="cell" data-execution_count="45">
+<div id="cdb6b413" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>inventory[<span class="st">"cereal"</span>] <span class="op">=</span> <span class="st">"250g"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>inventory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Unlike lists, keys do not necessarily start at 0 and can be any number.</p>
-<div id="5c9c112e" class="cell" data-execution_count="46">
+<div id="d3badd3d" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dic1 <span class="op">=</span> {<span class="dv">12</span>: <span class="st">"Aveyron"</span>, <span class="dv">33</span>: <span class="st">"Gironde"</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The department 33 is "</span> <span class="op">+</span> dic1[<span class="dv">33</span>])  <span class="co"># String concatenation!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Similarly, values can be of different types, including data containers.</p>
-<div id="94ca5ce3" class="cell" data-execution_count="47">
+<div id="444db4b5" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dic2 <span class="op">=</span> {<span class="st">"scale"</span>: <span class="st">"C major"</span>,</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"notes"</span>: [<span class="st">"do"</span>, <span class="st">"re"</span>, <span class="st">"mi"</span>, <span class="st">"fa"</span>, <span class="st">"sol"</span>, <span class="st">"la"</span>, <span class="st">"si"</span>]}</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -382,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Dictionaries can also contain other dictionaries. This makes them particularly suitable for representing hierarchical data structures.</p>
-<div id="117acb72" class="cell" data-execution_count="48">
+<div id="6fb35de5" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>resume <span class="op">=</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"position"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"sewing"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mirande"</span>: {<span class="st">"position"</span>: <span class="st">"engineer"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"trekking"</span>]}</span>
@@ -396,7 +396,7 @@ sewing</code></pre>
 </div>
 </div>
 <p>Let’s repeat: dictionaries have no notion of order. Therefore, there is no sense in querying the element at position <code>0</code> in a dictionary (unless the key <code>0</code> exists). Querying a non-existent key returns an error.</p>
-<div id="53fde1e4" class="cell" data-execution_count="49">
+<div id="9c9244a8" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dic1 <span class="op">=</span> {<span class="dv">12</span>: <span class="st">"Aveyron"</span>, <span class="dv">33</span>: <span class="st">"Gironde"</span>}</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>dic1[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -416,7 +416,7 @@ Cell <span class="ansi-green-fg">In[49], line 3</span>
 <section id="modifying-elements" class="level3">
 <h3 class="anchored" data-anchor-id="modifying-elements">Modifying Elements</h3>
 <p>It is possible to modify a value associated with an existing key in the dictionary. The new value can be of a different type from the original.</p>
-<div id="a77ab060" class="cell" data-execution_count="50">
+<div id="e7bddd70" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>inventory[<span class="st">'coffee'</span>] <span class="op">=</span> {<span class="st">'arabica'</span>: <span class="st">'250g'</span>, <span class="st">'robusta'</span>: <span class="st">'400g'</span>}</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>inventory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -428,7 +428,7 @@ Cell <span class="ansi-green-fg">In[49], line 3</span>
 <section id="deleting-elements" class="level3">
 <h3 class="anchored" data-anchor-id="deleting-elements">Deleting Elements</h3>
 <p>To delete a key (and the associated value), you can use the same operations as those used to delete elements from a list.</p>
-<div id="8efdee5a" class="cell" data-execution_count="51">
+<div id="43ff8ae1" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the `del` operator</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> inventory[<span class="st">'milk'</span>]</span>
@@ -437,7 +437,7 @@ Cell <span class="ansi-green-fg">In[49], line 3</span>
 <pre><code>{'coffee': '500g'}</code></pre>
 </div>
 </div>
-<div id="7ec0fb4f" class="cell" data-execution_count="52">
+<div id="68a61137" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the `pop` method</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>inventory.pop(<span class="st">'milk'</span>)</span>
@@ -450,19 +450,19 @@ Cell <span class="ansi-green-fg">In[49], line 3</span>
 <section id="some-useful-methods" class="level3">
 <h3 class="anchored" data-anchor-id="some-useful-methods">Some Useful Methods</h3>
 <p>We saw earlier that querying a non-existent key returns an error. The <code>.get()</code> method allows querying a key without being sure of its existence, as it does not return an error in this case, but the <code>None</code> object, which we will see in a future tutorial.</p>
-<div id="974ed3bf" class="cell" data-execution_count="53">
+<div id="b80b41f9" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>inventory.get(<span class="st">'honey'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also specify a default value when the key does not exist.</p>
-<div id="3b71c652" class="cell" data-execution_count="54">
+<div id="82c9be6e" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>inventory.get(<span class="st">'honey'</span>, <span class="st">'not found'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>'not found'</code></pre>
 </div>
 </div>
 <p>The <code>.keys()</code>, <code>.values()</code>, and <code>.items()</code> methods return the keys, values, and key-value pairs of a dictionary, respectively. The objects returned by these methods are a bit complex, but they can be converted to lists using the <code>list</code> function to query them by position.</p>
-<div id="f6d21e30" class="cell" data-execution_count="55">
+<div id="7b8546b0" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>resume <span class="op">=</span> {</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"position"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"sewing"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mirande"</span>: {<span class="st">"position"</span>: <span class="st">"engineer"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"triathlon"</span>]}</span>
@@ -473,14 +473,14 @@ Cell <span class="ansi-green-fg">In[49], line 3</span>
 <pre><code>['marc', 'mirande']</code></pre>
 </div>
 </div>
-<div id="f6db32a6" class="cell" data-execution_count="56">
+<div id="f2ffdb93" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(resume.values())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <pre><code>[{'position': 'manager', 'experience': 7, 'hobbies': ['sewing', 'frisbee']},
  {'position': 'engineer', 'experience': 5, 'hobbies': ['triathlon']}]</code></pre>
 </div>
 </div>
-<div id="5d7836df" class="cell" data-execution_count="57">
+<div id="a4ac4a3a" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(resume.items())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="57">
 <pre><code>[('marc',
@@ -497,21 +497,21 @@ Cell <span class="ansi-green-fg">In[49], line 3</span>
 <h3 class="anchored" data-anchor-id="definition-1">Definition</h3>
 <p>Sets are <strong>unordered collections of unique elements</strong>. As such, they can be seen as dictionaries without values, where only the keys (which are unique by definition in a dictionary) are kept. Another analogy is that of mathematical sets, whose elements are also unordered and unique.</p>
 <p>Due to their similarity to dictionaries, sets are also defined using curly braces <code>{}</code>.</p>
-<div id="2eed1947" class="cell" data-execution_count="58">
+<div id="9b66aabc" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>{1, 2, 3}</code></pre>
 </div>
 </div>
-<div id="ca484754" class="cell" data-execution_count="59">
+<div id="4f43e52e" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>set</code></pre>
 </div>
 </div>
 <p>Just like dictionaries, sets are <strong>unordered</strong>, so there is no notion of position. Asking for the element at position <code>i</code>, as in a list, returns an error.</p>
-<div id="866c549d" class="cell" data-execution_count="60">
+<div id="a337d3a8" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -530,7 +530,7 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 <section id="modifying-elements-1" class="level3">
 <h3 class="anchored" data-anchor-id="modifying-elements-1">Modifying Elements</h3>
 <p>It is possible to add an element to a set using the <code>add</code> method.</p>
-<div id="8930a088" class="cell" data-execution_count="61">
+<div id="315184b2" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x.add(<span class="st">"4"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -539,7 +539,7 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 </div>
 </div>
 <p>Adding an existing element changes nothing by definition.</p>
-<div id="c4f99f63" class="cell" data-execution_count="62">
+<div id="6906c252" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x.add(<span class="dv">2</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -548,7 +548,7 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 </div>
 </div>
 <p>It is possible to remove an element from a set using the <code>remove</code> method.</p>
-<div id="5932045b" class="cell" data-execution_count="63">
+<div id="771c0a84" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x.remove(<span class="dv">2</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -562,7 +562,7 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 <p>Sets are not very often used in practice, but they are quite useful in certain specific situations. Due to the uniqueness of the elements they contain, sets allow you to simply and effectively remove duplicates from a sequential container, such as a list.</p>
 <p><strong>Deduplication</strong></p>
 <p>Suppose you want to remove duplicates from a given list. By definition, converting a list to a set removes duplicates. However, you generally want to return to a list, as sets do not offer the same flexibility as lists (for example, the ability to find an element by position). It is therefore common to perform the <code>list -&gt; set -&gt; list</code> chain of operations to deduplicate a list.</p>
-<div id="931f8ce1" class="cell" data-execution_count="64">
+<div id="925dbcc0" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>l_dedup <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(l))</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>l_dedup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -572,11 +572,11 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 </div>
 <p><strong>Set Operations</strong></p>
 <p>Since sets programmatically represent mathematical sets, it is not surprising that they allow for elementary set operations. For example, union and intersection.</p>
-<div id="73a9c2cb" class="cell" data-execution_count="65">
+<div id="1c91ad7e" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="25c7e7db" class="cell" data-execution_count="66">
+<div id="72a023c0" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Union: elements in l1, l2, or both</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>l_union <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(l1) <span class="op">|</span> <span class="bu">set</span>(l2))</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>l_union</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -584,7 +584,7 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
 </div>
 </div>
-<div id="59e7bfba" class="cell" data-execution_count="67">
+<div id="a206bc5c" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Intersection: elements in both l1 and l2</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>l_inter <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(l1) <span class="op">&amp;</span> <span class="bu">set</span>(l2))</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>l_inter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -595,14 +595,14 @@ Cell <span class="ansi-green-fg">In[60], line 2</span>
 <p><strong>Membership Tests</strong></p>
 <p>Sets are also very useful for membership tests, as they offer much better performance than lists for this type of test.</p>
 <p>The concept of testing will be covered in a future tutorial. For now, let’s note that a membership test such as “is element <code>a</code> in list <code>l</code>” is written in Python as <code>a in l</code> and returns <code>True</code> or <code>False</code> depending on whether <code>a</code> is actually present in list <code>l</code>.</p>
-<div id="af15bfbc" class="cell" data-execution_count="68">
+<div id="a4cc3d76" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="kw">in</span> l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="68">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="542dd840" class="cell" data-execution_count="69">
+<div id="9eb71b65" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="kw">in</span> l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="69">
 <pre><code>False</code></pre>
@@ -656,7 +656,7 @@ Show the solution
 <li>the list of all subjects taught</li>
 <li>the list of grades obtained by girls in both classes</li>
 </ul>
-<div id="adf9c90f" class="cell" data-execution_count="70">
+<div id="eabaa8d6" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"6emeA"</span>: {<span class="st">"Miranda"</span> : {<span class="st">"grades"</span>: {<span class="st">"physics"</span>: <span class="dv">16</span>, <span class="st">"history"</span>: <span class="dv">12</span>}},</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Celestin"</span>: {<span class="st">"grades"</span>: {<span class="st">"physics"</span>: <span class="st">"absent"</span>, <span class="st">"history"</span>: <span class="dv">18</span>}}</span>
@@ -666,7 +666,7 @@ Show the solution
 <span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>             }</span>
 <span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="71bf35af" class="cell" data-execution_count="71">
+<div id="83e1e71c" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -674,7 +674,7 @@ Show the solution
 <summary>
 Show the solution
 </summary>
-<div id="464248e8" class="cell" data-execution_count="72">
+<div id="e691225f" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(results.keys()))</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results[<span class="st">"6emeA"</span>][<span class="st">"Miranda"</span>][<span class="st">"grades"</span>][<span class="st">"history"</span>])</span>
@@ -706,7 +706,7 @@ Show the solution
 <section id="dictionary-length" class="level3">
 <h3 class="anchored" data-anchor-id="dictionary-length">Dictionary Length</h3>
 <p>In previous tutorials, we saw the <code>len</code> function, which counts the number of elements in a sequence. Does this function work with dictionaries? What does it count?</p>
-<div id="86c9ed1f" class="cell" data-execution_count="73">
+<div id="a318d433" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -714,7 +714,7 @@ Show the solution
 <summary>
 Show the solution
 </summary>
-<div id="e03e8d0e" class="cell" data-execution_count="74">
+<div id="16194108" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>resume <span class="op">=</span> {</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"marc"</span>: {<span class="st">"position"</span>: <span class="st">"manager"</span>, <span class="st">"experience"</span>: <span class="dv">7</span>, <span class="st">"hobbies"</span>: [<span class="st">"sewing"</span>, <span class="st">"frisbee"</span>]},</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"miranda"</span>: {<span class="st">"position"</span>: <span class="st">"engineer"</span>, <span class="st">"experience"</span>: <span class="dv">5</span>, <span class="st">"hobbies"</span>: [<span class="st">"trekking"</span>]}</span>
@@ -739,7 +739,7 @@ Show the solution
 <li>with the <code>pop</code> method: <code>my_dict.pop(key)</code></li>
 </ul>
 <p>Beyond syntax, what are the two major differences between these two ways of deleting a key from a dictionary? Feel free to experiment with examples of your choice.</p>
-<div id="70b8ad53" class="cell" data-execution_count="75">
+<div id="58c5a0c2" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -747,7 +747,7 @@ Show the solution
 <summary>
 Show the solution
 </summary>
-<div id="75ec6a5e" class="cell" data-execution_count="76">
+<div id="600465bd" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inventory.pop(<span class="st">'coffee'</span>))</span>
@@ -765,7 +765,7 @@ unavailable</code></pre>
 <section id="renaming-a-dictionary-key" class="level3">
 <h3 class="anchored" data-anchor-id="renaming-a-dictionary-key">Renaming a Dictionary Key</h3>
 <p>By exploiting the fact that the <code>pop</code> method used to delete a key from a dictionary returns the value associated with that key, propose a method to rename a dictionary key in a single operation.</p>
-<div id="de707dc0" class="cell" data-execution_count="77">
+<div id="73d7379b" class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -773,7 +773,7 @@ unavailable</code></pre>
 <summary>
 Show the solution
 </summary>
-<div id="d893aeea" class="cell" data-execution_count="78">
+<div id="b8385a66" class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>inventory[<span class="st">'water'</span>] <span class="op">=</span> inventory.pop(<span class="st">'milk'</span>)</span>
@@ -796,7 +796,7 @@ Show the solution
 <li><code>'cats' in animals.values()</code></li>
 <li><code>'cats' in animals</code></li>
 </ul>
-<div id="9f0a4e4d" class="cell" data-execution_count="79">
+<div id="b1b1e522" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -804,7 +804,7 @@ Show the solution
 <summary>
 Show the solution
 </summary>
-<div id="cee7f29f" class="cell" data-execution_count="80">
+<div id="602847f7" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>animals <span class="op">=</span> {<span class="st">'cats'</span>: <span class="dv">5</span>, <span class="st">'dogs'</span>: <span class="dv">12</span>}</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(animals.keys())</span>
@@ -837,7 +837,7 @@ True</code></pre>
 <section id="deleting-a-non-existent-key" class="level3">
 <h3 class="anchored" data-anchor-id="deleting-a-non-existent-key">Deleting a Non-Existent Key</h3>
 <p>We saw that the <code>del</code> operation returns an error when used to delete a non-existent key from a dictionary. Using your new knowledge of membership tests, can you imagine a method (without necessarily implementing it) that would handle this case without an error?</p>
-<div id="2a1b6340" class="cell" data-execution_count="81">
+<div id="da130444" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -845,7 +845,7 @@ True</code></pre>
 <summary>
 Show the solution
 </summary>
-<div id="078da7c2" class="cell" data-execution_count="82">
+<div id="c93188b2" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> {<span class="st">'coffee'</span>: <span class="st">'500g'</span>, <span class="st">'milk'</span>: <span class="st">'1.5L'</span>}</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="st">'chocolate'</span></span>
@@ -864,7 +864,7 @@ Show the solution
 <p>Construct a list of unique characters in this string, sorted alphabetically, i.e.:</p>
 <p><code>l = ['a', 'b', 'c', 'd']</code></p>
 <p>Hint: the procedure is similar to removing duplicates from a list.</p>
-<div id="025c206b" class="cell" data-execution_count="83">
+<div id="98785f8a" class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -872,7 +872,7 @@ Show the solution
 <summary>
 Show the solution
 </summary>
-<div id="78b5145b" class="cell" data-execution_count="84">
+<div id="957abf44" class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"cdabcdabcdabcdabcdabcdabcdabcdabcdab"</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(x))</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>l.sort()</span>
@@ -891,7 +891,7 @@ Show the solution
 <p><code>cyrano2 = 'Que dis-je, c’est un cap ? … C’est une péninsule !'</code></p>
 <p>Question 1: find the characters that appear in both strings.</p>
 <p>Question 2: find the characters that appear in at least one of the two texts.</p>
-<div id="b86eb608" class="cell" data-execution_count="85">
+<div id="8feb3905" class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -899,7 +899,7 @@ Show the solution
 <summary>
 Show the solution
 </summary>
-<div id="9543bc98" class="cell" data-execution_count="86">
+<div id="97e5c752" class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>cyrano1 <span class="op">=</span> <span class="st">'C’est un roc ! … c’est un pic ! … c’est un cap !'</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>cyrano2 <span class="op">=</span> <span class="st">'Que dis-je, c’est un cap ? … C’est une péninsule !'</span></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -913,8 +913,8 @@ Show the solution
 <span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>union <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(cyrano1) <span class="op">|</span> <span class="bu">set</span>(cyrano2))</span>
 <span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(union)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['t', 'n', ' ', 'p', 'c', 'e', 's', '!', 'u', '…', 'i', 'a', 'C', '’']
-['t', 'n', 's', '…', 'Q', ' ', 'l', 'j', 'i', 'a', 'r', 'c', 'e', '!', 'é', ',', 'u', 'C', 'd', 'p', '?', '-', 'o', '’']</code></pre>
+<pre><code>['’', 'i', 'u', 's', 'c', '…', 'a', '!', 'e', 'C', ' ', 'p', 't', 'n']
+['i', 's', 'o', 'e', 'Q', 'd', '…', ' ', 'p', 't', 'l', 'r', ',', 'u', 'C', 'n', '-', 'é', '’', 'a', 'c', '!', '?', 'j']</code></pre>
 </div>
 </div>
 </details>
@@ -924,21 +924,21 @@ Show the solution
 <h3 class="anchored" data-anchor-id="the-usefulness-of-sets-for-membership-tests">The Usefulness of Sets for Membership Tests</h3>
 <p>The code below generates a list with the letters a, b, c, and d repeated 1 million times. Then, it performs a membership test for a letter that does not exist in the list and calculates the time taken by the Python interpreter to perform the test.</p>
 <p>Using this syntax, compare the time taken for the same membership test when the list is converted to a set beforehand.</p>
-<div id="9350a373" class="cell" data-execution_count="87">
+<div id="4451e66f" class="cell" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>] <span class="op">*</span> <span class="dv">1000000</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[:<span class="dv">10</span>])</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="st">'e'</span> <span class="kw">in</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd', 'a', 'b']
-CPU times: user 41.1 ms, sys: 0 ns, total: 41.1 ms
-Wall time: 41 ms</code></pre>
+CPU times: user 41.1 ms, sys: 73 μs, total: 41.1 ms
+Wall time: 41.1 ms</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="6ab59d39" class="cell" data-execution_count="88">
+<div id="199381e9" class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -946,7 +946,7 @@ Wall time: 41 ms</code></pre>
 <summary>
 Show the solution
 </summary>
-<div id="e5071da9" class="cell" data-execution_count="89">
+<div id="8eefbae9" class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>] <span class="op">*</span> <span class="dv">1000000</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[:<span class="dv">10</span>])</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -957,11 +957,11 @@ Show the solution
 <span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="st">'e'</span> <span class="kw">in</span> x_set</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd', 'a', 'b']
-{'b', 'a', 'c', 'd'}
-CPU times: user 41 ms, sys: 22 μs, total: 41.1 ms
-Wall time: 41 ms
+{'b', 'd', 'a', 'c'}
+CPU times: user 41.3 ms, sys: 0 ns, total: 41.3 ms
+Wall time: 41.3 ms
 CPU times: user 2 μs, sys: 0 ns, total: 2 μs
-Wall time: 4.77 μs</code></pre>
+Wall time: 5.01 μs</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="89">
 <pre><code>False</code></pre>

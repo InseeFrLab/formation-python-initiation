@@ -342,7 +342,7 @@ Note
 </div>
 </div>
 <p>Let’s start by importing the <code>Pandas</code> library. The common usage is to give it the alias <code>pd</code> to simplify future calls to the package’s objects and functions. We also import <code>NumPy</code> as we will compare the fundamental objects of the two packages.</p>
-<div id="2ee3d47d" class="cell" data-execution_count="180">
+<div id="bdab3734" class="cell" data-execution_count="180">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -352,7 +352,7 @@ Note
 <section id="the-series" class="level3">
 <h3 class="anchored" data-anchor-id="the-series">The <code>Series</code></h3>
 <p>A Series is a one-dimensional data container that can hold any type of data (integers, strings, Python objects…). However, a Series is of a given type: a Series containing only integers will be of type <code>int</code>, and a Series containing objects of different natures will be of type <code>object</code>. Let’s build our first Series from a list to check this behavior.</p>
-<div id="a21c6135" class="cell" data-execution_count="181">
+<div id="e5cd9cf8" class="cell" data-execution_count="181">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="st">"X"</span>, <span class="dv">3</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(l)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -364,14 +364,14 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>In particular, we can access the data of a Series by position, as for a list or an array.</p>
-<div id="af406b83" class="cell" data-execution_count="182">
+<div id="efe6a13d" class="cell" data-execution_count="182">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>X</code></pre>
 </div>
 </div>
 <p>At first glance, we do not see much difference between a Series and a one-dimensional <code>NumPy</code> array. However, there is a significant difference: the presence of an index. The observations have an associated label. When we create a Series without specifying anything, the index is automatically set to the integers from 0 to n-1 (with n being the number of elements in the Series). But it is possible to pass a specific index (e.g., dates, town names, etc.).</p>
-<div id="23fea086" class="cell" data-execution_count="183">
+<div id="7c9dc88a" class="cell" data-execution_count="183">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(l, index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -382,14 +382,14 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>This allows us to access the data by label:</p>
-<div id="c93312fd" class="cell" data-execution_count="184">
+<div id="83ead79e" class="cell" data-execution_count="184">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>s[<span class="st">"b"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="184">
 <pre><code>'X'</code></pre>
 </div>
 </div>
 <p>This difference may seem minor at first, but it becomes essential for constructing the DataFrame. For the rest, Series behave very similarly to NumPy arrays: calculations are vectorized, we can directly sum two Series, etc. Moreover, we can easily convert a Series into an array via the <code>values</code> attribute. This naturally loses the index…</p>
-<div id="069f11c0" class="cell" data-execution_count="185">
+<div id="8d912677" class="cell" data-execution_count="185">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(l, index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>s.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="185">
@@ -406,7 +406,7 @@ dtype: object</code></pre>
 </figure>
 </div>
 <p>A DataFrame can be constructed in multiple ways. In practice, we generally build a DataFrame directly from tabular data files (e.g., CSV, Excel), rarely by hand. So, we will only illustrate the most common manual construction method: from a data dictionary.</p>
-<div id="7914498d" class="cell" data-execution_count="186">
+<div id="c79b557f" class="cell" data-execution_count="186">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -437,7 +437,7 @@ dtype: object</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>9</td>
+<td>-7</td>
 <td>test</td>
 <td>2022-01-01</td>
 <td>sample1</td>
@@ -445,7 +445,7 @@ dtype: object</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 <td>2022-01-02</td>
 <td>sample1</td>
@@ -453,7 +453,7 @@ dtype: object</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>3</td>
+<td>0</td>
 <td>test</td>
 <td>2022-01-03</td>
 <td>sample1</td>
@@ -461,7 +461,7 @@ dtype: object</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>7</td>
+<td>-10</td>
 <td>train</td>
 <td>2022-01-04</td>
 <td>sample1</td>
@@ -469,7 +469,7 @@ dtype: object</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>4</td>
+<td>-10</td>
 <td>train</td>
 <td>2022-01-05</td>
 <td>sample1</td>
@@ -477,7 +477,7 @@ dtype: object</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>2</td>
+<td>9</td>
 <td>validation</td>
 <td>2022-01-06</td>
 <td>sample1</td>
@@ -489,20 +489,20 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>A Pandas DataFrame has a set of useful attributes that we will discover throughout this tutorial. For now, let’s focus on the most basic ones: the index and the column names. By default, the index is initialized, as for Series, to the list of positions of the observations. We could have specified an alternative index when constructing the DataFrame by specifying the <code>index</code> argument of the <code>pd.DataFrame</code> function.</p>
-<div id="e2078070" class="cell" data-execution_count="187">
+<div id="bddee1f8" class="cell" data-execution_count="187">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="187">
 <pre><code>RangeIndex(start=0, stop=6, step=1)</code></pre>
 </div>
 </div>
-<div id="18d80025" class="cell" data-execution_count="188">
+<div id="20957f73" class="cell" data-execution_count="188">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="188">
 <pre><code>Index(['var1', 'var2', 'experiment', 'date', 'sample'], dtype='object')</code></pre>
 </div>
 </div>
 <p>Often, rather than specifying an index manually during the construction of the DataFrame, we will want to use a certain column of the DataFrame as an index. We use the <code>set_index</code> method associated with DataFrames for this.</p>
-<div id="9ffc1fc8" class="cell" data-execution_count="189">
+<div id="6b3ae940" class="cell" data-execution_count="189">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(<span class="st">"date"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="189">
@@ -530,42 +530,42 @@ dtype: object</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-01</td>
 <td>1.3</td>
-<td>9</td>
+<td>-7</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-03</td>
 <td>NaN</td>
-<td>3</td>
+<td>0</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-04</td>
 <td>NaN</td>
-<td>7</td>
+<td>-10</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-05</td>
 <td>0.0</td>
-<td>4</td>
+<td>-10</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-06</td>
 <td>NaN</td>
-<td>2</td>
+<td>9</td>
 <td>validation</td>
 <td>sample1</td>
 </tr>
@@ -576,7 +576,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>The index attribute has naturally changed:</p>
-<div id="33810a36" class="cell" data-execution_count="190">
+<div id="4d4da708" class="cell" data-execution_count="190">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="190">
 <pre><code>Index(['2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05',
@@ -594,7 +594,7 @@ dtype: object</code></pre>
 <section id="selecting-a-single-column" class="level4">
 <h4 class="anchored" data-anchor-id="selecting-a-single-column">Selecting a single column</h4>
 <p>To extract a single column, we can use the following syntax:</p>
-<div id="c2848911" class="cell" data-execution_count="191">
+<div id="8b805f34" class="cell" data-execution_count="191">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>selected_column <span class="op">=</span> df[<span class="st">"var1"</span>]</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>selected_column</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="191">
@@ -609,7 +609,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>The <code>selected_column</code> object here returns the column named <code>var1</code> from the <code>DataFrame</code> <code>df</code>. But what type is this object? To answer this question, we use the <code>type()</code> function:</p>
-<div id="fb246169" class="cell" data-execution_count="192">
+<div id="f9403220" class="cell" data-execution_count="192">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(selected_column)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="192">
 <pre><code>pandas.core.series.Series</code></pre>
@@ -617,7 +617,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 <p>As we can see, the result is a <code>Series</code>, which is a one-dimensional object in <code>Pandas</code>.</p>
 <p>Another useful attribute to know is <code>shape</code>. It allows us to know the dimension of the object. For a <code>Series</code>, <code>shape</code> will return a tuple whose first element indicates the number of rows.</p>
-<div id="496b00d4" class="cell" data-execution_count="193">
+<div id="eb3d7ef0" class="cell" data-execution_count="193">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>selected_column.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="193">
 <pre><code>(6,)</code></pre>
@@ -627,7 +627,7 @@ Name: var1, dtype: float64</code></pre>
 <section id="selecting-multiple-columns" class="level4">
 <h4 class="anchored" data-anchor-id="selecting-multiple-columns">Selecting multiple columns</h4>
 <p>To extract multiple columns, just pass a list of the desired column names:</p>
-<div id="ceef7b3b" class="cell" data-execution_count="194">
+<div id="354c684d" class="cell" data-execution_count="194">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>selected_columns <span class="op">=</span> df[[<span class="st">"var1"</span>, <span class="st">"var2"</span>, <span class="st">"experiment"</span>]]</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>selected_columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="194">
@@ -653,37 +653,37 @@ Name: var1, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-01</td>
 <td>1.3</td>
-<td>9</td>
+<td>-7</td>
 <td>test</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-03</td>
 <td>NaN</td>
-<td>3</td>
+<td>0</td>
 <td>test</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-04</td>
 <td>NaN</td>
-<td>7</td>
+<td>-10</td>
 <td>train</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-05</td>
 <td>0.0</td>
-<td>4</td>
+<td>-10</td>
 <td>train</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-06</td>
 <td>NaN</td>
-<td>2</td>
+<td>9</td>
 <td>validation</td>
 </tr>
 </tbody>
@@ -693,14 +693,14 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>This snippet shows the columns <code>var1</code>, <code>var2</code>, and <code>experiment</code> from the <code>DataFrame</code> <code>df</code>. Let’s now check its type:</p>
-<div id="8e2b2fd0" class="cell" data-execution_count="195">
+<div id="0b47bb7e" class="cell" data-execution_count="195">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(selected_columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="195">
 <pre><code>pandas.core.frame.DataFrame</code></pre>
 </div>
 </div>
 <p>The result is a <code>DataFrame</code> because it is a two-dimensional object. We can also check its shape with the <code>shape</code> attribute. In this case, the tuple returned by <code>shape</code> will contain two elements: the number of rows and the number of columns.</p>
-<div id="d741c419" class="cell" data-execution_count="196">
+<div id="14b5c3be" class="cell" data-execution_count="196">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>selected_columns.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="196">
 <pre><code>(6, 3)</code></pre>
@@ -717,7 +717,7 @@ Name: var1, dtype: float64</code></pre>
 <li><code>iloc</code> allows selecting rows and columns by their position, i.e., by numeric indices.</li>
 </ul>
 <p>Example, selecting the first 3 rows:</p>
-<div id="22fee264" class="cell" data-execution_count="197">
+<div id="c50d972a" class="cell" data-execution_count="197">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">0</span>:<span class="dv">3</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="197">
 <div>
@@ -744,21 +744,21 @@ Name: var1, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-01</td>
 <td>1.3</td>
-<td>9</td>
+<td>-7</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-03</td>
 <td>NaN</td>
-<td>3</td>
+<td>0</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
@@ -771,7 +771,7 @@ Name: var1, dtype: float64</code></pre>
 <ul>
 <li><code>loc</code> works with labels. If the DataFrame’s indexes are numbers, they resemble positions, but this is not necessarily the case. It is crucial to note that, unlike <code>iloc</code>, with <code>loc</code>, the end index is included in the selection.</li>
 </ul>
-<div id="d8b955e9" class="cell" data-execution_count="198">
+<div id="b6aa4d75" class="cell" data-execution_count="198">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="st">"2022-01-01"</span>:<span class="st">"2022-01-03"</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="198">
 <div>
@@ -798,21 +798,21 @@ Name: var1, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-01</td>
 <td>1.3</td>
-<td>9</td>
+<td>-7</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-03</td>
 <td>NaN</td>
-<td>3</td>
+<td>0</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
@@ -830,7 +830,7 @@ Name: var1, dtype: float64</code></pre>
 <li><strong>Inequalities</strong>: We might want to keep only the rows that meet a certain condition.</li>
 </ul>
 <p>Example, filtering rows where the value of the <code>var2</code> column is greater than 0:</p>
-<div id="d5cdb5a0" class="cell" data-execution_count="199">
+<div id="4cdd6180" class="cell" data-execution_count="199">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'var2'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="199">
 <div>
@@ -855,44 +855,23 @@ Name: var1, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2022-01-01</td>
-<td>1.3</td>
-<td>9</td>
-<td>test</td>
-<td>sample1</td>
-</tr>
-<tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-03</td>
 <td>NaN</td>
-<td>3</td>
+<td>0</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2022-01-04</td>
-<td>NaN</td>
-<td>7</td>
-<td>train</td>
-<td>sample1</td>
-</tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2022-01-05</td>
-<td>0.0</td>
-<td>4</td>
-<td>train</td>
-<td>sample1</td>
-</tr>
-<tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-06</td>
 <td>NaN</td>
-<td>2</td>
+<td>9</td>
 <td>validation</td>
 <td>sample1</td>
 </tr>
@@ -906,7 +885,7 @@ Name: var1, dtype: float64</code></pre>
 <li><strong>Membership with <code>isin</code></strong>: If we want to filter data based on a list of possible values, the <code>isin</code> method is very useful.</li>
 </ul>
 <p>Example, to keep only the rows where the <code>experiment</code> column has values ‘test’ or ‘validation’:</p>
-<div id="fed277e7" class="cell" data-execution_count="200">
+<div id="ba823abb" class="cell" data-execution_count="200">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'experiment'</span>].isin([<span class="st">'train'</span>, <span class="st">'validation'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="200">
 <div>
@@ -933,28 +912,28 @@ Name: var1, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
+<td>0</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-04</td>
 <td>NaN</td>
-<td>7</td>
+<td>-10</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-05</td>
 <td>0.0</td>
-<td>4</td>
+<td>-10</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-06</td>
 <td>NaN</td>
-<td>2</td>
+<td>9</td>
 <td>validation</td>
 <td>sample1</td>
 </tr>
@@ -966,7 +945,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 <p>These methods can be combined to create more complex conditions. It is also possible to use logical operators (<code>&amp;</code> for “and”, <code>|</code> for “or”) to combine multiple conditions. Be careful to enclose each condition in parentheses when combining them.</p>
 <p>Example, selecting rows where <code>var2</code> is greater than 0 and <code>experiment</code> is equal to ‘test’ or ‘validation’:</p>
-<div id="0b3271f5" class="cell" data-execution_count="201">
+<div id="0ad432a9" class="cell" data-execution_count="201">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df[(df[<span class="st">'var2'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (df[<span class="st">'experiment'</span>].isin([<span class="st">'train'</span>, <span class="st">'validation'</span>]))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="201">
 <div>
@@ -993,28 +972,14 @@ Name: var1, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2022-01-02</td>
 <td>5.6</td>
-<td>1</td>
-<td>train</td>
-<td>sample1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2022-01-04</td>
-<td>NaN</td>
-<td>7</td>
-<td>train</td>
-<td>sample1</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2022-01-05</td>
-<td>0.0</td>
-<td>4</td>
+<td>0</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2022-01-06</td>
 <td>NaN</td>
-<td>2</td>
+<td>9</td>
 <td>validation</td>
 <td>sample1</td>
 </tr>
@@ -1036,7 +1001,7 @@ Name: var1, dtype: float64</code></pre>
 <section id="importing-a-csv-file" class="level4">
 <h4 class="anchored" data-anchor-id="importing-a-csv-file">Importing a CSV file</h4>
 <p>As we saw in a previous lab, the CSV format is one of the most common formats for storing tabular data. We previously used the <code>csv</code> library to handle them as text files, but it was not very convenient. To recall, the syntax for reading a CSV file and displaying the first lines was as follows:</p>
-<div id="99755206" class="cell" data-execution_count="202">
+<div id="3506ee08" class="cell" data-execution_count="202">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
@@ -1062,7 +1027,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>With Pandas, just use the <code>read_csv()</code> function to import the file as a DataFrame, then the <code>head()</code> function.</p>
-<div id="e754918f" class="cell" data-execution_count="203">
+<div id="158427c7" class="cell" data-execution_count="203">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df_departements <span class="op">=</span> pd.read_csv(<span class="st">'data/departement2021.csv'</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df_departements.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="203">
@@ -1140,7 +1105,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>It is also possible to import a CSV file directly from a URL. This is particularly convenient when the data is regularly updated on a website, and we want to access the latest version without manually downloading the file each time. Let’s take the example of a CSV file available on the INSEE website: the file of given names, from civil status data. We also note another handy feature: the CSV file is compressed (in <code>zip</code> format), but Pandas can recognize and decompress it before importing.</p>
-<div id="70196425" class="cell" data-execution_count="204">
+<div id="c1f5ff17" class="cell" data-execution_count="204">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing a CSV file from a URL</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>df_prenoms_url <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">";"</span>)</span>
@@ -1206,12 +1171,12 @@ Name: var1, dtype: float64</code></pre>
 <section id="exporting-to-csv-format" class="level4">
 <h4 class="anchored" data-anchor-id="exporting-to-csv-format">Exporting to CSV format</h4>
 <p>Once the data has been processed and modified within Pandas, it is common to want to export the result as a CSV file for sharing, archiving, or use in other tools. Pandas offers a simple method for this operation: <code>to_csv()</code>. Suppose we want to export the data from the <code>df_departements</code> DataFrame specific to the five overseas departments.</p>
-<div id="4a6a142d" class="cell" data-execution_count="205">
+<div id="d1077761" class="cell" data-execution_count="205">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df_departements_dom <span class="op">=</span> df_departements[df_departements[<span class="st">"DEP"</span>].isin([<span class="st">"971"</span>, <span class="st">"972"</span>, <span class="st">"973"</span>, <span class="st">"974"</span>, <span class="st">"975"</span>])]</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>df_departements_dom.to_csv(<span class="st">'output/departements2021_dom.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One of the key arguments of the <code>to_csv()</code> method is <code>index</code>. By default, <code>index=True</code>, which means that the DataFrame’s index will also be written in the CSV file. We can verify this by printing the first lines of our CSV file: Pandas has added an unnamed column, which contains the index of the retained rows.</p>
-<div id="b5018f2f" class="cell" data-execution_count="206">
+<div id="14fd05f9" class="cell" data-execution_count="206">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"output/departements2021_dom.csv"</span>) <span class="im">as</span> file_in:</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> <span class="bu">next</span>(file_in).strip()</span>
@@ -1225,7 +1190,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>In some cases, notably when the index does not provide useful information or is simply automatically generated by Pandas, we might want to exclude it from the exported file. To do this, we can set <code>index=False</code>.</p>
-<div id="8bb9acb0" class="cell" data-execution_count="207">
+<div id="7dcf9b53" class="cell" data-execution_count="207">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df_departements_dom.to_csv(<span class="st">'output/departements2021_dom_noindex.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1233,7 +1198,7 @@ Name: var1, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="importing-a-parquet-file">Importing a Parquet file</h4>
 <p>The Parquet format is another format for storing tabular data, increasingly used. Without going into technical details, the Parquet format has various characteristics that make it a preferred choice for storing and processing large volumes of data. Due to these advantages, this format is increasingly used for data dissemination at INSEE. It is therefore essential to know how to import and query Parquet files with Pandas.</p>
 <p>Importing a Parquet file into a Pandas DataFrame is as easy as for a CSV file. The function is called <code>read_parquet()</code>.</p>
-<div id="fb974552" class="cell" data-execution_count="208">
+<div id="b377d1b9" class="cell" data-execution_count="208">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df_departements <span class="op">=</span> pd.read_parquet(<span class="st">'data/departement2021.parquet'</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>df_departements.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="208">
@@ -1314,12 +1279,12 @@ Name: var1, dtype: float64</code></pre>
 <section id="exporting-to-parquet-format" class="level4">
 <h4 class="anchored" data-anchor-id="exporting-to-parquet-format">Exporting to Parquet format</h4>
 <p>Again, everything works as in the CSV world: we use the <code>to_parquet()</code> method to export a DataFrame to a Parquet file. Similarly, we can choose to export or not the index, using the <code>index</code> parameter (which defaults to <code>True</code>).</p>
-<div id="c7344759" class="cell" data-execution_count="209">
+<div id="4bebd992" class="cell" data-execution_count="209">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df_departements_dom <span class="op">=</span> df_departements[df_departements[<span class="st">"DEP"</span>].isin([<span class="st">"971"</span>, <span class="st">"972"</span>, <span class="st">"973"</span>, <span class="st">"974"</span>, <span class="st">"975"</span>])]</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>df_departements_dom.to_parquet(<span class="st">'output/departements2021_dom.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One of the major strengths of the Parquet format, compared to text formats like CSV, is its ability to store metadata, i.e., data that helps better understand the data contained in the file. In particular, a Parquet file includes in its metadata the data schema (variable names, variable types, etc.), making it a very suitable format for data dissemination. Let’s verify this behavior by revisiting the DataFrame we defined earlier.</p>
-<div id="f9ed40b3" class="cell" data-execution_count="210">
+<div id="1d929471" class="cell" data-execution_count="210">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -1336,7 +1301,7 @@ Name: var1, dtype: float64</code></pre>
 <span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This time, we use two specific data types, for categorical data (<code>category</code>) and for temporal data (<code>datetime</code>). We will see later in the tutorial how to use these types. For now, let’s simply note that Pandas stores these types in the data schema.</p>
-<div id="4a5659ce" class="cell" data-execution_count="211">
+<div id="e2a18e6c" class="cell" data-execution_count="211">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -1354,7 +1319,7 @@ memory usage: 458.0+ bytes</code></pre>
 </div>
 </div>
 <p>Let’s now verify that exporting and re-importing this data in Parquet preserves the schema.</p>
-<div id="673ce151" class="cell" data-execution_count="212">
+<div id="db7fb07c" class="cell" data-execution_count="212">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df.to_parquet(<span class="st">"output/df_test_schema.parquet"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df_test_schema_parquet <span class="op">=</span> pd.read_parquet(<span class="st">'output/df_test_schema.parquet'</span>)</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1375,7 +1340,7 @@ memory usage: 458.0+ bytes</code></pre>
 </div>
 </div>
 <p>Conversely, a CSV file, which by definition only contains text, does not preserve this data. The variables for which we specified the type are imported as strings (type <code>object</code> in Pandas).</p>
-<div id="f22d014c" class="cell" data-execution_count="213">
+<div id="4bead555" class="cell" data-execution_count="213">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"output/df_test_schema.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>df_test_schema_csv <span class="op">=</span> pd.read_csv(<span class="st">'output/df_test_schema.csv'</span>)</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1401,7 +1366,7 @@ memory usage: 368.0+ bytes</code></pre>
 <h3 class="anchored" data-anchor-id="viewing-a-sample-of-data">Viewing a sample of data</h3>
 <p>When working with large datasets, it is often useful to quickly view a sample of the data to get an idea of its structure, format, or even to detect potential problems. Pandas offers several methods for this.</p>
 <p>The <code>head()</code> method displays the first rows of the DataFrame. By default, it returns the first 5 rows, but we can specify another number as an argument if necessary.</p>
-<div id="ea1bd7ca" class="cell" data-execution_count="214">
+<div id="0d97490d" class="cell" data-execution_count="214">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>df_departements.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="214">
 <div>
@@ -1477,7 +1442,7 @@ memory usage: 368.0+ bytes</code></pre>
 </div>
 </div>
 </div>
-<div id="4edf4625" class="cell" data-execution_count="215">
+<div id="9e5212de" class="cell" data-execution_count="215">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df_departements.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="215">
 <div>
@@ -1604,7 +1569,7 @@ memory usage: 368.0+ bytes</code></pre>
 </div>
 </div>
 <p>Conversely, the <code>tail()</code> method gives a preview of the last rows of the DataFrame.</p>
-<div id="1d93855b" class="cell" data-execution_count="216">
+<div id="2a960a30" class="cell" data-execution_count="216">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df_departements.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="216">
 <div>
@@ -1681,7 +1646,7 @@ memory usage: 368.0+ bytes</code></pre>
 </div>
 </div>
 <p>Displaying the first or last rows may sometimes not be representative of the entire dataset, especially when the data is sorted. To minimize the risk of obtaining a biased overview of the data, we can use the <code>sample()</code> method, which selects a random sample of rows. By default, it returns a single row, but we can request a specific number of rows using the <code>n</code> argument.</p>
-<div id="c1a40c9f" class="cell" data-execution_count="217">
+<div id="3977755c" class="cell" data-execution_count="217">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>df_departements.sample(n<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="217">
 <div>
@@ -1702,54 +1667,54 @@ memory usage: 368.0+ bytes</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>07</td>
-<td>84</td>
-<td>07186</td>
-<td>5</td>
-<td>ARDECHE</td>
-<td>Ardèche</td>
-<td>Ardèche</td>
+<td data-quarto-table-cell-role="th">58</td>
+<td>58</td>
+<td>27</td>
+<td>58194</td>
+<td>3</td>
+<td>NIEVRE</td>
+<td>Nièvre</td>
+<td>Nièvre</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">28</td>
-<td>2A</td>
-<td>94</td>
-<td>2A004</td>
+<td data-quarto-table-cell-role="th">73</td>
+<td>73</td>
+<td>84</td>
+<td>73065</td>
 <td>3</td>
-<td>CORSE DU SUD</td>
-<td>Corse-du-Sud</td>
-<td>Corse-du-Sud</td>
+<td>SAVOIE</td>
+<td>Savoie</td>
+<td>Savoie</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">65</td>
-<td>65</td>
+<td data-quarto-table-cell-role="th">57</td>
+<td>57</td>
+<td>44</td>
+<td>57463</td>
+<td>3</td>
+<td>MOSELLE</td>
+<td>Moselle</td>
+<td>Moselle</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30</td>
+<td>30</td>
 <td>76</td>
-<td>65440</td>
-<td>4</td>
-<td>HAUTES PYRENEES</td>
-<td>Hautes-Pyrénées</td>
-<td>Hautes-Pyrénées</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">42</td>
-<td>42</td>
-<td>84</td>
-<td>42218</td>
-<td>3</td>
-<td>LOIRE</td>
-<td>Loire</td>
-<td>Loire</td>
+<td>30189</td>
+<td>2</td>
+<td>GARD</td>
+<td>Gard</td>
+<td>Gard</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">72</td>
-<td>72</td>
-<td>52</td>
-<td>72181</td>
-<td>3</td>
-<td>SARTHE</td>
-<td>Sarthe</td>
-<td>Sarthe</td>
+<td data-quarto-table-cell-role="th">20</td>
+<td>22</td>
+<td>53</td>
+<td>22278</td>
+<td>4</td>
+<td>COTES D ARMOR</td>
+<td>Côtes-d'Armor</td>
+<td>Côtes-d'Armor</td>
 </tr>
 </tbody>
 </table>
@@ -1761,7 +1726,7 @@ memory usage: 368.0+ bytes</code></pre>
 <section id="getting-an-overview-of-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="getting-an-overview-of-the-data">Getting an overview of the data</h3>
 <p>One of the first steps when exploring new data is to understand the general structure of the dataset. The <code>info()</code> method in Pandas provides a quick overview of the data, including data types, the presence of missing values, and memory usage.</p>
-<div id="dd1a9f5b" class="cell" data-execution_count="218">
+<div id="2e87fd3a" class="cell" data-execution_count="218">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -1793,7 +1758,7 @@ memory usage: 458.0+ bytes</code></pre>
 <section id="calculating-descriptive-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="calculating-descriptive-statistics">Calculating descriptive statistics</h3>
 <p>In addition to the information returned by the <code>info()</code> method, we might want to obtain simple descriptive statistics to quickly visualize the distributions of variables. The <code>describe()</code> method provides a synthetic view of the distribution of data in each column.</p>
-<div id="ce0febfd" class="cell" data-execution_count="219">
+<div id="0f1fffc4" class="cell" data-execution_count="219">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="219">
 <div>
@@ -1818,43 +1783,43 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">mean</td>
 <td>2.30000</td>
-<td>1.500000</td>
+<td>-2.000000</td>
 <td>2022-01-03 12:00:00</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">min</td>
 <td>0.00000</td>
-<td>-7.000000</td>
+<td>-8.000000</td>
 <td>2022-01-01 00:00:00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">25%</td>
 <td>0.65000</td>
-<td>-4.250000</td>
+<td>-4.500000</td>
 <td>2022-01-02 06:00:00</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">50%</td>
 <td>1.30000</td>
-<td>4.000000</td>
+<td>-2.500000</td>
 <td>2022-01-03 12:00:00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">75%</td>
 <td>3.45000</td>
-<td>7.000000</td>
+<td>1.000000</td>
 <td>2022-01-04 18:00:00</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">max</td>
 <td>5.60000</td>
-<td>7.000000</td>
+<td>4.000000</td>
 <td>2022-01-06 00:00:00</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">std</td>
 <td>2.93087</td>
-<td>6.625708</td>
+<td>4.427189</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -1864,7 +1829,7 @@ memory usage: 458.0+ bytes</code></pre>
 </div>
 </div>
 <p>It should be noted that <code>describe()</code> only returns statistics for numeric columns by default. If we want to include columns of other types, we need to specify this via the <code>include</code> argument. For example, <code>df.describe(include='all')</code> will return statistics for all columns, including metrics such as the unique count, the most frequent value, and the frequency of the most frequent value for non-numeric columns.</p>
-<div id="95f639e5" class="cell" data-execution_count="220">
+<div id="f61e6075" class="cell" data-execution_count="220">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>df.describe(include<span class="op">=</span><span class="st">'all'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="220">
 <div>
@@ -1917,7 +1882,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">mean</td>
 <td>2.30000</td>
-<td>1.500000</td>
+<td>-2.000000</td>
 <td>NaN</td>
 <td>2022-01-03 12:00:00</td>
 <td>NaN</td>
@@ -1925,7 +1890,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">min</td>
 <td>0.00000</td>
-<td>-7.000000</td>
+<td>-8.000000</td>
 <td>NaN</td>
 <td>2022-01-01 00:00:00</td>
 <td>NaN</td>
@@ -1933,7 +1898,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">25%</td>
 <td>0.65000</td>
-<td>-4.250000</td>
+<td>-4.500000</td>
 <td>NaN</td>
 <td>2022-01-02 06:00:00</td>
 <td>NaN</td>
@@ -1941,7 +1906,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">50%</td>
 <td>1.30000</td>
-<td>4.000000</td>
+<td>-2.500000</td>
 <td>NaN</td>
 <td>2022-01-03 12:00:00</td>
 <td>NaN</td>
@@ -1949,7 +1914,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">75%</td>
 <td>3.45000</td>
-<td>7.000000</td>
+<td>1.000000</td>
 <td>NaN</td>
 <td>2022-01-04 18:00:00</td>
 <td>NaN</td>
@@ -1957,7 +1922,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="even">
 <td data-quarto-table-cell-role="th">max</td>
 <td>5.60000</td>
-<td>7.000000</td>
+<td>4.000000</td>
 <td>NaN</td>
 <td>2022-01-06 00:00:00</td>
 <td>NaN</td>
@@ -1965,7 +1930,7 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">std</td>
 <td>2.93087</td>
-<td>6.625708</td>
+<td>4.427189</td>
 <td>NaN</td>
 <td>NaN</td>
 <td>NaN</td>
@@ -1988,7 +1953,7 @@ memory usage: 458.0+ bytes</code></pre>
 <h4 class="anchored" data-anchor-id="transforming-a-dataframe">Transforming a DataFrame</h4>
 <p>To transform an entire DataFrame (or a sub-DataFrame), it is possible to use vectorized functions, which allow quickly applying an operation to all elements of the DataFrame. This includes a number of methods available for <code>Series</code>, as well as NumPy mathematical functions, etc.</p>
 <p>For example, raising each numeric value in a DataFrame to the power of 2:</p>
-<div id="6d94d4c1" class="cell" data-execution_count="221">
+<div id="8c18a3f8" class="cell" data-execution_count="221">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -2013,32 +1978,32 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.69</td>
-<td>64</td>
+<td>81</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>31.36</td>
-<td>9</td>
+<td>16</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>49</td>
+<td>4</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>64</td>
+<td>81</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.00</td>
-<td>49</td>
+<td>16</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>36</td>
+<td>9</td>
 </tr>
 </tbody>
 </table>
@@ -2047,7 +2012,7 @@ memory usage: 458.0+ bytes</code></pre>
 </div>
 </div>
 <p>or taking the absolute value:</p>
-<div id="a5b7576e" class="cell" data-execution_count="222">
+<div id="007a1e3b" class="cell" data-execution_count="222">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="222">
 <div>
@@ -2065,32 +2030,32 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>8</td>
+<td>9</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>3</td>
+<td>4</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>7</td>
+<td>2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>8</td>
+<td>9</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>7</td>
+<td>4</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>6</td>
+<td>3</td>
 </tr>
 </tbody>
 </table>
@@ -2099,7 +2064,7 @@ memory usage: 458.0+ bytes</code></pre>
 </div>
 </div>
 <p>Some methods available for <code>Series</code> can also be used to transform an entire DataFrame. For example, the very useful <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html">replace()</a> method, which allows replacing all occurrences of a given value with another value. For example, suppose the value 0 in the <code>var1</code> column actually indicates a measurement error. It would be preferable to replace it with a missing value.</p>
-<div id="c9a18652" class="cell" data-execution_count="223">
+<div id="62eaf746" class="cell" data-execution_count="223">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>df.replace(<span class="dv">0</span>, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="223">
 <div>
@@ -2117,32 +2082,32 @@ memory usage: 458.0+ bytes</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>8</td>
+<td>9</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>3</td>
+<td>-4</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>7</td>
+<td>-2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>-8</td>
+<td>9</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>NaN</td>
-<td>7</td>
+<td>-4</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>6</td>
+<td>-3</td>
 </tr>
 </tbody>
 </table>
@@ -2161,11 +2126,11 @@ Assignment or in-place methods?
 </div>
 <div class="callout-body-container callout-body">
 <p>In the previous example, applying the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html">replace()</a> method does not directly modify the DataFrame. To make the modification persistent, one possibility is to assign the result to an object:</p>
-<div id="b843437e" class="cell" data-execution_count="224">
+<div id="3d43c842" class="cell" data-execution_count="224">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="dv">0</span>, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A second possibility is, when methods offer it, to use the <code>inplace</code> argument. When <code>inplace=True</code>, the operation is performed “in place”, and the DataFrame is therefore directly modified.</p>
-<div id="75444cc1" class="cell" data-execution_count="225">
+<div id="4306635d" class="cell" data-execution_count="225">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>df.replace(<span class="dv">0</span>, np.nan, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In practice, it is better to limit <code>inplace</code> operations. They do not favor the reproducibility of analyses, as the re-execution of the same cell will give different results each time.</p>
@@ -2175,7 +2140,7 @@ Assignment or in-place methods?
 <section id="transforming-columns" class="level4">
 <h4 class="anchored" data-anchor-id="transforming-columns">Transforming columns</h4>
 <p>In some cases, we will not want to apply transformations to the entire data but to specific variables. Transformations possible at the DataFrame level (vectorized functions, methods like <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html">replace()</a>, etc.) naturally remain possible at the column level.</p>
-<div id="d5f02b22" class="cell" data-execution_count="226">
+<div id="2322e6f0" class="cell" data-execution_count="226">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -2185,16 +2150,16 @@ Assignment or in-place methods?
 <span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(df[<span class="st">"var2"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="226">
-<pre><code>0    10
-1     4
-2     3
-3     2
+<pre><code>0     8
+1     6
+2    10
+3     5
 4     4
-5     8
+5     9
 Name: var2, dtype: int64</code></pre>
 </div>
 </div>
-<div id="fe023bc8" class="cell" data-execution_count="227">
+<div id="23e70b27" class="cell" data-execution_count="227">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"var1"</span>].replace(<span class="dv">0</span>, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="227">
 <pre><code>0    1.3
@@ -2207,7 +2172,7 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>But there are other transformations that are generally applied at the level of one or a few columns. For example, when the schema has not been properly recognized upon import, it may happen that numeric variables are defined as strings (type <code>object</code> in Pandas).</p>
-<div id="c331de93" class="cell" data-execution_count="228">
+<div id="a92697a2" class="cell" data-execution_count="228">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan],</span>
@@ -2229,7 +2194,7 @@ memory usage: 176.0+ bytes</code></pre>
 </div>
 </div>
 <p>In this case, we can use the <code>astype</code> method to convert the column to the desired type.</p>
-<div id="54d6db91" class="cell" data-execution_count="229">
+<div id="b5f2a1ed" class="cell" data-execution_count="229">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'var2'</span>] <span class="op">=</span> df[<span class="st">'var2'</span>].astype(<span class="bu">int</span>)</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2246,7 +2211,7 @@ memory usage: 176.0 bytes</code></pre>
 </div>
 </div>
 <p>Another frequent operation is renaming one or more columns. To do this, we can use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rename.html">rename()</a> method, passing a dictionary containing as many key-value pairs as variables to be renamed, where each key-value pair is of the form <code>'old_name': 'new_name'</code>.</p>
-<div id="962a778d" class="cell" data-execution_count="230">
+<div id="c398358d" class="cell" data-execution_count="230">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>df.rename(columns<span class="op">=</span>{<span class="st">'var2'</span>: <span class="st">'age'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="230">
 <div>
@@ -2283,7 +2248,7 @@ memory usage: 176.0 bytes</code></pre>
 </div>
 </div>
 <p>Finally, we might want to remove columns from the DataFrame that are not or no longer useful for analysis. For this, we use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html">drop()</a> method, to which we pass either a string (name of a column if we want to remove only one) or a list of column names to remove.</p>
-<div id="1477e520" class="cell" data-execution_count="231">
+<div id="e7810c73" class="cell" data-execution_count="231">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'var1'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="231">
 <div>
@@ -2319,7 +2284,7 @@ memory usage: 176.0 bytes</code></pre>
 <section id="transforming-rows" class="level4">
 <h4 class="anchored" data-anchor-id="transforming-rows">Transforming rows</h4>
 <p>In statistics, we generally apply transformations involving one or more columns. However, in some cases, it is necessary to apply transformations at the row level. For this, we can use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html">apply()</a> method of Pandas, applied to the row axis (<code>axis=1</code>). Let’s illustrate its operation with a simple case. First, we generate data.</p>
-<div id="16d43ddc" class="cell" data-execution_count="232">
+<div id="8a86ee52" class="cell" data-execution_count="232">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">13</span>],</span>
@@ -2374,7 +2339,7 @@ memory usage: 176.0 bytes</code></pre>
 </div>
 </div>
 <p>We now apply the <code>apply()</code> function to the DataFrame to calculate a new variable that is the sum of the two existing ones.</p>
-<div id="d822d797" class="cell" data-execution_count="233">
+<div id="d6a96668" class="cell" data-execution_count="233">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sum_row'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row[<span class="st">'var1'</span>] <span class="op">+</span> row[<span class="st">'var2'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2439,7 +2404,7 @@ Lambda functions
 <div class="callout-body-container callout-body">
 <p>A <code>lambda</code> function is a small anonymous function. It can take any number of arguments but can have only one expression. In the example above, the <code>lambda</code> function takes a row as an argument and returns the sum of the <code>var1</code> and <code>var2</code> columns for that row.</p>
 <p>Lambda functions allow defining simple functions “on the fly” without having to give them a name. In our example, this would have been perfectly equivalent to the following code:</p>
-<div id="c541c0a1" class="cell" data-execution_count="234">
+<div id="0252ccf8" class="cell" data-execution_count="234">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_row(row):</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> row[<span class="st">'var1'</span>] <span class="op">+</span> row[<span class="st">'var2'</span>]</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2448,7 +2413,7 @@ Lambda functions
 </div>
 </div>
 <p>Although <code>apply()</code> offers great flexibility, it is not the most efficient method, especially for large datasets. Vectorized operations are always preferable as they process data in blocks rather than row by row. In our case, it would have been preferable to create our variable using column operations.</p>
-<div id="aa37f74f" class="cell" data-execution_count="235">
+<div id="caec1583" class="cell" data-execution_count="235">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sum_row_vect'</span>] <span class="op">=</span> df[<span class="st">'var1'</span>] <span class="op">+</span> df[<span class="st">'var2'</span>]</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2507,7 +2472,7 @@ Lambda functions
 </div>
 </div>
 <p>However, we might find ourselves in certain (rare) cases where an operation cannot be easily vectorized or where the logic is complex. Suppose, for example, we want to combine the values of several columns based on certain conditions.</p>
-<div id="38530aee" class="cell" data-execution_count="236">
+<div id="d9d57ccd" class="cell" data-execution_count="236">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> combine_columns(row):</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'var1'</span>] <span class="op">&gt;</span> <span class="dv">6</span>:</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">str</span>(row[<span class="st">'var2'</span>])</span>
@@ -2581,7 +2546,7 @@ Lambda functions
 <section id="sorting-values" class="level3">
 <h3 class="anchored" data-anchor-id="sorting-values">Sorting values</h3>
 <p>Sorting data is particularly useful for exploring and visualizing data. With Pandas, we use the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html">sort_values()</a> method to sort the values of a DataFrame based on one or more columns.</p>
-<div id="baefba27" class="cell" data-execution_count="237">
+<div id="c65e9fc6" class="cell" data-execution_count="237">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">13</span>],</span>
@@ -2636,7 +2601,7 @@ Lambda functions
 </div>
 </div>
 <p>To sort the values based on a single column, just pass the column name as a parameter.</p>
-<div id="e72e5b87" class="cell" data-execution_count="238">
+<div id="b77238c7" class="cell" data-execution_count="238">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(by<span class="op">=</span><span class="st">'var1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="238">
 <div>
@@ -2684,7 +2649,7 @@ Lambda functions
 </div>
 <p>By default, the sorting is done in ascending</p>
 <p>order. To sort the values in descending order, just set <code>ascending=False</code>.</p>
-<div id="2cdaa91e" class="cell" data-execution_count="239">
+<div id="5ee751ed" class="cell" data-execution_count="239">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(by<span class="op">=</span><span class="st">'var1'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="239">
 <div>
@@ -2735,7 +2700,7 @@ Lambda functions
 <section id="aggregating-data" class="level3">
 <h3 class="anchored" data-anchor-id="aggregating-data">Aggregating data</h3>
 <p>Aggregating data is a process where the data is broken down into groups based on certain criteria and then aggregated using an aggregation function applied independently to each group. This operation is common in exploratory analysis or when preprocessing data for visualization or statistical modeling.</p>
-<div id="c2bba5d7" class="cell" data-execution_count="240">
+<div id="d745005a" class="cell" data-execution_count="240">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -2766,7 +2731,7 @@ Lambda functions
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>6</td>
+<td>2</td>
 <td>test</td>
 <td>2022-01-01</td>
 <td>sample1</td>
@@ -2774,7 +2739,7 @@ Lambda functions
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-2</td>
+<td>-8</td>
 <td>train</td>
 <td>2022-01-02</td>
 <td>sample1</td>
@@ -2782,7 +2747,7 @@ Lambda functions
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>6</td>
+<td>-1</td>
 <td>test</td>
 <td>2022-01-03</td>
 <td>sample1</td>
@@ -2790,7 +2755,7 @@ Lambda functions
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>0</td>
+<td>1</td>
 <td>train</td>
 <td>2022-01-04</td>
 <td>sample1</td>
@@ -2798,7 +2763,7 @@ Lambda functions
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-7</td>
+<td>0</td>
 <td>train</td>
 <td>2022-01-05</td>
 <td>sample1</td>
@@ -2812,10 +2777,10 @@ Lambda functions
 <section id="the-groupby-operation" class="level4">
 <h4 class="anchored" data-anchor-id="the-groupby-operation">The <code>groupBy</code> operation</h4>
 <p>The <code>groupBy</code> method in Pandas allows dividing the DataFrame into subsets based on the values of one or more columns, and then applying an aggregation function to each subset. It returns a <code>DataFrameGroupBy</code> object that is not very useful by itself but is an essential intermediate step to then apply one or more aggregation function(s) to the different groups.</p>
-<div id="4fc1198d" class="cell" data-execution_count="241">
+<div id="f76db30d" class="cell" data-execution_count="241">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'experiment'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="241">
-<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f55c43d4c10&gt;</code></pre>
+<pre><code>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f2bf0bd7a30&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -2823,7 +2788,7 @@ Lambda functions
 <h4 class="anchored" data-anchor-id="aggregation-functions">Aggregation functions</h4>
 <p>Once the data is grouped, we can apply aggregation functions to obtain a statistical summary. Pandas includes a number of these functions, the complete list of which is detailed in the <a href="https://pandas.pydata.org/docs/user_guide/groupby.html#built-in-aggregation-methods">documentation</a>. Here are some examples of using these methods.</p>
 <p>For example, count the number of occurrences in each group.</p>
-<div id="cef342da" class="cell" data-execution_count="242">
+<div id="4097a562" class="cell" data-execution_count="242">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'experiment'</span>).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="242">
 <pre><code>experiment
@@ -2834,7 +2799,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Calculate the sum of a variable by group.</p>
-<div id="ab888623" class="cell" data-execution_count="243">
+<div id="47c94842" class="cell" data-execution_count="243">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'experiment'</span>)[<span class="st">'var1'</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="243">
 <pre><code>experiment
@@ -2845,19 +2810,19 @@ Name: var1, dtype: float64</code></pre>
 </div>
 </div>
 <p>Or count the number of unique values of a variable by group. The possibilities are numerous.</p>
-<div id="d40eb395" class="cell" data-execution_count="244">
+<div id="0aa6f8c7" class="cell" data-execution_count="244">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For the number of unique values of 'var2' in each group</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'experiment'</span>)[<span class="st">'var2'</span>].nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="244">
 <pre><code>experiment
-test          1
+test          2
 train         3
 validation    1
 Name: var2, dtype: int64</code></pre>
 </div>
 </div>
 <p>When we want to apply multiple aggregation functions at once or custom functions, we use the <code>agg</code> method. This method accepts a list of functions or a dictionary that associates column names with functions to apply. This allows for finer application of aggregation functions.</p>
-<div id="0a556502" class="cell" data-execution_count="245">
+<div id="faee7764" class="cell" data-execution_count="245">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'experiment'</span>).agg({<span class="st">'var1'</span>: <span class="st">'mean'</span>, <span class="st">'var2'</span>: <span class="st">'count'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="245">
 <div>
@@ -2917,7 +2882,7 @@ Method chaining
 <h4 class="anchored" data-anchor-id="effects-on-the-index">Effects on the index</h4>
 <p>It is interesting to note the effects of the aggregation process on the DataFrame’s index. The last example above illustrates this well: the groups, i.e., the modalities of the variable used for aggregation, become the values of the index.</p>
 <p>We might want to reuse this information in subsequent analyses and therefore want it as a column. For this, just reset the index with the <code>reset_index()</code> method.</p>
-<div id="b6531e73" class="cell" data-execution_count="246">
+<div id="c2a13fae" class="cell" data-execution_count="246">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>df_agg <span class="op">=</span> df.groupby(<span class="st">'experiment'</span>).agg({<span class="st">'var1'</span>: <span class="st">'mean'</span>, <span class="st">'var2'</span>: <span class="st">'count'</span>})</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>df_agg.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="246">
@@ -2967,7 +2932,7 @@ Method chaining
 <h4 class="anchored" data-anchor-id="representation-of-missing-values">Representation of missing values</h4>
 <p>In Pandas, missing values are generally represented by <code>np.nan</code>, a special marker provided by the <code>NumPy</code> library. While it is preferable to use this object to denote missing values, note that the <code>None</code> object in <code>Python</code> is also understood as a missing value by <code>Pandas</code>.</p>
 <p>Let’s verify this property. To identify where the missing values are, we use the <code>isna()</code> function, which returns a boolean DataFrame indicating <code>True</code> where the values are <code>NaN</code>.</p>
-<div id="46e99779" class="cell" data-execution_count="247">
+<div id="8b938861" class="cell" data-execution_count="247">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -3045,14 +3010,14 @@ Method chaining
 <section id="calculations-on-columns-containing-missing-values" class="level4">
 <h4 class="anchored" data-anchor-id="calculations-on-columns-containing-missing-values">Calculations on columns containing missing values</h4>
 <p>During statistical calculations, missing values are generally ignored. For example, the <code>.mean()</code> method calculates the mean of non-missing values.</p>
-<div id="73df6d2c" class="cell" data-execution_count="248">
+<div id="edd59200" class="cell" data-execution_count="248">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'var1'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="248">
 <pre><code>np.float64(2.3)</code></pre>
 </div>
 </div>
 <p>However, calculations involving multiple columns do not always ignore missing values and can often result in <code>NaN</code>.</p>
-<div id="9e56c8a7" class="cell" data-execution_count="249">
+<div id="23821e6b" class="cell" data-execution_count="249">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'var3'</span>] <span class="op">=</span> df[<span class="st">'var1'</span>] <span class="op">+</span> df[<span class="st">'var2'</span>]</span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3075,23 +3040,23 @@ Method chaining
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-8</td>
+<td>-1</td>
 <td>test</td>
 <td>sample1</td>
-<td>-6.7</td>
+<td>0.3</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-5</td>
+<td>-4</td>
 <td>train</td>
 <td>sample1</td>
-<td>0.6</td>
+<td>1.6</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>4</td>
+<td>-9</td>
 <td>test</td>
 <td>sample1</td>
 <td>NaN</td>
@@ -3099,7 +3064,7 @@ Method chaining
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>-7</td>
+<td>3</td>
 <td>None</td>
 <td>sample1</td>
 <td>NaN</td>
@@ -3107,10 +3072,10 @@ Method chaining
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-5</td>
+<td>3</td>
 <td>train</td>
 <td>sample1</td>
-<td>-5.0</td>
+<td>3.0</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
@@ -3130,7 +3095,7 @@ Method chaining
 <section id="removing-missing-values" class="level4">
 <h4 class="anchored" data-anchor-id="removing-missing-values">Removing missing values</h4>
 <p>The <code>dropna()</code> method allows us to remove rows (<code>axis=0</code>) or columns (<code>axis=1</code>) containing missing values. By default, any row containing at least one missing value is removed.</p>
-<div id="46efcd5c" class="cell" data-execution_count="250">
+<div id="6ae2df42" class="cell" data-execution_count="250">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>df.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="250">
 <div>
@@ -3151,26 +3116,26 @@ Method chaining
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-8</td>
+<td>-1</td>
 <td>test</td>
 <td>sample1</td>
-<td>-6.7</td>
+<td>0.3</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-5</td>
+<td>-4</td>
 <td>train</td>
 <td>sample1</td>
-<td>0.6</td>
+<td>1.6</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-5</td>
+<td>3</td>
 <td>train</td>
 <td>sample1</td>
-<td>-5.0</td>
+<td>3.0</td>
 </tr>
 </tbody>
 </table>
@@ -3179,7 +3144,7 @@ Method chaining
 </div>
 </div>
 <p>By changing the <code>axis</code> parameter, we can request that any column containing at least one missing value be removed.</p>
-<div id="c2099bc4" class="cell" data-execution_count="251">
+<div id="523265ce" class="cell" data-execution_count="251">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>df.dropna(axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="251">
 <div>
@@ -3196,27 +3161,27 @@ Method chaining
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>-8</td>
+<td>-1</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-5</td>
+<td>-4</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>4</td>
+<td>-9</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>-7</td>
+<td>3</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>-5</td>
+<td>3</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
@@ -3235,7 +3200,7 @@ Method chaining
 <section id="replacing-missing-values" class="level4">
 <h4 class="anchored" data-anchor-id="replacing-missing-values">Replacing missing values</h4>
 <p>To handle missing values in a DataFrame, a common approach is imputation, which involves replacing the missing values with other values. The <code>fillna()</code> method allows us to perform this operation in various ways. One possibility is replacement by a constant value.</p>
-<div id="aa908216" class="cell" data-execution_count="252">
+<div id="bd96b027" class="cell" data-execution_count="252">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'var1'</span>].fillna(value<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="252">
 <pre><code>0    1.3
@@ -3258,7 +3223,7 @@ Changing the representation of missing values
 </div>
 <div class="callout-body-container callout-body">
 <p>It can sometimes be tempting to change the manifestation of a missing value for visibility reasons, for example by replacing it with a string:</p>
-<div id="9a2b43f8" class="cell" data-execution_count="253">
+<div id="a38b91d6" class="cell" data-execution_count="253">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'var1'</span>].fillna(value<span class="op">=</span><span class="st">"MISSING"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="253">
 <pre><code>0        1.3
@@ -3274,7 +3239,7 @@ Name: var1, dtype: object</code></pre>
 </div>
 </div>
 <p>Another frequent imputation method is to use a statistical value, such as the mean or median of the variable.</p>
-<div id="c03a7cff" class="cell" data-execution_count="254">
+<div id="329d2ea1" class="cell" data-execution_count="254">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'var1'</span>].fillna(value<span class="op">=</span>df[<span class="st">'var1'</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="254">
 <pre><code>0    1.3
@@ -3306,7 +3271,7 @@ Imputation bias
 <section id="text-data" class="level4">
 <h4 class="anchored" data-anchor-id="text-data">Text data</h4>
 <p>Text data often requires cleaning and preparation before analysis. Pandas provides an array of vectorized operations via the <code>str</code> library that make preparing text data both simple and very efficient. Again, the possibilities are numerous and detailed in the <a href="https://pandas.pydata.org/docs/user_guide/text.html">documentation</a>. Here we present the most frequently used methods in data analysis.</p>
-<div id="52714427" class="cell" data-execution_count="255">
+<div id="73cbfc32" class="cell" data-execution_count="255">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -3335,42 +3300,42 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-7</td>
+<td>-8</td>
 <td>test</td>
 <td>sample1</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-10</td>
+<td>7</td>
 <td>train</td>
 <td>sample1</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>2</td>
+<td>-8</td>
 <td>test</td>
 <td>sample2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>5</td>
+<td>2</td>
 <td>test</td>
 <td>sample2</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-4</td>
+<td>6</td>
 <td>train</td>
 <td>sample2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>5</td>
+<td>-5</td>
 <td>validation</td>
 <td>sample1</td>
 </tr>
@@ -3381,7 +3346,7 @@ Imputation bias
 </div>
 </div>
 <p>A first frequent operation is to extract certain characters from a string. We use the <code>str[n:]</code> function (with a somewhat peculiar syntax) for this. For example, if we want to extract the last character of the <code>sample</code> variable to retain only the sample number.</p>
-<div id="b45dabb8" class="cell" data-execution_count="256">
+<div id="2f8e384a" class="cell" data-execution_count="256">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sample_n"</span>] <span class="op">=</span> df[<span class="st">"sample"</span>].<span class="bu">str</span>[<span class="op">-</span><span class="dv">1</span>:]</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3404,7 +3369,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-7</td>
+<td>-8</td>
 <td>test</td>
 <td>sample1</td>
 <td>1</td>
@@ -3412,7 +3377,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-10</td>
+<td>7</td>
 <td>train</td>
 <td>sample1</td>
 <td>1</td>
@@ -3420,7 +3385,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>2</td>
+<td>-8</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3428,7 +3393,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>5</td>
+<td>2</td>
 <td>test</td>
 <td>sample2</td>
 <td></td>
@@ -3436,7 +3401,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-4</td>
+<td>6</td>
 <td>train</td>
 <td>sample2</td>
 <td></td>
@@ -3444,7 +3409,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>5</td>
+<td>-5</td>
 <td>validation</td>
 <td>sample1</td>
 <td>1</td>
@@ -3457,7 +3422,7 @@ Imputation bias
 </div>
 <p>The principle was correct, but the presence of extraneous spaces in our text data (which were not visible when viewing the DataFrame!) made the operation more difficult than expected. This is an opportunity to introduce the <code>strip</code> family of methods (<code>.str.strip()</code>, <code>.str.lstrip()</code>, and <code>.str.rstrip()</code>) that respectively remove extr</p>
 <p>aneous spaces from both sides or one side.</p>
-<div id="60507e41" class="cell" data-execution_count="257">
+<div id="fc212a60" class="cell" data-execution_count="257">
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sample"</span>] <span class="op">=</span> df[<span class="st">"sample"</span>].<span class="bu">str</span>.strip()</span>
 <span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"sample_n"</span>] <span class="op">=</span> df[<span class="st">"sample"</span>].<span class="bu">str</span>[<span class="op">-</span><span class="dv">1</span>:]</span>
 <span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3481,7 +3446,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-7</td>
+<td>-8</td>
 <td>test</td>
 <td>sample1</td>
 <td>1</td>
@@ -3489,7 +3454,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-10</td>
+<td>7</td>
 <td>train</td>
 <td>sample1</td>
 <td>1</td>
@@ -3497,7 +3462,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>2</td>
+<td>-8</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3505,7 +3470,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>5</td>
+<td>2</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3513,7 +3478,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-4</td>
+<td>6</td>
 <td>train</td>
 <td>sample2</td>
 <td>2</td>
@@ -3521,7 +3486,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>5</td>
+<td>-5</td>
 <td>validation</td>
 <td>sample1</td>
 <td>1</td>
@@ -3533,7 +3498,7 @@ Imputation bias
 </div>
 </div>
 <p>We might also want to filter a DataFrame based on the presence or absence of a certain string (or substring) of characters. For this, we use the <code>.str.contains()</code> method.</p>
-<div id="d2c7fd05" class="cell" data-execution_count="258">
+<div id="f89b3175" class="cell" data-execution_count="258">
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'experiment'</span>].<span class="bu">str</span>.contains(<span class="st">'test'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="258">
 <div>
@@ -3554,7 +3519,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-7</td>
+<td>-8</td>
 <td>test</td>
 <td>sample1</td>
 <td>1</td>
@@ -3562,7 +3527,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>2</td>
+<td>-8</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3570,7 +3535,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>5</td>
+<td>2</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3582,7 +3547,7 @@ Imputation bias
 </div>
 </div>
 <p>Finally, we might want to replace a string (or substring) of characters with another, which the <code>str.replace()</code> method allows.</p>
-<div id="c8adb051" class="cell" data-execution_count="259">
+<div id="8a812653" class="cell" data-execution_count="259">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'experiment'</span>] <span class="op">=</span> df[<span class="st">'experiment'</span>].<span class="bu">str</span>.replace(<span class="st">'validation'</span>, <span class="st">'val'</span>)</span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3605,7 +3570,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>-7</td>
+<td>-8</td>
 <td>test</td>
 <td>sample1</td>
 <td>1</td>
@@ -3613,7 +3578,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>-10</td>
+<td>7</td>
 <td>train</td>
 <td>sample1</td>
 <td>1</td>
@@ -3621,7 +3586,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>2</td>
+<td>-8</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3629,7 +3594,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>5</td>
+<td>2</td>
 <td>test</td>
 <td>sample2</td>
 <td>2</td>
@@ -3637,7 +3602,7 @@ Imputation bias
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-4</td>
+<td>6</td>
 <td>train</td>
 <td>sample2</td>
 <td>2</td>
@@ -3645,7 +3610,7 @@ Imputation bias
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>5</td>
+<td>-5</td>
 <td>val</td>
 <td>sample1</td>
 <td>1</td>
@@ -3661,7 +3626,7 @@ Imputation bias
 <h4 class="anchored" data-anchor-id="categorical-data">Categorical data</h4>
 <p>Categorical data is variables that contain a limited number of categories. Similar to <code>R</code> with the notion of <code>factor</code>, Pandas has a special data type, <code>category</code>, which is useful for representing categorical data more efficiently and informatively. Categorical data is indeed optimized for certain types of data and can speed up operations like grouping and sorting. It is also useful for visualization, ensuring that categories are displayed in a coherent and logical order.</p>
 <p>To convert a variable to the <code>category</code> format, we use the <code>astype()</code> method.</p>
-<div id="0f66096e" class="cell" data-execution_count="260">
+<div id="655bec90" class="cell" data-execution_count="260">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="fl">1.3</span>, <span class="fl">5.6</span>, np.nan, np.nan, <span class="dv">0</span>, np.nan],</span>
@@ -3677,7 +3642,7 @@ experiment     object
 dtype: object</code></pre>
 </div>
 </div>
-<div id="ceb1e43d" class="cell" data-execution_count="261">
+<div id="488f88cb" class="cell" data-execution_count="261">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'experiment'</span>] <span class="op">=</span> df[<span class="st">'experiment'</span>].astype(<span class="st">'category'</span>)</span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3689,7 +3654,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>This conversion gives us access to some very useful methods, specific to handling categorical variables. For example, it can be useful to rename categories for clarity or standardization.</p>
-<div id="76211cee" class="cell" data-execution_count="262">
+<div id="f2aa2e7c" class="cell" data-execution_count="262">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'experiment'</span>] <span class="op">=</span> df[<span class="st">'experiment'</span>].cat.rename_categories({<span class="st">'test'</span>: <span class="st">'Test'</span>, <span class="st">'train'</span>: <span class="st">'Train'</span>, <span class="st">'validation'</span>: <span class="st">'Validation'</span>})</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="262">
@@ -3709,37 +3674,37 @@ dtype: object</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>1.3</td>
-<td>7</td>
+<td>-5</td>
 <td>Test</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>5.6</td>
-<td>0</td>
+<td>-5</td>
 <td>Train</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>NaN</td>
-<td>-10</td>
+<td>-3</td>
 <td>Test</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>NaN</td>
-<td>-9</td>
+<td>5</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>0.0</td>
-<td>-3</td>
+<td>-2</td>
 <td>Train</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>NaN</td>
-<td>5</td>
+<td>4</td>
 <td>Validation</td>
 </tr>
 </tbody>
@@ -3749,11 +3714,11 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Sometimes, the order of categories is significant, and we might want to modify it. This is particularly important for visualization, as the categories will by default be displayed in the specified order.</p>
-<div id="968aef7a" class="cell" data-execution_count="263">
+<div id="9cfb3ecb" class="cell" data-execution_count="263">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>df_cat <span class="op">=</span> df[<span class="st">'experiment'</span>].cat.reorder_categories([<span class="st">'Test'</span>, <span class="st">'Train'</span>, <span class="st">'Validation'</span>], ordered<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"experiment"</span>).mean().plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3307/419168969.py:2: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_3360/419168969.py:2: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   df.groupby("experiment").mean().plot(kind='bar')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -3768,7 +3733,7 @@ dtype: object</code></pre>
 <section id="temporal-data" class="level4">
 <h4 class="anchored" data-anchor-id="temporal-data">Temporal data</h4>
 <p>Temporal data is often present in tabular data to temporally identify the observations collected. Pandas offers functionalities for handling these types of data, particularly through the <code>datetime64</code> type, which allows precise manipulation of dates and times.</p>
-<div id="214794de" class="cell" data-execution_count="264">
+<div id="d877fde7" class="cell" data-execution_count="264">
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">13</span>],</span>
@@ -3788,7 +3753,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>To handle temporal data, it is necessary to convert the strings into <code>datetime</code> objects. Pandas does this via the <code>to_datetime()</code> function.</p>
-<div id="1a2542bd" class="cell" data-execution_count="265">
+<div id="59b5aeef" class="cell" data-execution_count="265">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3801,7 +3766,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Once converted, dates can be formatted, compared, and used in calculations. In particular, Pandas now understands the “order” of the dates present in the data, allowing for filtering over given periods.</p>
-<div id="118ec94a" class="cell" data-execution_count="266">
+<div id="68673710" class="cell" data-execution_count="266">
 <div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>df[(df[<span class="st">'date'</span>] <span class="op">&gt;=</span> <span class="st">"2022-01-01"</span>) <span class="op">&amp;</span> (df[<span class="st">'date'</span>] <span class="op">&lt;</span> <span class="st">"2022-01-03"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="266">
 <div>
@@ -3839,7 +3804,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>We might also want to perform less precise filtering, involving the year or month. Pandas allows us to easily extract specific components of the date, such as the year, month, day, hour, etc.</p>
-<div id="2af10879" class="cell" data-execution_count="267">
+<div id="6806edf5" class="cell" data-execution_count="267">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.year</span>
 <span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'month'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.month</span>
 <span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'day'</span>] <span class="op">=</span> df[<span class="st">'date'</span>].dt.day</span>
@@ -3891,7 +3856,7 @@ dtype: object</code></pre>
 </div>
 <p>Finally, calculations involving dates become possible. We can add or subtract time periods from dates and compare them with each other. The functions used come from <code>Pandas</code> but are very similar in operation to those of the <a href="https://docs.python.org/fr/3/library/time.html">time</a> module in Python.</p>
 <p>For example, we can add time intervals or calculate differences from a reference date.</p>
-<div id="9e89d884" class="cell" data-execution_count="268">
+<div id="0931fb70" class="cell" data-execution_count="268">
 <div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date_plus_one'</span>] <span class="op">=</span> df[<span class="st">'date'</span>] <span class="op">+</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date_diff'</span>] <span class="op">=</span> df[<span class="st">'date'</span>] <span class="op">-</span> pd.to_datetime(<span class="st">'2022-01-01'</span>)</span>
 <span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3978,7 +3943,7 @@ dtype: object</code></pre>
 <section id="concatenating-tables" class="level4">
 <h4 class="anchored" data-anchor-id="concatenating-tables">Concatenating tables</h4>
 <p>The vertical concatenation of tables is done using the <code>concat()</code> function in Pandas.</p>
-<div id="0f4a03b6" class="cell" data-execution_count="269">
+<div id="a01887c6" class="cell" data-execution_count="269">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
 <span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"var1"</span>: [<span class="dv">1</span>, <span class="dv">5</span>],</span>
@@ -4051,7 +4016,7 @@ dtype: object</code></pre>
 </div>
 <p>Note that the order of variables in the two DataFrames is not important. Pandas does not “dumbly” juxtapose the two DataFrames; it matches the schemas to align the variables by name. If two variables have the same name but not the same type - for example, if a numeric variable has been interpreted as strings - Pandas will resolve the issue by taking the common denominator, usually converting to strings (type <code>object</code>).</p>
 <p>However, the previous concatenation reveals an issue of repetition at the index level. This is logical: we did not specify an index for our initial two DataFrames, which therefore have the same position index ([0, 1]). In this case (where the index is not important), we can pass the <code>ignore_index=True</code> parameter to rebuild the final index from scratch.</p>
-<div id="8fe07a00" class="cell" data-execution_count="270">
+<div id="b396b066" class="cell" data-execution_count="270">
 <div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>df_concat <span class="op">=</span> pd.concat([df1, df2], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>df_concat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4129,7 +4094,7 @@ Iterative construction of a DataFrame
 <li><p>the join key. By default, Pandas tries to join the two DataFrames based on their indexes. In practice, we often specify a variable present in the DataFrames as the join key (the <code>on</code> parameter if the variable has the same name in both DataFrames, or <code>left_on</code> and <code>right_on</code> otherwise).</p></li>
 </ul>
 <p>Let’s analyze the difference between the different types of joins through examples.</p>
-<div id="355c9f2d" class="cell" data-execution_count="271">
+<div id="75c271a1" class="cell" data-execution_count="271">
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>df_a <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'key'</span>: [<span class="st">'K0'</span>, <span class="st">'K1'</span>, <span class="st">'K2'</span>, <span class="st">'K3'</span>, <span class="st">'K4'</span>],</span>
 <span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'A'</span>: [<span class="st">'A0'</span>, <span class="st">'A1'</span>, <span class="st">'A2'</span>, <span class="st">'A3'</span>, <span class="st">'A4'</span>],</span>
@@ -4244,7 +4209,7 @@ Iterative construction of a DataFrame
 </div>
 </div>
 <p>The <code>inner</code> join keeps the observations whose key is present in both DataFrames.</p>
-<div id="450855c2" class="cell" data-execution_count="272">
+<div id="ce1a2e32" class="cell" data-execution_count="272">
 <div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>df_merged_inner <span class="op">=</span> pd.merge(df_a, df_b, on<span class="op">=</span><span class="st">'key'</span>)</span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>df_merged_inner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="272">
@@ -4307,7 +4272,7 @@ Inner joins
 </div>
 </div>
 <p>A <code>left</code> join keeps all observations in the left DataFrame (the first DataFrame specified in <code>pd.merge()</code>). As a result, if keys are present in the left DataFrame but not in the right one, the final DataFrame contains missing values at those observations (for the right DataFrame’s variables).</p>
-<div id="573fc2f7" class="cell" data-execution_count="273">
+<div id="ca9c4620" class="cell" data-execution_count="273">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>df_merged_left <span class="op">=</span> pd.merge(df_a, df_b, how<span class="op">=</span><span class="st">"left"</span>, on<span class="op">=</span><span class="st">'key'</span>)</span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>df_merged_left</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="273">
@@ -4373,7 +4338,7 @@ Inner joins
 </div>
 </div>
 <p>The <code>outer</code> join contains all observations and variables in both DataFrames. Thus, the retained information is maximal, but on the other hand, missing values can be quite numerous. It will therefore be necessary to handle missing values well before proceeding with analyses.</p>
-<div id="d680fee4" class="cell" data-execution_count="274">
+<div id="016c822a" class="cell" data-execution_count="274">
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>df_merged_outer <span class="op">=</span> pd.merge(df_a, df_b, how<span class="op">=</span><span class="st">"outer"</span>, on<span class="op">=</span><span class="st">'key'</span>)</span>
 <span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>df_merged_outer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="274">
@@ -4495,7 +4460,7 @@ Show solution
 <section id="multiple-ways-to-create-a-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-ways-to-create-a-dataframe">Multiple ways to create a DataFrame</h3>
 <p>In the following cell, we have retrieved cash register data on sales from different stores. The data is presented in two different ways: one as observations (each list contains data from a row), and the other as variables (each list contains data from a column).</p>
-<div id="3b87a027" class="cell" data-execution_count="275">
+<div id="c46dd557" class="cell" data-execution_count="275">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>data_list1 <span class="op">=</span> [</span>
 <span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Carrefour'</span>, <span class="st">'01.1.1'</span>, <span class="dv">3</span>, <span class="fl">1.50</span>],</span>
 <span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Casino'</span>, <span class="st">'02.1.1'</span>, <span class="dv">2</span>, <span class="fl">2.30</span>],</span>
@@ -4513,7 +4478,7 @@ Show solution
 <span id="cb132-15"><a href="#cb132-15" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The goal is to build in both cases the same DataFrame containing each of the 6 observations and 4 variables, with the same names in both DataFrames. Each case will correspond to a more suitable input data structure, dictionary, or list of lists… make the right choice! We will verify that the two DataFrames are identical using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html">equals()</a> method.</p>
-<div id="165c13df" class="cell" data-execution_count="276">
+<div id="d1a45c5f" class="cell" data-execution_count="276">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4521,7 +4486,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="ed00890c" class="cell" data-execution_count="277">
+<div id="98464890" class="cell" data-execution_count="277">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>data_list1 <span class="op">=</span> [</span>
 <span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Carrefour'</span>, <span class="st">'Casino'</span>, <span class="st">'Lidl'</span>, <span class="st">'Carrefour'</span>, <span class="st">'Casino'</span>, <span class="st">'Lidl'</span>],</span>
 <span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'01.1.1'</span>, <span class="st">'02.1.1'</span>, <span class="st">'01.1.1'</span>, <span class="st">'03.1.1'</span>, <span class="st">'01.1.1'</span>, <span class="st">'02.1.1'</span>],</span>
@@ -4564,7 +4529,7 @@ Show solution
 <section id="data-selection-in-a-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="data-selection-in-a-dataframe">Data selection in a DataFrame</h3>
 <p>A Pandas DataFrame is created with cash register data (same data as the previous exercise).</p>
-<div id="da1641a9" class="cell" data-execution_count="278">
+<div id="a217cbad" class="cell" data-execution_count="278">
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
 <span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'store'</span>: [<span class="st">'Carrefour'</span>, <span class="st">'Casino'</span>, <span class="st">'Lidl'</span>, <span class="st">'Carrefour'</span>, <span class="st">'Casino'</span>, <span class="st">'Lidl'</span>],</span>
 <span id="cb136-3"><a href="#cb136-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'product'</span>: [<span class="st">'01.1.1'</span>, <span class="st">'02.1.1'</span>, <span class="st">'01.1.1'</span>, <span class="st">'03.1.1'</span>, <span class="st">'01.1.1'</span>, <span class="st">'02.1.1'</span>],</span>
@@ -4581,7 +4546,7 @@ Show solution
 <ul>
 <li>Select the data from the first row.</li>
 </ul>
-<div id="89580c66" class="cell" data-execution_count="279">
+<div id="cf28ca9f" class="cell" data-execution_count="279">
 <div class="sourceCode cell-code" id="cb137"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4589,7 +4554,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="c3b81328" class="cell" data-execution_count="280">
+<div id="0a2fdb1f" class="cell" data-execution_count="280">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.iloc[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>store                  Carrefour
@@ -4605,7 +4570,7 @@ Name: 0, dtype: object</code></pre>
 <ul>
 <li>Select all data from the “price” column.</li>
 </ul>
-<div id="01ab0947" class="cell" data-execution_count="281">
+<div id="130cb203" class="cell" data-execution_count="281">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4613,7 +4578,7 @@ Name: 0, dtype: object</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="b629d928" class="cell" data-execution_count="282">
+<div id="0ec68f03" class="cell" data-execution_count="282">
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[:, <span class="st">'price'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0    1.50
@@ -4630,7 +4595,7 @@ Name: price, dtype: float64</code></pre>
 <ul>
 <li>Select the rows corresponding to the store “Carrefour” only.</li>
 </ul>
-<div id="f7dfcb81" class="cell" data-execution_count="283">
+<div id="1e6ddf3f" class="cell" data-execution_count="283">
 <div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4638,7 +4603,7 @@ Name: price, dtype: float64</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="0e6f6e9b" class="cell" data-execution_count="284">
+<div id="86a751bf" class="cell" data-execution_count="284">
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[df[<span class="st">'store'</span>] <span class="op">==</span> <span class="st">'Carrefour'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       store product  quantity  price           date_time
@@ -4651,7 +4616,7 @@ Show solution
 <ul>
 <li>Select the quantities purchased for products classified “01.1.1” (Bread).</li>
 </ul>
-<div id="05202bb6" class="cell" data-execution_count="285">
+<div id="bdceb6f6" class="cell" data-execution_count="285">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4659,7 +4624,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="748793fe" class="cell" data-execution_count="286">
+<div id="030af75a" class="cell" data-execution_count="286">
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[df[<span class="st">'product'</span>] <span class="op">==</span> <span class="st">'01.1.1'</span>, <span class="st">'quantity'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0     3
@@ -4673,7 +4638,7 @@ Name: quantity, dtype: int64</code></pre>
 <ul>
 <li>Select the data from the “store” and “price” columns for all rows.</li>
 </ul>
-<div id="5dbc9297" class="cell" data-execution_count="287">
+<div id="26bb1ca9" class="cell" data-execution_count="287">
 <div class="sourceCode cell-code" id="cb149"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4681,7 +4646,7 @@ Name: quantity, dtype: int64</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="7c3b5d05" class="cell" data-execution_count="288">
+<div id="9622d005" class="cell" data-execution_count="288">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[:, [<span class="st">'store'</span>, <span class="st">'price'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       store  price
@@ -4698,7 +4663,7 @@ Show solution
 <ul>
 <li>Select the rows where the purchased quantity is greater than 5.</li>
 </ul>
-<div id="b0b71dea" class="cell" data-execution_count="289">
+<div id="8f703752" class="cell" data-execution_count="289">
 <div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4706,7 +4671,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="51714e9a" class="cell" data-execution_count="290">
+<div id="fbcb1010" class="cell" data-execution_count="290">
 <div class="sourceCode cell-code" id="cb153"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[df[<span class="st">'quantity'</span>] <span class="op">&gt;</span> <span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    store product  quantity  price           date_time
@@ -4719,7 +4684,7 @@ Show solution
 <ul>
 <li>Filter to select all transactions that occurred after 3 PM.</li>
 </ul>
-<div id="25898426" class="cell" data-execution_count="291">
+<div id="5ea83cee" class="cell" data-execution_count="291">
 <div class="sourceCode cell-code" id="cb155"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4727,7 +4692,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="1ca6ced0" class="cell" data-execution_count="292">
+<div id="7704a5cd" class="cell" data-execution_count="292">
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[df[<span class="st">'date_time'</span>].dt.hour <span class="op">&gt;</span> <span class="dv">15</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    store product  quantity  price           date_time
@@ -4741,7 +4706,7 @@ Show solution
 <ul>
 <li>Select the transactions that took place on “2022-01-03”.</li>
 </ul>
-<div id="676a39d3" class="cell" data-execution_count="293">
+<div id="377baa0c" class="cell" data-execution_count="293">
 <div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4749,7 +4714,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="7c4b9fc4" class="cell" data-execution_count="294">
+<div id="31b656f6" class="cell" data-execution_count="294">
 <div class="sourceCode cell-code" id="cb159"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.loc[df[<span class="st">'date_time'</span>].dt.date <span class="op">==</span> pd.to_datetime(<span class="st">'2022-01-03'</span>).date()])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  store product  quantity  price           date_time
@@ -4769,7 +4734,7 @@ Show solution
 <li>View a sample of the data. Do you notice any anomalies?</li>
 <li>Display the main information about the DataFrame. Identify any variables with incorrect types or any missing values.</li>
 </ul>
-<div id="f6c90540" class="cell" data-execution_count="295">
+<div id="bdd5bb76" class="cell" data-execution_count="295">
 <div class="sourceCode cell-code" id="cb161"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4777,7 +4742,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="692c3c46" class="cell" data-execution_count="296">
+<div id="c8aa5342" class="cell" data-execution_count="296">
 <div class="sourceCode cell-code" id="cb162"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"</span></span>
 <span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a>df_first_names <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">";"</span>)</span>
 <span id="cb162-3"><a href="#cb162-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -4808,7 +4773,7 @@ memory usage: 21.0+ MB</code></pre>
 <li>The output of the <code>info()</code> method suggests missing values in the first names column. Display these rows. Verify that these missing values are correctly specified.</li>
 <li>The output of the <code>head()</code> method shows a recurring “_PRENOMS_RARES” modality in the first names column. What proportion of the individuals in the database does this represent? Convert these values to <code>np.nan</code>.</li>
 </ul>
-<div id="15105230" class="cell" data-execution_count="297">
+<div id="5635b262" class="cell" data-execution_count="297">
 <div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4816,7 +4781,7 @@ memory usage: 21.0+ MB</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="c47d7810" class="cell" data-execution_count="298">
+<div id="4664290c" class="cell" data-execution_count="298">
 <div class="sourceCode cell-code" id="cb165"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_first_names[df_first_names[<span class="st">"preusuel"</span>].isna()])</span>
 <span id="cb165-2"><a href="#cb165-2" aria-hidden="true" tabindex="-1"></a>prop_rares <span class="op">=</span> df_first_names.groupby(<span class="st">"preusuel"</span>)[<span class="st">"nombre"</span>].<span class="bu">sum</span>()[<span class="st">"_PRENOMS_RARES"</span>] <span class="op">/</span> df_first_names[<span class="st">"nombre"</span>].<span class="bu">sum</span>()</span>
 <span id="cb165-3"><a href="#cb165-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prop_rares)  <span class="co"># ~ 2% of the database</span></span>
@@ -4833,7 +4798,7 @@ Show solution
 <ul>
 <li>We notice that the first names of people whose year of birth is unknown are grouped under the “XXXX” modality. What proportion of the individuals in the database does this represent? Convert these values to <code>np.nan</code>.</li>
 </ul>
-<div id="5b98a015" class="cell" data-execution_count="299">
+<div id="2036fd96" class="cell" data-execution_count="299">
 <div class="sourceCode cell-code" id="cb167"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4841,7 +4806,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="e92e0253" class="cell" data-execution_count="300">
+<div id="aaec81f7" class="cell" data-execution_count="300">
 <div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>prop_xxxx <span class="op">=</span> df_first_names.groupby(<span class="st">"annais"</span>)[<span class="st">"nombre"</span>].<span class="bu">sum</span>()[<span class="st">"XXXX"</span>] <span class="op">/</span> df_first_names[<span class="st">"nombre"</span>].<span class="bu">sum</span>()</span>
 <span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prop_xxxx)  <span class="co"># ~ 1% of the database</span></span>
 <span id="cb168-3"><a href="#cb168-3" aria-hidden="true" tabindex="-1"></a>df_first_names <span class="op">=</span> df_first_names.replace(<span class="st">'XXXX'</span>, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4854,7 +4819,7 @@ Show solution
 <ul>
 <li>Remove the rows containing missing values from the sample.</li>
 </ul>
-<div id="7c8f9301" class="cell" data-execution_count="301">
+<div id="4ffc5309" class="cell" data-execution_count="301">
 <div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4862,7 +4827,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="4ca4bc2c" class="cell" data-execution_count="302">
+<div id="963b67a5" class="cell" data-execution_count="302">
 <div class="sourceCode cell-code" id="cb171"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a>df_first_names <span class="op">=</span> df_first_names.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
@@ -4870,7 +4835,7 @@ Show solution
 <ul>
 <li>Convert the <code>annais</code> column to numeric type and the <code>sexe</code> column to categorical type.</li>
 </ul>
-<div id="87c80169" class="cell" data-execution_count="303">
+<div id="0099fd23" class="cell" data-execution_count="303">
 <div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4878,7 +4843,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="d81e0786" class="cell" data-execution_count="304">
+<div id="1a889913" class="cell" data-execution_count="304">
 <div class="sourceCode cell-code" id="cb173"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a>df_first_names[<span class="st">'annais'</span>] <span class="op">=</span> pd.to_numeric(df_first_names[<span class="st">'annais'</span>])</span>
 <span id="cb173-2"><a href="#cb173-2" aria-hidden="true" tabindex="-1"></a>df_first_names[<span class="st">'sexe'</span>] <span class="op">=</span> df_first_names[<span class="st">'sexe'</span>].astype(<span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -4887,7 +4852,7 @@ Show solution
 <ul>
 <li>Verify with the <code>info()</code> method that the cleaning has been correctly applied.</li>
 </ul>
-<div id="19e184d0" class="cell" data-execution_count="305">
+<div id="514e6c69" class="cell" data-execution_count="305">
 <div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4895,7 +4860,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="e3bae080" class="cell" data-execution_count="306">
+<div id="afb43754" class="cell" data-execution_count="306">
 <div class="sourceCode cell-code" id="cb175"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a>df_first_names.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -4919,7 +4884,7 @@ memory usage: 20.4+ MB</code></pre>
 <ul>
 <li>The <a href="https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation">documentation</a> of the file informs us that the data can be considered quasi-exhaustive from 1946 onwards. For this part only, filter the data to keep only data from 1946 onwards.</li>
 </ul>
-<div id="3bea40c3" class="cell" data-execution_count="307">
+<div id="c8ecd25c" class="cell" data-execution_count="307">
 <div class="sourceCode cell-code" id="cb177"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4927,7 +4892,7 @@ memory usage: 20.4+ MB</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="b1d1de7a" class="cell" data-execution_count="308">
+<div id="06a741cd" class="cell" data-execution_count="308">
 <div class="sourceCode cell-code" id="cb178"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a>df_first_names_post_1946 <span class="op">=</span> df_first_names[df_first_names[<span class="st">"annais"</span>] <span class="op">&gt;=</span> <span class="dv">1946</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
@@ -4935,7 +4900,7 @@ Show solution
 <ul>
 <li>Calculate the total number of births by sex.</li>
 </ul>
-<div id="27335b33" class="cell" data-execution_count="309">
+<div id="d8ce72df" class="cell" data-execution_count="309">
 <div class="sourceCode cell-code" id="cb179"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4943,7 +4908,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="3d352f86" class="cell" data-execution_count="310">
+<div id="3b336a29" class="cell" data-execution_count="310">
 <div class="sourceCode cell-code" id="cb180"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a>births_per_sex <span class="op">=</span> df_first_names_post_1946.groupby(<span class="st">'sexe'</span>)[<span class="st">'nombre'</span>].<span class="bu">sum</span>()</span>
 <span id="cb180-2"><a href="#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(births_per_sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -4953,7 +4918,7 @@ Show solution
 Name: nombre, dtype: int64</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3307/4076629916.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_3360/4076629916.py:1: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   births_per_sex = df_first_names_post_1946.groupby('sexe')['nombre'].sum()</code></pre>
 </div>
 </div>
@@ -4962,7 +4927,7 @@ Name: nombre, dtype: int64</code></pre>
 <ul>
 <li>Identify the five years with the highest number of births.</li>
 </ul>
-<div id="29907ef1" class="cell" data-execution_count="311">
+<div id="40ca5178" class="cell" data-execution_count="311">
 <div class="sourceCode cell-code" id="cb183"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4970,7 +4935,7 @@ Name: nombre, dtype: int64</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="8f78dc98" class="cell" data-execution_count="312">
+<div id="48b5e31f" class="cell" data-execution_count="312">
 <div class="sourceCode cell-code" id="cb184"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>top5_years <span class="op">=</span> df_first_names_post_1946.groupby(<span class="st">'annais'</span>)[<span class="st">'nombre'</span>].<span class="bu">sum</span>().nlargest(<span class="dv">5</span>)</span>
 <span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top5_years)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -4991,7 +4956,7 @@ Name: nombre, dtype: int64</code></pre>
 <ul>
 <li>Identify the total number of unique first names in the DataFrame.</li>
 </ul>
-<div id="5b64431c" class="cell" data-execution_count="313">
+<div id="97e42e8a" class="cell" data-execution_count="313">
 <div class="sourceCode cell-code" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -4999,7 +4964,7 @@ Name: nombre, dtype: int64</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="1c16f1f0" class="cell" data-execution_count="314">
+<div id="a2163c33" class="cell" data-execution_count="314">
 <div class="sourceCode cell-code" id="cb187"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb187-1"><a href="#cb187-1" aria-hidden="true" tabindex="-1"></a>total_unique_names <span class="op">=</span> df_first_names[<span class="st">'preusuel'</span>].nunique()</span>
 <span id="cb187-2"><a href="#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_unique_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -5011,7 +4976,7 @@ Show solution
 <ul>
 <li>Count the number of people with a single-letter first name.</li>
 </ul>
-<div id="8ca51828" class="cell" data-execution_count="315">
+<div id="96724a9d" class="cell" data-execution_count="315">
 <div class="sourceCode cell-code" id="cb189"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5019,7 +4984,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="689031e7" class="cell" data-execution_count="316">
+<div id="2119eedd" class="cell" data-execution_count="316">
 <div class="sourceCode cell-code" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>single_letter_names <span class="op">=</span> df_first_names[df_first_names[<span class="st">'preusuel'</span>].<span class="bu">str</span>.<span class="bu">len</span>() <span class="op">==</span> <span class="dv">1</span>][<span class="st">'nombre'</span>].<span class="bu">sum</span>()</span>
 <span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(single_letter_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -5031,7 +4996,7 @@ Show solution
 <ul>
 <li>Create a “popularity function” that, for a given first name, displays the year it was most given and the number of times it was given that year.</li>
 </ul>
-<div id="c8b8ffb2" class="cell" data-execution_count="317">
+<div id="13929d65" class="cell" data-execution_count="317">
 <div class="sourceCode cell-code" id="cb192"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5039,7 +5004,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="fd5818b5" class="cell" data-execution_count="318">
+<div id="ba3e4cb7" class="cell" data-execution_count="318">
 <div class="sourceCode cell-code" id="cb193"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> popularity_by_year(df, first_name):</span>
 <span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter the DataFrame to keep only the rows corresponding to the given first name</span></span>
 <span id="cb193-3"><a href="#cb193-3" aria-hidden="true" tabindex="-1"></a>    df_first_name <span class="op">=</span> df[df[<span class="st">'preusuel'</span>] <span class="op">==</span> first_name]</span>
@@ -5062,7 +5027,7 @@ Show solution
 <ul>
 <li>Create a function that, for a given sex, returns a DataFrame containing the most given first name for each decade.</li>
 </ul>
-<div id="8dd312a7" class="cell" data-execution_count="319">
+<div id="d690300e" class="cell" data-execution_count="319">
 <div class="sourceCode cell-code" id="cb195"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test</span></span>
 <span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb195-3"><a href="#cb195-3" aria-hidden="true" tabindex="-1"></a> your answer <span class="kw">in</span> this cell</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5081,7 +5046,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="e64935bc" class="cell" data-execution_count="320">
+<div id="1d3a045e" class="cell" data-execution_count="320">
 <div class="sourceCode cell-code" id="cb196"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> popularity_by_decade(df, sex):</span>
 <span id="cb196-2"><a href="#cb196-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter by sex</span></span>
 <span id="cb196-3"><a href="#cb196-3" aria-hidden="true" tabindex="-1"></a>    df_sub <span class="op">=</span> df[df[<span class="st">"sexe"</span>] <span class="op">==</span> sex]</span>
@@ -5103,7 +5068,7 @@ Show solution
 <span id="cb196-19"><a href="#cb196-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function with an example</span></span>
 <span id="cb196-20"><a href="#cb196-20" aria-hidden="true" tabindex="-1"></a>popularity_by_decade(df_first_names, sex<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3307/171210111.py:6: SettingWithCopyWarning: 
+<pre><code>/tmp/ipykernel_3360/171210111.py:6: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -5217,7 +5182,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <li>Import the CSV file <code>communes.csv</code>.</li>
 <li>Use the <code>.sample()</code>, <code>.info()</code>, and <code>.describe()</code> methods to get an overview of the data.</li>
 </ul>
-<div id="b208a1e3" class="cell" data-execution_count="321">
+<div id="ab03b921" class="cell" data-execution_count="321">
 <div class="sourceCode cell-code" id="cb198"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5225,7 +5190,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <summary>
 Show solution
 </summary>
-<div id="503bdbd4" class="cell" data-execution_count="322">
+<div id="adf1060c" class="cell" data-execution_count="322">
 <div class="sourceCode cell-code" id="cb199"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a>df_pop_communes <span class="op">=</span> pd.read_csv(<span class="st">"data/communes.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
 <span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb199-3"><a href="#cb199-3" aria-hidden="true" tabindex="-1"></a>df_pop_communes.sample(<span class="dv">10</span>)</span>
@@ -5319,7 +5284,7 @@ memory usage: 1.3+ MB</code></pre>
 <li>Identify and remove rows corresponding to municipalities without population.</li>
 <li>Remove the “PMUN” and “PCAP” columns, which are irrelevant for the analysis.</li>
 </ul>
-<div id="abdb56d1" class="cell" data-execution_count="323">
+<div id="49a3776c" class="cell" data-execution_count="323">
 <div class="sourceCode cell-code" id="cb201"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5327,7 +5292,7 @@ memory usage: 1.3+ MB</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="ed40c47c" class="cell" data-execution_count="324">
+<div id="d4c5c8ec" class="cell" data-execution_count="324">
 <div class="sourceCode cell-code" id="cb202"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a>n_communes_0_pop <span class="op">=</span> df_pop_communes[df_pop_communes[<span class="st">"PTOT"</span>] <span class="op">==</span> <span class="dv">0</span>].shape[<span class="dv">0</span>]</span>
 <span id="cb202-2"><a href="#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n_communes_0_pop)</span>
 <span id="cb202-3"><a href="#cb202-3" aria-hidden="true" tabindex="-1"></a>df_pop_communes <span class="op">=</span> df_pop_communes[df_pop_communes[<span class="st">"PTOT"</span>] <span class="op">&gt;</span> <span class="dv">0</span>]</span>
@@ -5340,7 +5305,7 @@ Show solution
 </details>
 </div>
 <p>Do the municipalities with the longest names also have the smallest populations? To find out: - Create a new variable that contains the number of characters of each municipality using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.len.html">str.len()</a> method. - Calculate the correlation between this variable and the total population using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">corr()</a> method.</p>
-<div id="0e1f2593" class="cell" data-execution_count="325">
+<div id="f1ed7610" class="cell" data-execution_count="325">
 <div class="sourceCode cell-code" id="cb204"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb204-1"><a href="#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5348,7 +5313,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="829cd508" class="cell" data-execution_count="326">
+<div id="618bfa70" class="cell" data-execution_count="326">
 <div class="sourceCode cell-code" id="cb205"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a>df_pop_communes_stats <span class="op">=</span> df_pop_communes.copy()</span>
 <span id="cb205-2"><a href="#cb205-2" aria-hidden="true" tabindex="-1"></a>df_pop_communes_stats[<span class="st">'length'</span>] <span class="op">=</span> df_pop_communes_stats[<span class="st">'COM'</span>].<span class="bu">str</span>.<span class="bu">len</span>()</span>
 <span id="cb205-3"><a href="#cb205-3" aria-hidden="true" tabindex="-1"></a>df_pop_communes_stats[<span class="st">'length'</span>].corr(df_pop_communes_stats[<span class="st">'PTOT'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5365,7 +5330,7 @@ Show solution
 <li>Import the emissions data from this <a href="https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv">URL</a>.</li>
 <li>Use the <code>.sample()</code>, <code>.info()</code>, and <code>.describe()</code> methods to get an overview of the data.</li>
 </ul>
-<div id="305c4d7b" class="cell" data-execution_count="327">
+<div id="3d9c0aea" class="cell" data-execution_count="327">
 <div class="sourceCode cell-code" id="cb207"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5373,7 +5338,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="b3a1075e" class="cell" data-execution_count="328">
+<div id="2b139088" class="cell" data-execution_count="328">
 <div class="sourceCode cell-code" id="cb208"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb208-1"><a href="#cb208-1" aria-hidden="true" tabindex="-1"></a>url_ademe <span class="op">=</span> <span class="st">"https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir</span><span class="sc">%20d</span><span class="st">e</span><span class="sc">%20r</span><span class="st">%C3%A9chauffement</span><span class="sc">%20g</span><span class="st">lobal.csv"</span></span>
 <span id="cb208-2"><a href="#cb208-2" aria-hidden="true" tabindex="-1"></a>df_emissions <span class="op">=</span> pd.read_csv(url_ademe)</span>
 <span id="cb208-3"><a href="#cb208-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -5537,7 +5502,7 @@ memory usage: 3.3+ MB</code></pre>
 <ul>
 <li>Are there rows with missing values for all emission columns? Check using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.isnull.html">isnull()</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html">all()</a> methods.</li>
 </ul>
-<div id="a2b595b8" class="cell" data-execution_count="329">
+<div id="9e8fa9a3" class="cell" data-execution_count="329">
 <div class="sourceCode cell-code" id="cb210"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5545,7 +5510,7 @@ memory usage: 3.3+ MB</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="f7edbf61" class="cell" data-execution_count="330">
+<div id="c6352e30" class="cell" data-execution_count="330">
 <div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>df_emissions_num <span class="op">=</span> df_emissions.select_dtypes([<span class="st">'number'</span>])</span>
 <span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a>only_nan <span class="op">=</span> df_emissions_num[df_emissions_num.isnull().<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>)]</span>
 <span id="cb211-3"><a href="#cb211-3" aria-hidden="true" tabindex="-1"></a>only_nan.shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5559,7 +5524,7 @@ Show solution
 <li>Create a new column that gives the total emissions per municipality.</li>
 <li>Display the 10 most emitting municipalities. What do you observe in the results?</li>
 </ul>
-<div id="71b0f34f" class="cell" data-execution_count="331">
+<div id="820a83fd" class="cell" data-execution_count="331">
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5567,7 +5532,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="25e4de17" class="cell" data-execution_count="332">
+<div id="e9272311" class="cell" data-execution_count="332">
 <div class="sourceCode cell-code" id="cb214"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb214-1"><a href="#cb214-1" aria-hidden="true" tabindex="-1"></a>df_emissions[<span class="st">'total_emissions'</span>] <span class="op">=</span> df_emissions.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, numeric_only<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb214-2"><a href="#cb214-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb214-3"><a href="#cb214-3" aria-hidden="true" tabindex="-1"></a>df_emissions.sort_values(by<span class="op">=</span><span class="st">"total_emissions"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5766,7 +5731,7 @@ Show solution
 <ul>
 <li>It seems that the major emission sectors are “Industry excluding energy” and “Other international transport.” To verify if this conjecture holds, calculate the correlation between total emissions and the sectoral emission items using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html">corrwith()</a> method.</li>
 </ul>
-<div id="b387dfc6" class="cell" data-execution_count="333">
+<div id="8c374308" class="cell" data-execution_count="333">
 <div class="sourceCode cell-code" id="cb215"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5774,7 +5739,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="3ca8db34" class="cell" data-execution_count="334">
+<div id="f2f77ed7" class="cell" data-execution_count="334">
 <div class="sourceCode cell-code" id="cb216"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a>df_emissions.corrwith(df_emissions[<span class="st">"total_emissions"</span>], numeric_only<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="334">
 <pre><code>Agriculture                        0.032843
@@ -5798,7 +5763,7 @@ dtype: float64</code></pre>
 <li>Calculate the total emissions by department.</li>
 <li>Display the top 10 emitting departments. Are the results logical compared to the analysis at the municipal level?</li>
 </ul>
-<div id="fce96b06" class="cell" data-execution_count="335">
+<div id="a42662ba" class="cell" data-execution_count="335">
 <div class="sourceCode cell-code" id="cb218"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb218-1"><a href="#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5806,7 +5771,7 @@ dtype: float64</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="eb755f23" class="cell" data-execution_count="336">
+<div id="6dcf34cf" class="cell" data-execution_count="336">
 <div class="sourceCode cell-code" id="cb219"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a>df_emissions[<span class="st">"dep"</span>] <span class="op">=</span> df_emissions[<span class="st">"INSEE commune"</span>].<span class="bu">str</span>[:<span class="dv">2</span>]</span>
 <span id="cb219-2"><a href="#cb219-2" aria-hidden="true" tabindex="-1"></a>df_emissions.groupby(<span class="st">"dep"</span>).agg({<span class="st">"total_emissions"</span>: <span class="st">"sum"</span>}).sort_values(by<span class="op">=</span><span class="st">"total_emissions"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="336">
@@ -5880,7 +5845,7 @@ Show solution
 <ul>
 <li>Check if the variable containing the municipality names contains duplicates.</li>
 </ul>
-<div id="275cf9c8" class="cell" data-execution_count="337">
+<div id="0dfab302" class="cell" data-execution_count="337">
 <div class="sourceCode cell-code" id="cb220"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb220-1"><a href="#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5888,7 +5853,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="4848f898" class="cell" data-execution_count="338">
+<div id="e5e8c02f" class="cell" data-execution_count="338">
 <div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> df_pop_communes.groupby(<span class="st">'COM'</span>).count()[<span class="st">'DEPCOM'</span>]</span>
 <span id="cb221-2"><a href="#cb221-2" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> duplicates[duplicates <span class="op">&gt;</span> <span class="dv">1</span>]</span>
 <span id="cb221-3"><a href="#cb221-3" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> duplicates.reset_index()</span>
@@ -5973,7 +5938,7 @@ Show solution
 <ul>
 <li>Filter in the initial DataFrame the municipalities with duplicated names and sort it by municipality code. Do the duplicates seem problematic?</li>
 </ul>
-<div id="247e390c" class="cell" data-execution_count="339">
+<div id="189ab857" class="cell" data-execution_count="339">
 <div class="sourceCode cell-code" id="cb222"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb222-1"><a href="#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -5981,7 +5946,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="fe3fdeb2" class="cell" data-execution_count="340">
+<div id="0c286f4e" class="cell" data-execution_count="340">
 <div class="sourceCode cell-code" id="cb223"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>df_pop_communes_duplicates <span class="op">=</span> df_pop_communes[df_pop_communes[<span class="st">"COM"</span>].isin(duplicates[<span class="st">"COM"</span>])]</span>
 <span id="cb223-2"><a href="#cb223-2" aria-hidden="true" tabindex="-1"></a>df_pop_communes_duplicates.sort_values(<span class="st">'COM'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="340">
@@ -6076,7 +6041,7 @@ Show solution
 <ul>
 <li>Verify that the municipality codes uniquely identify the associated municipality.</li>
 </ul>
-<div id="397b6bdd" class="cell" data-execution_count="341">
+<div id="bb52ed12" class="cell" data-execution_count="341">
 <div class="sourceCode cell-code" id="cb224"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6084,7 +6049,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="1dffd8b6" class="cell" data-execution_count="342">
+<div id="3493fdcb" class="cell" data-execution_count="342">
 <div class="sourceCode cell-code" id="cb225"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a>(df_pop_communes_duplicates.groupby(<span class="st">"DEPCOM"</span>)[<span class="st">"COM"</span>].nunique() <span class="op">!=</span> <span class="dv">1</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="342">
 <pre><code>np.int64(0)</code></pre>
@@ -6095,7 +6060,7 @@ Show solution
 <ul>
 <li>Display the municipalities present in the population data but not in the emissions data, and vice versa. What do you conclude?</li>
 </ul>
-<div id="a147c58a" class="cell" data-execution_count="343">
+<div id="b48c075d" class="cell" data-execution_count="343">
 <div class="sourceCode cell-code" id="cb227"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6103,7 +6068,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="5057668d" class="cell" data-execution_count="344">
+<div id="eded78c5" class="cell" data-execution_count="344">
 <div class="sourceCode cell-code" id="cb228"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Observations in the population data but not in the emissions data</span></span>
 <span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a>df_pop_communes[<span class="op">~</span>df_pop_communes[<span class="st">"DEPCOM"</span>].isin(df_emissions[<span class="st">"INSEE commune"</span>])]</span>
 <span id="cb228-3"><a href="#cb228-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -6336,7 +6301,7 @@ Show solution
 <ul>
 <li>Merge the two DataFrames using the municipality code as the join key. Note: the variables are not named the same on both sides!</li>
 </ul>
-<div id="6cf64cc4" class="cell" data-execution_count="345">
+<div id="70d9fed2" class="cell" data-execution_count="345">
 <div class="sourceCode cell-code" id="cb229"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6344,7 +6309,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="26f1e9dd" class="cell" data-execution_count="346">
+<div id="00c95034" class="cell" data-execution_count="346">
 <div class="sourceCode cell-code" id="cb230"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a>df_emissions_pop <span class="op">=</span> pd.merge(df_pop_communes, df_emissions, how<span class="op">=</span><span class="st">"inner"</span>, left_on<span class="op">=</span><span class="st">"DEPCOM"</span>, right_on<span class="op">=</span><span class="st">"INSEE commune"</span>)</span>
 <span id="cb230-2"><a href="#cb230-2" aria-hidden="true" tabindex="-1"></a>df_emissions_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="346">
@@ -6609,7 +6574,7 @@ Show solution
 <li>Display the top 10 municipalities with the highest carbon footprints.</li>
 <li>Are the results the same as those with total emissions? What do you conclude?</li>
 </ul>
-<div id="976e2d2c" class="cell" data-execution_count="347">
+<div id="06e39f17" class="cell" data-execution_count="347">
 <div class="sourceCode cell-code" id="cb231"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6617,7 +6582,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="5e0ba70d" class="cell" data-execution_count="348">
+<div id="c6f7af26" class="cell" data-execution_count="348">
 <div class="sourceCode cell-code" id="cb232"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a>df_emissions_pop[<span class="st">"carbon_footprint"</span>] <span class="op">=</span> df_emissions_pop[<span class="st">"total_emissions"</span>] <span class="op">/</span> df_emissions_pop[<span class="st">"PTOT"</span>]</span>
 <span id="cb232-2"><a href="#cb232-2" aria-hidden="true" tabindex="-1"></a>df_emissions_pop.sort_values(<span class="st">"carbon_footprint"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="348">
@@ -6887,7 +6852,7 @@ Show solution
 <li>Import the two CSV files into DataFrames. Note: in both cases, there are extraneous rows before the data that need to be skipped using the <code>skiprows</code> parameter of the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv()</a> function.</li>
 <li>Give simple and relevant names to the various variables.</li>
 </ul>
-<div id="266930c9" class="cell" data-execution_count="349">
+<div id="61b9310e" class="cell" data-execution_count="349">
 <div class="sourceCode cell-code" id="cb233"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6895,7 +6860,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="b60c1e74" class="cell" data-execution_count="350">
+<div id="f9877b9e" class="cell" data-execution_count="350">
 <div class="sourceCode cell-code" id="cb234"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a>df_values <span class="op">=</span> pd.read_csv(<span class="st">'data/serie_glaces_valeurs.csv'</span>, delimiter<span class="op">=</span><span class="st">';'</span>,</span>
 <span id="cb234-2"><a href="#cb234-2" aria-hidden="true" tabindex="-1"></a>                        skiprows<span class="op">=</span><span class="dv">4</span>, names<span class="op">=</span>[<span class="st">"period"</span>, <span class="st">"index"</span>, <span class="st">"code"</span>])</span>
 <span id="cb234-3"><a href="#cb234-3" aria-hidden="true" tabindex="-1"></a>df_metadata <span class="op">=</span> pd.read_csv(<span class="st">'data/serie_glaces_metadonnees.csv'</span>, delimiter<span class="op">=</span><span class="st">';'</span>,</span>
@@ -6911,7 +6876,7 @@ Show solution
 <li>Filter the data to keep only the “Normal Value” data.</li>
 <li>Remove the columns related to the codes, which we no longer need for the rest.</li>
 </ul>
-<div id="47445339" class="cell" data-execution_count="351">
+<div id="d60f8817" class="cell" data-execution_count="351">
 <div class="sourceCode cell-code" id="cb235"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6919,7 +6884,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="61c09c75" class="cell" data-execution_count="352">
+<div id="83f4a828" class="cell" data-execution_count="352">
 <div class="sourceCode cell-code" id="cb236"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a>df_merged <span class="op">=</span> pd.merge(df_values, df_metadata, how<span class="op">=</span><span class="st">'left'</span>, on<span class="op">=</span><span class="st">'code'</span>)</span>
 <span id="cb236-2"><a href="#cb236-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb236-3"><a href="#cb236-3" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df_merged[df_merged[<span class="st">'code'</span>] <span class="op">==</span> <span class="st">"A"</span>]</span>
@@ -6931,7 +6896,7 @@ Show solution
 <section id="part-3-data-preprocessing" class="level4">
 <h4 class="anchored" data-anchor-id="part-3-data-preprocessing">Part 3: Data preprocessing</h4>
 <p>Verify if the types of variables are relevant according to their nature. If not, convert them with the appropriate functions.</p>
-<div id="d4088a79" class="cell" data-execution_count="353">
+<div id="9e6eff26" class="cell" data-execution_count="353">
 <div class="sourceCode cell-code" id="cb237"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6939,7 +6904,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="520d74a4" class="cell" data-execution_count="354">
+<div id="518e5add" class="cell" data-execution_count="354">
 <div class="sourceCode cell-code" id="cb238"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a>df_clean.info()</span>
 <span id="cb238-2"><a href="#cb238-2" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'period'</span>] <span class="op">=</span> pd.to_datetime(df_clean[<span class="st">'period'</span>])</span>
 <span id="cb238-3"><a href="#cb238-3" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'index'</span>] <span class="op">=</span> pd.to_numeric(df_clean[<span class="st">'index'</span>])</span>
@@ -6974,7 +6939,7 @@ memory usage: 4.6 KB</code></pre>
 <li>Use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html">shift()</a> method to create a new column containing the previous month’s index.</li>
 <li>Calculate the difference between the current index and the shifted index to obtain the (percentage) evolution from one month to the next.</li>
 </ul>
-<div id="5946b68d" class="cell" data-execution_count="355">
+<div id="6f4b7038" class="cell" data-execution_count="355">
 <div class="sourceCode cell-code" id="cb240"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb240-1"><a href="#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -6982,7 +6947,7 @@ memory usage: 4.6 KB</code></pre>
 <summary>
 Show solution
 </summary>
-<div id="adc09630" class="cell" data-execution_count="356">
+<div id="0112352f" class="cell" data-execution_count="356">
 <div class="sourceCode cell-code" id="cb241"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'previous_index'</span>] <span class="op">=</span> df_clean[<span class="st">'index'</span>].shift(<span class="dv">1</span>)</span>
 <span id="cb241-2"><a href="#cb241-2" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'evolution'</span>] <span class="op">=</span> ((df_clean[<span class="st">'index'</span>] <span class="op">-</span> df_clean[<span class="st">'previous_index'</span>]) <span class="op">/</span> df_clean[<span class="st">'previous_index'</span>]) <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb241-3"><a href="#cb241-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -6995,7 +6960,7 @@ Show solution
 <section id="part-5-calculating-year-over-year-evolution" class="level4">
 <h4 class="anchored" data-anchor-id="part-5-calculating-year-over-year-evolution">Part 5: Calculating year-over-year evolution</h4>
 <p>As you saw in the previous exercise’s solution, the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html">pct_change()</a> method allows you to calculate an evolution between two periods. Use this method to calculate a year-over-year evolution for each month.</p>
-<div id="14d6457a" class="cell" data-execution_count="357">
+<div id="64c55b82" class="cell" data-execution_count="357">
 <div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test your answer in this cell</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -7003,7 +6968,7 @@ Show solution
 <summary>
 Show solution
 </summary>
-<div id="41f15111" class="cell" data-execution_count="358">
+<div id="1de1ed50" class="cell" data-execution_count="358">
 <div class="sourceCode cell-code" id="cb243"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb243-1"><a href="#cb243-1" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">"year_over_year_evolution"</span>] <span class="op">=</span> df_clean[<span class="st">'index'</span>].pct_change(periods<span class="op">=</span><span class="dv">12</span>) <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb243-2"><a href="#cb243-2" aria-hidden="true" tabindex="-1"></a>df_clean.head(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="358">
