@@ -136,4 +136,4 @@ Source : [josephsalmon.eu](https://josephsalmon.eu/HMMA238.html)
 
 - Modalités selon la nature des données utilisées
   - Projets open-data : [SSP Cloud](https://datalab.sspcloud.fr/)
-  - Projets internes : [AUSV3 / LS3](https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/)
+  - Projets internes Insee : [AUSV3 / LS3](https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/)

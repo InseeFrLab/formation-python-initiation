@@ -53,7 +53,7 @@ Chaque chapitre se termine sur une série d'exercices guidés qui visent à mett
 
 ### Lancer un chapitre
 
-Les différents chapitres peuvent être lancés en un clic depuis l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D) du `SSP Cloud`. Lancer un chapitre revient à lancer un service `jupyter-python` sur le `SSP Cloud`, pré-configuré pour la formation et qui va s'ouvrir directement sur le *notebook* associé au chapitre.
+Les différents chapitres peuvent être lancés en un clic depuis l'[espace formation](https://www.sspcloud.fr/formation?search=&path=%5B%22Introduction%20to%20Python%22%5D) du `SSP Cloud`. Lancer un chapitre revient à lancer un service `jupyter-python` sur le `SSP Cloud`, pré-configuré pour la formation et qui va s'ouvrir directement sur le *notebook* associé au chapitre.
 
 ![](img/lancement.gif){fig-align="center"}
 
@@ -176,7 +176,7 @@ Each chapter ends with a series of guided exercises that aim to directly apply t
 
 ### Launching a chapter
 
-The different chapters can be launched with a single click from the [training space](https://www.sspcloud.fr/formation?search=&path=%5B%22Initiation%20%C3%A0%20Python%22%5D) of the `SSP Cloud`. Launching a chapter means launching a `jupyter-python` service on the `SSP Cloud`, pre-configured for the training and which will open directly on the notebook associated with the chapter.
+The different chapters can be launched with a single click from the [training space](https://www.sspcloud.fr/formation?search=&path=%5B%22Introduction%20to%20Python%22%5D) of the `SSP Cloud`. Launching a chapter means launching a `jupyter-python` service on the `SSP Cloud`, pre-configured for the training and which will open directly on the notebook associated with the chapter.
 
 ![](img/lancement.gif){fig-align="center"}
 
