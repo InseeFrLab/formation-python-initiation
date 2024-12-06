@@ -94,7 +94,7 @@ type(2e3)
 La division par 0 produit une erreur. C'était bien sûr prévisible. Mais il n'est pas rare d'avoir de telles erreurs dans le cadre de calculs statistiques, notamment avec *NumPy* ou *Pandas*, produisant une erreur similaire qu'il faut alors débugger.
 
 ::: {.callout-tip title="Debugger une erreur"}
-Les erreurs de code sont un passage obligatoire et en réalité nécessaire de l'apprentissage d'un langage: c'est en debuggant les erreurs que notre code produit que l'on apprend à les éviter à l'avenir ! Pour ce faire, il est nécessaire de bien les comprendre en premier lieu.
+Les erreurs de code sont un passage obligatoire et en réalité nécessaire de l'apprentissage d'un langage : c'est en debuggant les erreurs que notre code produit que l'on apprend à les éviter à l'avenir ! Pour ce faire, il est nécessaire de bien les comprendre en premier lieu.
 
 L'erreur ci-dessus, liée à la division par 0, a produit un `Traceback`, i.e. un log détaillé précisant à quelle étape des différentes opérations effectuées par Python s'est produite l'erreur, ainsi que le nom de l'erreur (`ZeroDivisionError`) et un descriptif ("division by zero"). En l'occurence, l'erreur est simple, le message permet donc de comprendre directement le problème. Pour des opérations plus compliquées, les noms et messages peuvent être moins évidents... mais néanmoins utiles pour comprendre la source de l'erreur - en les indiquant dans un moteur de recherche par exemple.
 :::
@@ -903,7 +903,7 @@ int(3.79)
 
 Be cautious with float to int conversion, which truncates the decimal part.
 
-Floats can also be written in scientific notation:
+Floats can also be written in scientific notation :
 
 ```{python}
 2e3
