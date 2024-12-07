@@ -93,9 +93,9 @@ Tous les supports de formation restent accessibles sur le `SSP Cloud` après la 
 
 Pour approfondir sa connaissance du langage `Python` après cette formation d'introduction, rien de tel que la mise en pratique sur des sujets concrets ! Pour les modalités d'utilisation de `Python` dans le cadre des projets statistiques, cela va dépendre de l'organisation : 
 
-- pour des **projets open-data et inter-administrations**, le `SSP Cloud` est une bonne alternative dans la mesure où les services `Python` y sont déjà pré-configurés et où un service de stockage de données y est proposé (cf. [documentation](https://www.sspcloud.fr/formation) pour plus de détails) ;
+- pour des **projets open-data et inter-administrations**, le `SSP Cloud` est une bonne solution dans la mesure où les services `Python` y sont déjà pré-configurés et où un service de stockage de données y est proposé (cf. [documentation](https://www.sspcloud.fr/formation) pour plus de détails) ;
 
-- pour des **projets internes à l'Insee**, se référer à la [documentation](https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/) sur l'utilisation de `Python` en interne ;
+- pour des **projets internes à l'Insee**, l'utilisation de [`LS3`](https://datascience.gitlab-pages.insee.fr/site-documentaire/ls3/ls3-c-est-quoi/) (la version interne du `SSPcloud` pour le dire rapidement) est à privilégier.  même s'il est aussi possible d'utiliser Python directement depuis AUS (se référer à la [documentation](https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/) ;
 
 - pour des **projets internes à d'autres administrations**, se rapprocher de sa DSI pour connaître les modalités d'utilisation recommandées.
 
