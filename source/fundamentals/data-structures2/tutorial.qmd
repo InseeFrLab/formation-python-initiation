@@ -79,7 +79,7 @@ print(cv["marc"])
 print(cv["marc"]["hobbies"][0])
 ```
 
-Répétons-le : les dictionnaires n'ont pas de notion d'ordre. Ainsi, il n'y a pas de sens à requêter l'élément de position `0` d'un dictionnaire (sauf si la clé `0` existe..). Requêter une clé inexistante renvoie une erreur.
+Répétons-le : les dictionnaires n'ont pas de notion d'ordre. Ainsi, il n'y a pas de sens à requêter l'élément de position `0` d'un dictionnaire (sauf si la clé `0` existe...). Requêter une clé inexistante renvoie une erreur.
 
 
 ```{python}
@@ -98,6 +98,8 @@ inventaire = {'cafe': '500g', 'lait': '1,5L'}
 inventaire['cafe'] = {'arabica': '250g', 'robusta': '400g'}
 inventaire
 ```
+
+La valeur associée à la clé "cafe" était une chaîne de caractères ('500g'). Après modification, cette valeur n'est plus une chaîne de caractères mais un dictionnaire.
 
 ### Suppression d'éléments
 
@@ -158,6 +160,11 @@ list(cv.values())
 list(cv.items())
 ```
 
+::: {.callout-tip}
+La méthode `.items()` est très utile pour les itérations, nous le verrons plus loin.
+Pour les plus curieux, gardez en tête que cette méthode renvoie, pour chaque élément du dictionnaire, un tuple de taille 2 contenant la clé et la valeur.
+:::
+
 ## Sets
 
 ### Définition
@@ -211,6 +218,14 @@ Il est possible de retirer un élément d'un set via la méthode `remove`.
 ```{python}
 x = {3, 2, 1}
 x.remove(2)
+x
+```
+
+Tout cela fonctionne aussi pour des sets de chaînes de caractères par exemple : 
+
+```{python}
+x = {"Jeanne", "Jean"}
+x.remove("Jean")
 x
 ```
 
