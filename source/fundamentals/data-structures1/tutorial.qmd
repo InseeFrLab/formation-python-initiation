@@ -196,7 +196,7 @@ b.index("d")
 
 ### Définition
 
-Les **tuples** sont une autre structure de données basique en Python, semblable à celle des listes dans leur fonctionnement. Il y a cependant une différence fondamentale : là où les éléments d'une liste peuvent être modifiés par position comme on l'a vu précédemment, les tuples sont **non-modifiables** (*immutable*). Ainsi, les éléments d'un tuple ne peuvent pas être modifiés sans redéfinir complètement le tuple. 
+Les **tuples** sont une autre structure de données basique en Python, semblable à celle des listes dans leur fonctionnement. Il y a cependant une différence fondamentale : là où les éléments d'une liste peuvent être modifiés comme on l'a vu précédemment, les tuples sont **non-modifiables** (*immutable*). Ainsi, les éléments d'un tuple ne peuvent pas être modifiés sans redéfinir complètement le tuple. 
 
 Quand est-il pertinent d'utiliser un tuple plutôt qu'une liste ? En pratique, les tuples sont beaucoup moins fréquemment utilisés que les listes. On utilise généralement les tuples pour **stocker des données qui n'ont pas vocation à être modifiées** lors de l'exécution de notre programme Python. Cela permet de se prémunir contre des problèmes d'intégrité de données, c'est à dire de modification non-voulue des données d'entrée. On s'évite ainsi parfois de longues et pénibles séances de debugging.
 
@@ -312,7 +312,7 @@ Ces fonctions ont d'autres usages en pratique, que nous verrons en exercice.
 
 - 4/ Une liste est un objet mutable : il est possible d'ajouter, supprimer ou modifier des éléments d'une liste après sa création. A l'inverse, les tuples sont immutables : une fois qu'un tuple est défini, on ne peut ni changer ses éléments, ni ajouter ou supprimer des éléments.
 
-- 5/ En vertu de leur immutabilité, les tuples sont particulièrement adaptés pour stocker des données dont on voudrait s'assurer qu'elle ne seront pas modifiés par erreur. Par exemples, pour stocker des constantes d'un algorithme (paramètres, coordonnées géographiques, chemin de fichier, etc).
+- 5/ En vertu de leur immutabilité, les tuples sont particulièrement adaptés pour stocker des données dont on voudrait s'assurer qu'elles ne seront pas modifiées par erreur. Par exemple, pour stocker des constantes d'un algorithme (paramètres, coordonnées géographiques, chemin de fichier, etc.).
 
 - 6/ Oui, il est tout à fait possible d'avoir des éléments de types différents dans une même liste ou dans un même tuple. Ces éléments peuvent être de types de base (ex : `int` et `string`), mais également des conteneurs (ex : liste, tuple, dictionnaire, etc.).
 
