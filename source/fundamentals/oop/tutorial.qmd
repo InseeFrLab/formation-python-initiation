@@ -1,7 +1,7 @@
 ::: {.content-visible when-profile="fr"}
 # Notions de programmation orientée objet
 
-Python est un langage dit "multi-paradigmes", c'est à dire qu'il admet plusieurs manières de coder et de concevoir ses programmes. L'une d'entre elle est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n'impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des *packages* les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.
+Python est un langage dit "multi-paradigmes", c'est à dire qu'il admet plusieurs manières de coder et de concevoir ses programmes. L'une d'entre elles est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n'impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des *packages* les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.
 
 
 ## La programmation orientée objet
@@ -58,7 +58,7 @@ Analysons la syntaxe de construction d'une classe d'objets :
 
 - l'instruction `class` définit la **classe d'objets**. Différents objets pourront être créés selon le modèle défini par cette classe. Par convention, le nom de la classe doit commencer par une majuscule.
 
-- la classe spécifie un certains nombres de fonctions. Dans ce contexte particulier, on appelle ces fonctions "**méthodes**" : ce sont des fonctions spécifiques à la classe d'objets définie.
+- la classe spécifie un certain nombre de fonctions. Dans ce contexte particulier, on appelle ces fonctions "**méthodes**" : ce sont des fonctions spécifiques à la classe d'objets définie.
 
 - une première méthode bien spécifique, nommée `__init__`, est appelée le **constructeur**. Elle permet de définir les **attributs** attachés à cette classe d'objets. Il est possible de passer des paramètres à la fonction (comme `couleur` et `qte_jus`) pour définir des attributs propres à une **instance** de l'objet (plus de détails sur cette notion dans la section suivante).
 
@@ -178,7 +178,7 @@ Le fait que les objets possèdent des attributs permet de garder en mémoire **l
 
 - l'entraînement d'un modèle de machine-learning. Il est fréquent d'entraîner un modèle une première fois, et de vouloir ensuite continuer l'entraînement plus longtemps, ou bien avec d'autres données. Sauvegarder l'état dans une instance de la classe `Modele` permet de faire cela. C'est pourquoi la plupart des *packages* de machine-learning en Python sont fondés sur de la POO.
 
-- le fonctionnement en continu d'une application web. Une telle application doit garder des choses en mémoire pour fournir à l'utilisateur une expérience fluide : le fait que l'utilisateur se soit connecté, son historique, etc. Là encore, la plupart des *frameworks* web (`Django`, `Flask`..) reposent sur de la POO.
+- le fonctionnement en continu d'une application web. Une telle application doit garder des choses en mémoire pour fournir à l'utilisateur une expérience fluide : le fait que l'utilisateur se soit connecté, son historique, etc. Là encore, la plupart des *frameworks* web (`Django`, `Flask`...) reposent sur de la POO.
 
 Dans le même temps, le fait d'utiliser des objets qui gardent en mémoire un état peut **limiter la reproductibilité des analyses**. Pour illustrer cela, revenons à l'exemple du tutoriel : exécutez plusieurs fois d'affilée la cellule suivante.
 
