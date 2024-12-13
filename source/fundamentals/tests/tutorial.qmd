@@ -1,13 +1,13 @@
 ::: {.content-visible when-profile="fr"}
 # Tests logiques
 
-Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. A présent, nous allons entrer dans le détail du fonctionnement des tests logiques en Python. Ces derniers sont un outil essentiel dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
+Dans le tutoriel précédent, nous avons évoqué -- sans l'expliciter -- la notion de **test**, à travers l'exemple des tests d'appartenance. À présent, nous allons entrer dans le détail du fonctionnement des tests logiques en Python. Ces derniers sont un outil essentiel dans la création de programmes permettant d'automatiser des opérations, dans la mesure où ils permettent d'**exécuter -- ou non -- du code selon certaines conditions**. Ils permettent donc à l'ordinateur de prendre des décisions selon des critères fixés par l'utilisateur.
 
 
 ## Le type Booléen
 
 
-Dans sa plus simple forme, un test en Python est une expression qui évalue à "vrai" ou "faux". Par exemple, l'expression $3 > 2$ est vraie, le test associé renverra donc "vrai". Pour ce type d'évaluation, Python dispose d'un type d'objets particulier : les **Booléens**. Contrairement aux types d'objet que nous avons déjà vus (`int`, `float`, `str`..), les Booléens ne peuvent prendre que deux valeurs : `True` et `False`.
+Dans sa plus simple forme, un test en Python est une expression qui évalue à "vrai" ou "faux". Par exemple, l'expression $3 > 2$ est vraie, le test associé renverra donc "vrai". Pour ce type d'évaluation, Python dispose d'un type d'objets particulier : les **Booléens**. Contrairement aux types d'objet que nous avons déjà vus (`int`, `float`, `str`...), les Booléens ne peuvent prendre que deux valeurs : `True` et `False`.
 
 ```{python}
 type(True)
@@ -160,7 +160,7 @@ a and b
 ```
 
 
-Notez l'usage des parenthèses pour délimiter les tests : elles ne sont pas obligatoires, mais fortement recommandées dans la mesure où elles améliorent grandement la lisibilité tes tests.
+Notez l'usage des parenthèses pour délimiter les tests : elles ne sont pas obligatoires, mais fortement recommandées dans la mesure où elles améliorent grandement la lisibilité des tests.
 
 
 ### L'opérateur `or`

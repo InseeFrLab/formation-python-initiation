@@ -29,7 +29,7 @@ Dans cet exemple, la fonction `len` :
 
 - renvoie ce nombre en sortie
 
-L'"ensemble d'instructions" qui permettent de calculer la longueur de la chaîne n'est pas connu. En tant qu'utilisateur, on a seulement besoin de savoir ce que prend la fonction en entrée et ce qu'elle renvoie en sortie. Cela vaut pour les cas dans lesquels on utilise des fonctions natives de Python ou bien des fonctions issus de librairies Python auxquelles on fait confiance. On parle de "boîtes noires" pour caractériser de telles fonctions.
+L'"ensemble d'instructions" qui permettent de calculer la longueur de la chaîne n'est pas connu. En tant qu'utilisateur, on a seulement besoin de savoir ce que prend la fonction en entrée et ce qu'elle renvoie en sortie. Cela vaut pour les cas dans lesquels on utilise des fonctions natives de Python ou bien des fonctions issues de librairies Python auxquelles on fait confiance. On parle de "boîtes noires" pour caractériser de telles fonctions.
 
 En pratique, on va vouloir définir ses propres fonctions pour structurer son code et le réutiliser dans les analyses. 
 
@@ -238,8 +238,8 @@ def accueil(prenom):
     print("Salutations " + prenom + " !")
     
 x = accueil("Léontine")
-print(x)
-print(type(x))
+print(f"Valeur de x : {x}")
+print(f"Classe de x : {type(x)}")
 ```
 
 Comme attendu, la fonction a imprimé un message de bienvenue dans la console. Mais on n'a pas spécifié de valeur à retourner. Comme un objet doit malgré tout être retourné par définition, Python renvoie la valeur `None`, qui est un objet particulier, de type `NoneType`, et qui représente l'absence de valeur. Son seul intérêt est de bien marquer la différence entre une valeur réelle et l'absence de valeur.

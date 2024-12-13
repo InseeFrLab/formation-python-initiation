@@ -219,7 +219,7 @@ Agrémentons l'exemple précédent pour illustrer son fonctionnement. Tant qu'un
 
 ```{python}
 #| eval: false
-votre_prenom = ""
+votre_prenom = "bob"
 
 while True:
     print("Veuillez entrer votre prénom.")
@@ -228,7 +228,7 @@ while True:
         continue
     print("Veuillez entrer votre mot de passe.")
     mdp = input()
-    if mdp == "insee2021":
+    if mdp == "lemotdepasse":
         break
 print("Bienvenue " + votre_prenom)
 ```
