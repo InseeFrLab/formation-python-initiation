@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a68d576f93b57464e23d983d685fe254.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/projects/puissance4/tutorial.html">Projets</a></li><li class="breadcrumb-item"><a href="../../../source/projects/meteo/tutorial.html">Projet 2 - Prédictions météorologiques</a></li></ol></nav></header>
 
 
 
@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://open-meteo.com/en/docs">Open-Meteo Weather Forecast</a> : une API qui fournit des prévisions météorologiques détaillées.</li>
 </ul>
 <p>Commençons par importer les packages dont nous aurons besoin au cours de ce projet.</p>
-<div id="c859eb5d" class="cell" data-execution_count="1">
+<div id="5a91803b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -341,19 +341,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Définissez une fonction <code>build_request_nominatim</code> qui construit le lien de la requête pour un pays et une ville donnée.</p>
 <section id="résultat-attendu" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu">Résultat attendu</h4>
-<div id="238f3dcb" class="cell" data-execution_count="2">
+<div id="e11b80b7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url_request_nominatim <span class="op">=</span> solutions.build_request_nominatim(<span class="st">"France"</span>, <span class="st">"Montrouge"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>url_request_nominatim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="à-vous-de-jouer" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer">À vous de jouer !</h4>
-<div id="0e42837e" class="cell" data-execution_count="3">
+<div id="19daf0ef" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_request_nominatim(country, city):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> url_request</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="96d22442" class="cell" data-execution_count="4">
+<div id="2c525286" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>url_request_nominatim <span class="op">=</span> build_request_nominatim(<span class="st">"France"</span>, <span class="st">"Montrouge"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>url_request_nominatim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -367,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Définissez une fonction <code>get_lat_long</code> qui récupère la latitude et la longitude (centrale) pour un pays et une ville donnée.</p>
 <section id="résultat-attendu-1" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu-1">Résultat attendu</h4>
-<div id="b83a1b42" class="cell" data-execution_count="5">
+<div id="cc25c47c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lat, <span class="bu">long</span> <span class="op">=</span> solutions.get_lat_long(query<span class="op">=</span>url_request_nominatim)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lat, <span class="bu">long</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(lat))</span>
@@ -376,12 +376,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="à-vous-de-jouer-1" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer-1">À vous de jouer !</h4>
-<div id="95a23307" class="cell" data-execution_count="6">
+<div id="48226687" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_lat_long(query):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> latitude, longitude</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6d18c51f" class="cell" data-execution_count="7">
+<div id="2fd8b49c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lat, <span class="bu">long</span> <span class="op">=</span> get_lat_long(query<span class="op">=</span>url_request_nominatim)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lat, <span class="bu">long</span>)</span>
@@ -404,19 +404,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sachant toutes ces informations et en vous aidant de la documentation, définissez une fonction <code>build_request_open_meteo</code> qui construit le lien de la requête pour une latitude et une longitude donnée. Là encore, il est possible de tester la validité de la requête en exécutant le lien dans un navigateur et en vérifiant que les résultats retournés paraissent cohérents.</p>
 <section id="résultat-attendu-2" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu-2">Résultat attendu</h4>
-<div id="129c1808" class="cell" data-execution_count="8">
+<div id="3b67267b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo <span class="op">=</span> solutions.build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="bu">long</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="à-vous-de-jouer-2" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer-2">À vous de jouer !</h4>
-<div id="efa797f6" class="cell" data-execution_count="9">
+<div id="9377593d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_request_open_meteo(latitude, longitude):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> url_request</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d56c5a8a" class="cell" data-execution_count="10">
+<div id="dc4d801f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo <span class="op">=</span> build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="bu">long</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>url_request_open_meteo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -434,11 +434,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="résultat-attendu-3" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu-3">Résultat attendu</h4>
-<div id="794e2241" class="cell" data-execution_count="11">
+<div id="ae3fb069" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> solutions.get_meteo_data(url_request_open_meteo)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(predictions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="21bb18ae" class="cell" data-execution_count="12">
+<div id="e8254db0" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wrong_request <span class="op">=</span> solutions.build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="st">"dix-sept-virgule-quatre"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> solutions.get_meteo_data(wrong_request)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -446,17 +446,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="à-vous-de-jouer-3" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer-3">À vous de jouer !</h4>
-<div id="149eedf0" class="cell" data-execution_count="13">
+<div id="4aa19175" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_meteo_data(query):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.json()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8a1ca7cf" class="cell" data-execution_count="14">
+<div id="d3affea3" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> get_meteo_data(url_request_open_meteo)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(predictions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ea105e20" class="cell" data-execution_count="15">
+<div id="9fea15fb" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>wrong_request <span class="op">=</span> build_request_open_meteo(latitude<span class="op">=</span>lat, longitude<span class="op">=</span><span class="st">"dix-sept-virgule-quatre"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> get_meteo_data(wrong_request)</span>
@@ -467,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-5" class="level3">
 <h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
 <p>Afin de bien comprendre la structure des données que nous avons récupérées, explorez le dictionnaire des prédictions retourné par l’API (clefs, différents niveaux, format des prédictions, format de la variable indiquant les dates/heures des prédictions, etc.)</p>
-<div id="6fe6bcac" class="cell" data-execution_count="16">
+<div id="816d42f5" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploration des données</span></span>
@@ -502,19 +502,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="résultat-attendu-4" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu-4">Résultat attendu</h4>
-<div id="7f490fae" class="cell" data-execution_count="17">
+<div id="eeb38e87" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_preds <span class="op">=</span> solutions.preprocess_predictions(predictions)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_preds.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="à-vous-de-jouer-4" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer-4">À vous de jouer !</h4>
-<div id="dd4e631e" class="cell" data-execution_count="18">
+<div id="a8b77166" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess_predictions(predictions):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="13bd6af7" class="cell" data-execution_count="19">
+<div id="d8dd88a8" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_preds <span class="op">=</span> preprocess_predictions(predictions)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_preds.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -531,25 +531,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Définissez une fonction <code>plot_agg_avg_bhi</code> qui calcule l’indice agrégé dans chaque cas, et représente le résultat sous la forme d’un <code>lineplot</code>.</p>
 <section id="résultat-attendu-5" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu-5">Résultat attendu</h4>
-<div id="43eec117" class="cell" data-execution_count="20">
+<div id="99d815ab" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f9c77598" class="cell" data-execution_count="21">
+<div id="3e94d53a" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>solutions.plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="à-vous-de-jouer-5" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer-5">À vous de jouer !</h4>
-<div id="a1d10850" class="cell" data-execution_count="22">
+<div id="642e5bf4" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"day"</span>):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f903df70" class="cell" data-execution_count="23">
+<div id="fbf305f6" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="868c2546" class="cell" data-execution_count="24">
+<div id="e9eba173" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plot_agg_avg_bhi(df_preds, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -562,25 +562,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Définissez une fonction <code>main</code> qui représente le <em>bad hair index</em> pour un pays, une ville et un niveau d’agrégation donnés.</p>
 <section id="résultat-attendu-6" class="level4">
 <h4 class="anchored" data-anchor-id="résultat-attendu-6">Résultat attendu</h4>
-<div id="5c5e1459" class="cell" data-execution_count="25">
+<div id="af51520e" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>solutions.main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7dad8bce" class="cell" data-execution_count="26">
+<div id="7077290f" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>solutions.main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="à-vous-de-jouer-6" class="level4">
 <h4 class="anchored" data-anchor-id="à-vous-de-jouer-6">À vous de jouer !</h4>
-<div id="316f5fa9" class="cell" data-execution_count="27">
+<div id="203f9094" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main(country, city, agg_var<span class="op">=</span><span class="st">"day"</span>):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Votre code ici</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="15266439" class="cell" data-execution_count="28">
+<div id="9eee487f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fbfe94eb" class="cell" data-execution_count="29">
+<div id="085457ce" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vérification du résultat</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>main(country<span class="op">=</span><span class="st">"Germany"</span>, city<span class="op">=</span><span class="st">"Berlin"</span>, agg_var<span class="op">=</span><span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -674,8 +674,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -786,7 +784,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

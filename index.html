@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a68d576f93b57464e23d983d685fe254.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -276,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -361,6 +361,20 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="utilisation">Utilisation</h4>
 <p>La base du notebook est le <em>kernel</em>, visible en haut à droite (<code>Python 3 (ipykernel)</code>) et qui se lance automatiquement à l’ouverture d’un <em>notebook</em>. Concrètement, il s’agit d’un interpréteur <code>Python</code> qui tourne en continu en arrière-plan et qui permet d’exécuter dynamiquement des cellules de code <code>Python</code>. Ainsi, les objets créés dans une cellule sont persistés et peuvent être appelés dans une autre cellule, ce qui permet une exécution linéaire du <em>notebook</em> comme un script. Lorsque l’on souhaite nettoyer l’environnement de travail de tous les objets créés lors de la session, on peut le redémarrer (<code>menu Kernel -&gt; Restart Kernel</code>).</p>
 <p>Les cellules grisées correspondent aux cellules de code. Pour exécuter le contenu d’une cellule, il suffit de cliquer dessus puis d’utiliser les raccourcis clavier <code>Ctrl + Entrée</code> (exécute la cellule et reste sur la cellule active) ou <code>Shift + Entrée</code> (exécute la cellule et passe à la cellule suivante). Attention, exécuter une cellule revient à exécuter l’ensemble de son contenu. Si l’on souhaite exécuter ligne à ligne, on peut créer des nouvelles cellules (bouton ➕) et y insérer les différentes lignes de code. D’autres éditeurs de code (comme <code>VSCode</code>, disponible sur le <code>SSP Cloud</code>) permettent, comme <code>RStudio</code> par exemple, d’exécuter du code ligne à ligne, mais ils sont moins adaptés à la découverte de <code>Python</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si vous faites, peut-être par mégarde, un double-clic sur une cellule de texte d’un notebook Jupyter, la mise en forme disparaît et laisse place à du texte markdown brut : c’est le mode édition de la cellule.</p>
+<p>Dans ce cas, pas de panique : un simple <code>Ctrl + Entrée</code> permet de ré-exécuter la cellule et remet en forme le texte.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="comment-résoudre-les-erreurs" class="level3">
@@ -384,8 +398,8 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="utiliser-python-dans-des-projets-statistiques">Utiliser <code>Python</code> dans des projets statistiques</h3>
 <p>Pour approfondir sa connaissance du langage <code>Python</code> après cette formation d’introduction, rien de tel que la mise en pratique sur des sujets concrets ! Pour les modalités d’utilisation de <code>Python</code> dans le cadre des projets statistiques, cela va dépendre de l’organisation :</p>
 <ul>
-<li><p>pour des <strong>projets open-data et inter-administrations</strong>, le <code>SSP Cloud</code> est une bonne alternative dans la mesure où les services <code>Python</code> y sont déjà pré-configurés et où un service de stockage de données y est proposé (cf.&nbsp;<a href="https://www.sspcloud.fr/formation">documentation</a> pour plus de détails) ;</p></li>
-<li><p>pour des <strong>projets internes à l’Insee</strong>, se référer à la <a href="https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/">documentation</a> sur l’utilisation de <code>Python</code> en interne ;</p></li>
+<li><p>pour des <strong>projets open-data et inter-administrations</strong>, le <code>SSP Cloud</code> est une bonne solution dans la mesure où les services <code>Python</code> y sont déjà pré-configurés et où un service de stockage de données y est proposé (cf.&nbsp;<a href="https://www.sspcloud.fr/formation">documentation</a> pour plus de détails) ;</p></li>
+<li><p>pour des <strong>projets internes à l’Insee</strong>, l’utilisation de <a href="https://datascience.gitlab-pages.insee.fr/site-documentaire/ls3/ls3-c-est-quoi/"><code>LS3</code></a> (la version interne du <code>SSPcloud</code> pour le dire rapidement) est à privilégier. À noter qu’il est aussi possible d’utiliser Python directement depuis AUS mais avec un coût d’entrée sûrement plus important (se référer à la <a href="https://datascience.gitlab-pages.insee.fr/site-documentaire/ausv3/logiciels-carte/eco-systeme-python/">documentation</a>) ;</p></li>
 <li><p>pour des <strong>projets internes à d’autres administrations</strong>, se rapprocher de sa DSI pour connaître les modalités d’utilisation recommandées.</p></li>
 </ul>
 </section>
@@ -490,8 +504,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -602,7 +614,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

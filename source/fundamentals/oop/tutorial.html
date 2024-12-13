@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a68d576f93b57464e23d983d685fe254.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -333,14 +333,14 @@ window.Quarto = {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../source/fundamentals/types-variables/tutorial.html">Fondamentaux du langage</a></li><li class="breadcrumb-item"><a href="../../../source/fundamentals/oop/tutorial.html">Notions de programmation orientée objet</a></li></ol></nav></header>
 
 
 
 
 <section id="notions-de-programmation-orientée-objet" class="level1">
 <h1>Notions de programmation orientée objet</h1>
-<p>Python est un langage dit “multi-paradigmes”, c’est à dire qu’il admet plusieurs manières de coder et de concevoir ses programmes. L’une d’entre elle est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n’impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des <em>packages</em> les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.</p>
+<p>Python est un langage dit “multi-paradigmes”, c’est à dire qu’il admet plusieurs manières de coder et de concevoir ses programmes. L’une d’entre elles est la programmation orientée objet (POO). La POO est un paradigme puissant, mais fait intervenir des concepts assez complexes (polymorphisme, héritage, etc.). Fort heureusement pour nous, Python n’impose pas de coder en POO. Cela étant, le fonctionnement interne de Python est fortement teinté de POO, et la plupart des <em>packages</em> les plus utilisés reposent à des degrés divers sur les objets. Nous allons donc étudier dans ce tutoriel les bases de la POO, afin de pouvoir être autonomes lorsque son usage est nécessaire.</p>
 <section id="la-programmation-orientée-objet" class="level2">
 <h2 class="anchored" data-anchor-id="la-programmation-orientée-objet">La programmation orientée objet</h2>
 <p>Vous avez peut-être déjà entendu que Python était un langage de “programmation orientée objet”. La POO est un paradigme de programmation qui permet de structurer les programmes autour d’une abstraction, l’<strong>objet</strong>, qui contient des <strong>attributs</strong> (caractéristiques de l’objet) et des <strong>méthodes</strong> (fonctions propres à l’objet) qui agissent sur lui-même. Afin d’illustrer cette définition un peu abstraite , on peut prendre l’exemple (<a href="https://python.sdv.univ-paris-diderot.fr/19_avoir_la_classe_avec_les_objets/">source</a>) d’un objet “citron” qui contient les attributs “saveur” et “couleur”, et une méthode “presser” qui permet d’extraire son jus.</p>
@@ -348,7 +348,7 @@ window.Quarto = {
 <section id="tout-est-un-objet" class="level2">
 <h2 class="anchored" data-anchor-id="tout-est-un-objet">“Tout est un objet”</h2>
 <p><strong>En Python, tout est un objet</strong> (au sens de la POO). Regardons ce que cela signifie en récupérant le type de différents objets que nous avons vus dans les précédents tutoriels.</p>
-<div id="dec70a97" class="cell" data-execution_count="1">
+<div id="55de5ea2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">1</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"bonjour"</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>([]))</span>
@@ -373,7 +373,7 @@ window.Quarto = {
 <section id="définir-ses-propres-objets" class="level2">
 <h2 class="anchored" data-anchor-id="définir-ses-propres-objets">Définir ses propres objets</h2>
 <p>Regardons comment on peut utiliser l’instruction <code>class</code> pour définir notre objet “citron”.</p>
-<div id="990f14f9" class="cell" data-execution_count="2">
+<div id="cd2f7b46" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -393,7 +393,7 @@ window.Quarto = {
 <p>Analysons la syntaxe de construction d’une classe d’objets :</p>
 <ul>
 <li><p>l’instruction <code>class</code> définit la <strong>classe d’objets</strong>. Différents objets pourront être créés selon le modèle défini par cette classe. Par convention, le nom de la classe doit commencer par une majuscule.</p></li>
-<li><p>la classe spécifie un certains nombres de fonctions. Dans ce contexte particulier, on appelle ces fonctions “<strong>méthodes</strong>” : ce sont des fonctions spécifiques à la classe d’objets définie.</p></li>
+<li><p>la classe spécifie un certain nombre de fonctions. Dans ce contexte particulier, on appelle ces fonctions “<strong>méthodes</strong>” : ce sont des fonctions spécifiques à la classe d’objets définie.</p></li>
 <li><p>une première méthode bien spécifique, nommée <code>__init__</code>, est appelée le <strong>constructeur</strong>. Elle permet de définir les <strong>attributs</strong> attachés à cette classe d’objets. Il est possible de passer des paramètres à la fonction (comme <code>couleur</code> et <code>qte_jus</code>) pour définir des attributs propres à une <strong>instance</strong> de l’objet (plus de détails sur cette notion dans la section suivante).</p></li>
 <li><p>le constructeur a un paramètre obligatoire : <code>self</code>. C’est une référence aux <strong>instances</strong> qui vont être créées à partir de cette classe. Notons la syntaxe qui définit un attribut : <code>self.attribut = valeur</code>.</p></li>
 <li><p>les autres méthodes sont définies par l’utilisateur. Elles prennent également le <code>self</code> en paramètre, ce qui leur permet d’effectuer des opérations sur / à partir des attributs. Comme ce sont des fonctions, elles peuvent également admettre d’autres paramètres. Ainsi, la fonction <code>extraire_jus</code> prend un paramètre <code>quantite</code> qui définit quelle quantité de jus on extrait du citron lorsqu’on le presse.</p></li>
@@ -402,7 +402,7 @@ window.Quarto = {
 <section id="la-classe-et-ses-instances" class="level2">
 <h2 class="anchored" data-anchor-id="la-classe-et-ses-instances">La classe et ses instances</h2>
 <p>La <strong>classe</strong> peut être vue comme la <strong>recette qui permet de créer un objet</strong> : elle définit les attributs et les méthodes que possèderont tous les objets définis à partir de cette classe. Définir une classe comme ci-dessus revient simplement à mettre cette recette dans l’environnement Python. Pour créer un objet selon cette classe, il faut l’<strong>instancier</strong>.</p>
-<div id="b8c4897c" class="cell" data-execution_count="3">
+<div id="19a65e21" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>citron2 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"vert"</span>, qte_jus<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,7 +422,7 @@ window.Quarto = {
 <section id="accéder-aux-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="accéder-aux-attributs">Accéder aux attributs</h3>
 <p>Une fois que l’objet est instancié, il est possible d’accéder à ses attributs. La syntaxe est simple : <code>instance.attribut</code>.</p>
-<div id="1c9cee03" class="cell" data-execution_count="4">
+<div id="6a84e372" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.couleur)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron1.jus)</span>
@@ -439,7 +439,7 @@ vert
 <section id="modifier-un-attribut" class="level3">
 <h3 class="anchored" data-anchor-id="modifier-un-attribut">Modifier un attribut</h3>
 <p>Modifier un attribut d’une instance est très simple, la syntaxe est : <code>instance.attribut = nouvelle_valeur</code>.</p>
-<div id="9073dcb1" class="cell" data-execution_count="5">
+<div id="76c613de" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>citron2.couleur <span class="op">=</span> <span class="st">"rouge"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(citron2.couleur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -463,14 +463,14 @@ vert
 <section id="appeler-une-méthode" class="level3">
 <h3 class="anchored" data-anchor-id="appeler-une-méthode">Appeler une méthode</h3>
 <p>La syntaxe pour appeler une méthode d’un objet instancié est la suivante : <code>instance.methode(parametres)</code>.</p>
-<div id="706bcfd3" class="cell" data-execution_count="6">
+<div id="5ebdd4a8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Il reste 45 mL de jus dans le citron.</code></pre>
 </div>
 </div>
 <p>On peut faire deux remarques sur cette syntaxe. La première est qu’<strong>une méthode est une fonction <em>attachée</em> à une instance d’un objet</strong>. Contrairement aux fonctions définies via l’instruction <code>def</code>, les méthodes n’ont pas d’existence propre en dehors de l’instance de l’objet. Dans notre cas, appeler la <em>fonction</em> <code>recup_qte_jus()</code> indépendamment de l’objet renvoie donc une erreur.</p>
-<div id="ff9daad2" class="cell" data-execution_count="7">
+<div id="9277f39c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -488,7 +488,7 @@ Cell <span class="ansi-green-fg">In[7], line 1</span>
 <section id="agir-sur-les-attributs" class="level3">
 <h3 class="anchored" data-anchor-id="agir-sur-les-attributs">Agir sur les attributs</h3>
 <p>Tout l’intérêt des méthodes est qu’elles peuvent accéder aux attributs, et ainsi réaliser des opérations à partir de ceux-ci, mais également les modifier. Reprenons notre exemple pour illustrer cette possibilité.</p>
-<div id="b3588cd6" class="cell" data-execution_count="8">
+<div id="cd888128" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>citron1 <span class="op">=</span> Citron(couleur<span class="op">=</span><span class="st">"jaune"</span>, qte_jus<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
@@ -508,10 +508,10 @@ Il reste 33 mL de jus dans le citron.</code></pre>
 <p>Le fait que les objets possèdent des attributs permet de garder en mémoire <strong>l’état d’une ressource</strong> – dans notre exemple, la quantité de jus contenu dans un objet de classe <code>Citron</code> donné. Pour prendre des exemples plus réalistes, cette propriété est intéressante et utilisée dans plusieurs cas :</p>
 <ul>
 <li><p>l’entraînement d’un modèle de machine-learning. Il est fréquent d’entraîner un modèle une première fois, et de vouloir ensuite continuer l’entraînement plus longtemps, ou bien avec d’autres données. Sauvegarder l’état dans une instance de la classe <code>Modele</code> permet de faire cela. C’est pourquoi la plupart des <em>packages</em> de machine-learning en Python sont fondés sur de la POO.</p></li>
-<li><p>le fonctionnement en continu d’une application web. Une telle application doit garder des choses en mémoire pour fournir à l’utilisateur une expérience fluide : le fait que l’utilisateur se soit connecté, son historique, etc. Là encore, la plupart des <em>frameworks</em> web (<code>Django</code>, <code>Flask</code>..) reposent sur de la POO.</p></li>
+<li><p>le fonctionnement en continu d’une application web. Une telle application doit garder des choses en mémoire pour fournir à l’utilisateur une expérience fluide : le fait que l’utilisateur se soit connecté, son historique, etc. Là encore, la plupart des <em>frameworks</em> web (<code>Django</code>, <code>Flask</code>…) reposent sur de la POO.</p></li>
 </ul>
 <p>Dans le même temps, le fait d’utiliser des objets qui gardent en mémoire un état peut <strong>limiter la reproductibilité des analyses</strong>. Pour illustrer cela, revenons à l’exemple du tutoriel : exécutez plusieurs fois d’affilée la cellule suivante.</p>
-<div id="a50c9368" class="cell" data-execution_count="9">
+<div id="021c5419" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>citron1.extraire_jus(<span class="dv">12</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>citron1.recup_qte_jus()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -568,7 +568,7 @@ Afficher la solution
 <li><p>rajouter une méthode qui affiche “La masse du citron est x grammes.”</p></li>
 </ul>
 <p>Instanciez ensuite un nouveau citron est vérifiez que tout fonctionne comme prévu.</p>
-<div id="f3de1e72" class="cell" data-execution_count="10">
+<div id="ead5b8b4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Citron:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, couleur, qte_jus):</span>
@@ -585,7 +585,7 @@ Afficher la solution
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.jus <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.jus <span class="op">-</span> quantite)  <span class="co"># évite toute valeur négative de `jus`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="63030d0c" class="cell" data-execution_count="11">
+<div id="c0f027b1" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -641,7 +641,7 @@ Afficher la solution
 </ul></li>
 </ul>
 <p>Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.</p>
-<div id="781421fc" class="cell" data-execution_count="12">
+<div id="540bc462" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testez votre réponse dans cette cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell markdown">
@@ -796,8 +796,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -908,7 +906,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
