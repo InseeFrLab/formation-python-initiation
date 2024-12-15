@@ -407,7 +407,7 @@ Faut-il préférer l'utilisation de notebooks `Jupyter`, comme dans le cadre de 
 
 - les scripts rendent plus facile l'automatisation d'une procédure, dans la mesure où ils sont exécutés linéairement et sans requérir d'actions intermédiaires de la part de l'utilisateur.
 
-En somme, les notebooks sont très utiles durant la phase de développement, mais on préfèrera les script dès lors qu'il est question d'automatiser des traitements ou de produire du code visant à tourner en production.
+En somme, les notebooks sont très utiles durant la phase de développement, mais on préfèrera les scripts dès lors qu'il est question d'automatiser des traitements ou de produire du code visant à tourner en production.
 :::
 
 ### Scripts et modules
