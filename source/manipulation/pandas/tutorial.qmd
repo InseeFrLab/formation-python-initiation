@@ -376,9 +376,9 @@ Plusieurs éléments d'information clés peuvent être extraits de ce résultat 
 
 - **schéma** : la liste des colonnes est affichée avec des informations très utiles sur le schéma des données :
 
-  - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" pour la variable `var1` est 5.
+  - **Non-Null Count** : le nombre de valeurs **non-manquantes** (non `nan`) dans la colonne. Si ce nombre est inférieur au nombre total d'entrées (dans notre cas, 6), cela signifie que la colonne contient des valeurs manquantes. Attention à l'ambiguité possible sur "null" : cela signifie bien les valeurs manquantes, pas les valeurs égales à 0. Ainsi, dans notre cas, le nombre de valeurs "non-null" pour la variable `var1` est 3.
 
-  - **Dtype** : Le type de données de la colonne, qui permet decomprendre la nature des informations stockées dans chaque colonne. Par exemple, `float64` (nombres réels), `int32` (nombres entiers), `category` (variable catégorielle), `datetime64[ns]` (information temporelle) et `object` (données textuelles ou mixtes).   
+  - **Dtype** : Le type de données de la colonne, qui permet de comprendre la nature des informations stockées dans chaque colonne. Par exemple, `float64` (nombres réels), `int32` (nombres entiers), `category` (variable catégorielle), `datetime64[ns]` (information temporelle) et `object` (données textuelles ou mixtes).   
 
 L'utilisation de `info()` est un moyen rapide et efficace d'obtenir une vue d'ensemble d'un DataFrame, d'identifier rapidement les colonnes contenant des valeurs manquantes et de comprendre la structure des données.
 
@@ -734,7 +734,7 @@ df['var1'].fillna(value=0)
 ```
 
 ::: {.callout-warning title="Changement de représentation des valeurs manquantes"}
-On peut parfois être tentant de changer la manifestation d'une valeur manquante pour des raisons de visibilité, par exemple en la remplaçant par une chaîne de caractères :
+Il peut parfois être tentant de changer la manifestation d'une valeur manquante pour des raisons de visibilité, par exemple en la remplaçant par une chaîne de caractères :
 
 ```{python}
 df['var1'].fillna(value="MISSING")
