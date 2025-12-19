@@ -57,6 +57,9 @@ def preprocess_predictions(predictions):
 
 # %%
 def plot_agg_avg_bhi(df_preds, agg_var="day"):
+    if agg_var not in ['day', 'hour']:
+        raise ValueError('Not the right aggregation variable')
+        
     plot = (
         ggplot(df_preds.group_by(agg_var).agg(pl.mean('bad_hair_index')), aes(x=agg_var, y='bad_hair_index'))
             + geom_line()
