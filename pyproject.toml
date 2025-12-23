@@ -1,9 +1,10 @@
 [project]
-name = ""
-version = "0.0.1"
+name = "formation-python-initiation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "geopandas",
     "matplotlib",
     "numpy",
     "pandas",
@@ -11,11 +12,11 @@ dependencies = [
     "requests",
     "seaborn",
     "scikit-learn",
-    "xlrd",
-    "polars>=1.36.1",
     "tidypolars>=0.3.2",
     "jupyter>=1.1.1",
+    "fastexcel>=0.18.0",
+    "geopandas>=1.1.1",
+    "plotnine>=0.15.2",
+    "polars>=1.36.1",
+    "xlrd>=2.0.2",
 ]
-
-[tool.uv]
-package = false
