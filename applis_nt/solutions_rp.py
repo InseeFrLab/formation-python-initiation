@@ -37,10 +37,10 @@ def reshape_table_by_year(df, year):
                 genre=pl.col.variablelist.list.get(0, null_on_oob=True), 
                 age=pl.col.variablelist.list.get(1, null_on_oob=True), 
                 population=pl.col.population.cast(pl.Int64), 
-                annee=pl.lit(year)
+                annee=pl.lit(year).cast(pl.Int64)
             )
             .rename({'Départements':'dep_code','Départements__00':'dep'})
-            .select({'genre', 'age', 'population', 'dep_code', 'dep', 'annee'})
+            .select(['dep_code', 'dep', 'annee', 'genre', 'age', 'population'])
     )
 
     return df_new
@@ -48,7 +48,7 @@ def reshape_table_by_year(df, year):
 
 def reshape_data(data):
     df = pl.DataFrame(schema=
-        ['dep', 'population', 'dep_code', 'annee', 'age', 'genre']
+        ['dep_code', 'dep', 'annee', 'genre', 'age', 'population']
     )
     for annee_dic, annee_df in data.items():
         df=pl.concat([df, reshape_table_by_year(annee_df, annee_dic)], strict=False, how='vertical_relaxed')
@@ -56,4 +56,5 @@ def reshape_data(data):
     return df
 
 
+# reshape_table_by_year(load_data()['1977'], '1977')
 reshape_data(load_data())
