@@ -7,12 +7,15 @@ import geopandas as gpd
 # import fastexcel
 import solutions
 import matplotlib.pyplot as plt
+import requests
+
 
 def load_data():
     data = pl.read_excel(
-    'https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls', 
-    sheet_name=[str(i) for i in range(1975,2024,1)], 
-    read_options={ "header_row": 3})
+        'https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls',
+        sheet_name=[str(i) for i in range(1975, 2024, 1)],
+        read_options={"header_row": 3}
+    )
 
     return data
 
@@ -28,24 +31,24 @@ def reshape_table_by_year(df, year):
                 temp_colnames_list[index] = temp_colnames_list[index] + "__" + df[0, colname]
         else:
             temp_colnames_list[index] = temp_colnames_list[index-1].split("_")[0] + "__00"
-    temp_colnames_list[0]="dep_code"
-    temp_colnames_list[1]="dep"
+    temp_colnames_list[0] = "dep_code"
+    temp_colnames_list[1] = "dep"
     df_new = df.rename(dict(zip(df.columns, temp_colnames_list)))
 
     # Reshaping data
-    df_new = (
-        df_new.drop_nulls(pl.col('dep'))
-            .unpivot(index=['dep_code', 'dep'], value_name="population")
-            .with_columns(
-                variablelist=pl.col.variable.str.split('__')
-            )
-            .with_columns(
-                genre=pl.col.variablelist.list.get(0, null_on_oob=True), 
-                age=pl.col.variablelist.list.get(1, null_on_oob=True), 
-                population=pl.col.population.cast(pl.Int64), 
-                annee=pl.lit(year).cast(pl.Int64)
-            )
-            .select(['dep_code', 'dep', 'annee', 'genre', 'age', 'population'])
+    df_new = (df_new\
+        .drop_nulls(pl.col('dep'))
+        .unpivot(index=['dep_code', 'dep'], value_name="population")
+        .with_columns(
+            variablelist=pl.col.variable.str.split('__')
+        )
+        .with_columns(
+            genre=pl.col.variablelist.list.get(0, null_on_oob=True), 
+            age=pl.col.variablelist.list.get(1, null_on_oob=True), 
+            population=pl.col.population.cast(pl.Int64), 
+            annee=pl.lit(year).cast(pl.Int64)
+        )
+        .select(['dep_code', 'dep', 'annee', 'genre', 'age', 'population'])
     )
 
     return df_new
@@ -129,7 +132,7 @@ def tr_age_sorted_plot(list):
 
 
 # %%
-def plot_age_pyramid(years):
+def plot_age_pyramid(df, years):
     df_plot = get_age_pyramid_data(df, years)\
             .unpivot(index=["annee", "age"], variable_name="genre")\
             .filter(pl.col.genre != "Ensemble")\
@@ -165,7 +168,7 @@ def plot_age_pyramid(years):
     return plot
 
 # %% 
-plot_age_pyramid([1975, 2023])
+plot_age_pyramid(df, [1975, 2023])
 # %%
 
 fig,(ax1,ax2) = plt.subplots(1,2,figsize=(15,6))
@@ -212,9 +215,35 @@ geo
 # %%
 def load_geo_data(url):
     geodata = gpd.read_file(url)
-    geodata = geodata[[NOM', 'geometry']]
-    return 
+    geodata = geodata[['NOM', 'geometry']]
+    return geodata
 # %%
 url = "https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson"
 
-load_geo_data(url)
+geo = load_geo_data(url)
+# %%
+solutions.plot_population_by_regions(df_regions.to_pandas(), geo, 2022)
+
+# %%
+
+(df_regions\
+    .filter(pl.col.annee==2022, pl.col.genre=="Ensemble", pl.col.age=="Total")
+    .group_by('region_name')
+    .agg(pl.col.population.sum())
+    .to_pandas()
+    .merge(
+        geo, 
+        left_on="region_name", 
+        right_on="NOM",
+        how="left"
+    )
+    >> p9.ggplot(p9.aes(fill="population"))
+    + p9.geom_map()
+    + p9.theme_matplotlib()
+)
+
+# list(set(list(geo['NOM'].unique())) & set(df_regions.select("region_name").unique().to_series().to_list()))
+# %%
+solutions.plot_growth_population_by_regions(df_regions.to_pandas(), geo, 2015, 2022)
+
+# %%
