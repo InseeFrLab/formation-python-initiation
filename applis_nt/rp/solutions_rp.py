@@ -1,10 +1,12 @@
+# %%
 # import copy
 import polars as pl
 import plotnine as p9
 import geopandas as gpd
 # import seaborn as sns
 # import fastexcel
-# import solutions
+import solutions
+import matplotlib.pyplot as plt
 
 def load_data():
     data = pl.read_excel(
@@ -59,23 +61,44 @@ def reshape_data(data):
     return df
 
 
-# reshape_table_by_year(load_data()['1977'], '1977')
-data = reshape_data(load_data())
+df = reshape_data(load_data())
 
-
-with pl.Config(tbl_rows=1000):
-    data.filter(pl.col.dep_code=="01", pl.col.annee==2022)
-
-#         .group_by("age")
-#         .agg(pl.col('population').sum())
-# )
-#     p9.ggplot(aes(x="annee", y="population")) 
-#     + p9.geom_line()
-# )
-
-
+# %%
 def plot_population_by_gender_per_department(data, department_code):
-    # Votre code ici
-    1
+    
+    df_plot = (data\
+        .filter(
+            pl.col.dep_code.is_in([department_code]), 
+            pl.col.genre!="Ensemble", 
+            pl.col.age=="Total"
+            )
+        .with_columns(pl.col.population/1e6)
+    )
 
+    plot = (
+        p9.ggplot(df_plot,        
+            p9.aes(x="annee", y="population", group="genre", colour="genre")) 
+        + p9.geom_line(size=1)
+        + p9.theme_matplotlib()
+        + p9.labs(
+            title=f"Évolution de la population entre {df_plot.min()[0, "annee"]} et {df_plot.max()[0, "annee"]} dans le {df_plot.min()[0, "dep_code"]} ({df_plot.min()[0, "dep"]})", 
+            x="Année", 
+            y="Population (M)"
+        )
+    )
 
+    return plot
+
+# %%
+plot_population_by_gender_per_department(df, '31')
+
+# %%
+solutions.plot_population_by_gender_per_department(df.to_pandas(), "31")
+
+# %%
+
+fig,(ax1,ax2) = plt.subplots(1,2,figsize=(15,6))
+
+solutions.plot_age_pyramid(df.to_pandas(), 1975, ax=ax1)
+solutions.plot_age_pyramid(df.to_pandas(), 2022, ax=ax2)
+# %%

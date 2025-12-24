@@ -18,5 +18,7 @@ dependencies = [
     "geopandas>=1.1.1",
     "plotnine>=0.15.2",
     "polars>=1.36.1",
+    "pyarrow>=22.0.0",
+    "seaborn>=0.13.2",
     "xlrd>=2.0.2",
 ]
