@@ -34,7 +34,7 @@ def reshape_table_by_year(df, year):
 
     # Reshaping data
     df_new = (
-        df_new.drop_nulls(pl.col('dep_code'))
+        df_new.drop_nulls(pl.col('dep'))
             .unpivot(index=['dep_code', 'dep'], value_name="population")
             .with_columns(
                 variablelist=pl.col.variable.str.split('__')
@@ -69,8 +69,8 @@ def plot_population_by_gender_per_department(data, department_code):
     df_plot = (data\
         .filter(
             pl.col.dep_code.is_in([department_code]), 
-            pl.col.genre!="Ensemble", 
-            pl.col.age=="Total"
+            pl.col.genre !="Ensemble", 
+            pl.col.age == "Total"
             )
         .with_columns(pl.col.population/1e6)
     )
@@ -96,9 +96,82 @@ plot_population_by_gender_per_department(df, '31')
 solutions.plot_population_by_gender_per_department(df.to_pandas(), "31")
 
 # %%
+pyramide_data = solutions.get_age_pyramid_data(df.to_pandas(), 2022)
+pyramide_data
+
+# %%
+def get_age_pyramid_data(df, years):
+    pyramide_data = df\
+        .filter(
+            pl.col.annee.is_in([1975, 2022]), 
+            pl.col.age != "Total"
+        )\
+        .group_by(
+            ["annee", "genre", "age"]
+        )\
+        .agg(
+            pl.col.population.sum()
+        )\
+        .pivot(on="genre", values="population", index=["annee", "age"])\
+        .sort("age")\
+        .with_columns(Hommes=-pl.col.Hommes)
+
+    return pyramide_data
+
+
+# Function to turn labels of ge pyramid to absolute values
+def abs_list(list):
+    return [abs(xi) if isinstance(xi, (int, float)) else xi for xi in list]
+
+
+def tr_age_sorted_plot(list):
+    return [tr_age_sorted[5:] for tr_age_sorted in list]
+
+
+# %%
+def plot_age_pyramid(years):
+    df_plot = get_age_pyramid_data(df, years)\
+            .unpivot(index=["annee", "age"])\
+            .filter(pl.col.variable != "Ensemble")\
+            .with_columns(pl.col.value/1e6)
+
+    # Otherwise the categorie 5 to 9 is plotted betwwen 45 to 49 and 50 to 55
+    age_categories_sorted = df_plot.select("age").unique().with_columns(pl.col.age.str.len_chars().alias("length")).sort("length", "age").select("age").to_series().to_list()
+
+    df_plot = df_plot.join(
+            pl.DataFrame({
+                "age": age_categories_sorted, 
+                "age_sorted" : [f'{age_tr_i+1:02} - {age_categories_sorted[age_tr_i]}' for age_tr_i in range(len(age_categories_sorted))]
+            }), 
+            on="age", 
+            how="left"
+        )
+
+    plot = (   df_plot
+        >> p9.ggplot()
+        + p9.geom_bar(p9.aes("age_sorted", "value", fill="variable"),stat="identity")
+        + p9.theme_matplotlib()
+        + p9.facet_wrap("~ annee")
+        + p9.coord_flip()
+        + p9.scale_x_discrete(labels=tr_age_sorted_plot)
+        + p9.scale_y_continuous(labels=abs_list)
+        + p9.labs(
+                title=f"Évolution de la structure de la population entre {df_plot.min()[0, "annee"]} et {df_plot.max()[0, "annee"]})", 
+                x="Tranche d'âge", 
+                y="Population (M)"
+            )
+    )
+
+    return plot
+
+# %% 
+plot_age_pyramid([1975, 2023])
+# %%
 
 fig,(ax1,ax2) = plt.subplots(1,2,figsize=(15,6))
 
 solutions.plot_age_pyramid(df.to_pandas(), 1975, ax=ax1)
 solutions.plot_age_pyramid(df.to_pandas(), 2022, ax=ax2)
+
+fig
 # %%
