@@ -131,8 +131,8 @@ def tr_age_sorted_plot(list):
 # %%
 def plot_age_pyramid(years):
     df_plot = get_age_pyramid_data(df, years)\
-            .unpivot(index=["annee", "age"])\
-            .filter(pl.col.variable != "Ensemble")\
+            .unpivot(index=["annee", "age"], variable_name="genre")\
+            .filter(pl.col.genre != "Ensemble")\
             .with_columns(pl.col.value/1e6)
 
     # Otherwise the categorie 5 to 9 is plotted betwwen 45 to 49 and 50 to 55
@@ -149,7 +149,7 @@ def plot_age_pyramid(years):
 
     plot = (   df_plot
         >> p9.ggplot()
-        + p9.geom_bar(p9.aes("age_sorted", "value", fill="variable"),stat="identity")
+        + p9.geom_bar(p9.aes("age_sorted", "value", fill="genre"),stat="identity")
         + p9.theme_matplotlib()
         + p9.facet_wrap("~ annee")
         + p9.coord_flip()
