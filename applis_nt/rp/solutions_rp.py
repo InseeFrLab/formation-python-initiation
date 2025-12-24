@@ -60,7 +60,7 @@ def reshape_data(data):
 
     return df
 
-
+# %%
 df = reshape_data(load_data())
 
 # %%
@@ -175,3 +175,46 @@ solutions.plot_age_pyramid(df.to_pandas(), 2022, ax=ax2)
 
 fig
 # %%
+df_matching = solutions.load_departements_regions("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
+df_matching
+
+# %%
+def load_departements_regions(url):
+    return pl.from_dicts(requests.get(url).json())
+
+
+# %%
+url = "https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json"
+reg_details = load_departements_regions(url)
+reg_details
+# %%
+df_regions = solutions.match_department_regions(df.to_pandas(), df_matching)
+df_regions
+
+# %%
+def match_department_regions(df, df_matching):
+    df_regions = df.join(
+        df_matching, 
+        how="left", 
+        left_on="dep_code", 
+        right_on="num_dep"
+    )
+    return df_regions
+
+# %%
+df_regions = match_department_regions(df, reg_details)
+df_regions
+
+# %%
+geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson")
+geo
+
+# %%
+def load_geo_data(url):
+    geodata = gpd.read_file(url)
+    geodata = geodata[[NOM', 'geometry']]
+    return 
+# %%
+url = "https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson"
+
+load_geo_data(url)
