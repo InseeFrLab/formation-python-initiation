@@ -1461,7 +1461,7 @@ data_list2 = [
 ]
 ```
 
-L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrames sont identiques à l'aide de la méthode [equals()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html).
+L'objectif est de construire dans les deux cas un même DataFrame qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux DataFrame. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux DataFrames sont identiques à l'aide de la méthode [equals()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.equals.html#polars.DataFrame.equals).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1498,11 +1498,11 @@ data_dict = {
     'prix': data_list1[3]
 }
 
-df_from_dict = pd.DataFrame(data_dict)
+df_from_dict = pl.DataFrame(data_dict)
 
 # Si les données sont sous forme de lignes : à partir d'une liste de listes
 columns = ['enseigne', 'produit', 'quantite', 'prix']
-df_from_list = pd.DataFrame(data_list2, columns=columns)
+df_from_list = pl.DataFrame(data_list2, schema=columns, orient='row')
 
 # Vérification
 df_from_dict.equals(df_from_list)
@@ -1514,7 +1514,7 @@ df_from_dict.equals(df_from_list)
 
 ## Sélection de données dans un DataFrame
 
-Un DataFrame Pandas est créé avec des données de caisse (mêmes données que l'exercice précédent).
+Un DataFrame Polars est créé avec des données de caisse (mêmes données que l'exercice précédent).
 
 ```{python}
 data = {
@@ -1522,15 +1522,15 @@ data = {
     'produit': ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
     'quantite': [3, 2, 7, 5, 10, 1],
     'prix': [1.50, 2.30, 0.99, 5.00, 1.20, 3.10],
-    'date_heure': pd.to_datetime(["2022-01-01 14:05", "2022-01-02 09:30",
+    'date_heure': pl.Series(["2022-01-01 14:05", "2022-01-02 09:30",
                                   "2022-01-03 17:45", "2022-01-04 08:20",
-                                  "2022-01-05 19:00", "2022-01-06 16:30"])
+                                  "2022-01-05 19:00", "2022-01-06 16:30"]).str.to_datetime()
 }
 
-df = pd.DataFrame(data)
+df = pl.DataFrame(data)
 ```
 
-Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiques :
+Utilisez les méthodes appropriées parmi `filter`, `select`, `head` pour sélectionner des données spécifiques :
 
 - Sélectionner les données de la première ligne.
 
@@ -1545,7 +1545,7 @@ Utilisez les méthodes `loc` et `iloc` pour sélectionner des données spécifiq
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.iloc[0])
+print(df.head(1))
 ```
 
 </details>
@@ -1565,7 +1565,7 @@ print(df.iloc[0])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[:, 'prix'])
+print(df.select("prix"))
 ```
 
 </details>
@@ -1585,7 +1585,7 @@ print(df.loc[:, 'prix'])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[df['enseigne'] == 'Carrefour'])
+print(df.filter(pl.col("enseigne") == 'Carrefour'))
 ```
 
 </details>
@@ -1605,7 +1605,11 @@ print(df.loc[df['enseigne'] == 'Carrefour'])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[df['produit'] == '01.1.1', 'quantite'])
+print(
+    df
+    .filter(pl.col("produit") == '01.1.1')
+    .select('quantite')
+)
 ```
 
 </details>
@@ -1625,7 +1629,7 @@ print(df.loc[df['produit'] == '01.1.1', 'quantite'])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[:, ['enseigne', 'prix']])
+print(df.select(('enseigne', 'prix'))
 ```
 
 </details>
@@ -1645,7 +1649,7 @@ print(df.loc[:, ['enseigne', 'prix']])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[df['quantite'] > 5])
+print(df.filter(pl.col("quantite") > 5))
 ```
 
 </details>
@@ -1665,7 +1669,7 @@ print(df.loc[df['quantite'] > 5])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[df['date_heure'].dt.hour > 15])
+print(df.filter(pl.col("date_heure").dt.hour() > 15))
 ```
 
 </details>
@@ -1685,7 +1689,7 @@ print(df.loc[df['date_heure'].dt.hour > 15])
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.loc[df['date_heure'].dt.date == pd.to_datetime('2022-01-03').date()])
+print(df.filter(pl.col('date_heure').dt.date() == pl.Series(['2022-01-03']).str.to_date()))
 ```
 
 </details>
