@@ -12,44 +12,36 @@ Plusieurs packages viennent ainsi combler ce manque, comme `pandas` ou `polars`.
 Comment choisir entre les deux ? Cela va dépendre de vos goûts et de vos besoins.
 Mais voici en attendant quelques éléments pour savoir si `polars` est utile.
 
-- Polars est rapide et permet de traiter des données volumineuses : Selon un benchmark [effectué par H2O](https://h2oai.github.io/db-benchmark/),
+Du côté des atouts de Polars : 
+
+- Polars est **rapide** et permet de traiter des **données volumineuses** : Selon un benchmark [effectué par H2O](https://h2oai.github.io/db-benchmark/),
 Polars permet de traiter des données que d'autres librairies ne pourraient pas ()
 et les traite aussi rapidement que le package `R` `data.table`. et 3 à 4 fois plus vite que d'autres librairies.
 
-- Polars permet de traiter des données _out of memory_ : `Polars` présente aussi l'avantage
+- Polars permet même de traiter des **données _out of memory_ :** `Polars` présente aussi l'avantage
 de lire naturellement des jeux de données hors des limites de la mémoire de l'ordinateur grâce à [sa capacité de lire en flux](https://www.youtube.com/watch?v=3-C0Afs5TXQ) (méthode qu'on appelle le _streaming_).
 
-- Polars permet une évaluation paresseuse (*lazy evaluation*) : ce mode de calcul
+- Polars permet une **évaluation paresseuse** (*lazy evaluation*) : ce mode de calcul
 permet d'optimiser vos traitements pour proposer une exécution plus rapide
 (pour la lecture comme pour la transformation des jeux de données).
 Elle peut permettre d'avancer un `select` ou un `filter` si les opérations ultérieures
 ne sont pas impactées.
 Ces optimisations sont détaillées dans la [documentation officielle](https://pola-rs.github.io/polars-book/user-guide/optimizations/intro.html).
 
--  Une API fluide
+-  Une **API fluide** : L'API proposée par Polars est à la fois expressive et transparente. Ceci répond notamment aux commentaires sur `pandas`, où la syntaxe de manipulations des données est parfois complexe ou peu lisible et les choix d'écriture ne sont pas transparents du point de vue des performances.
 
-C'est un reproche régulièrement fait à `pandas` :
-la syntaxe de manipulations des données est parfois complexe ou peu lisible, et les choix d'écriture ne sont pas transparents du point de vue des performances.
+- Un **pipe natif** : On retrouve une sémantique d'opérations de haut niveau qui s'enchaînent à la manière de [ce que l'on peut faire en `dplyr`](https://www.book.utilitr.org/03_fiches_thematiques/fiche_tidyverse#comment-utiliser-lop%C3%A9rateur-pipe-avec-le-tidyverse).
 
-L'API proposée par Polars est à la fois expressive et transparente.
-Voici un exemple d'exploitation de la BPE, issu du _notebook_ accompagnant
-ce _post_ :
+Polars présente quand même aussi quelques **inconvénients**, notamment lié à sa plus grande jeunesse.
 
-### Un pipe natif
-On retrouve une sémantique d'opérations de haut niveau qui s'enchaînent à la manière de [ce que l'on peut faire en `dplyr`](https://www.book.utilitr.org/03_fiches_thematiques/fiche_tidyverse#comment-utiliser-lop%C3%A9rateur-pipe-avec-le-tidyverse).
+- ainsi, le **traitement de données catégorielles** est encore instable, notamment en comparaison à pandas et 
+au tidyverse. 
+Dans Polars pour contourner ces problèmes, on a tendance à traiter ces variable catégorielles comme des caractères.
 
+- **Pas (encore) de `geopolars`** : Tout l'écosystème autour de `pandas` n'a ainsi pas forcément (encore) d'équivalent en polars.
+Pour les données géolocalisées par exemple, geopolars n'existe pas encore. 
 
-### Quelques fonctionnalités encore instables
-Les catégories de Polars ne sont pas encore très bien.
-On a tendance à traiter ces variable catégorielles comme des caractères.
-
-### Pas (encore) de `geopolars`
-A l'inverse, Polars est encore relativement récent.
-Tout l'écosystème autour de `pandas` n'a ainsi pas forcément (encore) d'équivalent en polars.
-Pour les données géolocalisées par exemple, geopolars n'existe pas encore.
-
-### `Polars` reste moins répandu que `pandas`
-Polars étant plus récent, il est en général moins bien interfacé avec les autres
+- plus généralement, **`Polars` reste moins répandu que `pandas`** : Polars étant plus récent, il est en général moins bien interfacé avec les autres
 librairies de data science, même si certaines commencent à accepter des données
 `polars` en entrée.
 La rapidité et simplicité de Polars permet cependant facilement de repasser à un
@@ -57,19 +49,22 @@ dataframe pandas pour les librairies qui n'accepteraient pas encore de dataframe
 polars en entrée.
 
 
-## Caractéristiques de polars pour commencer
-Polars présente plusieurs caractéristiques à garder en tête.
+## Petits conseils pour commencer
+Avant de commencer à utiliser Polars, voici quelques conseils à garder en tête : 
 
-### Petits conseils pour commencer
-- Import plus délicat
+- L'import de données est **plus délicat** : 
 Polars est très strict sur les types des colonnes quand on importe des données.
-Il est courant de passer du temps à débugger cette étape.
-Pour optimiser ce temps là,
+Il est courant de passer du temps à débugger cette étape, notamment pour s'assurer
+que le code soit résistant à de légères variations dans le format des données d'entrée.
+Pour optimiser ce temps là, on peut spécifier directement les types en entrée. 
 
--  Colonnes sont associées à des string
-En Polars, les caractères simples `""`
+-  Les **chaines de caractères sont par défaut associées à des colonnes** : 
+En Polars, les caractères simples `"myvar"` sont par défaut considéré comme des noms de 
+colonne. Il faut penser à utiliser `pl.lit("myvar")` pour signaler qu'il ne s'agit 
+pas d'un nom de colonne. 
 
-- l'index de pandas est mort <3
+- **l'index de pandas** est mort <3 : comme dans le tidyverse, polars 
+n'utilise pas d'index, et c'est très bien comme cela !
 
 - les `polars selectors` sont très pratiques pour sélectionner des colonnes.
 Ils permettent de sélectionner des colonnes avec des regex sur leurs noms ou bien
@@ -88,7 +83,6 @@ import polars as pl
 import polars.selectors as cs
 ```
 
-"TO DO" - Polars Séries
 
 ## pour aller plus loin
 
