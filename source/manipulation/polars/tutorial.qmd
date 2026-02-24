@@ -306,6 +306,14 @@ df.filter(pl.col("var1") >= 0, pl.col("experiment").is_in(['train', 'validation'
 df.filter((pl.col("var1") >= 0) | pl.col("experiment").is_in(['train', 'validation']))
 ```
 
+:::::: {.callout-note}
+La méthode `filter` marche aussi sur des calculs à base des colonnes. Par exemple, si l'on veut sélectionner les observations faites le 2 du mois, on peut effectuer cela en une ligne (on verra plus tard le travail sur les données temporelles): 
+
+```{python}
+df.filter(pl.col('date').str.to_date("%Y-%m-%d").dt.day()==2)
+```
+:::
+
 # Explorer des données tabulaires
 
 En statistique publique, le point de départ n'est généralement pas la génération manuelle de données, mais plutôt des fichiers tabulaires préexistants.
@@ -417,7 +425,7 @@ En regardant le message d'erreur, Polars traite la colonne `anais` comme un enti
 Mais la lecture de la valeur `XXXX` cause une erreur et n'est pas convertible en entier par Polars.
 
 ```{python}
-import os
+#| eval: false
 df_prenoms_url = pl.read_csv('temp/' + os.listdir('temp')[0], separator=";")
 ```
 
@@ -1091,7 +1099,8 @@ C'est l'occasion d'introduire la famille de méthode `strip` (`.str.strip_chars(
 (
     df
     .with_columns(
-        sample = pl.col('sample').str.strip_chars()
+        sample=pl.col('sample').str.strip_chars()  # remarque : on peut omettre ici le 'sample='
+                                                   # et avoir le meme résultat
         )
     .with_columns(
         sample_n = pl.col('sample').str.tail(1)
@@ -1198,13 +1207,13 @@ df.dtypes
 
 Une fois converties, les dates peuvent être formatées, comparées et utilisées dans des calculs.
 Il faudra cependant bien penser à traduire les dates d'un format textuel à un format temporel.
-Par exemple, pour filter des données, on devra spécifier les bornes en appelant les fonctions dédiées de Polars ou du module `datetime`.
+Par exemple, pour filtrer des données, on devra spécifier les bornes en appelant les fonctions dédiées de Polars ou du module `datetime`.
 
 ```{python}
 df.filter(pl.col('date') >= pl.date(2022, 1, 1), pl.col('date') < pl.date(2022, 1, 3))
-```
 
-```{python}
+# équivalent à 
+
 from datetime import datetime
 df.filter(pl.col('date') >= datetime.strptime("2022-01-01", "%Y-%m-%d"), pl.col('date') < datetime.strptime("2022-01-03", "%Y-%m-%d"))
 ```
@@ -1235,7 +1244,6 @@ On peut par exemple ajouter des intervalles de temps, ou bien calculer des écar
 ::: {.callout-note}
 Par défaut, les différences de temps sont indiquées dans une unité temporelle.
 Si l'on veut transformer une durée en un nombre, il faut utiliser les méthodes `Series.dt.total_...`.
-
 :::
 
 ```{python}
@@ -1282,7 +1290,8 @@ pl.concat([df1, df2])
 A la grande différence de `Pandas`, **l'ordre des variables dans les deux DataFrames importe**.
 
 Ainsi, le même code avec `df2` défini comme ci-après va renvoyer une erreur.
-```{.python}
+```{python}
+#| eval: false
 
 df2 = pl.DataFrame(
     data = {
@@ -1293,9 +1302,10 @@ df2 = pl.DataFrame(
     }
 )
 
+pl.concat([df1, df2])
 ```
 
-Pour contourner ce problème, il suffit de préférer une méthode de type `join` avec `df1.join(df2, on=df1.columns, how="full", coalesce=True)` (*cf.* ci-après).
+Pour contourner ce problème, il suffit de préférer une méthode de type `join` avec `df1.join(df2, on=df1.columns, how="full", coalesce=True)` (*cf.* ci-après) ou de réordonner les colonnes avec `pl.concat([df1, df2.select(df1.columns)])`.
 
 
 ## Fusionner des tables
