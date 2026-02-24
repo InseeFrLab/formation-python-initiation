@@ -2074,10 +2074,9 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_pop_communes = pd.read_csv("data/communes.csv", sep=";")
+df_pop_communes = pl.read_csv("data/communes.csv", separator=";", infer_schema_length=None)
 
 df_pop_communes.sample(10)
-df_pop_communes.info()
 df_pop_communes.describe()
 ```
 
@@ -2099,11 +2098,11 @@ df_pop_communes.describe()
 <summary>Afficher la solution</summary>
 
 ```{python}
-n_communes_0_pop = df_pop_communes[df_pop_communes["PTOT"] == 0].shape[0]
+n_communes_0_pop = df_pop_communes.filter(pl.col("PTOT") == 0).height
 print(n_communes_0_pop)
-df_pop_communes = df_pop_communes[df_pop_communes["PTOT"] > 0]
+df_pop_communes = df_pop_communes.filter(pl.col("PTOT") > 0)
 
-df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
+df_pop_communes = df_pop_communes.drop(["PMUN", "PCAP"])
 ```
 
 </details>
@@ -2111,8 +2110,8 @@ df_pop_communes = df_pop_communes.drop(columns=["PMUN", "PCAP"])
 :::
 
 Les communes qui ont les noms les plus longs sont-elles aussi les communes les moins peuplées ? Pour le savoir :
-- Créez une nouvelle variable qui contient le nombre de caractères de chaque commune à l'aide de la méthode [str.len()](https://pandas.pydata.org/docs/reference/api/pandas.Series.str.len.html)
-- Calculez la corrélation entre cette variable et la population totale avec la méthode [corr()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
+- Créez une nouvelle variable qui contient le nombre de caractères de chaque commune à l'aide de la méthode [str.len_chars()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.str.len_chars.html#polars.Expr.str.len_chars)
+- Calculez la corrélation entre cette variable et la population totale avec la méthode [corr()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.corr.html#polars.DataFrame.corr)
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2125,9 +2124,13 @@ Les communes qui ont les noms les plus longs sont-elles aussi les communes les m
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_pop_communes_stats = df_pop_communes.copy()
-df_pop_communes_stats['longueur'] = df_pop_communes_stats['COM'].str.len()
-df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
+df_pop_communes_stats = df_pop_communes
+df_pop_communes_stats = (df_pop_communes_stats.with_columns(
+    longueur=pl.col('COM').str.len_chars()
+    )
+    .select(["longueur", "PTOT"])
+)
+df_pop_communes_stats.corr()
 ```
 
 </details>
@@ -2151,10 +2154,9 @@ df_pop_communes_stats['longueur'].corr(df_pop_communes_stats['PTOT'])
 
 ```{python}
 url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
-df_emissions = pd.read_csv(url_ademe)
+df_emissions = pl.from_pandas(pd.read_csv(url_ademe))
 
 df_emissions.sample(10)
-df_emissions.info()
 df_emissions.describe()
 ```
 
@@ -2162,7 +2164,7 @@ df_emissions.describe()
 
 :::
 
-- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [isnull()](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html) et [all()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html).
+- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [is_null()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.is_null.html#polars.Expr.is_null) et [all_horizontal()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.all_horizontal.html#polars.all_horizontal).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2175,9 +2177,10 @@ df_emissions.describe()
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions_num = df_emissions.select_dtypes(['number'])
-only_nan = df_emissions_num[df_emissions_num.isnull().all(axis=1)]
-only_nan.shape[0]
+import polars.selectors as cs
+df_emissions_num = df_emissions.select(cs.numeric())
+only_nan = df_emissions_num.filter(pl.all_horizontal(pl.all().is_null()))
+only_nan.height
 ```
 
 </details>
@@ -2198,9 +2201,14 @@ only_nan.shape[0]
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions['emissions_totales'] = df_emissions.sum(axis = 1, numeric_only = True)
-
-df_emissions.sort_values(by="emissions_totales", ascending=False).head(10)
+(
+    df_emissions
+    .unpivot(on=cs.numeric(), index="INSEE commune")
+    .with_columns(emissions_totales=pl.sum("value").over("INSEE commune"))
+    .pivot(on_columns="variable", index=["INSEE commune", "emissions_totales"])
+    .sort(["emissions_totales", "value"], descending=[True, True])
+    .head(120)
+)
 ```
 
 </details>
