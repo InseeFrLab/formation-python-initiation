@@ -1772,14 +1772,14 @@ prop_rares2 = (
     .item(0, "tot_rel")
 )
 print(prop_rares2)  # ~ 2 % de la base
-df_prenoms = df_prenoms.with_columns(pl.col("preusuel").str.replace('_PRENOMS_RARES', None))
+df_prenoms = df_prenoms.with_columns(preusuel=pl.when(pl.col("preusuel")=="_PRENOMS_RARES").then(None).otherwise(pl.col("preusuel")))
 ```
 
 </details>
 
 :::
 
-- On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en `np.nan`.
+- On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en valeurs manquantes. Vous pouvez utiliser la syntaxe de [`pl.when`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.when.html)
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1801,7 +1801,7 @@ prop_xxxx = (
     .item(0, "tot_rel")
 )
 print(prop_xxxx)  # ~ 1 % de la base
-df_prenoms = df_prenoms.with_columns(pl.col("annais").str.replace("XXXX", None))
+df_prenoms = df_prenoms.with_columns(annais=pl.when(pl.col("annais")=="XXXX").then(None).otherwise(pl.col("annais")))
 ```
 
 </details>
@@ -1821,7 +1821,7 @@ df_prenoms = df_prenoms.with_columns(pl.col("annais").str.replace("XXXX", None))
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_prenoms = df_prenoms.dropna()
+df_prenoms = df_prenoms.drop_nulls()
 ```
 
 </details>
@@ -1841,15 +1841,14 @@ df_prenoms = df_prenoms.dropna()
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_prenoms['annais'] = pd.to_numeric(df_prenoms['annais'])
-df_prenoms['sexe'] = df_prenoms['sexe'].astype('category')
+df_prenoms = df_prenoms.cast({'annais':pl.Int32, 'sexe':pl.Categorical})
 ```
 
 </details>
 
 :::
 
-- Vérifiez avec la méthode `info()` que le nettoyage a été correctement appliqué.
+- Vérifiez avec la méthode `describe()` que le nettoyage a été correctement appliqué.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1862,7 +1861,7 @@ df_prenoms['sexe'] = df_prenoms['sexe'].astype('category')
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_prenoms.info()
+df_prenoms.describe()
 ```
 
 </details>
@@ -1885,7 +1884,7 @@ df_prenoms.info()
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_prenoms_post_1946 = df_prenoms[df_prenoms["annais"] >= 1946]
+df_prenoms_post_1946 = df_prenoms.filter(pl.col("annais") >= 1946)
 ```
 
 </details>
@@ -1905,7 +1904,7 @@ df_prenoms_post_1946 = df_prenoms[df_prenoms["annais"] >= 1946]
 <summary>Afficher la solution</summary>
 
 ```{python}
-births_per_sex = df_prenoms_post_1946.groupby('sexe')['nombre'].sum()
+births_per_sex = df_prenoms_post_1946.group_by('sexe').agg(pl.sum('nombre'))
 print(births_per_sex)
 ```
 
@@ -1926,7 +1925,7 @@ print(births_per_sex)
 <summary>Afficher la solution</summary>
 
 ```{python}
-top5_years = df_prenoms_post_1946.groupby('annais')['nombre'].sum().nlargest(5)
+top5_years = df_prenoms_post_1946.group_by(pl.col("annais")).agg(pl.sum("nombre")).sort("nombre").tail(5)
 print(top5_years)
 ```
 
@@ -1950,7 +1949,7 @@ print(top5_years)
 <summary>Afficher la solution</summary>
 
 ```{python}
-total_unique_names = df_prenoms['preusuel'].nunique()
+total_unique_names = df_prenoms.n_unique("preusuel")
 print(total_unique_names)
 ```
 
@@ -1971,7 +1970,7 @@ print(total_unique_names)
 <summary>Afficher la solution</summary>
 
 ```{python}
-single_letter_names = df_prenoms[df_prenoms['preusuel'].str.len() == 1]['nombre'].sum()
+single_letter_names = df_prenoms.filter(pl.col("preusuel").str.len_chars() == 1).select("nombre").sum()
 print(single_letter_names)
 ```
 
@@ -1994,12 +1993,12 @@ print(single_letter_names)
 ```{python}
 def popularite_par_annee(df, prenom):
     # Filtrer le DataFrame pour ne garder que les lignes correspondant au prénom donné
-    df_prenom = df[df['preusuel'] == prenom]
+    df_prenom = df.filter(pl.col("preusuel") == "ALFRED")
 
     # Grouper par année, sommer les naissances et identifier l'année avec le maximum de naissances
-    df_agg = df_prenom.groupby('annais')['nombre'].sum()
-    annee_max = df_agg.idxmax()
-    n_max = df_agg[annee_max]
+    df_agg = df_prenom.group_by("annais").agg(pl.sum('nombre')).sort("nombre", descending=True)
+    annee_max = df_agg.item(0, "annais")
+    n_max = df_agg.item(0, "nombre")
 
     print(f"Le prénom '{prenom}' a été le plus donné en {annee_max}, avec {n_max} naissances.")
 
@@ -2026,24 +2025,23 @@ popularite_par_annee(df_prenoms, 'ALFRED')
 ```{python}
 def popularite_par_decennie(df, sexe):
     # Filtrage sur le sexe
-    df_sub = df[df["sexe"] == sexe]
+    df_sub = df.filter(pl.col("sexe") == sexe)
 
     # Calcul de la variable décennie
-    df_sub["decennie"] = (df_sub["annais"] // 10) * 10
+    df_sub = df_sub.with_columns(
+        decennie = (pl.col("annais") // 10) * 10
+    )
 
     # Calculer la somme des naissances pour chaque prénom et chaque décennie
-    df_counts_decennie = df_sub.groupby(["preusuel", "decennie"])["nombre"].sum().reset_index()
+    df_counts_decennie = df_sub.group_by(["preusuel", "decennie"]).agg(pl.sum("nombre"))
 
-    # Trouver l'indice du prénom le plus fréquent pour chaque décennie
-    idx = df_counts_decennie.groupby("decennie")["nombre"].idxmax()
-
-    # Utiliser l'indice pour obtenir les lignes correspondantes du DataFrame df_counts_decennie
-    df_popularite_decennie = df_counts_decennie.loc[idx].set_index("decennie")
+    # Filtrer le prénom le plus fréquent pour chaque décennie par over
+    df_popularite_decennie = df_counts_decennie.filter(pl.col("nombre")==pl.max("nombre").over("decennie"))
 
     return df_popularite_decennie
 
 # Test de la fonction avec un exemple
-popularite_par_decennie(df_prenoms, sexe=2)
+popularite_par_decennie(df_prenoms, sexe="2")
 ```
 
 </details>
