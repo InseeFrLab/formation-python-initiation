@@ -2201,13 +2201,16 @@ only_nan.height
 <summary>Afficher la solution</summary>
 
 ```{python}
-(
+df_emissions_top10 = (
     df_emissions
     .unpivot(on=cs.numeric(), index="INSEE commune")
     .with_columns(emissions_totales=pl.sum("value").over("INSEE commune"))
-    .pivot(on_columns="variable", index=["INSEE commune", "emissions_totales"])
-    .sort(["emissions_totales", "value"], descending=[True, True])
-    .head(120)
+    .pivot(on="variable", index=["INSEE commune", "emissions_totales"])
+    .sort("emissions_totales", descending=True)
+    .head(10)
+)
+df_emissions_top10.with_columns(
+    pl.col(cs.exclude("emissions_totales"))/pl.col("emissions_totales")
 )
 ```
 
