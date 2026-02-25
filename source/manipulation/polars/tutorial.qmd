@@ -96,6 +96,13 @@ import polars.selectors as cs
 import numpy as np  # Numpy reste nécessaire pour certaines fonctionnalités utiles
 ```
 
+```{python}
+#| echo: false
+import os
+import requests
+import json
+from zipfile import ZipFile  # zipfile permet de dézipper les fichiers
+```
 
 
 ::: {.callout-note}
@@ -352,7 +359,7 @@ df.filter(
     )
 ```
 
-:::::: {.callout-note}
+:::::: {.callout-note title="Filtrer avec une condition calculée"}
 La méthode `filter` marche aussi sur des calculs à base des colonnes. Par exemple, si l'on veut sélectionner les observations faites le 2 du mois, on peut effectuer cela en une ligne (on verra plus tard le travail sur les données temporelles):
 
 ```{python}
@@ -378,19 +385,21 @@ Ils comprennent principalement:
 
 
 | **Famille de format** | **Format polars** | **Remarques** |
-| -- | -- | -- |
-| Caractères | - `pl.String` <br> - `pl.Utf8` | les données catégorielles (`pl.Categorical`) sont encore peu matures dans polars. <br> Il peut donc mieux valoir les traiter simplement comme des caractères usuels. |
-| Nombres | | |
-|    - entiers | - `pl.Int8` <br> - `pl.Int16` <br> - `pl.Int32` ... | |
-|    - numérique | - `pl.Float16` <br> - `pl.Float32` <br> - `pl.Float64`  | |
-| Temporelles | - `pl.Date` <br> - `pl.Datetime` <br> - `pl.Duration` ... | |
-| Structures imbriquées   | | - le format `pl.Struc` très pratique pour lire des formats imbriqués comme des JSON |
-| Valeurs manquantes   | | polars traite les valeurs manquantes à part |
+|:----|:---|:---------|
+| **Caractères** | - `pl.String` <br> - `pl.Utf8` | Type le plus courant  |
+| **Catégories** | - `pl.Category` | Encore peu matures. Il peut donc mieux valoir les traiter simplement comme des caractères usuels. |
+| **Nombres** | | |
+|    - *entiers* | - `pl.Int8` <br> - `pl.Int16` <br> - `pl.Int32` ... | Type le plus courant |
+|    - *numérique* | - `pl.Float16` <br> - `pl.Float32` <br> - `pl.Float64`  | Type le plus courant  |
+| **Temporelles** | - `pl.Date` <br> - `pl.Datetime` <br> - `pl.Duration` ... | Type le plus courant, inspiré de `datetime`  |
+| **Structures imbriquées** | - `pl.Struc` <br> - `pl.List` | le format `pl.Struc` très pratique pour lire des formats imbriqués comme des JSON |
+| **Valeurs manquantes**  | `Null` ou `NaN` | polars traite les valeurs manquantes à part |
 
+: Type de données dans polars
 
 ::: {.callout-caution title="Deux types de valeurs particulières"}
 
-A noter que pour polars, les types `null` et `nan` sont différents.
+Pour polars, les types `null` et `nan` sont différents.
 
 - `null` est une **valeur manquante**, quelque soit le type de valeur (caractère, numérique, temporelle,
 imbriquée ...). On le déclare avec un `None`.
@@ -459,6 +468,7 @@ depuis une URL et ne dézippe pas encore automatiquement le fichier csv (_cf._ [
 On peut utiliser la fonction idoine de pandas et après transformer en polars dataframe facilement grâce à la fonction `pl.from_pandas`.
 
 ```{python}
+#| eval: false
 import pandas as pd
 url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
 df_prenoms_url = pl.from_pandas(pd.read_csv(url, delimiter=";"))
@@ -471,8 +481,7 @@ Si l'on veut éviter une dépendance à pandas juste pour cette opération, il f
 Prenons l'exemple d'un fichier CSV disponible sur le site de l'INSEE : le fichier des prénoms, issu des données de l'état civil.
 
 ```{python}
-import requests
-
+#| eval: false
 # Téléchargement et stockage du nom du fichier
 url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
 file_Path = url.split('/')[-1]
@@ -482,8 +491,6 @@ if response.status_code == 200:
     with open(file_Path, 'wb') as file:
         file.write(response.content)
 
-# zipfile permet de dézipper les fichiers
-from zipfile import ZipFile
 
 # on charge le fichier télécharger et extraction dans un dossier temp/
 with ZipFile(file_Path, 'r') as zObject:
@@ -499,7 +506,6 @@ Mais la lecture de la valeur `XXXX` cause une erreur et n'est pas convertible en
 
 ```{python}
 #| eval: false
-import os
 df_prenoms_url = pl.read_csv('temp/' + os.listdir('temp')[0], separator=";")
 ```
 
@@ -530,6 +536,7 @@ Tous ces paramètres et leur utilisation sont détaillés dans la [documentation
 
 ```{python}
 #| echo: false
+#| eval: false
 # Pour nettoyer les fichiers
 !rm $file_Path
 !rm temp -rf
@@ -635,7 +642,6 @@ on va écrire par exemple `pl.from_dict({"a": [1, 2], "b": [3, 4]})`
 Par exemple,
 
 ```{python}
-import json
 
 response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=street")
 ```
@@ -1045,12 +1051,13 @@ subset_df = (
 
 ## Traiter les valeurs manquantes
 
-Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable. pandas offre plusieurs outils pour gérer les valeurs manquantes.
+Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable.
+Polars offre plusieurs outils pour gérer les valeurs manquantes.
 
 ### Représentation des valeurs manquantes
 
 On peut tout d'abord traiter les valeurs manquantes avec les méthodes associées.
-Pour rappel, en polars, les valeurs `NaN` et `null` sont différentes, alors qu'en pandas elles sont traitées de manière similaire.
+En polars, les valeurs `NaN` et `null` sont différentes, alors qu'en pandas elles sont traitées de manière similaire.
 
 | | **Type `null`** | **Type `NaN`** |
 |--|--|--|
@@ -1310,7 +1317,6 @@ Par exemple, pour filtrer des données, on devra spécifier les bornes en appela
 df.filter(pl.col("date") >= pl.date(2022, 1, 1), pl.col("date") < pl.date(2022, 1, 3))
 
 # équivalent à
-
 from datetime import datetime
 df.filter(pl.col("date") >= datetime.strptime("2022-01-01", "%Y-%m-%d"), pl.col("date") < datetime.strptime("2022-01-03", "%Y-%m-%d"))
 ```
