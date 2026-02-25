@@ -1,5 +1,5 @@
 ::: {.content-visible when-profile="fr"}
-# Introduction - traiter des données tabulaires avec Polars
+# Introduction - traiter des données tabulaires avec `polars`
 
 L'analyse statistique a généralement pour base des **données tabulaires**, dans lesquelles chaque ligne représente une observation et chaque colonne une variable.
 Pour traiter ce type de données et y appliquer facilement les méthodes d'analyse de données standards, des objets dédiés ont été conçus : les `DataFrames`.
@@ -12,44 +12,44 @@ Plusieurs packages viennent ainsi combler ce manque, comme `pandas` ou `polars`.
 Comment choisir entre les deux ? Cela va dépendre de vos goûts et de vos besoins.
 Mais voici en attendant quelques éléments pour savoir si `polars` est utile.
 
-Du côté des atouts de Polars :
+Du côté des atouts de `polars` :
 
-- Polars est **rapide** et permet de traiter des **données volumineuses** : Selon un benchmark [effectué par H2O](https://h2oai.github.io/db-benchmark/),
+- `polars` est **rapide** et permet de traiter des **données volumineuses** : Selon un benchmark [effectué par H2O](https://h2oai.github.io/db-benchmark/),
 Polars permet de traiter des données que d'autres librairies ne pourraient pas ()
 et les traite aussi rapidement que le package `R` `data.table`. et 3 à 4 fois plus vite que d'autres librairies.
 
-- Polars permet même de traiter des **données _out of memory_ :** `Polars` présente aussi l'avantage
+- `polars` permet même de traiter des **données _out of memory_ :** `Polars` présente aussi l'avantage
 de lire naturellement des jeux de données hors des limites de la mémoire de l'ordinateur grâce à [sa capacité de lire en flux](https://www.youtube.com/watch?v=3-C0Afs5TXQ) (méthode qu'on appelle le _streaming_).
 
-- Polars permet une **évaluation paresseuse** (*lazy evaluation*) : ce mode de calcul
+- `polars` permet une **évaluation paresseuse** (*lazy evaluation*) : ce mode de calcul
 permet d'optimiser vos traitements pour proposer une exécution plus rapide
 (pour la lecture comme pour la transformation des jeux de données).
 Elle peut permettre d'avancer un `select` ou un `filter` si les opérations ultérieures
 ne sont pas impactées.
 Ces optimisations sont détaillées dans la [documentation officielle](https://pola-rs.github.io/polars-book/user-guide/optimizations/intro.html).
 
--  Une **API fluide** : L'API proposée par Polars est à la fois expressive et transparente. Ceci répond notamment aux commentaires sur `pandas`, où la syntaxe de manipulations des données est parfois complexe ou peu lisible et les choix d'écriture ne sont pas transparents du point de vue des performances.
+-  Une **API fluide** : L'API proposée par `polars` est à la fois expressive et transparente. Ceci répond notamment aux commentaires sur `pandas`, où la syntaxe de manipulations des données est parfois complexe ou peu lisible et les choix d'écriture ne sont pas transparents du point de vue des performances.
 
 - Un **pipe natif** : On retrouve une sémantique d'opérations de haut niveau qui s'enchaînent à la manière de [ce que l'on peut faire en `dplyr`](https://www.book.utilitr.org/03_fiches_thematiques/fiche_tidyverse#comment-utiliser-lop%C3%A9rateur-pipe-avec-le-tidyverse).
 
 Polars présente quand même aussi quelques **inconvénients**, notamment lié à sa plus grande jeunesse.
 
-- ainsi, le **traitement de données catégorielles** est encore instable, notamment en comparaison à pandas et au tidyverse.
-Dans Polars pour contourner ces problèmes, on a tendance à traiter ces variable catégorielles comme des caractères.
+- ainsi, le **traitement de données catégorielles** est encore instable, notamment en comparaison à `pandas` et au tidyverse.
+Dans `polars` pour contourner ces problèmes, on a tendance à traiter ces variable catégorielles comme des caractères.
 
-- **Pas (encore) de `geopolars`** : Tout l'écosystème autour de `pandas` n'a ainsi pas forcément (encore) d'équivalent en polars.
+- **Pas (encore) de `geopolars`** : Tout l'écosystème autour de `pandas` n'a ainsi pas forcément (encore) d'équivalent en `polars`.
 Pour les données géolocalisées par exemple, geopolars n'existe pas encore.
 
-- plus généralement, **`Polars` reste moins répandu que `pandas`** : Polars étant plus récent, il est en général moins bien interfacé avec les autres
+- plus généralement, **`Polars` reste moins répandu que `pandas`** : `polars` étant plus récent, il est en général moins bien interfacé avec les autres
 librairies de data science, même si certaines commencent à accepter des données
 `polars` en entrée.
-La rapidité et simplicité de Polars permet cependant facilement de repasser à un
-dataframe pandas pour les librairies qui n'accepteraient pas encore de dataframe
+La rapidité et simplicité de `polars` permet cependant facilement de repasser à un
+dataframe `pandas` pour les librairies qui n'accepteraient pas encore de dataframe
 polars en entrée.
 
 
 ## Petits conseils pour commencer
-Avant de commencer à utiliser Polars, voici quelques conseils à garder en tête :
+Avant de commencer à utiliser `polars`, voici quelques conseils à garder en tête :
 
 - L'import de données est **plus délicat** :
 Polars est très strict sur les types des colonnes quand on importe des données.
@@ -58,11 +58,11 @@ que le code soit résistant à de légères variations dans le format des donné
 Pour optimiser ce temps là, on peut spécifier directement les types en entrée.
 
 -  Les **chaines de caractères sont par défaut associées à des colonnes** :
-En Polars, les caractères simples `"myvar"` sont par défaut considéré comme des noms de
+En `polars`, les caractères simples `"myvar"` sont par défaut considéré comme des noms de
 colonne. Il faut penser à utiliser `pl.lit("myvar")` pour signaler qu'il ne s'agit
 pas d'un nom de colonne.
 
-- **l'index de pandas** est mort <3 : comme dans le tidyverse, polars
+- **l'index de `pandas`** est mort <3 : comme dans le tidyverse, `polars`
 n'utilise pas d'index, et c'est très bien comme cela !
 
 - les `polars selectors` sont très pratiques pour sélectionner des colonnes.
@@ -86,11 +86,11 @@ import polars.selectors as cs
 ## pour aller plus loin
 
 Voici un ensemble de ressources si vous voulez aller plus loin sur l'écosystème
-de Polars :
+de `polars` :
 
-- [Blog Awesome Polars](https://ddotta.github.io/awesome-polars/), par Damien D
-- [Blog sur Polars sur le site du SSPHub](https://ssphub.netlify.app/post/polars/)
-- [Notebook Polars](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?name=Tutoriel%20Polars&version=2.3.28&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2Fntoulemonde%2Ftest%2Frefs%2Fheads%2Fmain%2Finit.sh»&autoLaunch=true)
+- [Blog Awesome `polars`](https://ddotta.github.io/awesome-polars/), par Damien D
+- [Blog sur `polars` sur le site du SSPHub](https://ssphub.netlify.app/post/polars/)
+- [Notebook `polars`](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?name=Tutoriel%20Polars&version=2.3.28&s3=region-79669f20&init.personalInit=«https%3A%2F%2Fraw.githubusercontent.com%2Fntoulemonde%2Ftest%2Frefs%2Fheads%2Fmain%2Finit.sh»&autoLaunch=true)
 
 
 ::: {.panel-tabset group="polars_vs_tidypolars" name="Pour commencer"}
@@ -107,17 +107,17 @@ il y a le package [tidypolars](https://tidypolars.readthedocs.io/en/latest/).
 
 Les noms des fonctions dans tidypolars sont presque tous identiques à ceux du tidyverse:
 
-- un `DataFrame` de Polars devient un `tibble` chez tidypolars;
+- un `DataFrame` de `polars` devient un `tibble` chez tidypolars;
 - la structure de la création d'un `tibble` est la même que dans R;
-- les méthodes `filter`, `select` de Polars restent les mêmes;
-- la méthode `with_columns` de Polars devient `mutate`  ...
+- les méthodes `filter`, `select` de `polars` restent les mêmes;
+- la méthode `with_columns` de `polars` devient `mutate`  ...
 
 Tidypolars reprend ainsi exactement la syntaxe des principales fonctions de dplyr, tidyr, stringr, lubridate, tidyselect directement dans Python!
 La liste complète des fonctions reprises est disponible dans la [documentation](https://tidypolars.readthedocs.io/en/latest/reference.html).
 
 La seule différence notable entre tidypolars et R est liée aux colonnes, qui sont accessibles par `pl.col/tp.col` dans `polars/tidypolars` quand dans R leur nom seul suffit.
 
-Pour la simplicité du tutoriel, le tutoriel présente le début avec tidypolars mais ensuite  utilise uniquement Polars.
+Pour la simplicité du tutoriel, le tutoriel présente le début avec tidypolars mais ensuite  utilise uniquement `polars`.
 Pour plus de détail, allez voir la [documentation](https://tidypolars.readthedocs.io/en/latest/reference.html) !
 
 ```{python}
@@ -175,9 +175,9 @@ df
 :::
 
 
-A noter qu'une valeur manquante est indiquée par `None` en Polars. Elle sera ensuite traduite en type Null interne à Polars.
+A noter qu'une valeur manquante est indiquée par `None` en `polars`. Elle sera ensuite traduite en type Null interne à `polars`.
 
-Un DataFrame Polars dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons-nous aux plus basiques : le nom des colonnes.
+Un DataFrame `polars` dispose d'un ensemble d'attributs utiles que nous allons découvrir tout au long de ce tutoriel. Pour l'instant, intéressons-nous aux plus basiques : le nom des colonnes.
 
 ```{python}
 df = pl.DataFrame(
@@ -218,12 +218,12 @@ selected_column
 ```
 
 L'objet `selected_column` renvoie ici la colonne nommée `var1` du `DataFrame` `df`.
-Contrairement à Pandas, ici on ne garde qu'une seule colonne du dataframe, on ne l'extrait pas.
-L'objet `selected_columns` reste donc un dataframe de 1 colonne, et n'est pas une série Polars.
+Contrairement à `pandas`, ici on ne garde qu'une seule colonne du dataframe, on ne l'extrait pas.
+L'objet `selected_columns` reste donc un dataframe de 1 colonne, et n'est pas une série `polars`.
 Si on sélectionnait 2 colonnes, cela serait ainsi aussi un dataframe.
 
 ::: {.callout-tip}
-Si vous voulez transformer un dataframe en une série Polars, il faut utiliser la méthode `to_series()` ou reprendre la syntaxe de Pandas qui marche aussi en Polars :
+Si vous voulez transformer un dataframe en une série `polars`, il faut utiliser la méthode `to_series()` ou reprendre la syntaxe de `pandas` qui marche aussi en `polars` :
 
 ```{python}
 print(f'En passant par select.to_series(), la table \n {df.select('var1').to_series()} \n est de type {type(df.select('var1').to_series())}')
@@ -276,7 +276,7 @@ df |>
     filter(var1>=0)
 ```
 
-en Polars, on va l'écrire
+en `polars`, on va l'écrire
 
 ```{python}
 print(df.filter(pl.col('var1')>=0))
@@ -340,35 +340,35 @@ Polars offre des outils puissants et très rapides pour importer ces fichiers ta
 ## Importer et exporter des données
 
 Polars est très sensible au format des données, l'import peut donc parfois être un peu long à débuger quand il n'arrive pas à déterminer le format de données de la colonne.
-En effet, Polars va traiter chaque colonne comme une série d'un des formats qu'il connaît.
-Les formats de données sont détaillés dans la [documentation de Polars](https://docs.pola.rs/api/python/stable/reference/datatypes.html).
+En effet, `polars` va traiter chaque colonne comme une série d'un des formats qu'il connaît.
+Les formats de données sont détaillés dans la [documentation de `polars`](https://docs.pola.rs/api/python/stable/reference/datatypes.html).
 Ils comprennent principalement:
 
-| Famille de format | Format Polars | Remarques |
+| Famille de format | Format `polars` | Remarques |
 | -- | -- | -- |
-| Caractères | - `pl.String` <br> - `pl.Utf8` | les données catégorielles (`pl.Categorical`) sont encore peu matures dans Polars. <br> Il peut donc mieux valoir les traiter simplement comme des caractères usuels. |
+| Caractères | - `pl.String` <br> - `pl.Utf8` | les données catégorielles (`pl.Categorical`) sont encore peu matures dans `polars`. <br> Il peut donc mieux valoir les traiter simplement comme des caractères usuels. |
 | Nombres | | |
 |    - entiers | - `pl.Int8` <br> - `pl.Int16` <br> - `pl.Int32` ... | |
 |    - numérique | - `pl.Float16` <br> - `pl.Float32` <br> - `pl.Float64`  | |
 | Temporelles | - `pl.Date` <br> - `pl.Datetime` <br> - `pl.Duration` ... | |
 | Structures imbriquées   | | - le format `pl.Struc` très pratique pour lire des formats imbriqués comme des JSON |
-| Valeurs manquantes   | | Polars traite les valeurs manquantes à part. |
+| Valeurs manquantes   | | `polars` traite les valeurs manquantes à part. |
 
 ::: {.callout-caution}
-A noter que pour Polars, les types `null` et `nan` sont différents.
+A noter que pour `polars`, les types `null` et `nan` sont différents.
 `null` est une valeur manquante, quelque soit le type de valeur (caractère, numérique, temporelle,
 imbriquée ...). On le déclare avec un `None`.
 `NaN`, qui signifie _Not a Number_, est une valeur manquante **numérique** (et non pour les entiers).
-Cela signifie que Polars le traite comme un nombre particulier.
-On déclare un `NaN` soit en utilisant Numpy `np.nan`, soit une syntaxe de Polars : `float("nan")`.
+Cela signifie que `polars` le traite comme un nombre particulier.
+On déclare un `NaN` soit en utilisant Numpy `np.nan`, soit une syntaxe de `polars` : `float("nan")`.
 
 Plus de détail sur la [documentation](https://docs.pola.rs/user-guide/expressions/missing-data/#null-and-nan-values).
 :::
 
 On peut convertir une colonne d'un type à l'autre avec la méthode `cast` en indiquant
-dans un dictionnaire le nom de la colonne et le format Polars souhaité.
+dans un dictionnaire le nom de la colonne et le format `polars` souhaité.
 
-Par exemple, dans la table `df` définie ci-dessus, Polars a assigné les formats suivants :
+Par exemple, dans la table `df` définie ci-dessus, `polars` a assigné les formats suivants :
 
 ```{python}
 df.schema
@@ -397,14 +397,14 @@ with open("data/departement2021.csv") as file_in:
 rows[:5]
 ```
 
-Avec Polars, il suffit d'utiliser la fonction `read_csv()` pour importer le fichier comme un DataFrame, puis la fonction `head()`.
+Avec `polars`, il suffit d'utiliser la fonction `read_csv()` pour importer le fichier comme un DataFrame, puis la fonction `head()`.
 
 ```{python}
 df_departements = pl.read_csv('data/departement2021.csv')
 df_departements.head()
 ```
 
-A la différence de Pandas et à la date d'écriture de ce tutoriel, Polars ne charge pas directement depuis une URL et ne dézippe pas encore automatiquement le fichier csv (_cf._ [discussion de cette problématique sur Github](https://github.com/pola-rs/polars/issues/19447)).
+A la différence de `pandas` et à la date d'écriture de ce tutoriel, `polars` ne charge pas directement depuis une URL et ne dézippe pas encore automatiquement le fichier csv (_cf._ [discussion de cette problématique sur Github](https://github.com/pola-rs/polars/issues/19447)).
 Soit on utilise la fonction idoine de `pandas` et après on transforme le dataframe en `polars` facilement grâce à la fonction `pl.from_pandas`.
 
 ```{python}
@@ -437,9 +437,9 @@ with ZipFile(file_Path, 'r') as zObject:
 
 ```
 
-Par exemple, une erreur sera causée ici à cause de types de données incohérentes détectées par Polars.
-En regardant le message d'erreur, Polars traite la colonne `anais` comme un entier.
-Mais la lecture de la valeur `XXXX` cause une erreur et n'est pas convertible en entier par Polars.
+Par exemple, une erreur sera causée ici à cause de types de données incohérentes détectées par `polars`.
+En regardant le message d'erreur, `polars` traite la colonne `annais` comme un entier.
+Mais la lecture de la valeur `XXXX` cause une erreur et n'est pas convertible en entier par `polars`.
 
 ```{python}
 #| eval: false
@@ -448,7 +448,7 @@ df_prenoms_url = pl.read_csv('temp/' + os.listdir('temp')[0], separator=";")
 ```
 
 Dans ce cas, deux solutions existent :
-- On peut dire à Polars de traiter toutes les colonnes comme des caractères avec infer_schema=False
+- On peut dire à `polars` de traiter toutes les colonnes comme des caractères avec infer_schema=False
 
 ```{python}
 import os
@@ -477,7 +477,7 @@ Tous ces paramètres et leur utilisation sont détaillés dans la [documentation
 
 ### Exporter au format CSV
 
-Une fois que les données ont été traitées et modifiées au sein de Polars, il est courant de vouloir exporter le résultat sous forme de fichier CSV pour le partager, l'archiver ou l'utiliser dans d'autres outils.
+Une fois que les données ont été traitées et modifiées au sein de `polars`, il est courant de vouloir exporter le résultat sous forme de fichier CSV pour le partager, l'archiver ou l'utiliser dans d'autres outils.
 Polars offre une méthode simple pour cette opération : `write_csv()`.
 Supposons par exemple que l'on souhaite exporter les données du DataFrame `df_departements` spécifiques aux cinq départements d'outre-mer.
 
@@ -492,9 +492,9 @@ df_departements_dom.write_csv('output/departements2021_dom.csv', separator=";")
 Le format Parquet est un autre format pour le stockage de données tabulaires, de plus en plus fréquemment utilisé.
 Sans entrer dans les détails techniques, le format Parquet présente différentes caractéristiques qui en font un choix privilégié pour le stockage et le traitement de gros volumes de données.
 En raison de ces avantages, ce format est de plus en plus utilisé pour la mise à disposition de données à l'Insee.
-Il est donc essentiel de savoir importer et requêter des fichiers Parquet avec Polars.
+Il est donc essentiel de savoir importer et requêter des fichiers Parquet avec `polars`.
 
-Importer un fichier Parquet dans un DataFrame Pandas se fait tout aussi facilement que pour un fichier CSV.
+Importer un fichier Parquet dans un DataFrame `pandas` se fait tout aussi facilement que pour un fichier CSV.
 La fonction se nomme `read_parquet()`.
 
 ```{python}
@@ -533,7 +533,7 @@ df = pl.DataFrame(
 ```
 
 On utilise cette fois deux types de données spécifiques, pour les données catégorielles (`categorical`) et pour les données temporelles (`date`), comme présenté précédemment.
-Le format des données est imprimé par Polars dans la sortie : on voit maintenant en
+Le format des données est imprimé par `polars` dans la sortie : on voit maintenant en
 dessous du nom des colonnes que le format des colonnes `experiment` et `date` ont changé.
 On verra plus loin dans le tutoriel comment utiliser ces types.
 
@@ -551,7 +551,7 @@ df_test_schema_parquet
 ```
 
 A l'inverse, un fichier CSV ne contenant par définition que du texte, ne permet pas de préserver ces données.
-Les variables dont nous avons spécifié le type sont importées comme des strings (type `object` en Polars).
+Les variables dont nous avons spécifié le type sont importées comme des strings (type `object` en `polars`).
 
 ```{python}
 df.write_csv("output/df_test_schema.csv")
@@ -562,7 +562,7 @@ df_test_schema_csv
 
 ### Importer depuis un dictionnaire
 
-Comme illustré dans le tutoriel [Travailler avec des fichiers CSV et JSON](../csv-json-files/tutorial.qmd), on peut aussi créer un dataFrame Polars à partir d'un dictionnaire.
+Comme illustré dans le tutoriel [Travailler avec des fichiers CSV et JSON](../csv-json-files/tutorial.qmd), on peut aussi créer un dataFrame `polars` à partir d'un dictionnaire.
 Cela sera très utile par exemple quand on récupère les données d'une API (_cf._ cours de
 [Python pour la data-science](https://pythonds.linogaliana.fr/) et la partie sur les API).
 
@@ -580,7 +580,7 @@ response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=s
 ```
 
 Le résultat de la requête est un dictionnaire avec 3 clés, dont la deuxième, 'features', stocke les résultats sous forme d'une liste.
-Pour importer directement ce fichier en Polars, on peut utiliser la méthode from_dict ou from_dicts.
+Pour importer directement ce fichier en `polars`, on peut utiliser la méthode from_dict ou from_dicts.
 
 ```{python}
 df = pl.from_dicts(json.loads(response.text))
@@ -606,7 +606,7 @@ df = df.select("features").unnest("features").drop('type').unnest('geometry').dr
 ### Autres exports et imports
 
 - **Exporter vers un dictionnaire**:
-De manière similaire, Polars permet d'exporter un DataFrame vers un dictionnaire.
+De manière similaire, `polars` permet d'exporter un DataFrame vers un dictionnaire.
 
   - La méthode `to_dict` permet d'exporter un DataFrame "en format colonne".
 L'export sera un seul dictionnaire dont les clés sont les noms des colonnes et
@@ -615,10 +615,11 @@ les valeurs les listes des valeurs prises par colonne `{'a':[1, 2, 3], 'b': [3, 
 L'export sera une liste dont les termes seront les lignes du DataFrame,
 représentées à chaque fois par un dictionnaire : `[{'a': 1, 'b': 3}, {'a': 2, 'b': 2}, {'a': 3, 'b': 1}]`
 
-- **Depuis/vers Pandas**:
-Polars permet aussi facilement d'exporter et d'importer des DataFrame au format Pandas.
-Cela permet de travailler avec Polars et de convertir un DataFrame en Pandas quand un package n'autorise pas l'import depuis Polars.
-Il suffit d'utiliser la fonction `pl.from_pandas(df)` et la méthode `df.to_pandas()`.
+- **Depuis/vers `pandas`**:
+Polars permet aussi facilement d'exporter et d'importer des DataFrame au format `pandas`.
+Cela permet de travailler avec `polars` et de convertir un DataFrame en `pandas` quand un package n'autorise pas l'import depuis `polars`.
+Il suffit d'utiliser la fonction `pl.from_pandas(df)` pour importer un dataframe `pandas` en `polars`.
+La méthode `df.to_pandas()` permettra d'exporter un `polars` dataframe vers `pandas`.
 
 # Visualiser un échantillon des données
 
@@ -626,7 +627,7 @@ Lorsqu'on travaille avec des jeux de données volumineux, il est souvent utile d
 des données pour avoir une idée de leur structure, de leur format ou encore pour détecter d'éventuels problèmes.
 Polars offre plusieurs méthodes pour cela.
 
-Par défaut, Polars indique les cinq premières et cinq dernières lignes d'un DataFrame et indique la forme (_shape_).
+Par défaut, `polars` indique les cinq premières et cinq dernières lignes d'un DataFrame et indique la forme (_shape_).
 
 ```{python}
 df_departements
@@ -658,7 +659,7 @@ df_departements.sample(n=5)
 ## Obtenir une vue d'ensemble des données
 
 L'une des premières étapes lors de l'exploration de nouvelles données est de comprendre la structure générale du jeu de données.
-La méthode `glimpse()` de Polars offre une vue d'ensemble rapide des données, notamment en termes de types de données et affiche les données.
+La méthode `glimpse()` de `polars` offre une vue d'ensemble rapide des données, notamment en termes de types de données et affiche les données.
 
 ```{python}
 df.glimpse()
@@ -670,13 +671,13 @@ Plusieurs éléments d'information clés peuvent être extraits de ce résultat 
 
 - **schéma** : la liste des colonnes est affichée avec des informations très utiles sur le schéma des données :
 
-  - **Format** : Le format Polars de données de la colonne, par exemple `<str>`pour un format caractère (ou `pl.String`).
+  - **Format** : Le format `polars` de données de la colonne, par exemple `<str>`pour un format caractère (ou `pl.String`).
   Cela permet de comprendre la nature des informations stockées dans chaque colonne.
 
   - **les premières valeurs** : après chaque colonne sont indiquées, à l'horizontale, les premières valeurs de la colonne.
   Cela permet de mieux comprendre le schéma du DataFrame.
 
-Contrairement à Pandas, cette méthode n'affiche pas les valeurs manquantes.
+Contrairement à `pandas`, cette méthode n'affiche pas les valeurs manquantes.
 Pour cela, il faut utiliser les statistiques descriptives.
 
 ## Calculer des statistiques descriptives
@@ -702,7 +703,7 @@ Les transformations peuvent concerner l'ensemble du DataFrame, des colonnes spé
 
 ### Transformer les colonnes
 
-En équivalent de `mutate` du tidyverse ou du `replace` de pandas, Polars utilise `with_columns`.
+En équivalent de `mutate` du tidyverse ou du `replace` de `pandas`, `polars` utilise `with_columns`.
 Le fonctionnement est similaire au `mutate` du tidyverse.
 Il permet ainsi de modifier des valeurs de colonne, d'effectuer des opérations etc.
 
@@ -733,7 +734,7 @@ df.with_columns(
 ::: {.callout-tip}
 La structure `pl.when` est très pratique et équivaut à la structure `ifelse` en R.
 
-Par exemple, si je veux définir la colonne val à partir de la colonne foo selon le schéma : si foo > 2 : val = 1, sinon val = 1 + bar, cela s'écrite en polars :
+Par exemple, si je veux définir la colonne val à partir de la colonne foo selon le schéma : si foo > 2 : val = 1, sinon val = 1 + bar, cela s'écrite en `polars` :
 
 
 ```{python}
@@ -747,7 +748,7 @@ df.with_columns(
 
 ::: {.callout-warning}
 
-Attention, en Polars, les caractères simples sont assimilés aux  colonnes.
+Attention, en `polars`, les caractères simples sont assimilés aux  colonnes.
 Pour insérer un caractère, utiliser pl.lit.
 
 ```{python}
@@ -782,7 +783,7 @@ df.glimpse()
 
 Dans ce cas, on peut utiliser la méthode `cast` pour convertir la colonne dans le type souhaité en spécifiant avec un dictionnaire les colonnes à modifier.
 Le dictionnaire est écrit sous le format `{'nom de la colonne 1':'type Polars à appliquer', 'nom de la colonne 2':'type Polars à appliquer'}`.
-Les types sont décrits plus haut et dans la [documentation de Polars](https://docs.pola.rs/api/python/stable/reference/datatypes.html).
+Les types sont décrits plus haut et dans la [documentation de `polars`](https://docs.pola.rs/api/python/stable/reference/datatypes.html).
 
 ```{python}
 df = df.cast({'var2':pl.Int32})
@@ -791,7 +792,7 @@ df.glimpse()
 ```
 
 
-On peut aussi utiliser les `selectors` de Polars pour faire des opérations groupées sur un ensemble
+On peut aussi utiliser les `selectors` de `polars` pour faire des opérations groupées sur un ensemble
 de colonnes.
 Il suffit de remplacer le `pl.col("mycol")` par le sélecteur recherché.
 Pour modifier les noms en série, on peut utiliser les fonctions liées aux méthodes `Expr.name`, *cf.* [documentation officielle](https://docs.pola.rs/api/python/stable/reference/expressions/name.html).
@@ -842,7 +843,7 @@ print(df.group_by('country').map_groups(calculate_percentage_change))
 
 ## Trier les valeurs
 
-Le tri des données est particulièrement utile pour l'exploration et la visualisation de données. Avec Polars, on utilise la méthode [sort()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.sort.html#polars.DataFrame.sort) pour trier les valeurs d'un DataFrame selon une ou plusieurs colonnes.
+Le tri des données est particulièrement utile pour l'exploration et la visualisation de données. Avec `polars`, on utilise la méthode [sort()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.sort.html#polars.DataFrame.sort) pour trier les valeurs d'un DataFrame selon une ou plusieurs colonnes.
 
 ```{python}
 df = pl.DataFrame(
@@ -895,7 +896,7 @@ df.head()
 
 ### L'opération `group_by`
 
-La méthode `group_by` de Polars permet de diviser le DataFrame en sous-ensembles selon les valeurs d'une ou plusieurs colonnes, puis d'appliquer une fonction d'agrégation à chaque sous-ensemble. Elle renvoie un objet de type `dataframe.group_by` qui ne présente pas de grand intérêt en soi, mais constitue l'étape intermédiaire indispensable pour pouvoir ensuite appliquer une ou plusieurs fonction(s) d'agrégation aux différents groupes.
+La méthode `group_by` de `polars` permet de diviser le DataFrame en sous-ensembles selon les valeurs d'une ou plusieurs colonnes, puis d'appliquer une fonction d'agrégation à chaque sous-ensemble. Elle renvoie un objet de type `dataframe.group_by` qui ne présente pas de grand intérêt en soi, mais constitue l'étape intermédiaire indispensable pour pouvoir ensuite appliquer une ou plusieurs fonction(s) d'agrégation aux différents groupes.
 
 ```{python}
 df.group_by('experiment')
@@ -903,12 +904,12 @@ df.group_by('experiment')
 
 ### Fonctions d'agrégation
 
-Une fois les données groupées, on peut appliquer des fonctions d'agrégation pour obtenir un résumé statistique. Polars intègre un certain nombre de ces fonctions qui  fonctionnent sur la table de donnée entière, *cf.* [liste complète dans la documentation](https://docs.pola.rs/api/python/stable/reference/dataframe/aggregation.html) ou sur des sous-ensembles de la table, en utilisant `group_by`, *cf.* [liste complète dans la documentation](https://docs.pola.rs/api/python/stable/reference/dataframe/group_by.html).
+Une fois les données groupées, on peut appliquer des fonctions d'agrégation pour obtenir un résumé statistique. `polars` intègre un certain nombre de ces fonctions qui  fonctionnent sur la table de donnée entière, *cf.* [liste complète dans la documentation](https://docs.pola.rs/api/python/stable/reference/dataframe/aggregation.html) ou sur des sous-ensembles de la table, en utilisant `group_by`, *cf.* [liste complète dans la documentation](https://docs.pola.rs/api/python/stable/reference/dataframe/group_by.html).
 
 
 Voici quelques exemples d'utilisation de ces méthodes avec `group_by`.
 
-Par défaut, Polars appliquera les fonctions usuelles à l'ensemble des colonnes.
+Par défaut, `polars` appliquera les fonctions usuelles à l'ensemble des colonnes.
 Pour spécifier une colonne, il faut utiliser la fonction `agg`, détaillée plus bas.
 
 - Par exemple, compter le nombre d'occurrences dans chaque groupe.
@@ -957,13 +958,13 @@ df.group_by('experiment').agg(
 ```
 
 ::: {.callout-tip}
-Au lieu d'utiliser la méthode alias, on peut utiliser l'attribut `name` de Polars qui renvoie le nom de la colonne et les fonctions associées. Plus de détails sont présentés dans la [documentation officielle](https://docs.pola.rs/api/python/stable/reference/expressions/name.html).
+Au lieu d'utiliser la méthode alias, on peut utiliser l'attribut `name` de `polars` qui renvoie le nom de la colonne et les fonctions associées. Plus de détails sont présentés dans la [documentation officielle](https://docs.pola.rs/api/python/stable/reference/expressions/name.html).
 
 Par exemple, définir `.alias('mean_var1')` est l'équivalent de `.name.prefix('mean_')`
 :::
 
 ::: {.callout-note title="Le chaînage de méthodes"}
-Les exemples précédents illustrent un concept important en Polars : le chaînage de méthodes. Ce terme désigne la possibilité d'enchaîner les transformations appliquées à un DataFrame en lui appliquant à la chaîne des méthodes, comme le `pipe` du tidyverse. A chaque méthode appliquée, un DataFrame intermédiaire est créé (mais non assigné à une variable), qui devient l'input de la méthode suivante.
+Les exemples précédents illustrent un concept important en `polars` : le chaînage de méthodes. Ce terme désigne la possibilité d'enchaîner les transformations appliquées à un DataFrame en lui appliquant à la chaîne des méthodes, comme le `pipe` du tidyverse. A chaque méthode appliquée, un DataFrame intermédiaire est créé (mais non assigné à une variable), qui devient l'input de la méthode suivante.
 
 Le chaînage de méthodes permet de combiner plusieurs opérations en une seule expression de code. Cela peut améliorer l'efficacité en évitant les assignations intermédiaires et en rendant le code plus fluide et plus facile à lire.
 Cela favorise également un style de programmation fonctionnel où les données passent à travers une chaîne de transformations de manière fluide.
@@ -981,18 +982,18 @@ subset_df = (
 
 ## Traiter les valeurs manquantes
 
-Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable. Pandas offre plusieurs outils pour gérer les valeurs manquantes.
+Les valeurs manquantes sont une réalité courante dans le traitement des données réelles et peuvent survenir pour diverses raisons, telles que des non-réponses à un questionnaire, des erreurs de saisie, des pertes de données lors de la transmission ou simplement parce que l'information n'est pas applicable. `pandas` offre plusieurs outils pour gérer les valeurs manquantes.
 
 ### Représentation des valeurs manquantes
 
 On peut tout d'abord traiter les valeurs manquantes avec les méthodes associées.
-Pour rappel, en Polars, les valeurs `NaN` et `null` sont différentes, alors qu'en Pandas elles sont traitées de manière similaire.
+Pour rappel, en `polars`, les valeurs `NaN` et `null` sont différentes, alors qu'en `pandas` elles sont traitées de manière similaire.
 
 | | **Type `null`** | **Type `NaN`** |
 |--|--|--|
-| **Signification** | Seule `Null` est considéré par défaut comme une valeur manquante et est l'unique type de valeur manquante dans Polars (que le type original soit temporel, numérique, un charactère ...). | `NaN` représente à l'inverse des valeurs numériques erronées, comme le résultat d'une division par 0. |
-| **Comment les créer ?** | Les valeurs manquantes peuvent être crées simplement avec `None`. | Pour créer une valeur `NaN`, valable uniquement pour les types numériques, on peut utiliser `np.nan` de NumPy ou `float("nan")` de Polars. |
-| Comportement dans Polars | Ces valeurs sont en général **ignorées**. | Ces valeurs **se propagent**. |
+| **Signification** | Seule `Null` est considéré par défaut comme une valeur manquante et est l'unique type de valeur manquante dans `polars` (que le type original soit temporel, numérique, un charactère ...). | `NaN` représente à l'inverse des valeurs numériques erronées, comme le résultat d'une division par 0. |
+| **Comment les créer ?** | Les valeurs manquantes peuvent être crées simplement avec `None`. | Pour créer une valeur `NaN`, valable uniquement pour les types numériques, on peut utiliser `np.nan` de NumPy ou `float("nan")` de `polars`. |
+| Comportement dans `polars` | Ces valeurs sont en général **ignorées**. | Ces valeurs **se propagent**. |
 
 
 Vérifions cette propriété.
@@ -1022,7 +1023,7 @@ print(df.drop_nulls())
 
 ### Calculs sur des colonnes contenant des valeurs manquantes
 
-Lors de calculs statistiques, les valeurs nulles sont généralement ignorées en Polars. Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
+Lors de calculs statistiques, les valeurs nulles sont généralement ignorées en `polars`. Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
 
 ```{python}
 df['var1'].mean()
@@ -1070,13 +1071,13 @@ df.fill_null(value="MISSING")
 En pratique, cette façon de faire n'est pas recommandée. Il est en effet préférable de conserver la convention standard de `Polars` (l'utilisation des `null`), d'abord pour des questions de standardisation des pratiques qui facilitent la lecture et la maintenance du code, mais également parce que la convention standard est optimisée pour la performance et les calculs à partir de données contenant des valeurs manquantes.
 :::
 
-La méthide `fill_null()` de Polars propose 4 méthodes pré-définies pour remplacer les valeurs manquantes par l'argument `strategy`:
+La méthide `fill_null()` de `polars` propose 4 méthodes pré-définies pour remplacer les valeurs manquantes par l'argument `strategy`:
 - toute valeur constante indiquée (`strategy=None`, argument par défaut);
 - soit des 0, soit des 1 (`strategy="zero"`, `strategy="one"` :);
 - en reportant la valeur précédente (`strategy=‘forward’`) ou la valeur suivante (`strategy=‘backward’`) de la colonne ;
 - en indiquant le minimum, le maximum ou la médiane de la colonne (`strategy=‘min’`, `strategy=‘max’`, `strategy=‘mean’`).
 
-Si l'on veut remplacer uniquement les valeurs manquantantes d'une colonne en Polars, il est plus utile d'utiliser la méthode `with_columns()` en utilisant l'agilité des sélecteurs de Polars.
+Si l'on veut remplacer uniquement les valeurs manquantantes d'une colonne en `polars`, il est plus utile d'utiliser la méthode `with_columns()` en utilisant l'agilité des sélecteurs de `polars`.
 
 ```{python}
 df.with_columns(
@@ -1097,7 +1098,7 @@ De manière similaire, la méthode `fill_nan()` permet de remplacer les valeurs 
 
 Les données textuelles nécessitent souvent un nettoyage et une préparation avant l'analyse.
 Polars fournit via la librairie de méthodes `str` un ensemble d'opérations vectorisées qui rendent la préparation des données textuelles à la fois simple et très efficace.
-La méthode `str` s'applique aux séries Polars.
+La méthode `str` s'applique aux séries `polars`.
 Là encore, les possibilités sont multiples et détaillées dans la [documentation](https://docs.pola.rs/api/python/stable/reference/series/string.html).
 Nous présentons ici les méthodes les plus fréquemment utilisées dans l'analyse de données.
 
@@ -1143,7 +1144,7 @@ C'est l'occasion d'introduire la famille de méthode `strip` (`.str.strip_chars(
 
 ::: {.callout-note}
 Remarquez la présence de deux `with_columns()` et non d'un seul.
-C'est parce que Polars étant optimisé, il effectue les opérations sur `with_columns` en parallèle.
+C'est parce que `polars` étant optimisé, il effectue les opérations sur `with_columns` en parallèle.
 Ainsi, si l'on ne le fait pas de manière séquentielle, il ne prend pas en compte le fait qu'on enlève les espace superflus dans 'sample' à la première ligne avant d'en extraire le dernier caractère.
 :::
 
@@ -1166,9 +1167,9 @@ df.with_columns(
 ## Données catégorielles
 
 Les données catégorielles sont des variables qui contiennent un nombre restreint de modalités.
-A l'instar de `R` avec la notion de `factor`, Polars a un type de données spécial, `Categorical`, qui peut être utilisé pour représenter des données catégorielles.
+A l'instar de `R` avec la notion de `factor`, `polars` a un type de données spécial, `Categorical`, qui peut être utilisé pour représenter des données catégorielles.
 
-Ce type de données est cependant délicat à gérer en Polars et, en général, on préfèrera travailler avec des données de type caractère.
+Ce type de données est cependant délicat à gérer en `polars` et, en général, on préfèrera travailler avec des données de type caractère.
 
 En effet, les méthodes usuelles pour renommer des catégories, dissocier son nom et sa représentation, réarranger l'ordre dans laquelle les catégories sont visualisées sont encore très largement perfectibles (voire inexistantes :o).
 
@@ -1219,8 +1220,8 @@ df = pl.DataFrame(
 df.dtypes
 ```
 
-Pour manipuler les données temporelles, il est nécessaire de convertir les chaînes de caractères en colonne de type temporel sous Polars.
-Il existe 4 types temporels de colonnes en Polars, comme rappelé dans la [documentation](https://docs.pola.rs/api/python/stable/reference/datatypes.html):
+Pour manipuler les données temporelles, il est nécessaire de convertir les chaînes de caractères en colonne de type temporel sous `polars`.
+Il existe 4 types temporels de colonnes en `polars`, comme rappelé dans la [documentation](https://docs.pola.rs/api/python/stable/reference/datatypes.html):
 
 - le type [`pl.Datetime`](https://docs.pola.rs/api/python/stable/reference/api/polars.datatypes.Date.html#polars.datatypes.Datetime) pour un format date et heure ;
 - le type [`pl.Date`](https://docs.pola.rs/api/python/stable/reference/api/polars.datatypes.Date.html#polars.datatypes.Date) pour un format Date seul ;
@@ -1240,7 +1241,7 @@ df.dtypes
 
 Une fois converties, les dates peuvent être formatées, comparées et utilisées dans des calculs.
 Il faudra cependant bien penser à traduire les dates d'un format textuel à un format temporel.
-Par exemple, pour filtrer des données, on devra spécifier les bornes en appelant les fonctions dédiées de Polars ou du module `datetime`.
+Par exemple, pour filtrer des données, on devra spécifier les bornes en appelant les fonctions dédiées de `polars` ou du module `datetime`.
 
 ```{python}
 df.filter(pl.col('date') >= pl.date(2022, 1, 1), pl.col('date') < pl.date(2022, 1, 3))
@@ -1294,7 +1295,7 @@ La combinaison peut également se faire horizontalement (côte à côte) selon u
 
 ## Concaténer des tables
 
-La concaténation verticale de tables se fait à l'aide de la fonction [`concat()`](https://docs.pola.rs/api/python/stable/reference/api/polars.concat.html#polars.concat) de Polars.
+La concaténation verticale de tables se fait à l'aide de la fonction [`concat()`](https://docs.pola.rs/api/python/stable/reference/api/polars.concat.html#polars.concat) de `polars`.
 
 ```{python}
 
@@ -1320,7 +1321,7 @@ pl.concat([df1, df2])
 
 ```
 
-A la grande différence de `Pandas`, **l'ordre des variables dans les deux DataFrames importe**.
+A la grande différence de `pandas`, **l'ordre des variables dans les deux DataFrames importe**.
 
 Ainsi, le même code avec `df2` défini comme ci-après va renvoyer une erreur.
 ```{python}
@@ -1350,10 +1351,10 @@ Différents types de jointure sont possible selon les données que l'on souhaite
 
 Source : [lien](https://medium.com/swlh/merging-dataframes-with-pandas-pd-merge-7764c7e2d46d)
 
-En Polars, les jointures se font avec la fonction [`join()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.join.html#polars.DataFrame.join).
+En `polars`, les jointures se font avec la fonction [`join()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.join.html#polars.DataFrame.join).
 Pour réaliser une jointure, on doit spécifier (au minimum) deux informations :
 
-- le type de jointure : par défaut, Polars effectue une jointure de type `inner`.
+- le type de jointure : par défaut, `polars` effectue une jointure de type `inner`.
 Le paramètre `how` permet de spécifier d'autres types de jointure ;
 
 - la clé de jointure.
@@ -1428,19 +1429,19 @@ df_a.join(df_b, how="full", on='key', coalesce=True)
 ## Questions de compréhension
 
 
-- 1/ Qu'est-ce qu'un DataFrame dans le contexte de Polars et à quel type de structure de données peut-on le comparer dans le langage Python ?
+- 1/ Qu'est-ce qu'un DataFrame dans le contexte de `polars` et à quel type de structure de données peut-on le comparer dans le langage Python ?
 
-- 2/ Quels sont les avantages de Polars ?
+- 2/ Quels sont les avantages de `polars` ?
 
-- 3/ Quel est le lien entre Series et DataFrame dans Polars ?
+- 3/ Quel est le lien entre Series et DataFrame dans `polars` ?
 
-- 4/ Comment sont structurées les données dans un DataFrame Polars ?
+- 4/ Comment sont structurées les données dans un DataFrame `polars` ?
 
 - 6/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
 
-- 8/ Comment s'applique le principe d'évaluation paresseuse dans Polars et pourquoi est-ce avantageux pour manipuler les données ?
+- 8/ Comment s'applique le principe d'évaluation paresseuse dans `polars` et pourquoi est-ce avantageux pour manipuler les données ?
 
-- 9/ Comment Polars représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
+- 9/ Comment `polars` représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
 
 - 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
 
@@ -1450,21 +1451,21 @@ df_a.join(df_b, how="full", on='key', coalesce=True)
 <details>
 <summary>Afficher la solution</summary>
 
-- 1/ Un DataFrame dans Pandas est une structure de données bidimensionnelle, comparable à un tableau ou une feuille de calcul Excel. Dans le contexte Python, on peut le comparer à un dictionnaire d'arrays NumPy, où les clés sont les noms des colonnes et les valeurs sont les colonnes elles-mêmes.
+- 1/ Un DataFrame dans `pandas` est une structure de données bidimensionnelle, comparable à un tableau ou une feuille de calcul Excel. Dans le contexte Python, on peut le comparer à un dictionnaire d'arrays NumPy, où les clés sont les noms des colonnes et les valeurs sont les colonnes elles-mêmes.
 
-- 2/ La différence principale entre un array NumPy et une Series Pandas est que la Series peut contenir des données étiquetées, c'est-à-dire qu'elle a un index qui lui est associé, permettant des accès et des manipulations par label.
+- 2/ La différence principale entre un array NumPy et une Series `pandas` est que la Series peut contenir des données étiquetées, c'est-à-dire qu'elle a un index qui lui est associé, permettant des accès et des manipulations par label.
 
 - 3/ Un DataFrame est essentiellement une collection de Series. Chaque colonne d'un DataFrame est une Series, et toutes ces Series partagent le même index, qui correspond aux étiquettes des lignes du DataFrame.
 
-- 4/ Les données dans un DataFrame Pandas sont structurées en colonnes et en lignes. Chaque colonne peut contenir un type de données différent (numérique, chaîne de caractères, booléen, etc.), et chaque ligne représente une observation.
+- 4/ Les données dans un DataFrame `pandas` sont structurées en colonnes et en lignes. Chaque colonne peut contenir un type de données différent (numérique, chaîne de caractères, booléen, etc.), et chaque ligne représente une observation.
 
-- 5/ L'index dans un DataFrame Pandas sert à identifier de manière unique chaque ligne du DataFrame. Il permet d'accéder rapidement aux lignes, de réaliser des jointures, de trier les données et de faciliter les opérations de regroupement.
+- 5/ L'index dans un DataFrame `pandas` sert à identifier de manière unique chaque ligne du DataFrame. Il permet d'accéder rapidement aux lignes, de réaliser des jointures, de trier les données et de faciliter les opérations de regroupement.
 
 - 6/ Pour explorer un DataFrame inconnu, on peut utiliser df.head() pour voir les premières lignes, df.tail() pour les dernières, df.info() pour obtenir un résumé des types de données et des valeurs manquantes, et df.describe() pour des statistiques descriptives.
 
 - 7/ Assigner le résultat d'une opération à une nouvelle variable crée une copie du DataFrame avec les modifications appliquées. Utiliser une méthode avec inplace=True modifie le DataFrame original sans créer de copie, ce qui peut être plus efficace en termes de mémoire.
 
-- 8/ Pandas représente les valeurs manquantes avec l'objet `nan` (Not a Number) de `Numpy` pour les données numériques et avec None ou pd.NaT pour les dates/temps. Ces valeurs manquantes sont généralement ignorées dans les calculs de fonctions statistiques, ce qui peut affecter les résultats si elles ne sont pas traitées correctement.
+- 8/ `pandas` représente les valeurs manquantes avec l'objet `nan` (Not a Number) de `Numpy` pour les données numériques et avec None ou pd.NaT pour les dates/temps. Ces valeurs manquantes sont généralement ignorées dans les calculs de fonctions statistiques, ce qui peut affecter les résultats si elles ne sont pas traitées correctement.
 
 - 9/ Concaténer consiste à assembler des DataFrames en les empilant verticalement ou en les alignant horizontalement, principalement utilisé lorsque les DataFrames ont le même schéma ou lorsque vous souhaitez empiler les données. Les jointures, inspirées des opérations JOIN en SQL, combinent les DataFrames sur la base de valeurs de clés communes et sont utilisées pour enrichir un ensemble de données avec des informations d'un autre ensemble.
 
@@ -1547,7 +1548,7 @@ df_from_dict.equals(df_from_list)
 
 ## Sélection de données dans un DataFrame
 
-Un DataFrame Polars est créé avec des données de caisse (mêmes données que l'exercice précédent).
+Un DataFrame `polars` est créé avec des données de caisse (mêmes données que l'exercice précédent).
 
 ```{python}
 data = {
@@ -2086,7 +2087,7 @@ L'objectif de cet exercice est de calculer une empreinte carbone par habitant au
 
 - les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
 
-Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/) et traduit en Polars.
+Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de `pandas`](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/) et traduit en `polars`.
 
 ### Partie 1 : Exploration des données sur les populations légales communales
 
