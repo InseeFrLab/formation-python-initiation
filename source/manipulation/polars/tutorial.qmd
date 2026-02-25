@@ -2269,13 +2269,18 @@ df_emissions_top10
 <summary>Afficher la solution</summary>
 
 ```{python}
-pl.concat(
-    [df_emissions.drop_nulls().select(cs.numeric()).corr().select("emissions_totales"),
-    pl.DataFrame({
-        'autre_col':df_emissions.select(cs.numeric()).columns
-        })],
+(
+    pl.concat(
+        [
+            df_emissions.drop_nulls().select(cs.numeric()).corr().select("emissions_totales"),
+            pl.DataFrame({
+                'autre_col':df_emissions.select(cs.numeric()).columns
+                })
+        ],
         how='horizontal'
-    ).sort("emissions_totales")
+    )
+    .sort("emissions_totales")
+)
 ```
 
 </details>
@@ -2297,8 +2302,16 @@ pl.concat(
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions["dep"] = df_emissions["INSEE commune"].str[:2]
-df_emissions.groupby("dep").agg({"emissions_totales": "sum"}).sort_values(by="emissions_totales", ascending=False).head(10)
+(
+    df_emissions
+    .with_columns(
+        dep = pl.col("INSEE commune").str.head(2)
+    )
+    .group_by("dep")
+    .agg(pl.sum("emissions_totales"))
+    .sort("emissions_totales")
+    .tail(10)
+)
 ```
 
 </details>
