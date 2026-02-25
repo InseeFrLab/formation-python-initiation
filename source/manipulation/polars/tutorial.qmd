@@ -12,7 +12,7 @@ Plusieurs packages viennent ainsi combler ce manque, comme `pandas` ou `polars`.
 Comment choisir entre les deux ? Cela va dépendre de vos goûts et de vos besoins.
 Mais voici en attendant quelques éléments pour savoir si `polars` est utile.
 
-Du côté des atouts de Polars : 
+Du côté des atouts de Polars :
 
 - Polars est **rapide** et permet de traiter des **données volumineuses** : Selon un benchmark [effectué par H2O](https://h2oai.github.io/db-benchmark/),
 Polars permet de traiter des données que d'autres librairies ne pourraient pas ()
@@ -34,12 +34,11 @@ Ces optimisations sont détaillées dans la [documentation officielle](https://p
 
 Polars présente quand même aussi quelques **inconvénients**, notamment lié à sa plus grande jeunesse.
 
-- ainsi, le **traitement de données catégorielles** est encore instable, notamment en comparaison à pandas et 
-au tidyverse. 
+- ainsi, le **traitement de données catégorielles** est encore instable, notamment en comparaison à pandas et au tidyverse.
 Dans Polars pour contourner ces problèmes, on a tendance à traiter ces variable catégorielles comme des caractères.
 
 - **Pas (encore) de `geopolars`** : Tout l'écosystème autour de `pandas` n'a ainsi pas forcément (encore) d'équivalent en polars.
-Pour les données géolocalisées par exemple, geopolars n'existe pas encore. 
+Pour les données géolocalisées par exemple, geopolars n'existe pas encore.
 
 - plus généralement, **`Polars` reste moins répandu que `pandas`** : Polars étant plus récent, il est en général moins bien interfacé avec les autres
 librairies de data science, même si certaines commencent à accepter des données
@@ -50,20 +49,20 @@ polars en entrée.
 
 
 ## Petits conseils pour commencer
-Avant de commencer à utiliser Polars, voici quelques conseils à garder en tête : 
+Avant de commencer à utiliser Polars, voici quelques conseils à garder en tête :
 
-- L'import de données est **plus délicat** : 
+- L'import de données est **plus délicat** :
 Polars est très strict sur les types des colonnes quand on importe des données.
 Il est courant de passer du temps à débugger cette étape, notamment pour s'assurer
 que le code soit résistant à de légères variations dans le format des données d'entrée.
-Pour optimiser ce temps là, on peut spécifier directement les types en entrée. 
+Pour optimiser ce temps là, on peut spécifier directement les types en entrée.
 
--  Les **chaines de caractères sont par défaut associées à des colonnes** : 
-En Polars, les caractères simples `"myvar"` sont par défaut considéré comme des noms de 
-colonne. Il faut penser à utiliser `pl.lit("myvar")` pour signaler qu'il ne s'agit 
-pas d'un nom de colonne. 
+-  Les **chaines de caractères sont par défaut associées à des colonnes** :
+En Polars, les caractères simples `"myvar"` sont par défaut considéré comme des noms de
+colonne. Il faut penser à utiliser `pl.lit("myvar")` pour signaler qu'il ne s'agit
+pas d'un nom de colonne.
 
-- **l'index de pandas** est mort <3 : comme dans le tidyverse, polars 
+- **l'index de pandas** est mort <3 : comme dans le tidyverse, polars
 n'utilise pas d'index, et c'est très bien comme cela !
 
 - les `polars selectors` sont très pratiques pour sélectionner des colonnes.
@@ -245,6 +244,24 @@ print(df.select(["var1", "experiment"]))
 ```
 
 
+Polars propose tout une série de méthodes, appelées `selectors`, très pratique pour effectuer des opérations sur des colonnes (sélection, mutation etc) en fonction de leur nom ou de leur type.
+Par exemple, on peut sélectionner des colonnes suivant :
+- leur nom (colonnes commençant par, finissant par, avec des regex) ;
+- leur type ;
+- exlcure des colonnes des résultats avec l'opération `-` (et plus généralement effectuer des opérations logiques).
+
+L'habitude est d'importer les selectors avec `import polars.selectors as cs`.
+
+Par exemple :
+
+- pour sélectionner toutes les colonnes numériques, on va utiliser `cs.numeric()` :
+`df.select(cs.numeric())` ;
+- pour sélectionner toutes les colonnes de caractères, on va utiliser `cs.string()` :
+`df.select(cs.string())`.
+
+Des explications détaillées sont disponibles dans la [documentation officielle](https://docs.pola.rs/api/python/stable/reference/selectors.html).
+
+
 ## Sélectionner des lignes
 
 En pratique, on souhaite souvent filtrer un DataFrame selon certaines conditions.
@@ -307,7 +324,7 @@ df.filter((pl.col("var1") >= 0) | pl.col("experiment").is_in(['train', 'validati
 ```
 
 :::::: {.callout-note}
-La méthode `filter` marche aussi sur des calculs à base des colonnes. Par exemple, si l'on veut sélectionner les observations faites le 2 du mois, on peut effectuer cela en une ligne (on verra plus tard le travail sur les données temporelles): 
+La méthode `filter` marche aussi sur des calculs à base des colonnes. Par exemple, si l'on veut sélectionner les observations faites le 2 du mois, on peut effectuer cela en une ligne (on verra plus tard le travail sur les données temporelles):
 
 ```{python}
 df.filter(pl.col('date').str.to_date("%Y-%m-%d").dt.day()==2)
@@ -773,6 +790,20 @@ df = df.cast({'var2':pl.Int32})
 df.glimpse()
 ```
 
+
+On peut aussi utiliser les `selectors` de Polars pour faire des opérations groupées sur un ensemble
+de colonnes.
+Il suffit de remplacer le `pl.col("mycol")` par le sélecteur recherché.
+Pour modifier les noms en série, on peut utiliser les fonctions liées aux méthodes `Expr.name`, *cf.* [documentation officielle](https://docs.pola.rs/api/python/stable/reference/expressions/name.html).
+
+Par exemple, si l'on veut normaliser à 1 toutes les colonnes numériques, on peut le faire en une ligne en spécifiant uniquement la colonne de référence :
+
+```{python}
+df.with_columns(
+    (cs.numeric() / pl.col("var2")).name.suffix("_norm")
+)
+```
+
 ### Renommer des colonnes
 
 Une autre opération fréquente est le renommage d'une ou plusieurs colonnes. Pour cela, on peut utiliser la méthode [rename()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.rename.html#polars.DataFrame.rename), à laquelle on passe un dictionnaire qui contient autant de couples clé-valeur que de variables à renommer, et dans lequel chaque couple clé-valeur est de la forme `'ancien_nom': 'nouveau_nom'`.
@@ -1214,7 +1245,7 @@ Par exemple, pour filtrer des données, on devra spécifier les bornes en appela
 ```{python}
 df.filter(pl.col('date') >= pl.date(2022, 1, 1), pl.col('date') < pl.date(2022, 1, 3))
 
-# équivalent à 
+# équivalent à
 
 from datetime import datetime
 df.filter(pl.col('date') >= datetime.strptime("2022-01-01", "%Y-%m-%d"), pl.col('date') < datetime.strptime("2022-01-03", "%Y-%m-%d"))
@@ -1631,7 +1662,7 @@ print(
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(df.select(('enseigne', 'prix'))
+print(df.select('enseigne', 'prix'))
 ```
 
 </details>
@@ -1761,7 +1792,7 @@ prop_rares1 = (
     .item(0, "tot_rel")
 )
 print(prop_rares1)  # ~ 2 % de la base
-# equivalent à 
+# equivalent à
 prop_rares2 = (
     df_prenoms
     .group_by("preusuel")
@@ -2155,29 +2186,10 @@ df_pop_communes_stats.corr()
 ```{python}
 url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
 df_emissions = pl.from_pandas(pd.read_csv(url_ademe))
-
-df_emissions.sample(10)
-df_emissions.describe()
-```
-
 </details>
-
-:::
-
-- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [is_null()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.is_null.html#polars.Expr.is_null) et [all_horizontal()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.all_horizontal.html#polars.all_horizontal).
-
 ```{python}
 # Testez votre réponse dans cette cellule
 
-```
-
-::: {.cell .markdown}
-
-<details>
-<summary>Afficher la solution</summary>
-
-```{python}
-import polars.selectors as cs
 df_emissions_num = df_emissions.select(cs.numeric())
 only_nan = df_emissions_num.filter(pl.all_horizontal(pl.all().is_null()))
 only_nan.height
@@ -2189,6 +2201,7 @@ only_nan.height
 
 - Créez une nouvelle colonne qui donne les émissions totales par commune
 - Afficher les 10 communes les plus émettrices. Qu'observez-vous dans les résultats ?
+
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2208,10 +2221,12 @@ df_emissions_top10 = (
     .pivot(on="variable", index=["INSEE commune", "emissions_totales"])
     .sort("emissions_totales", descending=True)
     .head(10)
+    .with_columns(
+        (cs.numeric() / pl.col("emissions_totales")).name.suffix("_normalized")
+    )
 )
-df_emissions_top10.with_columns(
-    pl.col(cs.exclude("emissions_totales"))/pl.col("emissions_totales")
-)
+
+df_emissions_top10
 ```
 
 </details>
