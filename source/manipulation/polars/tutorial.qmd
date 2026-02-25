@@ -778,7 +778,7 @@ Le fonctionnement est cependant plus similaire au `mutate` du tidyverse.
 Il permet ainsi de modifier des valeurs de colonne, d'effectuer des opérations etc.
 
 
-La méthode `with_columns()` fonctionne de  deux manières différentes :
+La méthode `with_columns()` fonctionne avec deux syntaxes différentes :
 
 - en utilisant une syntaxe plus proche du SQL et de Python, grâce à la méthode `.alias()` ;
 - plus similaire au tidyverse, en assignant les variables avec une équation.
@@ -789,10 +789,10 @@ Par exemple, si l'on veut définir la colonne `b` comme la colonne `a` divisée 
 df = pl.DataFrame({'a':np.random.randint(-10, 10, 6), 'b': np.random.randint(5, 15, 6)})
 
 df.with_columns(
-    # Première méthode :
+    # Première méthode plus proche de Python et du SQL:
     (pl.col("a")/2).alias("b"),
     (np.abs(pl.col("a"))).alias("abs_a"),
-    # Ou l'autre méthode :
+    # Ou l'autre méthode plus proche du tidyverse:
     b2=pl.col("a")/2,
     abs_a2=np.abs(pl.col("a"))
 )
@@ -1063,11 +1063,11 @@ En polars, les valeurs `NaN` et `null` sont différentes, alors qu'en pandas ell
 |--|--|--|
 | **Signification** | Seule `Null` est considéré par défaut comme une valeur manquante et est l'unique type de valeur manquante dans polars (que le type original soit temporel, numérique, un charactère ...). | `NaN` représente à l'inverse des valeurs numériques erronées, comme le résultat d'une division par 0. |
 | **Comment les créer ?** | Les valeurs manquantes peuvent être crées simplement avec `None`. | Pour créer une valeur `NaN`, valable uniquement pour les types numériques, on peut utiliser `np.nan` de NumPy ou `float("nan")` de polars. |
-| Comportement dans polars | Ces valeurs sont en général **ignorées**. | Ces valeurs **se propagent**. |
+| **Comportement dans polars** | Ces valeurs sont en général **ignorées**. | Ces valeurs **se propagent**. |
 
+: Valeurs particulières en polars
 
-Vérifions cette propriété.
-Pour identifier où se trouvent les valeurs manquantes, on utilise la fonction `is_null()` ou `is_nan()` appliquée à une colonne.
+Pour identifier où se trouvent les valeurs manquantes, on utilise les méthodes `is_null()` ou `is_nan()` appliquées à une colonne.
 
 ```{python}
 df = pl.DataFrame(
@@ -1084,16 +1084,11 @@ df.with_columns(
 )
 ```
 
-On peut à l'inverse éliminer les lignes qui comportent une valeur manquante ou un `NaN` :
-
-```{python}
-print(df.drop_nans())
-print(df.drop_nulls())
-```
 
 ### Calculs sur des colonnes contenant des valeurs manquantes
 
-Lors de calculs statistiques, les valeurs nulles sont généralement ignorées en polars. Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
+Lors de calculs statistiques, les valeurs nulles sont généralement ignorées en polars.
+Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
 
 ```{python}
 df['var1'].mean()
@@ -1107,15 +1102,15 @@ df['var2'].mean()
 
 ### Suppression des valeurs manquantes
 
-Les méthodes `drop_nulls()` et `drop_nans()` permettent de supprimer les lignes contenant des valeurs manquantes ou des NaN.
+Les méthodes `drop_nulls()` et `drop_nans()` permettent de supprimer les lignes contenant des valeurs manquantes ou des `NaN`.
 
-Par défaut, toute ligne contenant au moins une valeur manquante ou NaN est supprimée.
+Par défaut, toute ligne contenant au moins une valeur manquante ou `NaN` est supprimée.
 
 ```{python}
 df.drop_nans()
 ```
 
-Si l'on spécifie une liste de colonnes, seules les lignes comportant une valeur manquante ou NaN de cette colonne seront supprimées.
+Si l'on spécifie une liste de colonnes, seules les lignes comportant une valeur manquante ou `NaN` de cette colonne seront supprimées.
 
 ```{python}
 df.drop_nulls(['var1'])
@@ -1123,7 +1118,8 @@ df.drop_nulls(['var1'])
 
 ### Remplacement des valeurs manquantes
 
-Pour gérer les valeurs manquantes dans un dataframe, une approche commune est l'imputation, qui consiste à remplacer les valeurs manquantes par d'autres valeurs. La méthode [`fill_null()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.fill_null.html) permet d'effectuer cette opération de différentes manières dans toute la table de donnée.
+Pour gérer les valeurs manquantes dans un dataframe, une approche commune est l'imputation, qui consiste à remplacer les valeurs manquantes par d'autres valeurs.
+La méthode [`fill_null()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.fill_null.html) permet d'effectuer cette opération de différentes manières dans toute la table de donnée.
 
 - Une première possibilité est le remplacement par une valeur constante.
 
@@ -1138,7 +1134,8 @@ Il peut parfois être tentant de changer la manifestation d'une valeur manquante
 df.fill_null(value="MISSING")
 ```
 
-En pratique, cette façon de faire n'est pas recommandée. Il est en effet préférable de conserver la convention standard de polars (l'utilisation des `null`), d'abord pour des questions de standardisation des pratiques qui facilitent la lecture et la maintenance du code, mais également parce que la convention standard est optimisée pour la performance et les calculs à partir de données contenant des valeurs manquantes.
+En pratique, cette façon de faire n'est pas recommandée.
+Il est en effet préférable de conserver la convention standard de polars (l'utilisation des `null`), d'abord pour des questions de standardisation des pratiques qui facilitent la lecture et la maintenance du code, mais également parce que la convention standard est optimisée pour la performance et les calculs à partir de données contenant des valeurs manquantes.
 :::
 
 La méthide `fill_null()` de polars propose 4 méthodes pré-définies pour remplacer les valeurs manquantes par l'argument `strategy`:
@@ -1151,13 +1148,16 @@ Si l'on veut remplacer uniquement les valeurs manquantantes d'une colonne en pol
 
 ```{python}
 df.with_columns(
-    pl.col(pl.NUMERIC_DTYPES).fill_null(strategy="mean")
+    cs.numeric().fill_null(strategy="mean")
 )
 ```
 
 
 ::: {.callout-warning title="Biais d'imputation"}
-Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la moyenne ou la médiane, peut être problématique. Si les données ne sont pas manquantes au hasard (*Missing Not At Random* - *MNAR*), cela peut introduire un biais dans l'analyse. Les variables *MNAR* sont des variables dont la probabilité d'être manquantes est liée à leur propre valeur ou à d'autres variables dans les données. Dans de tels cas, une imputation plus sophistiquée peut être nécessaire pour minimiser les distorsions. Nous en verrons un exemple en exercice de fin de tutoriel.
+Remplacer les valeurs manquantes par une valeur constante, telle que zéro, la moyenne ou la médiane, peut être problématique.
+Si les données ne sont pas manquantes au hasard (*Missing Not At Random* - *MNAR*), cela peut introduire un biais dans l'analyse.
+Les variables *MNAR* sont des variables dont la probabilité d'être manquantes est liée à leur propre valeur ou à d'autres variables dans les données.
+Dans de tels cas, une imputation plus sophistiquée peut être nécessaire pour minimiser les distorsions.
 :::
 
 De manière similaire, la méthode `fill_nan()` permet de remplacer les valeurs numériques NaN par toute valeur indiquée.
