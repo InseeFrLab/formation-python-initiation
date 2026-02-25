@@ -2521,10 +2521,10 @@ df_metadata = pl.read_csv('data/serie_glaces_metadonnees.csv', separator=';',
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_merged = pd.merge(df_valeurs, df_metadata, how='left', on='code')
+df_merged = df_valeurs.join(df_metadata, how='left', on='code')
 
-df_clean = df_merged[df_merged['code'] == "A"]
-df_clean = df_clean[["periode", "indice"]]
+df_clean = df_merged.filter(pl.col("code") == "A")
+df_clean = df_clean.select("periode", "indice")
 ```
 
 </details>
@@ -2546,10 +2546,12 @@ Vérifiez si les types des variables sont pertinents selon leur nature. Sinon, c
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_clean.info()
-df_clean['periode'] = pd.to_datetime(df_clean['periode'])
-df_clean['indice'] = pd.to_numeric(df_clean['indice'])
-df_clean.info()
+df_clean.describe()
+df_clean = df_clean.with_columns(
+    periode = pl.col("periode").str.to_date("%Y-%m"),
+    indice = pl.col("indice").cast(pl.Float64)
+)
+df_clean.glimpse()
 ```
 
 </details>
@@ -2558,7 +2560,7 @@ df_clean.info()
 
 ### Partie 4 : Calcul de l'évolution périodique
 
-- Utilisez la méthode [shift()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shift.html) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
+- Utilisez la méthode [shift()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.shift.html#polars.Expr.shift) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
 - Calculez la différence entre l'indice actuel et l'indice décalé pour obtenir l'évolution (en pourcentage) d'un trimestre à l'autre
 
 ```{python}
@@ -2572,11 +2574,16 @@ df_clean.info()
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_clean['indice_prec'] = df_clean['indice'].shift(1)
-df_clean['evo'] = ((df_clean['indice'] - df_clean['indice_prec']) / df_clean['indice_prec']) * 100
+df_clean = (
+    df_clean
+    .sort("periode")
+    .with_columns(
+        evo = ((pl.col("indice") - pl.col("indice").shift(1)) / pl.col("indice").shift(1))*100
+    )
+)
 
 ## Méthode alternative
-df_clean['evo_alt'] = df_clean['indice'].pct_change(periods=1) * 100
+df_clean.with_columns(evo_alt = pl.col("indice").pct_change(n=1) * 100)
 ```
 
 </details>
@@ -2585,7 +2592,8 @@ df_clean['evo_alt'] = df_clean['indice'].pct_change(periods=1) * 100
 
 ### Partie 5 : Calcul de l'évolution glissante sur 12 mois
 
-Comme vous avez pu le voir dans la solution de l'exercice précédent, la méthode [pct_change()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pct_change.html) permet précisément de calculer une évolution entre deux périodes. Utiliser cette méthode pour calculer une évolution (en pourcentage) en glissement annuel pour chaque mois.
+Comme vous avez pu le voir dans la solution de l'exercice précédent, la méthode [pct_change()](https://docs.pola.rs/api/python/stable/reference/series/api/polars.Series.pct_change.html#polars.Series.pct_change) permet précisément de calculer une évolution entre deux périodes.
+Utiliser cette méthode pour calculer une évolution (en pourcentage) en glissement annuel pour chaque mois.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2598,7 +2606,8 @@ Comme vous avez pu le voir dans la solution de l'exercice précédent, la métho
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_clean["evo_glissement_annuel"] = df_clean['indice'].pct_change(periods=12) * 100
+df_clean = df_clean.with_columns(evo_glissement_annuel=pl.col("indice").pct_change(n=12) * 100)
+
 df_clean.head(20)
 ```
 
