@@ -1751,7 +1751,6 @@ Le fichier des prénoms contient des données sur les prénoms attribués aux en
 <summary>Afficher la solution</summary>
 
 ```{python}
-import pandas as pd
 url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
 df_prenoms = pl.from_pandas(pd.read_csv(url, sep=";"))
 
@@ -2087,7 +2086,7 @@ L'objectif de cet exercice est de calculer une empreinte carbone par habitant au
 
 - les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
 
-Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/).
+Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de Pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/) et traduit en Polars.
 
 ### Partie 1 : Exploration des données sur les populations légales communales
 
@@ -2473,7 +2472,7 @@ Vous avez à disposition dans le dossier `data/` deux jeux de données CSV :
 - `serie_glaces_valeurs.csv` contient les valeurs mensuelles de l'indice de prix de production de l'industrie française des glaces et sorbets
 - `serie_glaces_metadonnees.csv` contient les métadonnées associées, notamment les codes indiquant le statut des données.
 
-L'objectif est d'utiliser `Pandas` pour calculer :
+L'objectif est d'utiliser `Polars` pour calculer :
 
 - l'évolution de l'indice entre chaque période (mois)
 - l'évolution de l'indice en glissement annuel (entre un mois donné et le même mois l'année suivante).
