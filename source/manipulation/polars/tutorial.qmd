@@ -397,6 +397,9 @@ Ils comprennent principalement:
 
 : Type de données dans polars
 
+À chaque type de données polars sont associées des méthodes différentes pour les manipuler.
+Elles sont détaillées dans la documentation et les principales seront vues à la suite.
+
 ::: {.callout-caution title="Deux types de valeurs particulières"}
 
 Pour polars, les types `null` et `nan` sont différents.
@@ -481,7 +484,6 @@ Si l'on veut éviter une dépendance à pandas juste pour cette opération, il f
 Prenons l'exemple d'un fichier CSV disponible sur le site de l'INSEE : le fichier des prénoms, issu des données de l'état civil.
 
 ```{python}
-#| eval: false
 # Téléchargement et stockage du nom du fichier
 url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
 file_Path = url.split('/')[-1]
@@ -536,7 +538,6 @@ Tous ces paramètres et leur utilisation sont détaillés dans la [documentation
 
 ```{python}
 #| echo: false
-#| eval: false
 # Pour nettoyer les fichiers
 !rm $file_Path
 !rm temp -rf
@@ -780,7 +781,9 @@ Il permet ainsi de modifier des valeurs de colonne, d'effectuer des opérations 
 
 La méthode `with_columns()` fonctionne avec deux syntaxes différentes :
 
-- en utilisant une syntaxe plus proche du SQL et de Python, grâce à la méthode `.alias()` ;
+- en utilisant une syntaxe plus proche du SQL et de Python, grâce à la méthode `.alias()`.
+Dans cette syntaxe, on définit le nom de la variable en appliquant 'alias' à la définition.
+Attention, si `alias()` n'est pas défini, polars n'affecte pas le résultat ;
 - plus similaire au tidyverse, en assignant les variables avec une équation.
 
 Par exemple, si l'on veut définir la colonne `b` comme la colonne `a` divisée par 2 , on va utiliser la formule suivante :
@@ -1164,10 +1167,17 @@ De manière similaire, la méthode `fill_nan()` permet de remplacer les valeurs 
 
 # Traiter les données de types spécifiques
 
+Comme rappelé précédemment, polars associe à chaque type de données des méthodes spécifiques.
+Par exemple :
+
+- à toute série de type caractère identifiée par exemple par `pl.col("myvar")`, on peut passer des méthodes pratiques après avoir appelé l'attribut `.str` de la série.
+- à toute série de type temporelle identifiée par exemple par `pl.col("mydate")`, on peut passer des méthodes pratiques après avoir appelé l'attribut `.dt` de la série.
+
+
 ## Données textuelles
 
 Les données textuelles nécessitent souvent un nettoyage et une préparation avant l'analyse.
-Polars fournit via la librairie de méthodes `str` un ensemble d'opérations vectorisées qui rendent la préparation des données textuelles à la fois simple et très efficace.
+Polars associe  à l'attribut `str` des méthodes vectorisées qui rendent la préparation des données textuelles à la fois simple et très efficace.
 La méthode `str` s'applique aux séries polars.
 Là encore, les possibilités sont multiples et détaillées dans la [documentation](https://docs.pola.rs/api/python/stable/reference/series/string.html).
 Nous présentons ici les méthodes les plus fréquemment utilisées dans l'analyse de données.
@@ -1203,8 +1213,7 @@ C'est l'occasion d'introduire la famille de méthode `strip` (`.str.strip_chars(
 (
     df
     .with_columns(
-        sample=pl.col("sample").str.strip_chars()  # remarque : on peut omettre ici le 'sample='
-                                                   # et avoir le meme résultat
+        sample=pl.col("sample").str.strip_chars()
         )
     .with_columns(
         sample_n = pl.col("sample").str.tail(1)
@@ -1212,7 +1221,7 @@ C'est l'occasion d'introduire la famille de méthode `strip` (`.str.strip_chars(
 )
 ```
 
-::: {.callout-note}
+::: {.callout-note title="with_columns ne permet pas de travailler sur une variable nouvellement créée"}
 Remarquez la présence de deux `with_columns()` et non d'un seul.
 C'est parce que polars étant optimisé, il effectue les opérations sur `with_columns` en parallèle.
 Ainsi, si l'on ne le fait pas de manière séquentielle, il ne prend pas en compte le fait qu'on enlève les espace superflus dans 'sample' à la première ligne avant d'en extraire le dernier caractère.
