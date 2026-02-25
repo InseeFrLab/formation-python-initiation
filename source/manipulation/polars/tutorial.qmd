@@ -1437,13 +1437,13 @@ df_a.join(df_b, how="full", on='key', coalesce=True)
 
 - 4/ Comment sont structurées les données dans un DataFrame `polars` ?
 
-- 6/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
+- 5/ Quelles méthodes pouvez-vous utiliser pour explorer un DataFrame inconnu et en apprendre davantage sur son contenu et sa structure ?
 
-- 8/ Comment s'applique le principe d'évaluation paresseuse dans `polars` et pourquoi est-ce avantageux pour manipuler les données ?
+- 6/ Comment s'applique le principe d'évaluation paresseuse dans `polars` et pourquoi est-ce avantageux pour manipuler les données ?
 
-- 9/ Comment `polars` représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
+- 7/ Comment `polars` représente-t-il les valeurs manquantes et quel impact cela a-t-il sur les calculs et les transformations de données ?
 
-- 10/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
+- 8/ Quelle est la différence entre concaténer deux DataFrames et les joindre via une jointure, et quand utiliseriez-vous l'une plutôt que l'autre ?
 
 
 ::: {.cell .markdown}
@@ -1451,23 +1451,55 @@ df_a.join(df_b, how="full", on='key', coalesce=True)
 <details>
 <summary>Afficher la solution</summary>
 
-- 1/ Un DataFrame dans `pandas` est une structure de données bidimensionnelle, comparable à un tableau ou une feuille de calcul Excel. Dans le contexte Python, on peut le comparer à un dictionnaire d'arrays NumPy, où les clés sont les noms des colonnes et les valeurs sont les colonnes elles-mêmes.
+- 1/ Un DataFrame dans `polars` est une **structure de données tabulaire bidimensionnelle**, optimisée pour la performance et la manipulation de données volumineuses. Contrairement à pandas, il n’utilise pas d’index nommé par défaut.
+On peut le comparer à un **dictionnaire de listes ou d’arrays NumPy**, où chaque clé du dictionnaire représente une colonne, et les valeurs sont les données de cette colonne. Polars utilise des Series pour représenter chaque colonne, mais contrairement à pandas, ces Series ne partagent pas d’index global.
 
-- 2/ La différence principale entre un array NumPy et une Series `pandas` est que la Series peut contenir des données étiquetées, c'est-à-dire qu'elle a un index qui lui est associé, permettant des accès et des manipulations par label.
+- 2/ Les avantages de `polars` sont globalement :
+    - **Rapidité** : Polars est optimisé pour traiter des données volumineuses, souvent plus rapidement que pandas, grâce à son implémentation en Rust et son utilisation de la parallélisation.
+    - **Évaluation paresseuse (lazy evaluation)** : Permet d’optimiser les requêtes avant leur exécution, améliorant les performances sur les gros jeux de données.
+    - **Streaming** : Capacité à traiter des données qui ne tiennent pas en mémoire (out-of-memory).
+    - **API expressive** : Syntaxe claire et intuitive, inspirée de SQL et du tidyverse (R).
+    - **Pas d’index** : Contrairement à pandas, Polars n’utilise pas d’index, ce qui simplifie les opérations et améliore les performances.
+    - **Gestion des types stricte **: Polars est très strict sur les types de données, ce qui réduit les erreurs et améliore la robustesse.
+    - **Sélecteurs avancés** : Permet de sélectionner des colonnes par nom, type ou motif (regex).
 
-- 3/ Un DataFrame est essentiellement une collection de Series. Chaque colonne d'un DataFrame est une Series, et toutes ces Series partagent le même index, qui correspond aux étiquettes des lignes du DataFrame.
 
-- 4/ Les données dans un DataFrame `pandas` sont structurées en colonnes et en lignes. Chaque colonne peut contenir un type de données différent (numérique, chaîne de caractères, booléen, etc.), et chaque ligne représente une observation.
+- 3/ Un DataFrame est une **collection de Series**, où chaque Series représente une colonne. Contrairement à `pandas`, les Series de `polars` ne partagent pas d’index global. Chaque Series est indépendante et peut être manipulée individuellement.
+Un DataFrame est donc une table composée de colonnes (Series) alignées par leur position (et non par un index).
 
-- 5/ L'index dans un DataFrame `pandas` sert à identifier de manière unique chaque ligne du DataFrame. Il permet d'accéder rapidement aux lignes, de réaliser des jointures, de trier les données et de faciliter les opérations de regroupement.
+- 4/ Les données sont organisées en **colonnes (Series) et en lignes (observations)**.
+    - Chaque colonne est une Series avec un type de données homogène (ex : pl.Int64, pl.String, pl.Date).
+    - Les lignes n’ont pas d’index nommé par défaut, mais peuvent être référencées par leur position.
+    - Les colonnes peuvent être de types différents (numériques, chaînes, dates, etc.).
 
-- 6/ Pour explorer un DataFrame inconnu, on peut utiliser df.head() pour voir les premières lignes, df.tail() pour les dernières, df.info() pour obtenir un résumé des types de données et des valeurs manquantes, et df.describe() pour des statistiques descriptives.
 
-- 7/ Assigner le résultat d'une opération à une nouvelle variable crée une copie du DataFrame avec les modifications appliquées. Utiliser une méthode avec inplace=True modifie le DataFrame original sans créer de copie, ce qui peut être plus efficace en termes de mémoire.
+- 5/ Pour explorer un DataFrame inconnu, on peut utiliser :
+    - df.head(n) : Affiche les n premières lignes.
+    - df.tail(n) : Affiche les n dernières lignes.
+    - df.sample(n) : Affiche un échantillon aléatoire de n lignes.
+    - df.glimpse() : Affiche un résumé du schéma (noms des colonnes, types de données) et les premières - valeurs.
+    - df.describe() : Fournit des statistiques descriptives (moyenne, écart-type, valeurs min/max, etc.) - pour chaque colonne.
+    - df.schema : Affiche les types de données de chaque colonne.
+    - df.shape : Retourne le nombre de lignes et de colonnes.
+    - df.columns : Liste les noms des colonnes.
 
-- 8/ `pandas` représente les valeurs manquantes avec l'objet `nan` (Not a Number) de `Numpy` pour les données numériques et avec None ou pd.NaT pour les dates/temps. Ces valeurs manquantes sont généralement ignorées dans les calculs de fonctions statistiques, ce qui peut affecter les résultats si elles ne sont pas traitées correctement.
+- 6/ L’évaluation paresseuse (lazy evaluation) permet de **planifier une série d’opérations** (filtres, agrégations, jointures) sans les exécuter immédiatement. Polars optimise alors le plan d’exécution (par exemple, en appliquant les filtres avant les agrégations) avant de charger ou transformer les données.
+Cela permet notamment de réduire la consommation mémoire, d'augmenter le temps d'exécution et d'optimiser
+le traitement de requêtes complexes.
 
-- 9/ Concaténer consiste à assembler des DataFrames en les empilant verticalement ou en les alignant horizontalement, principalement utilisé lorsque les DataFrames ont le même schéma ou lorsque vous souhaitez empiler les données. Les jointures, inspirées des opérations JOIN en SQL, combinent les DataFrames sur la base de valeurs de clés communes et sont utilisées pour enrichir un ensemble de données avec des informations d'un autre ensemble.
+
+- 7/ `polars` distingue **deux types de valeurs manquantes** :
+    - null : Valeur manquante générique (pour tous les types de données).
+    - NaN : Valeur manquante spécifique aux données numériques (équivalent à np.nan).
+Les valeurs null et NaN sont ignorées par défaut dans les calculs statistiques (moyenne, somme, etc.).
+Les opérations logiques (filter, is_in, etc.) traitent null comme une valeur inconnue (ex : null == null retourne null, pas True).
+Les méthodes comme .drop_nulls() ou .fill_null() permettent de gérer explicitement ces valeurs.
+
+- 8/ La différence entre concaténer et joindre deux tables est :
+    - **Concaténer**, avec `pl.concat`, permet d'empiler deux DataFrames verticalement (ajoute des lignes) ou horizontalement (ajoute des colonnes). On l'utilise lorsque les DataFrames ont la même structure (mêmes colonnes pour un empilement vertical, mêmes lignes pour un empilement horizontal).
+    - La **jointure**, avec `df.join()`, permet de **combiner deux DataFrames sur une clé commune** (comme une opération SQL JOIN). Elle est utilisée pour enrichir un DataFrame avec des données d’un autre, en fonction de valeurs partagées (ex : df1.join(df2, on="id", how="inner")). Il existe quatre types principaux de jointures : inner, left, outer, cross.
+    - On **préfère** concaténer pour fusionner des données de même structure (ex : ajouter des observations supplémentaires) et joindre deux tables pour combiner des données liées par une clé (ex : lier des tables "clients" et "commandes").
+
 
 </details>
 
