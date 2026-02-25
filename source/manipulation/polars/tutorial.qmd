@@ -2480,7 +2480,7 @@ L'objectif est d'utiliser `Pandas` pour calculer :
 
 ### Partie 1 : Import des données
 
-- Importez les deux fichiers CSV dans des DataFrames. Attention, dans les deux cas, il y a des lignes superflues avant les données, qu'il faudra sauter à l'aide du paramètre `skiprows` de la fonction [read_csv()](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html).
+- Importez les deux fichiers CSV dans des DataFrames. Attention, dans les deux cas, il y a des lignes superflues avant les données, qu'il faudra sauter à l'aide du paramètre `skip_rows` de la fonction [read_csv()](https://docs.pola.rs/api/python/stable/reference/api/polars.read_csv.html#polars.read_csv).
 - Donnez des noms simples et pertinents aux différentes variables.
 
 ```{python}
@@ -2494,10 +2494,10 @@ L'objectif est d'utiliser `Pandas` pour calculer :
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_valeurs = pd.read_csv('data/serie_glaces_valeurs.csv', delimiter=';',
-                         skiprows=4, names=["periode", "indice", "code"])
-df_metadata = pd.read_csv('data/serie_glaces_metadonnees.csv', delimiter=';',
-                          skiprows=5, names=["code", "signification"])
+df_valeurs = pl.read_csv('data/serie_glaces_valeurs.csv', separator=';',
+                        skip_rows=4, has_header=False, new_columns=["periode", "indice", "code"])
+df_metadata = pl.read_csv('data/serie_glaces_metadonnees.csv', separator=';',
+                        skip_rows=5, has_header=False, new_columns=["code", "signification"])
 ```
 
 </details>
