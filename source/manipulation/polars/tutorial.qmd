@@ -2092,7 +2092,7 @@ Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique
 ### Partie 1 : Exploration des données sur les populations légales communales
 
 - Importez le fichier CSV `communes.csv`.
-- Utilisez les méthodes `.sample()`, `.info()` et `.describe()` pour obtenir un aperçu des données.
+- Utilisez les méthodes `.sample()` et `.describe()` pour obtenir un aperçu des données.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2171,7 +2171,32 @@ df_pop_communes_stats.corr()
 ### Partie 2 : Exploration des données sur les émissions communales
 
 - Importez les données d'émission depuis cette [URL](https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv)
-- Utilisez les méthodes `.sample()`, `.info()` et `.describe()` pour obtenir un aperçu des données.
+- Utilisez les méthodes `.sample()` et `.describe()` pour obtenir un aperçu des données.
+
+```{python}
+# Testez votre réponse dans cette cellule
+
+```
+
+
+::: {.cell .markdown}
+
+<details>
+<summary>Afficher la solution</summary>
+
+```{python}
+url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
+df_emissions = pl.from_pandas(pd.read_csv(url_ademe))
+
+df_emissions.sample(10)
+df_emissions.describe()
+```
+
+</details>
+
+:::
+
+- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [is_null()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.is_null.html#polars.Expr.is_null) et [all_horizontal()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.all_horizontal.html#polars.all_horizontal).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2184,15 +2209,9 @@ df_pop_communes_stats.corr()
 <summary>Afficher la solution</summary>
 
 ```{python}
-url_ademe = "https://data.ademe.fr/data-fair/api/v1/datasets/igt-pouvoir-de-rechauffement-global/data-files/IGT%20-%20Pouvoir%20de%20r%C3%A9chauffement%20global.csv"
-df_emissions = pl.from_pandas(pd.read_csv(url_ademe))
-</details>
-```{python}
-# Testez votre réponse dans cette cellule
-
 df_emissions_num = df_emissions.select(cs.numeric())
-only_nan = df_emissions_num.filter(pl.all_horizontal(pl.all().is_null()))
-only_nan.height
+only_nulls = df_emissions_num.filter(pl.all_horizontal(pl.all().is_null()))
+only_nulls.height
 ```
 
 </details>
@@ -2233,7 +2252,7 @@ df_emissions_top10
 
 :::
 
-- Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corrwith()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html).
+- Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corr()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.corr.html#polars.DataFrame.corr).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2246,7 +2265,7 @@ df_emissions_top10
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions.corrwith(df_emissions["emissions_totales"], numeric_only=True)
+df_emissions.select(cs.numeric()).corr()
 ```
 
 </details>
