@@ -2320,9 +2320,10 @@ df_emissions_top10
 
 ### Partie 3 : Vérifications préalables pour la jointure des sources de données
 
-Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jointure, i.e. une colonne commune aux deux sources, qui identifie uniquement les unités statistiques. L'objet de cette partie est de trouver la clé de jointure pertinente.
+Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jointure, i.e. une colonne commune aux deux sources, qui identifie uniquement les unités statistiques.
+L'objet de cette partie est de trouver la clé de jointure pertinente.
 
-- Vérifiez si la variable contenant les noms de commune contient des doublons
+- Vérifiez si la variable contenant les noms de commune de la table population contient des doublons
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2335,9 +2336,7 @@ Pour effectuer une jointure, il est toujours préférable d'avoir une clé de jo
 <summary>Afficher la solution</summary>
 
 ```{python}
-doublons = df_pop_communes.groupby('COM').count()['DEPCOM']
-doublons = doublons[doublons>1]
-doublons = doublons.reset_index()
+doublons = df_pop_communes.select(pl.col("COM").value_counts(name="nb_occurences")).unnest("COM").filter(pl.col("nb_occurences")>1)
 doublons
 ```
 
@@ -2358,8 +2357,8 @@ doublons
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_pop_communes_doublons = df_pop_communes[df_pop_communes["COM"].isin(doublons["COM"])]
-df_pop_communes_doublons.sort_values('COM')
+df_pop_communes_doublons = df_pop_communes.filter(pl.col("COM").is_in(doublons["COM"])).drop(pl.col("PTOT"))
+df_pop_communes_doublons.sort('COM')
 ```
 
 </details>
@@ -2379,7 +2378,7 @@ df_pop_communes_doublons.sort_values('COM')
 <summary>Afficher la solution</summary>
 
 ```{python}
-(df_pop_communes_doublons.groupby("DEPCOM")["COM"].nunique() != 1).sum()
+df_pop_communes_doublons.group_by("DEPCOM").n_unique().filter(pl.col("COM")>1).select(pl.sum("COM"))
 ```
 
 </details>
@@ -2400,10 +2399,14 @@ df_pop_communes_doublons.sort_values('COM')
 
 ```{python}
 ## Observations qui sont dans les pop légales mais pas dans les données d'émissions
-df_pop_communes[~df_pop_communes["DEPCOM"].isin(df_emissions["INSEE commune"])]
+df_pop_communes.filter(
+    ~pl.col("DEPCOM").is_in(df_emissions["INSEE commune"])
+    )
 
 ## Observations qui sont dans les données d'émissions mais pas dans les pop légales
-df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
+df_emissions.filter(
+    ~pl.col("INSEE commune").is_in(df_pop_communes["DEPCOM"])
+    )["INSEE commune"]
 ```
 
 </details>
@@ -2425,7 +2428,7 @@ df_emissions[~df_emissions["INSEE commune"].isin(df_pop_communes["DEPCOM"])]
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions_pop = pd.merge(df_pop_communes, df_emissions, how="inner", left_on="DEPCOM", right_on="INSEE commune")
+df_emissions_pop = df_pop_communes.join(df_emissions, how="inner", left_on="DEPCOM", right_on="INSEE commune")
 df_emissions_pop
 ```
 
@@ -2448,8 +2451,15 @@ df_emissions_pop
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions_pop["empreinte_carbone"] = df_emissions_pop["emissions_totales"] / df_emissions_pop["PTOT"]
-df_emissions_pop.sort_values("empreinte_carbone", ascending=False).head(10)
+df_emissions_pop = (
+    df_emissions_pop
+    .with_columns(
+        empreinte_carbone=pl.col("emissions_totales") / pl.col("PTOT")
+        )
+    .sort("empreinte_carbone")
+)
+
+df_emissions_pop.tail(10)
 ```
 
 </details>
