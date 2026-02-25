@@ -2233,12 +2233,16 @@ only_nulls.height
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions_top10 = (
+df_emissions = (
     df_emissions
     .unpivot(on=cs.numeric(), index="INSEE commune")
     .with_columns(emissions_totales=pl.sum("value").over("INSEE commune"))
     .pivot(on="variable", index=["INSEE commune", "emissions_totales"])
     .sort("emissions_totales", descending=True)
+)
+
+df_emissions_top10 = (
+    df_emissions
     .head(10)
     .with_columns(
         (cs.numeric() / pl.col("emissions_totales")).name.suffix("_normalized")
@@ -2265,7 +2269,13 @@ df_emissions_top10
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_emissions.select(cs.numeric()).corr()
+pl.concat(
+    [df_emissions.drop_nulls().select(cs.numeric()).corr().select("emissions_totales"),
+    pl.DataFrame({
+        'autre_col':df_emissions.select(cs.numeric()).columns
+        })],
+        how='horizontal'
+    ).sort("emissions_totales")
 ```
 
 </details>
