@@ -174,7 +174,7 @@ def load_geo_data(url):
 
 
 def plot_population_by_regions(df, geo, year):
-    plot = df_regions.filter(
+    plot = df.filter(
         pl.col.annee == year, pl.col.genre == "Ensemble", pl.col.age == "Total"
     ).group_by("region_name").agg(pl.sum("population")).to_pandas().merge(
         geo, left_on="region_name", right_on="NOM", how="left"
