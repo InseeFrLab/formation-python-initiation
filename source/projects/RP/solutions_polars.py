@@ -1,20 +1,17 @@
 # %%
-# import copy
-import polars as pl
-import plotnine as p9
 import geopandas as gpd
-# import seaborn as sns
-# import fastexcel
-import solutions
 import matplotlib.pyplot as plt
+import plotnine as p9
+import polars as pl
 import requests
+import solutions
 
 
 def load_data():
     data = pl.read_excel(
-        'https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls',
+        "https://www.insee.fr/fr/statistiques/fichier/1893198/estim-pop-dep-sexe-aq-1975-2023.xls",
         sheet_name=[str(i) for i in range(1975, 2024, 1)],
-        read_options={"header_row": 3}
+        read_options={"header_row": 3},
     )
 
     return data
@@ -25,99 +22,84 @@ def reshape_table_by_year(df, year):
     temp_colnames_list = df.columns
     for index, colname in enumerate(temp_colnames_list):
         if df[0, colname] is not None:
-            if colname[:11] == '__UNNAMED__':
-                temp_colnames_list[index] = temp_colnames_list[index-1].split("_")[0] + "__" + df[0, colname]
+            if colname[:11] == "__UNNAMED__":
+                temp_colnames_list[index] = (
+                    temp_colnames_list[index - 1].split("_")[0] + "__" + df[0, colname]
+                )
             else:
-                temp_colnames_list[index] = temp_colnames_list[index] + "__" + df[0, colname]
+                temp_colnames_list[index] = (
+                    temp_colnames_list[index] + "__" + df[0, colname]
+                )
         else:
-            temp_colnames_list[index] = temp_colnames_list[index-1].split("_")[0] + "__00"
+            temp_colnames_list[index] = (
+                temp_colnames_list[index - 1].split("_")[0] + "__00"
+            )
     temp_colnames_list[0] = "dep_code"
     temp_colnames_list[1] = "dep"
     df_new = df.rename(dict(zip(df.columns, temp_colnames_list)))
 
     # Reshaping data
-    df_new = (df_new\
-        .drop_nulls(pl.col('dep'))
-        .unpivot(index=['dep_code', 'dep'], value_name="population")
+    df_new = (
+        df_new.drop_nulls(pl.col("dep"))
+        .unpivot(index=["dep_code", "dep"], value_name="population")
+        .with_columns(variablelist=pl.col.variable.str.split("__"))
         .with_columns(
-            variablelist=pl.col.variable.str.split('__')
+            genre=pl.col.variablelist.list.get(0, null_on_oob=True),
+            age=pl.col.variablelist.list.get(1, null_on_oob=True),
+            population=pl.col.population.cast(pl.Int64),
+            annee=pl.lit(year).cast(pl.Int64),
         )
-        .with_columns(
-            genre=pl.col.variablelist.list.get(0, null_on_oob=True), 
-            age=pl.col.variablelist.list.get(1, null_on_oob=True), 
-            population=pl.col.population.cast(pl.Int64), 
-            annee=pl.lit(year).cast(pl.Int64)
-        )
-        .select(['dep_code', 'dep', 'annee', 'genre', 'age', 'population'])
+        .select(["dep_code", "dep", "annee", "genre", "age", "population"])
     )
 
     return df_new
 
 
 def reshape_data(data):
-    df = pl.DataFrame(schema=
-        ['dep_code', 'dep', 'annee', 'genre', 'age', 'population']
-    )
+    df = pl.DataFrame(schema=["dep_code", "dep", "annee", "genre", "age", "population"])
     for annee_dic, annee_df in data.items():
-        df=pl.concat([df, reshape_table_by_year(annee_df, annee_dic)], strict=False, how='vertical_relaxed')
+        df = pl.concat(
+            [df, reshape_table_by_year(annee_df, annee_dic)],
+            strict=False,
+            how="vertical_relaxed",
+        )
 
     return df
 
-# %%
-df = reshape_data(load_data())
 
-# %%
 def plot_population_by_gender_per_department(data, department_code):
-    
-    df_plot = (data\
-        .filter(
-            pl.col.dep_code.is_in([department_code]), 
-            pl.col.genre !="Ensemble", 
-            pl.col.age == "Total"
-            )
-        .with_columns(pl.col.population/1e6)
-    )
+    df_plot = data.filter(
+        pl.col.dep_code.is_in([department_code]),
+        pl.col.genre != "Ensemble",
+        pl.col.age == "Total",
+    ).with_columns(pl.col.population / 1e6)
 
     plot = (
-        p9.ggplot(df_plot,        
-            p9.aes(x="annee", y="population", group="genre", colour="genre")) 
+        p9.ggplot(
+            df_plot, p9.aes(x="annee", y="population", group="genre", colour="genre")
+        )
         + p9.geom_line(size=1)
         + p9.theme_matplotlib()
         + p9.labs(
-            title=f"Évolution de la population entre {df_plot.min()[0, "annee"]} et {df_plot.max()[0, "annee"]} dans le {df_plot.min()[0, "dep_code"]} ({df_plot.min()[0, "dep"]})", 
-            x="Année", 
-            y="Population (M)"
+            title=f"Évolution de la population entre {df_plot.min()[0, 'annee']} et {df_plot.max()[0, 'annee']} dans le {df_plot.min()[0, 'dep_code']} ({df_plot.min()[0, 'dep']})",
+            x="Année",
+            y="Population (M)",
         )
     )
 
     return plot
 
-# %%
-plot_population_by_gender_per_department(df, '31')
-
-# %%
-solutions.plot_population_by_gender_per_department(df.to_pandas(), "31")
-
-# %%
-pyramide_data = solutions.get_age_pyramid_data(df.to_pandas(), 2022)
-pyramide_data
 
 # %%
 def get_age_pyramid_data(df, years):
-    pyramide_data = df\
-        .filter(
-            pl.col.annee.is_in([1975, 2022]), 
-            pl.col.age != "Total"
-        )\
-        .group_by(
-            ["annee", "genre", "age"]
-        )\
-        .agg(
-            pl.col.population.sum()
-        )\
-        .pivot(on="genre", values="population", index=["annee", "age"])\
-        .sort("age")\
+    pyramide_data = (
+        df.filter(pl.col.annee.is_in(years), pl.col.age != "Total")
+        .group_by(["annee", "genre", "age"])
+        .agg(pl.col.population.sum())
+        .pivot(on="genre", values="population", index=["annee", "age"])
+        .sort("age")
         .with_columns(Hommes=-pl.col.Hommes)
+    )
 
     return pyramide_data
 
@@ -133,53 +115,69 @@ def tr_age_sorted_plot(list):
 
 # %%
 def plot_age_pyramid(df, years):
-    df_plot = get_age_pyramid_data(df, years)\
-            .unpivot(index=["annee", "age"], variable_name="genre")\
-            .filter(pl.col.genre != "Ensemble")\
-            .with_columns(pl.col.value/1e6)
+    df_plot = (
+        get_age_pyramid_data(df, years)
+        .unpivot(index=["annee", "age"], variable_name="genre")
+        .filter(pl.col.genre != "Ensemble")
+        .with_columns(pl.col.value / 1e6)
+    )
 
     # Otherwise the categorie 5 to 9 is plotted betwwen 45 to 49 and 50 to 55
-    age_categories_sorted = df_plot.select("age").unique().with_columns(pl.col.age.str.len_chars().alias("length")).sort("length", "age").select("age").to_series().to_list()
+    age_categories_sorted = (
+        df_plot.select("age")
+        .unique()
+        .with_columns(pl.col.age.str.len_chars().alias("length"))
+        .sort("length", "age")
+        .select("age")
+        .to_series()
+        .to_list()
+    )
 
     df_plot = df_plot.join(
-            pl.DataFrame({
-                "age": age_categories_sorted, 
-                "age_sorted" : [f'{age_tr_i+1:02} - {age_categories_sorted[age_tr_i]}' for age_tr_i in range(len(age_categories_sorted))]
-            }), 
-            on="age", 
-            how="left"
-        )
+        pl.DataFrame(
+            {
+                "age": age_categories_sorted,
+                "age_sorted": [
+                    f"{age_tr_i + 1:02} - {age_categories_sorted[age_tr_i]}"
+                    for age_tr_i in range(len(age_categories_sorted))
+                ],
+            }
+        ),
+        on="age",
+        how="left",
+    )
 
-    plot = (   df_plot
-        >> p9.ggplot()
-        + p9.geom_bar(p9.aes("age_sorted", "value", fill="genre"),stat="identity")
-        + p9.theme_matplotlib()
-        + p9.facet_wrap("~ annee")
-        + p9.coord_flip()
-        + p9.scale_x_discrete(labels=tr_age_sorted_plot)
-        + p9.scale_y_continuous(labels=abs_list)
-        + p9.labs(
-                title=f"Évolution de la structure de la population entre {df_plot.min()[0, "annee"]} et {df_plot.max()[0, "annee"]})", 
-                x="Tranche d'âge", 
-                y="Population (M)"
-            )
+    plot = df_plot >> p9.ggplot() + p9.geom_bar(
+        p9.aes("age_sorted", "value", fill="genre"), stat="identity"
+    ) + p9.theme_matplotlib() + p9.facet_wrap(
+        "~ annee"
+    ) + p9.coord_flip() + p9.scale_x_discrete(
+        labels=tr_age_sorted_plot
+    ) + p9.scale_y_continuous(labels=abs_list) + p9.labs(
+        title=f"Évolution de la structure de la population entre {df_plot.min()[0, 'annee']} et {df_plot.max()[0, 'annee']})",
+        x="Tranche d'âge",
+        y="Population (M)",
     )
 
     return plot
 
-# %% 
+
+# %%
 plot_age_pyramid(df, [1975, 2023])
 # %%
 
-fig,(ax1,ax2) = plt.subplots(1,2,figsize=(15,6))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
 solutions.plot_age_pyramid(df.to_pandas(), 1975, ax=ax1)
 solutions.plot_age_pyramid(df.to_pandas(), 2022, ax=ax2)
 
 fig
 # %%
-df_matching = solutions.load_departements_regions("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
+df_matching = solutions.load_departements_regions(
+    "https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json"
+)
 df_matching
+
 
 # %%
 def load_departements_regions(url):
@@ -194,29 +192,33 @@ reg_details
 df_regions = solutions.match_department_regions(df.to_pandas(), df_matching)
 df_regions
 
+
 # %%
 def match_department_regions(df, df_matching):
     df_regions = df.join(
-        df_matching, 
-        how="left", 
-        left_on="dep_code", 
-        right_on="num_dep"
+        df_matching, how="left", left_on="dep_code", right_on="num_dep"
     )
     return df_regions
+
 
 # %%
 df_regions = match_department_regions(df, reg_details)
 df_regions
 
 # %%
-geo = solutions.load_geo_data("https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson")
+geo = solutions.load_geo_data(
+    "https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson"
+)
 geo
+
 
 # %%
 def load_geo_data(url):
     geodata = gpd.read_file(url)
-    geodata = geodata[['NOM', 'geometry']]
+    geodata = geodata[["NOM", "geometry"]]
     return geodata
+
+
 # %%
 url = "https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson"
 
@@ -226,20 +228,15 @@ solutions.plot_population_by_regions(df_regions.to_pandas(), geo, 2022)
 
 # %%
 
-(df_regions\
-    .filter(pl.col.annee==2022, pl.col.genre=="Ensemble", pl.col.age=="Total")
-    .group_by('region_name')
+(
+    df_regions.filter(
+        pl.col.annee == 2022, pl.col.genre == "Ensemble", pl.col.age == "Total"
+    )
+    .group_by("region_name")
     .agg(pl.col.population.sum())
     .to_pandas()
-    .merge(
-        geo, 
-        left_on="region_name", 
-        right_on="NOM",
-        how="left"
-    )
-    >> p9.ggplot(p9.aes(fill="population"))
-    + p9.geom_map()
-    + p9.theme_matplotlib()
+    .merge(geo, left_on="region_name", right_on="NOM", how="left")
+    >> p9.ggplot(p9.aes(fill="population")) + p9.geom_map() + p9.theme_matplotlib()
 )
 
 # list(set(list(geo['NOM'].unique())) & set(df_regions.select("region_name").unique().to_series().to_list()))
