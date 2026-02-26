@@ -3,7 +3,7 @@
 
 ## Contexte du projet
 
-Il y a certains jours où l'on serait bien resté en télétravail.. Parmi ceux-là, ces jours à la fois humides et venteux où il est impossible de maintenir une coiffure décente, malgré tous ses efforts. Pourrait-on utiliser `Python` pour prédire ce que les anglo-saxons nomment des *bad hair day* ("mauvais jour de cheveux") ?
+Il y a certains jours où l'on serait bien resté en télétravail. Parmi ceux-là, ces jours à la fois humides et venteux où il est impossible de maintenir une coiffure décente, malgré tous ses efforts. Pourrait-on utiliser `Python` pour prédire ce que les anglo-saxons nomment des *bad hair day* ("mauvais jour de cheveux") ?
 
 L'objectif du projet est de construire un *bad hair index* ("indice de mauvais jour de cheveux") à partir des données météorologiques et de représenter graphiquement l'évolution de cette indice afin de déterminer à l'avance les jours où l'on ferait mieux de rester bien au chaud. Afin d'obtenir les données adéquates, nous allons requêter des APIs.
 
@@ -12,18 +12,20 @@ Une API (Interface de Programmation d'Application) est un ensemble de règles et
 Les APIs que nous allons utiliser sont :
 
 - [Nominatim](https://nominatim.org/release-docs/latest/api/Overview/) : une API de géocodage proposée par **OpenStreetMap** qui nous permet de convertir un nom de lieu en coordonnées géographiques.
-- [Open-Meteo Weather Forecast](https://open-meteo.com/en/docs) : une API qui fournit des prévisions météorologiques détaillées. 
+- [Open-Meteo Weather Forecast](https://open-meteo.com/en/docs) : une API qui fournit des prévisions météorologiques détaillées.
 
 Commençons par importer les packages dont nous aurons besoin au cours de ce projet.
 
 ```{python}
 #| eval: false
 import requests
-import pandas
-import seaborn as sns
-import matplotlib.pyplot as plt
 
+# Choississez entre pandas et polars
+# for pandas and seaborn/matplotlib
 import solutions
+
+# for polars and plotnine
+# import solutions_polars as solutions
 ```
 
 ## Partie 1 : récupération des coordonnées géographiques pour une localisation donnée
@@ -37,7 +39,7 @@ Lorsque l'on travaille à partir d'une API, la première étape est toujours de 
 La première caractéristique essentielle d'une API est le *endpoint*, c'est à dire l'URL à laquelle on va envoyer des requêtes. Dans notre cas, on va utiliser le *endpoint* `/search` dans la mesure où l'on veut trouver un objet géographique (des coordonnées) à partir d'un nom de localisation. La [page de documentation](https://nominatim.org/release-docs/develop/api/Search/) associée à ce *endpoint* nous donne toutes les informations dont nous avons besoin :
 
 - le format d'une requête est `https://nominatim.openstreetmap.org/search?<params>` où `<params>` doit être remplacé par les paramètres de la requête, séparés par le symbole `&`
-- dans la section [Structured Query](https://nominatim.org/release-docs/develop/api/Search/#structured-query), on voit que l'API admet comme paramètres `country` (pays) et `city` (ville), que l'on va utiliser pour paramétrer notre requête. 
+- dans la section [Structured Query](https://nominatim.org/release-docs/develop/api/Search/#structured-query), on voit que l'API admet comme paramètres `country` (pays) et `city` (ville), que l'on va utiliser pour paramétrer notre requête.
 
 Définissez une fonction `build_request_nominatim` qui construit le lien de la requête pour un pays et une ville donnée.
 
@@ -67,7 +69,7 @@ url_request_nominatim
 
 ### Question 2
 
-La prochaine étape est d'envoyer notre requête paramétrisée à l'API. Pour la tester au préalable, on peut simplement mettre l'adresse dans un navigateur et voir ce que nous renvoie l'API. Si les résultats ont l'air cohérent, on peut continuer. Si l'API nous renvoie un code d'erreur, il y a sûrement une erreur à trouver dans la requête. 
+La prochaine étape est d'envoyer notre requête paramétrisée à l'API. Pour la tester au préalable, on peut simplement mettre l'adresse dans un navigateur et voir ce que nous renvoie l'API. Si les résultats ont l'air cohérent, on peut continuer. Si l'API nous renvoie un code d'erreur, il y a sûrement une erreur à trouver dans la requête.
 
 Pour effectuer cette requête à partir de `Python` afin d'en récupérer les résultats, on utilise la fonction `requests.get()` à laquelle on fournit comme seul paramètre l'URL de la requête. On obtient en retour un objet "réponse", dont on peut extraire le contenu `JSON` sous forme d'un dictionnaire `Python` en lui appliquant la méthode `.json()`. Il faut alors parcourir le dictionnaire pour en extraire les informations pertinentes ; dans notre cas : la latitude et la longitude.
 
@@ -370,11 +372,13 @@ Let's start by importing the packages we will need throughout this project.
 ```{python}
 #| eval: false
 import requests
-import pandas
-import seaborn as sns
-import matplotlib.pyplot as plt
 
+# Choose between using pandas or polars
+# for pandas and seaborn/matplotlib
 import solutions
+
+# for polars and plotnine
+# import solutions_polars as solutions
 ```
 
 ## Part 1: Retrieving geographic coordinates for a given location
