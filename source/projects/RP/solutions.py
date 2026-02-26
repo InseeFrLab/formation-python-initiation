@@ -80,6 +80,7 @@ def plot_population_by_gender_per_department(df, department_code):
 
     # Filter out the total population rows
     df = df[df["genre"] != "Ensemble"]
+    df = df[df["age"] != "Total"]
 
     # Create a pivot table with population values by year and gender
     df_pivot = df.pivot_table(

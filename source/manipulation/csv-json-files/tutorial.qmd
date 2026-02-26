@@ -60,7 +60,7 @@ rows[:4]
 On retrouve bien la même syntaxe que pour les fichiers texte simples : une fois le `reader` créé, on peut itérer sur les lignes et réaliser des opérations avec celles-ci ; par exemple, les stocker dans une liste comme ci-dessus.
 
 
-Lorsqu'on a un fichier CSV avec des noms de colonne comme dans notre cas, il est intéressant de les utiliser pour manipuler la donnée nommée, plutôt que par position en utilisant une liste simple. On utilise pour cela un `DictReader` au lieu du `reader`. A présent, lorsqu'on itère sur l'objet `DictReader` créé, chaque ligne est un dictionnaire, donc la clé est le nom de la colonne et la valeur la donnée de la cellule. 
+Lorsqu'on a un fichier CSV avec des noms de colonne comme dans notre cas, il est intéressant de les utiliser pour manipuler la donnée nommée, plutôt que par position en utilisant une liste simple. On utilise pour cela un `DictReader` au lieu du `reader`. A présent, lorsqu'on itère sur l'objet `DictReader` créé, chaque ligne est un dictionnaire, donc la clé est le nom de la colonne et la valeur la donnée de la cellule.
 
 Pour illustrer son intérêt, affichons les noms des départements donc le numéro de département est compris entre 20 et 29.
 
@@ -142,9 +142,9 @@ En pratique, comme pour l'encodage d'un fichier texte, **il y a peu de raison va
 ### Les fichiers JSON
 
 
-Le JSON (*JavaScript Object Notation*) est un format de fichier très populaire pour écrire et échanger de la donnée sous la forme d'une chaîne de caractères unique et lisible par l'humain (*human-readable*) — du moins en théorie. 
+Le JSON (*JavaScript Object Notation*) est un format de fichier très populaire pour écrire et échanger de la donnée sous la forme d'une chaîne de caractères unique et lisible par l'humain (*human-readable*) — du moins en théorie.
 
-Comme son nom le suggère, le JSON est lié au langage *JavaScript* dans la mesure où il constitue un dérivé de la notation des objets dans ce langage. Le format est cependant désormais indépendant de tout langage de programmation, mais est très fréquemment utilisé dans différents langages. 
+Comme son nom le suggère, le JSON est lié au langage *JavaScript* dans la mesure où il constitue un dérivé de la notation des objets dans ce langage. Le format est cependant désormais indépendant de tout langage de programmation, mais est très fréquemment utilisé dans différents langages.
 
 Le format JSON est particulièrement important pour les statisticiens et data scientists car il constitue le **format quasi-standard de réponse des [API](https://fr.wikipedia.org/wiki/Interface_de_programmation)**. Le dialogue avec les API va au delà du programme de ce cours d'introduction. Cependant, les API tendant à se généraliser comme mode de communication standard pour l'échange de données, il est important de maîtriser les bases du format JSON afin de manipuler les réponses des API lorsqu'on doit interagir avec celles-ci.
 
@@ -171,7 +171,7 @@ On le voit : la représentation JSON est assez proche de celle du dictionnaire P
 ### Le module `json`
 
 
-Le module `json` gère l'import de fichiers JSON et l'export d'objets Python au format JSON. Il s'occupe notamment de gérer les contraintes de conversion en JSON évoquées précédemment, comme celle des accents. 
+Le module `json` gère l'import de fichiers JSON et l'export d'objets Python au format JSON. Il s'occupe notamment de gérer les contraintes de conversion en JSON évoquées précédemment, comme celle des accents.
 
 En particulier, **le JSON peut stocker la majorité des types d'objets *built-in* de Python** que nous avons vus jusqu'à présent (*strings*, valeurs numériques, Booléens, listes, dictionnaires, `NoneType`) et bien d'autres, mais il ne peut pas représenter des objets Python créés manuellement via des classes par exemple.
 
@@ -220,7 +220,7 @@ Reprenons le CV que nous avons sérialisé précédemment au format JSON pour il
 ```{python}
 with open("cv.json", "r") as file_in:
     data = json.load(file_in)
-    
+
 data
 ```
 
@@ -233,7 +233,7 @@ import requests
 ```
 
 ```{python}
-response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=street")
 r_text = response.text
 print(r_text[:150])
 ```
@@ -313,7 +313,7 @@ r_dict["features"][1]
 
 - 9/ La sérialisation d'un objet Python (sérialisable) consiste à convertir la donnée contenue dans cet objet en une séquence d'octets, c'est à dire en un message qui peut être compris par n'importe quel ordinateur.
 
-- 10/ Ce sont des fichiers texte. 
+- 10/ Ce sont des fichiers texte.
 
 - 11/ Non, les fichiers JSON comme les fichiers CSV sont des fichiers texte. L'extension est une convention qui permet dans la grande majorité des cas de savoir ce que contient le fichier, mais elle ne peut pas le garantir.
 
@@ -360,7 +360,7 @@ with open("data_sorted.json", "w") as file_out:
 
 Nous avons vu que les objets que l'on crée manuellement via des classes ne sont généralement pas sérialisables. La cellule suivante en montre un exemple avec notre objet `Citron` utilisé dans le tutoriel sur la POO. Essayer de convertir directement l'objet en JSON renvoie une erreur.
 
-Vous devez modifier le code suivant afin de pouvoir sérialiser l'objet. Pour cela, vous devez : 
+Vous devez modifier le code suivant afin de pouvoir sérialiser l'objet. Pour cela, vous devez :
 
 - convertir l'instance `mon_citron` en utilisant la méthode *built-in* `__dict__` que possèdent tous les objets Python
 
@@ -375,7 +375,7 @@ class Citron:
         self.saveur = "acide"
         self.couleur = couleur
         self.jus = qte_jus
-        
+
 mon_citron = Citron(couleur="jaune", qte_jus=45)
 json.dumps(mon_citron)
 ```
@@ -399,7 +399,7 @@ class Citron:
         self.saveur = "acide"
         self.couleur = couleur
         self.jus = qte_jus
-        
+
 mon_citron = Citron(couleur="jaune", qte_jus=45)
 mon_citron_dict = mon_citron.__dict__
 
@@ -413,7 +413,7 @@ json.dumps(mon_citron_dict)
 ### Changer le délimiteur d'un fichier CSV
 
 
-Votre répertoire courant contient le fichier `nat2020.csv`. Il s'agit du fichier des prénoms diffusé par l'Insee : il contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2020. 
+Votre répertoire courant contient le fichier `nat2020.csv`. Il s'agit du fichier des prénoms diffusé par l'Insee : il contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2020.
 
 Problème : contrairement au standard CSV, le délimiteur utilisé n'est pas la virgule. Vous devez donc :
 
@@ -443,7 +443,7 @@ with open('nat2020.csv', 'r') as file_in:
         writer = csv.writer(file_out)  # Par défaut, le délimiteur est la virgule
         for row in reader:
             writer.writerow(row)
-            
+
 # Vérification à l'aide d'une commande shell
 !head -n 3 nat2020_corr.csv
 ```
@@ -457,7 +457,7 @@ with open('nat2020.csv', 'r') as file_in:
 
 L'exercice consiste à effectuer une requête à l'API de la Base Adresse Nationale, et sauvegarder les résultats dans un fichier CSV. Voici les étapes à implémenter :
 
-- effectuer une requête de nom de rue avec un mot clé comme dans le tutoriel (si vous souhaitez faire une requête plus complexe, vous pouvez regarder la [documentation de l'API](https://adresse.data.gouv.fr/api-doc/adresse)) et stocker les résultats dans un dictionnaire
+- effectuer une requête de nom de rue avec un mot clé comme dans le tutoriel (si vous souhaitez faire une requête plus complexe, vous pouvez regarder la [documentation de l'API et son swagger](https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban)) et stockxer les résultats dans un dictionnaire
 
 - créer un fichier CSV `resultats_ban.csv` dans lequel on va stocker les informations suivantes : 'nom', 'ville', 'code_commune', 'longitude', 'latitude'
 
@@ -485,7 +485,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 <summary>Afficher la solution</summary>
 
 ```python
-response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=street")
 r_text = response.text
 r_dict = json.loads(r_text)
 
@@ -511,11 +511,11 @@ with open('resultats_ban.csv', 'w') as file_out:
 
 L'objectif de cet exercice est de découper le fichier CSV des départements que nous avons utilisé dans le tutoriel en plusieurs petits CSV, un par région. Ce type d'opération peut être utile par exemple lorsqu'on travaille avec un fichier de très grande taille, qui ne passe pas en mémoire ; le découper en plusieurs fichiers que l'on traite indépendamment, lorsque cela est possible, permet de réduire la volumétrie.
 
-Voici la liste des opérations à effectuer : 
+Voici la liste des opérations à effectuer :
 
 - créer un dossier `dep` dans le répertoire courant à l'aide du module `pathlib` (cf. tutoriel précédent)
 
-- avec un objet `reader` du module `csv`, faire une boucle sur les lignes du fichier CSV des départements. Attention à ne pas inclure le *header*, en utilisant la fonction `next` pour passer la première ligne. Pour chaque ligne suivante : 
+- avec un objet `reader` du module `csv`, faire une boucle sur les lignes du fichier CSV des départements. Attention à ne pas inclure le *header*, en utilisant la fonction `next` pour passer la première ligne. Pour chaque ligne suivante :
 
     - récupérer le code région (variable `REG`)
 
@@ -819,7 +819,7 @@ Let's reuse the CV we serialized earlier into JSON format to illustrate reading 
 ```{python}
 with open("cv.json", "r") as file_in:
     data = json.load(file_in)
-    
+
 data
 ```
 
@@ -832,7 +832,7 @@ import requests
 ```
 
 ```{python}
-response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=street")
 r_text = response.text
 print(r_text[:150])
 ```
@@ -948,7 +948,7 @@ class Citron:
         self.flavor = "acidic"
         self.color = color
         self.juice = juice_qty
-        
+
 mon_citron = Citron(color="yellow", juice_qty=45)
 json.dumps(mon_citron)
 ```
@@ -971,7 +971,7 @@ class Citron:
         self.flavor = "acidic"
         self.color = color
         self.juice = juice_qty
-        
+
 mon_citron = Citron(color="yellow", juice_qty=45)
 mon_citron_dict = mon_citron.__dict__
 
@@ -1012,7 +1012,7 @@ with open('nat2020.csv', 'r') as file_in:
         writer = csv.writer(file_out)  # By default, the delimiter is a comma
         for row in reader:
             writer.writerow(row)
-            
+
 # Verify with a shell command
 !head -n 3 nat2020_corr.csv
 ```
@@ -1025,7 +1025,7 @@ with open('nat2020.csv', 'r') as file_in:
 
 The exercise is to make a request to the National Address Base API and save the results in a CSV file. Here are the steps to implement:
 
-- Make a street name request with a keyword like in the tutorial (if you want to make a more complex request, you can check the [API documentation](https://adresse.data.gouv.fr/api-doc/adresse)) and store the results in a dictionary.
+- Make a street name request with a keyword like in the tutorial (if you want to make a more complex request, you can check the [API documentation and its swagger](https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban)) and store the results in a dictionary.
 - Create a CSV file `resultats_ban.csv` in which we will store the following information: 'name', 'city', 'city_code', 'longitude', 'latitude'.
 - Using a `writer` object and a loop on the results returned by the API, write each line to the CSV.
 
@@ -1051,7 +1051,7 @@ Rue de l’Ancienne Comedie,Poitiers,86194,0.342649,46.580457
 <summary>Show solution</summary>
 
 ```{python}
-response = requests.get("https://api-adresse.data.gouv.fr/search/?q=comedie&type=street")
+response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=street")
 r_text = response.text
 r_dict = json.loads(r_text)
 

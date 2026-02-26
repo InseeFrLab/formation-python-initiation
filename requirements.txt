@@ -1,9 +1,0 @@
-geopandas
-matplotlib
-numpy
-pandas
-pyarrow
-requests
-seaborn
-scikit-learn
-xlrd

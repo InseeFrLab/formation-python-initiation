@@ -24,7 +24,7 @@ print(type({}))
 
 def f(x):
     print(x)
-          
+
 print(type(f))
 ```
 
@@ -43,10 +43,10 @@ class Citron:
         self.saveur = "acide"
         self.couleur = couleur
         self.jus = qte_jus
-        
+
     def recup_qte_jus(self):
         print("Il reste " + str(self.jus) + " mL de jus dans le citron.")
-        
+
     def extraire_jus(self, quantite):
         if quantite > self.jus:
             print("Il n'y a pas assez de jus dans le citron pour la quantité demandée.")
@@ -64,7 +64,7 @@ Analysons la syntaxe de construction d'une classe d'objets :
 
 - le constructeur a un paramètre obligatoire : `self`. C'est une référence aux **instances** qui vont être créées à partir de cette classe. Notons la syntaxe qui définit un attribut : `self.attribut = valeur`.
 
-- les autres méthodes sont définies par l'utilisateur. Elles prennent également le `self` en paramètre, ce qui leur permet d'effectuer des opérations sur / à partir des attributs. Comme ce sont des fonctions, elles peuvent également admettre d'autres paramètres. Ainsi, la fonction `extraire_jus` prend un paramètre `quantite` qui définit quelle quantité de jus on extrait du citron lorsqu'on le presse.
+- les autres méthodes sont définies par l'utilisateur. Elles prennent également le `self` en paramètre, ce qui leur permet d'effectuer des opérations sur / à partir des attributs. Comme ce sont des fonctions, elles peuvent également admettre d'autres paramètres. Ainsi, la fonction `extraire_jus` prend un paramètre `quantite` qui définit quelle quantité de jus on extrait du citron lorsqu'on le presse. On peut remarquer que les méthodes ne prennent pas de déclaration `return`, contrairement aux fonctions.
 
 
 ## La classe et ses instances
@@ -202,7 +202,7 @@ Les trois exécutions donnent des résultats différents, alors que le code exé
 
 - 3/ A quoi sert le constructeur `__init__` ?
 
-- 4/ A quoi sert le `self` ? 
+- 4/ A quoi sert le `self` ?
 
 - 5/ Quelle est la différence entre une classe et une instance ?
 
@@ -268,10 +268,10 @@ class Citron:
         self.saveur = "acide"
         self.couleur = couleur
         self.jus = qte_jus
-        
+
     def recup_qte_jus(self):
         print("Il reste " + str(self.jus) + " mL de jus dans le citron.")
-        
+
     def extraire_jus(self, quantite):
         if quantite > self.jus:
             print("Il n'y a pas assez de jus dans le citron pour la quantité demandée.")
@@ -297,19 +297,19 @@ class Citron:
         self.couleur = couleur
         self.masse = masse
         self.jus = masse / 4
-        
+
     def recup_masse(self):
         print("La masse du citron est " + str(self.masse) + " grammes.")
-        
+
     def recup_qte_jus(self):
         print("Il reste " + str(self.jus) + " mL de jus dans le citron.")
-        
+
     def extraire_jus(self, quantite):
         if quantite > self.jus:
             print("Il n'y a pas assez de jus dans le citron pour la quantité demandée.")
         else:
             self.jus = max(0, self.jus - quantite)  # évite toute valeur négative de `jus`
-            
+
 citron = Citron("jaune", 500)
 
 citron.recup_masse()
@@ -333,7 +333,7 @@ Implémenter une classe `Compte` avec :
 
 - une méthode `depot` qui admet un paramètre `montant`. Lorsqu'un dépôt est effectué, le solde du compte est incrémenté du montant du dépôt.
 
-- une méthode `retrait` qui admet un paramètre `montant`. Lorsqu'un retrait est effectué : 
+- une méthode `retrait` qui admet un paramètre `montant`. Lorsqu'un retrait est effectué :
 
     - si le montant est inférieur au solde : le solde est décrémenté du montant, est on affiche "Retrait accepté.".
 
@@ -344,7 +344,7 @@ Implémenter une classe `Compte` avec :
     - si le montant est inférieur au solde de client1 : le solde de client1 est décrémenté du montant, le solde de client2 est incrémenté du montant.
 
     - si le montant est supérieur au solde de client1 : on affiche "Transfert refusé : fonds insuffisants." et les soldes des deux clients restent inchangés.
-    
+
 Créer deux clients et tester que les différentes fonctionnalités à implémenter marchent comme prévu.
 
 ```{python}
@@ -362,27 +362,27 @@ class Compte:
     def __init__(self, titulaire, solde):
         self.titulaire = titulaire
         self.solde = solde
-        
+
     def affiche_solde(self):
         print("Le solde du compte de " + self.titulaire + " est " + str(self.solde) + " euros.")
-        
+
     def depot(self, montant):
         self.solde += montant
-    
+
     def retrait(self, montant):
         if self.solde >= montant:
             self.solde -= montant
             print("Retrait accepté.")
         else:
             print("Retrait refusé : fonds insuffisants.")
-            
+
     def transfert(self, destinataire, montant):
         if self.solde >= montant:
             destinataire.solde += montant
             self.solde -= montant
         else:
             print("Transfert refusé : fonds insuffisants.")
-            
+
 client1 = Compte("Bernard", 2000)
 client2 = Compte("Bianca", 5000)
 

@@ -1,0 +1,23 @@
+[project]
+name = "formation-python-initiation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "scikit-learn",
+    "cartiflette>=0.1.9",
+    "geopandas>=1.1.1",
+    "plotnine>=0.15.2",
+    "polars>=1.36.1",
+    "pyarrow>=22.0.0",
+    "requests>=2.32.5",
+    "seaborn>=0.13.2",
+    "xlrd>=2.0.2",
+    "fastexcel>=0.19.0",
+    "jupyter>=1.1.1",
+]

@@ -4,7 +4,7 @@ website:
     style: 'docked'
     contents:
       - section: "Fondamentaux du langage"
-        contents: 
+        contents:
           - text: "Types de base et variables"
             href: source/fundamentals/types-variables/tutorial.qmd
           - text: "Structures de données 1 : listes et tuples"
@@ -20,7 +20,7 @@ website:
           - text: "Notions de programmation orientée objet"
             href: source/fundamentals/oop/tutorial.qmd
       - section: "Manipulation de données"
-        contents: 
+        contents:
           - text: "Manipulation de fichiers"
             href: source/manipulation/modules-files/tutorial.qmd
           - text: "Travailler avec des fichiers CSV et JSON"
@@ -29,10 +29,12 @@ website:
             href: source/manipulation/numpy/tutorial.qmd
           - text: "Traiter des données tabulaires avec Pandas"
             href: source/manipulation/pandas/tutorial.qmd
+          - text: "Traiter des données tabulaires avec Polars"
+            href: source/manipulation/polars/tutorial.qmd
           - text: "Introduction à la visualisation de données"
             href: source/manipulation/dataviz/tutorial.qmd
       - section: "Projets"
-        contents: 
+        contents:
           - text: "Projet 1 - Puissance 4"
             href: source/projects/puissance4/tutorial.qmd
           - text: "Projet 2 - Prédictions météorologiques"
