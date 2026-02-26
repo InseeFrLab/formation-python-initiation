@@ -1,4 +1,3 @@
-# %%
 import geopandas as gpd
 import plotnine as p9
 import polars as pl
@@ -175,15 +174,14 @@ def load_geo_data(url):
 
 
 def plot_population_by_regions(df, geo, year):
-    plot = (
-        df_regions.filter(
-            pl.col.annee == year, pl.col.genre == "Ensemble", pl.col.age == "Total"
-        )
-        .group_by("region_name")
-        .agg(pl.sum("population"))
-        .to_pandas()
-        .merge(geo, left_on="region_name", right_on="NOM", how="left")
-        >> p9.ggplot(p9.aes(fill="population")) + p9.geom_map() + p9.theme_matplotlib()
+    plot = df_regions.filter(
+        pl.col.annee == year, pl.col.genre == "Ensemble", pl.col.age == "Total"
+    ).group_by("region_name").agg(pl.sum("population")).to_pandas().merge(
+        geo, left_on="region_name", right_on="NOM", how="left"
+    ) >> p9.ggplot(
+        p9.aes(fill="population")
+    ) + p9.geom_map() + p9.theme_matplotlib() + p9.labs(
+        title="Population des différentes régions de France"
     )
     return plot
 
@@ -230,8 +228,23 @@ def compute_mean_population_growth_per_region(df, min_year, max_year):
                       between the given range of years
     """
     df = compute_population_growth_per_region(df)
-    df_croissance = df.filter(
-        pl.col("annee") >= min_year, pl.col("annee") <= max_year
-    ).mean()
+    df_croissance = (
+        df.filter(pl.col("annee") >= min_year, pl.col("annee") <= max_year)
+        .mean()
+        .unpivot(index="annee", variable_name="region", value_name="croissance_pop")
+    )
 
     return df_croissance
+
+
+def plot_growth_population_by_regions(df, geo, min_year, max_year):
+    df = compute_mean_population_growth_per_region(df, min_year, max_year)
+    df_geo = geo.merge(df.to_pandas(), right_on=["region"], left_on=["NOM"])
+
+    plot = df_geo >> p9.ggplot(
+        p9.aes(fill="croissance_pop")
+    ) + p9.geom_map() + p9.theme_matplotlib() + p9.labs(
+        title="Croissance de la population des différentes régions de France (en %)"
+    )
+
+    return plot
