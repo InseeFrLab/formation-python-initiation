@@ -1368,12 +1368,14 @@ df.with_columns(
 # Joindre des tables
 
 Dans le cadre d'une analyse de données, il est courant de vouloir combiner différentes sources de données.
+
 Cette combinaison peut se faire verticalement (un dataframe par dessus l'autre), par exemple lorsque l'on souhaite combiner deux millésimes d'une même enquête afin de les analyser conjointement.
+
 La combinaison peut également se faire horizontalement (côte à côte) selon une ou plusieurs clé(s) de jointure, souvent dans le but d'enrichir une source de données à partir d'une autre source portant sur les mêmes unités statistiques.
 
 ## Concaténer des tables
 
-La concaténation verticale de tables se fait à l'aide de la fonction [`concat()`](https://docs.pola.rs/api/python/stable/reference/api/polars.concat.html#polars.concat) de polars.
+La concaténation verticale de tables se fait à l'aide de la fonction [`concat()`](https://docs.pola.rs/api/python/stable/reference/api/polars.concat.html#polars.concat).
 
 ```{python}
 
@@ -1425,9 +1427,9 @@ Pour contourner ce problème, il suffit de préférer une méthode de type `join
 La fusion de tables est une opération qui permet d'associer des lignes de deux dataframes différents en se basant sur une ou plusieurs clés communes, similaire aux jointures dans les bases de données SQL.
 Différents types de jointure sont possible selon les données que l'on souhaite conserver, dont les principaux sont représentés sur le graphique suivant.
 
-![](img/joins.png)
+![*Source : [lien](https://medium.com/swlh/merging-dataframes-with-pandas-pd-merge-7764c7e2d46d)
+*](img/joins.png)
 
-Source : [lien](https://medium.com/swlh/merging-dataframes-with-pandas-pd-merge-7764c7e2d46d)
 
 En polars, les jointures se font avec la fonction [`join()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.join.html#polars.DataFrame.join).
 Pour réaliser une jointure, on doit spécifier (au minimum) deux informations :
@@ -1435,16 +1437,16 @@ Pour réaliser une jointure, on doit spécifier (au minimum) deux informations :
 - le type de jointure : par défaut, polars effectue une jointure de type `inner`.
 Le paramètre `how` permet de spécifier d'autres types de jointure ;
 
-- la clé de jointure.
-On spécifie souvent une colonne présente dans le dataframe comme clé de jointure (paramètre `on` si la colonne porte le même nom dans les deux dataframes, ou `left_on` et `right_on` sinon).
+- la clé de jointure : on spécifie souvent une colonne présente dans le dataframe comme clé de jointure (paramètre `on` si la colonne porte le même nom dans les deux dataframes, ou `left_on` et `right_on` sinon).
 
 
-Par défaut, les colonnes présentes dans les deux colonnes seront conservées avec des suffixes '_right' ou '_left'.
-Pour éviter ce comportement, il faut préciser l'argument `coalesce`.
+Par défaut, les colonnes présentes dans les deux dataframe seront fusionnées sauf pour un full join.
+Pour éviter ce comportement, il faut préciser `coalesce=False`.
+
 On peut aussi spécifier l'ordre dans lequel les colonnes apparaissent avec l'argument `maintain_order`.
 
-::: {.callout-note}
-On peut aussi tout à fait joindre selon des critères différents que l'égalité : par exemple, joint cette ligne avec toute ligne dont la date est antérieure.
+::: {.callout-note title="Jointure complexe"}
+On peut aussi tout à fait joindre selon des critères différents que l'égalité : par exemple, joint cette ligne avec toute ligne dont la date est la plus proche avant.
 Les méthodes utilisées sont [`join_asof()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.join_asof.html) et [`join_where()`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.join_where.html)`
 :::
 
@@ -1477,7 +1479,9 @@ df_a.join(df_b, on='key')
 
 ::: {.callout-warning title="Jointures inner"}
 La jointure de type `inner` est la plus intuitive : elle ne crée généralement pas de valeurs manquantes et permet donc de travailler directement sur la table fusionnée.
+
 Mais attention : si beaucoup de clés ne sont pas présentes dans les deux dataframes à la fois, une jointure `inner` peut aboutit à des pertes importantes de données, et donc à des résultats finaux biaisés.
+
 Dans ce cas, il vaut mieux choisir une jointure à gauche ou à droite, selon la source que l'on cherche à enrichir et pour laquelle il est donc le plus important de limiter les pertes de données.
 :::
 
@@ -1502,12 +1506,17 @@ df_a.join(df_b, how="full", on='key')
 df_a.join(df_b, how="full", on='key', coalesce=True)
 ```
 
+::: {.callout-tip title="Validation des clés"}
+
+La fonction `join()` comprend l'option `validate: {‘m:m’, ‘m:1’, ‘1:m’, ‘1:1’}` qui permet de valider si la multiplicité des clés de jointure.
+
+:::
 # Exercices
 
 ## Questions de compréhension
 
 
-- 1/ Qu'est-ce qu'un dataframe dans le contexte de polars et à quel type de structure de données peut-on le comparer dans le langage Python ?
+- 1/ Qu'est-ce qu'un dataframe dans polars et à quel type de structure de données peut-on le comparer dans le langage Python ?
 
 - 2/ Quels sont les avantages de polars ?
 
