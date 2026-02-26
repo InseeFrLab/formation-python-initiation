@@ -3,7 +3,6 @@ import geopandas as gpd
 import plotnine as p9
 import polars as pl
 import requests
-import solutions
 
 
 def load_data():
@@ -89,7 +88,6 @@ def plot_population_by_gender_per_department(data, department_code):
     return plot
 
 
-# %%
 def get_age_pyramid_data(df, years):
     pyramide_data = (
         df.filter(pl.col.annee.is_in(years), pl.col.age != "Total")
@@ -112,7 +110,6 @@ def tr_age_sorted_plot(list):
     return [tr_age_sorted[5:] for tr_age_sorted in list]
 
 
-# %%
 def plot_age_pyramid(df, years):
     df_plot = (
         get_age_pyramid_data(df, years)
@@ -191,8 +188,31 @@ def plot_population_by_regions(df, geo, year):
     return plot
 
 
-# list(set(list(geo['NOM'].unique())) & set(df_regions.select("region_name").unique().to_series().to_list()))
-# %%
-solutions.plot_growth_population_by_regions(df_regions.to_pandas(), geo, 2015, 2022)
+def compute_population_growth_per_region(df):
+    """
+    This function takes a DataFrame as input and returns the population growth as a percentage
+    for each region, grouped by year.
+
+    Parameters:
+    df (polars.DataFrame): DataFrame containing population data.
+
+    Returns:
+    polars.DataFrame: DataFrame containing population growth as a percentage for each region,
+                      grouped by year.
+    """
+    df_croissance = (
+        df.filter(pl.col("genre") == "Ensemble", pl.col("age") == "Total")
+        .group_by("region_name", "annee")
+        .agg(pl.sum("population"))
+        .sort("annee")
+        .with_columns(
+            pct_change=pl.col("population").pct_change(1).over("region_name") * 100
+        )
+        .drop("population")
+        .pivot(on="region_name", index="annee", values="pct_change", sort_columns=True)
+    )
+
+    return df_croissance
+
 
 # %%
