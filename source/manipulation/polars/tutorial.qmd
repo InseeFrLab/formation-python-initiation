@@ -1856,7 +1856,9 @@ df.filter(pl.col("date_heure").dt.date() == pl.Series(['2022-01-03']).str.to_dat
 
 ## Exploration du fichier des prénoms
 
-Le fichier des prénoms contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021. Ces données sont disponibles au niveau France, par département et par région, à l'adresse suivante : [https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262). L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
+Le fichier des prénoms contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021.
+Ces données sont disponibles au niveau France, par département et par région, à l'adresse suivante : [https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262).
+L'objectif de ce tutoriel est de proposer une analyse de ce fichier, du nettoyage des données au statistiques sur les prénoms.
 
 ### Partie 1 : Import et exploration des données
 
@@ -1892,8 +1894,24 @@ df_prenoms.describe()
 ### Partie 2 : Nettoyage des données
 
 
-- L'output des recherches précédentes suggère des valeurs manquantes dans la colonne des prénoms. Affichez ces lignes. Vérifiez que ces valeurs manquantes sont correctement spécifiées.
-- L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms. Quelle proportion des individus de la base cela concerne-t-il ? Vous pouvez vous aider de la méthode `over` détaillée dans la documentation. Convertir ces valeurs en valeurs manquantes.
+- L'output des recherches précédentes suggère des valeurs manquantes dans la colonne des prénoms.
+Affichez ces lignes.
+Vérifiez que ces valeurs manquantes sont correctement spécifiées.
+- L'output de méthode `head()` montre une modalité récurrente "_PRENOMS_RARES" dans la colonne des prénoms.
+Quelle proportion des individus de la base cela concerne-t-il ?
+Convertir ces valeurs en valeurs manquantes.
+
+::: {.callout-tip title="Indices"}
+
+Ces méthides peuvent aider :
+
+- [`over`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.over.html#polars.Expr.over) ;
+- la syntaxe de [`pl.when`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.when.html) ;
+- [`dataframe.item`](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.iter_rows.html) : pour accéder à un élément d'un dataframe et le retourner en format Python classique
+
+:::
+
+
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1921,21 +1939,24 @@ print(prop_rares1)  # ~ 2 % de la base
 prop_rares2 = (
     df_prenoms
     .group_by("preusuel")
-    .agg(pl.col("nombre").sum())
+    .agg(pl.sum("nombre"))
     .with_columns(tot=pl.sum("nombre"))
     .with_columns(tot_rel=pl.col("nombre")/pl.col("tot"))
     .filter(pl.col("preusuel")=="_PRENOMS_RARES")
     .item(0, "tot_rel")
 )
 print(prop_rares2)  # ~ 2 % de la base
-df_prenoms = df_prenoms.with_columns(preusuel=pl.when(pl.col("preusuel")=="_PRENOMS_RARES").then(None).otherwise(pl.col("preusuel")))
+df_prenoms = df_prenoms.with_columns(
+    preusuel=pl.when(pl.col("preusuel")=="_PRENOMS_RARES").then(None).otherwise(pl.col("preusuel")))
 ```
 
 </details>
 
 :::
 
-- On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`. Quelle proportion des individus de la base cela concerne-t-il ? Convertir ces valeurs en valeurs manquantes. Vous pouvez utiliser la syntaxe de [`pl.when`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.when.html)
+- On remarque que les prénoms de personnes dont l'année de naissance n'est pas connue sont regroupés sous la modalité `XXXX`.
+Quelle proportion des individus de la base cela concerne-t-il ?
+Convertir ces valeurs en valeurs manquantes.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1951,7 +1972,7 @@ df_prenoms = df_prenoms.with_columns(preusuel=pl.when(pl.col("preusuel")=="_PREN
 prop_xxxx = (
     df_prenoms
     .with_columns(
-        tot_rel=pl.col("nombre").sum().over("annais")/ pl.col("nombre").sum()
+        tot_rel=pl.sum("nombre").over("annais")/ pl.sum("nombre")
         )
     .filter(pl.col("annais")=="XXXX")
     .item(0, "tot_rel")
@@ -1984,7 +2005,7 @@ df_prenoms = df_prenoms.drop_nulls()
 
 :::
 
-- Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type catégoriel.
+- Convertissez la colonne `annais` en type numérique et la colonne `sexe` en type caractère (ou en catégorie, mais attention au résultat!).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1997,7 +2018,11 @@ df_prenoms = df_prenoms.drop_nulls()
 <summary>Afficher la solution</summary>
 
 ```{python}
-df_prenoms = df_prenoms.cast({'annais':pl.Int32, 'sexe':pl.Categorical})
+df_prenoms = df_prenoms.cast({'annais':pl.Int32, 'sexe':pl.Utf8})
+
+# Pour une catégorie, il faut ensuite le transformer en catégorie.
+# Le changement de pl.Int => pl.Categorical ne marche pas directement  sinon et renvoie des null
+df_prenoms.cast({'sexe':pl.Categorical})
 ```
 
 </details>
@@ -2027,7 +2052,8 @@ df_prenoms.describe()
 ### Partie 3 : Statistiques descriptives sur les naissances
 
 
-- La [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) du fichier nous informe qu'on peut considérer les données comme quasi-exhaustives à partir de 1946. Pour cette partie seulement, filtrer les données pour ne conserver que les données ultérieures.
+- La [documentation](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262#documentation) du fichier nous informe qu'on peut considérer les données comme quasi-exhaustives à partir de 1946.
+Pour cette partie seulement, filtrer les données pour ne conserver que les données ultérieures.
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2061,7 +2087,7 @@ df_prenoms_post_1946 = df_prenoms.filter(pl.col("annais") >= 1946)
 
 ```{python}
 births_per_sex = df_prenoms_post_1946.group_by("sexe").agg(pl.sum("nombre"))
-print(births_per_sex)
+births_per_sex
 ```
 
 </details>
@@ -2082,7 +2108,7 @@ print(births_per_sex)
 
 ```{python}
 top5_years = df_prenoms_post_1946.group_by(pl.col("annais")).agg(pl.sum("nombre")).sort("nombre").tail(5)
-print(top5_years)
+top5_years
 ```
 
 </details>
@@ -2106,7 +2132,7 @@ print(top5_years)
 
 ```{python}
 total_unique_names = df_prenoms.n_unique("preusuel")
-print(total_unique_names)
+total_unique_names
 ```
 
 </details>
@@ -2126,8 +2152,8 @@ print(total_unique_names)
 <summary>Afficher la solution</summary>
 
 ```{python}
-single_letter_names = df_prenoms.filter(pl.col("preusuel").str.len_chars() == 1).select("nombre").sum()
-print(single_letter_names)
+single_letter_names = df_prenoms.filter(pl.col("preusuel").str.len_chars() == 1).select(pl.sum("nombre"))
+single_letter_names
 ```
 
 </details>
@@ -2194,7 +2220,7 @@ def popularite_par_decennie(df, sexe):
     # Filtrer le prénom le plus fréquent pour chaque décennie par over
     df_popularite_decennie = df_counts_decennie.filter(pl.col("nombre")==pl.max("nombre").over("decennie"))
 
-    return df_popularite_decennie
+    return df_popularite_decennie.sort("decennie")
 
 # Test de la fonction avec un exemple
 popularite_par_decennie(df_prenoms, sexe="2")
