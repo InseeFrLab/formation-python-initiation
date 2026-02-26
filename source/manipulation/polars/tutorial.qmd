@@ -1594,7 +1594,8 @@ Les méthodes comme `df.drop_nulls()` ou `df.fill_null()` permettent de gérer e
 
 ## Plusieurs manières de créer un dataframe
 
-Dans la cellule suivante, nous avons récupéré des données de caisses sur les ventes de différentes enseignes. Les données sont cependant présentées de deux manières différentes, dans un cas sous forme d'observations (chaque liste contient les données d'une ligne), dans l'autre sous forme de variables (chaque liste contient les données d'une colonne).
+Dans la cellule suivante, nous avons récupéré des données de caisses sur les ventes de différentes enseignes.
+Les données sont cependant présentées de deux manières différentes, dans un cas sous forme d'observations (chaque liste contient les données d'une ligne), dans l'autre sous forme de variables (chaque liste contient les données d'une colonne).
 
 ```{python}
 data_list1 = [
@@ -1614,7 +1615,9 @@ data_list2 = [
 ]
 ```
 
-L'objectif est de construire dans les deux cas un même dataframe qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux dataframes. A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix ! On vérifiera que les deux dataframes sont identiques à l'aide de la méthode [equals()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.equals.html#polars.DataFrame.equals).
+L'objectif est de construire dans les deux cas un même dataframe qui contient chacune des 6 observations et des 4 variables, avec les mêmes noms dans les deux dataframes.
+A chaque cas va correspondre une structure de données plus adaptée en entrée, dictionnaire ou liste de listes... faîtes le bon choix !
+On vérifiera que les deux dataframes sont identiques à l'aide de la méthode [equals()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.equals.html#polars.DataFrame.equals).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -1675,9 +1678,11 @@ data = {
     'produit': ['01.1.1', '02.1.1', '01.1.1', '03.1.1', '01.1.1', '02.1.1'],
     'quantite': [3, 2, 7, 5, 10, 1],
     'prix': [1.50, 2.30, 0.99, 5.00, 1.20, 3.10],
-    'date_heure': pl.Series(["2022-01-01 14:05", "2022-01-02 09:30",
-                                  "2022-01-03 17:45", "2022-01-04 08:20",
-                                  "2022-01-05 19:00", "2022-01-06 16:30"]).str.to_datetime()
+    'date_heure': pl.Series(
+        ["2022-01-01 14:05", "2022-01-02 09:30",
+    "2022-01-03 17:45", "2022-01-04 08:20",
+    "2022-01-05 19:00", "2022-01-06 16:30"]
+        ).str.to_datetime()
 }
 
 df = pl.DataFrame(data)
@@ -1758,7 +1763,7 @@ df.filter(pl.col("enseigne") == 'Carrefour')
 <summary>Afficher la solution</summary>
 
 ```{python}
-print(
+(
     df
     .filter(pl.col("produit") == '01.1.1')
     .select("quantite")
