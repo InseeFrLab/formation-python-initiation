@@ -58,18 +58,21 @@ Il est courant de passer du temps à débugger cette étape, notamment pour s'as
 que le code soit résistant à de légères variations dans le format des données d'entrée.
 Pour optimiser ce temps là, on peut spécifier directement les types en entrée.
 
-- **l'index de pandas** est mort <3 : comme dans le tidyverse, polars
-n'utilise pas d'index, et c'est très bien comme cela !
+- ce qui est mort de **pandas**:
+    - **l'index de pandas** est mort <3 : comme dans le tidyverse, polars
+    n'utilise pas d'index, et c'est très bien comme cela !
+    - **plus de `inplace=True`**, en polars les méthodes ne remplacent pas les dataframe.
+    Il faut à chaque fois affecter le résultat pour modifier le dataframe, comme en
+    R.
+    - la logique entre ce qui relève d'un attribut, d'une méthode est bien **plus claire** qu'avec
+    pandas. En gros, toutes les fonctions utilisées en polars sont des méthodes de dataframe,
+    de Séries ou d'expressions polars. Cela facilite le chainage et la logique de code.
 
 - les `polars selectors` sont très pratiques pour sélectionner des colonnes.
 Ils permettent de sélectionner des colonnes avec des regex sur leurs noms ou bien
 en fonction de leur type de données.
 Plus d'exemples sont disponibles dans la [documentation officielle](https://docs.pola.rs/api/python/stable/reference/selectors.html).
 
--  Les **chaines de caractères sont par défaut associées à des colonnes** :
-En polars, les caractères simples `"myvar"` sont par défaut considéré comme des noms de
-colonne. Il faut penser à utiliser `pl.lit("myvar")` pour signaler qu'il ne s'agit
-pas d'un nom de colonne.
 
 ## Pour aller plus loin
 
@@ -102,6 +105,7 @@ import os
 import requests
 import json
 from zipfile import ZipFile  # zipfile permet de dézipper les fichiers
+import pandas as pd
 ```
 
 
@@ -472,7 +476,6 @@ On peut utiliser la fonction idoine de pandas et après transformer en polars da
 
 ```{python}
 #| eval: false
-import pandas as pd
 url = "https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip"
 df_prenoms_url = pl.from_pandas(pd.read_csv(url, delimiter=";"))
 ```
@@ -647,7 +650,7 @@ Par exemple,
 response = requests.get("https://data.geopf.fr/geocodage/search?q=comedie&type=street")
 ```
 
-Si l'on clique sur le [lien de la requête](https://data.geopf.fr/geocodage/search?q=comedie&type=street), on voit que le résultat de la requête est **un dictionnaire avec 3 clés** : type, features et query. La deuxième clé, 'features', stocke les résultats sous forme d'une liste de 10 éléments.
+Si l'on clique sur le [lien de la requête](https://data.geopf.fr/geocodage/search?q=comedie&type=street), on voit que le résultat de la requête est **un dictionnaire avec 3 clés** : *type*, *features* et *query*. La deuxième clé, *features*, stocke les résultats sous forme d'une liste de 10 éléments.
 Pour importer directement ce fichier en polars, on peut utiliser l'une ou l'autre des méthodes `from_dict` ou `from_dicts`.
 
 ```{python}
@@ -669,6 +672,7 @@ On obtient ainsi facilement un dataframe plat:
 
 ```{python}
 df = df.select("features").unnest("features").drop("type").unnest("geometry").drop("type").unnest("properties")
+df
 ```
 :::
 
@@ -1610,7 +1614,7 @@ Les méthodes comme `df.drop_nulls()` ou `df.fill_null()` permettent de gérer e
 
 :::
 
-## Plusieurs manières de créer un dataframe
+## Ex 1 - Plusieurs manières de créer un dataframe (facile)
 
 Dans la cellule suivante, nous avons récupéré des données de caisses sur les ventes de différentes enseignes.
 Les données sont cependant présentées de deux manières différentes, dans un cas sous forme d'observations (chaque liste contient les données d'une ligne), dans l'autre sous forme de variables (chaque liste contient les données d'une colonne).
@@ -1686,7 +1690,7 @@ df_from_dict.equals(df_from_list)
 
 :::
 
-## Sélection de données dans un dataframe
+## Ex 2 - Sélection de données dans un dataframe (facile)
 
 Un dataframe polars est créé avec des données de caisse (mêmes données que l'exercice précédent).
 
@@ -1872,7 +1876,7 @@ df.filter(pl.col("date_heure").dt.date() == pl.Series(['2022-01-03']).str.to_dat
 
 :::
 
-## Exploration du fichier des prénoms
+## Ex 3 - Exploration du fichier des prénoms (moyen)
 
 Le fichier des prénoms contient des données sur les prénoms attribués aux enfants nés en France entre 1900 et 2021.
 Ces données sont disponibles au niveau France, par département et par région, à l'adresse suivante : [https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262).
@@ -2159,7 +2163,7 @@ total_unique_names
 
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
 
-::: {.callout-tip title="Indicee"}
+::: {.callout-tip title="Indice"}
 La méthode [str.len_chars()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.str.len_chars.html#polars.Expr.str.len_chars) vous aidera.
 :::
 
@@ -2252,7 +2256,7 @@ popularite_par_decennie(df_prenoms, sexe="2")
 
 :::
 
-## Calcul d'une empreinte carbone par habitant au niveau communal
+## Ex 4 - Calcul d'une empreinte carbone par habitant au niveau communal (difficile)
 
 L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal.
 Pour cela, il va falloir combiner deux sources de données :
@@ -2452,7 +2456,7 @@ sectors = df_emissions_top10.columns[2:12]
 df = df_emissions_top10.select(sectors + ["INSEE commune", "emissions_totales"]).to_pandas()
 
 # Graphique empilé
-ax = df[sectors+ ["INSEE commune"]].plot(kind='bar', stacked=True, x="INSEE commune", y=sub_components)
+ax = df[sectors+ ["INSEE commune"]].plot(kind='bar', stacked=True, x="INSEE commune", y=sectors)
 
 # Ajouter la ligne pour emissions_totales
 ax.plot(
@@ -2694,7 +2698,7 @@ df_emissions_pop.tail(10)
 
 :::
 
-## Analyse de l'évolution d'un indice de production
+## Ex 5 - Analyse de l'évolution d'un indice de production (moyen)
 
 Vous avez à disposition dans le dossier `data/` deux jeux de données CSV :
 
@@ -2788,9 +2792,13 @@ df_clean.glimpse()
 
 ### Partie 4 : Calcul de l'évolution périodique
 
-- Utilisez la méthode [shift()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.shift.html#polars.Expr.shift) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
 - Calculez la différence entre l'indice actuel et l'indice décalé pour obtenir l'évolution (en pourcentage) d'un trimestre à l'autre
 
+::: {.callout-tip title="Indice"}
+
+Utilisez la méthode [shift()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.shift.html#polars.Expr.shift) pour créer une nouvelle colonne qui contiendra l'indice du trimestre précédent
+
+:::
 ```{python}
 # Testez votre réponse dans cette cellule
 
