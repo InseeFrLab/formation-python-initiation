@@ -2154,6 +2154,10 @@ total_unique_names
 
 - Compter le nombre de personnes possédant un prénom d'une seule lettre.
 
+::: {.callout-tip title="Indicee"}
+La méthode [str.len_chars()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.str.len_chars.html#polars.Expr.str.len_chars) vous aidera.
+:::
+
 ```{python}
 # Testez votre réponse dans cette cellule
 
@@ -2245,11 +2249,12 @@ popularite_par_decennie(df_prenoms, sexe="2")
 
 ## Calcul d'une empreinte carbone par habitant au niveau communal
 
-L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal. Pour cela, il va falloir combiner deux sources de données :
+L'objectif de cet exercice est de calculer une empreinte carbone par habitant au niveau communal.
+Pour cela, il va falloir combiner deux sources de données :
 
-- les populations légales au niveau des communes, issues du recensement de la population ([source](https://www.insee.fr/fr/statistiques/6683037))
+- les populations légales au niveau des communes, issues du recensement de la population ([source](https://www.insee.fr/fr/statistiques/6683037)) ;
 
-- les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_))
+- les émissions de gaz à effet de serre estimées au niveau communal par l’ADEME ([source](https://www.data.gouv.fr/fr/datasets/inventaire-de-gaz-a-effet-de-serre-territorialise/#_)).
 
 Cet exercice constitue une version simplifiée d'un [TP complet pour la pratique de pandas](https://pythonds.linogaliana.fr/content/manipulation/02b_pandas_TP.html#importer-les-donn%C3%A9es) proposé par Lino Galiana dans son [cours à l'ENSAE](https://pythonds.linogaliana.fr/) et traduit en polars.
 
@@ -2305,7 +2310,7 @@ df_pop_communes = df_pop_communes.drop(["PMUN", "PCAP"])
 :::
 
 Les communes qui ont les noms les plus longs sont-elles aussi les communes les moins peuplées ? Pour le savoir :
-- Créez une nouvelle variable qui contient le nombre de caractères de chaque commune à l'aide de la méthode [str.len_chars()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.str.len_chars.html#polars.Expr.str.len_chars)
+- Créez une nouvelle variable qui contient le nombre de caractères de chaque commune
 - Calculez la corrélation entre cette variable et la population totale avec la méthode [corr()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.corr.html#polars.DataFrame.corr)
 
 ```{python}
@@ -2360,7 +2365,15 @@ df_emissions.describe()
 
 :::
 
-- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ? Vérifiez-le à l'aide des méthodes [is_null()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.is_null.html#polars.Expr.is_null) et [all_horizontal()](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.all_horizontal.html#polars.all_horizontal).
+- Y a-t-il des lignes avec des valeurs manquantes pour toutes les colonnes d'émission ?
+
+::: {.callout-tip title="Indices"}
+
+- les sélecteurs vous permettront de choisir les colonnes numériques ;
+- [`pl.all()`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.all.html#polars.all) s'applique à toutes les colonnes ;
+- la méthode [`is_null()`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.Expr.is_null.html#polars.Expr.is_null) permet d'identifier les valeurs manquantes ;
+- la méthode [`all_horizontal()`](https://docs.pola.rs/api/python/stable/reference/expressions/api/polars.all_horizontal.html#polars.all_horizontal) permet de vérifier une condition sur toutes les colonnes.
+:::
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2374,7 +2387,10 @@ df_emissions.describe()
 
 ```{python}
 df_emissions_num = df_emissions.select(cs.numeric())
-only_nulls = df_emissions_num.filter(pl.all_horizontal(pl.all().is_null()))
+# List of columns with nulls values
+cols_with_nulls = [col for col in df_emissions_num.columns if df_emissions_num.describe().item(1, col)>0]  # item(1, col) will get the number of nulls
+
+only_nulls = df_emissions_num.select(cols_with_nulls).filter(pl.all_horizontal(pl.all().is_null()))
 only_nulls.height
 ```
 
@@ -2384,6 +2400,13 @@ only_nulls.height
 
 - Créez une nouvelle colonne qui donne les émissions totales par commune
 - Afficher les 10 communes les plus émettrices. Qu'observez-vous dans les résultats ?
+
+::: {.callout-tip title="Indice"}
+
+Comme dans le tidyverse, vous pouvez jouer sur les formes de dataframe
+avec `pivot` et `unpivot` (ou `melt` en pandas).
+
+:::
 
 
 ```{python}
@@ -2420,7 +2443,8 @@ df_emissions_top10
 
 :::
 
-- Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international". Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corr()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.corr.html#polars.DataFrame.corr).
+- Il semble que les postes majeurs d'émissions soient "Industrie hors-énergie" et "Autres transports international".
+Pour vérifier si cette conjecture tient, calculer la corrélation entre les émissions totales et les postes sectoriels d'émissions à l'aide de la méthode [corr()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.corr.html#polars.DataFrame.corr).
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2433,17 +2457,19 @@ df_emissions_top10
 <summary>Afficher la solution</summary>
 
 ```{python}
+# Calculating the corr table
+emissions_corr = df_emissions.drop_nulls().select(cs.numeric()).corr()
+
+# For readability, selecting the column and sorting the correlation
 (
-    pl.concat(
-        [
-            df_emissions.drop_nulls().select(cs.numeric()).corr().select("emissions_totales"),
-            pl.DataFrame({
-                'autre_col':df_emissions.select(cs.numeric()).columns
-                })
-        ],
-        how='horizontal'
+    emissions_corr
+    .head(1)
+    .transpose(
+        include_header=True,
+        header_name="sector",
+        column_names=["corr_emissions_tot"]
     )
-    .sort("emissions_totales")
+    .sort("corr_emissions_tot")
 )
 ```
 
@@ -2453,7 +2479,8 @@ df_emissions_top10
 
 - Extraire du code commune le numéro de département dans une nouvelle variable
 - Calculer les émissions totales par département
-- Afficher les 10 principaux départements émetteurs. Les résultats sont-ils logiques par rapport à l'analyse au niveau communal ?
+- Afficher les 10 principaux départements émetteurs.
+Les résultats sont-ils logiques par rapport à l'analyse au niveau communal ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2508,7 +2535,8 @@ doublons
 
 :::
 
-- Filtrez dans le dataframe initial les communes dont le nom est dupliqué, et triez-le par code commune. Les doublons semblent-ils problématiques ?
+- Filtrez dans le dataframe initial les communes dont le nom est dupliqué, et triez-le par code commune.
+Les doublons semblent-ils problématiques ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2549,7 +2577,8 @@ df_pop_communes_doublons.group_by("DEPCOM").n_unique().filter(pl.col("COM")>1).s
 
 :::
 
-- Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement. Qu'en concluez-vous ?
+- Affichez les communes présentes dans les données communales mais pas dans les données d'émissions, et inversement.
+Qu'en concluez-vous ?
 
 ```{python}
 # Testez votre réponse dans cette cellule
@@ -2579,7 +2608,8 @@ df_emissions.filter(
 
 ### Partie 4 : Calcul d'une empreinte carbone par habitant pour chaque commune
 
-- Joindre les deux dataframes à l'aide de la fonction à partir du code commune. Attention : les variables ne s'appellent pas de la même manière des deux côtés !
+- Joindre les deux dataframes à l'aide de la fonction à partir du code commune.
+Attention : les variables ne s'appellent pas de la même manière des deux côtés !
 
 ```{python}
 # Testez votre réponse dans cette cellule
