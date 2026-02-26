@@ -2307,7 +2307,7 @@ n_communes_0_pop = df_pop_communes.filter(pl.col("PTOT") == 0).height
 print(n_communes_0_pop)
 df_pop_communes = df_pop_communes.filter(pl.col("PTOT") > 0)
 
-df_pop_communes = df_pop_communes.drop(["PMUN", "PCAP"])
+df_pop_communes = df_pop_communes.drop("PMUN", "PCAP")
 ```
 
 </details>
@@ -2444,6 +2444,35 @@ df_emissions_top10 = (
 df_emissions_top10
 ```
 
+Pour une meilleure représentation, on peut regarder cela sous forme graphique (*cf.* partie suivante) :
+
+```{python}
+# Liste des secteurs et dataframe pandas
+sectors = df_emissions_top10.columns[2:12]
+df = df_emissions_top10.select(sectors + ["INSEE commune", "emissions_totales"]).to_pandas()
+
+# Graphique empilé
+ax = df[sectors+ ["INSEE commune"]].plot(kind='bar', stacked=True, x="INSEE commune", y=sub_components)
+
+# Ajouter la ligne pour emissions_totales
+ax.plot(
+    df["INSEE commune"],
+    df["emissions_totales"],
+    color="black",
+    marker="x",
+    label="Emissions Totales",
+)
+
+# Personnalisation
+ax.set_xlabel("Code Insee Commune")
+ax.set_ylabel("Emissions")
+plt.xticks(rotation=45)  # Rotation des étiquettes pour une meilleure lisibilité
+plt.title("Décomposition des émissions par commune")
+
+# Affichage
+plt.show()
+
+```
 </details>
 
 :::
