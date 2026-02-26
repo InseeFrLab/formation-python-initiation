@@ -859,6 +859,19 @@ df.with_columns(
 )
 ```
 
+### Sélectionner et transformer des colonnes
+
+La méthode `select()`, déjà abordée plus haut, permet aussi de transformer les colonnes.
+Si l'on veut sélectionner et transformer les colonnes en une commande,
+cela est donc possible grâce à cette méthode.
+
+Par exemple, pour normaliser les colonnes dans l'exemple ci-dessus, on peut remplacer `with_columns()` par un `select()`.
+
+```{python}
+df.select(
+    (cs.numeric() / pl.col("var2")).name.suffix("_norm")  # va normaliser les colonnes et sélectionner les colonnes listées
+)
+```
 ### Renommer des colonnes
 
 Une autre opération fréquente est le renommage d'une ou plusieurs colonnes.
