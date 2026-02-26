@@ -1,6 +1,5 @@
 # %%
 import geopandas as gpd
-import matplotlib.pyplot as plt
 import plotnine as p9
 import polars as pl
 import requests
@@ -162,35 +161,8 @@ def plot_age_pyramid(df, years):
     return plot
 
 
-# %%
-plot_age_pyramid(df, [1975, 2023])
-# %%
-
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
-
-solutions.plot_age_pyramid(df.to_pandas(), 1975, ax=ax1)
-solutions.plot_age_pyramid(df.to_pandas(), 2022, ax=ax2)
-
-fig
-# %%
-df_matching = solutions.load_departements_regions(
-    "https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json"
-)
-df_matching
-
-
-# %%
 def load_departements_regions(url):
     return pl.from_dicts(requests.get(url).json())
-
-
-# %%
-url = "https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json"
-reg_details = load_departements_regions(url)
-reg_details
-# %%
-df_regions = solutions.match_department_regions(df.to_pandas(), df_matching)
-df_regions
 
 
 # %%
