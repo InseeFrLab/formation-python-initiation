@@ -215,4 +215,23 @@ def compute_population_growth_per_region(df):
     return df_croissance
 
 
-# %%
+def compute_mean_population_growth_per_region(df, min_year, max_year):
+    """
+    This function takes a DataFrame as input, and returns the mean population growth as a percentage
+    for each region, between a given range of years.
+
+    Parameters:
+    df (polars.DataFrame): DataFrame containing population data.
+    min_year (int): the minimum year of the range to consider
+    max_year (int): the maximum year of the range to consider
+
+    Returns:
+    polars.DataFrame: DataFrame containing mean population growth as a percentage for each region,
+                      between the given range of years
+    """
+    df = compute_population_growth_per_region(df)
+    df_croissance = df.filter(
+        pl.col("annee") >= min_year, pl.col("annee") <= max_year
+    ).mean()
+
+    return df_croissance
