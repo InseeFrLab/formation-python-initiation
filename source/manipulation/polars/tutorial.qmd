@@ -941,21 +941,21 @@ df
 Pour trier les valeurs selon une seule colonne, il suffit de passer le nom de la colonne en paramètre.
 
 ```{python}
-df.sort(by='var1")
+df.sort(by="var1")
 ```
 
 Par défaut, le tri est effectué dans **l'ordre croissant**.
 Pour trier les valeurs dans un ordre décroissant, il suffit de paramétrer `descending=True`.
 
 ```{python}
-df.sort(by='var1', descending=True)
+df.sort(by="var1", descending=True)
 ```
 
 Si on souhaite trier le dataframe sur **plusieurs colonnes**, on peut fournir une liste de noms de colonnes.
 On peut également choisir de trier de manière croissante pour certaines colonnes et décroissante pour d'autres en spécifiant les booléns dans une liste.
 
 ```{python}
-df.sort(by=['var1', 'var2'], descending=[True, True])
+df.sort(by=["var1", "var2"], descending=[True, True])
 ```
 
 
@@ -1028,8 +1028,8 @@ df.group_by("experiment").agg(pl.col("var2").n_unique())
 - Pour calculer par type d'expérience le nombre de valeurs de "var2" et la moyenne de "var1" :
 ```{python}
 df.group_by("experiment").agg(
-    pl.col("var1").mean().alias('mean_var1"),
-    pl.col("var2").len().alias('count_var2")
+    pl.col("var1").mean().alias("mean_var1"),
+    pl.col("var2").len().alias("count_var2")
 )
 ```
 
@@ -1058,7 +1058,7 @@ Cela favorise également un style de programmation fonctionnel où les données 
 subset_df = (
     df
     .filter(pl.col("sample") == "sample1", pl.col("date") >= '2022-01-02')
-    .drop('sample")
+    .drop("sample")
     .glimpse()
 )
 ```
@@ -1107,13 +1107,13 @@ Lors de calculs statistiques, les valeurs nulles sont généralement ignorées e
 Par exemple, la méthode `.mean()` calcule la moyenne des valeurs non manquantes.
 
 ```{python}
-df['var1'].mean()
+df["var1"].mean()
 ```
 
 En revanche, les valeurs 'Not a Number', ou `NaN`, ont plutôt tendance à se propager.
 
 ```{python}
-df['var2'].mean()
+df["var2"].mean()
 ```
 
 ### Suppression des valeurs manquantes
@@ -1129,7 +1129,7 @@ df.drop_nans()
 Si l'on spécifie une liste de colonnes, seules les lignes comportant une valeur manquante ou `NaN` de cette colonne seront supprimées.
 
 ```{python}
-df.drop_nulls(['var1'])
+df.drop_nulls(["var1"])
 ```
 
 ### Remplacement des valeurs manquantes
@@ -1140,6 +1140,8 @@ La méthode [`fill_null()`](https://docs.pola.rs/api/python/stable/reference/dat
 - Une première possibilité est le remplacement par une valeur constante.
 
 ```{python}
+#| eval: false
+
 df.fill_null(value=0)
 ```
 
@@ -1147,6 +1149,8 @@ df.fill_null(value=0)
 Il peut parfois être tentant de changer la manifestation d'une valeur manquante pour des raisons de visibilité, par exemple en la remplaçant par une chaîne de caractères :
 
 ```{python}
+#| eval: false
+
 df.fill_null(value="MISSING")
 ```
 
@@ -1163,6 +1167,7 @@ La méthide `fill_null()` de polars propose 4 méthodes pré-définies pour remp
 Si l'on veut remplacer uniquement les valeurs manquantantes d'une colonne en polars, il est plus utile d'utiliser la méthode `with_columns()` en utilisant l'agilité des sélecteurs de polars.
 
 ```{python}
+#| eval: false
 df.with_columns(
     cs.numeric().fill_null(strategy="mean")
 )
