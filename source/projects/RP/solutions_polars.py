@@ -165,7 +165,6 @@ def load_departements_regions(url):
     return pl.from_dicts(requests.get(url).json())
 
 
-# %%
 def match_department_regions(df, df_matching):
     df_regions = df.join(
         df_matching, how="left", left_on="dep_code", right_on="num_dep"
@@ -173,43 +172,24 @@ def match_department_regions(df, df_matching):
     return df_regions
 
 
-# %%
-df_regions = match_department_regions(df, reg_details)
-df_regions
-
-# %%
-geo = solutions.load_geo_data(
-    "https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson"
-)
-geo
-
-
-# %%
 def load_geo_data(url):
     geodata = gpd.read_file(url)
-    geodata = geodata[["NOM", "geometry"]]
     return geodata
 
 
-# %%
-url = "https://minio.lab.sspcloud.fr/projet-cartiflette/diffusion/shapefiles-test1/year=2022/administrative_level=REGION/crs=4326/FRANCE_ENTIERE=metropole/vectorfile_format='geojson'/provider='IGN'/source='EXPRESS-COG-CARTO-TERRITOIRE'/raw.geojson"
-
-geo = load_geo_data(url)
-# %%
-solutions.plot_population_by_regions(df_regions.to_pandas(), geo, 2022)
-
-# %%
-
-(
-    df_regions.filter(
-        pl.col.annee == 2022, pl.col.genre == "Ensemble", pl.col.age == "Total"
+def plot_population_by_regions(df, geo, year):
+    plot = (
+        df_regions.filter(
+            pl.col.annee == year, pl.col.genre == "Ensemble", pl.col.age == "Total"
+        )
+        .group_by("region_name")
+        .agg(pl.sum("population"))
+        .to_pandas()
+        .merge(geo, left_on="region_name", right_on="NOM", how="left")
+        >> p9.ggplot(p9.aes(fill="population")) + p9.geom_map() + p9.theme_matplotlib()
     )
-    .group_by("region_name")
-    .agg(pl.col.population.sum())
-    .to_pandas()
-    .merge(geo, left_on="region_name", right_on="NOM", how="left")
-    >> p9.ggplot(p9.aes(fill="population")) + p9.geom_map() + p9.theme_matplotlib()
-)
+    return plot
+
 
 # list(set(list(geo['NOM'].unique())) & set(df_regions.select("region_name").unique().to_series().to_list()))
 # %%
