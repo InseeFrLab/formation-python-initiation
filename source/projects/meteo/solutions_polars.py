@@ -1,8 +1,8 @@
+import plotnine as p9
 import polars as pl
 import requests
-from plotnine import ggplot, aes, geom_line, theme_matplotlib, labs
 
-# import solutions
+
 def build_request_nominatim(country, city):
     url_request = f"https://nominatim.openstreetmap.org/search?country={country}&city={city}&format=json"
     return url_request
@@ -36,58 +36,61 @@ def get_meteo_data(query):
         print(f"Error code : {code}")
         return None
 
-# %%
-def preprocess_predictions(predictions):
 
+def preprocess_predictions(predictions):
     df = (
         pl.DataFrame(predictions)
-            .select('hourly')
-            .unnest('hourly')
-            .explode('time', 'relativehumidity_2m', 'windspeed_10m')
-            .cast({'time': pl.Datetime})
-            .rename({'time': 'date_time', 'relativehumidity_2m': 'humidity', 'windspeed_10m': 'wind_speed'})
-            .with_columns(
-                day=pl.col('date_time').dt.date(), 
-                hour=pl.col('date_time').dt.hour(), 
-                bad_hair_index=pl.col.humidity*pl.col.wind_speed
-            )
+        .select("hourly")
+        .unnest("hourly")
+        .explode("time", "relativehumidity_2m", "windspeed_10m")
+        .cast({"time": pl.Datetime})
+        .rename(
+            {
+                "time": "date_time",
+                "relativehumidity_2m": "humidity",
+                "windspeed_10m": "wind_speed",
+            }
+        )
+        .with_columns(
+            day=pl.col("date_time").dt.date(),
+            hour=pl.col("date_time").dt.hour(),
+            bad_hair_index=pl.col.humidity * pl.col.wind_speed,
+        )
     )
 
     return df
 
-# %%
+
 def plot_agg_avg_bhi(df_preds, agg_var="day"):
-    if agg_var not in ['day', 'hour']:
-        raise ValueError('Not the right aggregation variable')
-        
+    if agg_var not in ["day", "hour"]:
+        raise ValueError("Not the right aggregation variable")
+
     plot = (
-        ggplot(df_preds.group_by(agg_var).agg(pl.mean('bad_hair_index')), aes(x=agg_var, y='bad_hair_index'))
-            + geom_line()
-            + theme_matplotlib()
+        p9.ggplot(
+            df_preds.group_by(agg_var).agg(pl.mean("bad_hair_index")),
+            p9.aes(x=agg_var, y="bad_hair_index"),
+        )
+        + p9.geom_line()
+        + p9.theme_matplotlib()
     )
     if agg_var == "day":
-        plot = (
-            plot
-            + labs(
-                title="Evolution of the average BHI on 7 days",
-                x='Hour', 
-                y='Average Bad Hair Index')
+        plot = plot + p9.labs(
+            title="Evolution of the average BHI on 7 days",
+            x="Hour",
+            y="Average Bad Hair Index",
         )
     elif agg_var == "hour":
-        plot = (
-            plot
-            + labs(
-                title="Average BHI by hour on the next 7 days",
-                x='Day',
-                y='Average Bad Hair Index')
+        plot = plot + p9.labs(
+            title="Average BHI by hour on the next 7 days",
+            x="Day",
+            y="Average Bad Hair Index",
         )
-    
+
     return plot
 
 
-# %%
 def main(country, city, agg_var="day"):
-# def main(agg_var="day"):
+    # def main(agg_var="day"):
     # Get lat, long from Nominatim API
     url_request_nominatim = build_request_nominatim(country, city)
     lat, long = get_lat_long(query=url_request_nominatim)
@@ -100,9 +103,3 @@ def main(country, city, agg_var="day"):
 
     # Graphical representation
     return plot_agg_avg_bhi(df_preds, agg_var)
-
-# %%
-main('France', 'Montrouge', 'day')
-
-# %%
-main('France', 'Montrouge', 'hour')
