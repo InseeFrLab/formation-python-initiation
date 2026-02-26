@@ -17,15 +17,19 @@ Le fichier que nous allons utilisé peut être téléchargé directement via cet
 
 ```{python}
 #| eval: false
-import copy
-import pandas as pd
-import matplotlib.pyplot as plt
 import geopandas as gpd
-import seaborn as sns
 
 # Choisissez entre pandas/seaborn/matplotlib et polars/plotnine
-import solutions # pandas and seaborn/matplotlib
-# import solutions_polars as solutions # polars and plotnine
+# Bloc to uncomment for pandas and seaborn/matplotlib
+import solutions
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Bloc to uncomment for polars and plotnine
+# import solutions_polars as solutions
+# import polars as pl
+# import plotnine as p9
 ```
 
 ## Partie 1 : Téléchargement et mise en forme des données
